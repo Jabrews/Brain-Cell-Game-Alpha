@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://dxvrnwowwdl71"]
+
+[ext_resource type="Script" uid="uid://derwebj8fkblm" path="res://scripts/characters/prisoner/prisoner.gd" id="1_77s3c"]
+[ext_resource type="PackedScene" uid="uid://q5i8mv06vwpr" path="res://scenes/characters/reusable/stat_display/stat_display.tscn" id="2_mw4ch"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_bmjmf"]
+[ext_resource type="PackedScene" uid="uid://cuinnjkqrkaw6" path="res://scenes/hoverable_mesh_scenes/prisoner_hover.tscn" id="5_bmjmf"]
+[ext_resource type="Script" uid="uid://b8ctu5cx4kres" path="res://scripts/characters/prisoner/interactable_prisoner.gd" id="7_0dqqi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnd4e"]
+albedo_color = Color(1, 0.3137255, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w1uyl"]
+material = SubResource("StandardMaterial3D_wnd4e")
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8yf24"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gogr5"]
+
+[node name="Prisoner" type="CharacterBody3D" unique_id=1338741533 groups=["prisoner"]]
+collision_layer = 256
+collision_mask = 2
+script = ExtResource("1_77s3c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=135164209]
+mesh = SubResource("BoxMesh_w1uyl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1466648967]
+shape = SubResource("BoxShape3D_8yf24")
+
+[node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("2_mw4ch")]
+
+[node name="HoverableMesh" type="StaticBody3D" parent="." unique_id=1499541279 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_bmjmf")
+hover_mesh_scene = ExtResource("5_bmjmf")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverableMesh" unique_id=445728578]
+shape = SubResource("BoxShape3D_gogr5")
+
+[node name="Interactable" type="StaticBody3D" parent="." unique_id=1153240590 groups=["interactable"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("7_0dqqi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable" unique_id=389066984]
+shape = SubResource("BoxShape3D_gogr5")

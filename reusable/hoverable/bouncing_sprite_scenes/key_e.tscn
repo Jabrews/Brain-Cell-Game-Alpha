@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dmtd6w1i541n8"]
+
+[ext_resource type="Texture2D" uid="uid://dbya8b8luf4d3" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.png" id="1_hldxw"]
+[ext_resource type="Script" uid="uid://bg8oen0areu20" path="res://reusable/hoverable/bouncing_sprite/bouncing_sprite.gd" id="2_dtlpc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dtlpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hldxw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="KeyE" type="AnimatedSprite3D" unique_id=1724114555]
+billboard = 1
+sprite_frames = SubResource("SpriteFrames_dtlpc")
+autoplay = "default"
+script = ExtResource("2_dtlpc")

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://c4sbk5hnh6i4m"]
+
+[ext_resource type="Script" uid="uid://c6pth2umdqyx0" path="res://scripts/characters/cell_container/cell_container.gd" id="1_7es7g"]
+[ext_resource type="Script" uid="uid://b5gxd00xv82nb" path="res://scripts/characters/cell_container/state_machine/state_machine.gd" id="2_ne0dv"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_nhw5q"]
+[ext_resource type="PackedScene" uid="uid://cuinnjkqrkaw6" path="res://scenes/hoverable_mesh_scenes/prisoner_hover.tscn" id="3_0dogw"]
+[ext_resource type="Script" uid="uid://b6ipb8ftq8ehr" path="res://scripts/characters/cell_container/state_machine/states/idle_state.gd" id="3_ay8s5"]
+[ext_resource type="Script" uid="uid://dtuy3l3go3b0p" path="res://scripts/characters/cell_container/state_machine/states/dying_state.gd" id="3_lgqnw"]
+[ext_resource type="PackedScene" uid="uid://q5i8mv06vwpr" path="res://scenes/characters/reusable/stat_display/stat_display.tscn" id="4_0dogw"]
+[ext_resource type="Script" uid="uid://bnuq0c6f8wub" path="res://scripts/characters/cell_container/state_machine/states/picked_up_state.gd" id="4_gniwj"]
+[ext_resource type="Script" uid="uid://lfjn23tkn8tv" path="res://scripts/characters/cell_container/state_machine/states/jolt_state.gd" id="6_e5wqa"]
+[ext_resource type="Script" uid="uid://c85008xthgpgt" path="res://scripts/characters/cell_container/interactable_pickup.gd" id="9_gniwj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jnj3"]
+albedo_color = Color(0.94036186, 5.174056e-06, 1.1551381e-06, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7es7g"]
+material = SubResource("StandardMaterial3D_2jnj3")
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jnj3"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ne0dv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ay8s5"]
+
+[node name="CellContainer" type="CharacterBody3D" unique_id=2054877919 groups=["brain_cell_container"]]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_7es7g")
+
+[node name="StateMachine" type="Node" parent="." unique_id=2037224867]
+script = ExtResource("2_ne0dv")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=167243107]
+script = ExtResource("3_ay8s5")
+
+[node name="PickedUp" type="Node" parent="StateMachine" unique_id=1843162299]
+script = ExtResource("4_gniwj")
+
+[node name="Dying" type="Node" parent="StateMachine" unique_id=814044771]
+script = ExtResource("3_lgqnw")
+
+[node name="Jolt" type="Node" parent="StateMachine" unique_id=388978317]
+script = ExtResource("6_e5wqa")
+
+[node name="DefectIncreaseDelayTimer" type="Timer" parent="StateMachine/Jolt" unique_id=1011068641]
+wait_time = 4.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
+mesh = SubResource("BoxMesh_7es7g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1842558496]
+shape = SubResource("BoxShape3D_2jnj3")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="." unique_id=50429877 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_nhw5q")
+hover_mesh_scene = ExtResource("3_0dogw")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverableMesh" unique_id=928652815]
+shape = SubResource("BoxShape3D_ne0dv")
+
+[node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
+
+[node name="InteractablePickup" type="StaticBody3D" parent="." unique_id=1571012619 groups=["interactable"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("9_gniwj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractablePickup" unique_id=1367502610]
+shape = SubResource("BoxShape3D_ay8s5")

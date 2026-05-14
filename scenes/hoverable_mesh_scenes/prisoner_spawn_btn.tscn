@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b6qp3uxhrc5bg"]
+
+[ext_resource type="Material" uid="uid://chj4bj7fdfuss" path="res://reusable/hoverable/hover-outline_mat.tres" id="1_sfg3o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_x5lmh"]
+material = ExtResource("1_sfg3o")
+size = Vector3(1.25, 1.25, 1.25)
+
+[node name="PrisonerSpawnBtn" type="MeshInstance3D" unique_id=487223062]
+mesh = SubResource("BoxMesh_x5lmh")

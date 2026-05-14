@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://q5i8mv06vwpr"]
+
+[ext_resource type="Script" uid="uid://cu33dn3jgrbs" path="res://scripts/characters/reusable/stat_display_screen/stat_tv_mesh.gd" id="1_fo6nq"]
+[ext_resource type="PackedScene" uid="uid://g72258alma4c" path="res://scenes/characters/reusable/stat_display/screen_stat_display.tscn" id="2_0e66n"]
+[ext_resource type="Script" uid="uid://cchk7xtrx48en" path="res://scripts/characters/reusable/stat_display_screen/stat_display_area.gd" id="3_2uw1u"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gogr5"]
+viewport_path = NodePath("StatDisplay/StatMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw4ch"]
+albedo_texture = SubResource("ViewportTexture_gogr5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bmjmf"]
+material = SubResource("StandardMaterial3D_mw4ch")
+size = Vector2(1.4, 1.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8yf24"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="StatDisplay" type="Node3D" unique_id=1313515711]
+
+[node name="StatMesh" type="MeshInstance3D" parent="." unique_id=263691589]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 1.1827984, -0.024689734)
+visible = false
+mesh = SubResource("PlaneMesh_bmjmf")
+script = ExtResource("1_fo6nq")
+
+[node name="SubViewport" type="SubViewport" parent="StatMesh" unique_id=659531028]
+size = Vector2i(476, 266)
+
+[node name="StatDisplay" parent="StatMesh/SubViewport" unique_id=907959932 instance=ExtResource("2_0e66n")]
+
+[node name="StatDisplayArea" type="Area3D" parent="." unique_id=487541945 groups=["stat_display_area"]]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("3_2uw1u")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StatDisplayArea" unique_id=1722532323]
+shape = SubResource("BoxShape3D_8yf24")

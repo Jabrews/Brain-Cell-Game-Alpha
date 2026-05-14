@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://d3feijklrh11s"]
+
+[ext_resource type="Script" uid="uid://d3p1dh1bd2u8f" path="res://scripts/stations/station_components/cell_container_spawner/station_cell_container_spawner.gd" id="1_ala25"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k57ag"]
+albedo_color = Color(0.23031491, 0.23031494, 0.23031488, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fon25"]
+material = SubResource("StandardMaterial3D_k57ag")
+size = Vector3(1.6, 0.5, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8tfju"]
+size = Vector3(1.6, 0.5, 1.6)
+
+[node name="CellContainerSpawner" type="Node3D" unique_id=1385341540]
+script = ExtResource("1_ala25")
+
+[node name="SpawnPos" type="Node3D" parent="." unique_id=1623054963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6744499, 3.9426367, 0)
+
+[node name="ContainerMesh" type="StaticBody3D" parent="." unique_id=458024785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.119326115, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Mesh1" type="MeshInstance3D" parent="ContainerMesh" unique_id=1330570040]
+mesh = SubResource("BoxMesh_fon25")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ContainerMesh" unique_id=1601540180]
+shape = SubResource("BoxShape3D_8tfju")

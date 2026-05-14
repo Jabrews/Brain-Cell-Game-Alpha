@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://5aiid51oaqct"]
+
+[ext_resource type="Script" uid="uid://cllqh51yw43mn" path="res://scripts/characters/player/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bs1thj3p8tx33" path="res://scripts/characters/player/ray_casts/ray_cast_controller.gd" id="2_6avc5"]
+[ext_resource type="Script" uid="uid://nunfbgiepm7" path="res://reusable/hoverable/hover_detect/hover_detect.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://ofcpd7nt03i4" path="res://scripts/characters/player/ray_casts/interact_ray.gd" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dbyqeim8y2d0k" path="res://scripts/characters/player/ray_casts/stat_display_ray.gd" id="4_hss88"]
+[ext_resource type="Script" uid="uid://crdf4bvgvnn7k" path="res://scripts/characters/player/ray_casts/useable_item_ray.gd" id="6_mk55u"]
+[ext_resource type="Script" uid="uid://br22ikxgw6y14" path="res://scripts/characters/player/usable_item_hand_preview/useable_item_hand_preview.gd" id="7_mk55u"]
+[ext_resource type="Texture2D" uid="uid://dkrsadavve8qw" path="res://models/usable_items/serum_items/defect_shot.png" id="8_xuses"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+height = 3.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+height = 3.0127945
+
+[node name="Player" type="CharacterBody3D" unique_id=1124472616 groups=["display_cell_stats_area", "player"]]
+collision_mask = 2
+script = ExtResource("1_3vyb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=119196132]
+mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1721746271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.018192291, 0)
+shape = SubResource("CapsuleShape3D_3vyb7")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=77891920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8983867, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1893995127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.60649943, 0)
+
+[node name="RayCastController" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1681695528]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13142133, 0)
+script = ExtResource("2_6avc5")
+
+[node name="HoverEffectRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1742144226]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+target_position = Vector3(0, 0, -3.5)
+collision_mask = 18
+collide_with_areas = true
+script = ExtResource("2_g2els")
+
+[node name="InteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1568495012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+target_position = Vector3(0, 0, -3)
+collision_mask = 34
+collide_with_areas = true
+script = ExtResource("3_qhqgy")
+
+[node name="StatDisplayRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1939760921 groups=["usable_item"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+target_position = Vector3(0, 0, -3)
+collision_mask = 66
+collide_with_areas = true
+script = ExtResource("4_hss88")
+
+[node name="UseableItemRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1178014007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+target_position = Vector3(0, 0, -3)
+collision_mask = 134
+collide_with_areas = true
+script = ExtResource("6_mk55u")
+
+[node name="UseableItemHandPreview" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1495413384]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, -0.5556661, -1.0407479)
+script = ExtResource("7_mk55u")
+
+[node name="HandPreviewSprite" type="Sprite3D" parent="CameraPivot/Camera3D/UseableItemHandPreview" unique_id=702001524]
+visible = false
+texture_filter = 0
+texture = ExtResource("8_xuses")

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bol2i42gb0t6j"]
+
+[ext_resource type="Script" uid="uid://bka5qpiah2tfk" path="res://reusable/load_panel/load_panel_cell.gd" id="1_1g30i"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_6wfuo"]
+[ext_resource type="PackedScene" uid="uid://jbuaiy8gqarp" path="res://scenes/stations/station_screens/cell_analyzer_stats/screen_cell_analyzer_stats.tscn" id="2_2nk5p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r2y5v"]
+size = Vector3(4.5, 0.277, 4.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fon25"]
+albedo_color = Color(0.78039217, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_r2y5v"]
+material = SubResource("StandardMaterial3D_fon25")
+size = Vector3(5, 0.2, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0k1cf"]
+size = Vector3(5, 0.2, 5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2y5v"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0k1cf"]
+material = SubResource("StandardMaterial3D_r2y5v")
+size = Vector3(0.1, 3.2, 5.4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_e88qw"]
+viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pful"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_e88qw")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fm2ka"]
+material = SubResource("StandardMaterial3D_6pful")
+size = Vector2(4.96, 2.9)
+orientation = 0
+
+[node name="CellAnalyzer" type="Node3D" unique_id=1894764592]
+
+[node name="LoadCellPanel" type="Area3D" parent="." unique_id=1187162998 node_paths=PackedStringArray("cell_reciever")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_1g30i")
+cell_reciever = NodePath("../AnyalizerDisplayStatTv/TvFrontPannel/SubViewport/CellAnalyzerStats")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel" unique_id=69288836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03862305, 0)
+shape = SubResource("BoxShape3D_r2y5v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadCellPanel" unique_id=1499495176]
+mesh = SubResource("BoxMesh_r2y5v")
+
+[node name="PanelCollision" type="StaticBody3D" parent="LoadCellPanel" unique_id=2042935551]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel/PanelCollision" unique_id=571694878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0103067905, 0)
+shape = SubResource("BoxShape3D_0k1cf")
+
+[node name="AnyalizerDisplayStatTv" type="Node3D" parent="." unique_id=1387430138]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="AnyalizerDisplayStatTv" unique_id=1106961367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5181713, 4, 0)
+mesh = SubResource("BoxMesh_0k1cf")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="AnyalizerDisplayStatTv" unique_id=1913759585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4666843, 4, 0)
+mesh = SubResource("PlaneMesh_fm2ka")
+script = ExtResource("1_6wfuo")
+
+[node name="SubViewport" type="SubViewport" parent="AnyalizerDisplayStatTv/TvFrontPannel" unique_id=401471804]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+
+[node name="CellAnalyzerStats" parent="AnyalizerDisplayStatTv/TvFrontPannel/SubViewport" unique_id=507165404 instance=ExtResource("2_2nk5p")]
