@@ -10,11 +10,17 @@
 [ext_resource type="Script" uid="uid://h5e4wiwx5h7u" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/observe_player_hand/observe_player_hand.gd" id="5_qsd23"]
 [ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="6_4fqsq"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="7_asniq"]
+[ext_resource type="PackedScene" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/round_controller/station_round_controller.tscn" id="8_6vq0o"]
+[ext_resource type="PackedScene" path="res://debug/cell_creation_zoo/scenes/admin_stations/station_components/instant_hidden_stat_interpreter/station_instant_hidden_stat_interpreter.tscn" id="8_cg5uc"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="11_hfdts"]
 [ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="13_tcwxf"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="14_a3len"]
+[ext_resource type="Script" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="14_atjgp"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="15_g5ap4"]
+[ext_resource type="Script" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_clean.gd" id="15_md3j6"]
+[ext_resource type="Script" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/constructor_manager/constructor_manager.gd" id="15_mnydp"]
 [ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/game_manager/cell_breeder/cell_breeder.gd" id="16_0vfmc"]
+[ext_resource type="Script" path="res://debug/cell_creation_zoo/scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_defect.gd" id="16_d3ij1"]
 [ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/game_manager/cell_breeder/clean_stat_helper/clean_stat_helper.gd" id="17_figcq"]
 [ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/defect_stat_helper/defect_stat_helper.gd" id="18_k0qid"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="19_cfuol"]
@@ -86,6 +92,24 @@ Creation
 font = ExtResource("1_6vq0o")
 font_size = 100
 
+[node name="Strength" type="Label3D" parent="Enviroment/Labels" unique_id=655157496]
+transform = Transform3D(1, 0, -2.0663207e-07, 0, 1, 0, 2.0663207e-07, 0, 1, -5.04827, 0.9277499, -5.477109)
+text = "Strength"
+font = ExtResource("1_6vq0o")
+font_size = 54
+
+[node name="Intelligence" type="Label3D" parent="Enviroment/Labels" unique_id=430584977]
+transform = Transform3D(1, 0, -2.0663207e-07, 0, 1, 0, 2.0663207e-07, 0, 1, -2.0482702, 0.9277499, -5.477109)
+text = "Intell."
+font = ExtResource("1_6vq0o")
+font_size = 54
+
+[node name="Community" type="Label3D" parent="Enviroment/Labels" unique_id=23726404]
+transform = Transform3D(1, 0, -2.0663207e-07, 0, 1, 0, 2.0663207e-07, 0, 1, 0.9517298, 0.9277499, -5.477109)
+text = "Community"
+font = ExtResource("1_6vq0o")
+font_size = 54
+
 [node name="Characters" type="Node" parent="." unique_id=1416599628]
 
 [node name="Player" parent="Characters" unique_id=1124472616 instance=ExtResource("2_atjgp")]
@@ -103,11 +127,9 @@ player = NodePath("../../Characters/Player")
 
 [node name="CustomTargetCellCreator" parent="AdminStations" unique_id=1247186669 instance=ExtResource("4_p761y")]
 transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, -4, 0.78359604, 7.993)
-visible = false
 
 [node name="CustomCollectedCellCreator" parent="AdminStations" unique_id=1787808242 node_paths=PackedStringArray("name_manager") instance=ExtResource("5_hg8ni")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 0.82342625, 2)
-visible = false
 name_manager = NodePath("../../GameManager/CellCreator/NameManager")
 
 [node name="CellContainerSpawner" parent="AdminStations" unique_id=1385341540 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("6_4fqsq")]
@@ -116,6 +138,22 @@ cell_container_parent_node = NodePath("../../Characters/ContainerParentNode")
 
 [node name="CellTrashCan" parent="AdminStations" unique_id=995289130 instance=ExtResource("7_asniq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 7)
+
+[node name="RoundController" parent="AdminStations" unique_id=386277695 instance=ExtResource("8_6vq0o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.648563, 1.3132086, -6)
+
+[node name="HiddenStatInterpreters" type="Node" parent="AdminStations" unique_id=1914424839]
+
+[node name="InstantHiddenStatInterpreter" parent="AdminStations/HiddenStatInterpreters" unique_id=668750105 instance=ExtResource("8_cg5uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.259572)
+
+[node name="InstantHiddenStatInterpreter2" parent="AdminStations/HiddenStatInterpreters" unique_id=283581124 instance=ExtResource("8_cg5uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.869051, 0, -6.2335744)
+interpreter_type = "intelligence"
+
+[node name="InstantHiddenStatInterpreter3" parent="AdminStations/HiddenStatInterpreters" unique_id=151198475 instance=ExtResource("8_cg5uc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.890549, 0, -6.3179317)
+interpreter_type = "community"
 
 [node name="GameManager" type="Node" parent="." unique_id=1879228085]
 script = ExtResource("11_hfdts")
@@ -129,6 +167,21 @@ script = ExtResource("13_tcwxf")
 [node name="ObservePlayerHand" type="Node" parent="GameManager/CellCreator" unique_id=219222664 node_paths=PackedStringArray("useable_item_manager")]
 script = ExtResource("5_qsd23")
 useable_item_manager = NodePath("../../../AdminStations/UseableItemManager")
+
+[node name="AssembleCells" type="Node" parent="GameManager/CellCreator" unique_id=1607483100 node_paths=PackedStringArray("name_manager")]
+script = ExtResource("14_atjgp")
+name_manager = NodePath("../NameManager")
+
+[node name="AssembleHelpers" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=541298419]
+
+[node name="HelperCreateClean" type="Node" parent="GameManager/CellCreator/AssembleCells/AssembleHelpers" unique_id=1157742806]
+script = ExtResource("15_md3j6")
+
+[node name="HelperCreateDefect" type="Node" parent="GameManager/CellCreator/AssembleCells/AssembleHelpers" unique_id=1682138959]
+script = ExtResource("16_d3ij1")
+
+[node name="ConstructorManager" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=270030474]
+script = ExtResource("15_mnydp")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=1190475219]
 script = ExtResource("14_a3len")
