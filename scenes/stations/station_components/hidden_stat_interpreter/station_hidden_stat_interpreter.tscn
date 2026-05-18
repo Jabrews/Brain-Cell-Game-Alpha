@@ -14,11 +14,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_i5wr8"]
 size = Vector3(1.4238892, 0.15491943, 1.4798584)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_umov7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
 albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_l8odv"]
-material = SubResource("StandardMaterial3D_umov7")
+material = SubResource("StandardMaterial3D_a1kj4")
 size = Vector3(1, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32d8t"]
@@ -30,29 +30,29 @@ size = Vector3(1.5, 1.6, 1.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_v44jj"]
 size = Vector3(1.5, 1.6, 1.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cebg8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jifo"]
 albedo_color = Color(0.8440346, 0.9233957, 0.5155992, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cebg8"]
-material = SubResource("StandardMaterial3D_cebg8")
+material = SubResource("StandardMaterial3D_7jifo")
 size = Vector3(1.5, 0.05, 1.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8uoe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rirej"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_idfg8"]
-material = SubResource("StandardMaterial3D_e8uoe")
+material = SubResource("StandardMaterial3D_rirej")
 size = Vector3(0.02, 1.285, 1.875)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_24l7j"]
 viewport_path = NodePath("InterpreterTv/TvFrontPannel/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6gon6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_24l7j")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_cow7j"]
-material = SubResource("StandardMaterial3D_6gon6")
+material = SubResource("StandardMaterial3D_0jyhj")
 size = Vector2(1.75, 1.19)
 orientation = 0
 
@@ -60,7 +60,7 @@ orientation = 0
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = 5.9999776
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tk55c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxfp1"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
@@ -69,15 +69,15 @@ texture_filter = 0
 billboard_mode = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_73os1"]
-material = SubResource("StandardMaterial3D_tk55c")
+material = SubResource("StandardMaterial3D_bxfp1")
 size = Vector2(0.3, 0.3)
 orientation = 2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7mu1"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njhqc"]
 albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u0qrg"]
-material = SubResource("StandardMaterial3D_s7mu1")
+material = SubResource("StandardMaterial3D_njhqc")
 size = Vector3(0.55, 0.55, 0.55)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1hvau"]
@@ -206,13 +206,11 @@ shape = SubResource("BoxShape3D_nb62e")
 stream = ExtResource("10_a1kj4")
 volume_db = -8.0
 max_distance = 1554.36
-bus = &"SFX"
 
 [node name="JoltSparkSound" type="AudioStreamPlayer3D" parent="." unique_id=863047291]
 stream = SubResource("AudioStreamMP3_a1kj4")
 volume_db = -10.0
 max_distance = 200.0
-bus = &"SFX"
 
 [connection signal="body_entered" from="SpeedUpPanel" to="." method="_on_speed_up_panel_body_entered"]
 [connection signal="body_exited" from="SpeedUpPanel" to="." method="_on_speed_up_panel_body_exited"]

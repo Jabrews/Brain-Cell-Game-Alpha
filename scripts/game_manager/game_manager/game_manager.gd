@@ -28,14 +28,17 @@ func _handle_attempt_next_turn():
 	var curr_turn = GLGameManagerBus.current_turn
 	var max_turns = GLGameManagerBus.max_turns
 
+	print('DEBUG : over-ride handle attempt next turn logic. prisoner gen btn')
 	
-	if curr_turn == max_turns - 1 :
-		GLGameManagerBus.current_turn += 1
-		GLGameManagerBus.emit_signal('finale_turn')
-		initate_next_turn()
-	else : 
-		GLGameManagerBus.current_turn += 1
-		initate_next_turn()
+	GLCellCreatorBus.emit_signal('create_cells', false)
+	
+	#if curr_turn == max_turns - 1 :
+		#GLGameManagerBus.current_turn += 1
+		#GLGameManagerBus.emit_signal('finale_turn')
+		#initate_next_turn()
+	#else : 
+		#GLGameManagerBus.current_turn += 1
+		#initate_next_turn()
 
 	
 func initate_next_turn() : 

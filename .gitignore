@@ -3,3 +3,6 @@ project.godot
 .project.godot
 .godot
 /godot
+.godot/
+.import/
+.export/
