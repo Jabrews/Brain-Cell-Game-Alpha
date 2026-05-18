@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cuinnjkqrkaw6"]
+
+[ext_resource type="Material" uid="uid://chj4bj7fdfuss" path="res://reusable/hoverable/hover-outline_mat.tres" id="1_qsbmp"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_52oqf"]
+resource_local_to_scene = true
+material = ExtResource("1_qsbmp")
+size = Vector3(0.83, 0.83, 0.83)
+
+[node name="PrisonerHover" type="MeshInstance3D" unique_id=447058782]
+mesh = SubResource("BoxMesh_52oqf")

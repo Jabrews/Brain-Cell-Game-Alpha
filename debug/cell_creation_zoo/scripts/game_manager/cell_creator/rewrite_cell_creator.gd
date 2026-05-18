@@ -1,0 +1,50 @@
+extends Node
+
+# components
+@onready var cell_manager : Node = $"../CellManager"
+@onready var name_manager : Node = $NameManager
+@onready var observe_player_hand : Node = $ObservePlayerHand
+@onready var assemble_cells : Node = $AssembleCells
+
+# class helpers
+var debug_create_cells : DEBUGCreateCells
+#var player_hand_observer : PlayerHandObserver
+
+func _ready() -> void:
+	connect_signals()
+	create_class_refrences()
+	
+
+##### INIT HELPERS #####
+func connect_signals() : 
+	GLCellCreatorBus.connect('create_cells', handle_create_cells)
+
+func create_class_refrences() : 
+	debug_create_cells = DEBUGCreateCells.new(name_manager)
+########################
+	
+func handle_create_cells(_include_target : bool = false) -> void:
+	
+	var new_prisoner_cells : Array[BrainCell]
+	
+	var creation_case = observe_player_hand.find_case()
+	
+	if creation_case == 'none' :
+		new_prisoner_cells = assemble_cells.assemble()
+	
+	print('created prisoners')
+	print('round : ', str(GLGameManagerBus.current_round))
+	print('turn: ', str(GLGameManagerBus.current_turn))
+	
+	
+	
+	cell_manager.set_prisoner_cells(new_prisoner_cells)
+	GLCellCreatorBus.emit_signal('get_newest_prisoner_cells', new_prisoner_cells)
+	
+	
+	
+	
+	
+	
+	
+	

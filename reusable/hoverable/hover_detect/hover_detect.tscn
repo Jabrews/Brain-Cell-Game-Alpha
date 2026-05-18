@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ctex34yexeplb"]
+
+[ext_resource type="Script" path="res://reusable/hover_mesh_system/hover_detect/hover_detect.gd" id="1_vqwpn"]
+
+[node name="HoverDetect" type="Node3D" unique_id=1610712864]
+script = ExtResource("1_vqwpn")

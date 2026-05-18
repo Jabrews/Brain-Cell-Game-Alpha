@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://s44rh2n8ys6h"]
+
+[ext_resource type="Script" uid="uid://dy30vk4pk2x73" path="res://scripts/useable/useable_item.gd" id="1_bjgy8"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_bjgy8"]
+[ext_resource type="Script" uid="uid://dve2txkbajqst" path="res://reusable/modular_scripts/floating_label/floating_label.gd" id="3_bymr4"]
+[ext_resource type="FontFile" uid="uid://ehsk4rh04d68" path="res://models/fonts/my 3x5 tiny mono pixel font.ttf" id="3_u6ip4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bymr4"]
+
+[node name="UseableItem" type="RigidBody3D" unique_id=145571097 groups=["usable_item"]]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_bjgy8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1251584805]
+shape = SubResource("BoxShape3D_bymr4")
+
+[node name="UseableItemSprite" type="Sprite3D" parent="." unique_id=1299606711]
+billboard = 1
+texture_filter = 0
+
+[node name="ItemLabel" type="Label3D" parent="." unique_id=1835425560]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+top_level = true
+billboard = 1
+text = "Sample"
+font = ExtResource("2_bjgy8")
+script = ExtResource("3_bymr4")
+
+[node name="EnergyLeft" type="Label3D" parent="." unique_id=2097503549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2908914, 0)
+top_level = true
+billboard = 1
+modulate = Color(1, 1, 0, 1)
+text = "energy left  : 3"
+font = ExtResource("3_u6ip4")
+script = ExtResource("3_bymr4")
+y_axis_postive_transform = 0.9

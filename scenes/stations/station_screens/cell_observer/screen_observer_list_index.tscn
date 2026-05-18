@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://bex7onw4dih4n"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_im11v"]
+[ext_resource type="Script" uid="uid://bj8s6wuu4ctwb" path="res://scripts/stations/station_screens/cell_observer/screen_observer_list_index.gd" id="1_jo7ca"]
+[ext_resource type="FontFile" uid="uid://ehsk4rh04d68" path="res://models/fonts/my 3x5 tiny mono pixel font.ttf" id="2_56hkx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_56hkx"]
+shader = ExtResource("1_im11v")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenObserverListIndex" type="Node2D" unique_id=1210653415]
+script = ExtResource("1_jo7ca")
+
+[node name="BG" type="ColorRect" parent="." unique_id=330074152]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=911054364]
+material = SubResource("ShaderMaterial_56hkx")
+offset_right = 480.0
+offset_bottom = 100.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrLabel" type="Label" parent="." unique_id=1199128407]
+offset_left = 99.0
+offset_top = 31.0
+offset_right = 273.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_56hkx")
+theme_override_font_sizes/font_size = 34
+text = "
+"
+horizontal_alignment = 1
+
+[node name="SlashMark" type="Label" parent="." unique_id=1100629115]
+offset_left = 154.0
+offset_top = 31.0
+offset_right = 328.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_56hkx")
+theme_override_font_sizes/font_size = 34
+text = "/
+"
+horizontal_alignment = 1
+
+[node name="MaxLabel" type="Label" parent="." unique_id=1457886879]
+offset_left = 210.0
+offset_top = 31.0
+offset_right = 384.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_56hkx")
+theme_override_font_sizes/font_size = 34
+text = "
+"
+horizontal_alignment = 1

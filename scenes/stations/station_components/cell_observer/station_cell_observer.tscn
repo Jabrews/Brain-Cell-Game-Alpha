@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://w3i2xhy1jmad"]
+
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_dm2c2"]
+[ext_resource type="Script" uid="uid://djv2nat4pj4k2" path="res://scripts/stations/station_components/cell_observer/station_cell_observer.gd" id="1_mxvxd"]
+[ext_resource type="PackedScene" uid="uid://dsue0cgfnvhh8" path="res://scenes/stations/station_screens/cell_observer/screen_cell_observer.tscn" id="2_0cbq6"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_55rwl"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="3_0cbq6"]
+[ext_resource type="Script" uid="uid://bu5fpwig1067p" path="res://scripts/stations/station_components/cell_observer/observer_move_button.gd" id="3_1u1lk"]
+[ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="4_6dmfr"]
+[ext_resource type="PackedScene" uid="uid://bex7onw4dih4n" path="res://scenes/stations/station_screens/cell_observer/screen_observer_list_index.tscn" id="4_f8y3u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2y5v"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7xrfk"]
+material = SubResource("StandardMaterial3D_r2y5v")
+size = Vector3(0.1, 3.2, 5.4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_62l3s"]
+viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pful"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_62l3s")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cem65"]
+material = SubResource("StandardMaterial3D_6pful")
+size = Vector2(4.96, 2.9)
+orientation = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_mxvxd"]
+material = SubResource("StandardMaterial3D_r2y5v")
+size = Vector3(0.1, 0.8, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f8y3u"]
+material = SubResource("StandardMaterial3D_6pful")
+size = Vector2(1.875, 0.7)
+orientation = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_62l3s"]
+size = Vector3(4, 1.4, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cem65"]
+size = Vector3(4, 0.97650146, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7mu1"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yyxcu"]
+material = SubResource("StandardMaterial3D_s7mu1")
+size = Vector3(0.55, 0.55, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dhd5f"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1d532"]
+
+[node name="CellObserver" type="Node3D" unique_id=1071932212]
+script = ExtResource("1_mxvxd")
+
+[node name="ObserverTV" type="Node3D" parent="." unique_id=665359597]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="ObserverTV" unique_id=301063253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5181713, 4, 0)
+mesh = SubResource("BoxMesh_7xrfk")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="ObserverTV" unique_id=1346253732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4666843, 4, 0)
+mesh = SubResource("PlaneMesh_cem65")
+script = ExtResource("1_dm2c2")
+
+[node name="SubViewport" type="SubViewport" parent="ObserverTV/TvFrontPannel" unique_id=729458233]
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="ScreenCellObserver" parent="ObserverTV/TvFrontPannel/SubViewport" unique_id=267969835 instance=ExtResource("2_0cbq6")]
+
+[node name="ListIndexTV" type="Node3D" parent="." unique_id=1913127265]
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="ListIndexTV" unique_id=1367662524]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.10633373, 1.936904, 2.5176198)
+mesh = SubResource("BoxMesh_mxvxd")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="ListIndexTV" unique_id=387081328]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.09488791, 1.9424288, 2.4641647)
+mesh = SubResource("PlaneMesh_f8y3u")
+script = ExtResource("1_dm2c2")
+
+[node name="SubViewport" type="SubViewport" parent="ListIndexTV/TvFrontPannel" unique_id=183564768]
+size = Vector2i(480, 100)
+render_target_update_mode = 4
+
+[node name="ScreenObserverListIndex" parent="ListIndexTV/TvFrontPannel/SubViewport" unique_id=1210653415 instance=ExtResource("4_f8y3u")]
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=1728371420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5195451, 1.5704212)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1533553383]
+transform = Transform3D(1, 0, 0, 0, 0.7, 0, 0, 0, 1, 0, -0.05622077, 0)
+mesh = SubResource("BoxMesh_62l3s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1511141978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.053607166, 0)
+shape = SubResource("BoxShape3D_cem65")
+
+[node name="LeftBtn" type="StaticBody3D" parent="." unique_id=310013337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5480442, 1.2560335, 1.1430869)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_1u1lk")
+button_side = "left"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBtn" unique_id=192871797]
+mesh = SubResource("BoxMesh_yyxcu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBtn" unique_id=1729843444]
+shape = SubResource("BoxShape3D_dhd5f")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="LeftBtn" unique_id=1589258248 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_55rwl")
+hover_mesh_scene = ExtResource("3_0cbq6")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("4_6dmfr")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBtn/HoverableMesh" unique_id=2075827913]
+shape = SubResource("BoxShape3D_1d532")
+
+[node name="RightBtn" type="StaticBody3D" parent="." unique_id=341942069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4519558, 1.2560335, 1.1430869)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("3_1u1lk")
+button_side = "right"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightBtn" unique_id=2108502506]
+mesh = SubResource("BoxMesh_yyxcu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBtn" unique_id=54814251]
+shape = SubResource("BoxShape3D_dhd5f")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RightBtn" unique_id=605665438]
+shape = SubResource("BoxShape3D_dhd5f")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="RightBtn" unique_id=953004515 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_55rwl")
+hover_mesh_scene = ExtResource("3_0cbq6")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("4_6dmfr")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBtn/HoverableMesh" unique_id=1171953364]
+shape = SubResource("BoxShape3D_1d532")
