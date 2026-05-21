@@ -5,8 +5,9 @@ extends Node
 @export var name_manager : Node
 
 # components helpers
-@onready var create_clean_stats : Node = $AssembleHelpers/HelperCreateClean
-@onready var create_defect_stats : Node = $AssembleHelpers/HelperCreateDefect
+@onready var create_clean_stats : Node = $HelperCreateClean
+@onready var create_defect_stats : Node = $HelperCreateDefect
+@onready var create_hidden_stats : Node = $HelperHidden
 
 func assemble() :
 	var current_round : int = GLGameManagerBus.current_round
@@ -20,6 +21,8 @@ func assemble() :
 		var new_cells : Array[BrainCell] = create_cells_with_constructor(contructor)				
 		for cell in new_cells :
 			new_prisoner_cells.append(cell)
+		
+	new_prisoner_cells.shuffle()
 			
 	return new_prisoner_cells
 		
@@ -54,9 +57,13 @@ func create_cells_with_constructor(constructor : CellConstructor):
 		new_prisoner_cells.append(new_prisoner_cell)
 
 		cell_index += 1
+		
+	# do hidden stats		
+	new_prisoner_cells = create_hidden_stats._handle_hidden(constructor, new_prisoner_cells)
 	
 	# return finale quanity
 	return new_prisoner_cells
 		
 	
 	
+#

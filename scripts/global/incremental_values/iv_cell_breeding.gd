@@ -1,6 +1,6 @@
 extends Node
 
-var max_cell_breeding_attempts = 3
+var max_cell_breeding_attempts = 5
 var curr_cell_breeding_attempt = 0
 
 
@@ -9,17 +9,17 @@ var curr_cell_breeding_attempt = 0
 # controlls the % value we multiple high stat by to see if low meets increase case min.
 # the lower the decimal the easier to get to increase case
 # EXTRA : the low mode is below min and over (extreme) is above target. 
-var clean_stat_increase_case_min = 0.5
+var clean_stat_increase_case_min = 0.4
 
 ## increase_clean_stat_case
 # low increase value (under 0.5 of target ) scale increase value (early game)
 var low_add_percant_scale = 0.7
-var high_add_percant_scale = 0.4
+var high_add_percant_scale = 0.6
 
 ## decrease_clean_stat_case
 # low decrease value (under 0.5 of target ) scale decrease value (early game)
-var low_subtract_percant_scale = 0.7
-var high_subtract_percant_scale = 0.4
+var low_subtract_percant_scale = 0.8
+var high_subtract_percant_scale = 0.7
 
 ## over_clean_stat_case
 # this value controls the % value bewteen target_stat and max_stat_possible_value

@@ -63,9 +63,9 @@ func _update_custom_cell_screen(target_cell : BrainCell) :
 
 func update_bar_max() :
 	# update progress bars max vs min
-	strength_bar.max_value = IVCellCreator.target_stat_max
-	intelligence_bar.max_value = IVCellCreator.target_stat_max
-	community_bar.max_value = IVCellCreator.target_stat_max
+	strength_bar.max_value = IVCellCreator.max_stat_value
+	intelligence_bar.max_value = IVCellCreator.max_stat_value
+	community_bar.max_value = IVCellCreator.max_stat_value
 	
 
 
@@ -77,7 +77,7 @@ func update_bar_value(target_cell : BrainCell) :
 
 func update_display_labels(target_brain_cell : BrainCell) :
 	for label in large_labels :
-		label.text = str(IVCellCreator.target_stat_max)	
+		label.text = str(IVCellCreator.max_stat_value)	
 		
 	# strength
 	curr_value_labels[0].text = str(target_brain_cell.strength)

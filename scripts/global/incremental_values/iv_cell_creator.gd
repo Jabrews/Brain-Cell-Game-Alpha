@@ -1,7 +1,7 @@
 extends Node
 
 # min_stat_value = 0
-var max_stat_value = 160
+var max_stat_value = 320
 
 # target
 var target_stat_max = 145

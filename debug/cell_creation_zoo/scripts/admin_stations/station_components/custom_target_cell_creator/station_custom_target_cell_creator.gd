@@ -10,9 +10,9 @@ var current_active_stat_indicator_index : int = 0
 func _ready() -> void:
 	current_target_cell = BrainCell.new(
 		'head',
-		0,
-		0,
-		0,
+		295,
+		285,
+		310,
 		3,
 		0,
 		0,
@@ -54,9 +54,9 @@ func _handle_increment_target_stat_btn(increment_type : String) -> void :
 	# set increment_value 
 	match increment_type :	
 		'increase' : 		
-			increment_value = 20
+			increment_value = 10
 		'decrease' :
-			increment_value = -20
+			increment_value = -10
 		_ :
 			push_error('invalid increment target stat btn increment_type')
 	

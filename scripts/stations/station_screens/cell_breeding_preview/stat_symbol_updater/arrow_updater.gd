@@ -22,6 +22,11 @@ func _handle_arrow_type(key : String, cell_left : BrainCell, cell_right: BrainCe
 	# [0] = high
 	var high_low_stat : Array
 	
+	# target cell
+	var target_cell = GLCellManagerBus.target_cell_refrence
+	var target_stat : float = 0.0
+	
+	
 	# get highest lowest stat
 	match key : 
 		'str'  :
@@ -29,25 +34,30 @@ func _handle_arrow_type(key : String, cell_left : BrainCell, cell_right: BrainCe
 				cell_left.strength,
 				cell_right.strength
 			)
+			target_stat = target_cell.strength
+			
 			
 		'int' : 
 			high_low_stat = get_highest_lowest_stat(
 				cell_left.intelligence,
 				cell_right.intelligence
 			)
+			target_stat = target_cell.intelligence
 			
 		'com' :
 			high_low_stat = get_highest_lowest_stat(
 				cell_left.community,
 				cell_right.community
 			)
+			target_stat = target_cell.community	
 			
 		_:		
 			push_error('no key value found for _handle_detect_over_warning')
 		
 	## CHECK IF INCREASING 
 	var confirm_increase_event : bool = detect_increasing_event(
-		high_low_stat
+		high_low_stat,
+		target_stat,
 	)
 	
 	if confirm_increase_event :
@@ -56,7 +66,7 @@ func _handle_arrow_type(key : String, cell_left : BrainCell, cell_right: BrainCe
 		return 'down'
 	
 	
-func detect_increasing_event(high_low_stat : Array) -> bool :
+func detect_increasing_event(high_low_stat : Array, target_stat : float ) -> bool :
 	
 	# see if it reaches minimum passing increase score
 	var increase_case_min = (
@@ -67,7 +77,16 @@ func detect_increasing_event(high_low_stat : Array) -> bool :
 	if high_low_stat[1] >= increase_case_min :
 		return true
 	else :
-		return false
+		
+		# check if early game small stats
+		var small_stat_range_max = target_stat * 0.2	
+		# both stats are below 20% of target
+		if high_low_stat[0] < small_stat_range_max and high_low_stat[1] < small_stat_range_max :
+			return true
+			
+		# else its not a increasing case
+		else : 
+			return false
 		
 		
 func get_highest_lowest_stat(stat_1, stat_2) :

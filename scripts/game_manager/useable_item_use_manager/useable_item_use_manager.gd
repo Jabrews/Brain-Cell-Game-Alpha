@@ -17,10 +17,14 @@ func create_class_refrences() :
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
-	selected_brain_cell.strength_defect -= 5
+	selected_brain_cell.strength_defect -= 30
+	selected_brain_cell.intelligence_defect -= 30
+	selected_brain_cell.community_defect -= 30
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
 	selected_brain_cell.strength_hidden = false
+	selected_brain_cell.intelligence_hidden = false
+	selected_brain_cell.community_hidden = false
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	

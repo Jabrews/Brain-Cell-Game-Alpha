@@ -36,25 +36,53 @@ func create_defect_stats(clean_stats : Array[float], defect_range : String) -> A
 
 			'0':
 				defect_value = 0
-
+			
+			'lowest' :
+				# highest stat gets stronger defect
+				if clean_stat == highest_clean_stat:
+					defect_value = clean_stat * 0.25
+				else:
+					defect_value = clean_stat * 0.20
+			
 			'low':
 				# highest stat gets stronger defect
 				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 0.40
+					defect_value = clean_stat * 0.45
 				else:
-					defect_value = clean_stat * 0.25
+					defect_value = clean_stat * 0.40
+			
+			'moderate' :
+				# highest stat gets stronger defect
+				if clean_stat == highest_clean_stat:
+					defect_value = clean_stat * 0.80
+				else:
+					defect_value = clean_stat * 0.75
+			
 
 			'equal':
 				defect_value = clean_stat
+			
+			'above_average' :
+				if clean_stat == highest_clean_stat:
+					defect_value = clean_stat * 1.15
+				else:
+					defect_value = clean_stat * 1.10
 
 			'high':
 				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 1.30
+					defect_value = clean_stat * 1.25
 				else:
 					defect_value = clean_stat * 1.20
 
 			_:
-				push_error("invalid defect range")
+				push_error("invalid defect range : ", defect_range)
+		
+		# apply random diffrence
+		var random_diffrence = randi_range(-10, 10)
+		
+		defect_value += random_diffrence
+
+
 
 		# round to 0.0 decimal
 		defect_value = round(defect_value * 10.0) / 10.0
