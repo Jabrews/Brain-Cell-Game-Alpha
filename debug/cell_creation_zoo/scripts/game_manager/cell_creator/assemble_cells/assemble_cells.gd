@@ -9,6 +9,7 @@ extends Node
 @onready var create_defect_stats : Node = $HelperCreateDefect
 @onready var create_hidden_stats : Node = $HelperHidden
 @onready var clean_stat_due_order : Node = $HelperCleanStatDueOrder
+@onready var hidden_defect_trap : Node = $HelperHiddenDefectTrap
 
 func assemble() :
 	var current_round : int = GLGameManagerBus.current_round
@@ -27,7 +28,10 @@ func assemble() :
 		var new_cells : Array[BrainCell] = create_cells_with_constructor(contructor)				
 		for cell in new_cells :
 			new_prisoner_cells.append(cell)
-		
+	
+	# handle defect traps
+	new_prisoner_cells = hidden_defect_trap._handle_hidden_stat_defect_trap_event(new_prisoner_cells, cell_contructors)
+	
 	new_prisoner_cells.shuffle()
 			
 	return new_prisoner_cells

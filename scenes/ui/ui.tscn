@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d3yrkvjyimu1x" path="res://scripts/ui/useable_item_manager.gd" id="1_aac20"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_u7n8c"]
+[ext_resource type="Script" uid="uid://b8mpf2nnb7ral" path="res://scripts/ui/fps_counter.gd" id="4_0dwhk"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_g5kmx"]
 
 [node name="UI" type="Control" unique_id=885223017]
@@ -37,3 +38,10 @@ offset_bottom = 29.0
 theme_override_fonts/font = ExtResource("4_g5kmx")
 theme_override_font_sizes/font_size = 22
 text = "Energy Left : 0"
+
+[node name="FPSCounter" type="Label" parent="." unique_id=2019697512]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FPS COUNTER : "
+script = ExtResource("4_0dwhk")

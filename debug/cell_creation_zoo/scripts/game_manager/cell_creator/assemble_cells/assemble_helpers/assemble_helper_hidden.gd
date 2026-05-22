@@ -88,5 +88,5 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 
 
 			curr_quantity += 1
-
+	
 	return new_prisoners

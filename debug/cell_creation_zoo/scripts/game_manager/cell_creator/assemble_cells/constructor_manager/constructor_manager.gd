@@ -25,6 +25,7 @@ func get_cell_constructor(round : int, turn : int) -> Array[CellConstructor]:
 				IVCellBreeding.max_cell_breeding_attempts = 5
 				IVCellBreeding.curr_cell_breeding_attempt = 0
 				IVPrisonerSpawner.max_picked_pris_per_turn = 1
+				IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
 				## TURNS 
 				GLGameManagerBus.max_turns = 4
 				GLGameManagerBus.current_turn = 0
@@ -55,6 +56,7 @@ func get_cell_constructor(round : int, turn : int) -> Array[CellConstructor]:
 				GLGameManagerBus.max_turns = 4
 				constructors = round_2.turn_0
 				GLGameManagerBus.current_turn = 0
+				IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
 			elif turn == 1 :
 				constructors = round_2.turn_1
 				IVPrisonerSpawner.max_picked_pris_per_turn = 1
@@ -79,6 +81,7 @@ func get_cell_constructor(round : int, turn : int) -> Array[CellConstructor]:
 				IVPrisonerSpawner.max_picked_pris_per_turn = 1
 				GLGameManagerBus.max_turns = 5
 				GLGameManagerBus.current_turn = 0
+				IVCellBreeding.newly_breeded_cell_can_die_from_defect = true 
 				constructors = round_3.turn_0
 			elif turn == 1 :
 				IVPrisonerSpawner.max_picked_pris_per_turn = 1
@@ -107,6 +110,7 @@ func get_cell_constructor(round : int, turn : int) -> Array[CellConstructor]:
 				IVPrisonerSpawner.max_picked_pris_per_turn = 1
 				GLGameManagerBus.max_turns = 5
 				GLGameManagerBus.current_turn = 0
+				IVCellBreeding.newly_breeded_cell_can_die_from_defect = true 
 				constructors = round_4.turn_0
 			elif turn == 1 :
 				IVPrisonerSpawner.max_picked_pris_per_turn = 2
