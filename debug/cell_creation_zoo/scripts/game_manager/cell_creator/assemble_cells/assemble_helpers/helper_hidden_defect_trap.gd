@@ -3,200 +3,196 @@ extends Node
 
 func _handle_hidden_stat_defect_trap_event(
 	new_prisoners : Array[BrainCell],
-	constructors : Array[CellConstructor]
 ) :
 	
-	var has_created_hidden_trap : bool = false
+	# if prisoner selection isnt 2 no trap
+	if IVPrisonerSpawner.max_picked_pris_per_turn != 2 :
+		return new_prisoners 
 	
-	for constructor : CellConstructor in constructors :
+	# if round isnt 2, 3, or 4
+	if GLGameManagerBus.current_round != 2 \
+	and GLGameManagerBus.current_round != 3 \
+	and GLGameManagerBus.current_round != 4:
+		return new_prisoners
+	
+	# if turn isnt atleast 2
+	if GLGameManagerBus.current_turn < 2 :
+		return new_prisoners
 		
-		# only allow 1 trap total for all constructors
-		if has_created_hidden_trap :
-			break
-		
-		var trap_created : bool = increase_hidden_stat_defect_event(
-			new_prisoners,
-			constructor
-		)
-		
-		if trap_created :
-			has_created_hidden_trap = true
+	# random chance to leave
+	var ran_num = randi_range(0, 100)
+	if ran_num <= 50 :
+		return new_prisoners
+	
+	var trap_candidate_cells : Array = find_cell_candidates(new_prisoners)
+	
+	# no valid candidates
+	if len(trap_candidate_cells) == 0 :
+		print('no candidate found')
+		return new_prisoners
+	
+	var best_candidate = get_best_candidate(trap_candidate_cells)
+	
+	# somehow no best candidate
+	if not best_candidate :
+		return new_prisoners
+	
+	new_prisoners = plant_candidate_trap(new_prisoners, best_candidate)
 	
 	return new_prisoners
 
 
 
-func increase_hidden_stat_defect_event(
-	new_prisoners : Array[BrainCell],
-	constructor : CellConstructor
-) :
+func find_cell_candidates(new_prisoners : Array[BrainCell]) -> Array:
 	
-	# verify this round can have this event (last two rounds)
-	var curr_round : int = GLGameManagerBus.current_round
+	var trap_candidate_cells = []
 	
-	var event_valid : bool 
-	
-	match curr_round :
-		3 :
-			event_valid = true
-		4 :
-			event_valid = true
-		_ :
-			event_valid = false
-	
-	# if not valid round. return
-	if not event_valid :
-		return false
-	
-	# look at constructors StatsToHide to see if quantity is atleast 2
-	for stat_to_hide : StatsToHide in constructor.stats_to_hide :
-		
-		if stat_to_hide.quantity > 1 :
-			
-			var hidden_stat_type = stat_to_hide.type
-			
-			var selected_trap_cell : BrainCell = find_hidden_trap_cell(
-				new_prisoners,
-				hidden_stat_type
-			)
-			
-			# verify valid cell found
-			if selected_trap_cell == null :
-				continue
-			
-			print(
-				'DEBUG : hidden trap planted. stat : ',
-				hidden_stat_type,
-				' cell : ',
-				selected_trap_cell.name
-			)
-			
-			var increase_defect_value = IVCellCreator.max_stat_value * .35
-			
-			# increase lowest defect by 50%
-			match hidden_stat_type :
-				
-				
-				'strength' :
-					selected_trap_cell.strength_defect += increase_defect_value
-				
-				'intelligence' :
-					selected_trap_cell.intelligence_defect += increase_defect_value
-				
-				'community' :
-					selected_trap_cell.community_defect += increase_defect_value
-			
-			
-			return true
-	
-	return false
-
-
-
-func find_hidden_trap_cell(
-	new_prisoners : Array[BrainCell],
-	hidden_stat_type : String
-) :
-	
-	# create object which hold the cell and quantity of total_hidden_stats
-	var hidden_cell_objects = []
-	
+	# go through cells in new_prisoners
 	for cell : BrainCell in new_prisoners :
 		
-		var total_hidden_stats_on_cell = 0
+		## NO ACCEPT CASES ##
 		
-		if cell.strength_hidden :
-			total_hidden_stats_on_cell += 1
-		
-		if cell.intelligence_hidden :
-			total_hidden_stats_on_cell += 1
-		
-		if cell.community_hidden :
-			total_hidden_stats_on_cell += 1
-		
-		# verify the cell has hidden on the correct stat		
-		var cell_has_valid_hidden_stat : bool = false
-		
-		match hidden_stat_type :
-			
-			'strength' :
-				if cell.strength_hidden :
-					cell_has_valid_hidden_stat = true
-			
-			'intelligence' :
-				if cell.intelligence_hidden :
-					cell_has_valid_hidden_stat = true
-			
-			'community' :
-				if cell.community_hidden :
-					cell_has_valid_hidden_stat = true
-		
-		# skip invalid cells
-		if not cell_has_valid_hidden_stat :
+		# if cell doesnt have atleast one hidden stat skip
+		if cell.strength_hidden == false \
+		and cell.intelligence_hidden == false \
+		and cell.community_hidden == false :
 			continue
 		
-		# add valid object
-		hidden_cell_objects.append({
+		# cant add fully hidden cell
+		if cell.strength_hidden == true \
+		and cell.intelligence_hidden == true \
+		and cell.community_hidden == true :
+			continue
+			
+		## CELL CANDIDATE POINTS ##
+		var total_candidate_points : float = 0.0
+
+		# strength
+		if not cell.strength_hidden :
+			total_candidate_points += cell.strength * 5
+			total_candidate_points -= cell.strength_defect * 3
+
+		# intelligence
+		if not cell.intelligence_hidden :
+			total_candidate_points += cell.intelligence * 5
+			total_candidate_points -= cell.intelligence_defect * 3
+
+		# community
+		if not cell.community_hidden :
+			total_candidate_points += cell.community * 5
+			total_candidate_points -= cell.community_defect * 3
+			
+		## ADD CANDIDATE OBJECT ##
+		var candidate_obj = {
 			'cell' : cell,
-			'total_hidden_stats' : total_hidden_stats_on_cell
-		})
+			'points' : total_candidate_points
+		}
+		
+		trap_candidate_cells.append(candidate_obj)
+		
+	# finally return
+	return trap_candidate_cells
+		
+		
 	
-	# need atleast 2 matching hidden cells
-	if len(hidden_cell_objects) < 2 :
+func get_best_candidate(trap_candidate_cells : Array) :
+	
+	# no candidates
+	if len(trap_candidate_cells) == 0 :
 		return null
 	
-	var selected_hidden_cell_obj = null
+	# sort highest points first
+	trap_candidate_cells.sort_custom(func(a, b):
+		return a['points'] > b['points']
+	)
 	
-	for hidden_cell_obj in hidden_cell_objects :
-		
-		# if not one yet just set the var
-		if not selected_hidden_cell_obj :
-			selected_hidden_cell_obj = hidden_cell_obj
-			continue
-		
-		var curr_total_hidden_stats = hidden_cell_obj['total_hidden_stats']
-		var selected_total_hidden_stats = selected_hidden_cell_obj['total_hidden_stats']
-		
-		# if more hidden stats. thats the new selected cell
-		if curr_total_hidden_stats > selected_total_hidden_stats :
-			selected_hidden_cell_obj = hidden_cell_obj
-		
-		# if equal hidden stats, choose lower defect
-		elif curr_total_hidden_stats == selected_total_hidden_stats :
-			
-			var curr_cell : BrainCell = hidden_cell_obj['cell']
-			var selected_cell : BrainCell = selected_hidden_cell_obj['cell']
-			
-			var curr_defect : float
-			var selected_defect : float
-			
-			match hidden_stat_type :
-				
-				'strength' :
-					curr_defect = curr_cell.strength_defect
-					selected_defect = selected_cell.strength_defect
-				
-				'intelligence' :
-					curr_defect = curr_cell.intelligence_defect
-					selected_defect = selected_cell.intelligence_defect
-				
-				'community' :
-					curr_defect = curr_cell.community_defect
-					selected_defect = selected_cell.community_defect
-			
-			# lower defect becomes selected
-			if curr_defect < selected_defect :
-				selected_hidden_cell_obj = hidden_cell_obj
-			
-			# tie breaker random
-			elif curr_defect == selected_defect :
-				
-				var ran_num = randi_range(0, 100)
-				
-				if ran_num >= 50 :
-					selected_hidden_cell_obj = hidden_cell_obj
+	# if only 1 candidate return it
+	if len(trap_candidate_cells) == 1 :
+		return trap_candidate_cells[0]
 	
-	if selected_hidden_cell_obj == null :
-		return null
+	# 35% chance to pick second best
+	var ran_num = randi_range(0, 100)
 	
-	return selected_hidden_cell_obj['cell']
+	if ran_num <= 35 :
+		return trap_candidate_cells[1]
+	
+	# otherwise return best
+	return trap_candidate_cells[0]
+			
+	
+func plant_candidate_trap(new_prisoners : Array[BrainCell], best_candidate) :
+	
+	var candidate_cell : BrainCell = best_candidate['cell']
+	
+	# randomly choose one hidden stat to increase defect on
+	var hidden_stats = []
+	
+	if candidate_cell.strength_hidden :
+		hidden_stats.append('strength')
+	
+	if candidate_cell.intelligence_hidden :
+		hidden_stats.append('intelligence')
+	
+	if candidate_cell.community_hidden :
+		hidden_stats.append('community')
+	
+	# no hidden stats somehow
+	if len(hidden_stats) == 0 :
+		return new_prisoners
+	
+	var random_hidden_stat = hidden_stats.pick_random()
+	
+	# increase defect by 50%
+	### NEVER SURPASS 20 POINTS - MAX_STAT_VALUE
+	match random_hidden_stat :
+		
+		'strength' :
+			
+			candidate_cell.strength_defect += (
+				IVCellCreator.max_stat_value * .40
+			)
+			
+			candidate_cell.strength_defect = min(
+				candidate_cell.strength_defect,
+				IVCellCreator.max_stat_value - 20
+			)
+		
+		'intelligence' :
+			
+			candidate_cell.intelligence_defect += (
+				IVCellCreator.max_stat_value * .40
+			)
+			
+			candidate_cell.intelligence_defect = min(
+				candidate_cell.intelligence_defect,
+				IVCellCreator.max_stat_value - 20
+			)
+			
+		'community' :
+			
+			candidate_cell.community_defect += (
+				IVCellCreator.max_stat_value * .40
+			)
+			
+			candidate_cell.community_defect = min(
+				candidate_cell.community_defect,
+				IVCellCreator.max_stat_value - 20
+			)
+			
+		
+	
+	print(
+		'planted hidden defect trap on cell : ',
+		candidate_cell.name,
+		' hidden stat : ',
+		random_hidden_stat
+	)
+	
+	# update new_prisoners with correct candidate cell update
+	for i in range(len(new_prisoners)) :
+		
+		if new_prisoners[i].name == candidate_cell.name :
+			new_prisoners[i] = candidate_cell
+			break
+	
+	return new_prisoners

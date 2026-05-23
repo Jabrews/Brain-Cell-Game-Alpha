@@ -30,7 +30,7 @@ func assemble() :
 			new_prisoner_cells.append(cell)
 	
 	# handle defect traps
-	new_prisoner_cells = hidden_defect_trap._handle_hidden_stat_defect_trap_event(new_prisoner_cells, cell_contructors)
+	new_prisoner_cells = hidden_defect_trap._handle_hidden_stat_defect_trap_event(new_prisoner_cells)
 	
 	new_prisoner_cells.shuffle()
 			

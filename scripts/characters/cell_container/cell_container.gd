@@ -74,6 +74,7 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		designated_brain_cell = changed_brain_cell
 		screen_stat_displays.update_screen(designated_brain_cell)
 		defect_color_manager.update_defect_color_manager(designated_brain_cell)
+		check_for_cell_dead_on_update()
 	
 	
 func _handle_cell_container_jolt(cell_name : String) :
@@ -105,6 +106,21 @@ func check_for_cell_dead_on_start() :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			return
 
+func check_for_cell_dead_on_update() :
+	var defect_death_event : bool = false
+	
+	# check if stat defect is in death range
+	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+		defect_death_event = true
+	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+		defect_death_event = true
+	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
+		defect_death_event = true
+	
+	if defect_death_event :
+		await get_tree().create_timer(1.0).timeout
+		GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
+		state_machine.switch_state(state_machine.State.DYING)		
 			
 		
 		
