@@ -22,8 +22,6 @@ func assemble() :
 	# verify clean stat due order before going foward
 	cell_contructors = clean_stat_due_order._verify_user_clean_stat_due_order(cell_contructors)
 	
-	
-	
 	for contructor : CellConstructor in cell_contructors :
 		var new_cells : Array[BrainCell] = create_cells_with_constructor(contructor)				
 		for cell in new_cells :

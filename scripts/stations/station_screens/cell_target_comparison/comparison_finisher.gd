@@ -41,7 +41,7 @@ func compare_cells(selected_brain_cell : BrainCell) :
 	#print('total point diff : ', max_points)
 	
 	# see if max points around above 80
-	if max_points >= 80: 
+	if max_points >= 40: 
 		handle_compare_finished(true)
 	else :
 		handle_compare_finished(false)

@@ -34,6 +34,20 @@ func spawn_item_batch():
 		false,
 		0,
 	) 
+	
+	var steroids_to_spawn = IVUseableItemSpawner.steroids_to_spawn
+	
+	var new_steroid = UseableItemObject.new(
+		0,
+		'steroid',
+		false,
+		0,		
+	)
+	
+	create_loop(new_steroid,  steroids_to_spawn)
+	
+	
+	
 
 	create_loop(new_hidden_shot, hidden_shots_to_spawn)
 

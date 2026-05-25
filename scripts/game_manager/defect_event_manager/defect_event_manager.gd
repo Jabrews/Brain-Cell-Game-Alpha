@@ -11,8 +11,8 @@ func _ready() -> void:
 	# start and set wait time
 	defect_event_update_timer.wait_time = IVDefectEventManager.defect_event_update_timer_duration
 	
-	print('DEBUG : defect_event_manager does not run so no infection events')
-	#defect_event_update_timer.start()
+	#print('DEBUG : defect_event_manager does not run so no infection events')
+	defect_event_update_timer.start()
 
 
 func _on_defect_event_update_timer_timeout() -> void:
@@ -24,13 +24,9 @@ func _on_defect_event_update_timer_timeout() -> void:
 	var ran_num = randi_range(1, 100)
 
 	if ran_num <= no_event_chance:
-		print('no event')
-		# no event
-		pass
+		return
 
 	elif ran_num <= no_event_chance + jolt_hidden_stat_interpreter_chance:
-		# jolt hidden stat interpreter
-		print('interpreter jolt')
 		jolt_hidden_stat_interpreter._handle_jolt()
 
 	elif ran_num <= (
@@ -38,8 +34,6 @@ func _on_defect_event_update_timer_timeout() -> void:
 		+ jolt_hidden_stat_interpreter_chance
 		+ jolt_cell_container_chance
 	):
-		# jolt cell container
-		print('container jolt')
 		jolt_cell_container._handle_jolt()
 	
 	# start timer again with correct wait time

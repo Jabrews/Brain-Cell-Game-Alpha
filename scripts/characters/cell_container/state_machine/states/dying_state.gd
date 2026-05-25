@@ -1,7 +1,10 @@
 extends Node
 
+# components
 @onready var cell_container_parent : CharacterBody3D = $"../.."
 @onready var dying_sound : AudioStreamPlayer3D = $DyingSound
+@onready var flesh_slug_instance : PackedScene = preload("res://scenes/characters/flesh_bugs/flesh_slug/flesh_slug.tscn")
+@onready var flesh_bug_parent_node : Node = $"../../../../FleshBugParentNode"
 
 func state_start() : 
 	
@@ -55,5 +58,17 @@ func state_start() :
 	
 	await tween.finished
 	
+	create_flesh_slug()
 	
 	cell_container_parent.queue_free()
+
+func create_flesh_slug() :
+	var flesh_slug = flesh_slug_instance.instantiate()
+	flesh_bug_parent_node.add_child(flesh_slug)
+	flesh_slug.global_position = cell_container_parent.global_position
+	
+	
+	
+	
+	
+	

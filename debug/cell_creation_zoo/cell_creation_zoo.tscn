@@ -251,9 +251,8 @@ script = ExtResource("13_tcwxf")
 script = ExtResource("5_qsd23")
 useable_item_manager = NodePath("../../../AdminStations/UseableItemManager")
 
-[node name="AssembleCells" type="Node" parent="GameManager/CellCreator" unique_id=1607483100 node_paths=PackedStringArray("name_manager")]
+[node name="AssembleCells" type="Node" parent="GameManager/CellCreator" unique_id=1607483100]
 script = ExtResource("14_atjgp")
-name_manager = NodePath("../NameManager")
 
 [node name="ConstructorManager" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=270030474]
 script = ExtResource("15_mnydp")

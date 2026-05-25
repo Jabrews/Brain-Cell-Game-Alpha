@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://cpwlh4yswfk85" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/helper_hidden_defect_trap.gd" id="21_mvdwn"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
+[ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -312,11 +313,14 @@ script = ExtResource("21_eiw2m")
 cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=1548402198]
-wait_time = 5.0
+wait_time = 15.0
 one_shot = true
 
 [node name="IncrementalValueController" type="Node" parent="GameManager" unique_id=823228964]
 script = ExtResource("31_alpj0")
+
+[node name="IVHelperDefectEvent" type="Node" parent="GameManager/IncrementalValueController" unique_id=2002699261]
+script = ExtResource("32_m5ih7")
 
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 

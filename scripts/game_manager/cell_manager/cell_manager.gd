@@ -17,8 +17,8 @@ func _ready() -> void:
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
 	
-	## DEBUG
-	#GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
+	## OTHER ZOOS
+	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
 	
 	## CREATION ZOO
 	#print('DEBUG : cell manager is connecting signals for cell creation zoo')
@@ -270,10 +270,10 @@ func _handle_delete_cells_for_next_round() :
 
 ### OTHER ZOOS ###
 
-#func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 
-	#print('DEBUG : getting debug created cells')
-	#set_target_cell(new_target_cell)
-	#set_collected_cells(new_collected_cells)
+func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 
+	print('DEBUG : getting debug created cells')
+	set_target_cell(new_target_cell)
+	set_collected_cells(new_collected_cells)
 ###################
 
 

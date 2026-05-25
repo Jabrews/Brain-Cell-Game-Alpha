@@ -4,9 +4,12 @@ extends Node
 
 func _handle_jolt() :
 	
+	# dont jolt if no stats to hide (round 1)	
+	if len(IVDefectEventManager.stats_to_hide) == 0 :
+		return
+	
 	# random num (1 - 100)
 	var ran_num = randi_range(1, 100)
-	
 	var all_jolt_chance = IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt
 	
 	# all interpreters jolt
@@ -14,8 +17,9 @@ func _handle_jolt() :
 		
 		GLDefectEventMangerBus.emit_signal(
 			"event_hidden_stat_interpreter_jolt",
-			["strength", "intelligence", "community"]
+			IVDefectEventManager.stats_to_hide,
 		)
+		
 		# emit sound
 		GLPlayerLocalSoundsBus.emit_signal('sound_hidden_stat_interpreter_all_jolt')
 	
@@ -26,30 +30,23 @@ func _handle_jolt() :
 
 func decide_single_stat_interpreter() -> void:
 	
-	var strength_chance = IVDefectEventManager.jolt_strength_chance
-	var intelligence_chance = IVDefectEventManager.jolt_intelligence_chance
-	var community_chance = IVDefectEventManager.jolt_community_chance
+	var stats_to_hide = IVDefectEventManager.stats_to_hide	
 	
-	# random num (0 - 100)
-	var ran_num = randi_range(0, 100)
+	var random_stat = stats_to_hide.pick_random()
 	
-	# strength
-	if ran_num <= strength_chance:
-		GLDefectEventMangerBus.emit_signal(
-			"event_hidden_stat_interpreter_jolt",
-			["strength"]
-		)
+	match  random_stat :
+		'strength' :
+			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
+		'intelligence':
+			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['intelligence'])
+		'community' :
+			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['community'])
+		_ :
+			print('undable to find random stat : ', random_stat)
 	
-	# intelligence
-	elif ran_num <= intelligence_chance:
-		GLDefectEventMangerBus.emit_signal(
-			"event_hidden_stat_interpreter_jolt",
-			["intelligence"]
-		)
 	
-	# community
-	elif ran_num <= community_chance:
-		GLDefectEventMangerBus.emit_signal(
-			"event_hidden_stat_interpreter_jolt",
-			["community"]
-		)
+	
+	
+	
+	
+	

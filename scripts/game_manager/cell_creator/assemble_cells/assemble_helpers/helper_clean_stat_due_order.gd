@@ -5,12 +5,18 @@ func _verify_user_clean_stat_due_order(constructors: Array[CellConstructor]) :
 	# prevent when the option isnt turned on
 	if not GLToggleCleanStatDueOrder.check_for_clean_stat_due_order:
 		return constructors
-	
+
+	# for debug
+	if not GLCellManagerBus.target_cell_refrence :
+		push_error('likely cell creation zoo error. will fix itself once game_manager init. round disabled')
+		return constructors
 
 	# target stats for later comparison
 	var target_strength = GLCellManagerBus.target_cell_refrence.strength		
 	var target_intelligence = GLCellManagerBus.target_cell_refrence.intelligence
 	var target_community = GLCellManagerBus.target_cell_refrence.community
+	
+	
 	
 	var target_stat_objects = [
 		{'stat_type': 'strength', 'value': target_strength},
