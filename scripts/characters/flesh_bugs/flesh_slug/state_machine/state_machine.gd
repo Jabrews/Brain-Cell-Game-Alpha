@@ -2,10 +2,12 @@ extends Node
 
 @onready var start_state : Node = $Start
 @onready var follow_player_state : Node = $FollowPlayer
+@onready var attack_state : Node = $Attack
 
 enum State {
 	START,
 	FOLLOW_PLAYER,
+	ATTACK,
 }
 
 var states : Dictionary
@@ -17,6 +19,7 @@ func _ready():
 	states = {
 		State.START: start_state,
 		State.FOLLOW_PLAYER: follow_player_state,
+		State.ATTACK: attack_state,	
 	}
 
 	switch_state(State.START)
