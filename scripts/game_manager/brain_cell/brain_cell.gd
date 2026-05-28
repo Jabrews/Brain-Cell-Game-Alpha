@@ -17,6 +17,7 @@ var intelligence_hidden: bool
 var community_hidden: bool
 
 var is_target_cell : bool
+var turn_into_flesh_bug : bool
 
 
 
@@ -34,7 +35,7 @@ func _init(
 	intelligence_hidden: bool = false,
 	community_hidden: bool = false,
 	is_target_cell : bool = false,
-	
+	turn_into_flesh_bug : bool = false,
 ):
 	self.name = name
 	
@@ -52,6 +53,7 @@ func _init(
 	self.community_hidden = community_hidden
 
 	self.is_target_cell = is_target_cell
+	self.turn_into_flesh_bug  = turn_into_flesh_bug
 
 	
 func _to_string() -> String:

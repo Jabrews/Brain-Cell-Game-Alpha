@@ -5,6 +5,7 @@ var designated_brain_cell : BrainCell
 # components
 @onready var screen_stat_displays: Node2D = $StatDisplay/StatMesh/SubViewport/StatDisplay
 @onready var defect_color_manager : Node = $DefectColorManager
+@onready var offer_turn_into_flesh_bug_delay : Timer = $OfferTurnIntoFleshBugDelay
 
 # state machine
 @onready var state_machine : Node = $StateMachine
@@ -19,6 +20,16 @@ func _ready() -> void:
 	name = 'CellContainer' + designated_brain_cell.name
 	
 	await get_tree().process_frame
+	
+	# we start a timer to randomly turn into flesh bug
+	# this is from a shareholder offer
+	if designated_brain_cell.turn_into_flesh_bug == true:	
+		var turn_delay_time = randi_range(5,20)
+		offer_turn_into_flesh_bug_delay.wait_time = turn_delay_time
+		offer_turn_into_flesh_bug_delay.start()
+		
+		
+	
 	
 	screen_stat_displays.update_screen(designated_brain_cell)
 	
@@ -124,9 +135,9 @@ func check_for_cell_dead_on_update() :
 		await get_tree().create_timer(1.0).timeout
 		GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
 		state_machine.switch_state(state_machine.State.DYING)		
-			
-		
 		
 
-	
-	
+
+func _on_offer_turn_into_flesh_bug_delay_timeout() -> void:
+	GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
+	state_machine.switch_state(state_machine.State.DYING)		

@@ -18,9 +18,9 @@ func _ready() -> void:
 func _handle_next_turn() :
 	var curr_turn = GLGameManagerBus.current_turn
 	
+	
 	# check for item offer
 	if curr_turn == IVShareholderOffers.item_offer_turn :
-		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create= true
 		handle_item_offer()
 	
 	# check for stat offer
@@ -106,7 +106,6 @@ func handle_card_picked(offer_type : String, offer_card : TextureRect) :
 		helper_stat_offer_active_toggle._handle_toggle_active_stat_offer(stat_offer.offer_id)
 		
 	# let creator know its okay to create cells again	
-	GLShareholderOfferState.await_user_choose_shareholder_offer_before_create = false
 	GLShareholderOfferState.emit_signal('create_prisoner_cells_user_chose_shareholder_offer')
 		
 	

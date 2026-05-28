@@ -82,8 +82,8 @@ func create_stat(target_stat : float, clean_range : String) -> float:
 	
 	clean_stat += random_diffrence
 	
-	## case one ##
-	# we increase all clean stats by 10%
+	## offer one ##
+	# we increase clean stats by 10%
 	if GLShareholderOfferState.offer_1_active :
 		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
 			print_debug('offer 1')

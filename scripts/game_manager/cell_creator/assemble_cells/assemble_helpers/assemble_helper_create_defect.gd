@@ -82,7 +82,15 @@ func create_defect_stats(clean_stats : Array[float], defect_range : String) -> A
 		
 		defect_value += random_diffrence
 
-
+		## offer four ##
+		# we increase all defect stats by 15%
+		if GLShareholderOfferState.offer_4_active :
+			if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+				print_debug('offer 4')
+			
+			defect_value += (IVCellCreator.max_stat_value * 0.10)
+			
+		#############
 
 		# round to 0.0 decimal
 		defect_value = round(defect_value * 10.0) / 10.0

@@ -89,8 +89,8 @@ func update_defect_event_values(round : int , turn : int) :
 			3 :
 				# jolt type events chance
 				IVDefectEventManager.no_event_chance = 70
-				IVDefectEventManager.jolt_cell_container_chance = 1
-				IVDefectEventManager.jolt_hidden_stat_interpreter_chance = 29
+				IVDefectEventManager.jolt_cell_container_chance = 12
+				IVDefectEventManager.jolt_hidden_stat_interpreter_chance = 18
 				# all interpreter
 				IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt  = 10
 				# jolt increase

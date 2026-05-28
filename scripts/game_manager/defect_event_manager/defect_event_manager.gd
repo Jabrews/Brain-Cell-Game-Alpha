@@ -20,6 +20,18 @@ func _on_defect_event_update_timer_timeout() -> void:
 	var no_event_chance = IVDefectEventManager.no_event_chance
 	var jolt_cell_container_chance = IVDefectEventManager.jolt_cell_container_chance
 	var jolt_hidden_stat_interpreter_chance = IVDefectEventManager.jolt_hidden_stat_interpreter_chance
+	
+	## offer four ##
+	# we increase all clean stats by 10%
+	if GLShareholderOfferState.offer_4_active :
+		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+			print_debug('offer 4')
+		no_event_chance += 15
+		jolt_cell_container_chance -= 8
+		jolt_hidden_stat_interpreter_chance -= 8
+	#############
+	
+	
 
 	var ran_num = randi_range(1, 100)
 

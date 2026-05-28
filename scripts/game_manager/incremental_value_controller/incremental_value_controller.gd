@@ -13,7 +13,7 @@ func _ready() -> void:
 
 @warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
 func change_progression_step(round : int, turn : int) :
-
+	
 	if last_round != round :
 		handle_round(round)
 		
