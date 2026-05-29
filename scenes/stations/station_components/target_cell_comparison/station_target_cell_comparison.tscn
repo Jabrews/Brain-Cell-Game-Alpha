@@ -62,6 +62,7 @@ collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_4r3fl")
 cell_reciever = NodePath("../TargetCompareTV/TvFrontPannel/SubViewport/TargetCellComparison")
+disable_spawn_flesh_bug_on_cell_death = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel" unique_id=1746421065]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03862305, 0)

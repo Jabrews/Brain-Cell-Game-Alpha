@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="10_erkku"]
 [ext_resource type="PackedScene" uid="uid://cjfsbwq6outy8" path="res://scenes/stations/station_components/target_cell_comparison/station_target_cell_comparison.tscn" id="11_moggy"]
+[ext_resource type="PackedScene" uid="uid://c76td16ka86aa" path="res://scenes/axe_mount/axe_mount.tscn" id="11_v2xyd"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="12_63vgv"]
 [ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="13_c0gn3"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
@@ -33,8 +34,12 @@
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://cpwlh4yswfk85" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/helper_hidden_defect_trap.gd" id="21_mvdwn"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
+[ext_resource type="Script" uid="uid://hi5lo6o7ob4j" path="res://scripts/game_manager/cell_creator/assemble_cells/offer_helpers/offer_five.gd" id="23_010mg"]
+[ext_resource type="Script" uid="uid://ddkmklgkuu4ca" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_one.gd" id="24_j7s3e"]
+[ext_resource type="Script" uid="uid://tqdqm0u65kc7" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_three.gd" id="25_8muua"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
+[ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -65,11 +70,17 @@ albedo_color = Color(0.25, 0.1375, 0, 1)
 material = SubResource("StandardMaterial3D_5xq6v")
 size = Vector3(7, 1.6, 2)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_v2xyd"]
+vertices = PackedVector3Array(-11.25, 0.31549615, -17.25, -10, 0.31549615, -17.5, -10, 0.31549615, -24.5, -24.5, 0.31549615, -24.5, -24.5, 0.31549615, -2.75, -11.25, 0.31549615, -3, -9.25, 0.31549615, 1.5, -9, 0.31549615, 2, -7, 0.31549615, 2, -9, 0.31549615, -1.5, -10, 0.31549615, -1.25, -10, 0.31549615, 1.5, -9, 0.31549615, -17.25, -6.75, 0.31549615, 2.75, 14.75, 0.31549615, 2.75, 14.75, 0.31549615, -12.25, 15.75, 0.31549615, -12.5, 15.75, 0.31549615, -24.5, 17, 0.31549615, -12.25, 17, 0.31549615, -10.25, 24.5, 0.31549615, -10.25, 24.5, 0.31549615, -24.5, 17, 0.31549615, 1.5, 24.5, 0.31549615, 1.5, -11.25, 0.31549615, 1.75, -11.25, 0.31549615, -1.5, -24.5, 0.31549615, 3, -11.25, 0.31549615, 3.25, 17, 0.31549615, 3.5, 15.75, 0.31549615, 3.75, 15.75, 0.31549615, 5.5, 17, 0.31549615, 5.75, 24.5, 0.31549615, 7.75, 17, 0.31549615, 7.75, 14.75, 0.31549615, 5.75, 14.75, 0.31549615, 3.5, -6.75, 0.31549615, 8, 14.75, 0.31549615, 8, -10, 0.31549615, 24.5, -10, 0.31549615, 17.75, -11.25, 0.31549615, 17.5, -24.5, 0.31549615, 24.5, -9, 1.8154962, 3, -9, 1.8154962, 9.25, -7.75, 1.8154962, 9.25, -7.75, 1.8154962, 3, 17, 0.31549615, 21.5, 15.75, 0.31549615, 21.75, 15.75, 0.31549615, 24.5, 24.5, 0.31549615, 24.5, 14.75, 0.31549615, 21.5, -9, 0.31549615, 17.5, -7, 0.31549615, 10.25, -9, 0.31549615, 10.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(5, 4, 0), PackedInt32Array(0, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 9), PackedInt32Array(9, 6, 10), PackedInt32Array(6, 11, 10), PackedInt32Array(8, 12, 13), PackedInt32Array(13, 12, 15), PackedInt32Array(13, 15, 14), PackedInt32Array(12, 8, 9), PackedInt32Array(1, 2, 12), PackedInt32Array(12, 2, 17), PackedInt32Array(12, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(20, 19, 18), PackedInt32Array(18, 16, 17), PackedInt32Array(17, 21, 18), PackedInt32Array(18, 21, 20), PackedInt32Array(19, 20, 22), PackedInt32Array(22, 20, 23), PackedInt32Array(11, 24, 10), PackedInt32Array(10, 24, 25), PackedInt32Array(25, 24, 26), PackedInt32Array(25, 26, 4), PackedInt32Array(4, 5, 25), PackedInt32Array(24, 27, 26), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(28, 23, 31), PackedInt32Array(31, 23, 32), PackedInt32Array(32, 33, 31), PackedInt32Array(28, 22, 23), PackedInt32Array(30, 34, 29), PackedInt32Array(29, 34, 35), PackedInt32Array(35, 34, 13), PackedInt32Array(13, 34, 36), PackedInt32Array(34, 37, 36), PackedInt32Array(13, 14, 35), PackedInt32Array(39, 38, 40), PackedInt32Array(40, 38, 41), PackedInt32Array(27, 40, 26), PackedInt32Array(26, 40, 41), PackedInt32Array(45, 44, 42), PackedInt32Array(42, 44, 43), PackedInt32Array(47, 46, 48), PackedInt32Array(48, 46, 49), PackedInt32Array(33, 32, 46), PackedInt32Array(46, 32, 49), PackedInt32Array(50, 47, 48), PackedInt32Array(38, 39, 51), PackedInt32Array(51, 53, 52), PackedInt32Array(51, 52, 38), PackedInt32Array(38, 52, 50), PackedInt32Array(38, 50, 48), PackedInt32Array(36, 37, 52), PackedInt32Array(52, 37, 50)]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"nav_mesh_coll"
+
 [node name="MainLevel" type="Node3D" unique_id=716844902]
 
 [node name="Enviroment" type="Node" parent="." unique_id=1213802307]
 
-[node name="Floor" type="StaticBody3D" parent="Enviroment" unique_id=2117637110]
+[node name="Floor" type="StaticBody3D" parent="Enviroment" unique_id=2117637110 groups=["nav_mesh_coll"]]
 collision_layer = 2
 collision_mask = 0
 
@@ -79,7 +90,7 @@ mesh = SubResource("BoxMesh_k57ag")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Floor" unique_id=1350747698]
 shape = SubResource("BoxShape3D_fon25")
 
-[node name="Wall1" type="StaticBody3D" parent="Enviroment" unique_id=617063028]
+[node name="Wall1" type="StaticBody3D" parent="Enviroment" unique_id=617063028 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.155705, 2.495707, -9.252089)
 collision_layer = 2
 collision_mask = 0
@@ -90,7 +101,7 @@ mesh = SubResource("BoxMesh_umov7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall1" unique_id=1823593709]
 shape = SubResource("BoxShape3D_7xrfk")
 
-[node name="Wall2" type="StaticBody3D" parent="Enviroment" unique_id=885812073]
+[node name="Wall2" type="StaticBody3D" parent="Enviroment" unique_id=885812073 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.155705, 2.495707, 9.747911)
 collision_layer = 2
 collision_mask = 0
@@ -167,7 +178,7 @@ Screen
 font = ExtResource("1_umov7")
 font_size = 84
 
-[node name="Wall3" type="StaticBody3D" parent="Enviroment" unique_id=125267237]
+[node name="Wall3" type="StaticBody3D" parent="Enviroment" unique_id=125267237 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.844295, 2.495707, -4.2520885)
 collision_layer = 2
 collision_mask = 0
@@ -178,7 +189,7 @@ mesh = SubResource("BoxMesh_umov7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall3" unique_id=815923405]
 shape = SubResource("BoxShape3D_7xrfk")
 
-[node name="Wall4" type="StaticBody3D" parent="Enviroment" unique_id=348325151]
+[node name="Wall4" type="StaticBody3D" parent="Enviroment" unique_id=348325151 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.844295, 2.495707, 13.747911)
 collision_layer = 2
 collision_mask = 0
@@ -189,14 +200,19 @@ mesh = SubResource("BoxMesh_umov7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall4" unique_id=1160025713]
 shape = SubResource("BoxShape3D_7xrfk")
 
-[node name="Table" type="StaticBody3D" parent="Enviroment" unique_id=52613112]
+[node name="Table" type="StaticBody3D" parent="Enviroment" unique_id=52613112 groups=["nav_mesh_coll"]]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.488618, 0.61549616, 6.052988)
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Table" unique_id=600621715]
 shape = SubResource("BoxShape3D_5xq6v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Table" unique_id=188454426]
 mesh = SubResource("BoxMesh_eiw2m")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Enviroment" unique_id=456962782]
+navigation_mesh = SubResource("NavigationMesh_v2xyd")
 
 [node name="Characters" type="Node" parent="." unique_id=1683906565]
 
@@ -206,6 +222,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -7)
 [node name="ContainerParentNode" type="Node" parent="Characters" unique_id=1909441806]
 
 [node name="PrisonerParentNode" type="Node" parent="Characters" unique_id=1550001688]
+
+[node name="FleshBugParentNode" type="Node" parent="Characters" unique_id=931863476]
 
 [node name="Stations" type="Node" parent="." unique_id=1660242538]
 
@@ -250,6 +268,9 @@ interpreter_type = "intelligence"
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -1)
 interpreter_type = "community"
 
+[node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
+
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")
 
@@ -268,29 +289,43 @@ script = ExtResource("15_dn28p")
 [node name="ConstructorManager" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1481337530]
 script = ExtResource("16_alpj0")
 
-[node name="HelperCreateClean" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=171799808]
+[node name="StatHelpers" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1378506963]
+
+[node name="HelperCreateClean" type="Node" parent="GameManager/CellCreator/AssembleCells/StatHelpers" unique_id=171799808]
 script = ExtResource("17_m5ih7")
 
-[node name="HelperCreateDefect" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1064887885]
+[node name="HelperCreateDefect" type="Node" parent="GameManager/CellCreator/AssembleCells/StatHelpers" unique_id=1064887885]
 script = ExtResource("18_v2xyd")
 
-[node name="HelperHidden" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=403974421]
-script = ExtResource("19_rjaw8")
-
-[node name="HelperCleanStatDueOrder" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=2129747742]
+[node name="HelperCleanStatDueOrder" type="Node" parent="GameManager/CellCreator/AssembleCells/StatHelpers" unique_id=2129747742]
 script = ExtResource("20_5mews")
 
-[node name="HelperHiddenDefectTrap" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=536300828]
+[node name="HiddenStatHelpers" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=333338568]
+
+[node name="HelperHidden" type="Node" parent="GameManager/CellCreator/AssembleCells/HiddenStatHelpers" unique_id=403974421]
+script = ExtResource("19_rjaw8")
+
+[node name="HelperHiddenDefectTrap" type="Node" parent="GameManager/CellCreator/AssembleCells/HiddenStatHelpers" unique_id=536300828]
 script = ExtResource("21_mvdwn")
+
+[node name="OfferHelpers" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=575333024]
+
+[node name="OfferFive" type="Node" parent="GameManager/CellCreator/AssembleCells/OfferHelpers" unique_id=1895900607]
+script = ExtResource("23_010mg")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")
 
+[node name="OfferHelpers" type="Node" parent="GameManager/CellCreator" unique_id=175279693]
+
+[node name="OfferOne" type="Node" parent="GameManager/CellCreator/OfferHelpers" unique_id=458556621]
+script = ExtResource("24_j7s3e")
+
+[node name="OfferThree" type="Node" parent="GameManager/CellCreator/OfferHelpers" unique_id=1525152730]
+script = ExtResource("25_8muua")
+
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
-
-[node name="UseableItemUseManager" type="Node" parent="GameManager" unique_id=428990184]
-script = ExtResource("14_5ru7i")
 
 [node name="CellBreeder" type="Node" parent="GameManager" unique_id=1130566788 node_paths=PackedStringArray("name_manager")]
 script = ExtResource("15_5ru7i")
@@ -313,7 +348,7 @@ script = ExtResource("21_eiw2m")
 cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=1548402198]
-wait_time = 15.0
+wait_time = 10.0
 one_shot = true
 
 [node name="IncrementalValueController" type="Node" parent="GameManager" unique_id=823228964]
@@ -322,16 +357,19 @@ script = ExtResource("31_alpj0")
 [node name="IVHelperDefectEvent" type="Node" parent="GameManager/IncrementalValueController" unique_id=2002699261]
 script = ExtResource("32_m5ih7")
 
-[node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
-
-[node name="Useable" type="Node" parent="." unique_id=1104094748]
-
-[node name="UseableItemSpawnManager" type="Node" parent="Useable" unique_id=622852825 node_paths=PackedStringArray("player")]
+[node name="UseableItemSpawnManager" type="Node" parent="." unique_id=622852825 node_paths=PackedStringArray("player")]
 script = ExtResource("16_44ape")
-player = NodePath("../../Characters/Player")
+player = NodePath("../Characters/Player")
 
-[node name="SpawnPos" type="Node3D" parent="Useable/UseableItemSpawnManager" unique_id=448918086]
+[node name="SpawnPos" type="Node3D" parent="UseableItemSpawnManager" unique_id=448918086]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -4)
+
+[node name="UseableItemUseManager" type="Node" parent="UseableItemSpawnManager" unique_id=428990184]
+script = ExtResource("14_5ru7i")
+
+[node name="ShareholderOfferManager" parent="." unique_id=1195344226 instance=ExtResource("38_wv5kd")]
+
+[node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 
 [node name="DEBUG" type="Node" parent="." unique_id=882007240 node_paths=PackedStringArray("cell_manager")]
 script = ExtResource("18_44ape")

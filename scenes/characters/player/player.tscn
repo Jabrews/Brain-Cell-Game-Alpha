@@ -3,14 +3,17 @@
 [ext_resource type="Script" uid="uid://cllqh51yw43mn" path="res://scripts/characters/player/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bs1thj3p8tx33" path="res://scripts/characters/player/ray_casts/ray_cast_controller.gd" id="2_6avc5"]
 [ext_resource type="Script" uid="uid://nunfbgiepm7" path="res://reusable/hoverable/hover_detect/hover_detect.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://c44pli8hdfse" path="res://scripts/characters/player/player_health_manager.gd" id="2_tebod"]
 [ext_resource type="Script" uid="uid://ofcpd7nt03i4" path="res://scripts/characters/player/ray_casts/interact_ray.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://dbyqeim8y2d0k" path="res://scripts/characters/player/ray_casts/stat_display_ray.gd" id="4_hss88"]
 [ext_resource type="Script" uid="uid://crdf4bvgvnn7k" path="res://scripts/characters/player/ray_casts/useable_item_ray.gd" id="6_mk55u"]
 [ext_resource type="Script" uid="uid://br22ikxgw6y14" path="res://scripts/characters/player/usable_item_hand_preview/useable_item_hand_preview.gd" id="7_mk55u"]
+[ext_resource type="Script" uid="uid://v1easw14lnxb" path="res://scripts/characters/player/ray_casts/axe_interact_ray.gd" id="8_6nfx3"]
 [ext_resource type="Texture2D" uid="uid://dkrsadavve8qw" path="res://models/usable_items/serum_items/defect_shot.png" id="8_xuses"]
 [ext_resource type="Script" uid="uid://lko3a88glus8" path="res://scripts/characters/player/player_local_sounds.gd" id="9_blysn"]
 [ext_resource type="AudioStream" uid="uid://fpo4lf5q2cy6" path="res://sounds/player_local_sounds/interactable/btn_press_failed.mp3" id="9_bsn6e"]
 [ext_resource type="AudioStream" uid="uid://dqq7en1oace1s" path="res://sounds/player_local_sounds/interactable/drop_item.mp3" id="10_blysn"]
+[ext_resource type="Script" uid="uid://dkrpoq7vr6q27" path="res://scripts/characters/player/player_axe.gd" id="11_3hnlq"]
 [ext_resource type="AudioStream" uid="uid://dao0axcmib5eh" path="res://sounds/player_local_sounds/interactable/pickup_item.mp3" id="11_hv5x3"]
 [ext_resource type="AudioStream" uid="uid://dbc0sn4gcabov" path="res://sounds/player_local_sounds/interactable/panel_cell_loaded.mp3" id="12_ykrpk"]
 [ext_resource type="AudioStream" uid="uid://bsbyb7sk1wftk" path="res://sounds/player_local_sounds/interactable/shot_used.mp3" id="14_hv5x3"]
@@ -20,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://cnocqhs0uxqvf" path="res://sounds/player_local_sounds/hidden_stat_interpreter/all_jolt_sound.mp3" id="18_svuau"]
 [ext_resource type="AudioStream" uid="uid://c8b6nbrvrxedl" path="res://sounds/player_local_sounds/prisoner_spawner/prisoner_selected.mp3" id="19_ro20i"]
 [ext_resource type="AudioStream" uid="uid://v65a064u7mp1" path="res://sounds/player_local_sounds/interactable/pill_used.mp3" id="20_8y75b"]
+[ext_resource type="AudioStream" uid="uid://dmhxj4tti0hkq" path="res://sounds/player_local_sounds/axe/axe_swing.mp3" id="24_d73qs"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.0
@@ -27,9 +31,22 @@ height = 3.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 height = 3.0127945
 
+[sub_resource type="BoxMesh" id="BoxMesh_6nfx3"]
+size = Vector3(0.2, 1.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6nfx3"]
+size = Vector3(1.6948853, 1.8057861, 2.491211)
+
 [node name="Player" type="CharacterBody3D" unique_id=1124472616 groups=["display_cell_stats_area", "player"]]
 collision_mask = 2
 script = ExtResource("1_3vyb7")
+
+[node name="PlayerHealthManager" type="Node" parent="." unique_id=293522827]
+script = ExtResource("2_tebod")
+
+[node name="PlayerRegainHealthTimer" type="Timer" parent="PlayerHealthManager" unique_id=463598012]
+wait_time = 5.0
+one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=119196132]
 mesh = SubResource("CapsuleMesh_u8vuu")
@@ -76,6 +93,13 @@ collision_mask = 390
 collide_with_areas = true
 script = ExtResource("6_mk55u")
 
+[node name="AxeInteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1294195992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+target_position = Vector3(0, 0, -3.5)
+collision_mask = 1024
+collide_with_areas = true
+script = ExtResource("8_6nfx3")
+
 [node name="UseableItemHandPreview" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1495413384]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, -0.5556661, -1.0407479)
 script = ExtResource("7_mk55u")
@@ -84,6 +108,27 @@ script = ExtResource("7_mk55u")
 visible = false
 texture_filter = 0
 texture = ExtResource("8_xuses")
+
+[node name="PlayerAxe" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1828268682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2918873, 0)
+visible = false
+script = ExtResource("11_3hnlq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/Camera3D/PlayerAxe" unique_id=1737555090]
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0.8249508, 0.7699058, -0.9634436)
+mesh = SubResource("BoxMesh_6nfx3")
+
+[node name="hurt_box" type="Area3D" parent="CameraPivot/Camera3D/PlayerAxe" unique_id=973184594]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/Camera3D/PlayerAxe/hurt_box" unique_id=1650159294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00064086914, 0.40289307, -1.8638916)
+shape = SubResource("BoxShape3D_6nfx3")
+
+[node name="CanSwingDelayTimer" type="Timer" parent="CameraPivot/Camera3D/PlayerAxe" unique_id=146908623]
+wait_time = 0.8
+one_shot = true
 
 [node name="PlayerLocalSounds" type="Node3D" parent="." unique_id=761381406]
 script = ExtResource("9_blysn")
@@ -134,3 +179,11 @@ volume_db = -5.5
 [node name="PillUsed" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=448050370]
 stream = ExtResource("20_8y75b")
 volume_db = -10.0
+
+[node name="AxeSwing" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=2138343815]
+stream = ExtResource("24_d73qs")
+pitch_scale = 0.9
+
+[connection signal="body_entered" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_entered"]
+[connection signal="body_exited" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_exited"]
+[connection signal="timeout" from="CameraPivot/Camera3D/PlayerAxe/CanSwingDelayTimer" to="CameraPivot/Camera3D/PlayerAxe" method="_on_can_swing_delay_timer_timeout"]

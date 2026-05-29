@@ -127,3 +127,8 @@ amount = 12
 lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_dly6q")
 draw_pass_1 = SubResource("PlaneMesh_sm0qd")
+
+[node name="OfferTurnIntoFleshBugDelay" type="Timer" parent="." unique_id=297466627]
+wait_time = 5.0
+
+[connection signal="timeout" from="OfferTurnIntoFleshBugDelay" to="." method="_on_offer_turn_into_flesh_bug_delay_timeout"]

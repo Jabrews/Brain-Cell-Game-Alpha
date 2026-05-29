@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c76td16ka86aa"]
+
+[ext_resource type="Script" uid="uid://bo7ku27kfsrah" path="res://scripts/axe_mount/axe_mount_interact.gd" id="1_6higq"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_i1uil"]
+[ext_resource type="PackedScene" uid="uid://beid0jmgc5ggx" path="res://scenes/hoverable_mesh_scenes/axe_mount_hover.tscn" id="2_i1uil"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vptg6"]
+size = Vector3(0.5, 1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6higq"]
+albedo_color = Color(1, 0.839, 0.58000004, 1)
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_vptg6"]
+material = SubResource("StandardMaterial3D_6higq")
+size = Vector3(0.5, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hwcb0"]
+
+[node name="AxeMount" type="StaticBody3D" unique_id=624783328 groups=["axe_mount"]]
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("1_6higq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=112916277]
+shape = SubResource("BoxShape3D_vptg6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=841660267]
+mesh = SubResource("BoxMesh_vptg6")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="." unique_id=689758376 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_i1uil")
+hover_mesh_scene = ExtResource("2_i1uil")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../MeshInstance3D")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverableMesh" unique_id=305896835]
+shape = SubResource("BoxShape3D_hwcb0")

@@ -5,6 +5,8 @@ extends Area3D
 
 var loaded_cell : BrainCell 
 
+@export var disable_spawn_flesh_bug_on_cell_death : bool = false
+
 	
 func _ready() -> void:
 	
@@ -25,12 +27,16 @@ func _handle_body_entered(body) :
 		if body.is_in_group('brain_cell_container') and not loaded_cell :
 			loaded_cell = body.designated_brain_cell		
 			cell_reciever._handle_panel_cell_recieved(loaded_cell)
+			if disable_spawn_flesh_bug_on_cell_death :
+				body.spawn_flesh_bug_on_death  = false
 			GLPlayerLocalSoundsBus.emit_signal('sound_panel_cell_loaded')
 
 func _handle_body_exited(body) :
 	if body.is_in_group('brain_cell_container'): 
 		if body.designated_brain_cell == loaded_cell: 
 			loaded_cell = null
+			if disable_spawn_flesh_bug_on_cell_death :
+				body.spawn_flesh_bug_on_death  = true
 			cell_reciever._handle_panel_cell_recieved(loaded_cell)
 
 

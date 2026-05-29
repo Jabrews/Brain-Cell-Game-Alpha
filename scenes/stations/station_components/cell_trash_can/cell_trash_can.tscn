@@ -67,6 +67,7 @@ collision_layer = 0
 collision_mask = 4
 script = ExtResource("2_a087l")
 cell_reciever = NodePath("..")
+disable_spawn_flesh_bug_on_cell_death = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel" unique_id=930685742]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)

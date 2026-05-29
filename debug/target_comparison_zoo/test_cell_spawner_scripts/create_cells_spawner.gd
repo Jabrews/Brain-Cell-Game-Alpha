@@ -41,18 +41,18 @@ func create_new_brain_cells() :
 	
 	# group 1 
 	var cell_left_1 = BrainCell.new(
-		'cell_left_1',
-		10,	
-		75,
-		100,
-		3,
-		30,
-		50,
-		70,
+		'cell-left-1',
+		100,	
+		120,
+		155,
+		1000,
+		0,
+		0,
+		0,
 		false,
 		false,
 		false
-	)
+	)	
 	
 	cell_collection.append(cell_left_1)	
 	
@@ -60,18 +60,18 @@ func create_new_brain_cells() :
 	
 	# group 1 
 	var cell_left_2 = BrainCell.new(
-		'cell_left_2',
-		160,	
-		115,
-		145,
-		3,
-		30,
-		50,
-		70,
+		'cell-left-2',
+		100,	
+		100,
+		155,
+		1000,
+		0,
+		0,
+		0,
 		false,
 		false,
 		false
-	)
+	)	
 	
 	
 	cell_collection.append(cell_left_2)	

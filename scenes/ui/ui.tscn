@@ -4,6 +4,9 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_u7n8c"]
 [ext_resource type="Script" uid="uid://b8mpf2nnb7ral" path="res://scripts/ui/fps_counter.gd" id="4_0dwhk"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_g5kmx"]
+[ext_resource type="Texture2D" uid="uid://cdv5schqpo0vj" path="res://models/blood_noise/3_blood_display.png" id="5_0dwhk"]
+[ext_resource type="Script" uid="uid://bn73xwmm170ls" path="res://scripts/ui/blood_overlay.gd" id="6_pfayw"]
+[ext_resource type="Script" uid="uid://d4b1ul6fr6gpx" path="res://scripts/ui/drop_axe_at_mount.gd" id="7_7vp6q"]
 
 [node name="UI" type="Control" unique_id=885223017]
 layout_mode = 3
@@ -45,3 +48,21 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "FPS COUNTER : "
 script = ExtResource("4_0dwhk")
+
+[node name="BloodOverlay" type="Sprite2D" parent="." unique_id=505335901]
+modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+position = Vector2(427, 240)
+texture = ExtResource("5_0dwhk")
+script = ExtResource("6_pfayw")
+
+[node name="DropAxeBackAtMount" type="Label" parent="." unique_id=783017163]
+visible = false
+layout_mode = 0
+offset_left = 289.0
+offset_top = 404.0
+offset_right = 572.0
+offset_bottom = 438.0
+theme_override_font_sizes/font_size = 24
+text = "Drop Axe Back at mount"
+script = ExtResource("7_7vp6q")
