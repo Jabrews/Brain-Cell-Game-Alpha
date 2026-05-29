@@ -11,6 +11,7 @@ var await_user_choose_shareholder_offer_before_create : bool = false
 signal create_prisoner_cells_user_chose_shareholder_offer()
 
 # stat offer signals (very few need this, most use toggle state)
+signal offer_8_activated()
 
 
 
@@ -47,7 +48,7 @@ var round_4_stat_offers : Array[StatOfferItem] = [
 		'effects_defect', 7, 'Reduce defect event chance by 10%, but jolted cells now increase defect much more aggressively'
 	),
 	StatOfferItem.new(
-		'effects_prisoners', 8, 'All collected cells lifespan become 1 turn, but newly generated defect decrease by 10%.'
+		'effects_prisoners', 8, 'All collected cells lifespan become 1 turn, but newly generated defect decrease by 15%.'
 	)
 ]
 

@@ -16,6 +16,8 @@ func _ready() -> void:
 	GLCellManagerBus.connect('interpreter_jolt_increase_cell_defect', _handle_interpreter_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
+	# shareholder offers
+	GLShareholderOfferState.connect('offer_8_activated', _handle_offer_8_activated)
 	
 	## OTHER ZOOS
 	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
@@ -274,7 +276,11 @@ func _handle_delete_cells_for_next_round() :
 	set_collected_cells([])
 	set_prisoner_cells([])
 
-
+func _handle_offer_8_activated() :
+	for cell in collected_cells :
+		cell.life_span = 1
+		update_collected_cells([cell])
+	
 ### OTHER ZOOS ###
 
 func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 

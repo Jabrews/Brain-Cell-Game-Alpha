@@ -19,6 +19,7 @@ func _handle_toggle_active_stat_offer(offer_id : int) :
 		7 : 
 			GLShareholderOfferState.offer_7_active = true						
 		8 : 
+			GLShareholderOfferState.emit_signal('offer_8_activated')
 			GLShareholderOfferState.offer_8_active = true								
 
 func _handle_reset_active_stat_offer() :
