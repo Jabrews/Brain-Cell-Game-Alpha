@@ -18,6 +18,8 @@ func connect_signals():
 
 	GLUsableItemBus.connect("useable_item_dropped", _handle_useable_item_dropped)
 	GLUsableItemBus.connect('spawn_new_usable_items', spawn_turn_items)
+	# spawn item from shareholder offer
+	GLShareholderOfferState.connect('spawn_item_to_offer', _handle_spawn_item_to_offer)
 
 	# next turn signal
 	#GLCellCreatorBus.connect('procc', _handle_next_turn)
@@ -110,3 +112,28 @@ func create_item_at_player(useable_item_dropped : UseableItemObject):
 	useable_item_instance.designated_useable_item_obj = item_copy
 
 	useable_item_instance.load_item(false, useable_item_dropped.item_energy)
+
+func _handle_spawn_item_to_offer(useable_offer_item : UseableOfferItem) :
+	
+	match useable_offer_item.item_type :
+		'defect_shot' :
+			spawn_item_type(
+				"defect_shot",
+				true,
+				3,
+				1,
+			)
+		'hidden_shot' :
+			spawn_item_type(
+				"hidden_shot",
+				false,
+				0,
+				1,
+			)
+		'steroid' :
+			spawn_item_type(
+				"steroid",
+				false,
+				0,
+				1,
+			)

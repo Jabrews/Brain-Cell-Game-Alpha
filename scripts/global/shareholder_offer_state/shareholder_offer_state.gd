@@ -3,6 +3,7 @@ extends Node
 # debug
 var display_stat_offer_active_debug_messages : bool = true 
 
+## STAT OFFER SIGNALS##
 # lets shareholder offers toggle manager know to turn off all prior offers when new round
 signal next_round_stat_offers()
 
@@ -12,11 +13,20 @@ signal create_prisoner_cells_user_chose_shareholder_offer()
 
 # stat offer signals (very few need this, most use toggle state)
 signal offer_8_activated()
+#################
+
+## ITEM OFFER SIGNALS ##
+# lets useable item spawner know to spawn an item
+signal spawn_item_to_offer(useable_offer_item : UseableOfferItem)
 
 
 
 ##### item offer #####
-var items_to_offer = ['defect_shot', 'hidden_shot', 'steroid']
+var items_to_offer = [
+	UseableOfferItem.new('defect_shot','Each of a cell containers stat gets decreased by 15% (3 charges total)' ),
+	UseableOfferItem.new('hidden_shot', 'Each of a cell containers stat that are hidden, get un-hidden'),
+	UseableOfferItem.new('steroid', 'increase clean and defect values on a given cell container by 30%'),
+]
 ######################
 
 var round_1_stat_offers : Array[StatOfferItem] = [

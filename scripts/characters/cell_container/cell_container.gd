@@ -16,128 +16,167 @@ var spawn_flesh_bug_on_death : bool = true
 
 
 func _ready() -> void:
+	
 	# update name in tree
-	name = 'CellContainer' + designated_brain_cell.name
+	name = "CellContainer" + designated_brain_cell.name
 	
 	await get_tree().process_frame
 	
 	# we start a timer to randomly turn into flesh bug
 	# this is from a shareholder offer
-	if designated_brain_cell.turn_into_flesh_bug == true:	
-		var turn_delay_time = randi_range(5,20)
+	if designated_brain_cell.turn_into_flesh_bug:
+		var turn_delay_time = randi_range(5, 20)
 		offer_turn_into_flesh_bug_delay.wait_time = turn_delay_time
 		offer_turn_into_flesh_bug_delay.start()
 		
-		
-	
-	
 	screen_stat_displays.update_screen(designated_brain_cell)
 	
-	# des. cell changing listenrs
-	GLCellManagerBus.connect('cell_deleted', _handle_cell_deleted)
-	GLCellManagerBus.connect('cell_changed', _handle_cell_changed)
+	# des. cell changing listeners
+	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
+	GLCellManagerBus.connect("cell_changed", _handle_cell_changed)
 	
 	# jolt cell container event (defect manager)
-	GLDefectEventMangerBus.connect('event_cell_container_jolt', _handle_cell_container_jolt)
+	GLDefectEventMangerBus.connect("event_cell_container_jolt", _handle_cell_container_jolt)
 	
 	# update color and opacity
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	check_for_cell_dead_on_start()
-	
+
+
 # STATE MACHINE SWITCH HELPER 
-func switch_cell_state(new_state : String, picked_up_ray_cast : RayCast3D = null) :
+func switch_cell_state(
+	new_state : String,
+	picked_up_ray_cast : RayCast3D = null
+) :
 	
-	# reset picked up data
-	picked_up_state.player_ray_cast= null
+	picked_up_state.player_ray_cast = picked_up_ray_cast
 	
 	match new_state:
+		
 		"idle":
 			state_machine.switch_state(state_machine.State.IDLE)
 		
 		"picked_up":
-			picked_up_state.player_ray_cast = picked_up_ray_cast 
 			state_machine.switch_state(state_machine.State.PICKED_UP)
+		
 		"dying":
 			state_machine.switch_state(state_machine.State.DYING)
 		
 		_:
 			push_error("invalid state: " + new_state)
-	
-	
+
 
 func _physics_process(delta: float) -> void:
+	
 	if not is_on_floor():
 		
-		# PREVENT gravity during picked up state		
-		if state_machine.get_current_state_name() == 'picked_uo' : 
+		# PREVENT gravity during picked up state
+		if state_machine.get_current_state_name() == "picked_up":
 			return
 		
 		velocity += get_gravity() * delta
 		
 	move_and_slide()
-		
-		
-func _handle_cell_deleted(cell_name : String) : 
-	if cell_name == designated_brain_cell.name :
-		state_machine.switch_state(state_machine.State.DYING)		
 
 
-func _handle_cell_changed(changed_brain_cell : BrainCell) : 
-	if changed_brain_cell.name == designated_brain_cell.name : 
-		designated_brain_cell = changed_brain_cell
-		screen_stat_displays.update_screen(designated_brain_cell)
-		defect_color_manager.update_defect_color_manager(designated_brain_cell)
-		check_for_cell_dead_on_update()
+func _handle_cell_deleted(cell_name : String) :
 	
+	if cell_name != designated_brain_cell.name:
+		return
+		
+	state_machine.switch_state(state_machine.State.DYING)
+
+
+func _handle_cell_changed(changed_brain_cell : BrainCell) :
 	
+	if changed_brain_cell.name != designated_brain_cell.name:
+		return
+	
+	designated_brain_cell = changed_brain_cell
+	
+	screen_stat_displays.update_screen(designated_brain_cell)
+	defect_color_manager.update_defect_color_manager(designated_brain_cell)
+	
+	check_for_cell_dead_on_update()
+
+
 func _handle_cell_container_jolt(cell_name : String) :
-	if cell_name == designated_brain_cell.name :
-		state_machine.switch_state(state_machine.State.JOLT)		
+	
+	if cell_name != designated_brain_cell.name:
+		return
 		
-		
+	state_machine.switch_state(state_machine.State.JOLT)
+
+
+func has_fatal_defect() -> bool:
+	
+	return (
+		designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value
+		or designated_brain_cell.intelligence_defect >= IVCellCreator.max_stat_value
+		or designated_brain_cell.community_defect >= IVCellCreator.max_stat_value
+	)
+
+
+func kill_cell() -> void:
+	
+	await get_tree().create_timer(1.0).timeout
+	
+	GLCellManagerBus.emit_signal(
+		"delete_selected_collected_cell",
+		designated_brain_cell
+	)
+	
+	state_machine.switch_state(state_machine.State.DYING)
+
+
 func check_for_cell_dead_on_start() :
 	
-	var defect_death_event : bool = false
-	
-	# check if stat defect is in death range
-	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
-		defect_death_event = true
-	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
-		defect_death_event = true
-	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
-		defect_death_event = true
-	
-	if defect_death_event :
-		# if they can die then kill em	
-		if IVCellBreeding.newly_breeded_cell_can_die_from_defect :
+	#### defect death event ####
+	if has_fatal_defect():
+		
+		# if they can die then kill em
+		if IVCellBreeding.newly_breeded_cell_can_die_from_defect:
 			
-			await get_tree().create_timer(1.0).timeout
-			GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
-			# if not. that was players free chance. now next badly breeded cell will die
-			state_machine.switch_state(state_machine.State.DYING)		
-		else :
+			await kill_cell()
+		
+		# if not. that was players free chance.
+		# now next badly breeded cell will die
+		else:
+			
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
+			
 			return
+	#############################
+
 
 func check_for_cell_dead_on_update() :
-	var defect_death_event : bool = false
 	
-	# check if stat defect is in death range
-	if designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
-		defect_death_event = true
-	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
-		defect_death_event = true
-	elif designated_brain_cell.strength_defect >= IVCellCreator.max_stat_value :
-		defect_death_event = true
-	
-	if defect_death_event :
-		await get_tree().create_timer(1.0).timeout
-		GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
-		state_machine.switch_state(state_machine.State.DYING)		
+	#### age death event ####
+	if designated_brain_cell.life_span <= 0:
 		
+		spawn_flesh_bug_on_death = false
+		
+		await kill_cell()
+		
+		return
+	##########################
+	
+	
+	#### defect death event ####
+	if has_fatal_defect():
+		
+		await kill_cell()
+		
+		return
+	############################
 
 
 func _on_offer_turn_into_flesh_bug_delay_timeout() -> void:
-	GLCellManagerBus.emit_signal('delete_selected_collected_cell', designated_brain_cell)
-	state_machine.switch_state(state_machine.State.DYING)		
+	
+	GLCellManagerBus.emit_signal(
+		"delete_selected_collected_cell",
+		designated_brain_cell
+	)
+	
+	state_machine.switch_state(state_machine.State.DYING)

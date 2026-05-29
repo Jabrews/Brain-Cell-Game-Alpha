@@ -54,13 +54,15 @@ func create_cells_with_constructor(constructor : CellConstructor):
 		var clean_stats : Array[float] = create_clean_stats._create(constructor.clean_ranges)
 		var defect_stats : Array[float] = create_defect_stats._create(cell_index, constructor, clean_stats)
 		
+		var life_span = randi_range(2, 4)
+		
 		var new_name =  name_manager.pick_prisoner_names()
 		var new_prisoner_cell = BrainCell.new(
 			new_name,
 			clean_stats[0],
 			clean_stats[1],
 			clean_stats[2],
-			3,
+			life_span,
 			defect_stats[0],
 			defect_stats[1], 
 			defect_stats[2],

@@ -18,6 +18,8 @@ func _ready() -> void:
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
 	# shareholder offers
 	GLShareholderOfferState.connect('offer_8_activated', _handle_offer_8_activated)
+	# for each turn when aging collected cell lifespan
+	GLGameManagerBus.connect('attempt_next_turn', _handle_next_turn)
 	
 	## OTHER ZOOS
 	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
@@ -279,6 +281,11 @@ func _handle_delete_cells_for_next_round() :
 func _handle_offer_8_activated() :
 	for cell in collected_cells :
 		cell.life_span = 1
+		update_collected_cells([cell])
+	
+func _handle_next_turn() :
+	for cell in collected_cells :
+		cell.life_span -= 1
 		update_collected_cells([cell])
 	
 ### OTHER ZOOS ###
