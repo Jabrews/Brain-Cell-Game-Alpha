@@ -77,7 +77,7 @@ func handle_round(round : int):
 			IVItemStats.defect_shot_decrease = 45
 			IVUseableItemSpawner.defect_shots_to_spawn = 1
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
-			IVUseableItemSpawner.steroids_to_spawn = 5
+			IVUseableItemSpawner.steroids_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_turn = 3
 			IVShareholderOffers.stat_offer_turn = 2
@@ -94,11 +94,11 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 60
 			IVUseableItemSpawner.defect_shots_to_spawn = 1
-			IVUseableItemSpawner.hidden_shots_to_spawn = 1
+			IVUseableItemSpawner.hidden_shots_to_spawn = 6 # 1
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.item_offer_turn = 2
-			IVShareholderOffers.stat_offer_turn = 3		
+			IVShareholderOffers.item_offer_turn = 3
+			IVShareholderOffers.stat_offer_turn = 2
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## TURNS ##

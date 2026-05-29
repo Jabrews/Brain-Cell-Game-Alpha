@@ -5,6 +5,16 @@ func _handle_hidden_stat_defect_trap_event(
 	new_prisoners : Array[BrainCell],
 ) :
 	
+	## case 5 ##
+	# this case will add more defect trap stats. 
+	if GLShareholderOfferState.offer_5_active  :
+		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+			print_debug('offer 5')
+		handle_offer_5_traps(new_prisoners)
+		return new_prisoners
+	
+	
+	
 	# if prisoner selection isnt 2 no trap
 	if IVPrisonerSpawner.max_picked_pris_per_turn != 2 :
 		return new_prisoners 
@@ -30,6 +40,25 @@ func _handle_hidden_stat_defect_trap_event(
 	if len(trap_candidate_cells) == 0 :
 		print('no candidate found')
 		return new_prisoners
+		
+	### offer five ##
+	## reduce amount of hidden stats to hide. BUT we increase amount of hidden bombs. always atleast 1-2
+	if GLShareholderOfferState.offer_5_active:
+		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+			print_debug('offer 5')
+		print('trap candiate cell amount : ', len(trap_candidate_cells))		
+		var cell_1_candidate = trap_candidate_cells.pick_random()
+		print('chose offer 4 bomb candiate', cell_1_candidate['cell'].name)
+		trap_candidate_cells.erase(cell_1_candidate)	
+		var cell_2_candidate = trap_candidate_cells.pick_random()
+		print('chose offer 4 bomb candiate', cell_1_candidate['cell'].name)
+		trap_candidate_cells.erase(cell_2_candidate)		
+		plant_candidate_trap(new_prisoners, cell_1_candidate)
+		plant_candidate_trap(new_prisoners, cell_2_candidate)
+		print('planted traps')		
+		return new_prisoners
+	#############
+		
 	
 	var best_candidate = get_best_candidate(trap_candidate_cells)
 	
@@ -136,7 +165,7 @@ func plant_candidate_trap(new_prisoners : Array[BrainCell], best_candidate) :
 	if candidate_cell.community_hidden :
 		hidden_stats.append('community')
 	
-	# no hidden stats somehow
+	# no hidden stats somehowi w
 	if len(hidden_stats) == 0 :
 		return new_prisoners
 	
@@ -196,3 +225,61 @@ func plant_candidate_trap(new_prisoners : Array[BrainCell], best_candidate) :
 			break
 	
 	return new_prisoners
+
+func handle_offer_5_traps(new_prisoners : Array[BrainCell]) :
+
+	var total_hidden_stats : int = 0
+
+	# count hidden stats across all prisoners
+	for cell : BrainCell in new_prisoners:
+
+		if cell.strength_hidden:
+			total_hidden_stats += 1
+
+		if cell.intelligence_hidden:
+			total_hidden_stats += 1
+
+		if cell.community_hidden:
+			total_hidden_stats += 1
+
+	print("offer 5 total hidden stats : ", total_hidden_stats)
+
+	# determine trap count
+	var trap_count : int = 0
+
+	if total_hidden_stats == 1:
+		trap_count = 1
+
+	elif total_hidden_stats == 2:
+		trap_count = 1 + int(randi_range(1, 100) <= 25)
+
+	elif total_hidden_stats > 2:
+		trap_count = 2 - int(randi_range(1, 100) <= 25)
+
+	var trap_candidate_cells : Array = find_cell_candidates(new_prisoners)
+
+	if len(trap_candidate_cells) == 0:
+		print("offer 5 no trap candidates")
+		return new_prisoners
+
+	for i in range(trap_count):
+
+		if len(trap_candidate_cells) == 0:
+			break
+
+		var selected_candidate = trap_candidate_cells.pick_random()
+
+		print(
+			"offer 5 selected cell : ",
+			selected_candidate["cell"].name
+		)
+
+		trap_candidate_cells.erase(selected_candidate)
+
+		new_prisoners = plant_candidate_trap(
+			new_prisoners,
+			selected_candidate
+		)
+
+	return new_prisoners
+	

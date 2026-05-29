@@ -5,11 +5,13 @@ extends Node
 @onready var name_manager : Node = $"../NameManager"
 
 # components helpers
-@onready var create_clean_stats : Node = $HelperCreateClean
-@onready var create_defect_stats : Node = $HelperCreateDefect
-@onready var create_hidden_stats : Node = $HelperHidden
-@onready var clean_stat_due_order : Node = $HelperCleanStatDueOrder
-@onready var hidden_defect_trap : Node = $HelperHiddenDefectTrap
+@onready var create_clean_stats : Node = $StatHelpers/HelperCreateClean
+@onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
+@onready var create_hidden_stats : Node = $HiddenStatHelpers/HelperHidden
+@onready var clean_stat_due_order : Node = $StatHelpers/HelperCleanStatDueOrder
+@onready var hidden_defect_trap : Node = $HiddenStatHelpers/HelperHiddenDefectTrap
+# offer helpers
+@onready var offer_five : Node = $OfferHelpers/OfferFive
 
 func assemble() :
 	var current_round : int = GLGameManagerBus.current_round
@@ -22,6 +24,11 @@ func assemble() :
 	# verify clean stat due order before going foward
 	cell_contructors = clean_stat_due_order._verify_user_clean_stat_due_order(cell_contructors)
 	
+	## offer 5 
+	# reduce amount of hidden stats by half. starting with best constructors
+	if GLShareholderOfferState.offer_5_active :
+		cell_contructors = offer_five.handle_offer_5(cell_contructors)
+
 	for contructor : CellConstructor in cell_contructors :
 		var new_cells : Array[BrainCell] = create_cells_with_constructor(contructor)				
 		for cell in new_cells :

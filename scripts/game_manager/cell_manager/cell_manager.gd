@@ -236,6 +236,13 @@ func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, se
 			
 	var jolt_defect_increase_amount = IVDefectEventManager.interpreter_jolt_defect_increase
 	
+	## offer 7 ##
+	# increase jolt by 25%
+	if GLShareholderOfferState.offer_7_active :
+		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
+			print_debug('offer 7')
+		jolt_defect_increase_amount += int((jolt_defect_increase_amount * 0.25))
+	
 	match selected_stat :
 		'strength' :
 			selected_cell.strength_defect += jolt_defect_increase_amount

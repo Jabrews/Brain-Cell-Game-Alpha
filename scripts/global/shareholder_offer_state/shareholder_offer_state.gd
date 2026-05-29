@@ -1,7 +1,7 @@
 extends Node
 
 # debug
-var display_stat_offer_active_debug_messages : bool = false
+var display_stat_offer_active_debug_messages : bool = true 
 
 # lets shareholder offers toggle manager know to turn off all prior offers when new round
 signal next_round_stat_offers()
@@ -9,6 +9,8 @@ signal next_round_stat_offers()
 # tells cell_prisoner_cretor to await offer card being chose
 var await_user_choose_shareholder_offer_before_create : bool = false
 signal create_prisoner_cells_user_chose_shareholder_offer()
+
+# stat offer signals (very few need this, most use toggle state)
 
 
 
@@ -34,40 +36,32 @@ var round_2_stat_offers : Array[StatOfferItem] = [
 ]
 var round_3_stat_offers : Array[StatOfferItem] = [
 	StatOfferItem.new(
-		'effects_prisoners', 4, 'Greatly reduces amount of hidden stats. BUT remaining hidden stats are more likely to hide high infection.'
+		'effects_prisoners', 5, 'Greatly reduces amount of hidden stats. BUT remaining hidden stats are more likely to hide high infection.'
 	),
 	StatOfferItem.new(
-		'effects_defect', 5, 'Increase chance of ALL hidden stat interpreter jolting by 15%, BUT reduce overall defect event chance by 10%.'
+		'effects_defect', 6, 'Increase chance of ALL hidden stat interpreter jolting by 15%, BUT reduce overall defect event chance by 10%.'
 	)
 ]
 var round_4_stat_offers : Array[StatOfferItem] = [
 	StatOfferItem.new(
-		'effects_defect', 7, 'Reduce defect event chance by 15%, but jolted cells now increase defect much more aggressively'
+		'effects_defect', 7, 'Reduce defect event chance by 10%, but jolted cells now increase defect much more aggressively'
 	),
 	StatOfferItem.new(
-		'effects_prisoners', 8, 'All collected cells lifespan become 1 turn, but newly generated cells have low defect.'
+		'effects_prisoners', 8, 'All collected cells lifespan become 1 turn, but newly generated defect decrease by 10%.'
 	)
 ]
 
 ##### stat offer #####
 ## round 1 ##
-# only 3 prisoners to pick throughout the round, but the clean stat value is moderatly better
 var offer_1_active : bool = false
-# all cell breeding results give 15% increase (phase 3) but defect gives 20%
 var offer_2_active : bool = false
 ## round 2 ##
-# all cells for the next generation-turn have no defect, but no one is "infected"  and will birth a brain spider 
 var offer_3_active : bool = false
-# greatly reduce the amount of hidden stats, but increase the chance of the remaining hiding high infection (can start bombs early round 2)
 var offer_4_active : bool = false
 ## round 3 ##
-# reduce chance of defect event by 15%. Increase defect on new cells by 15%
 var offer_5_active : bool = false
-# increase chance of all hidden stat interpreters jolt by 15%. but reduce overall chance of defect/event by 10%
 var offer_6_active : bool = false
 ## round 4 ##
-# decrease the chance of defect events to occur by 15%. But a jolted cell now increases at a much more aggressive rate
 var offer_7_active : bool = false
-# all collected cells lifespan are set to 1 (will die next turn) but the newly generated cells have low defect
 var offer_8_active : bool = false
 #######################

@@ -5,10 +5,9 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 	# if no stats to hide do nothing
 	if len(constructor.stats_to_hide) == 0:
 		return new_prisoners
-
+		
 	for stat_to_hide : StatsToHide in constructor.stats_to_hide:
 		
-
 		var stat_items = []
 
 		# create items
@@ -40,14 +39,13 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 		)
 		
 		
-		# optional randomness
-		var ran_chance_num = randi_range(0, 100)
-
-		if ran_chance_num >= 85 :
-
-			# only remove if enough cells still remain
-			if len(stat_items) > stat_to_hide.quantity :
-				stat_items.remove_at(0)
+		## optional randomness
+		if not GLShareholderOfferState.offer_5_active :
+			var ran_chance_num = randi_range(0, 100)
+			if ran_chance_num >= 85 :
+				## only remove if enough cells still remain
+				if len(stat_items) > stat_to_hide.quantity :
+					stat_items.remove_at(0)
 				
 		# hide top stats
 		var max_quantity = stat_to_hide.quantity

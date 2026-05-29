@@ -7,6 +7,9 @@ extends Node
 @onready var assemble_cells : Node = $AssembleCells
 @onready var assemble_target : Node = $AssembleTarget
 @onready var incrmental_value_controller : Node = $"../IncrementalValueController"
+# offer helpers 
+@onready var offer_one : Node = $OfferHelpers/OfferOne
+@onready var offer_three : Node = $OfferHelpers/OfferThree
 
 func _ready() -> void:
 	connect_signals()
@@ -36,40 +39,21 @@ func handle_create_cells(include_target : bool = false, prevent_update_incr_upda
 	if creation_case == 'none' :
 		new_prisoner_cells = assemble_cells.assemble()
 	
-	##### shareholder CASES #######
+	##### shareholder CASES (offers) #######
 	# prevent creation the first time when it is  
 	if GLShareholderOfferState.await_user_choose_shareholder_offer_before_create:
 		return
 	
-	## TODO move offers into better place ##
-	
-	## offer one ##
+	## offer 1
 	# we only return 3 cells when this happens.
-	if GLShareholderOfferState.offer_1_active :
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 1')
-		# we return 3 not because it is getting farther from org. pos but for the trickery
-		var cell_to_delete = new_prisoner_cells.pick_random()
-		new_prisoner_cells.erase(cell_to_delete)
-	###############
+	new_prisoner_cells = offer_one.handle_offer_1(new_prisoner_cells)
 
-	## offer three ##
+	## offer 3
 	# all cells have no defect but one spider is generated
 	# ONESHOT (end after this round)
-	if GLShareholderOfferState.offer_3_active	:
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 3')
-		# set defect to 0 in all cells
-		for cell : BrainCell in new_prisoner_cells :
-			cell.strength_defect = 0
-			cell.intelligence_defect = 0
-			cell.community_defect = 0
-		# pick random cell to become the spider	
-		var random_prisoner : BrainCell = new_prisoner_cells.pick_random()
-		random_prisoner.turn_into_flesh_bug = true
-		print('choose ', random_prisoner.name, ' to become slug bug')
-		# after this make sure we turn off active... oneshot
-		GLShareholderOfferState.offer_3_active = false
+	new_prisoner_cells = offer_three.handle_offer_3(new_prisoner_cells)
+	
+	#########################################
 	
 	cell_manager.set_prisoner_cells(new_prisoner_cells)
 	GLCellCreatorBus.emit_signal('get_newest_prisoner_cells', new_prisoner_cells)

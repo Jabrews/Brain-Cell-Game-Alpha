@@ -76,7 +76,8 @@ var turn_2 : Array[CellConstructor] = [
 		'medium',
 		['above_average', 'equal'],
 		[
-		StatsToHide.new('strength', 1)
+		StatsToHide.new('strength', 1),
+		StatsToHide.new('intelligence', 1)
 		]
 	),
 	CellConstructor.new(
@@ -98,7 +99,8 @@ var turn_3 : Array[CellConstructor] = [
 		'medium',
 		['equal'],
 		[
-		StatsToHide.new('strength', 1)
+		StatsToHide.new('strength', 1),
+		StatsToHide.new('intelligence', 1)	,
 		],
 	),
 	

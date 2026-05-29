@@ -89,7 +89,6 @@ func create_stat(target_stat : float, clean_range : String) -> float:
 			print_debug('offer 1')
 		
 		clean_stat += (IVCellCreator.max_stat_value * 0.20)
-		
 	#############
 	
 	
