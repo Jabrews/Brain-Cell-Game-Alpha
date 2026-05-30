@@ -18,6 +18,7 @@ var community_hidden: bool
 
 var is_target_cell : bool
 var turn_into_flesh_bug : bool
+var cell_is_frozen : bool
 
 
 
@@ -36,6 +37,7 @@ func _init(
 	community_hidden: bool = false,
 	is_target_cell : bool = false,
 	turn_into_flesh_bug : bool = false,
+	cell_is_frozen : bool = false
 ):
 	self.name = name
 	
@@ -54,6 +56,7 @@ func _init(
 
 	self.is_target_cell = is_target_cell
 	self.turn_into_flesh_bug  = turn_into_flesh_bug
+	self.cell_is_frozen = cell_is_frozen
 
 	
 func _to_string() -> String:

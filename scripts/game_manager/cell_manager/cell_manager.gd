@@ -284,8 +284,16 @@ func _handle_offer_8_activated() :
 		update_collected_cells([cell])
 	
 func _handle_next_turn() :
-	for cell in collected_cells :
-		cell.life_span -= 1
+	
+	#decrease lifespan on collected cells
+	for cell : BrainCell in collected_cells :
+		
+		# dont decrease lifespan on froze cell
+		if cell.cell_is_frozen :
+			cell.cell_is_frozen = false
+		else :
+			cell.life_span -= 1
+			
 		update_collected_cells([cell])
 	
 ### OTHER ZOOS ###

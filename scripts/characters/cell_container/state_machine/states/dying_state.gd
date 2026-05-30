@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var cell_container_parent : CharacterBody3D = $"../.."
-@onready var dying_sound : AudioStreamPlayer3D = $DyingSound
+@onready var dying_sound : AudioStreamPlayer3D = $"../../DyingSound"
 @onready var flesh_slug_instance : PackedScene = preload("res://scenes/characters/flesh_bugs/flesh_slug/flesh_slug.tscn")
 @onready var flesh_bug_parent_node : Node = $"../../../../FleshBugParentNode"
 

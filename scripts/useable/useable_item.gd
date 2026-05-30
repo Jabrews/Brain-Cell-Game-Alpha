@@ -11,6 +11,7 @@ var designated_useable_item_obj : UseableItemObject
 @onready var defect_shot_png : Texture = preload("res://models/usable_items/serum_items/defect_shot.png")
 @onready var hidden_shot_png : Texture = preload("res://models/usable_items/serum_items/hidden_shot_item.png")
 @onready var steroid_png : Texture = preload("res://models/usable_items/steriod/steriod.png")
+@onready var ice_cube_png : Texture = preload("res://models/usable_items/ice_cube/ice_cube.png")
 
 func load_item(include_energy : bool, specified_energy_left = 0) -> void:
 	load_item_sprite()
@@ -32,6 +33,8 @@ func load_item_label():
 			item_label.text = 'Hidden Shot'
 		'steroid' :
 			item_label.text = 'Steroid'
+		'ice_cube' :
+			item_label.text = 'Ice Cube'
 
 func load_item_name():
 	var raw_name : String = designated_useable_item_obj.item_type
@@ -52,6 +55,8 @@ func load_item_sprite():
 			useable_item_sprite.texture = hidden_shot_png
 		'steroid' :
 			useable_item_sprite.texture = steroid_png 
+		'ice_cube' :
+			useable_item_sprite.texture = ice_cube_png
 
 func load_item_energy():
 	# if already has energy (dropped item), respect it

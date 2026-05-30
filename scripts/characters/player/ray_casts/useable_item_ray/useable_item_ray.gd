@@ -6,6 +6,11 @@ var held_useable_item_obj : UseableItemObject
 
 # components
 @onready var ray_cast_controller_parent : Node3D = $".."
+# helpers
+@onready var use_defect_shot : Node = $UseDefectShot
+@onready var use_hidden_shot : Node = $UseHiddenShot
+@onready var use_steroid : Node = $UseSteroid
+@onready var use_ice_cube : Node = $UseIceCube
 
 
 func _process(_delta):
@@ -74,85 +79,42 @@ func handle_item_use(collider) -> void:
 
 	if not collider.is_in_group("brain_cell_container") \
 	and not collider.is_in_group("prisoner"):
-		print("not in group")
 		return
 
 
 	## DEFECT SHOT ###
+	
 	if held_useable_item_obj.item_type == 'defect_shot':
 
-		GLUsableItemBus.emit_signal(
-			'use_defect_shot',
-			collider.designated_brain_cell,
-			held_useable_item_obj
-		)
-
-		# increment shot energy downward
-		held_useable_item_obj.item_energy -= 1
-
-		GLPlayerLocalSoundsBus.emit_signal('sound_shot_used')
-
-		if held_useable_item_obj.item_energy <= 0:
-
-			GLUsableItemBus.emit_signal(
-				'useable_item_used',
-				true,
-				held_useable_item_obj
-			)
-
+		var item_used_up = use_defect_shot.use(collider, held_useable_item_obj)
+		if item_used_up :
 			handle_item_used_up(held_useable_item_obj)
-
-
-		else:
-
-			GLUsableItemBus.emit_signal(
-				'useable_item_used',
-				false,
-				held_useable_item_obj
-			)
-			
-			GLUseableItemManagerBus.emit_signal('useable_item_changed', held_useable_item_obj)
 
 
 	## HIDDEN SHOT ###
 	elif held_useable_item_obj.item_type == 'hidden_shot':
-
-		GLPlayerLocalSoundsBus.emit_signal('sound_shot_used')
-
-		GLUsableItemBus.emit_signal(
-			'use_hidden_shot',
-			collider.designated_brain_cell,
-			held_useable_item_obj
-		)
-
-		GLUsableItemBus.emit_signal(
-			'useable_item_used',
-			true,
-			held_useable_item_obj
-		)
-
+		
+		use_hidden_shot.use(collider, held_useable_item_obj)
 		handle_item_used_up(held_useable_item_obj)
 	
 	## STERIOD ###
 	elif held_useable_item_obj.item_type == 'steroid' :
 		
-		GLPlayerLocalSoundsBus.emit_signal('sound_pills_used')
-		
-		GLUsableItemBus.emit_signal(
-			'use_steroid',
-			collider.designated_brain_cell,
-			held_useable_item_obj
-		)
-
-		GLUsableItemBus.emit_signal(
-			'useable_item_used',
-			true,
-			held_useable_item_obj
-		)
-
+		use_steroid.use(collider, held_useable_item_obj)
 		handle_item_used_up(held_useable_item_obj)
-
-
+	
+	
+	## ICE CUBE ##
+	elif held_useable_item_obj.item_type == 'ice_cube' :
+		
+		# not used on prisoner
+		if collider.is_in_group("prisoner"):
+			return
+		
+		use_ice_cube.use(collider, held_useable_item_obj)
+		
+		
+		handle_item_used_up(held_useable_item_obj)
 
 
 func handle_item_used_up(useable_item : UseableItemObject) -> void:

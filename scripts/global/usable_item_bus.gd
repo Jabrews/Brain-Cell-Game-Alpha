@@ -11,3 +11,4 @@ signal useable_item_used(item_used_up, new_useable_item) #item used up refers to
 signal use_defect_shot(selected_cell : BrainCell, useable_item_obj : UseableItemObject)
 signal use_hidden_shot(selected_cell : BrainCell, useable_item_obj : UseableItemObject)
 signal use_steroid(selected_cell : BrainCell, useable_item_obj : UseableItemObject)
+signal use_ice_cube(selected_cell : BrainCell, useable_item_obj : UseableItemObject)

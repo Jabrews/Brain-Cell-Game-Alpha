@@ -4,12 +4,14 @@ extends Node
 @onready var picked_up_state : Node = $PickedUp
 @onready var dying_state : Node = $Dying
 @onready var jolt_state : Node = $Jolt
+@onready var froze_state : Node = $Froze
 
 enum State {
 	IDLE,
 	PICKED_UP,
 	DYING,
 	JOLT,
+	FROZE,
 }
 
 var states : Dictionary
@@ -23,6 +25,7 @@ func _ready():
 		State.PICKED_UP: picked_up_state,
 		State.DYING : dying_state,
 		State.JOLT : jolt_state,
+		State.FROZE: froze_state,
 	}
 
 	switch_state(State.IDLE)

@@ -62,6 +62,8 @@ func switch_cell_state(
 		
 		"dying":
 			state_machine.switch_state(state_machine.State.DYING)
+		'froze' :
+			state_machine.switch_state(state_machine.State.FROZE)
 		
 		_:
 			push_error("invalid state: " + new_state)
@@ -94,6 +96,18 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		return
 	
 	designated_brain_cell = changed_brain_cell
+	
+	# check if cell is froze, if so change stat to frozen
+	if designated_brain_cell.cell_is_frozen :
+		if state_machine.curr_state.name != 'Froze' :		
+			switch_cell_state('froze')
+	# check if cell is frozen when it shouldnt be
+	if not designated_brain_cell.cell_is_frozen :
+		if state_machine.curr_state.name == 'Froze' :		
+			switch_cell_state('idle')
+		
+		
+	
 	
 	screen_stat_displays.update_screen(designated_brain_cell)
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)

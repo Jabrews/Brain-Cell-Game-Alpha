@@ -6,24 +6,29 @@
 [ext_resource type="Script" uid="uid://c44pli8hdfse" path="res://scripts/characters/player/player_health_manager.gd" id="2_tebod"]
 [ext_resource type="Script" uid="uid://ofcpd7nt03i4" path="res://scripts/characters/player/ray_casts/interact_ray.gd" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://dbyqeim8y2d0k" path="res://scripts/characters/player/ray_casts/stat_display_ray.gd" id="4_hss88"]
-[ext_resource type="Script" uid="uid://crdf4bvgvnn7k" path="res://scripts/characters/player/ray_casts/useable_item_ray.gd" id="6_mk55u"]
+[ext_resource type="Script" uid="uid://crdf4bvgvnn7k" path="res://scripts/characters/player/ray_casts/useable_item_ray/useable_item_ray.gd" id="6_mk55u"]
 [ext_resource type="Script" uid="uid://br22ikxgw6y14" path="res://scripts/characters/player/usable_item_hand_preview/useable_item_hand_preview.gd" id="7_mk55u"]
 [ext_resource type="Script" uid="uid://v1easw14lnxb" path="res://scripts/characters/player/ray_casts/axe_interact_ray.gd" id="8_6nfx3"]
+[ext_resource type="Script" uid="uid://1fpdr00vp6gm" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_steroid.gd" id="8_b4gk5"]
 [ext_resource type="Texture2D" uid="uid://dkrsadavve8qw" path="res://models/usable_items/serum_items/defect_shot.png" id="8_xuses"]
 [ext_resource type="Script" uid="uid://lko3a88glus8" path="res://scripts/characters/player/player_local_sounds.gd" id="9_blysn"]
 [ext_resource type="AudioStream" uid="uid://fpo4lf5q2cy6" path="res://sounds/player_local_sounds/interactable/btn_press_failed.mp3" id="9_bsn6e"]
+[ext_resource type="Script" uid="uid://dnwuswa50rim6" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_hidden_shot.gd" id="9_r0hd7"]
 [ext_resource type="AudioStream" uid="uid://dqq7en1oace1s" path="res://sounds/player_local_sounds/interactable/drop_item.mp3" id="10_blysn"]
+[ext_resource type="Script" uid="uid://1cg1r00by7w" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_defect_shot.gd" id="10_gpigg"]
 [ext_resource type="Script" uid="uid://dkrpoq7vr6q27" path="res://scripts/characters/player/player_axe.gd" id="11_3hnlq"]
 [ext_resource type="AudioStream" uid="uid://dao0axcmib5eh" path="res://sounds/player_local_sounds/interactable/pickup_item.mp3" id="11_hv5x3"]
+[ext_resource type="Script" uid="uid://bku4lmuuwtp6k" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_ice_cube.gd" id="11_nt8su"]
 [ext_resource type="AudioStream" uid="uid://dbc0sn4gcabov" path="res://sounds/player_local_sounds/interactable/panel_cell_loaded.mp3" id="12_ykrpk"]
 [ext_resource type="AudioStream" uid="uid://bsbyb7sk1wftk" path="res://sounds/player_local_sounds/interactable/shot_used.mp3" id="14_hv5x3"]
 [ext_resource type="AudioStream" uid="uid://d3aj42ig37u6p" path="res://sounds/player_local_sounds/interactable/btn_press_success.mp3" id="15_ykrpk"]
-[ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/player_local_sounds/cell_container/cell_dropped.mp3" id="16_4kqyw"]
-[ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/player_local_sounds/cell_container/cell_pickup.mp3" id="17_svuau"]
+[ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="16_4kqyw"]
+[ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_svuau"]
 [ext_resource type="AudioStream" uid="uid://cnocqhs0uxqvf" path="res://sounds/player_local_sounds/hidden_stat_interpreter/all_jolt_sound.mp3" id="18_svuau"]
 [ext_resource type="AudioStream" uid="uid://c8b6nbrvrxedl" path="res://sounds/player_local_sounds/prisoner_spawner/prisoner_selected.mp3" id="19_ro20i"]
 [ext_resource type="AudioStream" uid="uid://v65a064u7mp1" path="res://sounds/player_local_sounds/interactable/pill_used.mp3" id="20_8y75b"]
 [ext_resource type="AudioStream" uid="uid://dmhxj4tti0hkq" path="res://sounds/player_local_sounds/axe/axe_swing.mp3" id="24_d73qs"]
+[ext_resource type="AudioStream" uid="uid://b2ws1ps0f2keq" path="res://sounds/player_local_sounds/interactable/ice_cube_used.mp3" id="25_u6wme"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.0
@@ -92,6 +97,18 @@ target_position = Vector3(0, 0, -3)
 collision_mask = 390
 collide_with_areas = true
 script = ExtResource("6_mk55u")
+
+[node name="UseSteroid" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=1192498463]
+script = ExtResource("8_b4gk5")
+
+[node name="UseHiddenShot" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=1409835091]
+script = ExtResource("9_r0hd7")
+
+[node name="UseDefectShot" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=804287666]
+script = ExtResource("10_gpigg")
+
+[node name="UseIceCube" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=155471022]
+script = ExtResource("11_nt8su")
 
 [node name="AxeInteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1294195992]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
@@ -182,6 +199,10 @@ volume_db = -10.0
 
 [node name="AxeSwing" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=2138343815]
 stream = ExtResource("24_d73qs")
+pitch_scale = 0.9
+
+[node name="IceCubeUsed" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1325868302]
+stream = ExtResource("25_u6wme")
 pitch_scale = 0.9
 
 [connection signal="body_entered" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_entered"]

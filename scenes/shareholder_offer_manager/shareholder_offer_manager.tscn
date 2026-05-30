@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dytqlp8nnogkl" path="res://models/share_holder_offer_card/effects_breeding.png" id="10_vj8rc"]
 [ext_resource type="Texture2D" uid="uid://uol8k4qh6ujx" path="res://models/share_holder_offer_card/item_card_bg.png" id="11_05saj"]
 [ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer_card.gd" id="12_5kdy1"]
-[ext_resource type="Texture2D" uid="uid://berqcmgeuh6fq" path="res://models/share_holder_offer_card/item_defect.png" id="12_gue60"]
 [ext_resource type="Texture2D" uid="uid://dq0mvp0t01m" path="res://models/share_holder_offer_card/item_steroid.png" id="13_5kdy1"]
+[ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mvdwn"]
 shader = ExtResource("3_ten8p")
@@ -201,7 +201,7 @@ offset_left = 24.5
 offset_top = 20.0
 offset_right = 134.5
 offset_bottom = 120.0
-texture = ExtResource("12_gue60")
+texture = ExtResource("13_gue60")
 
 [node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card1Container" unique_id=828140258]
 visible = false

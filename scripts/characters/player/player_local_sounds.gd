@@ -7,12 +7,11 @@ extends Node
 @onready var s_panel_cell_loaded : AudioStreamPlayer3D = $PanelCellLoaded
 @onready var s_shot_used : AudioStreamPlayer3D = $ShotUsed
 @onready var s_btn_press_success : AudioStreamPlayer3D = $BtnPressSuccess
-@onready var s_cell_container_pickup : AudioStreamPlayer3D =$CellContainerPickup
-@onready var s_cell_container_dropped : AudioStreamPlayer3D = $CellContainerDropped
 @onready var s_hidden_interprter_all_jolt : AudioStreamPlayer3D = $HiddenInterpreterAllJolt
 @onready var s_prisoner_selected : AudioStreamPlayer3D = $PrisonerSelected
 @onready var s_pills_used : AudioStreamPlayer3D = $PillUsed
 @onready var s_axe_swing : AudioStreamPlayer3D = $AxeSwing
+@onready var s_ice_cube_used : AudioStreamPlayer3D = $IceCubeUsed
 
 
 func _ready() -> void:
@@ -34,12 +33,11 @@ func _ready() -> void:
 	)
 	GLPlayerLocalSoundsBus.connect('sound_shot_used', _handle_sound_shot_used)
 	GLPlayerLocalSoundsBus.connect('sound_btn_press_success', _handle_sound_btn_press_success)
-	GLPlayerLocalSoundsBus.connect('sound_cell_container_pickup', _handle_cell_container_pickup)
-	GLPlayerLocalSoundsBus.connect('sound_cell_container_dropped', _handle_cell_container_dropped)
 	GLPlayerLocalSoundsBus.connect('sound_hidden_stat_interpreter_all_jolt', _handle_hidden_stat_interpreter_all_jolt)
 	GLPlayerLocalSoundsBus.connect('prisoner_selected', _handle_prisoner_selected)
 	GLPlayerLocalSoundsBus.connect('sound_pills_used', _handle_pills_used)
 	GLPlayerLocalSoundsBus.connect('sound_axe_swing', _handle_axe_swing)
+	GLPlayerLocalSoundsBus.connect('ice_cube_used', _handle_ice_cube_used)
 
 
 func _handle_sound_btn_press_failed() -> void:
@@ -63,12 +61,6 @@ func _handle_sound_panel_cell_loaded() -> void:
 func _handle_sound_shot_used() -> void :
 	play_sound(s_shot_used)
 
-func _handle_cell_container_pickup() -> void:
-	play_sound(s_cell_container_pickup)
-
-func _handle_cell_container_dropped() -> void:
-	play_sound(s_cell_container_dropped)
-
 func _handle_hidden_stat_interpreter_all_jolt() -> void : 
 	play_sound(s_hidden_interprter_all_jolt)
 
@@ -80,6 +72,9 @@ func _handle_pills_used() :
 
 func _handle_axe_swing() :
 	play_sound(s_axe_swing)
+
+func _handle_ice_cube_used() :
+	play_sound(s_ice_cube_used)
 
 func play_sound(sound_player : AudioStreamPlayer3D) -> void:
 	

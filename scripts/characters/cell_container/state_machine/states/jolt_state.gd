@@ -7,7 +7,7 @@ var stat_interpreter_stat_type = null
 @onready var parent_container : CharacterBody3D = $"../.."
 @onready var defect_increase_delay_timer : Timer = $DefectIncreaseDelayTimer
 @onready var jolt_particles : GPUParticles3D =  $"../../JoltParticles"
-@onready var jolt_sound_loop : AudioStreamPlayer3D = $JoltSoundLoop
+@onready var jolt_sound_loop : AudioStreamPlayer3D = $"../../JoltSoundLoop"
 
 ### SHAKE AND SCALE SETTINGS ####
 var base_positon : Vector3

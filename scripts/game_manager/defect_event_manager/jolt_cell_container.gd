@@ -1,33 +1,31 @@
 extends Node
 
-# componnets
+# components
 @export var cell_container_parent_node : Node
 
 
 func _handle_jolt() :
-	
-	# get container charcter bodies
+
+	# get container character bodies
 	var container_cells = cell_container_parent_node.get_children()
-	
-	# leave if no cell container	
-	if len(container_cells) == 0 :
+
+	# remove frozen cells
+	var valid_cells = []
+
+	for cell in container_cells:
+
+		if not cell.designated_brain_cell.cell_is_frozen:
+			valid_cells.append(cell)
+
+	# leave if no valid cells
+	if valid_cells.is_empty():
 		return
-	
-	
-	# pick random container	
-	var random_container_cell = container_cells.pick_random()
-	
+
+	# pick random valid container
+	var random_container_cell = valid_cells.pick_random()
+
 	# emit signal
-	GLDefectEventMangerBus.emit_signal('event_cell_container_jolt', random_container_cell.designated_brain_cell.name)
-	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
-	
+	GLDefectEventMangerBus.emit_signal(
+		"event_cell_container_jolt",
+		random_container_cell.designated_brain_cell.name
+	)

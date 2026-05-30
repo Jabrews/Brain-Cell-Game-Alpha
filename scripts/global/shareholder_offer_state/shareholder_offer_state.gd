@@ -26,6 +26,7 @@ var items_to_offer = [
 	UseableOfferItem.new('defect_shot','Each of a cell containers stat gets decreased by 15% (3 charges total)' ),
 	UseableOfferItem.new('hidden_shot', 'Each of a cell containers stat that are hidden, get un-hidden'),
 	UseableOfferItem.new('steroid', 'increase clean and defect values on a given cell container by 30%'),
+	UseableOfferItem.new('ice_cube', 'Freeze a cell for one turn. Frozen cells do not age, gain defect, or allow player interaction.'),
 ]
 ######################
 

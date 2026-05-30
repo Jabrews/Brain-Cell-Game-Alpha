@@ -11,7 +11,7 @@ extends Node
 var panel_cell : BrainCell
 
 var total_progress : int = 0
-var total_duration : int = 30
+var total_duration : int = 20
 var progress_increment : int = 1
 
 

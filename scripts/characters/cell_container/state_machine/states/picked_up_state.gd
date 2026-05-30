@@ -6,10 +6,13 @@ extends Node
 @onready var stat_display : Node3D = $"../../StatDisplay"
 @onready var parent_cell_container : CharacterBody3D = $"../.."
 var player_ray_cast : RayCast3D
+@onready var picked_up_sound : AudioStreamPlayer3D = $"../../CellPickedUp"
+@onready var dropped_sound : AudioStreamPlayer3D =$"../../CellDropped"
 
 func state_start() -> void :
 	# hide stat display
 	stat_display.visible = false
+	picked_up_sound.play()
 	
 func state_process(_delta) -> void:
 	
@@ -32,6 +35,8 @@ func state_process(_delta) -> void:
 		parent_cell_container.move_and_slide()
 		
 func state_end() -> void :
+	
+	dropped_sound.play()	
 	
 	parent_cell_container.velocity = Vector3.ZERO
 	parent_cell_container.move_and_slide()

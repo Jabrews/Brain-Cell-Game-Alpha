@@ -10,6 +10,7 @@ func connect_signals() :
 	GLUsableItemBus.connect('use_defect_shot', _handle_use_defect_shot)
 	GLUsableItemBus.connect('use_hidden_shot', _handle_use_hidden_shot)
 	GLUsableItemBus.connect('use_steroid', _handle_use_steroid)
+	GLUsableItemBus.connect('use_ice_cube', _handle_use_icecube)
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
@@ -38,3 +39,12 @@ func _handle_use_steroid(selected_brain_cell : BrainCell, _useable_item_obj : Us
 	selected_brain_cell.community_defect += steroid_increase
 	
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
+
+func _handle_use_icecube(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) :
+	selected_brain_cell.cell_is_frozen = true
+	
+	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
+	
+	
+	
+	

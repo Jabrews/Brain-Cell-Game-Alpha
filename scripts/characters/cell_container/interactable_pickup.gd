@@ -5,6 +5,10 @@ extends InteractablePickup
 
 func _on_pickup_interacted(player_ray_cast : RayCast3D):
 	
+	if cell_container_parent.state_machine.curr_state.name == 'Froze' : 
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		return
+	
 	# handle pickup end
 	if cell_container_parent.state_machine.curr_state.name == 'PickedUp' : 
 		if not player_ray_cast:

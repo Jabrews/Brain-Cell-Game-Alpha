@@ -47,6 +47,12 @@ func spawn_turn_items():
 		0,
 		IVUseableItemSpawner.steroids_to_spawn
 	)
+	spawn_item_type(
+		"ice_cube",
+		false,
+		0,
+		IVUseableItemSpawner.ice_cube_to_spawn
+	)
 
 
 func spawn_item_type(
@@ -137,3 +143,11 @@ func _handle_spawn_item_to_offer(useable_offer_item : UseableOfferItem) :
 				0,
 				1,
 			)
+		'ice_cube' :
+			spawn_item_type(
+				'ice_cube',				
+				false,
+				0,
+				1
+			)
+		
