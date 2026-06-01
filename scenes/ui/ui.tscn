@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cdv5schqpo0vj" path="res://models/blood_noise/3_blood_display.png" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://bn73xwmm170ls" path="res://scripts/ui/blood_overlay.gd" id="6_pfayw"]
 [ext_resource type="Script" uid="uid://d4b1ul6fr6gpx" path="res://scripts/ui/drop_axe_at_mount.gd" id="7_7vp6q"]
+[ext_resource type="Texture2D" uid="uid://dyc4q2f7pd5lq" path="res://models/cursor/cursor.png" id="8_jcn1r"]
 
 [node name="UI" type="Control" unique_id=885223017]
 layout_mode = 3
@@ -66,3 +67,10 @@ offset_bottom = 438.0
 theme_override_font_sizes/font_size = 24
 text = "Drop Axe Back at mount"
 script = ExtResource("7_7vp6q")
+
+[node name="PlayerCursor" type="Sprite2D" parent="." unique_id=604506960]
+modulate = Color(1, 1, 1, 0.3372549)
+texture_filter = 1
+position = Vector2(427, 240)
+scale = Vector2(1.05, 1.05)
+texture = ExtResource("8_jcn1r")

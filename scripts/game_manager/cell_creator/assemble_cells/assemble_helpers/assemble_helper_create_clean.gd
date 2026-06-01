@@ -20,9 +20,9 @@ func _create(clean_range : String) -> Array[float]:
 	
 	
 	
-	var str_clean = create_stat(target_cell.strength, clean_range)
-	var int_clean = create_stat(target_cell.intelligence, clean_range)
-	var com_clean = create_stat(target_cell.community, clean_range)
+	var str_clean = create_stat(clean_range)
+	var int_clean = create_stat(clean_range)
+	var com_clean = create_stat(clean_range)
 	var clean_stats : Array[float] = [
 		str_clean,
 		int_clean,
@@ -33,7 +33,7 @@ func _create(clean_range : String) -> Array[float]:
 	
 
 
-func create_stat(target_stat : float, clean_range : String) -> float:
+func create_stat(clean_range : String) -> float:
 
 	var random_diffrence = randi_range(0, 30)
 	
@@ -50,30 +50,32 @@ func create_stat(target_stat : float, clean_range : String) -> float:
 	# compared to the original round 1 balancing target
 	var difference_from_round_1_max = (IVCellCreator.max_stat_value - round_1_max_value) * .2
 	
+	var max_value = IVCellCreator.max_stat_value
+	
 	
 	if clean_range == 'lowest' : 	
-		clean_stat = target_stat * .05
+		clean_stat = max_value * .05
 		clean_stat -= difference_from_round_1_max 
 			
 	elif clean_range == 'low':
-		clean_stat = target_stat * .10
+		clean_stat = max_value * .10
 		clean_stat -= difference_from_round_1_max
 	
 	elif clean_range == 'medium-low' :
-		clean_stat = target_stat * .20
+		clean_stat = max_value * .20
 		clean_stat -= difference_from_round_1_max 
 		
 	elif clean_range == 'medium':
-		clean_stat = target_stat * .30
+		clean_stat = max_value * .30
 		clean_stat -= difference_from_round_1_max 
 		
 		
 	elif clean_range == 'medium-elevated':
-		clean_stat = target_stat * .40
+		clean_stat = max_value * .40
 		clean_stat -= difference_from_round_1_max 	
 		
 	elif clean_range == 'high':
-		clean_stat = target_stat * .60
+		clean_stat = max_value * .60
 		clean_stat -= difference_from_round_1_max 	
 	
 	else :

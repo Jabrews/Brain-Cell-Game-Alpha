@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bm8mcmj3vxox3"]
+
+[ext_resource type="Material" uid="uid://chj4bj7fdfuss" path="res://reusable/hoverable/hover-outline_mat.tres" id="1_vieng"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ggl1"]
+material = ExtResource("1_vieng")
+size = Vector3(0.02, 0.35, 0.35)
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=326343412]
+mesh = SubResource("BoxMesh_2ggl1")

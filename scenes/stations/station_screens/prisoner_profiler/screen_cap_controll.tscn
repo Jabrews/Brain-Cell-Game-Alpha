@@ -1,0 +1,207 @@
+[gd_scene format=3 uid="uid://bgdyp5hty0qv3"]
+
+[ext_resource type="Script" uid="uid://cqata2888sx7w" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/screen_cap_controll.gd" id="1_jbr1f"]
+[ext_resource type="Script" uid="uid://c3jbookl1hh3c" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/symbol_range_manager.gd" id="2_355kt"]
+[ext_resource type="Script" uid="uid://dgh2chyak468d" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/help_shake_symbols.gd" id="3_355kt"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="3_o65vm"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="4_kyvqp"]
+[ext_resource type="Shader" uid="uid://d0yj8rspbsydr" path="res://scripts/shaders/caution_cap_control_symbol_bg.gdshader" id="5_b3w7g"]
+[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="6_frfhe"]
+[ext_resource type="Shader" uid="uid://cqykh8hjh2u4q" path="res://scripts/shaders/warning_cap_control_symbol.gdshader" id="7_j2l4a"]
+[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/warning_symbol.png" id="8_glob2"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="10_o65vm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7qws"]
+shader = ExtResource("3_o65vm")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="Shader" id="Shader_k5fkp"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prisoner_value : hint_range(0.0, 1.0); // yellow
+uniform float target_value : hint_range(0.0, 1.0);   // red
+
+// colors
+uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+
+// overlap opacity (red over yellow)
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_yellow = step(UV.x, prisoner_value);
+	float in_red = step(UV.x, target_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw yellow base
+		if (in_yellow > 0.5) {
+			result = vec4(yellow_color.rgb, tex.a);
+		}
+
+		// 2. draw red on top
+		if (in_red > 0.5) {
+
+			// overlap → transparent red
+			if (in_yellow > 0.5) {
+				result = mix(result, vec4(red_color.rgb, tex.a), overlap_opacity);
+			}
+			// red over empty → full red
+			else {
+				result = vec4(red_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6rkl"]
+shader = SubResource("Shader_k5fkp")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/overlap_opacity = 0.1990000094525
+shader_parameter/edge_padding = 4.1210001957475
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebwdf"]
+shader = ExtResource("5_b3w7g")
+shader_parameter/bg_color = Color(0.15, 0.15, 0.15, 0)
+shader_parameter/stripe_color = Color(0.8, 0.6944, 0.09600001, 0.29411766)
+shader_parameter/stripe_size = 5.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78m5s"]
+shader = ExtResource("7_j2l4a")
+shader_parameter/color_a = Color(0.75, 0.75, 0.75, 0.29411766)
+shader_parameter/color_b = Color(0.2, 0.2, 0.2, 0)
+shader_parameter/stripe_size = 12.0
+
+[node name="CapControll" type="Node2D" unique_id=1209245950]
+script = ExtResource("1_jbr1f")
+
+[node name="SymbolRangeManager" type="Node" parent="." unique_id=94652188]
+script = ExtResource("2_355kt")
+
+[node name="HelpShakeSymbols" type="Node" parent="." unique_id=1677709593]
+script = ExtResource("3_355kt")
+
+[node name="BG" type="ColorRect" parent="." unique_id=9686213]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 852.0
+offset_bottom = 197.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=506360860]
+material = SubResource("ShaderMaterial_w7qws")
+offset_right = 854.0
+offset_bottom = 196.0
+
+[node name="Bar" type="Sprite2D" parent="." unique_id=169207203]
+texture_filter = 1
+material = SubResource("ShaderMaterial_w6rkl")
+position = Vector2(425.50003, 92.5)
+scale = Vector2(2.822581, 7.0249996)
+texture = ExtResource("4_kyvqp")
+
+[node name="Caution" type="Control" parent="." unique_id=1784422058]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CautionBG" type="ColorRect" parent="Caution" unique_id=515689847]
+material = SubResource("ShaderMaterial_ebwdf")
+layout_mode = 0
+offset_left = 250.0
+offset_right = 365.99994
+offset_bottom = 197.0
+color = Color(1, 0.5466666, 0.19999999, 0.19607843)
+
+[node name="CautionSymbol" type="Sprite2D" parent="Caution" unique_id=2133422799]
+modulate = Color(1, 0.68333334, 0, 1)
+texture_filter = 1
+position = Vector2(310, 95)
+texture = ExtResource("6_frfhe")
+
+[node name="Warning" type="Control" parent="." unique_id=1590445239]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WarningBG" type="ColorRect" parent="Warning" unique_id=1679645980]
+material = SubResource("ShaderMaterial_78m5s")
+layout_mode = 0
+offset_left = 250.0
+offset_right = 365.99994
+offset_bottom = 197.0
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="WarningSymbol" type="Sprite2D" parent="Warning" unique_id=226552717]
+texture_filter = 1
+position = Vector2(310, 95)
+texture = ExtResource("8_glob2")
+
+[node name="CleanRangePos" type="Node" parent="." unique_id=1691406184]
+
+[node name="Low" type="Node2D" parent="CleanRangePos" unique_id=1910621217]
+position = Vector2(-1, 198)
+
+[node name="LowMid" type="Node2D" parent="CleanRangePos" unique_id=1483285690]
+position = Vector2(199, 198)
+
+[node name="Middle" type="Node2D" parent="CleanRangePos" unique_id=1755741725]
+position = Vector2(421, 198)
+
+[node name="HighMid" type="Node2D" parent="CleanRangePos" unique_id=853326445]
+position = Vector2(630, 198)
+
+[node name="High" type="Node2D" parent="CleanRangePos" unique_id=2006572263]
+position = Vector2(853, 198)
+
+[node name="OffDisplay" type="Control" parent="." unique_id=465980915]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="OffDisplay" unique_id=821674574]
+layout_mode = 0
+offset_right = 854.0
+offset_bottom = 198.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="OffDisplay" unique_id=3137237]
+texture_filter = 1
+layout_mode = 0
+offset_left = 250.0
+offset_top = 30.0
+offset_right = 652.0
+offset_bottom = 164.0
+theme_override_fonts/font = ExtResource("10_o65vm")
+theme_override_font_sizes/font_size = 134
+text = "Off"

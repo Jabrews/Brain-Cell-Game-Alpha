@@ -71,28 +71,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13142133, 0)
 script = ExtResource("2_6avc5")
 
 [node name="HoverEffectRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1742144226]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3.5)
 collision_mask = 18
 collide_with_areas = true
 script = ExtResource("2_g2els")
 
 [node name="InteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1568495012]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3)
 collision_mask = 34
 collide_with_areas = true
 script = ExtResource("3_qhqgy")
 
 [node name="StatDisplayRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1939760921 groups=["usable_item"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3)
 collision_mask = 66
 collide_with_areas = true
 script = ExtResource("4_hss88")
 
 [node name="UseableItemRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1178014007]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3)
 collision_mask = 390
 collide_with_areas = true
@@ -111,7 +111,7 @@ script = ExtResource("10_gpigg")
 script = ExtResource("11_nt8su")
 
 [node name="AxeInteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1294195992]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.26478243, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3.5)
 collision_mask = 1024
 collide_with_areas = true

@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="3_fon25"]
 [ext_resource type="PackedScene" uid="uid://w3i2xhy1jmad" path="res://scenes/stations/station_components/cell_observer/station_cell_observer.tscn" id="4_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://bol2i42gb0t6j" path="res://scenes/stations/station_components/cell_analyzer/station_cell_analyzer.tscn" id="4_r2y5v"]
+[ext_resource type="PackedScene" uid="uid://cg3cya2fuivpq" path="res://scenes/stations/station_components/prisoner_profiler/station_prisoner_profiler.tscn" id="5_w7r6u"]
 [ext_resource type="PackedScene" uid="uid://h3lwfovcc60n" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="6_fm2ka"]
 [ext_resource type="PackedScene" uid="uid://b748r8761snr8" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_stat_interpreter.tscn" id="9_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="9_kb5nk"]
@@ -63,11 +64,11 @@ fog_density = 0.05
 [sub_resource type="BoxShape3D" id="BoxShape3D_5xq6v"]
 size = Vector3(7, 1.6, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5xq6v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7r6u"]
 albedo_color = Color(0.25, 0.1375, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_eiw2m"]
-material = SubResource("StandardMaterial3D_5xq6v")
+material = SubResource("StandardMaterial3D_w7r6u")
 size = Vector3(7, 1.6, 2)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v2xyd"]
@@ -217,7 +218,7 @@ navigation_mesh = SubResource("NavigationMesh_v2xyd")
 [node name="Characters" type="Node" parent="." unique_id=1683906565]
 
 [node name="Player" parent="Characters" unique_id=1124472616 instance=ExtResource("1_h7hv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -4)
 
 [node name="ContainerParentNode" type="Node" parent="Characters" unique_id=1909441806]
 
@@ -235,6 +236,9 @@ prisoners_parent_node = NodePath("../../../Characters/PrisonerParentNode")
 
 [node name="CellObserver" parent="Stations/PrisonerStations" unique_id=1071932212 instance=ExtResource("4_7xrfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 5)
+
+[node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=1487418600 instance=ExtResource("5_w7r6u")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15, 0.601223, -6.5934687)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 

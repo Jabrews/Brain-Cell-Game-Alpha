@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://ctgv6es6pim8p"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_nh6du"]
+[ext_resource type="Script" uid="uid://cv0dt1h0ylfik" path="res://scripts/stations/station_screens/prisoner_profiler/hidden_stat_quanity/screen_hidden_stat_quanity.gd" id="1_orroo"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_s3rn6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xf7b4"]
+shader = ExtResource("1_nh6du")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenHiddenStatQuanity" type="Node2D" unique_id=981638018]
+script = ExtResource("1_orroo")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1861185908]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=854869210]
+material = SubResource("ShaderMaterial_xf7b4")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="TotalHiddenStats" type="Label" parent="." unique_id=1583112090]
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 460.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_s3rn6")
+theme_override_font_sizes/font_size = 24
+text = "total hidden stats"
+
+[node name="TotalLabel" type="Label" parent="." unique_id=2123932622]
+offset_left = 217.0
+offset_top = 94.0
+offset_right = 577.0
+offset_bottom = 158.0
+theme_override_fonts/font = ExtResource("2_s3rn6")
+theme_override_font_sizes/font_size = 50
+text = "0"
