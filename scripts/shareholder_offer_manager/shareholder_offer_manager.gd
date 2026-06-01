@@ -15,22 +15,8 @@ extends Node
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect('next_turn_process', _handle_next_turn) 
 	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 	
-
-func _handle_next_turn() :
-	var curr_turn = GLGameManagerBus.current_turn
-	
-	
-	# check for item offer
-	if curr_turn == IVShareholderOffers.item_offer_turn :
-		handle_item_offer()
-	
-	# check for stat offer
-	if curr_turn == IVShareholderOffers.stat_offer_turn:
-		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create= true
-		handle_stat_offer()
 
 func _handle_next_round() :
 	helper_stat_offer_active_toggle._handle_reset_active_stat_offer()

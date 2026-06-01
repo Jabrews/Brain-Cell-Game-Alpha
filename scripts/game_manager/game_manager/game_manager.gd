@@ -7,36 +7,13 @@ extends Node
 
 func _ready() : 
 	connect_signals()
-	create_class_refrences()
-	GLCellCreatorBus.emit_signal('create_cells', true)
-	
+	GLCellCreatorBus.emit_signal('create_target_cell')
 	
 ##### INIT HELPERS ######
 
 func connect_signals() : 
-	GLGameManagerBus.connect('attempt_next_turn', _handle_attempt_next_turn)
 	GLGameManagerBus.connect('proceed_next_round', initate_next_round)
 
-func create_class_refrences() : 
-	pass
-
-########################
-
-func _handle_attempt_next_turn(): 
-	var curr_turn = GLGameManagerBus.current_turn
-	var max_turns = GLGameManagerBus.max_turns
-	
-	if curr_turn == max_turns - 1 :
-		GLGameManagerBus.current_turn += 1
-		GLGameManagerBus.emit_signal('finale_turn')
-		initate_next_turn()
-	else : 
-		GLGameManagerBus.current_turn += 1
-		initate_next_turn()
-
-	
-func initate_next_turn() : 
-	GLCellCreatorBus.emit_signal('create_cells', false)
 
 func initate_next_round() : 
 	var curr_round = GLGameManagerBus.current_round
@@ -48,7 +25,6 @@ func initate_next_round() :
 	
 	# update round logic
 	GLGameManagerBus.current_round += 1
-	GLGameManagerBus.current_turn = 0
 	
 	# communicate to all components finale round loop ended 
 	# (target_compare_station, prisoner_picker_station, breeding_station)
@@ -56,7 +32,7 @@ func initate_next_round() :
 	# delete all prior cells
 	GLCellManagerBus.emit_signal('delete_cells_for_next_round')
 	# create new cells
-	GLCellCreatorBus.emit_signal('create_cells', true)
+	GLCellCreatorBus.emit_signal('create_target_cell')
 	
 
 

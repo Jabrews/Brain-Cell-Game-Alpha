@@ -2,92 +2,94 @@ extends Node
 
 # components
 @onready var range_manager : Node = $"../SymbolRangeManager"
+@onready var stat_controller_parent : Node3D = $"../../../../.."
 
 # symbols
 @onready var caution_sprite : Sprite2D = $"../Caution/CautionSymbol"
 @onready var warning_sprite : Sprite2D = $"../Warning/WarningSymbol"
 
-var caution_shake_tween : Tween
-var warning_shake_tween : Tween
+var active_tween : Tween
+
 
 func _handle_update_shake_symbols(curr_clean_range : String) -> void:
 
-	var caution_ranges = range_manager.get_caution_ranges()
-	var warning_ranges = range_manager.get_warning_ranges()
-
-	toggle_shake_symbol(
-		curr_clean_range in caution_ranges,
-		"caution"
+	var caution_active = (
+		curr_clean_range in range_manager.get_caution_ranges()
+	)
+	var warning_active = (
+		curr_clean_range in range_manager.get_warning_ranges()
 	)
 
-	toggle_shake_symbol(
-		curr_clean_range in warning_ranges,
-		"warning"
-	)
+	# warning takes priority if ranges overlap
+	if warning_active:
+		_activate_symbol("warning")
+	elif caution_active:
+		_activate_symbol("caution")
+	else:
+		_deactivate_symbols()
 
 
-func toggle_shake_symbol(toggle_value : bool, symbol_type : String) -> void:
+func _activate_symbol(symbol_type : String) -> void:
+
+	_deactivate_symbols()
 
 	var sprite : Sprite2D
-	var shake_tween : Tween
 
 	match symbol_type:
 		"caution":
 			sprite = caution_sprite
-			shake_tween = caution_shake_tween
 
 		"warning":
 			sprite = warning_sprite
-			shake_tween = warning_shake_tween
 
 		_:
 			return
 
-	# stop shaking
-	if not toggle_value:
+	stat_controller_parent._toggle_alert_symbol(
+		true,
+		symbol_type
+	)
 
-		if shake_tween:
-			shake_tween.kill()
+	active_tween = create_tween()
+	active_tween.set_loops()
 
-		sprite.rotation_degrees = 0
-
-		if symbol_type == "caution":
-			caution_shake_tween = null
-		else:
-			warning_shake_tween = null
-
-		return
-
-	# already shaking
-	if shake_tween:
-		return
-
-	# start shaking
-	shake_tween = create_tween()
-	shake_tween.set_loops()
-
-	shake_tween.tween_property(
+	active_tween.tween_property(
 		sprite,
 		"rotation_degrees",
 		-8,
 		0.06
 	)
 
-	shake_tween.tween_property(
+	active_tween.tween_property(
 		sprite,
 		"rotation_degrees",
 		8,
 		0.12
 	)
 
-	shake_tween.tween_property(
+	active_tween.tween_property(
 		sprite,
 		"rotation_degrees",
 		0,
 		0.06
 	)
 
-	if symbol_type == "caution":
-		caution_shake_tween = shake_tween
-	else:
-		warning_shake_tween = shake_tween
+
+func _deactivate_symbols() -> void:
+
+	if active_tween:
+		active_tween.kill()
+		active_tween = null
+
+	caution_sprite.rotation_degrees = 0
+	warning_sprite.rotation_degrees = 0
+
+	stat_controller_parent._toggle_alert_symbol(
+		false,
+		"caution"
+	)
+
+	stat_controller_parent._toggle_alert_symbol(
+		false,
+		"warning"
+	)

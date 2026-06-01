@@ -7,14 +7,6 @@ extends Node
 
 @export var cell_container_parent_node : Node 
 
-
-
-func _ready() -> void:
-	
-	# once round ended reset curr_breeding attempts	
-	GLGameManagerBus.connect('finale_turn_ended_new_round_proceed', _handle_next_round)
-	
-
 func _on_breed_confirm_btn_down() : 
 	var cell_1 : BrainCell = screen_cell_breeding.left_brain_cell
 	var cell_2 : BrainCell = screen_cell_breeding.right_brain_cell

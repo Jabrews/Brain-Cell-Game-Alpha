@@ -73,7 +73,7 @@ texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "Strength"
 font = ExtResource("1_rk7hh")
-font_size = 30
+font_size = 26
 outline_size = 0
 
 [node name="RangeControl" type="Node3D" parent="." unique_id=16091994]

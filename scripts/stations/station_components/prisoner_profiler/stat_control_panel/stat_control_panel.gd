@@ -31,6 +31,9 @@ extends Node
 @onready var on_off_label : Label3D = $OnOffBtn/OnOffLabel
 @onready var on_off_btn_mesh : MeshInstance3D = $OnOffBtn/MeshInstance3D
 
+# stat type label
+@onready var stat_type_label : Label3D =$StatTypeLabel
+
 var blue_material : StandardMaterial3D
 var red_material : StandardMaterial3D
 
@@ -45,6 +48,8 @@ func _ready():
 	red_material.albedo_color = Color.RED
 
 	on_off_btn_mesh.material_override = blue_material
+	
+	stat_type_label.text = stat_type
 
 
 func _handle_toggle_on_off(toggleValue : bool) :
@@ -64,6 +69,7 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			on_off_btn_mesh.material_override = blue_material
 			
 			screen_cap_control._toggle_display_off_screen(false)
+			prisoner_profiler_parent._toggle_stat_disabled(stat_type, false)
 
 		false:
 			on_off_label.text = "off"
@@ -78,6 +84,7 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			on_off_btn_mesh.material_override = red_material
 			
 			screen_cap_control._toggle_display_off_screen(true)
+			prisoner_profiler_parent._toggle_stat_disabled(stat_type, true)
 			
 func _handle_stat_increment_btn(increment_direction : String) :
 	
@@ -118,7 +125,7 @@ func _handle_stat_increment_btn(increment_direction : String) :
 	update_target_stat()
 	
 	# tell parent about new value
-	prisoner_profiler_parent._update_clean_stat_value(stat_type, new_clean_range,new_addition)
+	prisoner_profiler_parent._update_clean_stat_value(stat_type, current_stat_value)
 	
 
 func update_target_stat() :
@@ -136,5 +143,8 @@ func update_target_stat() :
 	
 	screen_cap_control.update_target_stat(target_stat_value)
 	
+
+func _toggle_alert_symbol(toggleValue : bool , symbol_type : String) :
+	prisoner_profiler_parent._toggle_alert_symbol(stat_type, toggleValue, symbol_type)
 	
 	
