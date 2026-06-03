@@ -24,6 +24,13 @@ func compare_cells(selected_brain_cell : BrainCell) :
 	if not selected_brain_cell :
 		return
 	
+	# quick check to see if cell has any disabled stats. 	
+	var invalid_stat = check_for_disabled_stats(selected_brain_cell)
+	if invalid_stat :
+		handle_compare_finished(false)
+		return
+	
+	
 	# 0 (nothing like target stats)
 	# 100 (exavtly like target stats)
 	var max_points : int = 100
@@ -45,7 +52,7 @@ func compare_cells(selected_brain_cell : BrainCell) :
 		handle_compare_finished(true)
 	else :
 		#handle_compare_finished(false)
-		handle_compare_finished(true)
+		handle_compare_finished(false)
 	
 func compare_stat(target_stat : float, selected_stat : float) :
 	
@@ -87,3 +94,16 @@ func _handle_next_round_delay_timer_timeout() :
 	GLGameManagerBus.emit_signal('proceed_next_round')
 	screen_swap_handler.swap_screen('target_stat_display')
 #######################
+
+func check_for_disabled_stats(selected_brain_cell : BrainCell) :
+	var cell_missing_stat : bool = false
+	if not selected_brain_cell.strength.enabled :
+		cell_missing_stat = true
+	if not selected_brain_cell.intelligence.enabled :
+		cell_missing_stat = true	
+	if not selected_brain_cell.community.enabled:
+		cell_missing_stat = true	
+
+	return cell_missing_stat
+	
+	

@@ -150,15 +150,15 @@ func delete_prisoner_cells(cells_to_delete : Array[BrainCell]) -> void :
 func check_collected_cell_dead(collected_cell: BrainCell) -> bool:
 	
 	# check max defect
-	if collected_cell.strength_defect >= IVCellCreator.max_stat_value:
+	if collected_cell.strength.defect >= IVCellCreator.max_stat_value:
 		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
 		return true
 		
-	elif collected_cell.intelligence_defect >= IVCellCreator.max_stat_value:
+	elif collected_cell.intelligence.defect >= IVCellCreator.max_stat_value:
 		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
 		return true
 		
-	elif collected_cell.community_defect >= IVCellCreator.max_stat_value:
+	elif collected_cell.community.defect >= IVCellCreator.max_stat_value:
 		GLCellManagerBus.emit_signal('cell_deleted', collected_cell.name)
 		return true
 	
@@ -225,11 +225,11 @@ func _handle_hidden_stat_interpreted(selected_cell : BrainCell, selected_stat : 
 	
 	match selected_stat :
 		'strength' :
-			selected_cell.strength_hidden = false
+			selected_cell.strength.hidden = false
 		'intelligence' :
-			selected_cell.intelligence_hidden = false
+			selected_cell.intelligence.hidden = false
 		'community' :
-			selected_cell.community_hidden = false
+			selected_cell.community.hidden = false
 		
 	update_collected_cells([selected_cell])
 		
@@ -259,11 +259,12 @@ func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell)
 	
 		var jolt_defect_increase_amount = IVDefectEventManager.cell_container_jolt_defect_increase
 		
-		return
-	
-		selected_cell.strength_defect += jolt_defect_increase_amount 
-		selected_cell.intelligence_defect += jolt_defect_increase_amount 
-		selected_cell.community_defect += jolt_defect_increase_amount
+		if selected_cell.strength.enabled :
+			selected_cell.strength.defect += jolt_defect_increase_amount 
+		if selected_cell.intelligence.enabled :
+			selected_cell.intelligence.defect += jolt_defect_increase_amount 
+		if selected_cell.community.enabled :
+			selected_cell.community.defect += jolt_defect_increase_amount
 	
 		update_collected_cells([selected_cell])
 	

@@ -67,7 +67,7 @@ func update_display_labels(target_brain_cell : BrainCell) :
 		label.text = str(IVCellCreator.max_stat_value)	
 		
 	# strength
-	curr_value_labels[0].text = str(target_brain_cell.strength)
-	curr_value_labels[1].text = str(target_brain_cell.intelligence)
-	curr_value_labels[2].text = str(target_brain_cell.community)
+	curr_value_labels[0].text = str(target_brain_cell.strength.value)
+	curr_value_labels[1].text = str(target_brain_cell.intelligence.value)
+	curr_value_labels[2].text = str(target_brain_cell.community.value)
 	
