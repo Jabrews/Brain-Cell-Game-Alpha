@@ -16,15 +16,6 @@ extends Node
 # main range tect
 @onready var clean_stat_range_label : Label3D = $RangeControl/CurrStatDisplayLabelsl/CleanRange/CleanStatRange
 @onready var clean_stat_addition_label : Label3D = $RangeControl/CurrStatDisplayLabelsl/Addition/CleanStatAdditon
-# energy
-@onready var clean_stat_energy_symbols : Array[Sprite3D] = [
-	$RangeControl/CurrStatDisplayLabelsl/Addition/EnergyIcon2,
-	$RangeControl/CurrStatDisplayLabelsl/CleanRange/EnergyIcon
-]
-@onready var clean_stat_energy_labels : Array[Label3D] = [
-	$RangeControl/CurrStatDisplayLabelsl/Addition/EnergyCleanStatCost2,
-	$RangeControl/CurrStatDisplayLabelsl/CleanRange/EnergyCleanStatCost
-]
 # on off btn stuff
 @onready var off_stat_label : Label3D = $RangeControl/CurrStatDisplayLabelsl/OffLabel
 # the label on the btn itself
@@ -61,10 +52,6 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			clean_stat_range_label.visible = true
 			clean_stat_addition_label.visible = true
 			off_stat_label.visible = false
-			for energy_symbol in clean_stat_energy_symbols :
-				energy_symbol.visible = true
-			for energy_label in clean_stat_energy_labels :
-				energy_label.visible = true
 
 			on_off_btn_mesh.material_override = blue_material
 			
@@ -76,10 +63,6 @@ func _handle_toggle_on_off(toggleValue : bool) :
 			clean_stat_range_label.visible = false
 			clean_stat_addition_label.visible = false
 			off_stat_label.visible = true
-			for energy_symbol in clean_stat_energy_symbols :
-				energy_symbol.visible = false
-			for energy_label in clean_stat_energy_labels :
-				energy_label.visible = false
 
 			on_off_btn_mesh.material_override = red_material
 			

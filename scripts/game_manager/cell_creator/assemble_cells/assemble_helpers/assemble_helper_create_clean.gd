@@ -1,6 +1,6 @@
 extends Node
 
-func _create(stat_constructor : StatConstructor) :
+func _create(stat_constructor : StatConstructor) -> BrainCellStat :
 	
 	#var target_stat : float = get_corrispondin
 	

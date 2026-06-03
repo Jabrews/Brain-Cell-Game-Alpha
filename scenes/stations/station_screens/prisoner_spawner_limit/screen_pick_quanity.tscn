@@ -42,10 +42,13 @@ theme_override_font_sizes/font_size = 30
 text = "LEFT TO PICK"
 
 [node name="PickNum" type="Label" parent="." unique_id=1109369163]
-offset_left = 217.0
-offset_top = 94.0
-offset_right = 577.0
-offset_bottom = 158.0
+offset_left = 56.0
+offset_top = 92.0
+offset_right = 430.0
+offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("2_vq06t")
-theme_override_font_sizes/font_size = 64
-text = "0"
+theme_override_font_sizes/font_size = 34
+text = "NOT 
+VALID 
+PROGRESSION"
+horizontal_alignment = 1

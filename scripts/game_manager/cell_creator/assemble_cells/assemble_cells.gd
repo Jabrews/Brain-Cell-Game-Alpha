@@ -17,6 +17,7 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
 	for i in range(cell_constructor.cell_quantity):
 
+		### CLEAN STATS ###
 		var clean_strength : BrainCellStat= create_clean_stats._create(
 			cell_constructor.strength
 		)
@@ -28,9 +29,12 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 		var clean_community : BrainCellStat = create_clean_stats._create(
 			cell_constructor.community
 		)
+		####################
 
+		### ESC ###
 		var new_name = name_manager.pick_prisoner_names()
 		var life_span = randi_range(2, 4)
+		###########
 
 		var new_prisoner_cell = BrainCell.new(
 			new_name,
@@ -39,6 +43,27 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 			clean_community,
 			life_span,
 		)
+	
+		### DEFECT STATS ###
+		var defect_strength = create_defect_stats._create(
+			new_prisoner_cell.strength,
+			cell_constructor.strength.stat_cap_status,
+		)
+		new_prisoner_cell.strength.defect = defect_strength		
+		
+		var defect_intelligence = create_defect_stats._create(
+			new_prisoner_cell.intelligence,
+			cell_constructor.intelligence.stat_cap_status,
+		)
+		new_prisoner_cell.intelligence.defect = defect_intelligence 
+		
+		var defect_community = create_defect_stats._create(
+			new_prisoner_cell.community,
+			cell_constructor.community.stat_cap_status,
+		)
+		new_prisoner_cell.community.defect = defect_community 
+		
+		####################
 
 		prisoner_cells.append(new_prisoner_cell)
 

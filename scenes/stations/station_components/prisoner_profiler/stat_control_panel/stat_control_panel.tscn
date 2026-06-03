@@ -31,9 +31,6 @@ size = Vector3(0.02, 0.46619385, 0.36737794)
 [sub_resource type="BoxMesh" id="BoxMesh_rwuya"]
 size = Vector3(0.01, 0.8, 0.64)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ktfcf"]
-load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_nmamy"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
 
@@ -160,34 +157,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.3645114, -0.50
 mesh = SubResource("BoxMesh_rwuya")
 
 [node name="Addition" type="Node3D" parent="RangeControl/CurrStatDisplayLabelsl" unique_id=947061713]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.018698871, -0.020184755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, -0.020184755)
 
 [node name="CleanStatAdditon" type="Label3D" parent="RangeControl/CurrStatDisplayLabelsl/Addition" unique_id=221321268]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.2662206, -0.48533148)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
-text = "+ 20"
+text = "+ 1"
 font = ExtResource("1_rk7hh")
 font_size = 33
 outline_size = 0
 
-[node name="EnergyIcon2" type="Sprite3D" parent="RangeControl/CurrStatDisplayLabelsl/Addition" unique_id=360451035]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.19064441, 1.0913949, -0.40624094)
-texture_filter = 0
-texture = SubResource("CompressedTexture2D_ktfcf")
-
-[node name="EnergyCleanStatCost2" type="Label3D" parent="RangeControl/CurrStatDisplayLabelsl/Addition" unique_id=780748649]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.0997698, -0.5444859)
-texture_filter = 0
-modulate = Color(1, 0.00999999, 0.00999999, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "-20"
-font = ExtResource("1_rk7hh")
-font_size = 28
-outline_size = 0
-
 [node name="CleanRange" type="Node3D" parent="RangeControl/CurrStatDisplayLabelsl" unique_id=75540933]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0067284107)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14523786, -0.0067284107)
 
 [node name="CleanStatRange" type="Label3D" parent="RangeControl/CurrStatDisplayLabelsl/CleanRange" unique_id=239697894]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.6455898, -0.51720345)
@@ -197,21 +179,6 @@ text = "low-mid
 "
 font = ExtResource("1_rk7hh")
 font_size = 33
-outline_size = 0
-
-[node name="EnergyIcon" type="Sprite3D" parent="RangeControl/CurrStatDisplayLabelsl/CleanRange" unique_id=49257104]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.19064441, 1.4902452, -0.43082824)
-texture_filter = 0
-texture = SubResource("CompressedTexture2D_ktfcf")
-
-[node name="EnergyCleanStatCost" type="Label3D" parent="RangeControl/CurrStatDisplayLabelsl/CleanRange" unique_id=515368041]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.4977236, -0.57120633)
-texture_filter = 0
-modulate = Color(1, 0.00999999, 0.00999999, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "-20"
-font = ExtResource("1_rk7hh")
-font_size = 28
 outline_size = 0
 
 [node name="OffLabel" type="Label3D" parent="RangeControl/CurrStatDisplayLabelsl" unique_id=1501952544]

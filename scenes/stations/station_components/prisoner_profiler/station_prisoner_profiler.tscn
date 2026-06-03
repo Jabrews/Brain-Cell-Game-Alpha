@@ -4,14 +4,19 @@
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_prddg"]
 [ext_resource type="PackedScene" uid="uid://b3idq35grat6g" path="res://scenes/stations/station_components/prisoner_profiler/stat_control_panel/stat_control_panel.tscn" id="1_qwe67"]
 [ext_resource type="Script" uid="uid://g40w6bbgnh04" path="res://scripts/stations/station_components/prisoner_profiler/convert_alert_symbol.gd" id="2_a8ku5"]
+[ext_resource type="Script" uid="uid://bpaidmq8g6sic" path="res://scripts/stations/station_components/prisoner_profiler/energy_spent_updater.gd" id="3_5fibo"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="4_cw20b"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_o6k36"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="5_cw20b"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="5_d5xot"]
 [ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="7_5i3j4"]
+[ext_resource type="Script" uid="uid://brd5yl8fa6dn6" path="res://scripts/stations/station_components/prisoner_profiler/energy_panel/energy_panel.gd" id="7_dppm5"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="8_mtam1"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="9_5i3j4"]
+[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="10_4ynva"]
+[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/warning_symbol.png" id="11_cr3jd"]
 [ext_resource type="Script" uid="uid://cf6t4pqe1jbhl" path="res://scripts/stations/station_components/prisoner_profiler/btns/generate_btn.gd" id="11_vasud"]
+[ext_resource type="Script" uid="uid://c1ele68anq43w" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn_updater.gd" id="12_080y5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1en1e"]
 albedo_color = Color(0, 0, 0, 1)
@@ -78,8 +83,20 @@ subdivide_width = 16
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qwe67"]
 load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
 
+[sub_resource type="BoxMesh" id="BoxMesh_5fibo"]
+size = Vector3(0.01, 1.4, 0.85)
+subdivide_width = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr3jd"]
+albedo_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_080y5"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.265, 0.78)
+subdivide_width = 16
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm2ka"]
-albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+albedo_color = Color(0.73866665, 1, 0.01999998, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dppm5"]
 material = SubResource("StandardMaterial3D_fm2ka")
@@ -93,8 +110,14 @@ size = Vector3(0.62, 0.1, 0.3)
 [node name="PrisonerProfiler" type="Node3D" unique_id=1487418600]
 script = ExtResource("1_mtam1")
 
+[node name="PrisonerQuanityBtnUpdater" type="Node" parent="." unique_id=966644727]
+script = ExtResource("12_080y5")
+
 [node name="ConvertAlertSymbol" type="Node" parent="." unique_id=1970254979]
 script = ExtResource("2_a8ku5")
+
+[node name="EnergySpentUpdater" type="Node" parent="." unique_id=34105859]
+script = ExtResource("3_5fibo")
 
 [node name="HiddenQuanityTV" type="Node3D" parent="." unique_id=451218265]
 transform = Transform3D(0.9974021, 0.0720371, -2.9724895e-08, -0.07203711, 0.99740195, 2.146873e-09, 2.9802322e-08, 0, 1.0000001, -0.30808276, 5.558966, 0)
@@ -167,35 +190,66 @@ stat_type = "community"
 
 [node name="EnergyPanel" type="Node3D" parent="." unique_id=856706255]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46686912, -1.0482051)
+script = ExtResource("7_dppm5")
 
 [node name="PanelMesh" type="MeshInstance3D" parent="EnergyPanel" unique_id=163436802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.346806, -1.4977629)
 mesh = SubResource("BoxMesh_o6k36")
 
 [node name="CurrEnergy" type="Label3D" parent="EnergyPanel" unique_id=1942764080]
-transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.6465783, -1.4337609)
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.6335578, -1.7969787)
 texture_filter = 0
+modulate = Color(1, 1, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "Curr Energy : 100"
+text = "0"
 font = ExtResource("4_o6k36")
 font_size = 25
 outline_size = 0
 
-[node name="EnergyUsed" type="Label3D" parent="EnergyPanel" unique_id=311516358]
-transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.2964927, -1.2170246)
+[node name="CurrEnergyText" type="Label3D" parent="EnergyPanel" unique_id=485317959]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.20219159, 1.6439011, -1.3558362)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Curr Energy :"
+font = ExtResource("4_o6k36")
+font_size = 25
+outline_size = 0
+
+[node name="EnergyUsed" type="Label3D" parent="EnergyPanel" unique_id=334547424]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.2964927, -1.3646531)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "Use : 20"
+text = "0"
+font = ExtResource("4_o6k36")
+font_size = 24
+outline_size = 0
+
+[node name="EnergyUsedText" type="Label3D" parent="EnergyPanel" unique_id=311516358]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2036186, 1.3047554, -1.1471994)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Use :"
 font = ExtResource("4_o6k36")
 font_size = 24
 outline_size = 0
 
 [node name="EnerfyLeft" type="Label3D" parent="EnergyPanel" unique_id=786502962]
-transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.19186175, 1.1441736, -1.414403)
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.19186175, 1.1441736, -1.7374852)
+texture_filter = 0
+modulate = Color(1, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0"
+font = ExtResource("4_o6k36")
+font_size = 24
+outline_size = 0
+
+[node name="EnerfyLeftText" type="Label3D" parent="EnergyPanel" unique_id=947871032]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.19186175, 1.1441736, -1.3364177)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
-text = "Left Energy : 80"
+text = "Left Energy :"
 font = ExtResource("4_o6k36")
 font_size = 24
 outline_size = 0
@@ -206,7 +260,7 @@ texture_filter = 0
 texture = SubResource("CompressedTexture2D_qwe67")
 
 [node name="EnergyIcon2" type="Sprite3D" parent="EnergyPanel" unique_id=1369435538]
-transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, -0.19064441, 1.2949381, -1.4406793)
+transform = Transform3D(-3.059797e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.059797e-08, -0.19064441, 1.2949381, -1.4729738)
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_qwe67")
@@ -216,7 +270,104 @@ transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_qwe67")
 
+[node name="EnergyKey" type="Node3D" parent="." unique_id=1049592664]
+
+[node name="PanelMesh2" type="MeshInstance3D" parent="EnergyKey" unique_id=301138728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 3.1042702, -2.5484068)
+mesh = SubResource("BoxMesh_5fibo")
+
+[node name="BG" type="Node3D" parent="EnergyKey" unique_id=446465379]
+
+[node name="PanelMesh" type="MeshInstance3D" parent="EnergyKey/BG" unique_id=608986356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.5789592, -2.5484068)
+mesh = SubResource("BoxMesh_080y5")
+
+[node name="PanelMesh2" type="MeshInstance3D" parent="EnergyKey/BG" unique_id=1420877277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.292872, -2.5484068)
+mesh = SubResource("BoxMesh_080y5")
+
+[node name="PanelMesh3" type="MeshInstance3D" parent="EnergyKey/BG" unique_id=626819006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.0080087, -2.5484068)
+mesh = SubResource("BoxMesh_080y5")
+
+[node name="PanelMesh4" type="MeshInstance3D" parent="EnergyKey/BG" unique_id=1570382907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 2.6937156, -2.5484068)
+mesh = SubResource("BoxMesh_080y5")
+
+[node name="2PrisonersGenerated" type="Label3D" parent="EnergyKey" unique_id=1675359536]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.5766497, -2.393968)
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "2 Prisoners
+Generated"
+font = ExtResource("4_o6k36")
+font_size = 19
+outline_size = 0
+
+[node name="2PrisonersGeneratedCost" type="Label3D" parent="EnergyKey" unique_id=762164945]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.5766497, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 10"
+font = ExtResource("4_o6k36")
+font_size = 26
+outline_size = 0
+
+[node name="4PrisonersGenerated" type="Label3D" parent="EnergyKey" unique_id=1850169101]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.2673368, -2.393968)
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "4 Prisoners
+Generated"
+font = ExtResource("4_o6k36")
+font_size = 19
+outline_size = 0
+
+[node name="4PrisonersGeneratedCost" type="Label3D" parent="EnergyKey" unique_id=23166995]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.2712903, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 20"
+font = ExtResource("4_o6k36")
+font_size = 26
+outline_size = 0
+
+[node name="CautionIcon" type="Sprite3D" parent="EnergyKey" unique_id=1583425555]
+transform = Transform3D(-1.8795896e-08, 0, 0.3, 0, 0.3, 0, -0.43, 0, -1.3113417e-08, -0.20080984, 2.9979577, -2.4003854)
+texture_filter = 0
+texture = ExtResource("10_4ynva")
+
+[node name="CautionCost" type="Label3D" parent="EnergyKey" unique_id=730578475]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.0249357, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 20"
+font = ExtResource("4_o6k36")
+font_size = 26
+outline_size = 0
+
+[node name="WarningIcon" type="Sprite3D" parent="EnergyKey" unique_id=960447759]
+transform = Transform3D(-1.857734e-08, 0, 0.3, 0, 0.3, 0, -0.425, 0, -1.3113417e-08, -0.20080984, 2.6999507, -2.4003854)
+texture_filter = 0
+texture = ExtResource("11_cr3jd")
+
+[node name="CautionCost2" type="Label3D" parent="EnergyKey" unique_id=1227335024]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 2.708388, -2.7970502)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 40"
+font = ExtResource("4_o6k36")
+font_size = 26
+outline_size = 0
+
 [node name="PrisonerQuanityBtns" type="Node3D" parent="." unique_id=1672420535]
+script = ExtResource("12_080y5")
 
 [node name="TwoPrisonerBtn" type="StaticBody3D" parent="PrisonerQuanityBtns" unique_id=462561225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36917448, 0.81201017, 2.5963862)

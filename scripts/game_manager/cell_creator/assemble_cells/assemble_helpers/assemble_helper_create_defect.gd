@@ -1,106 +1,42 @@
 extends Node
 
-func _create(cell_index : int, constructor : CellConstructor, clean_stats : Array[float]) -> Array[float] :
+func _create(stat: BrainCellStat, stat_cap_status : String) -> float:
 	
-	### DEFECT STATS ###
-		# decide defect range for this cell
-		var current_defect_range : String
-		# split defect ranges across cells
-		if constructor.defect_ranges.size() > 1:
-			# clamp index so it never exceeds array size
-			var defect_index = min(
-				cell_index,
-				constructor.defect_ranges.size() - 1
-			)
-			current_defect_range = constructor.defect_ranges[defect_index]
-		else:
-			current_defect_range = constructor.defect_ranges[0]
-		# finally create efect stats
-		var defect_stats : Array[float] = create_defect_stats(clean_stats, current_defect_range)
+	# if disabled no defect value	
+	if stat.enabled == false :
+		return 0.0
 		
-		return defect_stats
-
-
-func create_defect_stats(clean_stats : Array[float], defect_range : String) -> Array[float]:
-
-	var defect_stats : Array[float] = []
-
-	# find highest clean stat
-	var highest_clean_stat : float = clean_stats.max()
-
-	for clean_stat in clean_stats:
-
-		var defect_value : float = 0.0
-
-		match defect_range:
-
-			'0':
-				defect_value = 0
-			
-			'lowest' :
-				# highest stat gets stronger defect
-				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 0.25
-				else:
-					defect_value = clean_stat * 0.20
-			
-			'low':
-				# highest stat gets stronger defect
-				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 0.45
-				else:
-					defect_value = clean_stat * 0.40
-			
-			'moderate' :
-				# highest stat gets stronger defect
-				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 0.80
-				else:
-					defect_value = clean_stat * 0.75
-			
-
-			'equal':
-				defect_value = clean_stat
-			
-			'above_average' :
-				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 1.15
-				else:
-					defect_value = clean_stat * 1.10
-
-			'high':
-				if clean_stat == highest_clean_stat:
-					defect_value = clean_stat * 1.25
-				else:
-					defect_value = clean_stat * 1.20
-
-			_:
-				push_error("invalid defect range : ", defect_range)
-		
-		# apply random diffrence
-		var random_diffrence = randi_range(-10, 10)
-		
-		defect_value += random_diffrence
-
-		## offer four ##
-		# we increase all defect stats by 15%
-		if GLShareholderOfferState.offer_4_active :
-			if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-				print_debug('offer 4')
-			defect_value += (IVCellCreator.max_stat_value * 0.10)
-		#############
+	var stat_value = generate_random_stat_value(stat.value)
 	
-		## offer eight ##
-		# we decrease defect stats by 15%
-		if GLShareholderOfferState.offer_8_active:
-			if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-				print_debug('offer 8')
-			defect_value -= (IVCellCreator.max_stat_value * 0.15)
-		#############
+	stat_value = detect_and_apply_stap_cap(stat_value, stat_cap_status)
+	
+	return stat_value
 
-		# round to 0.0 decimal
-		defect_value = round(defect_value * 10.0) / 10.0
+func generate_random_stat_value(stat_value : float) :
+	
+	var random_change = randi_range(-30, 50)
+		
+	stat_value += random_change
+	
+	return stat_value 
 
-		defect_stats.append(defect_value)
+func detect_and_apply_stap_cap(stat_value : float, stat_cap_status : String):
+	
+	if stat_cap_status == "none":
+		return stat_value
 
-	return defect_stats
+	elif stat_cap_status == "caution":
+		var random_change = randi_range(30, 50)
+		stat_value += random_change
+
+	elif stat_cap_status == "warning":
+		var random_change = randi_range(50, 60)
+		stat_value += random_change
+
+	else:
+		push_error("invalid stat cap: %s" % stat_cap_status)
+		return stat_value
+
+	return stat_value
+
+	

@@ -4,9 +4,13 @@ extends Node
 @onready var help_shake_symbols : Node = $HelpShakeSymbols
 @onready var bar : Sprite2D = $Bar
 @onready var off_display : Control = $OffDisplay
+@onready var parent_stat_control_panel : Node3D = $"../../../.."
 
 func _ready() -> void:
 	bar.material = bar.material.duplicate()
+	
+	# update target stat on startup
+	GLCellManagerBus.connect('target_cell_created', _handle_get_newest_target_cell)	
 	
 	
 func _toggle_display_off_screen(toggleValue : bool) :
@@ -34,3 +38,18 @@ func update_current_stat_value(current_stat_value : float, current_clean_range :
 	help_shake_symbols.	_handle_update_shake_symbols(current_clean_range)
 	
 	bar.material.set_shader_parameter("prisoner_value", stat_norm)
+
+func _handle_get_newest_target_cell(target_cell : BrainCell) :
+	
+	match parent_stat_control_panel.stat_type  :
+		'strength' :	
+			update_target_stat(target_cell.strength.value)
+		'intelligence' :
+			update_target_stat(target_cell.intelligence.value)
+		'community' :
+			update_target_stat(target_cell.community.value)
+		
+		
+	
+	
+	
