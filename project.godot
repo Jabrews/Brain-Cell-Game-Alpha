@@ -23,7 +23,6 @@ buses/default_bus_layout=""
 GLGameManagerBus="*uid://bq7756fbeml3p"
 GLCellCreatorBus="*uid://b526eekx25g7h"
 GLCellManagerBus="*uid://dj86h2o4rtya"
-IVPrisonerSpawner="*uid://di5l5pqvq6kto"
 GLUsableItemBus="*uid://cimauuwy1bise"
 IVUseableItemSpawner="*uid://dkd3fji6psp7b"
 GLCellBreederBus="*uid://ynthqb1oi5r2"
@@ -38,6 +37,8 @@ GLPlayerState="*uid://jf5412i666g2"
 IVShareholderOffers="*uid://2dhagbjx4xr0"
 IVItemStats="*uid://cvxq3etkgp5gc"
 IVHiddenStats="*uid://dc5cw8eedorhg"
+GLPrisonerPicksBus="*uid://b0rqj0ndtvmce"
+GLPrisonerProfilerComponentsBus="*uid://dnvsf1q2aqjpy"
 
 [debug]
 

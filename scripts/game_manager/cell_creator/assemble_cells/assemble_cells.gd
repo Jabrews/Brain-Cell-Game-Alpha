@@ -6,7 +6,7 @@ extends Node
 # components helpers
 @onready var create_clean_stats : Node = $StatHelpers/HelperCreateClean
 @onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
-@onready var create_hidden_stats : Node = $HiddenStatHelpers/HelperHidden
+@onready var create_hidden_stats : Node = $HelperHidden
 # offer helpers
 @onready var offer_five : Node = $OfferHelpers/OfferFive
 
@@ -66,7 +66,8 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 	
 	
 	#### HIDDEN STATS ####
-	prisoner_cells = create_hidden_stats._handle_hidden()
+	
+	prisoner_cells = create_hidden_stats._handle_hidden(cell_constructor, prisoner_cells)
 
 	######################
 

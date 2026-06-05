@@ -36,9 +36,14 @@ func _process(_delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed('debug2') :	
-		print('DEBUG ACTIVATED - printing cell collection via manager')
-		var collected_array_len = len(cell_manager.collected_cells)
-		print('array len : ', str(collected_array_len))		
 		
-		print('DEBUG FINISHED')
+		print('stats to hide : ', IVHiddenStats.stats_to_hide)		
+		print('max stats hidden : ', IVHiddenStats.max_stats_to_hide)		
+		
+		
+		#print('DEBUG ACTIVATED - printing cell collection via manager')
+		#var collected_array_len = len(cell_manager.collected_cells)
+		#print('array len : ', str(collected_array_len))		
+		#
+		#print('DEBUG FINISHED')
 #

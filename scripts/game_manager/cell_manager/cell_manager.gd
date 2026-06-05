@@ -247,11 +247,11 @@ func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, se
 	
 	match selected_stat :
 		'strength' :
-			selected_cell.strength_defect += jolt_defect_increase_amount
+			selected_cell.strength.defect += jolt_defect_increase_amount
 		'intelligence' :
-			selected_cell.intelligence_defect += jolt_defect_increase_amount
+			selected_cell.intelligence.defect += jolt_defect_increase_amount
 		'community' :
-			selected_cell.community_defect += jolt_defect_increase_amount
+			selected_cell.community.defect += jolt_defect_increase_amount
 	update_collected_cells([selected_cell])
 	
 

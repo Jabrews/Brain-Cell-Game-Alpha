@@ -92,13 +92,13 @@ func check_cell_has_hidden_stat(cell : BrainCell) -> bool:
 	match interpreter_type :
 		
 		'strength' :
-			return cell.strength_hidden
+			return cell.strength.hidden
 		
 		'intelligence' :
-			return cell.intelligence_hidden
+			return cell.intelligence.hidden
 		
 		'community' :
-			return cell.community_hidden
+			return cell.community.hidden
 			
 	
 	return false

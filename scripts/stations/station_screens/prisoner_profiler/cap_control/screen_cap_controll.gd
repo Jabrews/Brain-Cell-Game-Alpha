@@ -4,6 +4,7 @@ extends Node
 @onready var help_shake_symbols : Node = $HelpShakeSymbols
 @onready var bar : Sprite2D = $Bar
 @onready var off_display : Control = $OffDisplay
+@onready var not_enough_power_display : Control = $NotEnoughPower
 @onready var parent_stat_control_panel : Node3D = $"../../../.."
 
 func _ready() -> void:
@@ -11,7 +12,7 @@ func _ready() -> void:
 	
 	# update target stat on startup
 	GLCellManagerBus.connect('target_cell_created', _handle_get_newest_target_cell)	
-	
+	GLPrisonerProfilerComponentsBus.connect('player_tried_creating_with_invalid_energy', _handle_player_tried_creating_with_invalid_energy)
 	
 func _toggle_display_off_screen(toggleValue : bool) :
 	if toggleValue :
@@ -53,6 +54,11 @@ func _handle_reset() :
 	bar.material.set_shader_parameter("prisoner_value", 0)
 	update_current_stat_value(0, 'none')
 		
+func _handle_player_tried_creating_with_invalid_energy() :
+	not_enough_power_display.visible = true
 	
+	await get_tree().create_timer(2.0).timeout
+	
+	not_enough_power_display.visible = false
 	
 	

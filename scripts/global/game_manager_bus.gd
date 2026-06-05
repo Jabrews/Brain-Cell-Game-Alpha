@@ -2,7 +2,7 @@ extends Node
 
 
 var max_rounds = 4
-var current_round = 2
+var current_round = 3
 
 var curr_energy : int = 100
 var max_energy : int = 100

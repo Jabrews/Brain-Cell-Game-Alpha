@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://d0ugrsflnsudr"]
+
+[ext_resource type="Script" uid="uid://7y57o1dr5wt0" path="res://scripts/stations/station_screens/prisoner_spawner/screen_pick_quanity.gd" id="1_467gw"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_l1h2f"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_467gw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ksohj"]
+shader = ExtResource("1_l1h2f")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenPickQuanity" type="Node2D" unique_id=2057686912]
+script = ExtResource("1_467gw")
+
+[node name="BG" type="ColorRect" parent="." unique_id=29767157]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=669584745]
+material = SubResource("ShaderMaterial_ksohj")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="LeftToPick" type="Label" parent="." unique_id=40970119]
+offset_left = 63.0
+offset_top = 16.0
+offset_right = 423.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_467gw")
+theme_override_font_sizes/font_size = 30
+text = "LEFT TO PICK"
+
+[node name="OutOfPrisoners" type="Label" parent="." unique_id=1737495274]
+offset_left = -14.0
+offset_top = 92.0
+offset_right = 537.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("2_467gw")
+theme_override_font_sizes/font_size = 20
+text = "out of prisoners. 
+
+generate next batch"
+horizontal_alignment = 1
+
+[node name="PickNum" type="Label" parent="." unique_id=1864070260]
+visible = false
+offset_left = 56.0
+offset_top = 92.0
+offset_right = 430.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("2_467gw")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1

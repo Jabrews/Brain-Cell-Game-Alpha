@@ -24,10 +24,10 @@ func _reset() :
 	parent_station_prisoner_profiler.intelligence_warning_active = false
 	parent_station_prisoner_profiler.community_caution_active = false
 	parent_station_prisoner_profiler.community_warning_active = false
-	parent_station_prisoner_profiler.prisoner_quantity = 2
+	parent_station_prisoner_profiler.prisoner_quantity = 0
 	
 	# prisoner quanity btn
-	prisoner_quanity_btns._prisoner_quanity_btn_selected(2)
+	prisoner_quanity_btns._prisoner_quanity_btn_selected(0)
 	
 	
 	# energy spent updater

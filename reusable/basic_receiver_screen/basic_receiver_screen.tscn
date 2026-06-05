@@ -22,6 +22,15 @@ shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkdsf"]
+shader = ExtResource("4_ugf3e")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/overlap_opacity = 0.10000000475
+shader_parameter/edge_padding = 5.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
 shader = ExtResource("9_cih2x")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
@@ -33,15 +42,6 @@ shader_parameter/noise_scale = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xkdsf"]
-shader = ExtResource("4_ugf3e")
-shader_parameter/prisoner_value = 0.0
-shader_parameter/target_value = 0.0
-shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
-shader_parameter/overlap_opacity = 0.10000000475
-shader_parameter/edge_padding = 5.0
 
 [node name="BasicReciverScreen" type="Node2D" unique_id=724718654]
 script = ExtResource("1_v6ql6")
@@ -108,35 +108,6 @@ theme_override_font_sizes/font_size = 12
 text = " Lifespan - 4
 "
 horizontal_alignment = 1
-
-[node name="HideStats" type="Control" parent="StatDisplay" unique_id=2014924575]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=787634540]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_t5il4")
-position = Vector2(305, 75)
-texture = SubResource("CompressedTexture2D_tqrwa")
-
-[node name="IntelligenceHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=2079331092]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_t5il4")
-position = Vector2(305, 150)
-texture = SubResource("CompressedTexture2D_tqrwa")
-
-[node name="CommunityHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=1745647043]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_t5il4")
-position = Vector2(306, 227)
-texture = SubResource("CompressedTexture2D_tqrwa")
 
 [node name="DefectBars" type="Control" parent="StatDisplay" unique_id=1530602115]
 anchors_preset = 0
@@ -443,3 +414,32 @@ theme_override_font_sizes/font_size = 11
 text = "off"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="HideStats" type="Control" parent="StatDisplay" unique_id=2014924575]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=787634540]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(305, 75)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=2079331092]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(305, 150)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="CommunityHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=1745647043]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(306, 227)
+texture = SubResource("CompressedTexture2D_tqrwa")

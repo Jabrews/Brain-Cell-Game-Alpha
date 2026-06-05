@@ -8,11 +8,15 @@ extends Node
 
 func _ready() : 
 	connect_signals()
-	GLCellCreatorBus.emit_signal('create_target_cell')
 	
-	GLGameManagerBus.current_round = 1
+	GLGameManagerBus.current_round = 3
 	GLGameManagerBus.curr_energy = 100
-	incremental_value_controller.handle_round(1)
+	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
+
+	
+	GLCellCreatorBus.emit_signal('create_target_cell')
+	#incremental_value_controller.handle_round(2)
+	#incremental_value_controller.handle_energy(GLGameManagerBus.curr_energy, 2)
 	
 ##### INIT HELPERS ######
 

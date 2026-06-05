@@ -42,10 +42,9 @@ func handle_create_target() -> void:
 
 # signal create_prisoner_cells(cell_constructor : CellConstructor)
 func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update_incr_update : bool = false ) -> void:
-	
-	print(cell_constructor)
 
 	current_cell_constructor = cell_constructor
+	
 
 	if not prevent_update_incr_update:
 		var curr_round = GLGameManagerBus.current_round
@@ -55,15 +54,19 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 			curr_round,
 			curr_energy,
 		)
-		#
-	 #reset prisoners that may of been left
+		
+			
 	GLCellManagerBus.emit_signal('delete_remaining_prisoners')
+	# let 
 
 	var new_prisoner_cells : Array[BrainCell] = assemble_cells.assemble(cell_constructor)
 	
 	cell_manager.set_prisoner_cells(
 		new_prisoner_cells
 	)
+	
+	# call this after no shareholder offer interuption 
+	GLPrisonerPicksBus.emit_signal('generate_next_max_prisoners_created')
 
 	GLCellCreatorBus.emit_signal(
 		"get_newest_prisoner_cells",
@@ -72,9 +75,9 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 
 	# TODO FIX SHAREHOLDER OFFERs
 	###### shareholder offers #####
-	#if GLShareholderOfferState.await_user_choose_shareholder_offer_before_create:
-		#return
-#
+	if GLShareholderOfferState.await_user_choose_shareholder_offer_before_create:
+		return
+
 	#new_prisoner_cells = offer_one.handle_offer_1(
 		#new_prisoner_cells
 	#)

@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _handle_next_round() :
 	curr_energy_label.text = str(GLGameManagerBus.curr_energy)
-	used_energy_label.text = str(10)
+	used_energy_label.text = str(0)
 	left_over_energy_label.text = str(GLGameManagerBus.curr_energy)
 
 

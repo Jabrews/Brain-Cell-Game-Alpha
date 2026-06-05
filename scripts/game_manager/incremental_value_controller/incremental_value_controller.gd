@@ -1,11 +1,10 @@
 extends Node
 
 var round_incr_values_set = false
-var last_round : int = 1
+var last_round : int = 0
 
 # components
 @onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
-@onready var iv_helper_prisoner_picks_per_batch : Node =$IVHelperPrisonerPicksPerBatch
 @onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
 
 @warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
@@ -118,6 +117,6 @@ func handle_round(round : int):
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :
 	
-	iv_helper_prisoner_picks_per_batch._prisoner_picks_per_batch()
 	iv_helper_defect_event._update_defect_event_values(round, energy)
 	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
+	

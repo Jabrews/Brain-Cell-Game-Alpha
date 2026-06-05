@@ -15,7 +15,7 @@ var stat_cap_status := {
 	"community": "none",
 }
 
-var prisoner_quantity_energy_spent : int = 10 # default cost for quantity 2
+var prisoner_quantity_energy_spent : int = 0 # default cost for quantity 4
 
 
 func _handle_reset_prisoners_created() -> void:
@@ -23,7 +23,7 @@ func _handle_reset_prisoners_created() -> void:
 		energy_spent[stat] = 0
 		stat_cap_status[stat] = "none"
 
-	prisoner_quantity_energy_spent = 10
+	prisoner_quantity_energy_spent = 0
 
 
 func _handle_clean_stat_value_change(stat_type : String, new_value : float) -> void:
@@ -50,6 +50,8 @@ func _handle_alert_symbol(stat_type : String, alert_type : String) -> void:
 func _handle_prisoner_quanity(quantity : int) -> void:
 
 	match quantity:
+		0 : 
+			prisoner_quantity_energy_spent = 0
 		2:
 			prisoner_quantity_energy_spent = 10
 		4:
@@ -58,7 +60,6 @@ func _handle_prisoner_quanity(quantity : int) -> void:
 			prisoner_quantity_energy_spent = 0
 
 	get_total_energy_spent()
-
 
 func get_total_energy_spent() -> int:
 	var total := prisoner_quantity_energy_spent
@@ -75,3 +76,16 @@ func get_total_energy_spent() -> int:
 	energy_panel.handle_energy_to_spend_change(total)
 	
 	return total
+
+func _validate_create_prisoner_batch() :
+	
+	var energy_to_spend = get_total_energy_spent()
+	
+	var energy_left = GLGameManagerBus.curr_energy - energy_to_spend
+	
+	if energy_left >= 0 :
+		return true
+	else :
+		return false
+	
+	

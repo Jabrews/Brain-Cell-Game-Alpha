@@ -10,7 +10,12 @@ extends Node
 	$StatControllPanels/StatControlPanel2,
 	$StatControllPanels/StatControlPanel3
 ]
-@onready var handle_reset : Node = $HandleReset
+@onready var screen_hidden_stat_quanity : Node2D = $HiddenQuanityTV/TvFrontPannel/SubViewport/ScreenHiddenStatQuanity
+@onready var reset_componnets : Node = $ResetComponents
+# screen helpers
+@onready var handle_power_ran_out : Node = $HandlePowerRanOut
+@onready var handle_prisoner_quanity_not_selected : Node = $HandlePrisonerQuanityNotSelected
+@onready var handle_prisoners_just_created : Node = $HandlePrisonersJustCreated
 
 var clean_strength : float = 0.0
 var clean_intelligence: float = 0.0
@@ -26,8 +31,21 @@ var intelligence_warning_active  : bool = false
 var community_caution_active  : bool = false
 var community_warning_active  : bool = false
 
-var prisoner_quantity : int = 2
+var prisoner_quantity : int = 0
 
+var power_out : bool = false
+
+func _ready() -> void:
+	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed)
+
+func _handle_energy_changed() :
+	if GLGameManagerBus.curr_energy <= 0:
+		handle_power_ran_out._power_ran_out(true)
+		power_out = true
+	else :
+		handle_power_ran_out._power_ran_out(false)	
+		power_out = false 
+	
 
 func _toggle_alert_symbol(stat_type :String, toggleValue : bool, symbol_type : String) :
 	if stat_type == 'strength' :
@@ -68,6 +86,16 @@ func _toggle_alert_symbol(stat_type :String, toggleValue : bool, symbol_type : S
 	
 func _update_clean_stat_value(type : String, new_value : float) :
 
+	if power_out :
+		return
+	
+	# prevent changing value if quanity not selected
+	if prisoner_quantity == 0 :
+		handle_prisoner_quanity_not_selected._player_tried_incrementing_stat()
+		return
+	
+	
+
 	match type :
 		'strength' :
 			clean_strength = new_value
@@ -80,6 +108,10 @@ func _update_clean_stat_value(type : String, new_value : float) :
 	energy_spent_updater._handle_clean_stat_value_change(type, new_value)
 
 func _toggle_stat_disabled(type : String, toggleValue : bool) :
+	
+	if power_out : 	
+		return
+	
 	
 	var original_value = 0.0
 	var original_stat_cap : String = 'none'
@@ -101,16 +133,38 @@ func _toggle_stat_disabled(type : String, toggleValue : bool) :
 			
 	# update energy spent 
 	energy_spent_updater._handle_toggle_clean_stat_disabled(type,toggleValue,original_value, original_stat_cap)
+	# update hidden stat screen
+	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
 	
 	
 func _update_prisoner_quanity(quantity: int) :
 	prisoner_quantity = quantity
 	prisoner_quanitity_updater._prisoner_quanity_btn_selected(quantity)
+	
 	# update energy spent
 	energy_spent_updater._handle_prisoner_quanity(quantity)
+	# update hidden stat screen
+	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
 	
 
 func _create_prisoners() -> void:
+	
+	## if powers out dont do anything	
+	if power_out : 
+		return
+	
+	# prevent changing value if quanity not selected
+	if prisoner_quantity == 0 :
+		handle_prisoner_quanity_not_selected._player_tried_incrementing_stat()
+		return
+	
+	
+	## validate if theres enough energy to do this
+	var can_create = energy_spent_updater._validate_create_prisoner_batch()
+	if not can_create :
+		GLPrisonerProfilerComponentsBus.emit_signal('player_tried_creating_with_invalid_energy')	
+		return
+	
 
 	var strength_stat_constructor = StatConstructor.new(
 		"strength",
@@ -138,10 +192,12 @@ func _create_prisoners() -> void:
 		community_stat_constructor
 	)
 	
-	handle_reset._reset()
+	reset_componnets._reset()
+	handle_prisoners_just_created._prisoners_just_created()
 	
 	GLCellCreatorBus.emit_signal(
 		"create_prisoner_cells",
 		prisoner_cell_constructor
 	)
+	
 	

@@ -3,6 +3,7 @@
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_nh6du"]
 [ext_resource type="Script" uid="uid://cv0dt1h0ylfik" path="res://scripts/stations/station_screens/prisoner_profiler/hidden_stat_quanity/screen_hidden_stat_quanity.gd" id="1_orroo"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_s3rn6"]
+[ext_resource type="Texture2D" uid="uid://cy5xkvpd1jdtf" path="res://models/screens/hidden_arrow_down.png" id="4_ugnet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xf7b4"]
 shader = ExtResource("1_nh6du")
@@ -27,11 +28,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
 
-[node name="ScanLines" type="ColorRect" parent="." unique_id=854869210]
-material = SubResource("ShaderMaterial_xf7b4")
-offset_right = 480.0
-offset_bottom = 270.0
-
 [node name="TotalHiddenStats" type="Label" parent="." unique_id=1583112090]
 offset_left = 28.0
 offset_top = 16.0
@@ -49,3 +45,68 @@ offset_bottom = 158.0
 theme_override_fonts/font = ExtResource("2_s3rn6")
 theme_override_font_sizes/font_size = 50
 text = "0"
+
+[node name="MaxLabel" type="Label" parent="." unique_id=2025935003]
+visible = false
+offset_left = 426.0
+offset_top = 215.0
+offset_right = 471.0
+offset_bottom = 260.0
+theme_override_fonts/font = ExtResource("2_s3rn6")
+theme_override_font_sizes/font_size = 45
+text = "4"
+
+[node name="MaxArrow" type="Sprite2D" parent="." unique_id=614976841]
+visible = false
+modulate = Color(0.6420897, 0.59875596, 1.92523e-07, 1)
+texture_filter = 1
+position = Vector2(402.00003, 236.00002)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("4_ugnet")
+
+[node name="PowerOff" type="Control" parent="." unique_id=480167944]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="PowerOff" unique_id=663067909]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 526.0
+offset_bottom = 278.0
+color = Color(0.051970966, 0.05197096, 0.05197095, 1)
+
+[node name="PrisonerJustCreated" type="Control" parent="." unique_id=1955479346]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="PrisonerJustCreated" unique_id=880097505]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 484.0
+offset_bottom = 279.0
+color = Color(0.44223276, 0.489379, 0.89445704, 1)
+
+[node name="Label" type="Label" parent="PrisonerJustCreated" unique_id=9096423]
+texture_filter = 1
+layout_mode = 0
+offset_left = -234.0
+offset_top = 106.0
+offset_right = 726.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("2_s3rn6")
+theme_override_font_sizes/font_size = 30
+text = "BAtch Created"
+horizontal_alignment = 1
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=854869210]
+material = SubResource("ShaderMaterial_xf7b4")
+offset_right = 480.0
+offset_bottom = 270.0

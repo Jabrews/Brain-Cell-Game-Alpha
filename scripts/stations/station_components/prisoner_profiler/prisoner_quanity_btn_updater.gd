@@ -15,10 +15,13 @@ func _ready() -> void:
 	unselected_material = StandardMaterial3D.new()
 	unselected_material.albedo_color = Color.GRAY
 	
-	two_pris_btn_mesh.material_override = selected_material
-	four_pris_btn_mesh.material_override = unselected_material
+	two_pris_btn_mesh.material_override = unselected_material 
+	four_pris_btn_mesh.material_override = unselected_material 
 
 func _prisoner_quanity_btn_selected(quanity : int) :
+	if quanity == 0 : 
+		two_pris_btn_mesh.material_override = unselected_material 
+		four_pris_btn_mesh.material_override = unselected_material
 	if quanity == 2 :
 		two_pris_btn_mesh.material_override = selected_material
 		four_pris_btn_mesh.material_override = unselected_material
@@ -26,4 +29,4 @@ func _prisoner_quanity_btn_selected(quanity : int) :
 		two_pris_btn_mesh.material_override = unselected_material 
 		four_pris_btn_mesh.material_override = selected_material 
 	else : 
-		push_error('invalid btn quanity got : ', str(quanity))
+		return

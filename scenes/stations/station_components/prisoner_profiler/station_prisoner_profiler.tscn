@@ -9,9 +9,12 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_o6k36"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="5_cw20b"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="5_d5xot"]
-[ext_resource type="Script" uid="uid://dyu0i4q8ogq6r" path="res://scripts/stations/station_components/prisoner_profiler/handle_reset.gd" id="5_ixvqn"]
+[ext_resource type="Script" uid="uid://dyu0i4q8ogq6r" path="res://scripts/stations/station_components/prisoner_profiler/reset_components.gd" id="5_ixvqn"]
+[ext_resource type="Script" uid="uid://f2k1s7jpy5xn" path="res://scripts/stations/station_components/prisoner_profiler/screen_helpers/handle_power_ran_out.gd" id="6_0oryl"]
 [ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="7_5i3j4"]
 [ext_resource type="Script" uid="uid://brd5yl8fa6dn6" path="res://scripts/stations/station_components/prisoner_profiler/energy_panel/energy_panel.gd" id="7_dppm5"]
+[ext_resource type="Script" uid="uid://bjskdcy8q15yu" path="res://scripts/stations/station_components/prisoner_profiler/screen_helpers/handle_prisoner_quanity_not_selected.gd" id="7_wbwm2"]
+[ext_resource type="Script" uid="uid://bhqn08nk2252k" path="res://scripts/stations/station_components/prisoner_profiler/screen_helpers/handle_prisoners_just_created.gd" id="8_ai7hr"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="8_mtam1"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="9_5i3j4"]
 [ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/caution_symbol.png" id="10_4ynva"]
@@ -120,11 +123,20 @@ script = ExtResource("2_a8ku5")
 [node name="EnergySpentUpdater" type="Node" parent="." unique_id=34105859]
 script = ExtResource("3_5fibo")
 
-[node name="HandleReset" type="Node" parent="." unique_id=1610780473]
+[node name="ResetComponents" type="Node" parent="." unique_id=1610780473]
 script = ExtResource("5_ixvqn")
 
+[node name="HandlePowerRanOut" type="Node" parent="." unique_id=939506294]
+script = ExtResource("6_0oryl")
+
+[node name="HandlePrisonerQuanityNotSelected" type="Node" parent="." unique_id=1619002671]
+script = ExtResource("7_wbwm2")
+
+[node name="HandlePrisonersJustCreated" type="Node" parent="." unique_id=17418842]
+script = ExtResource("8_ai7hr")
+
 [node name="HiddenQuanityTV" type="Node3D" parent="." unique_id=451218265]
-transform = Transform3D(0.9974021, 0.0720371, -2.9724895e-08, -0.07203711, 0.99740195, 2.146873e-09, 2.9802322e-08, 0, 1.0000001, -0.30808276, 5.558966, 0)
+transform = Transform3D(0.5036376, 0.036375087, 0.86314905, -0.07203711, 0.99740195, 2.1468727e-09, -0.86090654, -0.062178746, 0.5049495, 0.33564842, 1.9842639, 4.2663274)
 
 [node name="TvBackPannel" type="MeshInstance3D" parent="HiddenQuanityTV" unique_id=1177989075]
 mesh = SubResource("BoxMesh_qwe67")
@@ -141,7 +153,7 @@ render_target_update_mode = 4
 [node name="ScreenHiddenStatQuanity" parent="HiddenQuanityTV/TvFrontPannel/SubViewport" unique_id=981638018 instance=ExtResource("5_cw20b")]
 
 [node name="MaxPickQuanityTV" type="Node3D" parent="." unique_id=849015479]
-transform = Transform3D(0.9976259, 0.068868496, -2.9731565e-08, -0.0688685, 0.99762577, 2.052441e-09, 2.9802322e-08, 0, 1.0000001, -0.17876637, 6.8731837, 0)
+transform = Transform3D(0.50375056, 0.034775104, 0.863149, -0.068868496, 0.9976257, 2.0524409e-09, -0.8610997, -0.059443768, 0.5049495, 0.40094668, 3.2984815, 4.1547084)
 
 [node name="TvBackPannel" type="MeshInstance3D" parent="MaxPickQuanityTV" unique_id=1006404532]
 mesh = SubResource("BoxMesh_mtam1")

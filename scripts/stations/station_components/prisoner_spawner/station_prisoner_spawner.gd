@@ -9,6 +9,7 @@ extends Node
 	$PrisonerSpawnSpots/Spot4,
 ]
 @onready var prisoner_instance : PackedScene = preload("res://scenes/characters/prisoner/Prisoner.tscn")
+@onready var screen_pick_quanity : Node2D = $MaxPickQuanityTV/TvFrontPannel/SubViewport/ScreenPickQuanity
 
 func _ready() -> void:
 	GLCellCreatorBus.connect('get_newest_prisoner_cells', _handle_get_newest_prisoner_cells)
@@ -16,11 +17,12 @@ func _ready() -> void:
 	
 func _handle_get_newest_prisoner_cells(new_prisoner_cells : Array[BrainCell]) :
 	
+	# update prisoner picks	
+	
 	# reset all seats 
 	for spot in prisoner_spots:
 		spot.is_being_sat_in = false
 	
-
 	
 	for cell : BrainCell in new_prisoner_cells :
 		create_cell_instance(cell)
@@ -47,14 +49,19 @@ func create_cell_instance(designated_brain_cell : BrainCell) -> void:
 	
 # player get limited choice per each batch
 func _handle_prisoner_picked_by_player(_prisoner_cell : BrainCell) :
-	var next_picked_pris = IVPrisonerSpawner.curr_picked_pris_per_turn + 1
+	var next_picked_pris = GLPrisonerPicksBus.curr_picked_pris_per_turn + 1
 	
 	# if we've picked as many as possible
-	if next_picked_pris >= IVPrisonerSpawner.max_picked_pris_per_turn :
+	if next_picked_pris >= GLPrisonerPicksBus.max_picked_pris_per_turn :
 		# delete other prisoners once we pick max
 		GLCellManagerBus.emit_signal('delete_remaining_prisoners')
-		IVPrisonerSpawner.curr_picked_pris_per_turn = 0
+		GLPrisonerPicksBus.curr_picked_pris_per_turn = 0
+		screen_pick_quanity._update_out_of_prisoners()
+		
+		
 	else :
-		IVPrisonerSpawner.curr_picked_pris_per_turn = next_picked_pris
+		GLPrisonerPicksBus.curr_picked_pris_per_turn = next_picked_pris
+		screen_pick_quanity._update_new_pick_quanity()
+	
 	
 	
