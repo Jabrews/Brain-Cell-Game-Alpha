@@ -10,6 +10,7 @@ var designated_brain_cell : BrainCell
 # state machine
 @onready var state_machine : Node = $StateMachine
 @onready var picked_up_state : Node = $StateMachine/PickedUp # for ray cast
+@onready var idle_state : Node = $StateMachine/Idle
 
 # when they die from breeding prevent
 var spawn_flesh_bug_on_death : bool = true
@@ -95,6 +96,8 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 	if changed_brain_cell.name != designated_brain_cell.name:
 		return
 	
+
+	
 	designated_brain_cell = changed_brain_cell
 	
 	# check if cell is froze, if so change stat to frozen
@@ -106,13 +109,12 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		if state_machine.curr_state.name == 'Froze' :		
 			switch_cell_state('idle')
 		
-		
-	
-	
 	screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	check_for_cell_dead_on_update()
+	
+
 
 
 func _handle_cell_container_jolt(cell_name : String) :

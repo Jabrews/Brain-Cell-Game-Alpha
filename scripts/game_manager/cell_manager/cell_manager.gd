@@ -16,6 +16,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('interpreter_jolt_increase_cell_defect', _handle_interpreter_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
+	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed_increment_life_span)
 	# shareholder offers
 	GLShareholderOfferState.connect('offer_8_activated', _handle_offer_8_activated)
 	
@@ -284,18 +285,18 @@ func _handle_offer_8_activated() :
 		cell.life_span = 1
 		update_collected_cells([cell])
 	
-#func _handle_next_turn() :
-	#
-	##decrease lifespan on collected cells
-	#for cell : BrainCell in collected_cells :
-		#
-		## dont decrease lifespan on froze cell
-		#if cell.cell_is_frozen :
-			#cell.cell_is_frozen = false
-		#else :
-			#cell.life_span -= 1
-			#
-		#update_collected_cells([cell])
+func _handle_energy_changed_increment_life_span() :
+	
+	#decrease lifespan on collected cells
+	for cell : BrainCell in collected_cells :
+		
+		# dont decrease lifespan on froze cell
+		if cell.cell_is_frozen :
+			cell.cell_is_frozen = false
+		else :
+			cell.life_span -= 1
+			
+		update_collected_cells([cell])
 	
 ### OTHER ZOOS ###
 

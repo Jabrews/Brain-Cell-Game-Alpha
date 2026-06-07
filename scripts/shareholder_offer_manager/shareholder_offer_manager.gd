@@ -24,10 +24,13 @@ func _ready() -> void:
 func _handle_energy_changed() :
 
 	var curr_energy = GLGameManagerBus.curr_energy
+	var max_energy = GLGameManagerBus.max_energy
+
+	var energy_percent : float = (curr_energy / float(max_energy)) * 100.0
 
 	# stat offers have priority
 	if not has_offered_stat \
-	and curr_energy <= IVShareholderOffers.stat_offer_energy_percant:
+	and energy_percent <= IVShareholderOffers.stat_offer_energy_percant:
 		has_offered_stat = true
 		GLShareholderOfferState.await_user_choose_shareholder_offer_before_create = true
 		handle_stat_offer()
@@ -35,7 +38,7 @@ func _handle_energy_changed() :
 
 	# item offer only if stat offer wasn't triggered
 	if not has_offered_item \
-	and curr_energy <= IVShareholderOffers.item_offer_energy_percant:
+	and energy_percent <= IVShareholderOffers.item_offer_energy_percant:
 		has_offered_item = true
 		handle_item_offer()
 		return

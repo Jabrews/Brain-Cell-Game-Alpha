@@ -20,11 +20,16 @@ func _update_hidden_stat_values(round : int , energy : int) :
 		
 
 func get_energy_danger_level(energy : int) -> int:
-	if energy > 75:
+	# high energy = safer
+	# low energy = more dangerous
+	
+	var max_energy = GLGameManagerBus.max_energy
+
+	if energy > max_energy * 0.75:
 		return 0
-	elif energy > 50:
+	elif energy > max_energy * 0.5:
 		return 1
-	elif energy > 25:
+	elif energy > max_energy * .25:
 		return 2
 	else:
 		return 3

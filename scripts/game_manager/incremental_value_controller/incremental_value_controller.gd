@@ -33,6 +33,7 @@ func handle_round(round : int):
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
 			# ENERGY ##
 			GLGameManagerBus.curr_energy = 100
+			GLGameManagerBus.max_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -58,6 +59,7 @@ func handle_round(round : int):
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
 			## ENERGY ##
 			GLGameManagerBus.curr_energy = 100
+			GLGameManagerBus.max_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -80,7 +82,8 @@ func handle_round(round : int):
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
-			GLGameManagerBus.curr_energy = 100
+			GLGameManagerBus.curr_energy = 200
+			GLGameManagerBus.max_energy = 200
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 6
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -99,6 +102,7 @@ func handle_round(round : int):
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
 			GLGameManagerBus.curr_energy = 100
+			GLGameManagerBus.max_energy = 100		
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 7
 			IVCellBreeding.curr_cell_breeding_attempt = 0

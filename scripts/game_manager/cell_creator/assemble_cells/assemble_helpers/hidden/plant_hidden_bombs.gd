@@ -14,7 +14,7 @@ func _check_can_plant_bombs() :
 	if GLGameManagerBus.current_round < 3 :
 		return false
 	# energy is larger than 75%
-	elif GLGameManagerBus.curr_energy > 75 : 
+	elif GLGameManagerBus.curr_energy >= GLGameManagerBus.max_energy * 0.75: 
 		return false
 	# we just planted bomb
 	elif just_planted_bomb :
@@ -22,9 +22,10 @@ func _check_can_plant_bombs() :
 		return false
 	# else its okay to plant bomb
 	else :
-		# 50 50 chance to still not plant bombs	
+		print('chance to plant bomb')
+		# chance to still not plant bombs	
 		var random_chance = randi_range(0, 100)	
-		if random_chance <= 50 : 
+		if random_chance >= 30 : 
 			return false
 		else :
 			return true
@@ -49,39 +50,39 @@ func _plant_hidden_bombs(new_prisoners : Array[BrainCell]) :
 				
 				"strength":
 					if prisoner.strength.hidden:
-						prisoner.strength.defect += 100
+						prisoner.strength.defect += IVCellCreator.max_stat_value * 0.60
 						prisoner.strength.defect = clamp(
 							prisoner.strength.defect,
 							0,
 							IVCellCreator.max_stat_value
 						)
-						#print('planted bomb on : ', prisoner.name)
+						print('planted bomb on : ', prisoner.name)
 						bomb_planted = true
 					else:
 						possible_stats.erase(random_stat_choice)
 				
 				"intelligence":
 					if prisoner.intelligence.hidden:
-						prisoner.intelligence.defect += 100
+						prisoner.intelligence.defect += IVCellCreator.max_stat_value * 0.60
 						prisoner.intelligence.defect = clamp(
 							prisoner.intelligence.defect,
 							0,
 							IVCellCreator.max_stat_value
 						)
-						#print('planted bomb on : ', prisoner.name)
+						print('planted bomb on : ', prisoner.name)
 						bomb_planted = true
 					else:
 						possible_stats.erase(random_stat_choice)
 				
 				"community":
 					if prisoner.community.hidden:
-						prisoner.community.defect += 100
+						prisoner.community.defect += IVCellCreator.max_stat_value * 0.60
 						prisoner.community.defect = clamp(
 							prisoner.community.defect,
 							0,
 							IVCellCreator.max_stat_value
 						)
-						#print('planted bomb on : ', prisoner.name)
+						print('planted bomb on : ', prisoner.name)
 						bomb_planted = true
 					else:
 						possible_stats.erase(random_stat_choice)

@@ -30,7 +30,6 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 		max_stats_to_hide
 	)	
 	
-	print('max stats to hide : ', max_stats_to_hide, ' from total : ', str(IVHiddenStats.max_stats_to_hide))
 
 	# apply hidden stats randomly
 	new_prisoners = randomly_apply_hidden_stats(new_prisoners, max_stats_to_hide)

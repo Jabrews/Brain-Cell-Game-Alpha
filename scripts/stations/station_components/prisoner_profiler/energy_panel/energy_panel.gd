@@ -4,14 +4,19 @@ extends Node
 @onready var used_energy_label : Label3D = $EnergyUsed
 @onready var left_over_energy_label : Label3D = $EnerfyLeft
 
-var energy_left : int = 100
+var energy_left : int = 0
 
 
 func _ready() -> void:
+	
+	energy_left = GLGameManagerBus.max_energy	
+	
 	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
+	
+	
 
 func _handle_next_round() :
-	curr_energy_label.text = str(GLGameManagerBus.curr_energy)
+	curr_energy_label.text = str(GLGameManagerBus.max_energy)
 	used_energy_label.text = str(0)
 	left_over_energy_label.text = str(GLGameManagerBus.curr_energy)
 

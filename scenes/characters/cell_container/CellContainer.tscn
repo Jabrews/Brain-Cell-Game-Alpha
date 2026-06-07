@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://b6ipb8ftq8ehr" path="res://scripts/characters/cell_container/state_machine/states/idle_state.gd" id="3_ay8s5"]
 [ext_resource type="Script" uid="uid://dtuy3l3go3b0p" path="res://scripts/characters/cell_container/state_machine/states/dying_state.gd" id="3_lgqnw"]
 [ext_resource type="PackedScene" uid="uid://q5i8mv06vwpr" path="res://scenes/characters/reusable/stat_display/stat_display.tscn" id="4_0dogw"]
+[ext_resource type="AudioStream" uid="uid://btj3egm2qxxse" path="res://sounds/cell_container/age_life_span_sound.mp3" id="4_0rbwi"]
 [ext_resource type="Script" uid="uid://bnuq0c6f8wub" path="res://scripts/characters/cell_container/state_machine/states/picked_up_state.gd" id="4_gniwj"]
 [ext_resource type="Script" uid="uid://lfjn23tkn8tv" path="res://scripts/characters/cell_container/state_machine/states/jolt_state.gd" id="6_e5wqa"]
 [ext_resource type="AudioStream" uid="uid://btw7txl21eg5m" path="res://sounds/cell_container/cell_death.mp3" id="6_sm0qd"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" uid="uid://d0oalrrirsxkn" path="res://scripts/characters/cell_container/state_machine/states/froze_state.gd" id="8_pg0bo"]
 [ext_resource type="Script" uid="uid://c85008xthgpgt" path="res://scripts/characters/cell_container/interactable_pickup.gd" id="9_gniwj"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="11_3womk"]
+[ext_resource type="Script" uid="uid://ddkrjsdt73gin" path="res://scripts/characters/cell_container/life_span_change_effect.gd" id="11_bs8vk"]
 [ext_resource type="AudioStream" uid="uid://x5sdvjw3mat1" path="res://sounds/player_local_sounds/cell_container/water_splash.mp3" id="16_7580g"]
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
@@ -96,6 +98,9 @@ script = ExtResource("7_dly6q")
 stream = ExtResource("8_anjkl")
 pitch_scale = 0.65
 
+[node name="LifeSpanChangeEffect" type="Node" parent="." unique_id=1133571429]
+script = ExtResource("11_bs8vk")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
 mesh = SubResource("BoxMesh_7es7g")
 
@@ -159,5 +164,9 @@ stream = ExtResource("17_khadm")
 
 [node name="CellDropped" type="AudioStreamPlayer3D" parent="." unique_id=1724742406]
 stream = ExtResource("18_0rbwi")
+
+[node name="AgeLifespan" type="AudioStreamPlayer3D" parent="." unique_id=218843773]
+stream = ExtResource("4_0rbwi")
+pitch_scale = 0.81
 
 [connection signal="timeout" from="OfferTurnIntoFleshBugDelay" to="." method="_on_offer_turn_into_flesh_bug_delay_timeout"]

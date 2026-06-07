@@ -45,9 +45,9 @@ var defect_stat_increase_case_min = 0.5
 # 3 : high_stat + (low_stat * 0.8)
 # 4 : high_stat + (low_stat * 0.7)
 # 5  :high_stat + low_stat
-var defect_stat_increase_one_scale = 0.5
-var defeect_stat_increase_three_scale = 0.8
-var defect_stat_increase_four_scale = 0.7
+var defect_stat_increase_one_scale = 0.3
+var defeect_stat_increase_three_scale = 0.6
+var defect_stat_increase_four_scale = 0.5
 
 # there are 2 diffrent equations we use for new defect in a decrease case
 # the equations look like this :

@@ -1,7 +1,7 @@
 extends Node
 
 # debug
-var display_stat_offer_active_debug_messages : bool = true 
+var display_stat_offer_active_debug_messages : bool = false 
 
 ## STAT OFFER SIGNALS##
 # lets shareholder offers toggle manager know to turn off all prior offers when new round

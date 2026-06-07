@@ -17,7 +17,12 @@ extends Node
 @onready var warning_bg : ColorRect = $"../Warning/WarningBG"
 @onready var warning_sprite : Sprite2D = $"../Warning/WarningSymbol"
 
-# range names
+# NEW
+@onready var shake_symbol_manager : Node = $"../HelpShakeSymbols"
+
+var caution_enabled := true
+var warning_enabled := true
+
 const RANGE_NAMES := [
 	"low",
 	"low-mid",
@@ -26,7 +31,6 @@ const RANGE_NAMES := [
 	"high"
 ]
 
-# current symbol positions
 var caution_left_point_index := 2
 var caution_right_point_index := 3
 
@@ -44,6 +48,9 @@ func set_symbol(symbol_type : String) -> void:
 	match symbol_type:
 
 		"caution":
+			if not caution_enabled:
+				return
+
 			_set_symbol_visual(
 				caution_bg,
 				caution_sprite,
@@ -52,6 +59,9 @@ func set_symbol(symbol_type : String) -> void:
 			)
 
 		"warning":
+			if not warning_enabled:
+				return
+
 			_set_symbol_visual(
 				warning_bg,
 				warning_sprite,
@@ -84,15 +94,26 @@ func toggle_hide_symbol(symbol_type : String, toggle_value : bool) -> void:
 	match symbol_type:
 
 		"caution":
+			caution_enabled = toggle_value
 			caution_bg.visible = toggle_value
 			caution_sprite.visible = toggle_value
 
 		"warning":
+			warning_enabled = toggle_value
 			warning_bg.visible = toggle_value
 			warning_sprite.visible = toggle_value
 
+	# if either symbol gets disabled, make sure
+	# any active shaking/alerts are cleared
+	if not toggle_value:
+		shake_symbol_manager._deactivate_symbols()
+
 
 func get_caution_ranges() -> Array[String]:
+
+	if not caution_enabled:
+		return []
+
 	return _get_ranges(
 		caution_left_point_index,
 		caution_right_point_index
@@ -100,6 +121,10 @@ func get_caution_ranges() -> Array[String]:
 
 
 func get_warning_ranges() -> Array[String]:
+
+	if not warning_enabled:
+		return []
+
 	return _get_ranges(
 		warning_left_point_index,
 		warning_right_point_index

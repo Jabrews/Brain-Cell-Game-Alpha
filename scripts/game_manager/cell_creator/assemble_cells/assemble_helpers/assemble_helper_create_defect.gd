@@ -14,7 +14,7 @@ func _create(stat: BrainCellStat, stat_cap_status : String) -> float:
 
 func generate_random_stat_value(stat_value : float) :
 	
-	var random_change = randi_range(-40, 30)
+	var random_change = randi_range(-100, 30)
 		
 	stat_value += random_change
 	
@@ -26,11 +26,11 @@ func detect_and_apply_stap_cap(stat_value : float, stat_cap_status : String):
 		return stat_value
 
 	elif stat_cap_status == "caution":
-		var random_change = randi_range(30, 50)
+		var random_change = randi_range(20, 40)
 		stat_value += random_change
 
 	elif stat_cap_status == "warning":
-		var random_change = randi_range(50, 60)
+		var random_change = randi_range(40, 50)
 		stat_value += random_change
 
 	else:

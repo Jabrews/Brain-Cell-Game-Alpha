@@ -69,9 +69,9 @@ func get_total_energy_spent() -> int:
 
 		match stat_cap_status[stat]:
 			"caution":
-				total += 20
+				total += 10
 			"warning":
-				total += 40
+				total += 20
 
 	energy_panel.handle_energy_to_spend_change(total)
 	

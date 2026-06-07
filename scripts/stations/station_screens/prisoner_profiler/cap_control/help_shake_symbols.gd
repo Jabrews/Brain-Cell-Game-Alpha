@@ -11,6 +11,8 @@ extends Node
 var active_tween : Tween
 
 
+
+
 func _handle_update_shake_symbols(curr_clean_range : String) -> void:
 
 	var caution_active = (

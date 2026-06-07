@@ -35,13 +35,13 @@ func increase_clean_stat_case(stat_high : float, stat_low : float, target_stat :
 		#print('under half of target  :', stat_high, ' ', stat_low)
 		#stat_high += stat_low 
 		
-		var curr_round = GLGameManagerBus.current_round
-		var max_round = GLGameManagerBus.max_rounds
+		var curr_energy = GLGameManagerBus.curr_energy
+		var max_energy = GLGameManagerBus.max_energy
 		
-		var half_round = max_round * 0.5
+		var half_energy = max_energy * 0.5
 		
 		# late game: scale increase
-		if curr_round >= half_round:
+		if curr_energy >= half_energy :
 			stat_high += (stat_low * IVCellBreeding.low_add_percant_scale)
 		else:
 			# early game: apply full increase
@@ -54,13 +54,13 @@ func increase_clean_stat_case(stat_high : float, stat_low : float, target_stat :
 		#print('over half of target  :', stat_high, ' ', stat_low)
 		#stat_high += stat_low
 		
-		var curr_round = GLGameManagerBus.current_round
-		var max_round = GLGameManagerBus.max_rounds
+		var curr_energy = GLGameManagerBus.curr_energy
+		var max_energy = GLGameManagerBus.max_energy
 		
-		var half_round = max_round * 0.5
+		var half_energy = max_energy * 0.5
 		
 		# late game scale increase
-		if curr_round >= half_round:
+		if curr_energy  >= half_energy:
 			var predicted = stat_high + (stat_low * IVCellBreeding.high_add_percant_scale)
 			
 			# if within 20 point range. auto set to target value		
