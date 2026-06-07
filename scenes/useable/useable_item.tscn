@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_bjgy8"]
 [ext_resource type="Script" uid="uid://dve2txkbajqst" path="res://reusable/modular_scripts/floating_label/floating_label.gd" id="3_bymr4"]
 [ext_resource type="FontFile" uid="uid://ehsk4rh04d68" path="res://models/fonts/my 3x5 tiny mono pixel font.ttf" id="3_u6ip4"]
+[ext_resource type="PackedScene" uid="uid://cqpbl24njpn7k" path="res://scenes/useable/useable_item_display.tscn" id="5_y2d47"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bymr4"]
 
@@ -36,3 +37,5 @@ text = "energy left  : 3"
 font = ExtResource("3_u6ip4")
 script = ExtResource("3_bymr4")
 y_axis_postive_transform = 0.9
+
+[node name="UseableItemDisplay" parent="." unique_id=1938971971 instance=ExtResource("5_y2d47")]

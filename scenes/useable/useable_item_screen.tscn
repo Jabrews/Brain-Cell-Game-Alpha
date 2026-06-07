@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://gh54bgeyi7j7"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_1xmki"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_gfnhh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfnhh"]
+shader = ExtResource("1_1xmki")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="UseableItemScreen" type="Node2D" unique_id=1255584050]
+
+[node name="BG" type="ColorRect" parent="." unique_id=1505217289]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 558.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1363616, 6.994e-08, 1.8049032e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1619196175]
+material = SubResource("ShaderMaterial_gfnhh")
+offset_right = 565.0
+offset_bottom = 176.0
+
+[node name="ItemHint" type="Label" parent="." unique_id=1072597027]
+offset_left = 11.0
+offset_top = 18.0
+offset_right = 558.0
+offset_bottom = 215.0
+theme_override_fonts/font = ExtResource("2_gfnhh")
+theme_override_font_sizes/font_size = 22
+text = "Blah Blah Blah Blah Blah Blah Blah Blah Blah Blah
+Blah Blah Blah Blah Blah
+Blah Blah Blah Blah Blah
+Blah Blah Blah Blah Blah
+
+"
+autowrap_mode = 3

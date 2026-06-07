@@ -6,6 +6,8 @@ var designated_useable_item_obj : UseableItemObject
 @onready var useable_item_sprite : Sprite3D = $UseableItemSprite
 @onready var item_label : Label3D = $ItemLabel
 @onready var energy_left_label : Label3D = $EnergyLeft
+@onready var useable_item_display : Node3D = $UseableItemDisplay
+
 
 # textures
 @onready var defect_shot_png : Texture = preload("res://models/usable_items/serum_items/defect_shot.png")
@@ -17,6 +19,7 @@ func load_item(include_energy : bool, specified_energy_left = 0) -> void:
 	load_item_sprite()
 	load_item_label()
 	load_item_name()
+	load_item_tip_text()
 	
 	if include_energy:
 		load_item_energy()
@@ -44,7 +47,7 @@ func load_item_name():
 	
 	for part in parts:
 		final_name += part.capitalize() + " "
-	
+	load_item_tip_text
 	name = final_name.strip_edges()
 
 func load_item_sprite():
@@ -75,3 +78,24 @@ func load_item_energy():
 		energy_left_label.queue_free()
 	
 	#energy_left_label.text = 'energy left : ' + str(designated_useable_item_obj.item_energy)
+
+func load_item_tip_text() :
+	
+	var tip_text : String = ''	
+	
+	match designated_useable_item_obj.item_type:
+		'defect_shot':
+			tip_text = 'Decreases each stat on a cell container by 15 percant, 3 charges total'
+
+		'hidden_shot':
+			tip_text = 'Reveals all hidden stats on a cell container.'
+
+		'steroid':
+			tip_text = 'Increases the clean and defect values of a cell container by 30%.'
+
+		'ice_cube':
+			tip_text = 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'
+
+	useable_item_display.update_tip_label(
+		tip_text	
+	)

@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://cqpbl24njpn7k"]
+
+[ext_resource type="Script" uid="uid://4dkkevad5m2s" path="res://scripts/characters/reusable/stat_display/stat_tv_mesh.gd" id="1_2d0up"]
+[ext_resource type="Script" uid="uid://c4bbtuh4iurb" path="res://scripts/useable/useable_item_display.gd" id="1_nsp7k"]
+[ext_resource type="PackedScene" uid="uid://gh54bgeyi7j7" path="res://scenes/useable/useable_item_screen.tscn" id="2_2d0up"]
+[ext_resource type="Script" uid="uid://kok7afrrnhpc" path="res://scripts/characters/reusable/stat_display/stat_display_area.gd" id="3_2difv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ha4w0"]
+viewport_path = NodePath("StatDisplay/StatMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw4ch"]
+albedo_texture = SubResource("ViewportTexture_ha4w0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0wsg5"]
+material = SubResource("StandardMaterial3D_mw4ch")
+size = Vector2(1.5, 0.45)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_50v3d"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[node name="UseableItemDisplay" type="Node3D" unique_id=1938971971]
+script = ExtResource("1_nsp7k")
+
+[node name="StatMesh" type="MeshInstance3D" parent="." unique_id=902068933]
+transform = Transform3D(-4.3317353e-08, 0.9909855, 0.13396885, -5.8559664e-09, 0.13396885, -0.9909855, -1, -4.371139e-08, 1.9106855e-15, -0.21554661, 1.4119685, -0.024689734)
+mesh = SubResource("PlaneMesh_0wsg5")
+script = ExtResource("1_2d0up")
+
+[node name="SubViewport" type="SubViewport" parent="StatMesh" unique_id=1622724506]
+size = Vector2i(558, 174)
+
+[node name="UseableItemScreen" parent="StatMesh/SubViewport" unique_id=1255584050 instance=ExtResource("2_2d0up")]
+
+[node name="DisplayArea" type="Area3D" parent="." unique_id=1457150810 groups=["stat_display_area"]]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("3_2difv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="DisplayArea" unique_id=1171491573]
+shape = SubResource("BoxShape3D_50v3d")
