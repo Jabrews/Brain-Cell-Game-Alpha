@@ -8,6 +8,9 @@ var curr_energy : int = 100
 var max_energy : int = 100
 
 
-
+# called when prisoner is generated 
 signal proceed_next_round()
-signal process_energy_changed()
+signal proceed_next_energy_turn()
+
+# when just the num changes
+signal energy_changed()

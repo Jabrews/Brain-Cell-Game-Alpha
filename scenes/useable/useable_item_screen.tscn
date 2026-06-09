@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gh54bgeyi7j7"]
 
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_1xmki"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_1xmki"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_gfnhh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gfnhh"]

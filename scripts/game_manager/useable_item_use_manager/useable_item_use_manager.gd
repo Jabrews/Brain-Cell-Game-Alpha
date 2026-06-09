@@ -14,13 +14,17 @@ func connect_signals() :
 	GLUsableItemBus.connect('use_scissors', _handle_use_scissors)
 
 
-func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
-	if selected_brain_cell.strength.enabled :
-		selected_brain_cell.strength.defect -= IVItemStats.defect_shot_decrease
-	if selected_brain_cell.intelligence.enabled :
-		selected_brain_cell.intelligence.defect -= IVItemStats.defect_shot_decrease
-	if selected_brain_cell.community.enabled :
-		selected_brain_cell.community.defect -= IVItemStats.defect_shot_decrease
+func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) : 
+	match selected_stat : 
+		'strength' :
+			selected_brain_cell.strength.defect -= IVItemStats.defect_shot_decrease
+		'intelligence' :
+			selected_brain_cell.intelligence.defect -= IVItemStats.defect_shot_decrease
+		'community' : 
+			selected_brain_cell.community.defect -= IVItemStats.defect_shot_decrease
+		_ : 
+			push_error('no stat found for defect shot decrease : ', selected_stat)
+			
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
@@ -52,7 +56,7 @@ func _handle_use_icecube(selected_brain_cell : BrainCell, _useable_item_obj : Us
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 	
-func _handle_use_scissors(selected_cell : BrainCell, useable_item_obj : UseableItemObject, selected_stat : String) :
+func _handle_use_scissors(selected_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) :
 	
 	
 	match selected_stat :	

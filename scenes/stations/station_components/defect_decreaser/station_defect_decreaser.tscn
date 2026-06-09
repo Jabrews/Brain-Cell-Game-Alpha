@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://q3j8yhkrtm05"]
+
+[ext_resource type="Script" uid="uid://1hnqktao5rjh" path="res://scripts/stations/station_components/defect_decreaser/station_defect_decreaser.gd" id="1_73vxk"]
+[ext_resource type="Script" uid="uid://bka5qpiah2tfk" path="res://reusable/load_panel/load_panel_cell.gd" id="2_73vxk"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="2_yxhlh"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_bovp2"]
+[ext_resource type="PackedScene" uid="uid://pjlvwort5xh4" path="res://scenes/stations/station_screens/defect_decreaser/screen_defect_decrease.tscn" id="4_qq7dh"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="5_f5i26"]
+[ext_resource type="Script" uid="uid://chk5qq4kjt67i" path="res://scripts/stations/station_components/defect_decreaser/confirm_btn.gd" id="5_iglnh"]
+[ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="6_73vxk"]
+[ext_resource type="Script" uid="uid://c06j5yrdue1ge" path="res://scripts/stations/station_components/defect_decreaser/energy_cost_panel.gd" id="8_iglnh"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="8_qq7dh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m2qw0"]
+size = Vector3(2, 1.6, 1.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u4c5m"]
+size = Vector3(0.1, 1.64, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yxhlh"]
+size = Vector3(0.37, 3, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yxhlh"]
+size = Vector3(1.4238892, 0.15491943, 1.4798584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ing6w"]
+material = SubResource("StandardMaterial3D_a1kj4")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a8i4q"]
+size = Vector3(1.5, 0.03720703, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rirej"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_a8i4q"]
+material = SubResource("StandardMaterial3D_rirej")
+size = Vector3(0.02, 1.285, 1.875)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1c0ac"]
+viewport_path = NodePath("DefectDecreaseTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_1c0ac")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bovp2"]
+material = SubResource("StandardMaterial3D_0jyhj")
+size = Vector2(1.75, 1.19)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njhqc"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qq7dh"]
+material = SubResource("StandardMaterial3D_njhqc")
+size = Vector3(0.55, 0.55, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iglnh"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ix23r"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_8df70"]
+size = Vector3(0.1, 1.64, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_73vxk"]
+albedo_color = Color(0.5370113, 0.5370113, 0.5370113, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_iglnh"]
+material = SubResource("StandardMaterial3D_73vxk")
+size = Vector3(0.01, 1.18, 1.44)
+subdivide_width = 16
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ix23r"]
+load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
+
+[node name="DefectDecreaser" type="Node3D" unique_id=1174221731]
+script = ExtResource("1_73vxk")
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=313422764]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1394228260]
+mesh = SubResource("BoxMesh_m2qw0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=321380724]
+shape = SubResource("BoxShape3D_u4c5m")
+
+[node name="Stand" type="StaticBody3D" parent="." unique_id=263379530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9085454, 2.4410467)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stand" unique_id=273154614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2193656, -0.19690382, -0.05575943)
+mesh = SubResource("BoxMesh_yxhlh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stand" unique_id=81756765]
+shape = SubResource("BoxShape3D_u4c5m")
+
+[node name="LoadPanelCell" type="Area3D" parent="." unique_id=1211764840 node_paths=PackedStringArray("cell_reciever")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013756037, -0.031455874, 0)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_73vxk")
+cell_reciever = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCell" unique_id=1294012614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_yxhlh")
+
+[node name="PannelCollision" type="StaticBody3D" parent="LoadPanelCell" unique_id=295082825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadPanelCell/PannelCollision" unique_id=1508780789]
+mesh = SubResource("BoxMesh_ing6w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCell/PannelCollision" unique_id=1988207278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_a8i4q")
+
+[node name="DefectDecreaseTv" type="Node3D" parent="." unique_id=1787149442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.017917633, 1.9233012, 2.376151)
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="DefectDecreaseTv" unique_id=501649709]
+mesh = SubResource("BoxMesh_a8i4q")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="DefectDecreaseTv" unique_id=1195581631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0106419325, 0, 0)
+mesh = SubResource("PlaneMesh_bovp2")
+script = ExtResource("2_yxhlh")
+
+[node name="SubViewport" type="SubViewport" parent="DefectDecreaseTv/TvFrontPannel" unique_id=400878315]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+
+[node name="DefectDecrease" parent="DefectDecreaseTv/TvFrontPannel/SubViewport" unique_id=1232910235 instance=ExtResource("4_qq7dh")]
+
+[node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=778029575]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011122763, 1.1560335, -1.603759)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("5_iglnh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ConfirmBtn" unique_id=916727013]
+mesh = SubResource("BoxMesh_qq7dh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConfirmBtn" unique_id=132311235]
+shape = SubResource("BoxShape3D_iglnh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="ConfirmBtn" unique_id=435253259]
+shape = SubResource("BoxShape3D_iglnh")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ConfirmBtn" unique_id=58032175 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_bovp2")
+hover_mesh_scene = ExtResource("5_f5i26")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("6_73vxk")
+custom_b_sprite_pos = Vector3(0.1, 1, -0.715)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConfirmBtn/HoverableMesh" unique_id=1482800438]
+shape = SubResource("BoxShape3D_ix23r")
+
+[node name="Stand2" type="StaticBody3D" parent="." unique_id=787535855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9085454, -1.5589533)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stand2" unique_id=549297728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015197694, -0.868221, -0.03312421)
+mesh = SubResource("BoxMesh_8df70")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stand2" unique_id=512838622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015197694, -0.868221, -0.03312421)
+shape = SubResource("BoxShape3D_u4c5m")
+
+[node name="EnergyCostPanel" type="Node3D" parent="." unique_id=930423474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0390234)
+script = ExtResource("8_iglnh")
+
+[node name="PanelMesh" type="MeshInstance3D" parent="EnergyCostPanel" unique_id=1582989193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0073804, 0.013675213, -0.047455072)
+mesh = SubResource("BoxMesh_iglnh")
+
+[node name="CostEnergy" type="Label3D" parent="EnergyCostPanel" unique_id=1361125255]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.0125128, 0.30042696, -0.39365065)
+visible = false
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "-10"
+font = ExtResource("8_qq7dh")
+font_size = 34
+outline_size = 0
+
+[node name="CostEnergyText" type="Label3D" parent="EnergyCostPanel" unique_id=475485083]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.0139399, 0.31077027, 0.17461514)
+visible = false
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Cost Energy :"
+font = ExtResource("8_qq7dh")
+font_size = 30
+outline_size = 0
+
+[node name="CurrEnergy" type="Label3D" parent="EnergyCostPanel" unique_id=2121080514]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.0242697, -0.21766877, -0.42545938)
+visible = false
+texture_filter = 0
+modulate = Color(1, 1, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "100"
+font = ExtResource("8_qq7dh")
+font_size = 30
+outline_size = 0
+
+[node name="CurrEnergyText" type="Label3D" parent="EnergyCostPanel" unique_id=1937623255]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.0242697, -0.18895721, 0.11389017)
+visible = false
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Your Energy :"
+font = ExtResource("8_qq7dh")
+font_size = 30
+outline_size = 0
+
+[node name="EnergyIcon" type="Sprite3D" parent="EnergyCostPanel" unique_id=1530861704]
+transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, 1.0254871, 0.3002007, -0.5579264)
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_ix23r")
+
+[node name="EnergyIcon3" type="Sprite3D" parent="EnergyCostPanel" unique_id=861410667]
+transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, 1.0254871, -0.22315025, -0.57675743)
+visible = false
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_ix23r")
+
+[node name="StationDisabled" type="Label3D" parent="EnergyCostPanel" unique_id=359010452]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.0125128, 0.10042696, -0.09365064)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Station Disabled"
+font = ExtResource("8_qq7dh")
+font_size = 40
+outline_size = 0
+
+[node name="NotEnoughEnergy" type="Label3D" parent="EnergyCostPanel" unique_id=1083889379]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.0125128, 0.10042696, -0.09365064)
+visible = false
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "Not Enough
+Energy"
+font = ExtResource("8_qq7dh")
+font_size = 40
+outline_size = 0

@@ -9,6 +9,8 @@ extends TextureRect
 @onready var defect_shot_png : Texture = preload("res://models/share_holder_offer_card/item_defect.png")
 @onready var hidden_shot_png : Texture = preload("res://models/share_holder_offer_card/item_hidden_shot.png")
 @onready var steroid_png : Texture = preload("res://models/share_holder_offer_card/item_steroid.png")
+@onready var ice_cube_png : Texture = preload("res://models/share_holder_offer_card/item_ice_cube.png")
+@onready var scissors_png : Texture = preload("res://models/share_holder_offer_card/item_scissors.png")
 
 var designated_useable_item_offer : UseableOfferItem 
 
@@ -48,6 +50,11 @@ func update(useable_item_offer : UseableOfferItem) :
 			type_image.texture = hidden_shot_png 
 		'steroid' :
 			type_image.texture = steroid_png 
+		'ice_cube' :
+			type_image.texture = ice_cube_png
+		'scissors' :
+			type_image.texture = scissors_png
+		
 		
 	flavor_text.text = designated_useable_item_offer.flavor_text
 	

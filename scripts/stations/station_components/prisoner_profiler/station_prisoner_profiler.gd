@@ -36,9 +36,9 @@ var prisoner_quantity : int = 0
 var power_out : bool = false
 
 func _ready() -> void:
-	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed)
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 
-func _handle_energy_changed() :
+func _handle_energy_turn_changed() :
 	if GLGameManagerBus.curr_energy <= 0:
 		handle_power_ran_out._power_ran_out(true)
 		power_out = true
@@ -88,14 +88,16 @@ func _update_clean_stat_value(type : String, new_value : float) :
 
 	if power_out :
 		return
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 	
 	# prevent changing value if quanity not selected
 	if prisoner_quantity == 0 :
 		handle_prisoner_quanity_not_selected._player_tried_incrementing_stat()
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 	
-
 	match type :
 		'strength' :
 			clean_strength = new_value
@@ -110,8 +112,10 @@ func _update_clean_stat_value(type : String, new_value : float) :
 func _toggle_stat_disabled(type : String, toggleValue : bool) :
 	
 	if power_out : 	
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 	
 	var original_value = 0.0
 	var original_stat_cap : String = 'none'
@@ -138,6 +142,9 @@ func _toggle_stat_disabled(type : String, toggleValue : bool) :
 	
 	
 func _update_prisoner_quanity(quantity: int) :
+	
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+	
 	prisoner_quantity = quantity
 	prisoner_quanitity_updater._prisoner_quanity_btn_selected(quantity)
 	
@@ -151,10 +158,12 @@ func _create_prisoners() -> void:
 	
 	## if powers out dont do anything	
 	if power_out : 
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	
 	# prevent changing value if quanity not selected
 	if prisoner_quantity == 0 :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		handle_prisoner_quanity_not_selected._player_tried_incrementing_stat()
 		return
 	
@@ -162,9 +171,11 @@ func _create_prisoners() -> void:
 	## validate if theres enough energy to do this
 	var can_create = energy_spent_updater._validate_create_prisoner_batch()
 	if not can_create :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		GLPrisonerProfilerComponentsBus.emit_signal('player_tried_creating_with_invalid_energy')	
 		return
 	
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 
 	var strength_stat_constructor = StatConstructor.new(
 		"strength",

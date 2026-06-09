@@ -13,6 +13,7 @@ signal hidden_stat_interpreted(selected_cell : BrainCell, selected_stat : String
 signal interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, selected_stat : String)
 signal cell_container_jolt_increase_cell_defect(selected_cell : BrainCell)
 signal delete_cells_for_next_round()
+signal defect_decreaser_used(cell : BrainCell)
 
 # emmited
 signal cell_deleted(cell_name : String)

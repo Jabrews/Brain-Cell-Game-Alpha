@@ -15,6 +15,7 @@ var held_useable_item_obj : UseableItemObject
 
 func _ready() -> void:
 	GLUsableItemBus.connect('scissor_pop_up_chose_stat', _handle_scissor_pop_up_chose_stat)	
+	GLUsableItemBus.connect('defect_pop_up_chose_stat', _handle_defect_pop_up_chose_stat)
 
 
 func _process(_delta):
@@ -89,11 +90,8 @@ func handle_item_use(collider) -> void:
 	## DEFECT SHOT ###
 	
 	if held_useable_item_obj.item_type == 'defect_shot':
-
-		var item_used_up = use_defect_shot.use(collider, held_useable_item_obj)
-		if item_used_up :
-			handle_item_used_up()
-
+		
+		use_defect_shot.show_defect_shot_pop_up(collider, held_useable_item_obj)
 
 	## HIDDEN SHOT ###
 	elif held_useable_item_obj.item_type == 'hidden_shot':
@@ -150,4 +148,8 @@ func _handle_scissor_pop_up_chose_stat(selected_stat : String, selected_cell : B
 	use_scissors.use(selected_stat, selected_cell, useable_item_obj)
 	handle_item_used_up()	
 	
+func _handle_defect_pop_up_chose_stat(selected_stat : String, selected_cell : BrainCell, useable_item_obj : UseableItemObject) :
+	var item_used_up = use_defect_shot.use(selected_stat, selected_cell, useable_item_obj)
+	if item_used_up :
+		handle_item_used_up()
 	

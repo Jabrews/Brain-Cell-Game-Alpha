@@ -89,7 +89,7 @@ func load_item_tip_text() :
 	
 	match designated_useable_item_obj.item_type:
 		'defect_shot':
-			tip_text = 'Decreases each stat on a cell container by 15 percant, 3 charges total'
+			tip_text = 'Decreases a chosen stat on a cell container by 15 percant, 3 charges total'
 
 		'hidden_shot':
 			tip_text = 'Reveals all hidden stats on a cell container.'

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ctgv6es6pim8p"]
 
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_nh6du"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_nh6du"]
 [ext_resource type="Script" uid="uid://cv0dt1h0ylfik" path="res://scripts/stations/station_screens/prisoner_profiler/hidden_stat_quanity/screen_hidden_stat_quanity.gd" id="1_orroo"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_s3rn6"]
 [ext_resource type="Texture2D" uid="uid://cy5xkvpd1jdtf" path="res://models/screens/hidden_arrow_down.png" id="4_ugnet"]

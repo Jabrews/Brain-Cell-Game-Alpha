@@ -16,7 +16,8 @@ func _ready() -> void:
 	GLCellManagerBus.connect('interpreter_jolt_increase_cell_defect', _handle_interpreter_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
-	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed_increment_life_span)
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
+	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	# shareholder offers
 	GLShareholderOfferState.connect('offer_8_activated', _handle_offer_8_activated)
 	
@@ -285,7 +286,7 @@ func _handle_offer_8_activated() :
 		cell.life_span = 1
 		update_collected_cells([cell])
 	
-func _handle_energy_changed_increment_life_span() :
+func _handle_energy_turn_changed_increment_life_span() :
 	
 	#decrease lifespan on collected cells
 	for cell : BrainCell in collected_cells :
@@ -298,6 +299,19 @@ func _handle_energy_changed_increment_life_span() :
 			
 		update_collected_cells([cell])
 	
+func _handle_defect_decreaser_used(selected_brain_cell : BrainCell) :
+
+	var decrease_amount = IVCellDefectDecreaser.decrease_amount
+
+	selected_brain_cell.strength.defect = max( 0.0, selected_brain_cell.strength.defect - decrease_amount)
+
+	selected_brain_cell.intelligence.defect = max( 0.0, selected_brain_cell.intelligence.defect - decrease_amount)
+
+	selected_brain_cell.community.defect = max( 0.0, selected_brain_cell.community.defect - decrease_amount)
+
+	update_collected_cells([selected_brain_cell])
+
+
 ### OTHER ZOOS ###
 
 func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 

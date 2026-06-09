@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dx13klxmfcel6"]
 
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_1k4jl"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_1k4jl"]
 [ext_resource type="Script" uid="uid://b0bjabxmbpkve" path="res://scripts/stations/station_screens/hidden_stat_interpreter/interpreter_screen_swap_handler.gd" id="1_aqfp1"]
 [ext_resource type="Script" uid="uid://b6xknsdn8apfl" path="res://scripts/stations/station_screens/hidden_stat_interpreter/main_screen_hidden_stat_interpreter.gd" id="1_loi24"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_d47jm"]

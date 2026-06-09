@@ -17,6 +17,9 @@ var stat_cap_status := {
 
 var prisoner_quantity_energy_spent : int = 0 # default cost for quantity 4
 
+func _ready() -> void:
+	GLGameManagerBus.connect('energy_changed', _handle_energy_changed)
+
 
 func _handle_reset_prisoners_created() -> void:
 	for stat in energy_spent:
@@ -88,4 +91,6 @@ func _validate_create_prisoner_batch() :
 	else :
 		return false
 	
+func _handle_energy_changed() :
+	get_total_energy_spent()
 	

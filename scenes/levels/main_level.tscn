@@ -1,28 +1,25 @@
 [gd_scene format=3 uid="uid://67iqy5ev4jbk"]
 
 [ext_resource type="PackedScene" uid="uid://5aiid51oaqct" path="res://scenes/characters/player/player.tscn" id="1_h7hv4"]
-[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_umov7"]
 [ext_resource type="PackedScene" uid="uid://dmogk8sx2taw7" path="res://scenes/stations/station_components/prisoner_spawner/station_prisoner_spawner.tscn" id="2_k57ag"]
 [ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="3_fon25"]
 [ext_resource type="PackedScene" uid="uid://w3i2xhy1jmad" path="res://scenes/stations/station_components/cell_observer/station_cell_observer.tscn" id="4_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://bol2i42gb0t6j" path="res://scenes/stations/station_components/cell_analyzer/station_cell_analyzer.tscn" id="4_r2y5v"]
 [ext_resource type="PackedScene" uid="uid://cg3cya2fuivpq" path="res://scenes/stations/station_components/prisoner_profiler/station_prisoner_profiler.tscn" id="5_w7r6u"]
-[ext_resource type="PackedScene" uid="uid://h3lwfovcc60n" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="6_fm2ka"]
 [ext_resource type="PackedScene" uid="uid://b748r8761snr8" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_stat_interpreter.tscn" id="9_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="9_kb5nk"]
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="10_erkku"]
+[ext_resource type="PackedScene" uid="uid://q3j8yhkrtm05" path="res://scenes/stations/station_components/defect_decreaser/station_defect_decreaser.tscn" id="11_1l4rw"]
 [ext_resource type="PackedScene" uid="uid://cjfsbwq6outy8" path="res://scenes/stations/station_components/target_cell_comparison/station_target_cell_comparison.tscn" id="11_moggy"]
 [ext_resource type="PackedScene" uid="uid://c76td16ka86aa" path="res://scenes/axe_mount/axe_mount.tscn" id="11_v2xyd"]
+[ext_resource type="PackedScene" uid="uid://dth4itprcw7yn" path="res://scenes/stations/station_components/cell_breeding_2/station_cell_breeding_2.tscn" id="11_w7r6u"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="12_63vgv"]
 [ext_resource type="Script" uid="uid://i003iyh8ukpu" path="res://scripts/game_manager/cell_creator/helpers/name_manager.gd" id="13_c0gn3"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
-[ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/game_manager/cell_breeder/cell_breeder.gd" id="15_5ru7i"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
-[ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/game_manager/cell_breeder/clean_stat_helper/clean_stat_helper.gd" id="16_kb5nk"]
-[ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/defect_stat_helper/defect_stat_helper.gd" id="17_58boi"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="18_58boi"]
@@ -36,6 +33,7 @@
 [ext_resource type="Script" uid="uid://hi5lo6o7ob4j" path="res://scripts/game_manager/cell_creator/assemble_cells/offer_helpers/offer_five.gd" id="23_010mg"]
 [ext_resource type="Script" uid="uid://ddkmklgkuu4ca" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_one.gd" id="24_j7s3e"]
 [ext_resource type="Script" uid="uid://tqdqm0u65kc7" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_three.gd" id="25_8muua"]
+[ext_resource type="PackedScene" uid="uid://d0wtnetxi6per" path="res://scenes/game_manager/cell_breeder.tscn" id="27_mvdwn"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
@@ -123,62 +121,6 @@ omni_attenuation = -0.091
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment" unique_id=1694658381]
 environment = SubResource("Environment_h7hv4")
 
-[node name="Labels" type="Node" parent="Enviroment" unique_id=1706704064]
-
-[node name="TrashCan" type="Label3D" parent="Enviroment/Labels" unique_id=1961802250]
-transform = Transform3D(-0.50000006, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.50000006, 10.055576, 6.407628, 9.396862)
-text = "Trashcan
-"
-font = ExtResource("1_umov7")
-font_size = 128
-
-[node name="CellAnalyze" type="Label3D" parent="Enviroment/Labels" unique_id=848316632]
-transform = Transform3D(-1, 0, 8.940697e-08, 0, 1, 0, -8.940697e-08, 0, -1, 1.0019886, 6.0475597, 12.956424)
-text = "Cell Analyzer"
-font = ExtResource("1_umov7")
-font_size = 100
-
-[node name="BreedingStation" type="Label3D" parent="Enviroment/Labels" unique_id=95947259]
-transform = Transform3D(-4.569558e-08, 0, -1, 0, 1, 0, 1, 0, -4.569558e-08, 11.913313, 6.582696, -0.115977526)
-text = "Breeding Station"
-font = ExtResource("1_umov7")
-font_size = 100
-
-[node name="NewPrisoners" type="Label3D" parent="Enviroment/Labels" unique_id=207666002]
-transform = Transform3D(0.7071067, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.7071067, -18.698984, 4.6270847, -4.4018717)
-text = "New Prisoners"
-font = ExtResource("1_umov7")
-font_size = 46
-
-[node name="Observer" type="Label3D" parent="Enviroment/Labels" unique_id=538194873]
-transform = Transform3D(-1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -1, -15.944424, 6.407628, 7.396862)
-text = "Observer Screen"
-font = ExtResource("1_umov7")
-font_size = 128
-
-[node name="ContainerSpawn" type="Label3D" parent="Enviroment/Labels" unique_id=1420507847]
-transform = Transform3D(-1, 0, 1.1920929e-07, 0, 1, 0, -1.1920929e-07, 0, -1, -5.323801, 3.407628, 9.396862)
-text = "Container Spawn
-"
-font = ExtResource("1_umov7")
-font_size = 64
-
-[node name="HiddenStatInterpreters" type="Label3D" parent="Enviroment/Labels" unique_id=1147158800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0555763, 5.07829, -8.155168)
-text = "Hidden Stat Interpreters"
-font = ExtResource("1_umov7")
-font_size = 100
-
-[node name="TargetComparison" type="Label3D" parent="Enviroment/Labels" unique_id=1118680470]
-transform = Transform3D(-5.9604645e-08, 0, -1, 0, 1, 0, 1, 0, -5.9604645e-08, 15.182026, 3.9011235, 10.256085)
-text = "Target Comparison 
-Screen
-
-
-"
-font = ExtResource("1_umov7")
-font_size = 84
-
 [node name="Wall3" type="StaticBody3D" parent="Enviroment" unique_id=125267237 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.844295, 2.495707, -4.2520885)
 collision_layer = 2
@@ -249,15 +191,14 @@ cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 [node name="CellAnalyzer" parent="Stations/ContainerStations" unique_id=1894764592 instance=ExtResource("4_r2y5v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3779736, 0.03572035, 11)
 
-[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=1859807357 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("6_fm2ka")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.377974, 0, 0)
-cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
-
 [node name="CellTrashCan" parent="Stations/ContainerStations" unique_id=995289130 instance=ExtResource("9_kb5nk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 9)
 
 [node name="TargetCellComparison" parent="Stations/ContainerStations" unique_id=1263804446 instance=ExtResource("11_moggy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.232382, 0, -1.4660921)
+
+[node name="DefectDecreaser" parent="Stations/ContainerStations" unique_id=1174221731 instance=ExtResource("11_1l4rw")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.0953336, 0.8529396, 12.287113)
 
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
 
@@ -271,6 +212,9 @@ interpreter_type = "intelligence"
 [node name="HiddenStatInterpreter3" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1662428044 instance=ExtResource("9_7xrfk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -1)
 interpreter_type = "community"
+
+[node name="CellBreeding2" parent="Stations/ContainerStations" unique_id=699940122 instance=ExtResource("11_w7r6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
@@ -323,15 +267,7 @@ script = ExtResource("25_8muua")
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
 
-[node name="CellBreeder" type="Node" parent="GameManager" unique_id=1130566788 node_paths=PackedStringArray("name_manager")]
-script = ExtResource("15_5ru7i")
-name_manager = NodePath("../CellCreator/NameManager")
-
-[node name="CleanStatHelper" type="Node" parent="GameManager/CellBreeder" unique_id=1801093720]
-script = ExtResource("16_kb5nk")
-
-[node name="DefectStatHelper" type="Node" parent="GameManager/CellBreeder" unique_id=1086675230]
-script = ExtResource("17_58boi")
+[node name="CellBreeder" parent="GameManager" unique_id=1798622159 instance=ExtResource("27_mvdwn")]
 
 [node name="DefectEventManager" type="Node" parent="GameManager" unique_id=1995310140]
 script = ExtResource("18_58boi")

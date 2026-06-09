@@ -19,9 +19,9 @@ var has_offered_item : bool = false
 
 func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
-	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed)
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 
-func _handle_energy_changed() :
+func _handle_energy_turn_changed() :
 
 	var curr_energy = GLGameManagerBus.curr_energy
 	var max_energy = GLGameManagerBus.max_energy

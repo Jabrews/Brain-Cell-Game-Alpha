@@ -1,0 +1,343 @@
+[gd_scene format=3 uid="uid://pjlvwort5xh4"]
+
+[ext_resource type="Script" uid="uid://bf2vg10axgdnm" path="res://scripts/stations/station_screens/defect_decreaser/screen_defect_decrease.gd" id="1_pv1fd"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_y2we1"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_hte8x"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_pv1fd"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="5_6h8ke"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="6_e5gqw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hte8x"]
+shader = ExtResource("1_y2we1")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="Shader" id="Shader_7s2tk"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
+uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+
+// colors
+uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+// overlap opacity: new defect over prior defect
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_prior_defect = step(UV.x, prior_defect_value);
+	float in_new_defect = step(UV.x, new_defect_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw prior defect base
+		if (in_prior_defect > 0.5) {
+			result = vec4(prior_defect_color.rgb, tex.a);
+		}
+
+		// 2. draw new defect on top
+		if (in_new_defect > 0.5) {
+
+			// overlap → transparent new defect color
+			if (in_prior_defect > 0.5) {
+				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
+			}
+			// new defect over empty → full new defect color
+			else {
+				result = vec4(new_defect_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6h8ke"]
+shader = SubResource("Shader_7s2tk")
+shader_parameter/prior_defect_value = 0.7910000375725
+shader_parameter/new_defect_value = 0.48400002299
+shader_parameter/prior_defect_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+shader_parameter/new_defect_color = Color(1, 0.4908334, 0.35000002, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fnw41"]
+shader = ExtResource("5_6h8ke")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("6_e5gqw")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yc3t4"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="Shader" id="Shader_pv1fd"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
+uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+
+// colors
+uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+// overlap opacity: new defect over prior defect
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_prior_defect = step(UV.x, prior_defect_value);
+	float in_new_defect = step(UV.x, new_defect_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw prior defect base
+		if (in_prior_defect > 0.5) {
+			result = vec4(prior_defect_color.rgb, tex.a);
+		}
+
+		// 2. draw new defect on top
+		if (in_new_defect > 0.5) {
+
+			// overlap → transparent new defect color
+			if (in_prior_defect > 0.5) {
+				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
+			}
+			// new defect over empty → full new defect color
+			else {
+				result = vec4(new_defect_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_avpus"]
+shader = SubResource("Shader_pv1fd")
+shader_parameter/prior_defect_value = 0.7910000375725
+shader_parameter/new_defect_value = 0.48400002299
+shader_parameter/prior_defect_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+shader_parameter/new_defect_color = Color(1, 0.4908334, 0.35000002, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_6h8ke"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
+uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+
+// colors
+uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+// overlap opacity: new defect over prior defect
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_prior_defect = step(UV.x, prior_defect_value);
+	float in_new_defect = step(UV.x, new_defect_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw prior defect base
+		if (in_prior_defect > 0.5) {
+			result = vec4(prior_defect_color.rgb, tex.a);
+		}
+
+		// 2. draw new defect on top
+		if (in_new_defect > 0.5) {
+
+			// overlap → transparent new defect color
+			if (in_prior_defect > 0.5) {
+				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
+			}
+			// new defect over empty → full new defect color
+			else {
+				result = vec4(new_defect_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e5gqw"]
+shader = SubResource("Shader_6h8ke")
+shader_parameter/prior_defect_value = 0.7910000375725
+shader_parameter/new_defect_value = 0.48400002299
+shader_parameter/prior_defect_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+shader_parameter/new_defect_color = Color(1, 0.4908334, 0.35000002, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/edge_padding = 5.0
+
+[node name="DefectDecrease" type="Node2D" unique_id=1232910235]
+script = ExtResource("1_pv1fd")
+
+[node name="BG" type="ColorRect" parent="." unique_id=320399315]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.37, 0, 0.13566671, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1453746158]
+material = SubResource("ShaderMaterial_hte8x")
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Header" type="Label" parent="." unique_id=511288289]
+offset_left = 92.0
+offset_top = 10.0
+offset_right = 392.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("2_hte8x")
+theme_override_font_sizes/font_size = 30
+text = "New Defect"
+
+[node name="NoCell" type="Label" parent="." unique_id=733040004]
+offset_left = 75.0
+offset_top = 108.0
+offset_right = 495.0
+offset_bottom = 138.0
+theme_override_fonts/font = ExtResource("2_hte8x")
+theme_override_font_sizes/font_size = 24
+text = "No Cell loaded"
+
+[node name="DefectDisplay" type="Control" parent="." unique_id=1007256441]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label1" type="Label" parent="DefectDisplay" unique_id=1802331843]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 60.0
+offset_right = 509.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("2_hte8x")
+theme_override_font_sizes/font_size = 16
+text = "Strength"
+
+[node name="DefectStrengthBar" type="Sprite2D" parent="DefectDisplay" unique_id=1884223929]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6h8ke")
+position = Vector2(237, 87.5)
+scale = Vector2(1.2451613, 0.7749999)
+texture = ExtResource("3_pv1fd")
+
+[node name="StrengthHide" type="Sprite2D" parent="DefectDisplay" unique_id=1462158389]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_fnw41")
+position = Vector2(232.99998, 89.99999)
+scale = Vector2(1.2746031, 0.675)
+texture = SubResource("CompressedTexture2D_yc3t4")
+
+[node name="Label2" type="Label" parent="DefectDisplay" unique_id=1858931218]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 131.0
+offset_right = 478.0
+offset_bottom = 166.0
+theme_override_fonts/font = ExtResource("2_hte8x")
+theme_override_font_sizes/font_size = 16
+text = "Intelligence
+"
+
+[node name="DefectIntelligenceBar" type="Sprite2D" parent="DefectDisplay" unique_id=539755953]
+texture_filter = 1
+material = SubResource("ShaderMaterial_avpus")
+position = Vector2(238, 158.49998)
+scale = Vector2(1.2451613, 0.725)
+texture = ExtResource("3_pv1fd")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="DefectDisplay" unique_id=1947688622]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_fnw41")
+position = Vector2(233.25, 162.5)
+scale = Vector2(1.2746031, 0.675)
+texture = SubResource("CompressedTexture2D_yc3t4")
+
+[node name="Label3" type="Label" parent="DefectDisplay" unique_id=1471603427]
+layout_mode = 0
+offset_left = 174.0
+offset_top = 196.0
+offset_right = 504.0
+offset_bottom = 226.0
+theme_override_fonts/font = ExtResource("2_hte8x")
+theme_override_font_sizes/font_size = 16
+text = "Community"
+
+[node name="DefectCommunityBar" type="Sprite2D" parent="DefectDisplay" unique_id=92046402]
+texture_filter = 1
+material = SubResource("ShaderMaterial_e5gqw")
+position = Vector2(238, 229)
+scale = Vector2(1.2451613, 0.8)
+texture = ExtResource("3_pv1fd")
+
+[node name="CommunityHide" type="Sprite2D" parent="DefectDisplay" unique_id=154175610]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_fnw41")
+position = Vector2(232.99998, 229)
+scale = Vector2(1.2746031, 0.675)
+texture = SubResource("CompressedTexture2D_yc3t4")

@@ -15,9 +15,9 @@ var shake_tween : Tween
 
 
 func _ready() -> void: 
-	GLGameManagerBus.connect('process_energy_changed', _handle_energy_changed)
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 	
-func _handle_energy_changed() :
+func _handle_energy_turn_changed() :
 	total_hidden_label.text = str(IVHiddenStats.max_stats_to_hide)
 	max_stats_to_hide = IVHiddenStats.max_stats_to_hide
 	

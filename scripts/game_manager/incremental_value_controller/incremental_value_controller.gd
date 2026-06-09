@@ -7,6 +7,12 @@ var last_round : int = 0
 @onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
 @onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
 
+func _ready() -> void:
+	# when energy changes outside of prisoner generation
+	# ex. cell defector decrease station
+	GLGameManagerBus.connect('energy_changed', _handle_energy_changed)
+
+
 @warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
 func change_progression_step(round : int, curr_energy: int) :
 	
@@ -22,7 +28,7 @@ func change_progression_step(round : int, curr_energy: int) :
 	handle_energy(round, GLGameManagerBus.curr_energy)
 	
 	
-	GLGameManagerBus.emit_signal('process_energy_changed')
+	GLGameManagerBus.emit_signal('proceed_next_energy_turn')
 	
 
 @warning_ignore("shadowed_global_identifier")
@@ -33,7 +39,7 @@ func handle_round(round : int):
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
 			# ENERGY ##
 			GLGameManagerBus.curr_energy = 100
-			GLGameManagerBus.max_energy = 100
+			GLGameManagerBus.max_energy = 120
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -42,6 +48,7 @@ func handle_round(round : int):
 			IVCellBreeding.high_add_percant_scale = 0.7
 			IVCellBreeding.low_subtract_percant_scale = 0.9
 			IVCellBreeding.high_subtract_percant_scale = 0.8
+			## DEFECT SCALING ##
 			## CELL CREATOR ##
 			IVCellCreator.max_stat_value = 160
 			## USEABLE ITEMS ##
@@ -82,8 +89,8 @@ func handle_round(round : int):
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
-			GLGameManagerBus.curr_energy = 200
-			GLGameManagerBus.max_energy = 200
+			GLGameManagerBus.curr_energy = 100
+			GLGameManagerBus.max_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 6
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -91,11 +98,11 @@ func handle_round(round : int):
 			IVCellCreator.max_stat_value = 320
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 60
-			IVUseableItemSpawner.defect_shots_to_spawn = 0
+			IVUseableItemSpawner.defect_shots_to_spawn = 1
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
-			IVUseableItemSpawner.scissors_to_spawn = 0
+			IVUseableItemSpawner.scissors_to_spawn = 1
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.stat_offer_energy_percant= 50		
@@ -125,3 +132,6 @@ func handle_energy(round : int, energy: int) :
 	iv_helper_defect_event._update_defect_event_values(round, energy)
 	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
 	
+
+func _handle_energy_changed() :
+	handle_energy(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)

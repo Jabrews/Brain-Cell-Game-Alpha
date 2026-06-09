@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bex7onw4dih4n"]
 
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="1_im11v"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_im11v"]
 [ext_resource type="Script" uid="uid://bj8s6wuu4ctwb" path="res://scripts/stations/station_screens/cell_observer/screen_observer_list_index.gd" id="1_jo7ca"]
 [ext_resource type="FontFile" uid="uid://ehsk4rh04d68" path="res://models/fonts/my 3x5 tiny mono pixel font.ttf" id="2_56hkx"]
 

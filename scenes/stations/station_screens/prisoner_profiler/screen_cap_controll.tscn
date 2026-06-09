@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cqata2888sx7w" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/screen_cap_controll.gd" id="1_jbr1f"]
 [ext_resource type="Script" uid="uid://c3jbookl1hh3c" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/symbol_range_manager.gd" id="2_355kt"]
 [ext_resource type="Script" uid="uid://dgh2chyak468d" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/help_shake_symbols.gd" id="3_355kt"]
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://reusable/shaders/scan_lines.gdshader" id="3_o65vm"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="3_o65vm"]
 [ext_resource type="Script" uid="uid://ybixnskyf4ki" path="res://scripts/stations/station_screens/prisoner_profiler/cap_control/update_cap_control.gd" id="4_b3w7g"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="4_kyvqp"]
 [ext_resource type="Shader" uid="uid://d0yj8rspbsydr" path="res://scripts/shaders/caution_cap_control_symbol_bg.gdshader" id="5_b3w7g"]
