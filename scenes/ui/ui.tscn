@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://bn73xwmm170ls" path="res://scripts/ui/blood_overlay.gd" id="6_pfayw"]
 [ext_resource type="Script" uid="uid://d4b1ul6fr6gpx" path="res://scripts/ui/drop_axe_at_mount.gd" id="7_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://dyc4q2f7pd5lq" path="res://models/cursor/cursor.png" id="8_jcn1r"]
+[ext_resource type="Script" uid="uid://c4lwsm1lq7bw4" path="res://scripts/ui/player_cursor.gd" id="9_4kltc"]
 [ext_resource type="PackedScene" uid="uid://33d63f8ania3" path="res://scenes/ui/useable_item_popup.tscn" id="9_uegxj"]
+[ext_resource type="Script" uid="uid://cjop1t15syvqd" path="res://scripts/ui/sit_in_chair.gd" id="10_y220t"]
 
 [node name="UI" type="Control" unique_id=885223017]
 layout_mode = 3
@@ -61,10 +63,11 @@ script = ExtResource("6_pfayw")
 [node name="DropAxeBackAtMount" type="Label" parent="." unique_id=783017163]
 visible = false
 layout_mode = 0
-offset_left = 289.0
+offset_left = 158.0
 offset_top = 404.0
-offset_right = 572.0
+offset_right = 686.0
 offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("1_u7n8c")
 theme_override_font_sizes/font_size = 24
 text = "Drop Axe Back at mount"
 script = ExtResource("7_7vp6q")
@@ -75,6 +78,7 @@ texture_filter = 1
 position = Vector2(427, 240)
 scale = Vector2(1.05, 1.05)
 texture = ExtResource("8_jcn1r")
+script = ExtResource("9_4kltc")
 
 [node name="UseableItemPopup" parent="." unique_id=1755211546 instance=ExtResource("9_uegxj")]
 visible = false
@@ -85,3 +89,16 @@ popup_type = "scissors"
 visible = false
 layout_mode = 1
 popup_type = "defect_shot"
+
+[node name="SitInChair" type="Label" parent="." unique_id=756833370]
+visible = false
+layout_mode = 0
+offset_left = 158.0
+offset_top = 404.0
+offset_right = 686.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 24
+text = "Sit In Chair"
+horizontal_alignment = 1
+script = ExtResource("10_y220t")

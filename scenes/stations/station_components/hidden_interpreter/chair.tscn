@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://couasl1ysgspr"]
+
+[ext_resource type="Script" uid="uid://bxtfyvpr0gxni" path="res://scripts/stations/station_components/hidden_interpreter/chair/chair.gd" id="1_2ipt2"]
+[ext_resource type="Script" uid="uid://cg83dg2kqm3a0" path="res://scripts/stations/station_components/hidden_interpreter/chair/fake_player.gd" id="2_2ipt2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pqduu"]
+albedo_color = Color(0.17, 0.15798667, 0.079900004, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ew3kw"]
+material = SubResource("StandardMaterial3D_pqduu")
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8loi"]
+size = Vector3(1, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n813k"]
+albedo_color = Color(0.17, 0.15798667, 0.079900004, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u23r5"]
+material = SubResource("StandardMaterial3D_n813k")
+size = Vector3(0.18, 1.3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rpl7i"]
+size = Vector3(0.18, 1.3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ew3kw"]
+size = Vector3(1.96, 0.389, 2.1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ew3kw"]
+height = 3.0
+
+[node name="Chair" type="Node3D" unique_id=219843521]
+script = ExtResource("1_2ipt2")
+
+[node name="Bottom" type="StaticBody3D" parent="." unique_id=193523324]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.14754528, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bottom" unique_id=506896965]
+mesh = SubResource("BoxMesh_ew3kw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bottom" unique_id=748978994]
+shape = SubResource("BoxShape3D_m8loi")
+
+[node name="Back" type="StaticBody3D" parent="." unique_id=2074580288]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0.435709, 0.9856919, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Back" unique_id=112049482]
+mesh = SubResource("BoxMesh_u23r5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Back" unique_id=1789587808]
+shape = SubResource("BoxShape3D_rpl7i")
+
+[node name="DetectPlayerArea" type="Area3D" parent="." unique_id=847835754]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectPlayerArea" unique_id=643125294]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.028076172, 0)
+shape = SubResource("BoxShape3D_ew3kw")
+
+[node name="FakePlayer" type="Node3D" parent="." unique_id=1799615296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06796646, 1.5317947, 0)
+script = ExtResource("2_2ipt2")
+vertical_min_degrees = -45.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FakePlayer" unique_id=229143702]
+visible = false
+mesh = SubResource("CapsuleMesh_ew3kw")
+
+[node name="CameraPivot" type="Node3D" parent="FakePlayer" unique_id=971252611]
+transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.08834785, 1.7317039, 0)
+
+[node name="Camera3D" type="Camera3D" parent="FakePlayer/CameraPivot" unique_id=373219512]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1064994, 0)
+
+[connection signal="body_entered" from="DetectPlayerArea" to="." method="_on_detect_player_area_body_entered"]
+[connection signal="body_exited" from="DetectPlayerArea" to="." method="_on_detect_player_area_body_exited"]

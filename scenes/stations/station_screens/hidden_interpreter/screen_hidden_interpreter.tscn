@@ -1,0 +1,204 @@
+[gd_scene format=3 uid="uid://dkiqdms5rewwd"]
+
+[ext_resource type="Script" uid="uid://dh5uaa6ga01ux" path="res://scripts/stations/station_screens/hidden_interpreter/screen_hidden_interpreter.gd" id="1_daevc"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="2_8ml75"]
+[ext_resource type="Script" uid="uid://fsaia3sp67fj" path="res://scripts/stations/station_screens/hidden_interpreter/handle_switch_screen.gd" id="2_16pp1"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_170mx"]
+[ext_resource type="Texture2D" uid="uid://ckxieudiatdx4" path="res://models/hidden_stat_interpreter_bar/empty_hidden_stat_interpreter_bar.png" id="4_bvh1a"]
+[ext_resource type="Script" uid="uid://chnqpb78l4ykx" path="res://scripts/stations/station_screens/hidden_interpreter/idle_screen.gd" id="4_g4hcn"]
+[ext_resource type="Texture2D" uid="uid://coohyk4jppfv4" path="res://models/hidden_stat_interpreter_bar/filled_hidden_stat_interpreter_bar-export.png" id="5_16pp1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3tbmk"]
+shader = ExtResource("2_8ml75")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenHiddenInterpreter" type="Node2D" unique_id=945761564]
+script = ExtResource("1_daevc")
+
+[node name="HandleSwitchScreen" type="Node" parent="." unique_id=885940284]
+script = ExtResource("2_16pp1")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1798812380]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.37, 0, 0.13566671, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=596538663]
+material = SubResource("ShaderMaterial_3tbmk")
+offset_right = 480.0
+offset_bottom = 270.0
+metadata/_edit_use_anchors_ = true
+
+[node name="IdleScreen" type="Control" parent="." unique_id=1295362234]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_g4hcn")
+
+[node name="StatName" type="Label" parent="IdleScreen" unique_id=1103905012]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 16.0
+offset_right = 420.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.89269775, 0.8258167, 0, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 30
+text = "STAT_TYPE
+"
+horizontal_alignment = 1
+
+[node name="TimeLeft" type="Label" parent="IdleScreen" unique_id=311442513]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 73.0
+offset_right = 428.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 26
+text = "Time left - 00"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="IdleScreen" unique_id=731867955]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.225
+anchor_top = 3.725
+anchor_right = 1.225
+anchor_bottom = 3.725
+offset_top = -9.0
+offset_right = 400.0
+offset_bottom = 51.0
+scale = Vector2(1, 1.5428572)
+nine_patch_stretch = true
+texture_under = ExtResource("4_bvh1a")
+texture_progress = ExtResource("5_16pp1")
+metadata/_edit_use_anchors_ = true
+
+[node name="NoCellDetected" type="Control" parent="." unique_id=190695349]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatName" type="Label" parent="NoCellDetected" unique_id=805245209]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 30.0
+offset_right = 428.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0.89269775, 0.8258167, 0, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 30
+text = "STAT_TYPE"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="NoCellDetected" unique_id=216359482]
+layout_mode = 0
+offset_top = 91.0
+offset_right = 480.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 28
+text = "No Cell Detected"
+horizontal_alignment = 1
+
+[node name="NoHiddenStatDetected" type="Control" parent="." unique_id=1847513837]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="NoHiddenStatDetected" unique_id=607263285]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 96.0
+offset_right = 538.0
+offset_bottom = 167.0
+theme_override_colors/font_color = Color(1, 0.18, 0.18, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 34
+text = "NO HIDDEN 
+STAT DETECTED"
+horizontal_alignment = 1
+
+[node name="JoltDetectedPleaseReset" type="Control" parent="." unique_id=366826745]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatName" type="Label" parent="JoltDetectedPleaseReset" unique_id=383068629]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 16.0
+offset_right = 361.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.89269775, 0.8258167, 0, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 30
+text = "STAT_TYPE
+"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="JoltDetectedPleaseReset" unique_id=1450842776]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 109.0
+offset_right = 538.0
+offset_bottom = 172.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 30
+text = "Jolt Detected"
+horizontal_alignment = 1
+
+[node name="Reset" type="Label" parent="JoltDetectedPleaseReset" unique_id=666472736]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 164.0
+offset_right = 538.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(1, 0.20999998, 0.20999998, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 30
+text = "Reset"
+horizontal_alignment = 1
+
+[node name="Finished" type="Control" parent="." unique_id=840109306]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Finished" unique_id=1862543960]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 96.0
+offset_right = 538.0
+offset_bottom = 167.0
+theme_override_colors/font_color = Color(0.18, 1, 0.24833328, 1)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 34
+text = "Finished"
+horizontal_alignment = 1

@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://w3i2xhy1jmad" path="res://scenes/stations/station_components/cell_observer/station_cell_observer.tscn" id="4_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://bol2i42gb0t6j" path="res://scenes/stations/station_components/cell_analyzer/station_cell_analyzer.tscn" id="4_r2y5v"]
 [ext_resource type="PackedScene" uid="uid://cg3cya2fuivpq" path="res://scenes/stations/station_components/prisoner_profiler/station_prisoner_profiler.tscn" id="5_w7r6u"]
-[ext_resource type="PackedScene" uid="uid://b748r8761snr8" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_stat_interpreter.tscn" id="9_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="9_kb5nk"]
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="10_erkku"]
@@ -36,6 +35,7 @@
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
 [ext_resource type="Script" uid="uid://b067pgk4pw487" path="res://scripts/game_manager/prisoner_picks_manager/prisoner_picks_manager.gd" id="36_w7r6u"]
+[ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
@@ -200,15 +200,16 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.09
 
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
 
-[node name="HiddenStatInterpreter" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=800495250 instance=ExtResource("9_7xrfk")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0, -1)
+[node name="HiddenInterpreter" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1493577416 instance=ExtResource("38_5mews")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4, 0.6634282, -8)
+interpreter_type = "strength"
 
-[node name="HiddenStatInterpreter2" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1842691209 instance=ExtResource("9_7xrfk")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, 0, -1)
+[node name="HiddenInterpreter2" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1619378926 instance=ExtResource("38_5mews")]
+transform = Transform3D(-4.371138e-08, 0, -1, 0, 1, 0, 1, 0, -4.371138e-08, 3, 0.6634282, -8)
 interpreter_type = "intelligence"
 
-[node name="HiddenStatInterpreter3" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1662428044 instance=ExtResource("9_7xrfk")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6, 0, -1)
+[node name="HiddenInterpreter3" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=105860181 instance=ExtResource("38_5mews")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.9, 0.6634282, -8)
 interpreter_type = "community"
 
 [node name="CellBreeding2" parent="Stations/ContainerStations" unique_id=699940122 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("11_w7r6u")]

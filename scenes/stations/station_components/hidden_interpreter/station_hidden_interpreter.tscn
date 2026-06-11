@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://dttes4islfno1"]
+
+[ext_resource type="Script" uid="uid://cq7tbqhjo6wkn" path="res://scripts/stations/station_components/hidden_interpreter/timer_increment.gd" id="1_d8rjw"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_etvtj"]
+[ext_resource type="Script" uid="uid://k66a3d830fwh" path="res://scripts/stations/station_components/hidden_interpreter/station_hidden_interpreter.gd" id="1_fekow"]
+[ext_resource type="Script" uid="uid://beg3fnl2m5c85" path="res://reusable/load_panel/load_panel_body.gd" id="1_x8w2f"]
+[ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="2_cn0gf"]
+[ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="3_x71qd"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="4_x71qd"]
+[ext_resource type="PackedScene" uid="uid://couasl1ysgspr" path="res://scenes/stations/station_components/hidden_interpreter/chair.tscn" id="5_x71qd"]
+[ext_resource type="PackedScene" uid="uid://dkiqdms5rewwd" path="res://scenes/stations/station_screens/hidden_interpreter/screen_hidden_interpreter.tscn" id="8_tsedk"]
+[ext_resource type="Script" uid="uid://45sg3v2v03yt" path="res://scripts/stations/station_components/hidden_interpreter/audio_manager.gd" id="10_h24im"]
+[ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="10_lwciy"]
+[ext_resource type="AudioStream" uid="uid://c7ncshh48gvd7" path="res://sounds/hidden_stat_interpreter/interpreter_finished.mp3" id="12_wiuhg"]
+[ext_resource type="AudioStream" uid="uid://c6pdl0o33b0rt" path="res://sounds/hidden_stat_interpreter/hidden_stat_accept.mp3" id="13_68u63"]
+[ext_resource type="AudioStream" uid="uid://dipbinh30tmv4" path="res://sounds/hidden_stat_interpreter/hidden_stat_drone.mp3" id="14_gb8c7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pqduu"]
+size = Vector3(2.11, 2.2, 3.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_n813k"]
+size = Vector3(2.11, 2.2, 3.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pqduu"]
+size = Vector3(1.82, 0.2, 1.555)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n813k"]
+size = Vector3(1.82, 0.2, 1.555)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njhqc"]
+albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tu4xu"]
+material = SubResource("StandardMaterial3D_njhqc")
+size = Vector3(0.55, 0.55, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i1r25"]
+size = Vector3(0.6, 0.6, 0.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_niabr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_etvtj"]
+size = Vector3(1.4238892, 0.15491943, 1.4798584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cn0gf"]
+material = SubResource("StandardMaterial3D_a1kj4")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x71qd"]
+size = Vector3(1.5, 0.03720703, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x71qd"]
+size = Vector3(1.35, 1.3, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tu4xu"]
+size = Vector3(1.35, 1.3, 1.4)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i1r25"]
+viewport_path = NodePath("InterpreterTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_i1r25")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_niabr"]
+material = SubResource("StandardMaterial3D_0jyhj")
+size = Vector2(1.2, 1.1)
+orientation = 0
+
+[node name="HiddenInterpreter" type="Node3D" unique_id=1493577416]
+script = ExtResource("1_fekow")
+
+[node name="TimerIncrement" type="Node" parent="." unique_id=2040941204]
+script = ExtResource("1_d8rjw")
+
+[node name="TimerIncrement" type="Timer" parent="TimerIncrement" unique_id=898310556]
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=1316949117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49693012, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=104090393]
+shape = SubResource("BoxShape3D_pqduu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1758328684]
+mesh = SubResource("BoxMesh_n813k")
+
+[node name="LoaderPanel" type="StaticBody3D" parent="." unique_id=153228035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.5)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoaderPanel" unique_id=793571926]
+mesh = SubResource("BoxMesh_pqduu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoaderPanel" unique_id=1278594017]
+shape = SubResource("BoxShape3D_n813k")
+
+[node name="JoltBtn" type="StaticBody3D" parent="." unique_id=35710442]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3723109, 0.91657674, 0.26174688)
+collision_layer = 0
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="JoltBtn" unique_id=1922317314]
+mesh = SubResource("BoxMesh_tu4xu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JoltBtn" unique_id=720748335]
+shape = SubResource("BoxShape3D_i1r25")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="JoltBtn" unique_id=1387268838]
+shape = SubResource("BoxShape3D_i1r25")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="JoltBtn" unique_id=1249735744 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_etvtj")
+hover_mesh_scene = ExtResource("2_cn0gf")
+hover_mesh_scale = 0.3
+hover_mesh_scale_x = 0.2
+orignal_mesh = NodePath("../MeshInstance3D")
+bouncing_sprite_scene = ExtResource("3_x71qd")
+custom_b_sprite_pos = Vector3(0.1, 1, -0.715)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="JoltBtn/HoverableMesh" unique_id=109241576]
+shape = SubResource("BoxShape3D_niabr")
+
+[node name="LoadPanelCellBody" type="Area3D" parent="." unique_id=1387553765 node_paths=PackedStringArray("cell_reciever")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04398966, 0.6923827, -2.4871616)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_x8w2f")
+cell_reciever = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCellBody" unique_id=865108450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_etvtj")
+
+[node name="PannelCollision" type="StaticBody3D" parent="LoadPanelCellBody" unique_id=28090423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadPanelCellBody/PannelCollision" unique_id=900544063]
+mesh = SubResource("BoxMesh_cn0gf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCellBody/PannelCollision" unique_id=1188968090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_x71qd")
+
+[node name="InterpreterTV" type="Node3D" parent="." unique_id=1959546229]
+
+[node name="TVBody" type="StaticBody3D" parent="InterpreterTV" unique_id=370791356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2450507, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="InterpreterTV/TVBody" unique_id=1366828845]
+mesh = SubResource("BoxMesh_x71qd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InterpreterTV/TVBody" unique_id=327953785]
+shape = SubResource("BoxShape3D_tu4xu")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="InterpreterTV" unique_id=1175519284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6806915, 2.253083, 0)
+mesh = SubResource("PlaneMesh_niabr")
+script = ExtResource("4_x71qd")
+
+[node name="SubViewport" type="SubViewport" parent="InterpreterTV/TvFrontPannel" unique_id=144568317]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+
+[node name="ScreenHiddenInterpreter" parent="InterpreterTV/TvFrontPannel/SubViewport" unique_id=945761564 instance=ExtResource("8_tsedk")]
+
+[node name="Chair" parent="." unique_id=219843521 node_paths=PackedStringArray("camera_look_target", "camera_foward_refrence") instance=ExtResource("5_x71qd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1583438, 0.28218222, 0)
+camera_look_target = NodePath("../InterpreterTV/TvFrontPannel")
+camera_foward_refrence = NodePath("../FowardTarget")
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=549181281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.1696863, 0)
+script = ExtResource("10_h24im")
+
+[node name="InterpreterInvalidStat" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1879407197]
+stream = ExtResource("10_lwciy")
+volume_db = -15.0
+pitch_scale = 0.9
+max_distance = 30.0
+
+[node name="InterpreterFinished" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1731879122]
+stream = ExtResource("12_wiuhg")
+pitch_scale = 1.1
+max_distance = 30.0
+
+[node name="StatAccepted" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=807449946]
+stream = ExtResource("13_68u63")
+volume_db = -2.0
+pitch_scale = 0.8
+max_distance = 30.0
+
+[node name="IdleDrone" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1418617883]
+stream = ExtResource("14_gb8c7")
+pitch_scale = 0.75
+max_distance = 20.0
+
+[node name="FowardTarget" type="Marker3D" parent="." unique_id=1565811249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7017405, 2.2593763, 0.02066207)
+gizmo_extents = 0.07

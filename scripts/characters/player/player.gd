@@ -10,6 +10,8 @@ extends CharacterBody3D
 
 var speed : float = 20.0
 
+var is_paused : bool = false
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -17,10 +19,14 @@ func _ready():
 	# update char refrence state
 	GLPlayerState.player_refrence = self
 	
+	GLChairBus.connect('toggle_player_sat_on_interpreter_chair', _handle_toggle_player_sat_on_interpreter_chair)	
 	
 	
 	
 func _physics_process(delta: float) -> void:
+	
+	if is_paused :
+		return
 	
 	
 	if not is_on_floor():
@@ -46,13 +52,23 @@ func _physics_process(delta: float) -> void:
 
 ### BOBBLE + CAMERA ###
 func _unhandled_input(event: InputEvent) -> void:
+	
+	if is_paused :
+		return
+	
 	if event is InputEventMouseMotion:
 		
 		camera_pivot.rotate_y(-event.relative.x * mouse_sensitivity_x)
 		camera.rotate_x(-event.relative.y * mouse_sensitivity_y)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(80))
 
-func set_ray_cast_rotation() :
-	pass # want to match cam pivot mouse rortation. so if they look up and down it follows
+func _handle_toggle_player_sat_on_interpreter_chair(toggle_value : bool, _interpreter_type : String) :
+	if toggle_value :
+		is_paused = true
+		visible = false
+	else :
+		is_paused = false
+		visible = true
+	
 	
 	

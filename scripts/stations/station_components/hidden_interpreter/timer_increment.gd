@@ -1,0 +1,31 @@
+extends Node
+
+var current_time_increment : int = 0
+
+# componnets
+@onready var timer_increment : Timer = $TimerIncrement
+
+func _ready() -> void:
+	timer_increment.connect('timeout', _handle_timer_increment_timeout)
+
+func _start_timer() :
+	
+	# only start timer if its not already running
+	if timer_increment.is_stopped()	 :
+		timer_increment.start()	
+
+func _reset_timer() :
+	current_time_increment = 0	
+	timer_increment.stop()
+	get_parent()._handle_interpreter_timer_reset()
+	
+func _handle_timer_increment_timeout() :
+	current_time_increment += 1
+	
+	if current_time_increment >= IVHiddenStats.max_time_to_discover_hidden : 
+		get_parent()._handle_interpreter_timer_finished()
+	
+	else : 
+		get_parent()._handle_interpreter_timer_increment(current_time_increment)
+		
+	
