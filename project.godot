@@ -43,6 +43,8 @@ IVCellDefectDecreaser="*uid://bk0qwkq6easio"
 GAMECellBreeder="*uid://d0wtnetxi6per"
 GAMENameManager="*uid://bbink7k6gloh3"
 GLChairBus="*uid://dptbw5litabm1"
+GLInterpreterGames="*uid://bleuf4oh1igdo"
+IVFlappyBrain="*uid://c30hoeuma0kvb"
 
 [debug]
 
@@ -127,8 +129,10 @@ attack={
 
 [layer_names]
 
+2d_physics/layer_1="player"
 3d_physics/layer_1="player"
 3d_navigation/layer_1="Floor"
+2d_physics/layer_2="tiles"
 3d_physics/layer_2="tiles"
 3d_physics/layer_3="cell_container"
 3d_physics/layer_4="player_items"

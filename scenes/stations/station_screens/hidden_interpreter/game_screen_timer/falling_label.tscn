@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://k4lxradq4u10"]
+
+[ext_resource type="FontFile" uid="uid://falf5rdnexev" path="res://models/fonts/3x3-pixel-font.otf" id="1_5dqjn"]
+[ext_resource type="Script" uid="uid://duhb1pgc8vbvd" path="res://scripts/stations/station_screens/hidden_interpreter/game_screen_timer/falling_label.gd" id="1_nilr3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dqjn"]
+size = Vector2(32, 16)
+
+[node name="FallingLabel" type="RigidBody2D" unique_id=1247940326]
+script = ExtResource("1_nilr3")
+
+[node name="FallingLabelText" type="Label" parent="." unique_id=174386839]
+texture_filter = 1
+theme_override_fonts/font = ExtResource("1_5dqjn")
+theme_override_font_sizes/font_size = 20
+text = "-1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=309794476]
+position = Vector2(16, 8)
+shape = SubResource("RectangleShape2D_5dqjn")

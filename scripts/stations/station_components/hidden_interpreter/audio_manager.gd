@@ -4,6 +4,8 @@ extends Node
 @onready var s_interpreter_finished : AudioStreamPlayer3D = $InterpreterFinished
 @onready var s_stat_accepted : AudioStreamPlayer3D = $StatAccepted
 @onready var idle_drone : AudioStreamPlayer3D = $IdleDrone
+@onready var jolt_start : AudioStreamPlayer3D = $JoltStart
+@onready var jolt_spark : AudioStreamPlayer3D = $JoltSpark
 
 func play_hidden_stat_invalid() :
 	s_interpreter_invalid.play()
@@ -20,3 +22,14 @@ func toggle_play_idle_drone(toggle_value : bool) :
 		idle_drone.play() 
 	else :
 		idle_drone.stop()
+
+func toggle_play_jolt(toggle_value: bool) -> void:
+	if toggle_value:
+		jolt_start.play()
+
+		await get_tree().create_timer(0.5).timeout
+
+		jolt_spark.play()
+	else:
+		jolt_start.stop()
+		jolt_spark.stop()

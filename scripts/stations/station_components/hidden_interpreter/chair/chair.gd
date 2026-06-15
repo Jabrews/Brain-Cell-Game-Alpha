@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 
 
 func set_player_in_chair(value: bool) -> void:
+	
 	fake_player_mesh.visible = value
 	
 	player_in_chair = value
@@ -27,6 +28,9 @@ func set_player_in_chair(value: bool) -> void:
 	fake_player_camera.current = value
 
 	GLChairBus.emit_signal("toggle_player_sat_on_interpreter_chair", value, 'test-type')
+	
+	# let parent station know
+	get_parent()._toggle_handle_player_sat_on_chair(value)
 
 
 func _on_detect_player_area_body_entered(body: Node3D) -> void:

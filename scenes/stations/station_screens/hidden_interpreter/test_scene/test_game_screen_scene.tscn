@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://s5ru6g56753m"]
+
+[ext_resource type="Script" uid="uid://dxowng21ebnyu" path="res://scripts/stations/station_screens/hidden_interpreter/test_scene/test_scene.gd" id="1_jrgcw"]
+[ext_resource type="PackedScene" uid="uid://52dp45lrge66" path="res://scenes/stations/station_screens/hidden_interpreter/game_screen_timer/game_screen_timer.tscn" id="2_15q82"]
+
+[node name="TestScene" type="Node2D" unique_id=766496497]
+script = ExtResource("1_jrgcw")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1421482495]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.012802251, 0, 0.5968943, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="GameScreenTimer" parent="." unique_id=635672660 instance=ExtResource("2_15q82")]
+position = Vector2(181, 0)

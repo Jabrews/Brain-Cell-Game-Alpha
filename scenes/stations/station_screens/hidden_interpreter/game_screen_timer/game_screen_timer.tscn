@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://52dp45lrge66"]
+
+[ext_resource type="Script" uid="uid://b0o8ar1pdjpfo" path="res://scripts/stations/station_screens/hidden_interpreter/game_screen_timer/game_screen_timer.gd" id="1_4ucy2"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_dyqln"]
+[ext_resource type="PackedScene" uid="uid://k4lxradq4u10" path="res://scenes/stations/station_screens/hidden_interpreter/game_screen_timer/falling_label.tscn" id="3_7wnre"]
+
+[node name="GameScreenTimer" type="Node2D" unique_id=635672660]
+script = ExtResource("1_4ucy2")
+falling_label_scene = ExtResource("3_7wnre")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=401279774]
+offset_right = 104.0
+offset_bottom = 40.0
+size_flags_horizontal = 4
+color = Color(0.51, 0, 0.059500065, 0.39215687)
+
+[node name="TimeLeft" type="Label" parent="." unique_id=1933306575]
+offset_right = 104.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("1_dyqln")
+theme_override_font_sizes/font_size = 30
+text = "60"
+horizontal_alignment = 1
+
+[node name="SpawnPositions" type="Node2D" parent="." unique_id=883016114]
+position = Vector2(-195, 2)
+
+[node name="1" type="Marker2D" parent="SpawnPositions" unique_id=160233852]
+position = Vector2(-16, 7)
+
+[node name="2" type="Marker2D" parent="SpawnPositions" unique_id=810235174]
+position = Vector2(120, 11)
+
+[node name="3" type="Marker2D" parent="SpawnPositions" unique_id=698993063]
+position = Vector2(92, 29)
+
+[node name="4" type="Marker2D" parent="SpawnPositions" unique_id=493878648]
+position = Vector2(4, 31)

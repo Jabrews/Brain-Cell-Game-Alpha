@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ckxieudiatdx4" path="res://models/hidden_stat_interpreter_bar/empty_hidden_stat_interpreter_bar.png" id="4_bvh1a"]
 [ext_resource type="Script" uid="uid://chnqpb78l4ykx" path="res://scripts/stations/station_screens/hidden_interpreter/idle_screen.gd" id="4_g4hcn"]
 [ext_resource type="Texture2D" uid="uid://coohyk4jppfv4" path="res://models/hidden_stat_interpreter_bar/filled_hidden_stat_interpreter_bar-export.png" id="5_16pp1"]
+[ext_resource type="Script" uid="uid://35fgeunwnc0q" path="res://scripts/stations/station_screens/hidden_interpreter/blinking_label.gd" id="8_16pp1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3tbmk"]
 shader = ExtResource("2_8ml75")
@@ -141,7 +142,6 @@ STAT DETECTED"
 horizontal_alignment = 1
 
 [node name="JoltDetectedPleaseReset" type="Control" parent="." unique_id=366826745]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -183,6 +183,10 @@ theme_override_fonts/font = ExtResource("3_170mx")
 theme_override_font_sizes/font_size = 30
 text = "Reset"
 horizontal_alignment = 1
+script = ExtResource("8_16pp1")
+
+[node name="BlinkTimer" type="Timer" parent="JoltDetectedPleaseReset/Reset" unique_id=659841308]
+wait_time = 0.2
 
 [node name="Finished" type="Control" parent="." unique_id=840109306]
 visible = false
@@ -202,3 +206,5 @@ theme_override_fonts/font = ExtResource("3_170mx")
 theme_override_font_sizes/font_size = 34
 text = "Finished"
 horizontal_alignment = 1
+
+[connection signal="timeout" from="JoltDetectedPleaseReset/Reset/BlinkTimer" to="JoltDetectedPleaseReset/Reset" method="_on_blink_timer_timeout"]

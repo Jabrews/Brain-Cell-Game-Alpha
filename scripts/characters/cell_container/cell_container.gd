@@ -65,6 +65,8 @@ func switch_cell_state(
 			state_machine.switch_state(state_machine.State.DYING)
 		'froze' :
 			state_machine.switch_state(state_machine.State.FROZE)
+		'jolt' :
+			state_machine.switch_state(state_machine.State.JOLT)
 		
 		_:
 			push_error("invalid state: " + new_state)
