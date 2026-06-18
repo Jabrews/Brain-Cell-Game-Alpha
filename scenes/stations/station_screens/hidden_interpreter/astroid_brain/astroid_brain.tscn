@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cjiq6xqka7iyf"]
 
+[ext_resource type="PackedScene" uid="uid://3is428gusns6" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/astroid/astroid.tscn" id="1_4twl4"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ejdgb"]
 [ext_resource type="Texture2D" uid="uid://dcqjk8yn0gxx0" path="res://models/screens/astroid_brain/ground.png" id="1_l6eeg"]
 [ext_resource type="Script" uid="uid://ct7ys88qaal52" path="res://scripts/stations/station_screens/hidden_interpreter/flappy_brain/start_screen_graphic.gd" id="2_l6eeg"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ahso5"]
+[ext_resource type="Script" uid="uid://ckldvatv5vxun" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/detect_astroid_area.gd" id="3_gpbm3"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_4twl4"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_gpbm3"]
 [ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="6_6n0x7"]
@@ -11,6 +13,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahso5"]
 size = Vector2(480, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4twl4"]
+size = Vector2(7, 263)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gpbm3"]
+size = Vector2(1, 263)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8yg07"]
 shader = ExtResource("3_ahso5")
@@ -27,6 +35,11 @@ shader_parameter/scroll_speed = 0.2
 
 [node name="AstroidBrain" type="Node2D" unique_id=480053016]
 
+[node name="AstroidSpawner" type="Node" parent="." unique_id=2133247715]
+
+[node name="Astroid" parent="AstroidSpawner" unique_id=935560697 instance=ExtResource("1_4twl4")]
+position = Vector2(304, 14)
+
 [node name="BG" type="ColorRect" parent="." unique_id=527672367]
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,7 +54,7 @@ grow_vertical = 2
 color = Color(0.27178437, 0.14162505, 0.1788719, 1)
 
 [node name="TESTCAMERA" type="Camera2D" parent="." unique_id=592457317]
-position = Vector2(240, 150)
+position = Vector2(240, 133)
 zoom = Vector2(1.6, 1.6)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1461820539]
@@ -54,6 +67,58 @@ texture = ExtResource("1_l6eeg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=278571586]
 shape = SubResource("RectangleShape2D_ahso5")
+
+[node name="Walls" type="Node2D" parent="." unique_id=1679443998]
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls" unique_id=7446150]
+collision_layer = 2
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Walls/LeftWall" unique_id=1247985815]
+offset_right = 7.0
+offset_bottom = 263.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall" unique_id=1474700572]
+position = Vector2(3.5, 131.5)
+shape = SubResource("RectangleShape2D_4twl4")
+
+[node name="DetectAstroidArea" type="Area2D" parent="Walls/LeftWall" unique_id=1028055769]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_gpbm3")
+flip_direction = "left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall/DetectAstroidArea" unique_id=70908494]
+position = Vector2(7.5, 131.5)
+shape = SubResource("RectangleShape2D_gpbm3")
+
+[node name="RightWall" type="StaticBody2D" parent="Walls" unique_id=459312236]
+position = Vector2(473, 0)
+rotation = 6.2831855
+collision_layer = 2
+collision_mask = 0
+
+[node name="ColorRect" type="ColorRect" parent="Walls/RightWall" unique_id=1331884096]
+offset_right = 7.0
+offset_bottom = 263.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall" unique_id=258790678]
+position = Vector2(3.5, 131.5)
+shape = SubResource("RectangleShape2D_4twl4")
+
+[node name="DetectAstroidArea" type="Area2D" parent="Walls/RightWall" unique_id=307153189]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_gpbm3")
+flip_direction = "right"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall/DetectAstroidArea" unique_id=346644232]
+position = Vector2(3.0517578e-05, 132)
+shape = SubResource("RectangleShape2D_gpbm3")
+
+[node name="Ship" parent="." unique_id=695462747 instance=ExtResource("8_ahso5")]
+position = Vector2(78, 256)
+collision_mask = 2
 
 [node name="StartScreenGraphic" type="Node2D" parent="." unique_id=870343489]
 visible = false
@@ -88,12 +153,7 @@ vertical_alignment = 1
 script = ExtResource("6_6n0x7")
 
 [node name="ScanLines" type="ColorRect" parent="." unique_id=114287097]
-visible = false
 material = SubResource("ShaderMaterial_a82iu")
 offset_top = -30.0
 offset_right = 480.0
 offset_bottom = 270.0
-
-[node name="Ship" parent="." unique_id=695462747 instance=ExtResource("8_ahso5")]
-position = Vector2(78, 256)
-collision_mask = 2

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://3is428gusns6"]
+
+[ext_resource type="Texture2D" uid="uid://bltg3wa8ul0l8" path="res://models/screens/astroid_brain/astroid.png" id="1_v85ss"]
+[ext_resource type="Script" uid="uid://bchl66h3nxh0e" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/astroid_spawner/astroid.gd" id="1_xac01"]
+[ext_resource type="Shader" uid="uid://dy5pb421g0m0x" path="res://scripts/shaders/astroid_brain/astroid_shader.gdshader" id="2_vnhr4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vnhr4"]
+shader = ExtResource("2_vnhr4")
+shader_parameter/ghost_offset = Vector2(8, 0)
+shader_parameter/ghost_color = Color(0.6, 0.9, 1, 0.35)
+shader_parameter/ghost_alpha = 0.35
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jqn3"]
+size = Vector2(24, 24.5)
+
+[node name="Astroid" type="CharacterBody2D" unique_id=935560697 groups=["astroid"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_xac01")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1408643789]
+texture_filter = 1
+material = SubResource("ShaderMaterial_vnhr4")
+texture = ExtResource("1_v85ss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1132649484]
+position = Vector2(1, 0.75)
+shape = SubResource("RectangleShape2D_4jqn3")
+
+[node name="SpawnGhostDelay" type="Timer" parent="." unique_id=1860617350]
+wait_time = 0.1

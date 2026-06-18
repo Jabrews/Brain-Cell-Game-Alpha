@@ -76,6 +76,7 @@ player=""
 nav_mesh_coll=""
 axe_mount=""
 flesh_bug=""
+astroid=""
 
 [input]
 
