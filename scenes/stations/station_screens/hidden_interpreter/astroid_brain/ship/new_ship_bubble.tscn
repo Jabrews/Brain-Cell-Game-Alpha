@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cnagu7ulq8yi7"]
+
+[ext_resource type="Texture2D" uid="uid://bjdl53ev1xgsi" path="res://models/screens/astroid_brain/times_2_bubblet.png" id="1_84fxm"]
+[ext_resource type="Script" uid="uid://doekoml6ln0fs" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/ship/new_ship_bubble.gd" id="1_x3a06"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x3a06"]
+radius = 11.0
+
+[node name="NewShipBubble" type="CharacterBody2D" unique_id=1449504102 groups=["bubble"]]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_x3a06")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=98099548]
+texture_filter = 1
+texture = ExtResource("1_84fxm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2122665343]
+shape = SubResource("CircleShape2D_x3a06")

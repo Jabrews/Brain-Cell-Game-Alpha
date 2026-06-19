@@ -1,12 +1,18 @@
 [gd_scene format=3 uid="uid://gypqhtbchrv6"]
 
 [ext_resource type="Script" uid="uid://b4kqp1k7soeya" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/ship/ship.gd" id="1_2iwsn"]
+[ext_resource type="Script" uid="uid://y8ytuk0rw2o8" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/ship/handle_ship_duplicates.gd" id="2_2py76"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmc7w"]
 size = Vector2(10, 15)
 
-[node name="Ship" type="CharacterBody2D" unique_id=695462747]
+[node name="Ship" type="CharacterBody2D" unique_id=695462747 groups=["player"]]
 script = ExtResource("1_2iwsn")
+
+[node name="ShipDuplicates" type="Node2D" parent="." unique_id=1548040934]
+
+[node name="HandleShipDuplicates" type="Node" parent="." unique_id=890735231]
+script = ExtResource("2_2py76")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=144824911]
 offset_left = -5.0
@@ -28,3 +34,7 @@ shape = SubResource("RectangleShape2D_nmc7w")
 
 [node name="BulletSpawnPoint" type="Node2D" parent="." unique_id=386699812]
 position = Vector2(-1, -18)
+
+[node name="ShootDelay" type="Timer" parent="." unique_id=1337708528]
+wait_time = 0.2
+one_shot = true

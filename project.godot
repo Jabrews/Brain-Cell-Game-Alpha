@@ -77,6 +77,7 @@ nav_mesh_coll=""
 axe_mount=""
 flesh_bug=""
 astroid=""
+bubble=""
 
 [input]
 
@@ -142,6 +143,7 @@ attack={
 3d_physics/layer_3="cell_container"
 2d_physics/layer_4="astroid"
 3d_physics/layer_4="player_items"
+2d_physics/layer_5="bubble"
 3d_physics/layer_5="hoverable"
 3d_physics/layer_6="interactable"
 3d_physics/layer_7="stat_display_area"

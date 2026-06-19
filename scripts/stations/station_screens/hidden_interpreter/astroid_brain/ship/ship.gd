@@ -1,24 +1,45 @@
 extends CharacterBody2D
 
-@export var move_speed : float = 200.0
+var can_shoot : bool = true
 
 # components
 @onready var bullet_scene : PackedScene = preload("res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/ship/bullet.tscn")
 @onready var bullet_spawn_point: Node2D = $BulletSpawnPoint
 @onready var bullets_parent_node : Node = $Bullets
+@onready var shoot_delay_timer : Timer = $ShootDelay
+# helpers
+@onready var handle_ship_duplicates : Node = $HandleShipDuplicates
 
 
-func _process(delta: float) -> void:
+	
+func _ready() -> void:
+	shoot_delay_timer.wait_time = IVAstroidBrain.shooting_delay_wait_time
+	shoot_delay_timer.connect('timeout', _handle_shoot_delay_timeout)
+	
+	
+
+func _process(_delta: float) -> void:
 	
 	handle_movement()
 	
-	if Input.is_action_just_pressed('jump') :
-		handle_create_bullet()			
+	if Input.is_action_just_pressed('jump') and can_shoot:
+		shoot()
 	
 
+func shoot() :
+	handle_create_bullet()
+	can_shoot = false
+	shoot_delay_timer.start()	
+	
+	handle_ship_duplicates._shoot()
+
+func _handle_shoot_delay_timeout() :
+	can_shoot = true
 
 func handle_movement() :
 	var move_dir = Input.get_axis('left', 'right')
+	
+	var move_speed = IVAstroidBrain.move_speed
 	
 	if Input.is_action_pressed('left') :	
 		velocity.x = move_dir * move_speed 
@@ -39,5 +60,9 @@ func handle_create_bullet() -> void:
 	bullet_instance.global_rotation = bullet_spawn_point.global_rotation
 	
 	bullets_parent_node.add_child(bullet_instance)
+
+func _handle_ship_hit() :
+	GLInterpreterGames.emit_signal('parent_ship_died')
 	
 	
+#

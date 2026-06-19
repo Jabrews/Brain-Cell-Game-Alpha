@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dh3gtx3wco352"]
+
+[ext_resource type="Script" uid="uid://cq8rryj0kmaij" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/astroid_spawner/astroid_ghost_sprite.gd" id="1_ddatq"]
+[ext_resource type="Texture2D" uid="uid://bltg3wa8ul0l8" path="res://models/screens/astroid_brain/astroid.png" id="1_j7v5g"]
+
+[node name="AstroidGhostSprite" type="Sprite2D" unique_id=1298409868]
+z_index = 1
+texture = ExtResource("1_j7v5g")
+script = ExtResource("1_ddatq")
