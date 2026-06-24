@@ -1,38 +1,37 @@
 [gd_scene format=3 uid="uid://n1eekgv0lbkm"]
 
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_b4221"]
-[ext_resource type="Script" uid="uid://dqb4ysqv3alnd" path="res://scripts/stations/prisoner_profiler/cycle_stats/handle_cycle_stat.gd" id="1_d2mkq"]
-[ext_resource type="Script" uid="uid://cs0gbmhs0lxta" path="res://scripts/stations/prisoner_profiler/station_prisoner_profiler.gd" id="1_iwmj8"]
-[ext_resource type="Script" uid="uid://cd63w68aifc32" path="res://scripts/stations/prisoner_profiler/util_stat_type_to.gd" id="2_5kdf7"]
+[ext_resource type="Script" uid="uid://dqb4ysqv3alnd" path="res://scripts/stations/station_components/prisoner_profiler/cycle_stats/handle_cycle_stat.gd" id="1_d2mkq"]
+[ext_resource type="Script" uid="uid://cs0gbmhs0lxta" path="res://scripts/stations/station_components/prisoner_profiler/station_prisoner_profiler.gd" id="1_iwmj8"]
+[ext_resource type="Script" uid="uid://cd63w68aifc32" path="res://scripts/stations/station_components/prisoner_profiler/util_stat_type_to.gd" id="2_5kdf7"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="2_7qc6t"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="3_bsoe0"]
-[ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/prisoner_profiler/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
-[ext_resource type="Script" uid="uid://dt4e5g2vjsjuc" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/on_off_mesh.gd" id="4_f05ry"]
-[ext_resource type="Script" uid="uid://ddekqvia23i1w" path="res://scripts/stations/prisoner_profiler/increment_stats/increment_stats_btn.gd" id="4_r24ee"]
-[ext_resource type="Script" uid="uid://cjqc0l6ujd1ag" path="res://scripts/stations/prisoner_profiler/symbols/_handle_inaccessible.gd" id="4_reulp"]
-[ext_resource type="Script" uid="uid://choaa8b8xw6ju" path="res://scripts/stations/prisoner_profiler/symbols/lock/_handle_lock.gd" id="4_xndck"]
+[ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/station_components/prisoner_profiler/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
+[ext_resource type="Script" uid="uid://ddekqvia23i1w" path="res://scripts/stations/station_components/prisoner_profiler/increment_stats/increment_stats_btn.gd" id="4_r24ee"]
+[ext_resource type="Script" uid="uid://cjqc0l6ujd1ag" path="res://scripts/stations/station_components/prisoner_profiler/symbols/_handle_inaccessible.gd" id="4_reulp"]
+[ext_resource type="Script" uid="uid://choaa8b8xw6ju" path="res://scripts/stations/station_components/prisoner_profiler/symbols/lock/_handle_lock.gd" id="4_xndck"]
 [ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="5_6nrc1"]
-[ext_resource type="Script" uid="uid://bwidmi1qf3ul1" path="res://scripts/stations/prisoner_profiler/symbols/lock/lock_small_stat_display.gd" id="5_6u0qw"]
-[ext_resource type="Script" uid="uid://ccumqfwpkjt41" path="res://scripts/stations/prisoner_profiler/symbols/lock/update_with_collected_cell.gd" id="6_6u0qw"]
+[ext_resource type="Script" uid="uid://bwidmi1qf3ul1" path="res://scripts/stations/station_components/prisoner_profiler/symbols/lock/lock_small_stat_display.gd" id="5_6u0qw"]
+[ext_resource type="Script" uid="uid://ccumqfwpkjt41" path="res://scripts/stations/station_components/prisoner_profiler/symbols/lock/update_with_collected_cell.gd" id="6_6u0qw"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="6_7qc6t"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_bsoe0"]
-[ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/prisoner_profiler/cycle_stats/cycle_stat_btn.gd" id="6_rute7"]
-[ext_resource type="Script" uid="uid://cetokmro8xuln" path="res://scripts/stations/prisoner_profiler/energy/handle_energy.gd" id="8_5vb5l"]
+[ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/station_components/prisoner_profiler/cycle_stats/cycle_stat_btn.gd" id="6_rute7"]
+[ext_resource type="Script" uid="uid://cetokmro8xuln" path="res://scripts/stations/station_components/prisoner_profiler/energy/handle_energy.gd" id="8_5vb5l"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="8_6nrc1"]
-[ext_resource type="Script" uid="uid://b57de32pi1lis" path="res://scripts/stations/prisoner_profiler/toggle_off_btn.gd" id="8_nx7jm"]
-[ext_resource type="Script" uid="uid://bqqa828m7jidn" path="res://scripts/stations/prisoner_profiler/energy/control_interface_energy_helper.gd" id="9_d5oif"]
+[ext_resource type="Script" uid="uid://b57de32pi1lis" path="res://scripts/stations/station_components/prisoner_profiler/toggle_off_btn.gd" id="8_nx7jm"]
+[ext_resource type="Script" uid="uid://bqqa828m7jidn" path="res://scripts/stations/station_components/prisoner_profiler/energy/control_interface_energy_helper.gd" id="9_d5oif"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="9_pvslh"]
-[ext_resource type="Script" uid="uid://biba1t5gxf334" path="res://scripts/stations/prisoner_profiler/energy/update_energy_panel.gd" id="10_5kdf7"]
-[ext_resource type="Script" uid="uid://c1ele68anq43w" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn_updater.gd" id="10_lbckn"]
-[ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/prisoner_profiler/control_interface.gd" id="11_d5oif"]
-[ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/prisoner_profiler_screens/small_stat_display.tscn" id="11_pl004"]
+[ext_resource type="Script" uid="uid://biba1t5gxf334" path="res://scripts/stations/station_components/prisoner_profiler/energy/update_energy_panel.gd" id="10_5kdf7"]
+[ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/station_components/prisoner_profiler/control_interface.gd" id="11_d5oif"]
+[ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/prisoner_profiler_screens/small_stat_screen.tscn" id="11_pl004"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_psmjt"]
-[ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="11_qt5yk"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_kwr0x"]
-[ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/prisoner_profiler_screens/large_stat_display.tscn" id="13_76fo1"]
-[ext_resource type="Script" uid="uid://cf6t4pqe1jbhl" path="res://scripts/stations/station_components/prisoner_profiler/btns/generate_btn.gd" id="14_d2mkq"]
+[ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/prisoner_profiler_screens/large_stat_screen.tscn" id="13_76fo1"]
 [ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png" id="15_rute7"]
 [ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/old/warning_symbol.png" id="16_d2mkq"]
+[ext_resource type="Script" uid="uid://cpkt7xbbhhmy6" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn_updater.gd" id="27_4wtoc"]
+[ext_resource type="Script" uid="uid://dvipqotjclmf4" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn.gd" id="27_5vb5l"]
+[ext_resource type="Script" uid="uid://cgu5ar33hv6s7" path="res://scripts/stations/station_components/prisoner_profiler/generate_btn.gd" id="30_d5oif"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l25tc"]
 size = Vector3(0.02, 0.46619385, 0.36737794)
@@ -64,6 +63,15 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_rute7"]
 material = SubResource("StandardMaterial3D_qwe67")
 size = Vector3(0.02, 0.17, 0.29)
+
+[sub_resource type="GDScript" id="GDScript_4wtoc"]
+script/source = "extends MeshInstance3D
+
+func _ready():
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color.BLUE
+	material_override = mat
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f05ry"]
 albedo_color = Color(0, 0.5500002, 1, 1)
@@ -410,7 +418,7 @@ shape = SubResource("BoxShape3D_kwr0x")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ControlInterface/Control/OnOffBtn" unique_id=1348187780]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22637343, -0.011363089)
 mesh = SubResource("BoxMesh_rute7")
-script = ExtResource("4_f05ry")
+script = SubResource("GDScript_4wtoc")
 
 [node name="HoverableMesh" type="StaticBody3D" parent="ControlInterface/Control/OnOffBtn" unique_id=1329292786 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
@@ -713,13 +721,13 @@ render_target_update_mode = 4
 
 [node name="PrisonerQuanityBtns" type="Node3D" parent="StatDisplay" unique_id=1238914837]
 transform = Transform3D(0.83359665, 0, 0.55237406, 0, 1, 0, -0.55237406, 0, 0.83359665, -1.5456412, 0.8376827, 3.0558877)
-script = ExtResource("10_lbckn")
+script = ExtResource("27_4wtoc")
 
 [node name="TwoPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=595396692 node_paths=PackedStringArray("parent_prisoner_profiler")]
 transform = Transform3D(0.9990834, 0, -0.042809337, 0, 1, 0, 0.042809337, 0, 0.9990834, 0.3620813, 0.81201017, 2.5812814)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("11_qt5yk")
+script = ExtResource("27_5vb5l")
 prisoner_quanity = 2
 parent_prisoner_profiler = NodePath("../../..")
 
@@ -753,7 +761,7 @@ outline_size = 0
 transform = Transform3D(0.9990834, 0, -0.042809337, 0, 1, 0, 0.042809337, 0, 0.9990834, 0.3904066, 0.81201017, 1.9202249)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("11_qt5yk")
+script = ExtResource("27_5vb5l")
 prisoner_quanity = 4
 parent_prisoner_profiler = NodePath("../../..")
 
@@ -795,7 +803,7 @@ outline_size = 0
 transform = Transform3D(0.8649762, 0, 0.50181437, 0, 1, 0, -0.50181437, 0, 0.8649762, -1.1799294, 1.6696789, 2.7507951)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("14_d2mkq")
+script = ExtResource("30_d5oif")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/GenerateBtn" unique_id=1049605634]
 mesh = SubResource("BoxMesh_iwmj8")

@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="3_fon25"]
 [ext_resource type="PackedScene" uid="uid://w3i2xhy1jmad" path="res://scenes/stations/station_components/cell_observer/station_cell_observer.tscn" id="4_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://bol2i42gb0t6j" path="res://scenes/stations/station_components/cell_analyzer/station_cell_analyzer.tscn" id="4_r2y5v"]
-[ext_resource type="PackedScene" uid="uid://cg3cya2fuivpq" path="res://scenes/stations/station_components/prisoner_profiler/station_prisoner_profiler.tscn" id="5_w7r6u"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="9_kb5nk"]
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="10_erkku"]
@@ -162,7 +161,7 @@ navigation_mesh = SubResource("NavigationMesh_v2xyd")
 [node name="Characters" type="Node" parent="." unique_id=1683906565]
 
 [node name="Player" parent="Characters" unique_id=1124472616 instance=ExtResource("1_h7hv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.933587, 2, -4)
 
 [node name="ContainerParentNode" type="Node" parent="Characters" unique_id=1909441806]
 
@@ -181,8 +180,8 @@ prisoners_parent_node = NodePath("../../../Characters/PrisonerParentNode")
 [node name="CellObserver" parent="Stations/PrisonerStations" unique_id=1071932212 instance=ExtResource("4_7xrfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 5)
 
-[node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=1487418600 instance=ExtResource("5_w7r6u")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -15, 0.601223, -15.565311)
+[node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=261005381 instance=ExtResource("16_w7r6u")]
+transform = Transform3D(-0.59446096, 0, -0.8041245, 0, 1, 0, 0.8041245, 0, -0.59446096, -16.18124, 0, -6.587539)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
@@ -225,8 +224,6 @@ cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
-
-[node name="PrisonerProfiler" parent="Stations" unique_id=261005381 instance=ExtResource("16_w7r6u")]
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")

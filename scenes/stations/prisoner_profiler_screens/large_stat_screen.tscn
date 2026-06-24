@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://dyb5kgt1yg02g"]
+
+[ext_resource type="Script" uid="uid://dc1pnq4xmtxkm" path="res://scripts/stations/station_screens/screen_prisoner_profiler/large_display/large_stat_display.gd" id="1_4ekv4"]
+[ext_resource type="Script" uid="uid://ct7ujsvxmxyts" path="res://scripts/stations/station_screens/screen_prisoner_profiler/large_display/handle_switch_screen.gd" id="2_5nfr2"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="3_6aein"]
+[ext_resource type="Shader" uid="uid://cqykh8hjh2u4q" path="res://scripts/shaders/warning_cap_control_symbol.gdshader" id="4_j1ng8"]
+[ext_resource type="Script" uid="uid://b4b34tdk7yj63" path="res://scripts/stations/station_screens/screen_prisoner_profiler/lock_background.gd" id="5_hk3qo"]
+[ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="6_5oxhw"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="7_pieq2"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="8_aknbm"]
+
+[sub_resource type="Shader" id="Shader_8qqjc"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prisoner_value : hint_range(0.0, 1.0); // yellow
+uniform float target_value : hint_range(0.0, 1.0);   // red
+
+// colors
+uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+
+// overlap opacity (red over yellow)
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_yellow = step(UV.x, prisoner_value);
+	float in_red = step(UV.x, target_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw yellow base
+		if (in_yellow > 0.5) {
+			result = vec4(yellow_color.rgb, tex.a);
+		}
+
+		// 2. draw red on top
+		if (in_red > 0.5) {
+
+			// overlap → transparent red
+			if (in_yellow > 0.5) {
+				result = mix(result, vec4(red_color.rgb, tex.a), overlap_opacity);
+			}
+			// red over empty → full red
+			else {
+				result = vec4(red_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pcaq"]
+shader = SubResource("Shader_8qqjc")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/overlap_opacity = 0.10000000475
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ewow"]
+shader = ExtResource("4_j1ng8")
+shader_parameter/color_a = Color(0.5, 0, 0.07499981, 1)
+shader_parameter/color_b = Color(0, 0, 0, 1)
+shader_parameter/stripe_size = 2.0
+
+[sub_resource type="Shader" id="Shader_4ewow"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_a : source_color = vec4(0.15, 0.15, 0.15, 1.0);
+uniform vec4 color_b : source_color = vec4(0.20, 0.20, 0.20, 1.0);
+uniform float stripe_size = 12.0;
+
+void fragment() {
+	float stripe = mod(floor((UV.x + UV.y) * stripe_size), 2.0);
+	COLOR = mix(color_a, color_b, stripe);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlsph"]
+shader = SubResource("Shader_4ewow")
+shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.23529412)
+shader_parameter/color_b = Color(0.21, 0.21, 0.21, 0.27058825)
+shader_parameter/stripe_size = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2v04"]
+shader = ExtResource("8_aknbm")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="LargeStatDisplay" type="Node2D" unique_id=1264641169]
+script = ExtResource("1_4ekv4")
+
+[node name="LargeHandleSwitchScreen" type="Node" parent="." unique_id=1302706607]
+script = ExtResource("2_5nfr2")
+
+[node name="StatDisplay" type="Control" parent="." unique_id=1733810151]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="Sprite2D" parent="StatDisplay" unique_id=1272989694]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6pcaq")
+position = Vector2(420.00003, 122)
+scale = Vector2(2.8064518, 9.399999)
+texture = ExtResource("3_6aein")
+
+[node name="Inaccessible" type="Control" parent="StatDisplay" unique_id=412326992]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="InaccessibleBG" type="ColorRect" parent="StatDisplay/Inaccessible" unique_id=1077185429]
+material = SubResource("ShaderMaterial_4ewow")
+layout_mode = 0
+offset_top = -26.0
+offset_bottom = 237.0
+color = Color(1, 1, 1, 0.19607843)
+
+[node name="Locked" type="Control" parent="StatDisplay" unique_id=2933844]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="LockedBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=1623392623]
+material = SubResource("ShaderMaterial_jlsph")
+layout_mode = 0
+offset_top = -26.0
+offset_bottom = 237.0
+color = Color(1, 1, 1, 0.19607843)
+script = ExtResource("5_hk3qo")
+
+[node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=1266930615]
+texture_filter = 1
+position = Vector2(346, 110)
+texture = ExtResource("6_5oxhw")
+
+[node name="OffDisplay" type="Control" parent="." unique_id=722291760]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="OffDisplay" unique_id=1124340783]
+layout_mode = 0
+offset_right = 854.0
+offset_bottom = 270.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="OffDisplay" unique_id=1820179066]
+texture_filter = 1
+layout_mode = 0
+offset_left = 250.0
+offset_top = 66.0
+offset_right = 652.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("7_pieq2")
+theme_override_font_sizes/font_size = 134
+text = "Off"
+
+[node name="FeedbackDisplay" type="Control" parent="." unique_id=991166723]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FeedbackBG" type="ColorRect" parent="FeedbackDisplay" unique_id=1529039895]
+layout_mode = 0
+offset_right = 840.0
+offset_bottom = 263.0
+color = Color(0, 0, 0, 1)
+
+[node name="FeedbackLabel" type="Label" parent="FeedbackDisplay" unique_id=1059223308]
+texture_filter = 1
+custom_maximum_size = Vector2(801, 226)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 821.0
+offset_bottom = 246.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("7_pieq2")
+theme_override_font_sizes/font_size = 50
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=149113758]
+material = SubResource("ShaderMaterial_h2v04")
+offset_right = 840.0
+offset_bottom = 270.0

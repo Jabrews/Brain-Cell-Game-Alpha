@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c746r67f0tqyg"]
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_lmee3"]
-[ext_resource type="Script" uid="uid://wuatxjex1xtn" path="res://scripts/stations/station_screens/prisoner_profiler/prisoner_picker/screen_pick_quanity.gd" id="1_vq06t"]
+[ext_resource type="Script" uid="uid://wuatxjex1xtn" path="res://scripts/stations/station_screens/screen_prisoner_profiler/prisoner_picker/screen_pick_quanity.gd" id="1_vq06t"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_vq06t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hyn0q"]

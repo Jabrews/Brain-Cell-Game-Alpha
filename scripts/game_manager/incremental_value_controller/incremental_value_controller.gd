@@ -21,6 +21,7 @@ func change_progression_step(round : int, curr_energy: int) :
 		
 		# any event calls
 		GLUsableItemBus.emit_signal('spawn_new_usable_items')
+		GLGameManagerBus.emit_signal('process_next_round')
 		
 		last_round = round
 	
@@ -29,7 +30,6 @@ func change_progression_step(round : int, curr_energy: int) :
 	
 	
 	GLGameManagerBus.emit_signal('proceed_next_energy_turn')
-	GLGameManagerBus.emit_signal('process_next_round')
 	
 
 @warning_ignore("shadowed_global_identifier")

@@ -1,214 +1,286 @@
 extends Node
 
-# components
-@onready var convert_alert_symbol : Node =$ConvertAlertSymbol
-@onready var energy_spent_updater : Node = $EnergySpentUpdater
-@onready var energy_panel : Node3D = $EnergyPanel
-@onready var prisoner_quanitity_updater : Node = $PrisonerQuanityBtnUpdater
-@onready var stat_control_panels : Array[Node3D] = [
-	$StatControllPanels/StatControlPanel,
-	$StatControllPanels/StatControlPanel2,
-	$StatControllPanels/StatControlPanel3
+var selected_stat : String = ''
+
+var current_prisoner_quanity : int = 0
+
+var strength_value : int = 0
+var intelligence_value : int = 0
+var community_value : int = 0
+
+var strength_enabled : bool = true
+var intelligence_enabled : bool = true
+var community_enabled : bool = true
+
+# lock
+var strength_lock_starting_value : int = 0
+var intelligence_lock_starting_value : int = 0
+var community_lock_starting_value : int = 0
+# TODO use for finale assembler directions. prevent 
+var stat_values_inside_lock_range = {
+	'strength' : false,
+	'intelligence' : false,
+	'community' : false,
+}
+# innaccesibile
+var inaccessible_starting_value : int = 0
+
+
+
+
+# componnets
+# display componnets
+@onready var screen_large_stat_displays : Array[Node2D] = [
+	$StatDisplay/StatPanels/StrengthStatPanel/CapControlTv/SubViewport/LargeStatDisplay,
+	$StatDisplay/StatPanels/IntelligenceStatPanel/CapControlTv/SubViewport/LargeStatDisplay,
+	$StatDisplay/StatPanels/CommunityStatPanel/CapControlTv/SubViewport/LargeStatDisplay
 ]
-@onready var screen_hidden_stat_quanity : Node2D = $HiddenQuanityTV/TvFrontPannel/SubViewport/ScreenHiddenStatQuanity
-@onready var reset_componnets : Node = $ResetComponents
-# screen helpers
-@onready var handle_power_ran_out : Node = $HandlePowerRanOut
-@onready var handle_prisoner_quanity_not_selected : Node = $HandlePrisonerQuanityNotSelected
-@onready var handle_prisoners_just_created : Node = $HandlePrisonersJustCreated
+@onready var screen_small_stat_display : Node2D = $ControlInterface/SmallStatDisplay/TvFrontPanel/SubViewport/SmallStatDisplay
+@onready var control_interface : Node3D = $ControlInterface
+# extra
+@onready var on_off_btn : StaticBody3D = $ControlInterface/Control/OnOffBtn
 
-var clean_strength : float = 0.0
-var clean_intelligence: float = 0.0
-var clean_community : float = 0.0
-var strength_disabled : bool = false
-var intelligence_disabled : bool = false
-var community_disabled : bool = false
+# helpers
+# symbols
+@onready var handle_inaccesible : Node = $Logic/Symbols/HandleInaccessible
+@onready var handle_lock : Node = $Logic/Symbols/HandleLock
+# energy
+@onready var handle_energy : Node = $Logic/HandleEnergy
+# extra
+@onready var util_stat_type_to : Node = $Logic/UtilStatTypeTo
+@onready var handle_cycle_stat : Node = $Logic/HandleCycleStat
 
-var strength_caution_active  : bool = false
-var strength_warning_active  : bool = false
-var intelligence_caution_active  : bool = false
-var intelligence_warning_active  : bool = false
-var community_caution_active  : bool = false
-var community_warning_active  : bool = false
-
-var prisoner_quantity : int = 0
-
-var power_out : bool = false
 
 func _ready() -> void:
-	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
-
-func _handle_energy_turn_changed() :
-	if GLGameManagerBus.curr_energy <= 0:
-		handle_power_ran_out._power_ran_out(true)
-		power_out = true
-	else :
-		handle_power_ran_out._power_ran_out(false)	
-		power_out = false 
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
+	GLGameManagerBus.connect('process_next_round', _handle_next_round)
+	
+	# quick delay on startup for cell creation logic 
+	await get_tree().create_timer(1.0).timeout
+	handle_inaccesible._generate_inaccessible()
+	handle_lock._generate_locks()
+	
+func _update_prisoner_quanity(new_prisoner_quanity : int) :
+	current_prisoner_quanity = new_prisoner_quanity
+	
+	# update energy
+	handle_energy._update_energy_player_pressed_prisoner_quanity_btn(current_prisoner_quanity)
+	
 	
 
-func _toggle_alert_symbol(stat_type :String, toggleValue : bool, symbol_type : String) :
-	if stat_type == 'strength' :
-		match symbol_type :
-			'caution' :
-				strength_caution_active = toggleValue
-			'warning' :
-				strength_warning_active = toggleValue
-		# update energy spent
-		energy_spent_updater._handle_alert_symbol(
-			'strength',
-			convert_alert_symbol.convert(strength_caution_active, strength_warning_active)
-		)
+func update_selected_stat(stat_type : String) :
+	selected_stat = stat_type
+	on_off_btn.update_toggle_off_btn()
+	# the only display componnets we need to update if it has none
+	var stat_value = util_stat_type_to.stat_type_to_value(stat_type)
+	var stat_enabled = util_stat_type_to.stat_type_to_enabled(stat_type)
+	
+	screen_small_stat_display._update_stat(stat_type, stat_value, stat_enabled)
+	control_interface._update_stat(stat_type, stat_value, stat_enabled)
+	
+
+
+func _handle_stat_value_changed(stat_type : String, new_value : int) :
+	
+	# prevent disabled stats from incrementing
+	var stat_enabled = util_stat_type_to.stat_type_to_enabled(stat_type)
+	
+	if stat_enabled == false :
+		return
+	
+	if new_value <= 0 :
+		new_value = 0
+	
+	## invalid stat checking ##
+	if new_value >= inaccessible_starting_value :
+		new_value = inaccessible_starting_value
+	###########################
+	
+	
+	
+	## lock checking ##
+	var lock_limit : float = util_stat_type_to.stat_type_to_lock_limit(stat_type)
+	var lock_soft_range : int = 10
+	
+	# If close to the lock, but not past it, clamp right before the lock.
+	if new_value < lock_limit and new_value >= lock_limit - lock_soft_range:
+		@warning_ignore("narrowing_conversion")
+		new_value = lock_limit - 1
 		
-	if stat_type == 'intelligence' :
-		match symbol_type :
-			'caution' :
-				intelligence_caution_active = toggleValue
-			'warning' :
-				intelligence_warning_active = toggleValue
-		# update energy spent
-		energy_spent_updater._handle_alert_symbol(
-			'intelligence',
-			convert_alert_symbol.convert(intelligence_caution_active, intelligence_warning_active )
+	stat_values_inside_lock_range[stat_type] = new_value >= lock_limit
+	
+	if stat_values_inside_lock_range[stat_type]:
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			'station_feedback_requested',
+			'shake_lock',
+			{'stat_type' : stat_type}
 		)
+	###################
+	
+	match stat_type :
+		'strength' :
+			strength_value = new_value
+		'intelligence' :
+			intelligence_value = new_value
+		'community' :
+			community_value = new_value
 		
-	if stat_type == 'community' :
-		match symbol_type :
-			'caution' :
-				community_caution_active = toggleValue
-			'warning' :
-				community_warning_active = toggleValue
-		# update energy spent
-		energy_spent_updater._handle_alert_symbol(
-			'community',
-			convert_alert_symbol.convert(community_caution_active, community_warning_active)
+	# update energy
+	handle_energy._update_energy_stat_value_used(stat_type, new_value)
+		
+	update_display_componnets(stat_type)
+
+
+func _handle_toggle_stat_enabled() :
+	
+	# cant toggle when no stat selected
+	if selected_stat == '':
+		return
+		
+	var enabled_status : bool # quick hack for energy updater
+	var last_value : float
+	
+	match selected_stat:
+		'strength' :
+			strength_enabled = !strength_enabled
+			enabled_status = strength_enabled
+			last_value = strength_value
+		'intelligence' :
+			intelligence_enabled = !intelligence_enabled
+			enabled_status = intelligence_enabled
+			last_value = intelligence_value
+		'community' :
+			community_enabled = !community_enabled
+			enabled_status = community_enabled
+			last_value = community_value
+	
+	# update energy	
+	handle_energy._update_energy_toggle_stat_value_enabled(selected_stat, enabled_status, last_value)
+	
+	update_display_componnets(selected_stat)
+
+
+
+func update_display_componnets(stat_type : String) :
+	match stat_type :
+		'strength' :
+			screen_large_stat_displays[0]._update_stat(strength_value, strength_enabled)
+			screen_small_stat_display._update_stat(stat_type, strength_value, strength_enabled)
+			control_interface._update_stat(stat_type, strength_value, strength_enabled)
+		'intelligence' :
+			screen_large_stat_displays[1]._update_stat(intelligence_value, intelligence_enabled)
+			screen_small_stat_display._update_stat(stat_type, intelligence_value, intelligence_enabled)
+			control_interface._update_stat(stat_type, intelligence_value, intelligence_enabled)
+		'community' :
+			screen_large_stat_displays[2]._update_stat(community_value, community_enabled)
+			screen_small_stat_display._update_stat(stat_type , community_value, community_enabled)
+			control_interface._update_stat(stat_type, community_value, community_enabled)
+
+func _handle_next_turn() :
+	reset_assembler()
+	handle_lock._generate_locks()
+
+func _handle_next_round() :
+	handle_inaccesible._generate_inaccessible()
+	handle_lock._generate_locks()
+	
+func reset_assembler() :
+	strength_value = 0
+	strength_enabled = true
+	intelligence_value = 0
+	intelligence_enabled = true
+	community_value = 0
+	community_enabled = true
+	selected_stat = ''
+	handle_cycle_stat.reset_active_mesh()
+	screen_large_stat_displays[0]._update_stat(strength_value, strength_enabled)
+	screen_large_stat_displays[1]._update_stat(intelligence_value, intelligence_enabled)
+	screen_large_stat_displays[2]._update_stat(community_value, community_enabled)
+	screen_small_stat_display._update_stat(selected_stat, 0.0, false)
+	control_interface._update_stat(selected_stat, 0.0, false)
+
+
+func handle_generate_btn_pressed() :
+	
+	###### CHECKING FOR ISSUES #######
+	# prevent changing value if quanity not selected
+	if current_prisoner_quanity == 0 :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			'station_feedback_requested',
+			'error_prisoner_quanity', {}
 		)
-	
-func _update_clean_stat_value(type : String, new_value : float) :
-
-	if power_out :
-		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	
-	# prevent changing value if quanity not selected
-	if prisoner_quantity == 0 :
-		handle_prisoner_quanity_not_selected._player_tried_incrementing_stat()
+	# check if any stats in lock range
+	for stat_lock in stat_values_inside_lock_range :
+		if stat_values_inside_lock_range[stat_lock] :
+			GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+			GLPrisonerProfilerComponentsBus.emit_signal(
+				'station_feedback_requested',
+				'error_locked_stat', {'stat_type' : stat_lock}
+			)
+			return
+	
+	# check if all stats disabled
+	if strength_enabled == false and intelligence_enabled == false and community_enabled == false:
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			'station_feedback_requested',
+			'error_all_stats_disabled',
+			{}
+		)
 		return
 	
+	# check if we have enough energy
+	if not handle_energy._check_if_energy_valid() :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			'station_feedback_requested',
+			'error_not_enough_energy',
+			{}
+		)
+		return
+	#######################################
+		
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
-	
-	match type :
-		'strength' :
-			clean_strength = new_value
-		'intelligence' :
-			clean_intelligence = new_value
-		'community' :
-			clean_community = new_value
-
-	# update energy spent
-	energy_spent_updater._handle_clean_stat_value_change(type, new_value)
-
-func _toggle_stat_disabled(type : String, toggleValue : bool) :
-	
-	if power_out : 	
-		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
-		return
-	
-	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
-	
-	var original_value = 0.0
-	var original_stat_cap : String = 'none'
-
-	
-	match type :
-		'strength' :
-			strength_disabled = toggleValue
-			original_value = clean_strength
-			original_stat_cap = convert_alert_symbol.convert(strength_caution_active, strength_warning_active)
-		'intelligence' :
-			intelligence_disabled = toggleValue
-			original_value = clean_intelligence
-			original_stat_cap = convert_alert_symbol.convert(intelligence_caution_active, intelligence_warning_active )
-		'community' :
-			community_disabled = toggleValue
-			original_value = clean_community
-			original_stat_cap = convert_alert_symbol.convert(community_caution_active, community_warning_active)
-			
-	# update energy spent 
-	energy_spent_updater._handle_toggle_clean_stat_disabled(type,toggleValue,original_value, original_stat_cap)
-	# update hidden stat screen
-	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
-	
-	
-func _update_prisoner_quanity(quantity: int) :
-	
-	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
-	
-	prisoner_quantity = quantity
-	prisoner_quanitity_updater._prisoner_quanity_btn_selected(quantity)
-	
-	# update energy spent
-	energy_spent_updater._handle_prisoner_quanity(quantity)
-	# update hidden stat screen
-	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
-	
-
-func _create_prisoners() -> void:
-	
-	## if powers out dont do anything	
-	if power_out : 
-		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
-		return
-	
-	# prevent changing value if quanity not selected
-	if prisoner_quantity == 0 :
-		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
-		handle_prisoner_quanity_not_selected._player_tried_incrementing_stat()
-		return
-	
-	
-	## validate if theres enough energy to do this
-	var can_create = energy_spent_updater._validate_create_prisoner_batch()
-	if not can_create :
-		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
-		GLPrisonerProfilerComponentsBus.emit_signal('player_tried_creating_with_invalid_energy')	
-		return
-	
-	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
-
+		
 	var strength_stat_constructor = StatConstructor.new(
 		"strength",
-		clean_strength,
-		convert_alert_symbol.convert(strength_caution_active, strength_warning_active),
-		!strength_disabled
+		strength_value,
+		'none',
+		strength_enabled
 	)
 	var intelligence_stat_constructor = StatConstructor.new(
 		"intelligence",
-		clean_intelligence,
-		convert_alert_symbol.convert(intelligence_caution_active, intelligence_warning_active),
-		!intelligence_disabled
+		intelligence_value,
+		'none',
+		intelligence_enabled
 	)
 	var community_stat_constructor = StatConstructor.new(
 		"community",
-		clean_community,
-		convert_alert_symbol.convert(community_caution_active , community_warning_active),
-		!community_disabled
+		community_value,
+		'none',
+		community_enabled
 	)
+	
 	var prisoner_cell_constructor : CellConstructor = CellConstructor.new(
-		prisoner_quantity,
-		0, # hidden_stat_quantity TODO
+		current_prisoner_quanity,
 		strength_stat_constructor,
 		intelligence_stat_constructor,
 		community_stat_constructor
 	)
-	
-	reset_componnets._reset()
-	handle_prisoners_just_created._prisoners_just_created()
 	
 	GLCellCreatorBus.emit_signal(
 		"create_prisoner_cells",
 		prisoner_cell_constructor
 	)
 	
+	GLPrisonerProfilerComponentsBus.emit_signal(
+		'station_feedback_requested',
+		'batch_created',
+		{}
+	)
+
+	reset_assembler()
 	
