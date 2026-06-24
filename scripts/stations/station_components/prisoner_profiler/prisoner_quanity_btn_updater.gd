@@ -9,6 +9,10 @@ var unselected_material : StandardMaterial3D
 
 
 func _ready() -> void:
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
+	GLGameManagerBus.connect('process_next_round', _handle_next_round)
+	
+	
 	selected_material = StandardMaterial3D.new()
 	selected_material.albedo_color = Color.DARK_BLUE
 
@@ -30,3 +34,9 @@ func _prisoner_quanity_btn_selected(quanity : int) :
 		four_pris_btn_mesh.material_override = selected_material 
 	else : 
 		return
+
+func _handle_next_turn() :
+	_prisoner_quanity_btn_selected(0)
+
+func _handle_next_round() :
+	_prisoner_quanity_btn_selected(0)

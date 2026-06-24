@@ -1,32 +1,35 @@
 [gd_scene format=3 uid="uid://n1eekgv0lbkm"]
 
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_b4221"]
-[ext_resource type="Script" uid="uid://dqb4ysqv3alnd" path="res://scripts/stations/prisoner_profiler/control_interface/cycle_stats/handle_cycle_stat.gd" id="1_d2mkq"]
+[ext_resource type="Script" uid="uid://dqb4ysqv3alnd" path="res://scripts/stations/prisoner_profiler/cycle_stats/handle_cycle_stat.gd" id="1_d2mkq"]
 [ext_resource type="Script" uid="uid://cs0gbmhs0lxta" path="res://scripts/stations/prisoner_profiler/station_prisoner_profiler.gd" id="1_iwmj8"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="2_7qc6t"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="3_bsoe0"]
-[ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/prisoner_profiler/control_interface/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
+[ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/prisoner_profiler/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
 [ext_resource type="Script" uid="uid://dt4e5g2vjsjuc" path="res://scripts/stations/station_components/prisoner_profiler/stat_control_panel/btns/on_off_mesh.gd" id="4_f05ry"]
-[ext_resource type="Script" uid="uid://ddekqvia23i1w" path="res://scripts/stations/prisoner_profiler/control_interface/increment_stats/increment_stats_btn.gd" id="4_r24ee"]
-[ext_resource type="Script" uid="uid://cjqc0l6ujd1ag" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/_handle_inaccessible.gd" id="4_reulp"]
-[ext_resource type="Script" uid="uid://choaa8b8xw6ju" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/lock/_handle_lock.gd" id="4_xndck"]
+[ext_resource type="Script" uid="uid://ddekqvia23i1w" path="res://scripts/stations/prisoner_profiler/increment_stats/increment_stats_btn.gd" id="4_r24ee"]
+[ext_resource type="Script" uid="uid://cjqc0l6ujd1ag" path="res://scripts/stations/prisoner_profiler/symbols/_handle_inaccessible.gd" id="4_reulp"]
+[ext_resource type="Script" uid="uid://choaa8b8xw6ju" path="res://scripts/stations/prisoner_profiler/symbols/lock/_handle_lock.gd" id="4_xndck"]
 [ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="5_6nrc1"]
-[ext_resource type="Script" uid="uid://bwidmi1qf3ul1" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/lock/lock_small_stat_display.gd" id="5_6u0qw"]
-[ext_resource type="Script" uid="uid://ccumqfwpkjt41" path="res://scripts/stations/prisoner_profiler/control_interface/symbols/lock/update_with_collected_cell.gd" id="6_6u0qw"]
+[ext_resource type="Script" uid="uid://bwidmi1qf3ul1" path="res://scripts/stations/prisoner_profiler/symbols/lock/lock_small_stat_display.gd" id="5_6u0qw"]
+[ext_resource type="Script" uid="uid://ccumqfwpkjt41" path="res://scripts/stations/prisoner_profiler/symbols/lock/update_with_collected_cell.gd" id="6_6u0qw"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="6_7qc6t"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_bsoe0"]
-[ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/prisoner_profiler/control_interface/cycle_stats/cycle_stat_btn.gd" id="6_rute7"]
+[ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/prisoner_profiler/cycle_stats/cycle_stat_btn.gd" id="6_rute7"]
+[ext_resource type="Script" uid="uid://cetokmro8xuln" path="res://scripts/stations/prisoner_profiler/energy/handle_energy.gd" id="8_5vb5l"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="8_6nrc1"]
-[ext_resource type="Script" uid="uid://b57de32pi1lis" path="res://scripts/stations/prisoner_profiler/control_interface/toggle_off_btn.gd" id="8_nx7jm"]
+[ext_resource type="Script" uid="uid://b57de32pi1lis" path="res://scripts/stations/prisoner_profiler/toggle_off_btn.gd" id="8_nx7jm"]
+[ext_resource type="Script" uid="uid://bqqa828m7jidn" path="res://scripts/stations/prisoner_profiler/energy/update_control_interface.gd" id="9_d5oif"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="9_pvslh"]
+[ext_resource type="Script" uid="uid://biba1t5gxf334" path="res://scripts/stations/prisoner_profiler/energy/update_energy_panel.gd" id="10_5kdf7"]
 [ext_resource type="Script" uid="uid://c1ele68anq43w" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn_updater.gd" id="10_lbckn"]
+[ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/prisoner_profiler/control_interface/control_interface.gd" id="11_d5oif"]
 [ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/prisoner_profiler_screens/small_stat_display.tscn" id="11_pl004"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_psmjt"]
 [ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="11_qt5yk"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_kwr0x"]
 [ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/prisoner_profiler_screens/large_stat_display.tscn" id="13_76fo1"]
 [ext_resource type="Script" uid="uid://cf6t4pqe1jbhl" path="res://scripts/stations/station_components/prisoner_profiler/btns/generate_btn.gd" id="14_d2mkq"]
-[ext_resource type="Script" uid="uid://brd5yl8fa6dn6" path="res://scripts/stations/station_components/prisoner_profiler/energy_panel/energy_panel.gd" id="14_kwr0x"]
 [ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png" id="15_rute7"]
 [ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/old/warning_symbol.png" id="16_d2mkq"]
 
@@ -254,8 +257,18 @@ script = ExtResource("6_6u0qw")
 [node name="HandleInaccessible" type="Node" parent="Logic/Symbols" unique_id=216486329]
 script = ExtResource("4_reulp")
 
+[node name="HandleEnergy" type="Node" parent="Logic" unique_id=417109098]
+script = ExtResource("8_5vb5l")
+
+[node name="UpdateControlInterface" type="Node" parent="Logic/HandleEnergy" unique_id=1560915229]
+script = ExtResource("9_d5oif")
+
+[node name="UpdateEnergyPanel" type="Node" parent="Logic/HandleEnergy" unique_id=2055681758]
+script = ExtResource("10_5kdf7")
+
 [node name="ControlInterface" type="Node3D" parent="." unique_id=728610755]
 transform = Transform3D(0.8096126, 0, 0.5869646, 0, 1, 0, -0.5869646, 0, 0.8096126, 0, 1.8258047, 0)
+script = ExtResource("11_d5oif")
 
 [node name="Control" type="Node3D" parent="ControlInterface" unique_id=1567785023]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.43523097, 0)
@@ -342,7 +355,18 @@ mesh = SubResource("BoxMesh_lbckn")
 [node name="EnergySpent" type="Node3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=276084618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
 
-[node name="CleanStatAdditon" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1548032390]
+[node name="NoneLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1130098963]
+transform = Transform3D(-8.940697e-08, 0, 1.0000005, 1.4901161e-08, 1.0000006, 7.4505806e-08, -1.0000002, -4.4703484e-08, 0, -0.18875727, 1.3891338, -0.5622134)
+visible = false
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "None
+Selected"
+font = ExtResource("3_bsoe0")
+font_size = 33
+outline_size = 0
+
+[node name="EnergyLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1548032390]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.2662206, -0.48533148)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
@@ -357,29 +381,6 @@ transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_qt5yk")
-
-[node name="CleanRange" type="Node3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=832219118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.14523786, -0.0067284107)
-
-[node name="CleanStatRange" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/CleanRange" unique_id=1130098963]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.6455898, -0.51720345)
-texture_filter = 0
-outline_modulate = Color(0, 0, 0, 0)
-text = "low-mid
-"
-font = ExtResource("3_bsoe0")
-font_size = 33
-outline_size = 0
-
-[node name="OffLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl" unique_id=838602477]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.3497689, -0.52116287)
-visible = false
-texture_filter = 0
-outline_modulate = Color(0, 0, 0, 0)
-text = "Off"
-font = ExtResource("3_bsoe0")
-font_size = 60
-outline_size = 0
 
 [node name="OnOffBtn" type="StaticBody3D" parent="ControlInterface/Control" unique_id=1821006752 groups=["interactable"]]
 transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.21982256, 0.099659085, 0.052233562)
@@ -699,12 +700,13 @@ render_target_update_mode = 4
 transform = Transform3D(0.83359665, 0, 0.55237406, 0, 1, 0, -0.55237406, 0, 0.83359665, -1.5456412, 0.8376827, 3.0558877)
 script = ExtResource("10_lbckn")
 
-[node name="TwoPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=595396692]
+[node name="TwoPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=595396692 node_paths=PackedStringArray("parent_prisoner_profiler")]
 transform = Transform3D(0.9990834, 0, -0.042809337, 0, 1, 0, 0.042809337, 0, 0.9990834, 0.3620813, 0.81201017, 2.5812814)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("11_qt5yk")
 prisoner_quanity = 2
+parent_prisoner_profiler = NodePath("../../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/PrisonerQuanityBtns/TwoPrisonerBtn" unique_id=1537381332]
 mesh = SubResource("BoxMesh_iwmj8")
@@ -732,12 +734,13 @@ font = ExtResource("3_bsoe0")
 font_size = 30
 outline_size = 0
 
-[node name="FourPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=1933091737]
+[node name="FourPrisonerBtn" type="StaticBody3D" parent="StatDisplay/PrisonerQuanityBtns" unique_id=1933091737 node_paths=PackedStringArray("parent_prisoner_profiler")]
 transform = Transform3D(0.9990834, 0, -0.042809337, 0, 1, 0, 0.042809337, 0, 0.9990834, 0.3904066, 0.81201017, 1.9202249)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("11_qt5yk")
 prisoner_quanity = 4
+parent_prisoner_profiler = NodePath("../../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StatDisplay/PrisonerQuanityBtns/FourPrisonerBtn" unique_id=1584113334]
 mesh = SubResource("BoxMesh_iwmj8")
@@ -837,7 +840,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6743927, -0.3012457, -1.039
 
 [node name="EnergyPanel" type="Node3D" parent="EnergyDisplay" unique_id=1703143683]
 transform = Transform3D(0.7999007, 0, 0.60013235, 0, 1, 0, -0.60013235, 0, 0.7999007, -1.8739052, 1.2350975, 0.64510167)
-script = ExtResource("14_kwr0x")
 
 [node name="PanelMesh" type="MeshInstance3D" parent="EnergyDisplay/EnergyPanel" unique_id=691634004]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.346806, -1.4977629)

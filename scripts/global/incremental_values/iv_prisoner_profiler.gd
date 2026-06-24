@@ -1,6 +1,7 @@
 extends Node
 
 var stat_increment_amount : int = 20
+var per_stat_increment_energy_decrease : int = 2
 var stat_lock_percantages : Array[float] = [
 	0.25,
 	0.50,

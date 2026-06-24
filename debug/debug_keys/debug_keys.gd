@@ -10,6 +10,8 @@ extends Node
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
 		
+		GLGameManagerBus.emit_signal('proceed_next_energy_turn')
+		#print(GLGameManagerBus.curr_energy)
 		
 		#GLGameManagerBus.emit_signal('proceed_next_round')		
 		
@@ -22,16 +24,16 @@ func _process(_delta: float) -> void:
 		
 		
 		
-		var new_cell = BrainCell.new(
-			'test_cell',
-			BrainCellStat.new('strength', true, 50, 0, false),
-			BrainCellStat.new('intelligence', true, 150, 0, false),
-			BrainCellStat.new('community', true, 0, 0, false),
-			100,
-			false,
-		)
+		#var new_cell = BrainCell.new(
+			#'test_cell',
+			#BrainCellStat.new('strength', true, 50, 0, false),
+			#BrainCellStat.new('intelligence', true, 150, 0, false),
+			#BrainCellStat.new('community', true, 0, 0, false),
+			#100,
+			#false,
+		#)
 		
-		GLCellManagerBus.emit_signal('prisoner_picked_by_player', new_cell)
+		#GLCellManagerBus.emit_signal('prisoner_picked_by_player', new_cell)
 		
 		
 		

@@ -69,6 +69,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
 			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			
 		2 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
@@ -102,6 +103,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
 			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			
 			
 		3 :
@@ -132,6 +134,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
 			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.per_stat_increment_energy_decreUpdateEnergyPanelase = 2
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -159,6 +162,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
 			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
+			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 	
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :

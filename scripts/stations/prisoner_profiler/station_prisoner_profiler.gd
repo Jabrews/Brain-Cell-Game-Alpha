@@ -2,6 +2,8 @@ extends Node
 
 var selected_stat : String = ''
 
+var current_prisoner_quanity : int = 0
+
 var strength_value : int = 0
 var intelligence_value : int = 0
 var community_value : int = 0
@@ -10,16 +12,20 @@ var strength_enabled : bool = true
 var intelligence_enabled : bool = true
 var community_enabled : bool = true
 
+# lock
 var strength_lock_starting_value : int = 0
 var intelligence_lock_starting_value : int = 0
 var community_lock_starting_value : int = 0
-var inaccessible_starting_value : int = 0
-
+# TODO use for finale assembler directions. prevent 
 var stat_values_inside_lock_range = {
 	'strength' : false,
 	'intelligence' : false,
 	'community' : false,
 }
+# innaccesibile
+var inaccessible_starting_value : int = 0
+
+
 
 
 # componnets
@@ -35,6 +41,8 @@ var stat_values_inside_lock_range = {
 # symbols
 @onready var handle_inaccesible : Node = $Logic/Symbols/HandleInaccessible
 @onready var handle_lock : Node = $Logic/Symbols/HandleLock
+# energy
+@onready var handle_energy : Node = $Logic/HandleEnergy
 
 
 func _ready() -> void:
@@ -45,6 +53,13 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 	handle_inaccesible._generate_inaccessible()
 	handle_lock._generate_locks()
+	
+func _update_prisoner_quanity(new_prisoner_quanity : int) :
+	current_prisoner_quanity = new_prisoner_quanity
+	
+	# update energy
+	handle_energy._update_energy_player_pressed_prisoner_quanity_btn(current_prisoner_quanity)
+	
 	
 
 func update_selected_stat(stat_type : String) :
@@ -97,6 +112,9 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 		'community' :
 			community_value = new_value
 		
+	# update energy
+	handle_energy._update_energy_stat_value_used(stat_type, new_value)
+		
 	update_display_screens(stat_type)
 
 
@@ -105,14 +123,26 @@ func _handle_toggle_stat_enabled() :
 	# cant toggle when no stat selected
 	if selected_stat == '':
 		return
+		
+	var enabled_status : bool # quick hack for energy updater
+	var last_value : float
 	
 	match selected_stat:
 		'strength' :
 			strength_enabled = !strength_enabled
+			enabled_status = strength_enabled
+			last_value = strength_value
 		'intelligence' :
 			intelligence_enabled = !intelligence_enabled
+			enabled_status = intelligence_enabled
+			last_value = intelligence_value
 		'community' :
 			community_enabled = !community_enabled
+			enabled_status = community_enabled
+			last_value = community_value
+	
+	# update energy	
+	handle_energy._update_energy_toggle_stat_value_enabled(selected_stat, enabled_status, last_value)
 	
 	update_display_screens(selected_stat)
 

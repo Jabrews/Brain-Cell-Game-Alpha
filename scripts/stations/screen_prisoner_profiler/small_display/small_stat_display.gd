@@ -35,7 +35,6 @@ func _update_stat(stat_type : String, stat_value : float, stat_enabled : bool) :
 	# if invalid 
 	if selected_stat_type == '' :
 		handle_switch_screen._switch('none')
-		return
 	
 	if selected_stat_enabled :
 		handle_switch_screen._switch('on')
