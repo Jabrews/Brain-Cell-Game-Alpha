@@ -27,11 +27,16 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_psmjt"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_kwr0x"]
 [ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/prisoner_profiler_screens/large_stat_screen.tscn" id="13_76fo1"]
-[ext_resource type="Texture2D" uid="uid://b7jxfe4gv0noj" path="res://models/screens/prisoner_profiler_symbols/old/caution_symbol.png" id="15_rute7"]
-[ext_resource type="Texture2D" uid="uid://r488pprmkb15" path="res://models/screens/prisoner_profiler_symbols/old/warning_symbol.png" id="16_d2mkq"]
 [ext_resource type="Script" uid="uid://cpkt7xbbhhmy6" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn_updater.gd" id="27_4wtoc"]
 [ext_resource type="Script" uid="uid://dvipqotjclmf4" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn.gd" id="27_5vb5l"]
 [ext_resource type="Script" uid="uid://cgu5ar33hv6s7" path="res://scripts/stations/station_components/prisoner_profiler/generate_btn.gd" id="30_d5oif"]
+[ext_resource type="Script" uid="uid://ixey5sgurmeh" path="res://scripts/stations/station_components/prisoner_profiler/profiler_audio_manager.gd" id="31_4wtoc"]
+[ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="32_d5oif"]
+[ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="34_tbfr5"]
+[ext_resource type="AudioStream" uid="uid://cd1ew561fh1d3" path="res://sounds/prisoner_profiler/increment.mp3" id="35_tbfr5"]
+[ext_resource type="AudioStream" uid="uid://boiulgfftjxux" path="res://sounds/prisoner_profiler/lock_shake.mp3" id="36_yurqg"]
+[ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="37_7xsnp"]
+[ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="37_pjm26"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l25tc"]
 size = Vector3(0.02, 0.46619385, 0.36737794)
@@ -959,14 +964,6 @@ mesh = SubResource("BoxMesh_c22aw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.292872, -2.5484068)
 mesh = SubResource("BoxMesh_c22aw")
 
-[node name="PanelMesh3" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1357550156]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 3.0080087, -2.5484068)
-mesh = SubResource("BoxMesh_c22aw")
-
-[node name="PanelMesh4" type="MeshInstance3D" parent="EnergyDisplay/EnergyKey/BG" unique_id=1636482178]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831592, 2.6937156, -2.5484068)
-mesh = SubResource("BoxMesh_c22aw")
-
 [node name="2PrisonersGenerated" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1508454114]
 transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.5766497, -2.393968)
 texture_filter = 0
@@ -1009,36 +1006,6 @@ font = ExtResource("3_bsoe0")
 font_size = 26
 outline_size = 0
 
-[node name="CautionIcon" type="Sprite3D" parent="EnergyDisplay/EnergyKey" unique_id=1706675489]
-transform = Transform3D(-1.8795896e-08, 0, 0.3, 0, 0.3, 0, -0.43, 0, -1.3113417e-08, -0.20080984, 2.9979577, -2.4003854)
-texture_filter = 0
-texture = ExtResource("15_rute7")
-
-[node name="CautionCost" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=21035334]
-transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 3.0249357, -2.7970502)
-texture_filter = 0
-modulate = Color(1, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "- 10"
-font = ExtResource("3_bsoe0")
-font_size = 26
-outline_size = 0
-
-[node name="WarningIcon" type="Sprite3D" parent="EnergyDisplay/EnergyKey" unique_id=1051622151]
-transform = Transform3D(-1.857734e-08, 0, 0.3, 0, 0.3, 0, -0.425, 0, -1.3113417e-08, -0.20080984, 2.6999507, -2.4003854)
-texture_filter = 0
-texture = ExtResource("16_d2mkq")
-
-[node name="CautionCost2" type="Label3D" parent="EnergyDisplay/EnergyKey" unique_id=1504938862]
-transform = Transform3D(-4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.2006721, 2.708388, -2.7970502)
-texture_filter = 0
-modulate = Color(1, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "- 20"
-font = ExtResource("3_bsoe0")
-font_size = 26
-outline_size = 0
-
 [node name="Mesh" type="Node3D" parent="EnergyDisplay" unique_id=929564916]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -6.072657, 0.22929311, -2.2208562)
 
@@ -1052,3 +1019,39 @@ shape = SubResource("BoxShape3D_b4221")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="EnergyDisplay/Mesh/TableBack" unique_id=1260433936]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1643519, 1.4398446, 9.536743e-07)
 mesh = SubResource("BoxMesh_kwr0x")
+
+[node name="ProfilerAudioManager" type="Node3D" parent="." unique_id=427497900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.7003548, 0)
+script = ExtResource("31_4wtoc")
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=203480938]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37035954, -0.72622895, 0.28649735)
+stream = ExtResource("32_d5oif")
+unit_size = 5.0
+
+[node name="FeedbackSound" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=165030667]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 1.647126, 3.8496246)
+stream = ExtResource("34_tbfr5")
+unit_size = 5.0
+
+[node name="Increment" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=846653722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37035954, -0.72622895, 0.28649735)
+stream = ExtResource("35_tbfr5")
+unit_size = 5.0
+pitch_scale = 0.8
+
+[node name="LockShake" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=1479981686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45403302, -0.6522739, 0.32935)
+stream = ExtResource("36_yurqg")
+unit_size = 5.0
+pitch_scale = 0.9
+
+[node name="OnOffClick" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=1767343948]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 1.647126, 3.8496246)
+stream = ExtResource("37_pjm26")
+unit_size = 5.0
+
+[node name="Generate" type="AudioStreamPlayer3D" parent="ProfilerAudioManager" unique_id=688116883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37035954, -0.72622895, 0.28649735)
+stream = ExtResource("37_7xsnp")
+unit_size = 5.0

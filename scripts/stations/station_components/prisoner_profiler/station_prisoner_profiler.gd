@@ -49,6 +49,7 @@ var inaccessible_starting_value : int = 0
 # extra
 @onready var util_stat_type_to : Node = $Logic/UtilStatTypeTo
 @onready var handle_cycle_stat : Node = $Logic/HandleCycleStat
+@onready var audio_manager : Node3D = $ProfilerAudioManager
 
 
 func _ready() -> void:
@@ -66,9 +67,15 @@ func _update_prisoner_quanity(new_prisoner_quanity : int) :
 	# update energy
 	handle_energy._update_energy_player_pressed_prisoner_quanity_btn(current_prisoner_quanity)
 	
+	# audio
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+	
 	
 
 func update_selected_stat(stat_type : String) :
+	
+	audio_manager.play_cycle_stat()
+	
 	selected_stat = stat_type
 	on_off_btn.update_toggle_off_btn()
 	# the only display componnets we need to update if it has none
@@ -82,12 +89,18 @@ func update_selected_stat(stat_type : String) :
 
 func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	
+
+	
 	# prevent disabled stats from incrementing
 	var stat_enabled = util_stat_type_to.stat_type_to_enabled(stat_type)
 	
 	if stat_enabled == false :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
-	
+		
+	# audio
+	audio_manager.play_increment_sound()
+#	
 	if new_value <= 0 :
 		new_value = 0
 	
@@ -109,12 +122,14 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 		
 	stat_values_inside_lock_range[stat_type] = new_value >= lock_limit
 	
+	
 	if stat_values_inside_lock_range[stat_type]:
 		GLPrisonerProfilerComponentsBus.emit_signal(
 			'station_feedback_requested',
 			'shake_lock',
 			{'stat_type' : stat_type}
 		)
+		audio_manager.play_lock_shake()
 	###################
 	
 	match stat_type :
@@ -139,6 +154,8 @@ func _handle_toggle_stat_enabled() :
 		
 	var enabled_status : bool # quick hack for energy updater
 	var last_value : float
+	
+	audio_manager.play_on_off_sound()
 	
 	match selected_stat:
 		'strength' :
@@ -210,6 +227,7 @@ func handle_generate_btn_pressed() :
 			'station_feedback_requested',
 			'error_prisoner_quanity', {}
 		)
+		audio_manager.play_feedback_sound()
 		return
 	
 	# check if any stats in lock range
@@ -220,6 +238,7 @@ func handle_generate_btn_pressed() :
 				'station_feedback_requested',
 				'error_locked_stat', {'stat_type' : stat_lock}
 			)
+			audio_manager.play_feedback_sound()
 			return
 	
 	# check if all stats disabled
@@ -230,6 +249,7 @@ func handle_generate_btn_pressed() :
 			'error_all_stats_disabled',
 			{}
 		)
+		audio_manager.play_feedback_sound()
 		return
 	
 	# check if we have enough energy
@@ -240,10 +260,14 @@ func handle_generate_btn_pressed() :
 			'error_not_enough_energy',
 			{}
 		)
+		audio_manager.play_feedback_sound()
 		return
 	#######################################
 		
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+	
+	audio_manager.play_generate()
+	
 		
 	var strength_stat_constructor = StatConstructor.new(
 		"strength",

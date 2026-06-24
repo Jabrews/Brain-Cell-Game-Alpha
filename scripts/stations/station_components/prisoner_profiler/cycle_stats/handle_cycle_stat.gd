@@ -15,7 +15,7 @@ var stats : Array[String] = [
 
 func _stat_cycle_btn_down(direction : String) -> void:
 	var index_direction : int = 0
-	
+
 	match direction:
 		"up":
 			index_direction = 1
@@ -24,20 +24,28 @@ func _stat_cycle_btn_down(direction : String) -> void:
 		_:
 			push_error("Invalid direction: " + direction)
 			return
-	
+
 	var current_selected_stat : String = parent_profiler.selected_stat
 	var current_index : int = -1
-	
-	if current_selected_stat != "":
-		current_index = selected_stat_to_index(current_selected_stat)
-	
+
+	# If nothing is selected, start at an end based on direction
+	if current_selected_stat == "":
+		if direction == "up":
+			parent_profiler.update_selected_stat(stats[0]) # strength
+		elif direction == "down":
+			parent_profiler.update_selected_stat(stats[stats.size() - 1]) # community
+		
+		update_active_mesh()
+		return
+
+	current_index = selected_stat_to_index(current_selected_stat)
 	current_index += index_direction
-	
+
 	if current_index >= 0 and current_index < stats.size():
 		parent_profiler.update_selected_stat(stats[current_index])
 	else:
-		parent_profiler.update_selected_stat('')
-	
+		parent_profiler.update_selected_stat("")
+
 	update_active_mesh()
 
 
