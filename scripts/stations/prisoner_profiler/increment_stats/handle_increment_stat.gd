@@ -19,7 +19,7 @@ func _handle_increment_btn_down(increment_direction : String):
 		direction = -1
 	
 	var selected_stat_type = parent_station.selected_stat 
-	var selected_stat_value = parent_station.stat_type_to_value(selected_stat_type)
+	var selected_stat_value = parent_station.util_stat_type_to.stat_type_to_value(selected_stat_type)
 
 	selected_stat_value += direction * IVPrisonerProfiler.stat_increment_amount
 	

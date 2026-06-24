@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_b4221"]
 [ext_resource type="Script" uid="uid://dqb4ysqv3alnd" path="res://scripts/stations/prisoner_profiler/cycle_stats/handle_cycle_stat.gd" id="1_d2mkq"]
 [ext_resource type="Script" uid="uid://cs0gbmhs0lxta" path="res://scripts/stations/prisoner_profiler/station_prisoner_profiler.gd" id="1_iwmj8"]
+[ext_resource type="Script" uid="uid://cd63w68aifc32" path="res://scripts/stations/prisoner_profiler/util_stat_type_to.gd" id="2_5kdf7"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="2_7qc6t"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="3_bsoe0"]
 [ext_resource type="Script" uid="uid://du7unuya06hdh" path="res://scripts/stations/prisoner_profiler/increment_stats/handle_increment_stat.gd" id="3_c22aw"]
@@ -19,11 +20,11 @@
 [ext_resource type="Script" uid="uid://cetokmro8xuln" path="res://scripts/stations/prisoner_profiler/energy/handle_energy.gd" id="8_5vb5l"]
 [ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="8_6nrc1"]
 [ext_resource type="Script" uid="uid://b57de32pi1lis" path="res://scripts/stations/prisoner_profiler/toggle_off_btn.gd" id="8_nx7jm"]
-[ext_resource type="Script" uid="uid://bqqa828m7jidn" path="res://scripts/stations/prisoner_profiler/energy/update_control_interface.gd" id="9_d5oif"]
+[ext_resource type="Script" uid="uid://bqqa828m7jidn" path="res://scripts/stations/prisoner_profiler/energy/control_interface_energy_helper.gd" id="9_d5oif"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="9_pvslh"]
 [ext_resource type="Script" uid="uid://biba1t5gxf334" path="res://scripts/stations/prisoner_profiler/energy/update_energy_panel.gd" id="10_5kdf7"]
 [ext_resource type="Script" uid="uid://c1ele68anq43w" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn_updater.gd" id="10_lbckn"]
-[ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/prisoner_profiler/control_interface/control_interface.gd" id="11_d5oif"]
+[ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/prisoner_profiler/control_interface.gd" id="11_d5oif"]
 [ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/prisoner_profiler_screens/small_stat_display.tscn" id="11_pl004"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_psmjt"]
 [ext_resource type="Script" uid="uid://bovnevwtlncs4" path="res://scripts/stations/station_components/prisoner_profiler/btns/prisoner_quanity_btn.gd" id="11_qt5yk"]
@@ -237,6 +238,9 @@ script = ExtResource("1_iwmj8")
 
 [node name="Logic" type="Node" parent="." unique_id=2085216556]
 
+[node name="UtilStatTypeTo" type="Node" parent="Logic" unique_id=1293406886]
+script = ExtResource("2_5kdf7")
+
 [node name="HandleCycleStat" type="Node" parent="Logic" unique_id=1465069877]
 script = ExtResource("1_d2mkq")
 
@@ -260,7 +264,7 @@ script = ExtResource("4_reulp")
 [node name="HandleEnergy" type="Node" parent="Logic" unique_id=417109098]
 script = ExtResource("8_5vb5l")
 
-[node name="UpdateControlInterface" type="Node" parent="Logic/HandleEnergy" unique_id=1560915229]
+[node name="ControlInterfaceEnergyHelper" type="Node" parent="Logic/HandleEnergy" unique_id=1560915229]
 script = ExtResource("9_d5oif")
 
 [node name="UpdateEnergyPanel" type="Node" parent="Logic/HandleEnergy" unique_id=2055681758]
@@ -357,7 +361,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
 
 [node name="NoneLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1130098963]
 transform = Transform3D(-8.940697e-08, 0, 1.0000005, 1.4901161e-08, 1.0000006, 7.4505806e-08, -1.0000002, -4.4703484e-08, 0, -0.18875727, 1.3891338, -0.5622134)
-visible = false
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "None
@@ -368,6 +371,7 @@ outline_size = 0
 
 [node name="EnergyLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1548032390]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.2662206, -0.48533148)
+visible = false
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
@@ -378,9 +382,20 @@ outline_size = 0
 
 [node name="EnergyIcon3" type="Sprite3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=326289034]
 transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, -0.19064441, 1.2627908, -0.68640614)
+visible = false
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_qt5yk")
+
+[node name="StatValueLabel" type="Label3D" parent="ControlInterface/Control/CurrStatDisplayLabelsl/EnergySpent" unique_id=1262112986]
+transform = Transform3D(-8.940697e-08, -2.9802322e-08, 1.0000007, 1.4901161e-08, 1.0000006, 5.9604645e-08, -1.0000002, -2.9802322e-08, 0, -0.19998246, 1.4386449, -0.5441705)
+visible = false
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "+ 100"
+font = ExtResource("3_bsoe0")
+font_size = 33
+outline_size = 0
 
 [node name="OnOffBtn" type="StaticBody3D" parent="ControlInterface/Control" unique_id=1821006752 groups=["interactable"]]
 transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, -0.21982256, 0.099659085, 0.052233562)

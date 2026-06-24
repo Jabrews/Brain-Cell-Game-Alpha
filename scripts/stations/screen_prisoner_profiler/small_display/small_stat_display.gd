@@ -6,7 +6,6 @@ extends Node2D
 @onready var handle_switch_screen : Node = $SmallHandleSwitchScreen
 @onready var handle_lock_small_stat_display : Node = $"../../../../../Logic/Symbols/HandleLock/LockSmallStatDisplay"
 
-
 var selected_stat_value : float
 var selected_stat_type : String
 var selected_stat_enabled : bool = true
@@ -14,32 +13,19 @@ var selected_stat_enabled : bool = true
 func _ready() -> void:
 	bar.material = bar.material.duplicate()
 
-func _update_stat(stat_type : String, stat_value : float, stat_enabled : bool) :
-	
-	selected_stat_enabled = stat_enabled
-	
-	match stat_type :
-		'strength' :
-			selected_stat_label.text = 'strength'
-		'intelligence' :
-			selected_stat_label.text = 'intelligence'
-		'community': 
-			selected_stat_label.text = 'community'
-		_ : 
-			selected_stat_label.text = 'none'	
-	
+func _update_stat(stat_type : String, stat_value : float, stat_enabled : bool) -> void:
 	selected_stat_type = stat_type
 	selected_stat_value = stat_value
+	selected_stat_enabled = stat_enabled
 	
+	selected_stat_label.text = stat_type if stat_type != '' else 'none'
 	
-	# if invalid 
-	if selected_stat_type == '' :
+	if stat_type == '':
 		handle_switch_screen._switch('none')
-	
-	if selected_stat_enabled :
+	elif stat_enabled:
 		handle_switch_screen._switch('on')
 		update_symbols()
-	else :
+	else:
 		handle_switch_screen._switch('off')
 	
 	update_bar()
