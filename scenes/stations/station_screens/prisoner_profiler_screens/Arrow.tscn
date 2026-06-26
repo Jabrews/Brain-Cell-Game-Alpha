@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b71v15nqf8rl5"]
+
+[ext_resource type="Script" uid="uid://bbnpbfhfv1vlr" path="res://scripts/stations/station_screens/screen_prisoner_profiler/arrow.gd" id="1_tnyry"]
+
+[node name="Arrow" type="Sprite2D" unique_id=1199970231]
+texture_filter = 1
+script = ExtResource("1_tnyry")
+arrow_type = "up"

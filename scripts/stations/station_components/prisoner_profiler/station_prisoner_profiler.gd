@@ -43,6 +43,7 @@ var inaccessible_starting_value : int = 0
 # helpers
 # symbols
 @onready var handle_inaccesible : Node = $Logic/Symbols/HandleInaccessible
+@onready var handle_spare_symbols: Node = $Logic/Symbols/HandleSpareSymbols
 @onready var handle_lock : Node = $Logic/Symbols/HandleLock
 # energy
 @onready var handle_energy : Node = $Logic/HandleEnergy
@@ -60,6 +61,7 @@ func _ready() -> void:
 	await get_tree().create_timer(1.0).timeout
 	handle_inaccesible._generate_inaccessible()
 	handle_lock._generate_locks()
+	handle_spare_symbols._generate_spare()
 	
 func _update_prisoner_quanity(new_prisoner_quanity : int) :
 	current_prisoner_quanity = new_prisoner_quanity
@@ -196,10 +198,12 @@ func update_display_componnets(stat_type : String) :
 func _handle_next_turn() :
 	reset_assembler()
 	handle_lock._generate_locks()
+	handle_spare_symbols._generate_spare()
 
 func _handle_next_round() :
 	handle_inaccesible._generate_inaccessible()
 	handle_lock._generate_locks()
+	handle_spare_symbols._generate_spare()
 	
 func reset_assembler() :
 	strength_value = 0

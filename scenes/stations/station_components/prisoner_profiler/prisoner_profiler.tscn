@@ -17,16 +17,22 @@
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_bsoe0"]
 [ext_resource type="Script" uid="uid://cxe47p7g6bu00" path="res://scripts/stations/station_components/prisoner_profiler/cycle_stats/cycle_stat_btn.gd" id="6_rute7"]
 [ext_resource type="Script" uid="uid://cetokmro8xuln" path="res://scripts/stations/station_components/prisoner_profiler/energy/handle_energy.gd" id="8_5vb5l"]
-[ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler/screen_hidden_stat_quanity.tscn" id="8_6nrc1"]
 [ext_resource type="Script" uid="uid://b57de32pi1lis" path="res://scripts/stations/station_components/prisoner_profiler/toggle_off_btn.gd" id="8_nx7jm"]
 [ext_resource type="Script" uid="uid://bqqa828m7jidn" path="res://scripts/stations/station_components/prisoner_profiler/energy/control_interface_energy_helper.gd" id="9_d5oif"]
 [ext_resource type="PackedScene" uid="uid://c746r67f0tqyg" path="res://scenes/stations/station_screens/prisoner_spawner_limit/screen_pick_quanity.tscn" id="9_pvslh"]
+[ext_resource type="Script" uid="uid://myco72tshqap" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/handle_spare_symbols.gd" id="9_xv7qh"]
 [ext_resource type="Script" uid="uid://biba1t5gxf334" path="res://scripts/stations/station_components/prisoner_profiler/energy/update_energy_panel.gd" id="10_5kdf7"]
+[ext_resource type="Script" uid="uid://fd0tgqcsjd74" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/spare_symbols_updater.gd" id="10_gbx2x"]
 [ext_resource type="Script" uid="uid://dew5isas4qseq" path="res://scripts/stations/station_components/prisoner_profiler/control_interface.gd" id="11_d5oif"]
-[ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/prisoner_profiler_screens/small_stat_screen.tscn" id="11_pl004"]
+[ext_resource type="PackedScene" uid="uid://dn4jj2fmxhgsm" path="res://scenes/stations/station_screens/prisoner_profiler_screens/small_stat_screen.tscn" id="11_pl004"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_psmjt"]
+[ext_resource type="Script" uid="uid://cbebr44re1wcd" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/symbol_defect.gd" id="11_sow2j"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_kwr0x"]
-[ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/prisoner_profiler_screens/large_stat_screen.tscn" id="13_76fo1"]
+[ext_resource type="Script" uid="uid://ch27re2f3sgoi" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/symbol_energy.gd" id="12_r3gj0"]
+[ext_resource type="Script" uid="uid://dlxq0kk6nxyqd" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/symbol_good_mutation.gd" id="13_3pai2"]
+[ext_resource type="PackedScene" uid="uid://dyb5kgt1yg02g" path="res://scenes/stations/station_screens/prisoner_profiler_screens/large_stat_screen.tscn" id="13_76fo1"]
+[ext_resource type="Script" uid="uid://bmphqa7d6mod2" path="res://scripts/stations/station_components/prisoner_profiler/symbols/spare/symbol_updater/symbol_bad_mutation.gd" id="14_sow2j"]
+[ext_resource type="PackedScene" uid="uid://ctgv6es6pim8p" path="res://scenes/stations/station_screens/prisoner_profiler_screens/screen_hidden_stat_quanity.tscn" id="25_8fl20"]
 [ext_resource type="Script" uid="uid://cpkt7xbbhhmy6" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn_updater.gd" id="27_4wtoc"]
 [ext_resource type="Script" uid="uid://dvipqotjclmf4" path="res://scripts/stations/station_components/prisoner_profiler/prisoner_quanity_btn/prisoner_quanity_btn.gd" id="27_5vb5l"]
 [ext_resource type="Script" uid="uid://cgu5ar33hv6s7" path="res://scripts/stations/station_components/prisoner_profiler/generate_btn.gd" id="30_d5oif"]
@@ -273,6 +279,24 @@ script = ExtResource("6_6u0qw")
 
 [node name="HandleInaccessible" type="Node" parent="Logic/Symbols" unique_id=216486329]
 script = ExtResource("4_reulp")
+
+[node name="HandleSpareSymbols" type="Node" parent="Logic/Symbols" unique_id=1707934414]
+script = ExtResource("9_xv7qh")
+
+[node name="SpareSymbolsUpdater" type="Node" parent="Logic/Symbols/HandleSpareSymbols" unique_id=1931971501]
+script = ExtResource("10_gbx2x")
+
+[node name="Defect" type="Node" parent="Logic/Symbols/HandleSpareSymbols/SpareSymbolsUpdater" unique_id=610923224]
+script = ExtResource("11_sow2j")
+
+[node name="Energy" type="Node" parent="Logic/Symbols/HandleSpareSymbols/SpareSymbolsUpdater" unique_id=19977677]
+script = ExtResource("12_r3gj0")
+
+[node name="GoodMutation" type="Node" parent="Logic/Symbols/HandleSpareSymbols/SpareSymbolsUpdater" unique_id=720421225]
+script = ExtResource("13_3pai2")
+
+[node name="BadMutation" type="Node" parent="Logic/Symbols/HandleSpareSymbols/SpareSymbolsUpdater" unique_id=565654022]
+script = ExtResource("14_sow2j")
 
 [node name="HandleEnergy" type="Node" parent="Logic" unique_id=417109098]
 script = ExtResource("8_5vb5l")
@@ -705,7 +729,7 @@ script = ExtResource("6_7qc6t")
 size = Vector2i(480, 270)
 render_target_update_mode = 4
 
-[node name="ScreenHiddenStatQuanity" parent="StatDisplay/HiddenQuanityTV/TvFrontPannel/SubViewport" unique_id=981638018 instance=ExtResource("8_6nrc1")]
+[node name="ScreenHiddenStatQuanity" parent="StatDisplay/HiddenQuanityTV/TvFrontPannel/SubViewport" unique_id=981638018 instance=ExtResource("25_8fl20")]
 
 [node name="MaxPickQuanityTV" type="Node3D" parent="StatDisplay" unique_id=1749620393]
 transform = Transform3D(0.9696082, 0.06693436, 0.23533945, -0.06886851, 0.99762607, 3.4448782e-09, -0.2347807, -0.01620745, 0.9719158, -2.211272, 4.5909214, 1.5981913)

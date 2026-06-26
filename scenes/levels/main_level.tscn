@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
-[ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
+[ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="18_58boi"]
@@ -36,8 +36,10 @@
 [ext_resource type="Script" uid="uid://tqdqm0u65kc7" path="res://scripts/game_manager/cell_creator/offer_helpers/offer_three.gd" id="25_8muua"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
+[ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
 [ext_resource type="Script" uid="uid://b067pgk4pw487" path="res://scripts/game_manager/prisoner_picks_manager/prisoner_picks_manager.gd" id="36_w7r6u"]
+[ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 
@@ -293,8 +295,14 @@ script = ExtResource("32_m5ih7")
 [node name="IVHelperHiddenStats" type="Node" parent="GameManager/IncrementalValueController" unique_id=235860088]
 script = ExtResource("35_wv5kd")
 
+[node name="IVHelperProfilerSpareProgression" type="Node" parent="GameManager/IncrementalValueController" unique_id=858463651]
+script = ExtResource("35_w7r6u")
+
 [node name="PrisonerPicksManager" type="Node" parent="GameManager" unique_id=1855467160]
 script = ExtResource("36_w7r6u")
+
+[node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
+script = ExtResource("37_1l4rw")
 
 [node name="UseableItemSpawnManager" type="Node" parent="." unique_id=622852825 node_paths=PackedStringArray("player")]
 script = ExtResource("16_44ape")

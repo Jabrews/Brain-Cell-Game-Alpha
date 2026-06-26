@@ -6,6 +6,7 @@ var last_round : int = 0
 # components
 @onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
 @onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
+@onready var iv_helper_profiler_spare_progression : Node = $IVHelperProfilerSpareProgression
 
 func _ready() -> void:
 	# when energy changes outside of prisoner generation
@@ -68,6 +69,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
+			#IVPrisonerProfiler.stat_lock_percantages = [1.00,]			
 			IVPrisonerProfiler.stat_lock_percantages = [0.25, 0.50, 0.75, 1.00,]			
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			
@@ -169,6 +171,7 @@ func handle_energy(round : int, energy: int) :
 	
 	iv_helper_defect_event._update_defect_event_values(round, energy)
 	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
+	iv_helper_profiler_spare_progression._update_hidden_stat_values(round, energy)
 	
 
 func _handle_energy_changed() :
