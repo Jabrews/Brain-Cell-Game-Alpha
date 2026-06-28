@@ -15,6 +15,7 @@ extends Node
 @onready var out_of_energy_label : Label3D = $NotEnoughEnergy
 
 func _ready() -> void:
+	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 	GLGameManagerBus.connect('energy_changed', _handle_energy_changed)

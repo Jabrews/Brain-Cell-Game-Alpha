@@ -39,6 +39,7 @@ var inaccessible_starting_value : int = 0
 @onready var control_interface : Node3D = $ControlInterface
 # extra
 @onready var on_off_btn : StaticBody3D = $ControlInterface/Control/OnOffBtn
+@onready var screen_prisoner_pick_quanity : Node2D = $StatDisplay/MaxPickQuanityTV/TvFrontPannel/SubViewport/ScreenPickQuanity
 
 # helpers
 # symbols
@@ -77,12 +78,19 @@ func _update_prisoner_quanity(new_prisoner_quanity : int) :
 	# update energy
 	handle_energy._update_energy_player_pressed_prisoner_quanity_btn(current_prisoner_quanity)
 	
+	if new_prisoner_quanity == 2 :	
+		screen_prisoner_pick_quanity._update(1)
+	elif new_prisoner_quanity == 4 : 
+		screen_prisoner_pick_quanity._update(2)
+	
+	
 	# audio
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 	
 	
 
 func update_selected_stat(stat_type : String) :
+	
 	
 	audio_manager.play_cycle_stat()
 	
@@ -108,6 +116,19 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 		
 	# audio
 	audio_manager.play_increment_sound()
+	
+	## check if pris. quanity selected
+	if current_prisoner_quanity == 0 :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			'station_feedback_requested',
+			'prisoner_quanity_not_selected',
+			{}
+		)
+		audio_manager.play_feedback_sound()
+		return
+	#####
+	
 #	
 	if new_value <= 0 :
 		new_value = 0
@@ -116,8 +137,6 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	if new_value >= inaccessible_starting_value :
 		new_value = inaccessible_starting_value
 	###########################
-	
-	
 	
 	## lock checking ##
 	var lock_limit : float = util_stat_type_to.stat_type_to_lock_limit(stat_type)
@@ -306,6 +325,7 @@ func handle_generate_btn_pressed() :
 		spare_symbol_effects.intelligence_spare_symbol,
 		intelligence_enabled
 	)
+
 	var community_stat_constructor = StatConstructor.new(
 		"community",
 		community_value,
@@ -321,7 +341,7 @@ func handle_generate_btn_pressed() :
 		community_stat_constructor
 	)
 	
-	
+	screen_prisoner_pick_quanity._create()
 	
 	GLCellCreatorBus.emit_signal(
 		"create_prisoner_cells",

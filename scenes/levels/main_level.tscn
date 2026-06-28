@@ -38,8 +38,9 @@
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
-[ext_resource type="Script" uid="uid://b067pgk4pw487" path="res://scripts/game_manager/prisoner_picks_manager/prisoner_picks_manager.gd" id="36_w7r6u"]
+[ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
+[ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 
@@ -183,7 +184,7 @@ prisoners_parent_node = NodePath("../../../Characters/PrisonerParentNode")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 5)
 
 [node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=261005381 instance=ExtResource("16_w7r6u")]
-transform = Transform3D(-0.59446096, 0, -0.8041245, 0, 1, 0, 0.8041245, 0, -0.59446096, -16.18124, 0, -6.587539)
+transform = Transform3D(-0.59446096, 0, -0.8041245, 0, 1, 0, 0.8041245, 0, -0.59446096, -16.181185, -0.012770176, -6.5799956)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
@@ -298,8 +299,11 @@ script = ExtResource("35_wv5kd")
 [node name="IVHelperProfilerSpareProgression" type="Node" parent="GameManager/IncrementalValueController" unique_id=858463651]
 script = ExtResource("35_w7r6u")
 
-[node name="PrisonerPicksManager" type="Node" parent="GameManager" unique_id=1855467160]
-script = ExtResource("36_w7r6u")
+[node name="IVHelperCellStatCreation" type="Node" parent="GameManager/IncrementalValueController" unique_id=634562747]
+script = ExtResource("36_87p7k")
+
+[node name="IVHelperShareholderItems" type="Node" parent="GameManager/IncrementalValueController" unique_id=1162582102]
+script = ExtResource("37_ngeto")
 
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")

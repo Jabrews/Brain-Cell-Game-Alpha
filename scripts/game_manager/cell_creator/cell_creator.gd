@@ -63,9 +63,6 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 	cell_manager.set_prisoner_cells(
 		new_prisoner_cells
 	)
-	
-	# call this after no shareholder offer interuption 
-	GLPrisonerPicksBus.emit_signal('generate_next_max_prisoners_created')
 
 	GLCellCreatorBus.emit_signal(
 		"get_newest_prisoner_cells",
