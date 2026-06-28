@@ -10,10 +10,7 @@ extends Node
 #@onready var stat_offer_card_2 : TextureRect = $ServeStatOffer/Card2Container
 @onready var item_offer_card_1 : TextureRect = $ServeItemOffer/Card1Container
 @onready var item_offer_card_2 : TextureRect = $ServeItemOffer/Card2Container
-# helpers
-@onready var helper_stat_offer_active_toggle : Node = $HelperStatOfferActiveToggle
 
-var has_offered_stat : bool = false
 var has_offered_item : bool = false
 
 
@@ -34,9 +31,7 @@ func _handle_energy_turn_changed() :
 		return
 
 func _handle_next_round() :
-	helper_stat_offer_active_toggle._handle_reset_active_stat_offer()
 	has_offered_item = false
-	has_offered_stat = false
 	
 func handle_item_offer() :
 	
