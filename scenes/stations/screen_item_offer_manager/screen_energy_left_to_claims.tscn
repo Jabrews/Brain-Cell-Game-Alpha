@@ -1,0 +1,102 @@
+[gd_scene format=3 uid="uid://dgavvcd15iwji"]
+
+[ext_resource type="Script" uid="uid://bop5s4a6qv8ml" path="res://scripts/stations/screen_item_offer_manager/energy_left_to_claim/energy_left_to_claim.gd" id="1_4jaa7"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_n72sx"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_grdld"]
+[ext_resource type="Script" uid="uid://bur3pfwuehd2p" path="res://scripts/stations/screen_item_offer_manager/energy_left_to_claim/switch_screen.gd" id="2_loa62"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_o8ugq"]
+[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_4jaa7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y6i2n"]
+shader = ExtResource("1_n72sx")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="EnergyLeftToClaimDisplay" type="Node2D" unique_id=1598081840]
+script = ExtResource("1_4jaa7")
+
+[node name="SwitchScreen" type="Node" parent="." unique_id=447060335]
+script = ExtResource("2_loa62")
+
+[node name="BG" type="ColorRect" parent="." unique_id=844641586]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 240.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="NoDemand" type="Control" parent="." unique_id=332425501]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShareholderOfferDemands" type="Label" parent="NoDemand" unique_id=1481610868]
+texture_filter = 1
+layout_mode = 0
+offset_top = 53.0
+offset_right = 228.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("2_grdld")
+theme_override_font_sizes/font_size = 16
+text = "No 
+Demand Found"
+horizontal_alignment = 1
+
+[node name="EnergyLeft" type="Control" parent="." unique_id=678280955]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UntilExspire" type="Label" parent="EnergyLeft" unique_id=156862075]
+texture_filter = 1
+layout_mode = 0
+offset_top = 14.0
+offset_right = 240.0
+offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("2_grdld")
+theme_override_font_sizes/font_size = 13
+text = "Energy TO Spend 
+Until Expiration"
+horizontal_alignment = 1
+
+[node name="Bg" type="ColorRect" parent="EnergyLeft" unique_id=738014243]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 53.0
+offset_right = 183.0
+offset_bottom = 142.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="EnergyLeft" type="Label" parent="EnergyLeft" unique_id=603696893]
+texture_filter = 1
+layout_mode = 0
+offset_left = -14.0
+offset_top = 71.0
+offset_right = 226.0
+offset_bottom = 117.0
+theme_override_fonts/font = ExtResource("2_o8ugq")
+theme_override_font_sizes/font_size = 40
+text = "20 "
+horizontal_alignment = 1
+
+[node name="EnergySprite" type="Sprite2D" parent="EnergyLeft" unique_id=135552073]
+texture_filter = 1
+position = Vector2(134, 95)
+scale = Vector2(2, 2)
+texture = ExtResource("3_4jaa7")
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=604338355]
+material = SubResource("ShaderMaterial_y6i2n")
+offset_top = -15.0
+offset_right = 453.0
+offset_bottom = 255.0

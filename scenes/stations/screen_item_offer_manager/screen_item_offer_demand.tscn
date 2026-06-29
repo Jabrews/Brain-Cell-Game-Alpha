@@ -1,0 +1,325 @@
+[gd_scene format=3 uid="uid://dv83gqtosowf7"]
+
+[ext_resource type="Script" uid="uid://bala4co2v82uv" path="res://scripts/stations/screen_item_offer_manager/item_offer_demand/item_offer_demand.gd" id="1_jgakq"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_vswsn"]
+[ext_resource type="Script" uid="uid://b3rv36jf8kxt5" path="res://scripts/stations/screen_item_offer_manager/item_offer_demand/switch_screen.gd" id="2_4lom8"]
+[ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://scripts/shaders/target_progress_bar.gdshader" id="2_jgakq"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="3_4lom8"]
+[ext_resource type="Texture2D" uid="uid://qg03gb4bsm4h" path="res://models/screens/station_item_offer_manager/no_stat_required.png" id="6_jgakq"]
+[ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="6_q5iuy"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="7_iuynq"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="8_845nu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tgnlf"]
+shader = ExtResource("2_jgakq")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/overlap_opacity = 0.10000000475
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_68vql"]
+shader = ExtResource("8_845nu")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ItemOfferDemand" type="Node2D" unique_id=653969407]
+script = ExtResource("1_jgakq")
+
+[node name="SwitchScreen" type="Node" parent="." unique_id=1220083543]
+script = ExtResource("2_4lom8")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1760593810]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ShareholderOfferDemands" type="Label" parent="." unique_id=921148407]
+texture_filter = 1
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 492.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 16
+text = "Item Offer Demands -"
+horizontal_alignment = 1
+
+[node name="StatDemand" type="Control" parent="." unique_id=940454362]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="StatDemand" unique_id=355314265]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 30.0
+offset_right = 475.0
+offset_bottom = 262.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="CleanBars" type="Control" parent="StatDemand" unique_id=1269397990]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Labels" type="Control" parent="StatDemand/CleanBars" unique_id=1151234055]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StengthLabel" type="Label" parent="StatDemand/CleanBars/Labels" unique_id=2090353154]
+texture_filter = 1
+layout_mode = 0
+offset_left = -8.0
+offset_top = 67.0
+offset_right = 132.0
+offset_bottom = 90.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 9
+text = "Strength -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceLabel" type="Label" parent="StatDemand/CleanBars/Labels" unique_id=1420747194]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 142.0
+offset_right = 116.0
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 7
+text = "Intelligence -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityLabel" type="Label" parent="StatDemand/CleanBars/Labels" unique_id=656053772]
+texture_filter = 1
+layout_mode = 0
+offset_left = -8.0
+offset_top = 217.0
+offset_right = 132.0
+offset_bottom = 240.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 9
+text = "Community -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bars" type="Control" parent="StatDemand/CleanBars" unique_id=2038164048]
+anchors_preset = 0
+offset_left = 9.0
+offset_right = 49.0
+offset_bottom = 40.0
+
+[node name="StrengthBar" type="Sprite2D" parent="StatDemand/CleanBars/Bars" unique_id=44024805]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tgnlf")
+position = Vector2(285, 77.00001)
+scale = Vector2(1.1290323, 0.90375006)
+texture = ExtResource("3_4lom8")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="StatDemand/CleanBars/Bars" unique_id=643237408]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tgnlf")
+position = Vector2(285, 152)
+scale = Vector2(1.1290323, 0.90375006)
+texture = ExtResource("3_4lom8")
+
+[node name="CommunityBar" type="Sprite2D" parent="StatDemand/CleanBars/Bars" unique_id=1086844721]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tgnlf")
+position = Vector2(287, 224)
+scale = Vector2(1.1290323, 0.90375006)
+texture = ExtResource("3_4lom8")
+
+[node name="NoStatRequired" type="Control" parent="StatDemand" unique_id=1932482348]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="StatDemand/NoStatRequired" unique_id=966213260]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite" type="Sprite2D" parent="StatDemand/NoStatRequired/Strength" unique_id=888743]
+modulate = Color(1, 0.13, 0.13, 1)
+texture_filter = 1
+position = Vector2(293, 77)
+texture = ExtResource("6_jgakq")
+
+[node name="OffLabel" type="Label" parent="StatDemand/NoStatRequired/Strength" unique_id=1452625509]
+texture_filter = 1
+layout_mode = 0
+offset_left = 121.0
+offset_top = 67.0
+offset_right = 469.0
+offset_bottom = 90.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 12
+text = "Stat Not Required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="StatDemand/NoStatRequired" unique_id=1103207630]
+visible = false
+anchors_preset = 0
+offset_top = 75.0
+offset_right = 40.0
+offset_bottom = 115.0
+
+[node name="Sprite" type="Sprite2D" parent="StatDemand/NoStatRequired/Intelligence" unique_id=1624426285]
+modulate = Color(1, 0.13, 0.13, 1)
+texture_filter = 1
+position = Vector2(293, 77)
+texture = ExtResource("6_jgakq")
+
+[node name="OffLabel" type="Label" parent="StatDemand/NoStatRequired/Intelligence" unique_id=628524174]
+texture_filter = 1
+layout_mode = 0
+offset_left = 121.0
+offset_top = 67.0
+offset_right = 469.0
+offset_bottom = 90.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 12
+text = "Stat Not Required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="StatDemand/NoStatRequired" unique_id=2053306018]
+visible = false
+anchors_preset = 0
+offset_top = 149.0
+offset_right = 40.0
+offset_bottom = 189.0
+
+[node name="Sprite" type="Sprite2D" parent="StatDemand/NoStatRequired/Community" unique_id=1516710745]
+modulate = Color(1, 0.13, 0.13, 1)
+texture_filter = 1
+position = Vector2(293, 77)
+texture = ExtResource("6_jgakq")
+
+[node name="OffLabel" type="Label" parent="StatDemand/NoStatRequired/Community" unique_id=1817449238]
+texture_filter = 1
+layout_mode = 0
+offset_left = 121.0
+offset_top = 67.0
+offset_right = 469.0
+offset_bottom = 90.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 12
+text = "Stat Not Required"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Confirm" type="Control" parent="StatDemand" unique_id=1090382697]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="StatDemand/Confirm" unique_id=67693473]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 471.0
+offset_bottom = 262.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="Stat" type="Label" parent="StatDemand/Confirm" unique_id=1546128020]
+texture_filter = 1
+layout_mode = 0
+offset_left = -86.0
+offset_top = 67.0
+offset_right = 414.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 23
+text = "Stat "
+horizontal_alignment = 1
+
+[node name="Matches" type="Label" parent="StatDemand/Confirm" unique_id=74688895]
+texture_filter = 1
+layout_mode = 0
+offset_left = 70.0
+offset_top = 67.0
+offset_right = 570.0
+offset_bottom = 121.0
+theme_override_colors/font_color = Color(0.29803923, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 23
+text = "Matches!"
+horizontal_alignment = 1
+
+[node name="CheckMarkSprite" type="Sprite2D" parent="StatDemand/Confirm" unique_id=618547065]
+texture_filter = 1
+position = Vector2(243, 142.00002)
+scale = Vector2(6.529411, 5.4444447)
+texture = ExtResource("6_q5iuy")
+
+[node name="PressBtnBreed" type="Label" parent="StatDemand/Confirm" unique_id=66992549]
+texture_filter = 1
+layout_mode = 0
+offset_left = 49.0
+offset_top = 231.0
+offset_right = 433.0
+offset_bottom = 274.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 12
+text = "Press Button To Accept"
+horizontal_alignment = 1
+script = ExtResource("7_iuynq")
+
+[node name="NoDemand" type="Control" parent="." unique_id=2046828483]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="NoDemand" unique_id=812354184]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 471.0
+offset_bottom = 262.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ShareholderOfferDemands" type="Label" parent="NoDemand" unique_id=1597933575]
+texture_filter = 1
+layout_mode = 0
+offset_left = -8.0
+offset_top = 125.0
+offset_right = 492.0
+offset_bottom = 179.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 16
+text = "No demand Found"
+horizontal_alignment = 1
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=540649733]
+material = SubResource("ShaderMaterial_68vql")
+offset_right = 480.0
+offset_bottom = 270.0

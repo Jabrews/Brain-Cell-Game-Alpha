@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://tmx711wuc1en"]
+
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_d2oey"]
+[ext_resource type="Script" uid="uid://beme8w8v7l0ec" path="res://scripts/stations/screen_item_offer_manager/energy_reward/energy_reward.gd" id="1_xvb37"]
+[ext_resource type="Script" uid="uid://btlwglh4duwsn" path="res://scripts/stations/screen_item_offer_manager/energy_reward/switch_screen.gd" id="2_203co"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_xvb37"]
+[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_203co"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="4_gxjf5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spby4"]
+shader = ExtResource("4_gxjf5")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenEnergyReward" type="Node2D" unique_id=671237391]
+script = ExtResource("1_xvb37")
+
+[node name="SwitchScreen" type="Node" parent="." unique_id=776589520]
+script = ExtResource("2_203co")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1832820770]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 240.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="NoDemand" type="Control" parent="." unique_id=1938434137]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShareholderOfferDemands" type="Label" parent="NoDemand" unique_id=293321930]
+texture_filter = 1
+layout_mode = 0
+offset_top = 53.0
+offset_right = 228.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("1_d2oey")
+theme_override_font_sizes/font_size = 16
+text = "No 
+Demand Found"
+horizontal_alignment = 1
+
+[node name="Reward" type="Control" parent="." unique_id=399516434]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RewardLabel" type="Label" parent="Reward" unique_id=794009758]
+texture_filter = 1
+layout_mode = 0
+offset_top = 14.0
+offset_right = 240.0
+offset_bottom = 57.0
+theme_override_fonts/font = ExtResource("1_d2oey")
+theme_override_font_sizes/font_size = 21
+text = "Reward"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Bg" type="ColorRect" parent="Reward" unique_id=404397110]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 53.0
+offset_right = 183.0
+offset_bottom = 142.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="EnergyReward" type="Label" parent="Reward" unique_id=541792673]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = 71.0
+offset_right = 224.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(0.1254902, 0.68235296, 0, 1)
+theme_override_fonts/font = ExtResource("2_xvb37")
+theme_override_font_sizes/font_size = 40
+text = "+20 "
+horizontal_alignment = 1
+
+[node name="EnergySprites" type="Sprite2D" parent="Reward" unique_id=1512229082]
+modulate = Color(0.1254902, 1, 0, 1)
+texture_filter = 1
+position = Vector2(139, 95)
+scale = Vector2(2, 2)
+texture = ExtResource("3_203co")
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=339510975]
+material = SubResource("ShaderMaterial_spby4")
+offset_top = -15.0
+offset_right = 453.0
+offset_bottom = 255.0

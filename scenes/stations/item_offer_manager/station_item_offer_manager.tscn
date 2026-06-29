@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://damsstax7yjgn"]
+
+[ext_resource type="Script" uid="uid://ddonxh87orqve" path="res://scripts/stations/item_offer_manager/station_item_offer_manager.gd" id="1_dsfi4"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_t4akv"]
+[ext_resource type="PackedScene" uid="uid://dv83gqtosowf7" path="res://scenes/stations/screen_item_offer_manager/screen_item_offer_demand.tscn" id="2_ayrwt"]
+[ext_resource type="Script" uid="uid://beg3fnl2m5c85" path="res://reusable/load_panel/load_panel_body.gd" id="2_jjvyv"]
+[ext_resource type="PackedScene" uid="uid://dgavvcd15iwji" path="res://scenes/stations/screen_item_offer_manager/screen_energy_left_to_claims.tscn" id="3_i5gpp"]
+[ext_resource type="PackedScene" uid="uid://tmx711wuc1en" path="res://scenes/stations/screen_item_offer_manager/screen_energy_reward.tscn" id="4_7l762"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5gpp"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_i5gpp")
+size = Vector3(0.01730957, 1.2694092, 2.0473938)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t4akv"]
+material = SubResource("StandardMaterial3D_i5gpp")
+size = Vector3(0.01730957, 0.662735, 0.70982456)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjvyv"]
+material = SubResource("StandardMaterial3D_i5gpp")
+size = Vector3(0.01730957, 0.41617203, 0.4771998)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jjvyv"]
+viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nrc1"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_jjvyv")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ayrwt"]
+material = SubResource("StandardMaterial3D_6nrc1")
+size = Vector2(2, 1.22)
+orientation = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_i5gpp"]
+viewport_path = NodePath("MaxPickQuanityTV/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vasud"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_i5gpp")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7l762"]
+material = SubResource("StandardMaterial3D_vasud")
+size = Vector2(0.7, 0.65)
+orientation = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t4akv"]
+material = SubResource("StandardMaterial3D_vasud")
+size = Vector2(0.45, 0.395)
+orientation = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+size = Vector3(1.4464111, 1.0718994, 2.1605225)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(1.4725342, 1.1040039, 2.1605225)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ayrwt"]
+size = Vector3(1.4238892, 0.15491943, 1.4798584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_i5gpp"]
+material = SubResource("StandardMaterial3D_a1kj4")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7l762"]
+size = Vector3(1.5, 0.03720703, 1.5)
+
+[node name="ItemOfferManager" type="Node3D" unique_id=359772628]
+script = ExtResource("1_dsfi4")
+
+[node name="Meshes" type="Node3D" parent="." unique_id=929973695]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.3398534, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meshes" unique_id=953727963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011688221, 1.8856847, -0.002090454)
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Meshes" unique_id=1975628247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011688221, 2.1748464, -1.4163575)
+mesh = SubResource("BoxMesh_t4akv")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Meshes" unique_id=1850072845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011688221, 1.5762918, -1.4138685)
+mesh = SubResource("BoxMesh_jjvyv")
+
+[node name="Displays" type="Node3D" parent="." unique_id=665608313]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.3398534, 0)
+
+[node name="DemandDisplay" type="MeshInstance3D" parent="Displays" unique_id=1351233741]
+transform = Transform3D(1.0000015, 0, 0, 0, 1, 0, 0, 0, 1.0000015, 0, 1.8906796, 0)
+mesh = SubResource("PlaneMesh_ayrwt")
+script = ExtResource("1_t4akv")
+
+[node name="SubViewport" type="SubViewport" parent="Displays/DemandDisplay" unique_id=1347676211]
+size = Vector2i(480, 270)
+
+[node name="ItemOfferDemand" parent="Displays/DemandDisplay/SubViewport" unique_id=653969407 instance=ExtResource("2_ayrwt")]
+
+[node name="EnergyLeftToClaimDisplay" type="MeshInstance3D" parent="Displays" unique_id=1663276503]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 2.173233, -1.4153252)
+mesh = SubResource("PlaneMesh_7l762")
+script = ExtResource("1_t4akv")
+
+[node name="SubViewport" type="SubViewport" parent="Displays/EnergyLeftToClaimDisplay" unique_id=151940433]
+size = Vector2i(233, 149)
+render_target_update_mode = 4
+
+[node name="EnergyLeftToClaimDisplay" parent="Displays/EnergyLeftToClaimDisplay/SubViewport" unique_id=1598081840 instance=ExtResource("3_i5gpp")]
+
+[node name="RewardEnergyDisplay" type="MeshInstance3D" parent="Displays" unique_id=1539739612]
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 1.5774567, -1.4153252)
+mesh = SubResource("PlaneMesh_t4akv")
+script = ExtResource("1_t4akv")
+
+[node name="SubViewport" type="SubViewport" parent="Displays/RewardEnergyDisplay" unique_id=27655227]
+size = Vector2i(233, 146)
+render_target_update_mode = 4
+
+[node name="ScreenEnergyReward" parent="Displays/RewardEnergyDisplay/SubViewport" unique_id=671237391 instance=ExtResource("4_7l762")]
+
+[node name="PanelTable" type="Node3D" parent="." unique_id=1218200886]
+
+[node name="Table" type="StaticBody3D" parent="PanelTable" unique_id=1121597880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5493469, 0, 0.06605244)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelTable/Table" unique_id=298982153]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22320557, 0.5454712, 0.007507324)
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PanelTable/Table" unique_id=1098734943]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23626709, 0.5496826, 0)
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="LoadPanelCellBody" type="Area3D" parent="PanelTable" unique_id=1503001430]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7723937, 0.27641124, 0.13352501)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_jjvyv")
+disable_spawn_flesh_bug_on_cell_death = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PanelTable/LoadPanelCellBody" unique_id=1094126365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_ayrwt")
+
+[node name="PannelCollision" type="StaticBody3D" parent="PanelTable/LoadPanelCellBody" unique_id=167632583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PanelTable/LoadPanelCellBody/PannelCollision" unique_id=2146957358]
+mesh = SubResource("BoxMesh_i5gpp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PanelTable/LoadPanelCellBody/PannelCollision" unique_id=249297987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_7l762")

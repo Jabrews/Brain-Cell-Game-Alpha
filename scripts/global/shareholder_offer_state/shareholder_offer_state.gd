@@ -8,6 +8,10 @@ signal create_prisoner_cells_user_chose_shareholder_offer()
 # lets useable item spawner know to spawn an item
 signal spawn_item_to_offer(useable_offer_item : UseableOfferItem)
 
+signal create_item_offer_demand()
+signal recieve_item_offer_demand(demand_constructor : ItemOfferDemandConstructor)
+
+
 ##### item offer #####
 var items_to_offer = [
 	UseableOfferItem.new('defect_shot','Decreases a chosen stat on a cell container by 15 percant, 3 charges total' ),
