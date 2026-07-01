@@ -40,22 +40,9 @@ func _handle(stat_1 : BrainCellStat, stat_2 : BrainCellStat, stat_index : int) -
 		up_arrows[stat_index].visible = true
 		return
 
-	var target_value : float = 0.0
-
-	match stat_1.type:
-		"strength":
-			target_value = GLCellManagerBus.target_cell_refrence.strength.value
-
-		"intelligence":
-			target_value = GLCellManagerBus.target_cell_refrence.intelligence.value
-
-		"community":
-			target_value = GLCellManagerBus.target_cell_refrence.community.value
-
 	if GAMECellBreeder.clean_stat_helper.handle_detect_early_stats(
 		stat_high,
 		stat_low,
-		target_value
 	):
 		up_arrows[stat_index].visible = true
 	else:

@@ -11,9 +11,10 @@ var hover_tween: Tween
 
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_STOP
 	
-	start_position = position
+	start_position = global_position	
+	
+	mouse_filter = Control.MOUSE_FILTER_STOP
 	
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)

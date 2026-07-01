@@ -6,15 +6,19 @@ func _update_hidden_stat_values(round : int , energy : int) :
 	
 	if round == 1 :	
 		IVHiddenStats.stats_to_hide = []
+		IVHiddenStats.max_time_to_discover_hidden = 60
 	
 	elif round == 2 :
 		IVHiddenStats.stats_to_hide = ['strength']
+		IVHiddenStats.max_time_to_discover_hidden = 50
 	
 	elif round == 3 :
 		IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
+		IVHiddenStats.max_time_to_discover_hidden = 40
 	
 	elif round == 4 : 
 		IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
+		IVHiddenStats.max_time_to_discover_hidden = 30
 	
 	var danger_level = get_energy_danger_level(energy)		
 	update_hidden_stat_nax(round, danger_level)

@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_73nie"]
 [ext_resource type="Texture2D" uid="uid://bsjekw3rerm0s" path="res://models/share_holder_offer_card/card_hover.png" id="9_3ji3s"]
 [ext_resource type="Texture2D" uid="uid://uol8k4qh6ujx" path="res://models/share_holder_offer_card/item_card_bg.png" id="11_05saj"]
+[ext_resource type="Script" uid="uid://boqfnuqgml1qx" path="res://scripts/shareholder_offer_manager/next_offer_request/handle_animation.gd" id="11_ka1nv"]
 [ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer/item_offer_card.gd" id="12_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://dq0mvp0t01m" path="res://models/share_holder_offer_card/item_steroid.png" id="13_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
@@ -178,6 +179,9 @@ offset_bottom = 19.999996
 scale = Vector2(0.8, 0.8)
 script = ExtResource("14_vj8rc")
 
+[node name="HandleAnimation" type="Node" parent="ServeNextOfferRequest" unique_id=757239861]
+script = ExtResource("11_ka1nv")
+
 [node name="ThoughLabel" type="Label" parent="ServeNextOfferRequest" unique_id=1524880465]
 texture_filter = 1
 layout_mode = 0
@@ -207,8 +211,9 @@ vertical_alignment = 1
 
 [node name="RequestScreens" type="Control" parent="ServeNextOfferRequest" unique_id=55801849]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 937.49994
+offset_right = 977.49994
+offset_bottom = 40.000004
 
 [node name="StatRequest" type="Control" parent="ServeNextOfferRequest/RequestScreens" unique_id=491251656]
 anchors_preset = 0
@@ -445,10 +450,10 @@ texture = ExtResource("16_3ji3s")
 
 [node name="EnergyTillCancel" type="Control" parent="ServeNextOfferRequest" unique_id=36416744]
 anchors_preset = 0
-offset_left = 68.0
-offset_top = -11.0
-offset_right = 108.0
-offset_bottom = 29.0
+offset_left = -487.49994
+offset_top = -11.249996
+offset_right = -447.49994
+offset_bottom = 28.750004
 
 [node name="BG" type="ColorRect" parent="ServeNextOfferRequest/EnergyTillCancel" unique_id=1478216908]
 layout_mode = 0
@@ -496,10 +501,10 @@ vertical_alignment = 1
 
 [node name="Reward" type="Control" parent="ServeNextOfferRequest" unique_id=605550613]
 anchors_preset = 0
-offset_left = 433.0
-offset_top = -10.0
-offset_right = 473.0
-offset_bottom = 30.0
+offset_left = 948.74994
+offset_top = -9.999995
+offset_right = 988.74994
+offset_bottom = 30.000004
 
 [node name="BG" type="ColorRect" parent="ServeNextOfferRequest/Reward" unique_id=1991427974]
 layout_mode = 0
@@ -553,28 +558,12 @@ theme_override_font_sizes/font_size = 56
 text = "+"
 vertical_alignment = 1
 
-[node name="ThoughLabel3" type="Label" parent="ServeNextOfferRequest" unique_id=1309384017]
-texture_filter = 1
-custom_maximum_size = Vector2(255, 92)
-layout_mode = 0
-offset_left = 522.5
-offset_top = 500.0
-offset_right = 777.5
-offset_bottom = 592.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.31764707)
-theme_override_fonts/font = ExtResource("4_05saj")
-theme_override_font_sizes/font_size = 16
-text = "notice - can be viewed anytime via the station"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="ConfirmBtn" type="ColorRect" parent="ServeNextOfferRequest" unique_id=1258463385]
 layout_mode = 0
 offset_left = 336.25
-offset_top = 520.0
+offset_top = 670.0
 offset_right = 513.75
-offset_bottom = 575.0
+offset_bottom = 725.0
 color = Color(0.7674316, 0.6775237, 0.12399972, 1)
 script = ExtResource("20_3nfp3")
 
@@ -587,3 +576,19 @@ offset_bottom = 50.75
 theme_override_fonts/font = ExtResource("7_73nie")
 theme_override_font_sizes/font_size = 41
 text = "Proceed"
+
+[node name="NoticeLabel" type="Label" parent="ServeNextOfferRequest/ConfirmBtn" unique_id=1309384017]
+texture_filter = 1
+custom_maximum_size = Vector2(255, 92)
+layout_mode = 0
+offset_left = 186.24997
+offset_top = -19.99997
+offset_right = 441.24997
+offset_bottom = 72.00003
+theme_override_colors/font_color = Color(1, 1, 1, 0.31764707)
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 16
+text = "notice - can be viewed anytime via the station"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -7,10 +7,16 @@ extends Control
 # offer requests
 @onready var stat_request_parent : Control = $RequestScreens/StatRequest
 
+# anaimtion helper
+@onready var handle_animation : Node = $HandleAnimation
+
+
 func _ready() -> void:
 	GLShareholderOfferState.connect('recieve_item_offer_demand', _handle_recieve_item_offer)
 
 func _handle_recieve_item_offer(item_offer : ItemOfferDemandConstructor) :
+	
+	handle_animation.load_display()
 	
 	
 	header_label.visible = false
@@ -28,7 +34,10 @@ func _handle_recieve_item_offer(item_offer : ItemOfferDemandConstructor) :
 func _on_button_button_down() -> void:
 	header_label.visible = true 
 	visible = false
+	
 	get_parent().toggle_display_lock(false)
+	
+	handle_animation.reset_confirm_btn_pressed()
 	
 
 func reset_offer_request_screens() :

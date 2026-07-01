@@ -9,6 +9,7 @@ var selected_offer_demand_constructor : ItemOfferDemandConstructor = null
 
 var waiting_for_confirm_btn : bool = false
 
+var active_cell_body : CharacterBody3D 
 
 func _ready() -> void:
 	GLShareholderOfferState.connect('recieve_item_offer_demand', _handle_recieve_item_offer_demand)
@@ -31,6 +32,9 @@ func _handle_recieve_item_offer_demand(offer_demand_constructor : ItemOfferDeman
 
 ### CELL RECIEVED / SEEING IF SUCESS ####
 func _handle_panel_body_recieved(brain_cell_body : CharacterBody3D) :
+	
+	active_cell_body = brain_cell_body
+	
 	if brain_cell_body : 	
 	
 		var selected_brain_cell : BrainCell = brain_cell_body.designated_brain_cell	
@@ -44,6 +48,7 @@ func _handle_panel_body_recieved(brain_cell_body : CharacterBody3D) :
 				handle_offer_success()
 			else : 
 				handle_offer_failed()
+				#handle_offer_success()
 				
 			
 		else : 
@@ -107,6 +112,10 @@ func _handle_confirm_btn_pressed() :
 	await get_tree().create_timer(1.0).timeout
 	
 	GLShareholderOfferState.emit_signal('item_offer_success')
+	
+	active_cell_body.spawn_flesh_bug_on_death = false 
+	active_cell_body.switch_cell_state('dying')
+	active_cell_body = null
 	
 	selected_offer_demand_constructor = null	
 

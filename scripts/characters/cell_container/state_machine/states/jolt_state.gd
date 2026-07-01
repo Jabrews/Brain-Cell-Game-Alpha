@@ -39,14 +39,7 @@ func state_start() :
 	base_positon = parent_container.global_position
 	base_scale = parent_container.scale 
 	
-	## offer 7 ## 
-	# jolt happens slightly more frequently
-	if GLShareholderOfferState.offer_7_active :
-		if GLShareholderOfferState.display_stat_offer_active_debug_messages :
-			print_debug('offer 7')
-		defect_increase_delay_timer.wait_time = 2.3
-	else :
-		defect_increase_delay_timer.wait_time = 3.0
+	defect_increase_delay_timer.wait_time = 3.0
 	
 	# start defect increase timer
 	defect_increase_delay_timer.start()

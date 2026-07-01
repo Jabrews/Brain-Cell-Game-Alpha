@@ -8,8 +8,8 @@ func _ready() -> void:
 func _create_demand() :
 	
 	var demand_cell : BrainCell = generate_demand_cell()	
-	var energy_reward : int = 20	
-	var energy_left_to_claim : int = 35
+	var energy_reward : int = randi_range(IVShareholderOffers.energy_reward_min,IVShareholderOffers.energy_reward_max )
+	var energy_left_to_claim : int = randi_range(IVShareholderOffers.energy_left_to_claim_min, IVShareholderOffers.energy_left_to_claim_max)
 	
 	var item_offer_constructor = ItemOfferDemandConstructor.new(
 		'cell',
@@ -22,9 +22,9 @@ func _create_demand() :
 	
 
 func generate_demand_cell() -> BrainCell:
-	var strength_value: float = randi_range(0, IVCellCreator.max_stat_value)
-	var intelligence_value: float = randi_range(0, IVCellCreator.max_stat_value)
-	var community_value: float = randi_range(0, IVCellCreator.max_stat_value)
+	var strength_value: float = get_stat_value('strength')
+	var intelligence_value: float = get_stat_value('intelligence')
+	var community_value: float = get_stat_value('community')
 	
 	const MAX_DISABLED_STATS: int = 1
 	
@@ -79,3 +79,39 @@ func generate_demand_cell() -> BrainCell:
 	)
 	
 	return demand_cell
+
+func get_stat_value(stat_type : String) -> float :
+	
+	var lock_index : int =0
+	
+	match stat_type : 
+		'strength' :
+			lock_index = IVPrisonerProfiler.strength_stat_lock_percant_index
+		'intelligence' :
+			lock_index = IVPrisonerProfiler.intelligence_stat_lock_percant_index
+		'community' :
+			lock_index = IVPrisonerProfiler.community_stat_lock_percant_index
+			
+	var lock_percant = IVPrisonerProfiler.stat_lock_percantages[lock_index]
+	
+	var max_value = (IVCellCreator.max_stat_value * lock_percant) + 20
+	
+	# dont let it surpass max
+	if max_value > IVCellCreator.max_stat_value: 
+		max_value = IVCellCreator.max_stat_value	
+		
+	var stat_value = randi_range(20, max_value)
+	
+	return stat_value 
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

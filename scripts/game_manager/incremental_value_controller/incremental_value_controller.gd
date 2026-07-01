@@ -61,7 +61,7 @@ func handle_round(round : int):
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.item_offer_energy_percant= 80
 			IVShareholderOffers.first_round_item_offer_energy_percant = 40
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = []
@@ -98,6 +98,11 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.energy_reward_min = 25
+			IVShareholderOffers.energy_reward_max = 30
+			IVShareholderOffers.energy_left_to_claim_min = 30
+			IVShareholderOffers.energy_left_to_claim_max = 35
+			IVShareholderOffers.non_enabled_stats_max = 1
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength']
 			## PRISONER PROFILER ##
@@ -130,6 +135,11 @@ func handle_round(round : int):
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.energy_reward_min = 30
+			IVShareholderOffers.energy_reward_max = 35
+			IVShareholderOffers.energy_left_to_claim_min = 35
+			IVShareholderOffers.energy_left_to_claim_max = 40
+			IVShareholderOffers.non_enabled_stats_max = 1
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 			## PRISONER PROFILER ##
@@ -159,6 +169,11 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
+			IVShareholderOffers.energy_reward_min = 35
+			IVShareholderOffers.energy_reward_max = 40
+			IVShareholderOffers.energy_left_to_claim_min = 40
+			IVShareholderOffers.energy_left_to_claim_max = 45
+			IVShareholderOffers.non_enabled_stats_max = 0
 			## HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
 			## PRISONER PROFILER ##

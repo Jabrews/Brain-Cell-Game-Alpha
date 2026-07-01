@@ -15,7 +15,7 @@ var has_served_second_card : bool = false
 
 
 func _ready() -> void:
-	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
+	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 	GLGameManagerBus.connect('energy_changed', _handle_energy_turn_changed)
 	GLShareholderOfferState.connect('item_offer_success', _handle_item_offer_success)
@@ -26,6 +26,7 @@ func _handle_energy_turn_changed() :
 	var max_energy = GLGameManagerBus.max_energy
 
 	var energy_percent : float = (curr_energy / float(max_energy)) * 100.0
+	
 
 	if energy_percent <= IVShareholderOffers.item_offer_energy_percant and not has_served_energy_based_card:
 		serve_item_cards()
@@ -34,6 +35,7 @@ func _handle_energy_turn_changed() :
 	# first round doesnt care about request just give another card after first one 
 	elif energy_percent <= IVShareholderOffers.first_round_item_offer_energy_percant and not has_served_second_card : 
 		serve_item_cards()
+		has_served_second_card = true
 	
 
 func _handle_next_round() :
@@ -88,9 +90,9 @@ func handle_card_picked(offer_card : TextureRect) :
 	var item_offer : UseableOfferItem = offer_card.designated_useable_item_offer 
 	GLShareholderOfferState.emit_signal('spawn_item_to_offer', item_offer)
 	
-	
 	if not has_served_second_card and not GLGameManagerBus.current_round == 1 : # first round doesnt care
 		GLShareholderOfferState.emit_signal('create_item_offer_demand')
+		has_served_second_card = true
 	else : 
 		toggle_display_lock(false)
 		

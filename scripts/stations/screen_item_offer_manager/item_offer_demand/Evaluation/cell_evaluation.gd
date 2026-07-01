@@ -2,7 +2,7 @@ extends Node
 
 
 func _evaluate(brain_cell: BrainCell, demand_cell: BrainCell) -> bool:
-	var allowed_range: float = 20.0
+	var allowed_range: float = 40.0
 	
 	var strength_valid: bool = evaluate_stat(
 		brain_cell.strength,

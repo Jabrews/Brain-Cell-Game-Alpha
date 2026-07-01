@@ -98,7 +98,7 @@ func resolve_clean_stat(stat_array : Array, target_value : float, increase_case_
 	else : 
 	
 		# dont do decrease case if both are values
-		var early_game_small_stats = handle_detect_early_stats(stat_high, stat_low, target_value)
+		var early_game_small_stats = handle_detect_early_stats(stat_high, stat_low)
 		if early_game_small_stats :
 			var result = increase_clean_stat_case.increase_clean_stat_case(stat_high, stat_low, target_value)
 			return result
@@ -120,9 +120,9 @@ func get_highest_lowest_stat(stat_1, stat_2) :
 	
 	return [high_stat, low_stat]
 
-func handle_detect_early_stats(stat_high : float, stat_low : float, target_value : float)  -> bool :
+func handle_detect_early_stats(stat_high : float, stat_low : float)  -> bool :
 	
-	var small_stat_range_max = target_value * 0.2
+	var small_stat_range_max = IVCellCreator.max_stat_value * 0.2
 		
 	# both stats are below 20% of target
 	if stat_high < small_stat_range_max and stat_low < small_stat_range_max :

@@ -40,8 +40,11 @@ func _handle_body_exited(body) :
 	if body.is_in_group('brain_cell_container'): 
 		if body == loaded_body: 
 			loaded_body = null
-			if disable_spawn_flesh_bug_on_cell_death :
-				body.spawn_flesh_bug_on_death  = true
+			
+			# dont do for dying cells
+			if body.state_machine.get_current_state_name() != 'dying' :
+				if disable_spawn_flesh_bug_on_cell_death :
+					body.spawn_flesh_bug_on_death  = true
 			if is_hidden_interpreter_panel : 
 				body._toggle_cell_put_onto_hidden_interpreter(false)
 				

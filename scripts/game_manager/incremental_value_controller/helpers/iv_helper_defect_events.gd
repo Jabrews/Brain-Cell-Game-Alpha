@@ -8,12 +8,16 @@ func _update_defect_event_values(round : int, energy : int) -> void:
 	match round:
 		1:
 			IVDefectEventManager.stats_to_hide = []
+			IVDefectEventManager.defect_event_update_timer_duration = 60
 		2:
 			IVDefectEventManager.stats_to_hide = ["strength"]
+			IVDefectEventManager.defect_event_update_timer_duration = 50
 		3:
 			IVDefectEventManager.stats_to_hide = ["strength", "intelligence"]
+			IVDefectEventManager.defect_event_update_timer_duration = 40
 		4:
 			IVDefectEventManager.stats_to_hide = ["strength", "intelligence", "community"]
+			IVDefectEventManager.defect_event_update_timer_duration = 35
 
 	apply_defect_values(round, danger_level)
 
