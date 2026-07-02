@@ -88,28 +88,27 @@ func increase_defect_stat_case(high_stat : float, low_stat : float) :
 
 func decrease_defect_stat_case(high_stat : float, low_stat : float ) :
 	
-	var new_defect_value : float	
+	return high_stat - low_stat	
 	
-	# evaluate what % of max value high_stat occupies
-	var high_percent_of_max = high_stat / IVCellCreator.max_stat_value
-	
-	# if under max stat value. decrease normally
-	if high_percent_of_max < 0.50 : 
-		new_defect_value = high_stat - low_stat * IVCellBreeding.defect_stat_decrease_one_scale # 1.0 by default
-	
-	# heavily decrease defect at high corruption
-	else :
-		new_defect_value = high_stat - (
-			low_stat + (
-				low_stat * IVCellBreeding.defect_stat_decrease_two_scale
-			)
-		)
-	
-	return new_defect_value
+	#var new_defect_value : float	
+	#
+	## evaluate what % of max value high_stat occupies
+	#var high_percent_of_max = high_stat / IVCellCreator.max_stat_value
+	#
+	## if under max stat value. decrease normally
+	#if high_percent_of_max < 0.50 : 
+		#new_defect_value = high_stat - low_stat * IVCellBreeding.defect_stat_decrease_one_scale # 1.0 by default
+	#
+	## heavily decrease defect at high corruption
+	#else :
+		#new_defect_value = high_stat - (
+			#low_stat + (
+				#low_stat * IVCellBreeding.defect_stat_decrease_two_scale
+			#)
+		#)
+	#
+	#return new_defect_value
 
-
-	
-		
 
 func get_highest_lowest_stat(stat_1, stat_2) :
 	var high_stat : float

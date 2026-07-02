@@ -48,10 +48,10 @@ func handle_round(round : int):
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
 			## BREEDING SCALING ##
+			IVCellBreeding.clean_stat_increase_case_min = 0.4
+			IVCellBreeding.defect_stat_increase_case_min = 0.5
 			IVCellBreeding.low_add_percant_scale = 0.9
 			IVCellBreeding.high_add_percant_scale = 0.7
-			IVCellBreeding.low_subtract_percant_scale = 0.9
-			IVCellBreeding.high_subtract_percant_scale = 0.8
 			## CELL CREATOR ##
 			IVCellCreator.max_stat_value = 160
 			## USEABLE ITEMS ##
@@ -60,6 +60,7 @@ func handle_round(round : int):
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
+			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 80
 			IVShareholderOffers.first_round_item_offer_energy_percant = 40
@@ -70,7 +71,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false
@@ -84,10 +85,10 @@ func handle_round(round : int):
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
 			## BREEDING SCALING ##
+			IVCellBreeding.clean_stat_increase_case_min = 0.5
+			IVCellBreeding.defect_stat_increase_case_min = 0.5
 			IVCellBreeding.low_add_percant_scale = 0.7
 			IVCellBreeding.high_add_percant_scale = 0.6
-			IVCellBreeding.low_subtract_percant_scale = 0.8
-			IVCellBreeding.high_subtract_percant_scale = 0.7
 			## CELL CREATOR ##
 			IVCellCreator.max_stat_value = 230
 			## USEABLE ITEMS ##
@@ -96,6 +97,7 @@ func handle_round(round : int):
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
+			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.energy_reward_min = 25
@@ -110,7 +112,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false
@@ -124,6 +126,9 @@ func handle_round(round : int):
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 6
 			IVCellBreeding.curr_cell_breeding_attempt = 0
+			## BREEDING SCALING ##
+			IVCellBreeding.clean_stat_increase_case_min = 0.5
+			IVCellBreeding.defect_stat_increase_case_min = 0.55
 			## CELL CREATOR ##
 			IVCellCreator.max_stat_value = 320
 			## USEABLE ITEMS ##
@@ -147,7 +152,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = true
@@ -159,14 +164,18 @@ func handle_round(round : int):
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 7
 			IVCellBreeding.curr_cell_breeding_attempt = 0
+			## BREEDING SCALING ##
+			IVCellBreeding.clean_stat_increase_case_min = 0.5
+			IVCellBreeding.defect_stat_increase_case_min = 0.6
 			## CELL CREATOR ##
 			IVCellCreator.max_stat_value = 400
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 75
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
-			IVUseableItemSpawner.steroids_to_spawn = 5
+			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
+			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.energy_reward_min = 35
@@ -181,7 +190,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]			
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = true

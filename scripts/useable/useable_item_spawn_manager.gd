@@ -20,6 +20,9 @@ func connect_signals():
 	GLUsableItemBus.connect('spawn_new_usable_items', spawn_turn_items)
 	# spawn item from shareholder offer
 	GLShareholderOfferState.connect('spawn_item_to_offer', _handle_spawn_item_to_offer)
+	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)	
+	
+	
 
 	# next turn signal
 	#GLCellCreatorBus.connect('procc', _handle_next_turn)
@@ -165,3 +168,17 @@ func _handle_spawn_item_to_offer(useable_offer_item : UseableOfferItem) :
 				1,
 			)
 		
+func _handle_next_round() -> void:
+	var protected_children: Array[String] = [
+		"SpawnPos",
+		"UseableItemUseManager"
+	]
+	
+	for child in get_children():
+		if protected_children.has(child.name):
+			continue
+		
+		child.queue_free()
+	
+	
+	

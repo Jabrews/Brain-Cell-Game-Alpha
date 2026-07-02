@@ -19,7 +19,7 @@
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
-[ext_resource type="PackedScene" uid="uid://damsstax7yjgn" path="res://scenes/stations/item_offer_manager/station_item_offer_manager.tscn" id="15_w7r6u"]
+[ext_resource type="PackedScene" uid="uid://damsstax7yjgn" path="res://scenes/stations/station_components/item_offer_manager/station_item_offer_manager.tscn" id="15_w7r6u"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
 [ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_clean.gd" id="17_m5ih7"]
@@ -32,6 +32,7 @@
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
+[ext_resource type="Script" uid="uid://t2trt0c7dhvc" path="res://scripts/game_manager/cell_creator/helpers/prisoner_picks.gd" id="26_87p7k"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
@@ -238,6 +239,9 @@ script = ExtResource("21_w7r6u")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")
+
+[node name="PrisonerPicks" type="Node" parent="GameManager/CellCreator" unique_id=1885541045]
+script = ExtResource("26_87p7k")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")

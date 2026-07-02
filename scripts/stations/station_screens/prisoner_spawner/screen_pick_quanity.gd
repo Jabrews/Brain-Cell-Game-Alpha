@@ -5,10 +5,10 @@ extends Node
 
 func _update() :
 	
-	if GLPrisonerPicksBus.curr_picked_pris_per_turn <= 0 :
+	if GLPrisonerPicks.prisoners_to_pick <= 0 :
 		out_of_prisoners_label.visible = true
 		pick_num_label.visible = false
 	else :
 		out_of_prisoners_label.visible = false
 		pick_num_label.visible = true
-		pick_num_label.text = str(GLPrisonerPicksBus.curr_picked_pris_per_turn)
+		pick_num_label.text = str(GLPrisonerPicks.prisoners_to_pick)

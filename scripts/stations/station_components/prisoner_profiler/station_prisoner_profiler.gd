@@ -1,7 +1,6 @@
 extends Node
 
 var selected_stat : String = ''
-
 var current_prisoner_quanity : int = 0
 
 var strength_value : int = 0
@@ -26,8 +25,6 @@ var stat_values_inside_lock_range = {
 var inaccessible_starting_value : int = 0
 
 
-
-
 # componnets
 # display componnets
 @onready var screen_large_stat_displays : Array[Node2D] = [
@@ -39,7 +36,6 @@ var inaccessible_starting_value : int = 0
 @onready var control_interface : Node3D = $ControlInterface
 # extra
 @onready var on_off_btn : StaticBody3D = $ControlInterface/Control/OnOffBtn
-@onready var screen_prisoner_pick_quanity : Node2D = $StatDisplay/MaxPickQuanityTV/TvFrontPannel/SubViewport/ScreenPickQuanity
 
 # helpers
 # symbols
@@ -77,12 +73,6 @@ func _update_prisoner_quanity(new_prisoner_quanity : int) :
 	
 	# update energy
 	handle_energy._update_energy_player_pressed_prisoner_quanity_btn(current_prisoner_quanity)
-	
-	if new_prisoner_quanity == 2 :	
-		screen_prisoner_pick_quanity._update(1)
-	elif new_prisoner_quanity == 4 : 
-		screen_prisoner_pick_quanity._update(2)
-	
 	
 	# audio
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
@@ -342,7 +332,6 @@ func handle_generate_btn_pressed() :
 		community_stat_constructor
 	)
 	
-	screen_prisoner_pick_quanity._create()
 	
 	GLCellCreatorBus.emit_signal(
 		"create_prisoner_cells",

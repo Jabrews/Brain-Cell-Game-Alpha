@@ -2,13 +2,11 @@ extends Node
 
 var increase_clean_stat_case : IncreaseCleanStatCase
 var decrease_clean_stat_case : DecreaseCleanStatCase
-var over_clean_stat_case : OverCleanStatCase
 
 func _ready() -> void:
 	# init case classes
 	increase_clean_stat_case = IncreaseCleanStatCase.new()
 	decrease_clean_stat_case = DecreaseCleanStatCase.new()
-	over_clean_stat_case = OverCleanStatCase.new()
 
 
 func generate_clean_stats(cell_1 : BrainCell, cell_2 : BrainCell) -> Array[int] :

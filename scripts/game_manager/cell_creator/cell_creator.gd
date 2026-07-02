@@ -5,6 +5,7 @@ extends Node
 @onready var assemble_cells : Node = $AssembleCells
 @onready var assemble_target : Node = $AssembleTarget
 @onready var incrmental_value_controller : Node = $"../IncrementalValueController"
+@onready var prisoner_picks : Node = $PrisonerPicks
 
 var current_cell_constructor : CellConstructor
 
@@ -50,11 +51,14 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 			curr_energy,
 		)
 		
+	# decide prisoner quanity			
+	prisoner_picks._handle_prisoner_pricks(cell_constructor.cell_quantity)
+			
 			
 	GLCellManagerBus.emit_signal('delete_remaining_prisoners')
-	# let 
 
 	var new_prisoner_cells : Array[BrainCell] = assemble_cells.assemble(cell_constructor)
+	
 	
 	cell_manager.set_prisoner_cells(
 		new_prisoner_cells

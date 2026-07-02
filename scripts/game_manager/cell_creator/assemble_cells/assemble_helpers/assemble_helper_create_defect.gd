@@ -15,6 +15,8 @@ func _create(stat: BrainCellStat, spare_symbol : StatSpareSymbol) -> float:
 	
 	stat_value = apply_spare_symbol(stat_value, spare_symbol)
 	
+	stat_value = apply_half_defect(stat_value)	
+	
 	stat_value = clamp(stat_value, 1, IVCellCreator.max_stat_value) 
 	stat_value = round(stat_value* 10.0) / 10.0
 	
@@ -63,4 +65,18 @@ func apply_spare_symbol(stat_value : float, spare_symbol : StatSpareSymbol):
 	else:
 		return stat_value
 
+	
+func apply_half_defect(stat_value : float) :
+	
+	var ran_num = randi_range(0, 100)	
+	if ran_num <= IVCellCreator.chance_to_half_defect :
+		var new_stat_value = stat_value / 2		
+		return new_stat_value
+		
+	else : 
+		return stat_value
+		
+	
+	
+	
 	
