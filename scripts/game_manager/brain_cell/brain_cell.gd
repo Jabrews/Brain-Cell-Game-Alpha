@@ -3,8 +3,8 @@ class_name BrainCell
 var name : String
 
 var strength : BrainCellStat
-var intelligence : BrainCellStat 
-var community : BrainCellStat 
+var intelligence : BrainCellStat
+var community : BrainCellStat
 
 var life_span : int
 
@@ -46,6 +46,23 @@ func get_stat(stat_type: String) -> BrainCellStat:
 		_:
 			push_error("Invalid stat_type: " + str(stat_type))
 			return null
+
+
+func copy() -> BrainCell:
+	var copied_cell := BrainCell.new(
+		name,
+		strength,
+		intelligence,
+		community,
+		life_span,
+		is_target_cell,
+		turn_into_flesh_bug ,
+		cell_is_frozen ,
+	)
+	
+	return copied_cell
+	
+	
 
 func _print():
 	@warning_ignore("incompatible_ternary")

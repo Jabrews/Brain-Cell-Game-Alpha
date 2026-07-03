@@ -1,0 +1,774 @@
+[gd_scene format=3 uid="uid://yw1tk6n3l10m"]
+
+[ext_resource type="Script" uid="uid://b4h6knw2fgw3j" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/screen_charge_seat.gd" id="1_bdhe5"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_nimyl"]
+[ext_resource type="Script" uid="uid://2vs2f4gg71ix" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/display_cell/display_cell.gd" id="1_vke6y"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_x1s2i"]
+[ext_resource type="Script" uid="uid://ddeca42gomyr2" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/display_cell/reset_cell_display.gd" id="3_1ipai"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_8gy64"]
+[ext_resource type="Script" uid="uid://5tqgrwf2ws6i" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/cycle_selected_stat.gd" id="3_bdhe5"]
+[ext_resource type="Script" uid="uid://c8lty702sgru6" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/display_cell/display_exlude_charge.gd" id="3_q27x8"]
+[ext_resource type="Script" uid="uid://lnybfn8h5bw3" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/display_cell/display_include_charge.gd" id="4_1ipai"]
+[ext_resource type="Script" uid="uid://dqnwpqljoqox7" path="res://scripts/stations/station_screens/cell_breeding/charge_seat/toggle_stat_valid.gd" id="5_01gsh"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="6_rscxs"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_vke6y"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_rscxs"]
+[ext_resource type="Texture2D" uid="uid://c6aslvaxw0sey" path="res://models/screens/charge_seat/highlight.png" id="9_rscxs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1s2i"]
+shader = ExtResource("1_nimyl")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="Shader" id="Shader_rscxs"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
+uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+
+// colors
+uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+// overlap opacity: new defect over prior defect
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_prior_defect = step(UV.x, prior_defect_value);
+	float in_new_defect = step(UV.x, new_defect_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw prior defect base
+		if (in_prior_defect > 0.5) {
+			result = vec4(prior_defect_color.rgb, tex.a);
+		}
+
+		// 2. draw new defect on top
+		if (in_new_defect > 0.5) {
+
+			// overlap → transparent new defect color
+			if (in_prior_defect > 0.5) {
+				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
+			}
+			// new defect over empty → full new defect color
+			else {
+				result = vec4(new_defect_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdhe5"]
+shader = SubResource("Shader_rscxs")
+shader_parameter/prior_defect_value = 0.0
+shader_parameter/new_defect_value = 0.0
+shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
+shader_parameter/new_defect_color = Color(1, 0, 0, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_01gsh"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
+uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+
+// colors
+uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+// overlap opacity: new defect over prior defect
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_prior_defect = step(UV.x, prior_defect_value);
+	float in_new_defect = step(UV.x, new_defect_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw prior defect base
+		if (in_prior_defect > 0.5) {
+			result = vec4(prior_defect_color.rgb, tex.a);
+		}
+
+		// 2. draw new defect on top
+		if (in_new_defect > 0.5) {
+
+			// overlap → transparent new defect color
+			if (in_prior_defect > 0.5) {
+				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
+			}
+			// new defect over empty → full new defect color
+			else {
+				result = vec4(new_defect_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14f4u"]
+shader = SubResource("Shader_01gsh")
+shader_parameter/prior_defect_value = 0.0
+shader_parameter/new_defect_value = 0.0
+shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
+shader_parameter/new_defect_color = Color(1, 0, 0, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_ckt3o"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
+uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+
+// colors
+uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+// overlap opacity: new defect over prior defect
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_prior_defect = step(UV.x, prior_defect_value);
+	float in_new_defect = step(UV.x, new_defect_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw prior defect base
+		if (in_prior_defect > 0.5) {
+			result = vec4(prior_defect_color.rgb, tex.a);
+		}
+
+		// 2. draw new defect on top
+		if (in_new_defect > 0.5) {
+
+			// overlap → transparent new defect color
+			if (in_prior_defect > 0.5) {
+				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
+			}
+			// new defect over empty → full new defect color
+			else {
+				result = vec4(new_defect_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q27x8"]
+shader = SubResource("Shader_ckt3o")
+shader_parameter/prior_defect_value = 0.0
+shader_parameter/new_defect_value = 0.0
+shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
+shader_parameter/new_defect_color = Color(1, 0, 0, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_vke6y"]
+code = "shader_type canvas_item;
+
+// values 0.0 → 1.0
+uniform float old_prisoner_value : hint_range(0.0, 1.0);
+uniform float new_prisoner_value : hint_range(0.0, 1.0);
+uniform float target_value : hint_range(0.0, 1.0);
+
+// colors
+uniform vec4 old_color : source_color = vec4(0.45, 0.45, 0.0, 1.0); // dark yellow
+uniform vec4 new_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);   // bright yellow
+uniform vec4 target_color : source_color = vec4(0.5, 0.0, 0.0, 1.0); // red
+
+// target overlap opacity
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.35;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_old = step(UV.x, old_prisoner_value);
+	float in_new = step(UV.x, new_prisoner_value);
+	float in_target = step(UV.x, target_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. old prisoner value first
+		if (in_old > 0.5) {
+			result = vec4(old_color.rgb, tex.a);
+		}
+
+		// 2. new prisoner value over old
+		if (in_new > 0.5) {
+			result = vec4(new_color.rgb, tex.a);
+		}
+
+		// 3. target value over both
+		if (in_target > 0.5) {
+			if (in_old > 0.5 || in_new > 0.5) {
+				result = mix(result, vec4(target_color.rgb, tex.a), overlap_opacity);
+			}
+			else {
+				result = vec4(target_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rscxs"]
+shader = SubResource("Shader_vke6y")
+shader_parameter/old_prisoner_value = 0.0
+shader_parameter/new_prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/old_color = Color(0.45, 0.45, 0, 1)
+shader_parameter/new_color = Color(1, 1, 0, 1)
+shader_parameter/target_color = Color(0.5, 0, 0, 1)
+shader_parameter/overlap_opacity = 0.35
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_bdhe5"]
+code = "shader_type canvas_item;
+
+// values 0.0 → 1.0
+uniform float old_prisoner_value : hint_range(0.0, 1.0);
+uniform float new_prisoner_value : hint_range(0.0, 1.0);
+uniform float target_value : hint_range(0.0, 1.0);
+
+// colors
+uniform vec4 old_color : source_color = vec4(0.45, 0.45, 0.0, 1.0); // dark yellow
+uniform vec4 new_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);   // bright yellow
+uniform vec4 target_color : source_color = vec4(0.5, 0.0, 0.0, 1.0); // red
+
+// target overlap opacity
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.35;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_old = step(UV.x, old_prisoner_value);
+	float in_new = step(UV.x, new_prisoner_value);
+	float in_target = step(UV.x, target_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. old prisoner value first
+		if (in_old > 0.5) {
+			result = vec4(old_color.rgb, tex.a);
+		}
+
+		// 2. new prisoner value over old
+		if (in_new > 0.5) {
+			result = vec4(new_color.rgb, tex.a);
+		}
+
+		// 3. target value over both
+		if (in_target > 0.5) {
+			if (in_old > 0.5 || in_new > 0.5) {
+				result = mix(result, vec4(target_color.rgb, tex.a), overlap_opacity);
+			}
+			else {
+				result = vec4(target_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_01gsh"]
+shader = SubResource("Shader_bdhe5")
+shader_parameter/old_prisoner_value = 0.0
+shader_parameter/new_prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/old_color = Color(0.45, 0.45, 0, 1)
+shader_parameter/new_color = Color(1, 1, 0, 1)
+shader_parameter/target_color = Color(0.5, 0, 0, 1)
+shader_parameter/overlap_opacity = 0.35
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_26kqc"]
+code = "shader_type canvas_item;
+
+// values 0.0 → 1.0
+uniform float old_prisoner_value : hint_range(0.0, 1.0);
+uniform float new_prisoner_value : hint_range(0.0, 1.0);
+uniform float target_value : hint_range(0.0, 1.0);
+
+// colors
+uniform vec4 old_color : source_color = vec4(0.45, 0.45, 0.0, 1.0); // dark yellow
+uniform vec4 new_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);   // bright yellow
+uniform vec4 target_color : source_color = vec4(0.5, 0.0, 0.0, 1.0); // red
+
+// target overlap opacity
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.35;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_old = step(UV.x, old_prisoner_value);
+	float in_new = step(UV.x, new_prisoner_value);
+	float in_target = step(UV.x, target_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. old prisoner value first
+		if (in_old > 0.5) {
+			result = vec4(old_color.rgb, tex.a);
+		}
+
+		// 2. new prisoner value over old
+		if (in_new > 0.5) {
+			result = vec4(new_color.rgb, tex.a);
+		}
+
+		// 3. target value over both
+		if (in_target > 0.5) {
+			if (in_old > 0.5 || in_new > 0.5) {
+				result = mix(result, vec4(target_color.rgb, tex.a), overlap_opacity);
+			}
+			else {
+				result = vec4(target_color.rgb, tex.a);
+			}
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ipai"]
+shader = SubResource("Shader_26kqc")
+shader_parameter/old_prisoner_value = 0.0
+shader_parameter/new_prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/old_color = Color(0.45, 0.45, 0, 1)
+shader_parameter/new_color = Color(1, 1, 0, 1)
+shader_parameter/target_color = Color(0.5, 0, 0, 1)
+shader_parameter/overlap_opacity = 0.35
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26kqc"]
+shader = ExtResource("7_vke6y")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("8_rscxs")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01gsh"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[node name="ScreenChargeSeat" type="Node2D" unique_id=1595912651]
+script = ExtResource("1_bdhe5")
+
+[node name="DisplayCell" type="Node" parent="." unique_id=2077254509]
+script = ExtResource("1_vke6y")
+
+[node name="ResetCellDisplay" type="Node" parent="DisplayCell" unique_id=1088941031]
+script = ExtResource("3_1ipai")
+
+[node name="DisplayExcludeCharge" type="Node" parent="DisplayCell" unique_id=1886200876]
+script = ExtResource("3_q27x8")
+
+[node name="DisplayIncludeCharge" type="Node" parent="DisplayCell" unique_id=190903422]
+script = ExtResource("4_1ipai")
+
+[node name="CycleSelectedStat" type="Node" parent="." unique_id=1656463785]
+script = ExtResource("3_bdhe5")
+
+[node name="ToggleStatValid" type="Node" parent="." unique_id=1376103425]
+script = ExtResource("5_01gsh")
+
+[node name="BG" type="ColorRect" parent="." unique_id=16048400]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 201.0
+offset_bottom = 233.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=574858535]
+material = SubResource("ShaderMaterial_x1s2i")
+offset_right = 203.0
+offset_bottom = 234.0
+
+[node name="Bg" type="ColorRect" parent="." unique_id=22172485]
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 226.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="StatDisplay" type="Control" parent="." unique_id=1198025476]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CellName" type="Label" parent="StatDisplay" unique_id=1122041626]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 6.0
+offset_right = 184.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 15
+text = "None
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectBars" type="Control" parent="StatDisplay" unique_id=701223173]
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -43.0
+offset_right = 3.0
+offset_bottom = -3.0
+
+[node name="DefectStrengthBar" type="Sprite2D" parent="StatDisplay/DefectBars" unique_id=1617896392]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bdhe5")
+position = Vector2(138.00002, 115.00001)
+scale = Vector2(0.48037094, 0.15374969)
+texture = ExtResource("3_8gy64")
+
+[node name="DefectIntelligenceBar" type="Sprite2D" parent="StatDisplay/DefectBars" unique_id=1713964273]
+texture_filter = 1
+material = SubResource("ShaderMaterial_14f4u")
+position = Vector2(138.00002, 171)
+scale = Vector2(0.48037094, 0.15374969)
+texture = ExtResource("3_8gy64")
+
+[node name="DefectCommunityBar" type="Sprite2D" parent="StatDisplay/DefectBars" unique_id=1393838023]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q27x8")
+position = Vector2(138.00002, 227)
+scale = Vector2(0.48037094, 0.15374969)
+texture = ExtResource("3_8gy64")
+
+[node name="ProgressBars" type="Control" parent="StatDisplay" unique_id=1545209909]
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -43.0
+offset_right = -37.0
+offset_bottom = -43.0
+
+[node name="StrengthBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=416493233]
+texture_filter = 1
+material = SubResource("ShaderMaterial_rscxs")
+position = Vector2(138, 103.00001)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("6_rscxs")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=377490310]
+texture_filter = 1
+material = SubResource("ShaderMaterial_01gsh")
+position = Vector2(138, 159.15)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("6_rscxs")
+
+[node name="CommunityBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=1358001200]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1ipai")
+position = Vector2(138, 215)
+scale = Vector2(0.48037094, 0.45749998)
+texture = ExtResource("6_rscxs")
+
+[node name="StengthLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=128820990]
+texture_filter = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = 82.0
+offset_right = 209.0
+offset_bottom = 105.0
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 11
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="IntelligenceLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=500611348]
+texture_filter = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = 139.0
+offset_right = 209.0
+offset_bottom = 162.0
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 10
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=744675111]
+texture_filter = 1
+layout_mode = 0
+offset_left = 68.0
+offset_top = 194.0
+offset_right = 209.0
+offset_bottom = 217.0
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 11
+text = "Community"
+horizontal_alignment = 1
+
+[node name="HideStats" type="Control" parent="StatDisplay" unique_id=1896177667]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -9.0
+offset_right = 36.0
+offset_bottom = 31.0
+
+[node name="StrengthHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=1601199951]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_26kqc")
+position = Vector2(105, 72)
+scale = Vector2(0.4825397, 0.65000004)
+texture = SubResource("CompressedTexture2D_01gsh")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=348837631]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_26kqc")
+position = Vector2(106.00001, 129.00002)
+scale = Vector2(0.48571426, 0.6749999)
+texture = SubResource("CompressedTexture2D_01gsh")
+
+[node name="CommunityHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=2014279794]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_26kqc")
+position = Vector2(106.00001, 185)
+scale = Vector2(0.48571426, 0.6749999)
+texture = SubResource("CompressedTexture2D_01gsh")
+
+[node name="OffDisableLabels" type="Control" parent="StatDisplay" unique_id=420300501]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -9.0
+offset_right = 36.0
+offset_bottom = 31.0
+
+[node name="StrengthOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=1006274647]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 57.000008
+offset_right = 178.0
+offset_bottom = 78.774216
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 8
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=1540186288]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 114.0
+offset_right = 178.0
+offset_bottom = 135.7742
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 8
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=547397952]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 169.0
+offset_right = 178.0
+offset_bottom = 190.7742
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 8
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlights" type="Control" parent="StatDisplay" unique_id=1483292585]
+anchors_preset = 0
+offset_top = -9.0
+offset_right = 40.0
+offset_bottom = 31.0
+
+[node name="StrengthHighlight" type="Sprite2D" parent="StatDisplay/Highlights" unique_id=1968485925]
+visible = false
+modulate = Color(1, 1, 1, 0.50980395)
+texture_filter = 1
+position = Vector2(101, 66)
+scale = Vector2(1, 0.96)
+texture = ExtResource("9_rscxs")
+
+[node name="IntelligenceHighlight" type="Sprite2D" parent="StatDisplay/Highlights" unique_id=995891549]
+visible = false
+modulate = Color(1, 1, 1, 0.50980395)
+texture_filter = 1
+position = Vector2(101, 123.00001)
+scale = Vector2(1, 0.96)
+texture = ExtResource("9_rscxs")
+
+[node name="CommunityHighlight" type="Sprite2D" parent="StatDisplay/Highlights" unique_id=773250218]
+visible = false
+modulate = Color(1, 1, 1, 0.50980395)
+texture_filter = 1
+position = Vector2(101, 179)
+scale = Vector2(1, 0.96)
+texture = ExtResource("9_rscxs")
+
+[node name="Validity" type="Control" parent="StatDisplay" unique_id=280057277]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Valid" type="Label" parent="StatDisplay/Validity" unique_id=496083393]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 204.0
+offset_right = 184.0
+offset_bottom = 243.0
+theme_override_colors/font_color = Color(0.36862746, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 18
+text = "Valid
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Invalid" type="Label" parent="StatDisplay/Validity" unique_id=1084798334]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 204.0
+offset_right = 184.0
+offset_bottom = 243.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 18
+text = "INVALID
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCell" type="Control" parent="." unique_id=1638247368]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CellName" type="Label" parent="NoCell" unique_id=286776178]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 44.0
+offset_right = 187.0
+offset_bottom = 169.0
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 13
+text = "No Cell
+found...
+
+
+place cell
+to add charge"
+horizontal_alignment = 1
+vertical_alignment = 1

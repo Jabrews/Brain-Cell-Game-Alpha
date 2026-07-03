@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://d0wtnetxi6per"]
 
 [ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/game_manager/cell_breeder/cell_breeder.gd" id="1_78xhs"]
-[ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/game_manager/cell_breeder/clean_stat_helper/clean_stat_helper.gd" id="2_y3545"]
-[ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/defect_stat_helper/defect_stat_helper.gd" id="3_ujhtg"]
+[ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/game_manager/cell_breeder/helpers/clean_stat_helper/clean_stat_helper.gd" id="2_y3545"]
+[ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/helpers/defect_stat_helper/defect_stat_helper.gd" id="3_ujhtg"]
+[ext_resource type="Script" uid="uid://wfw8joe2deqf" path="res://scripts/game_manager/cell_breeder/helpers/reduced_cell_charge_helper.gd" id="4_y3545"]
 
 [node name="CellBreeder" type="Node" unique_id=1798622159]
 script = ExtResource("1_78xhs")
@@ -12,3 +13,6 @@ script = ExtResource("2_y3545")
 
 [node name="DefectStatHelper" type="Node" parent="." unique_id=1676189038]
 script = ExtResource("3_ujhtg")
+
+[node name="ReducedCellChargeHelper" type="Node" parent="." unique_id=590160223]
+script = ExtResource("4_y3545")

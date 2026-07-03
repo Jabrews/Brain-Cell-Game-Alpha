@@ -3,6 +3,7 @@ extends Node
 # component helpers
 @onready var clean_stat_helper : Node = $CleanStatHelper
 @onready var defect_stat_helper : Node = $DefectStatHelper
+@onready var reduced_cell_charge_helper : Node = $ReducedCellChargeHelper
 
 func _ready() -> void:
 	connect_signals()

@@ -9,6 +9,15 @@
 [ext_resource type="Script" uid="uid://cv0k2dx47qtx6" path="res://scripts/stations/station_components/cell_breeding/breeding_load_cell_panel.gd" id="4_x3k58"]
 [ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="5_e5h50"]
 [ext_resource type="PackedScene" uid="uid://dcmkn02pn0wkt" path="res://scenes/stations/station_screens/cell_breeding/screen_breeding_loader.tscn" id="5_nxjnn"]
+[ext_resource type="Script" uid="uid://bkxlveikuig00" path="res://scripts/stations/station_components/cell_breeding/charge_seats/charge_seat.gd" id="7_e2s2m"]
+[ext_resource type="PackedScene" uid="uid://yw1tk6n3l10m" path="res://scenes/stations/station_screens/cell_breeding/screen_charge_seat.tscn" id="8_qggwf"]
+[ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="9_e2s2m"]
+[ext_resource type="Script" uid="uid://bv7n7v0lg7ets" path="res://scripts/stations/station_components/cell_breeding/charge_seats/cycle_active_btn.gd" id="9_om3w4"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="10_5sub7"]
+[ext_resource type="Script" uid="uid://bka5qpiah2tfk" path="res://reusable/load_panel/load_panel_cell.gd" id="10_om3w4"]
+[ext_resource type="Script" uid="uid://ddhdnu3kwry8r" path="res://scripts/stations/station_components/cell_breeding/charge_seats/audio_manager.gd" id="14_j2qne"]
+[ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="15_vbbav"]
+[ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="16_1qj2c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fm2ka"]
 albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
@@ -23,10 +32,10 @@ size = Vector3(0.6, 0.6, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_juw32"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y38kh"]
-size = Vector3(2.11, 1, 6.5)
+size = Vector3(2.11, 2, 6.5)
 
 [sub_resource type="BoxMesh" id="BoxMesh_v8s7u"]
-size = Vector3(2.11, 1, 6.5)
+size = Vector3(2.11, 2, 6.5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kf4mc"]
 size = Vector3(1, 0.10992432, 1)
@@ -41,12 +50,69 @@ size = Vector3(1.2, 0.075, 1.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_8t6yh"]
 size = Vector3(1.2, 0.075, 1.2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_j2qne"]
+size = Vector3(1.4238892, 0.15491943, 1.4798584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vbbav"]
+material = SubResource("StandardMaterial3D_a1kj4")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1qj2c"]
+size = Vector3(1.5, 0.03720703, 1.5)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qa1qv"]
+top_radius = 0.06640625
+bottom_radius = 0.06640625
+height = 1.9241211
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7nwrf"]
+size = Vector3(0.1486969, 1.7645874, 0.1703949)
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+size = Vector3(0.63586426, 0.096191406, 0.41235352)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
+size = Vector3(0.64785767, 0.088134766, 0.4013977)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_om3w4"]
+size = Vector3(0.02, 0.21641724, 0.24408326)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f05ry"]
+albedo_color = Color(0, 0.5500002, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j2qne"]
+material = SubResource("StandardMaterial3D_f05ry")
+size = Vector3(0.02, 0.16449708, 0.22937745)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vbbav"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2y5v"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ynfv8"]
+[sub_resource type="BoxMesh" id="BoxMesh_0qjgp"]
 material = SubResource("StandardMaterial3D_r2y5v")
-size = Vector3(0.1, 3.2, 5.4)
+size = Vector3(0.1, 3, 1.5146484)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_om3w4"]
+viewport_path = NodePath("ChargeSeats/LeftSeat/TV/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e2s2m"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_om3w4")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5sub7"]
+material = SubResource("StandardMaterial3D_e2s2m")
+size = Vector2(1.3, 2.8)
+orientation = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(1.8000001, 1.7, 1.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+size = Vector3(1.8000001, 1.7, 1.5)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_448yb"]
 viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
@@ -54,6 +120,15 @@ viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6pful"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_448yb")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qsgmq"]
+material = SubResource("StandardMaterial3D_6pful")
+size = Vector2(1.3, 2.8)
+orientation = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynfv8"]
+material = SubResource("StandardMaterial3D_r2y5v")
+size = Vector3(0.1, 3.2, 5.4)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c7rfi"]
 material = SubResource("StandardMaterial3D_6pful")
@@ -80,7 +155,7 @@ material = SubResource("StandardMaterial3D_3j4jm")
 script = ExtResource("1_msp3i")
 
 [node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=1948894952]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3105459, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310546, 0)
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("2_e5h50")
@@ -107,18 +182,20 @@ original_coll_shape = NodePath("../CollisionShape3D")
 shape = SubResource("BoxShape3D_juw32")
 
 [node name="Table" type="StaticBody3D" parent="." unique_id=6788621]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49693012, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4969301, 0)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=872779833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_y38kh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=941515997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 mesh = SubResource("BoxMesh_v8s7u")
 
 [node name="LoadPanelLeft" type="Area3D" parent="." unique_id=1149105368 node_paths=PackedStringArray("cell_reciever")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0271263, -2.2848296)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0271263, -2.2848296)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_x3k58")
@@ -141,7 +218,7 @@ mesh = SubResource("BoxMesh_htpyb")
 shape = SubResource("BoxShape3D_8t6yh")
 
 [node name="LoadPanelRight" type="Area3D" parent="." unique_id=853858863 node_paths=PackedStringArray("cell_reciever")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0271263, 2.319636)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0271263, 2.319636)
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_x3k58")
@@ -163,8 +240,348 @@ mesh = SubResource("BoxMesh_htpyb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelRight/RightMesh" unique_id=530124353]
 shape = SubResource("BoxShape3D_8t6yh")
 
+[node name="ChargeSeats" type="Node3D" parent="." unique_id=560785039]
+
+[node name="LeftSeat" type="Node3D" parent="ChargeSeats" unique_id=1682832901]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4)
+script = ExtResource("7_e2s2m")
+side = "left"
+
+[node name="LoadPanelCell" type="Area3D" parent="ChargeSeats/LeftSeat" unique_id=200468015 node_paths=PackedStringArray("cell_reciever")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013756037, 0.42147768, -0.21476364)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("10_om3w4")
+cell_reciever = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/LoadPanelCell" unique_id=524027108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_j2qne")
+
+[node name="PannelCollision" type="StaticBody3D" parent="ChargeSeats/LeftSeat/LoadPanelCell" unique_id=13023875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/LoadPanelCell/PannelCollision" unique_id=2060943465]
+mesh = SubResource("BoxMesh_vbbav")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/LoadPanelCell/PannelCollision" unique_id=875585024]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_1qj2c")
+
+[node name="ControlPanel" type="Node3D" parent="ChargeSeats/LeftSeat" unique_id=632079229]
+transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0, 0, 0)
+
+[node name="Beam" type="StaticBody3D" parent="ChargeSeats/LeftSeat/ControlPanel" unique_id=1709481186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07064414, -0.11147916, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/ControlPanel/Beam" unique_id=525075463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58071065, -1.8867407)
+mesh = SubResource("CylinderMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/ControlPanel/Beam" unique_id=895878573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014266968, 0.48727417, -1.8850937)
+shape = SubResource("BoxShape3D_7nwrf")
+
+[node name="Panel" type="StaticBody3D" parent="ChargeSeats/LeftSeat/ControlPanel" unique_id=307564237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5629449, -1.8212209)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/ControlPanel/Panel" unique_id=1821099911]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.12874143, -0.18669927, -0.07165527)
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/ControlPanel/Panel" unique_id=1393816681]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.12381058, -0.19010174, -0.08351135)
+shape = SubResource("BoxShape3D_keru6")
+
+[node name="CycleStatUp" type="StaticBody3D" parent="ChargeSeats/LeftSeat/ControlPanel" unique_id=1954033522 groups=["interactable"]]
+transform = Transform3D(-0.6975986, 0.71648866, 8.1571685e-08, 0.7164886, 0.6975988, -3.1445204e-08, -7.943443e-08, 3.6509057e-08, -1, -0.067931205, 1.5222986, -1.8766427)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("9_om3w4")
+cycle_direction = "up"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatUp" unique_id=422070398]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_om3w4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatUp" unique_id=2018866449]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_j2qne")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatUp" unique_id=1086979726 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_5f2hc")
+hover_mesh_scene = ExtResource("9_e2s2m")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatUp/HoverableMesh" unique_id=374985264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_vbbav")
+
+[node name="DownArrowLabel" type="Label3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatUp" unique_id=786414412]
+transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "↑"
+font = ExtResource("10_5sub7")
+font_size = 24
+outline_size = 0
+
+[node name="CycleStatDown" type="StaticBody3D" parent="ChargeSeats/LeftSeat/ControlPanel" unique_id=1429121530 groups=["interactable"]]
+transform = Transform3D(-0.710237, 0.7039627, 8.211829e-08, 0.70396256, 0.7102372, -2.9988783e-08, -7.943443e-08, 3.6509064e-08, -1, -0.252812, 1.3368926, -1.876337)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("9_om3w4")
+cycle_direction = "down"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatDown" unique_id=1856252216]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_om3w4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatDown" unique_id=1691701197]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_j2qne")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatDown" unique_id=335872489 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_5f2hc")
+hover_mesh_scene = ExtResource("9_e2s2m")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatDown/HoverableMesh" unique_id=243717035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_vbbav")
+
+[node name="DownArrowLabel" type="Label3D" parent="ChargeSeats/LeftSeat/ControlPanel/CycleStatDown" unique_id=1016243254]
+transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "↓"
+font = ExtResource("10_5sub7")
+font_size = 24
+outline_size = 0
+
+[node name="TV" type="Node3D" parent="ChargeSeats/LeftSeat" unique_id=839006641]
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/TV" unique_id=978465540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2754898, 3.3931642, -0.23798847)
+mesh = SubResource("BoxMesh_0qjgp")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/TV" unique_id=386140127]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2058802, 3.3659573, -0.23113155)
+mesh = SubResource("PlaneMesh_5sub7")
+script = ExtResource("4_msp3i")
+
+[node name="SubViewport" type="SubViewport" parent="ChargeSeats/LeftSeat/TV/TvFrontPannel" unique_id=1804047587]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(201, 231)
+
+[node name="ScreenChargeSeat" parent="ChargeSeats/LeftSeat/TV/TvFrontPannel/SubViewport" unique_id=1595912651 instance=ExtResource("8_qggwf")]
+texture_filter = 1
+
+[node name="Table" type="StaticBody3D" parent="ChargeSeats/LeftSeat" unique_id=307025225]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/LeftSeat/Table" unique_id=2055062328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35074234, -0.25314236)
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/LeftSeat/Table" unique_id=2090154373]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.940697e-08, 0.35000002, -0.25)
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="AudioManager" type="Node3D" parent="ChargeSeats/LeftSeat" unique_id=340671311]
+script = ExtResource("14_j2qne")
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="ChargeSeats/LeftSeat/AudioManager" unique_id=2087335038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
+stream = ExtResource("15_vbbav")
+volume_db = 5.0
+unit_size = 5.0
+
+[node name="InvalidStat" type="AudioStreamPlayer3D" parent="ChargeSeats/LeftSeat/AudioManager" unique_id=87428096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
+stream = ExtResource("16_1qj2c")
+volume_db = 10.0
+unit_size = 5.0
+
+[node name="RightSeat" type="Node3D" parent="ChargeSeats" unique_id=2071121569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 4.5134706)
+script = ExtResource("7_e2s2m")
+side = "right"
+
+[node name="LoadPanelCell" type="Area3D" parent="ChargeSeats/RightSeat" unique_id=1452319512 node_paths=PackedStringArray("cell_reciever")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.013756037, 0.42147768, -0.21476364)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("10_om3w4")
+cell_reciever = NodePath("..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/LoadPanelCell" unique_id=1265429293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_j2qne")
+
+[node name="PannelCollision" type="StaticBody3D" parent="ChargeSeats/RightSeat/LoadPanelCell" unique_id=1170545387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/RightSeat/LoadPanelCell/PannelCollision" unique_id=98724315]
+mesh = SubResource("BoxMesh_vbbav")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/LoadPanelCell/PannelCollision" unique_id=82801564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_1qj2c")
+
+[node name="ControlPanel" type="Node3D" parent="ChargeSeats/RightSeat" unique_id=100307403]
+transform = Transform3D(0.8630347, 0, -0.5051446, 0, 1, 0, 0.5051446, 0, 0.8630347, -2, 0, 2.6757522)
+
+[node name="Beam" type="StaticBody3D" parent="ChargeSeats/RightSeat/ControlPanel" unique_id=1273883152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07064414, -0.11147916, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/RightSeat/ControlPanel/Beam" unique_id=1176838981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58071065, -1.8867407)
+mesh = SubResource("CylinderMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/ControlPanel/Beam" unique_id=1625851030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014266968, 0.48727417, -1.8850937)
+shape = SubResource("BoxShape3D_7nwrf")
+
+[node name="Panel" type="StaticBody3D" parent="ChargeSeats/RightSeat/ControlPanel" unique_id=680198407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5629449, -1.8212209)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/RightSeat/ControlPanel/Panel" unique_id=52266860]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.12874143, -0.18669927, -0.07165527)
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/ControlPanel/Panel" unique_id=1293926653]
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.70710677, 0.70710677, 0, 0, 0, 1, -0.12381058, -0.19010174, -0.08351135)
+shape = SubResource("BoxShape3D_keru6")
+
+[node name="CycleStatUp" type="StaticBody3D" parent="ChargeSeats/RightSeat/ControlPanel" unique_id=687139099 groups=["interactable"]]
+transform = Transform3D(-0.6975986, 0.71648866, 8.1571685e-08, 0.7164886, 0.6975988, -3.1445204e-08, -7.943443e-08, 3.6509057e-08, -1, -0.067931205, 1.5222986, -1.8766427)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("9_om3w4")
+cycle_direction = "up"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatUp" unique_id=990294419]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_om3w4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatUp" unique_id=965572865]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_j2qne")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatUp" unique_id=2008597835 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_5f2hc")
+hover_mesh_scene = ExtResource("9_e2s2m")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatUp/HoverableMesh" unique_id=1169655562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_vbbav")
+
+[node name="DownArrowLabel" type="Label3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatUp" unique_id=1736951369]
+transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "↑"
+font = ExtResource("10_5sub7")
+font_size = 24
+outline_size = 0
+
+[node name="CycleStatDown" type="StaticBody3D" parent="ChargeSeats/RightSeat/ControlPanel" unique_id=1330112608 groups=["interactable"]]
+transform = Transform3D(-0.710237, 0.7039627, 8.211829e-08, 0.70396256, 0.7102372, -2.9988783e-08, -7.943443e-08, 3.6509064e-08, -1, -0.252812, 1.3368926, -1.876337)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("9_om3w4")
+cycle_direction = "down"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatDown" unique_id=529221069]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_om3w4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatDown" unique_id=970326209]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_j2qne")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatDown" unique_id=1595149611 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_5f2hc")
+hover_mesh_scene = ExtResource("9_e2s2m")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatDown/HoverableMesh" unique_id=933629234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_vbbav")
+
+[node name="DownArrowLabel" type="Label3D" parent="ChargeSeats/RightSeat/ControlPanel/CycleStatDown" unique_id=161634102]
+transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "↓"
+font = ExtResource("10_5sub7")
+font_size = 24
+outline_size = 0
+
+[node name="TV" type="Node3D" parent="ChargeSeats/RightSeat" unique_id=1974357657]
+
+[node name="TvBackPannel" type="MeshInstance3D" parent="ChargeSeats/RightSeat/TV" unique_id=1181127685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2754898, 3.3931642, -0.23798847)
+mesh = SubResource("BoxMesh_0qjgp")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="ChargeSeats/RightSeat/TV" unique_id=671946993]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 1.2058802, 3.3659573, -0.23113155)
+mesh = SubResource("PlaneMesh_qsgmq")
+script = ExtResource("4_msp3i")
+
+[node name="SubViewport" type="SubViewport" parent="ChargeSeats/RightSeat/TV/TvFrontPannel" unique_id=816655744]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(201, 231)
+
+[node name="ScreenChargeSeat" parent="ChargeSeats/RightSeat/TV/TvFrontPannel/SubViewport" unique_id=180902924 instance=ExtResource("8_qggwf")]
+texture_filter = 1
+
+[node name="Table" type="StaticBody3D" parent="ChargeSeats/RightSeat" unique_id=846605265]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/RightSeat/Table" unique_id=725614601]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35074234, -0.25314236)
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/RightSeat/Table" unique_id=1881622390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.940697e-08, 0.35000002, -0.25)
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="AudioManager" type="Node3D" parent="ChargeSeats/RightSeat" unique_id=1673139495]
+script = ExtResource("14_j2qne")
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="ChargeSeats/RightSeat/AudioManager" unique_id=811151118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
+stream = ExtResource("15_vbbav")
+volume_db = 5.0
+unit_size = 5.0
+
+[node name="InvalidStat" type="AudioStreamPlayer3D" parent="ChargeSeats/RightSeat/AudioManager" unique_id=1372236669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
+stream = ExtResource("16_1qj2c")
+volume_db = 10.0
+unit_size = 5.0
+
 [node name="BreedPreviewTv" type="Node3D" parent="." unique_id=1864075953]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.237463, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.237463, 1, 0)
 
 [node name="TvBackPannel" type="MeshInstance3D" parent="BreedPreviewTv" unique_id=229643463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5181713, 4, 0)
@@ -184,7 +601,7 @@ size = Vector2i(480, 270)
 texture_filter = 1
 
 [node name="BredCellSpawner" type="Node3D" parent="." unique_id=1447953321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.043589592, 2)
 script = ExtResource("5_e5h50")
 
 [node name="SpawnPos" type="Node3D" parent="BredCellSpawner" unique_id=1976625344]
