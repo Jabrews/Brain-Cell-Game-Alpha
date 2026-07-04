@@ -772,3 +772,36 @@ place cell
 to add charge"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FeedbackScreen" type="Control" parent="." unique_id=1635920132]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="FeedbackScreen" unique_id=1643619375]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 226.0
+color = Color(0.32156864, 0, 0, 1)
+
+[node name="CellName" type="Label" parent="FeedbackScreen" unique_id=549293298]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 44.0
+offset_right = 187.0
+offset_bottom = 169.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_x1s2i")
+theme_override_font_sizes/font_size = 13
+text = "Cannot load 
+cell
+
+Main Breeding
+panel empty"
+horizontal_alignment = 1
+vertical_alignment = 1

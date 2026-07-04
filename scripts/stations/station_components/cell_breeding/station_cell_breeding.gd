@@ -15,6 +15,10 @@ var current_screen : Screen = Screen.LOADER
 @onready var cell_loading_right_seat : Node2D = $BreedPreviewTv/TvFrontPannel/SubViewport/ScreenBreedingLoader/SeatCellLoading/RightSeat
 @export var cell_container_parent_node : Node
 
+# charge seats 
+@onready var charge_seat_left: Node3D = $ChargeSeats/LeftSeat
+@onready var charge_seat_right : Node3D = $ChargeSeats/RightSeat
+
 # screens
 @onready var screen_seat_cells_loading : Node2D = $BreedPreviewTv/TvFrontPannel/SubViewport/ScreenBreedingLoader/SeatCellLoading
 @onready var screen_new_cell_preview : Node2D = $BreedPreviewTv/TvFrontPannel/SubViewport/ScreenBreedingLoader/NewCellPreview
@@ -37,6 +41,14 @@ func _handle_breeding_panel_cell_recieved(cell : BrainCell, side : String) -> vo
 			return
 
 	_update_breeding_state()
+
+	if not cell: 
+		match side  : 
+			'left' : 
+				charge_seat_left._handle_breeding_panel_cell_removed()
+			'right' :
+				charge_seat_right._handle_breeding_panel_cell_removed()
+		
 
 
 func _set_cell(cell : BrainCell, is_left_side : bool) -> void:
