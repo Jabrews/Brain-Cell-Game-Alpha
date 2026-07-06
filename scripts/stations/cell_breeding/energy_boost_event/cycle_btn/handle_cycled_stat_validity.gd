@@ -40,6 +40,9 @@ func _check_stats_validity() :
 	
 func find_stat_is_valid(cell : BrainCell, stat_type : String) :
 	
+	if not cell : 
+		return false
+	
 	var stat_valid : bool 
 	var stat : BrainCellStat
 	

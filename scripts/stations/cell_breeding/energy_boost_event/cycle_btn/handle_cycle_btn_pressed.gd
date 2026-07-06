@@ -4,6 +4,9 @@ extends Node
 @onready var main_cell_manager : Node = $"../../MainCellManager"
 @onready var energy_boost_cell_manager : Node = $"../../MainCellManager/EnergyBoostCellManager"
 
+# sync charge boost display 
+@onready var sync_charge_boost_display : Node = $"../../SyncChargeBoostDisplay"
+
 # helper 
 @onready var handle_cycled_stat_validity : Node = $HandleCycledStatValidity
 
@@ -27,6 +30,8 @@ func _handle_event_cycle_btn_pressed(side : String, direction : String) :
 	
 	# update validity and manager stat
 	handle_cycled_stat_validity._check_stats_validity()
+	
+	sync_charge_boost_display.sync_charge_boost_display()
 	
 
 func verify_cell_exist(side : String) -> bool : 

@@ -26,7 +26,6 @@ func sync_charge_boost_display() :
 	var cycled_stat_right : String = energy_boost_cell_manager.energy_boost_right_stat
 	
 	
-	
 	left_screen_charge_handle_display._handle_display(energy_boost_left_cell, cycled_index_left, cycled_stat_left)
 	right_screen_charge_handle_display._handle_display(energy_boost_right_cell, cycled_index_right, cycled_stat_right)
 

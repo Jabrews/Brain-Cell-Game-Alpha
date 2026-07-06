@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cfbnk4pmrth2a" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/energy_seat_loader/reset_stat_display.gd" id="3_0acl2"]
 [ext_resource type="Script" uid="uid://dtgwxl0xv13ly" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/energy_seat_loader/display_stat_display.gd" id="4_bsu6s"]
 [ext_resource type="Script" uid="uid://dk1f47jw332df" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/cycled_active_stat_loader/cycled_active_stat_loader.gd" id="5_1cqm4"]
+[ext_resource type="Script" uid="uid://cekrf12uu0h4u" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/cycled_active_stat_loader/preview_cycled_stat_debuff.gd" id="6_0nno5"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="7_u1top"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="8_njyou"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="9_mowg2"]
@@ -450,6 +451,9 @@ script = ExtResource("4_bsu6s")
 
 [node name="CycledActiveStatLoader" type="Node" parent="HandleDisplay" unique_id=1545901352]
 script = ExtResource("5_1cqm4")
+
+[node name="PreviewCycledStatDebuff" type="Node" parent="HandleDisplay/CycledActiveStatLoader" unique_id=737408404]
+script = ExtResource("6_0nno5")
 
 [node name="BG" type="ColorRect" parent="." unique_id=532101988]
 anchors_preset = 8
