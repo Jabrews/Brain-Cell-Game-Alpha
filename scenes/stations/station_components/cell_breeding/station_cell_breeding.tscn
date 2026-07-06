@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://ccsx0yhgkumsp" path="res://scripts/stations/station_components/cell_breeding/direction_btn/btn_color_updater.gd" id="3_3e11i"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="3_x3k58"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="4_msp3i"]
-[ext_resource type="Script" uid="uid://cv0k2dx47qtx6" path="res://scripts/stations/station_components/cell_breeding/breeding_load_cell_panel.gd" id="4_x3k58"]
+[ext_resource type="Script" uid="uid://cv0k2dx47qtx6" path="res://scripts/stations/cell_breeding/breeding_load_cell_panel.gd" id="4_x3k58"]
 [ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="5_e5h50"]
 [ext_resource type="PackedScene" uid="uid://dcmkn02pn0wkt" path="res://scenes/stations/station_screens/cell_breeding/screen_breeding_loader.tscn" id="5_nxjnn"]
 [ext_resource type="Script" uid="uid://bkxlveikuig00" path="res://scripts/stations/station_components/cell_breeding/charge_seats/charge_seat.gd" id="7_e2s2m"]

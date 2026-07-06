@@ -37,9 +37,8 @@ func _handle_new_direction_chosen(side : String, direction : String) :
 			right_stat_direction = direction 
 
 func load_charge_stat() : 
+	pass
 	
-	print('left : ', left_charge_stat, ' ', left_stat_direction)	
-	print('right : ', right_charge_stat, ' ', right_stat_direction)	
 	
 	#if left_charge_stat != 'none' :	
 		#if left_stat_direction != 'none' :

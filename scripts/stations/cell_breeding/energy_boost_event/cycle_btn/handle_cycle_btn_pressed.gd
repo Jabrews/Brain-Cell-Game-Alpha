@@ -1,0 +1,114 @@
+extends Node
+
+# cell manager componnets
+@onready var main_cell_manager : Node = $"../../MainCellManager"
+@onready var energy_boost_cell_manager : Node = $"../../MainCellManager/EnergyBoostCellManager"
+
+# helper 
+@onready var handle_cycled_stat_validity : Node = $HandleCycledStatValidity
+
+
+var left_index : int = -1
+var right_index : int = -1
+
+func _handle_event_cycle_btn_pressed(side : String, direction : String) :
+	
+	# main cell and energy boost cell exist
+	var cell_exists = verify_cell_exist(side)
+
+	if not cell_exists :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		return
+	
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+	
+	# changes index
+	cycle_stat(side, direction)	
+	
+	# update validity and manager stat
+	handle_cycled_stat_validity._check_stats_validity()
+	
+
+func verify_cell_exist(side : String) -> bool : 
+	
+	var main_cell : BrainCell
+	var energy_boost_cell : BrainCell
+	
+	match side :
+		'left' :
+			main_cell = main_cell_manager.main_left_cell
+			energy_boost_cell = energy_boost_cell_manager.energy_boost_left_cell
+		'right' :
+			main_cell = main_cell_manager.main_right_cell
+			energy_boost_cell = energy_boost_cell_manager.energy_boost_right_cell		
+	
+	if not main_cell or not energy_boost_cell: 
+		return false
+	else : 
+		return true
+
+func cycle_stat(side: String, direction: String) -> void:
+	var index: int = _get_index_from_side(side)
+
+	if index == -1:
+		match direction:
+			"up":
+				index = 0
+			"down":
+				index = 2
+	else:
+		match direction:
+			"up":
+				index += 1
+			"down":
+				index -= 1
+
+		if index < 0 or index > 2:
+			index = -1
+
+	_set_index_from_side(side, index)
+
+
+
+### side to index getter ##
+func _get_index_from_side(side: String) :
+	match side:
+		"left":
+			return left_index
+		"right":
+			return right_index
+###########################
+
+## side to index setter ##
+func _set_index_from_side(side: String, index: int) -> void:
+	match side:
+		"left":
+			left_index = index
+		"right":
+			right_index = index
+###########################
+		
+
+func _handle_reset_index_cell_removed(side : String) :		
+	match side : 	
+		'left' :
+			left_index = -1
+		'right' :
+			right_index = -1
+		
+		
+		
+	
+	
+		
+		
+		
+
+
+
+
+
+	
+		
+		
+	
