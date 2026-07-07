@@ -200,6 +200,52 @@ script = ExtResource("5_sqxto")
 
 [node name="DirectionBtnController" type="Node" parent="." unique_id=1691782242]
 
+[node name="Audio" type="Node3D" parent="." unique_id=1500441529]
+
+[node name="LeftAudioManager" type="Node3D" parent="Audio" unique_id=1433309966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52030206, -8.167517)
+script = ExtResource("14_bhvbn")
+curr_side = "left"
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="Audio/LeftAudioManager" unique_id=1851546035]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.526572, 3.7117653)
+stream = ExtResource("15_uq6ph")
+volume_db = 5.0
+unit_size = 5.0
+
+[node name="InvalidStat" type="AudioStreamPlayer3D" parent="Audio/LeftAudioManager" unique_id=576376538]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.526572, 3.7117653)
+stream = ExtResource("16_sqxto")
+volume_db = 10.0
+unit_size = 5.0
+
+[node name="FeedbackSound" type="AudioStreamPlayer3D" parent="Audio/LeftAudioManager" unique_id=832970587]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 3.5002835, 3.69414)
+stream = ExtResource("17_lvnx6")
+unit_size = 5.0
+
+[node name="RightAudioManager" type="Node3D" parent="Audio" unique_id=1947204694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52030206, 0.83248377)
+script = ExtResource("14_bhvbn")
+curr_side = "right"
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="Audio/RightAudioManager" unique_id=1923464261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.526572, 3.7117653)
+stream = ExtResource("15_uq6ph")
+volume_db = 5.0
+unit_size = 5.0
+
+[node name="InvalidStat" type="AudioStreamPlayer3D" parent="Audio/RightAudioManager" unique_id=1057150415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.526572, 3.7117653)
+stream = ExtResource("16_sqxto")
+volume_db = 10.0
+unit_size = 5.0
+
+[node name="FeedbackSound" type="AudioStreamPlayer3D" parent="Audio/RightAudioManager" unique_id=36548770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 3.5002835, 3.69414)
+stream = ExtResource("17_lvnx6")
+unit_size = 5.0
+
 [node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=121583691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310546, 0)
 collision_layer = 0
@@ -507,6 +553,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(201, 231)
 
 [node name="ScreenChargeBoostSeat" parent="ChargeSeats/ChargeSeatLeft/TV/TvFrontPannel/SubViewport" unique_id=340738513 instance=ExtResource("17_u6e0a")]
+side = "left"
 
 [node name="Table" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft" unique_id=1188176807]
 
@@ -517,26 +564,6 @@ shape = SubResource("BoxShape3D_lligg")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/ChargeSeatLeft/Table" unique_id=1478463458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.940697e-08, 0.35000002, -0.25)
 mesh = SubResource("BoxMesh_pc1ns")
-
-[node name="AudioManager" type="Node3D" parent="ChargeSeats/ChargeSeatLeft" unique_id=1433309966]
-script = ExtResource("14_bhvbn")
-
-[node name="CycleStat" type="AudioStreamPlayer3D" parent="ChargeSeats/ChargeSeatLeft/AudioManager" unique_id=1851546035]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
-stream = ExtResource("15_uq6ph")
-volume_db = 5.0
-unit_size = 5.0
-
-[node name="InvalidStat" type="AudioStreamPlayer3D" parent="ChargeSeats/ChargeSeatLeft/AudioManager" unique_id=576376538]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
-stream = ExtResource("16_sqxto")
-volume_db = 10.0
-unit_size = 5.0
-
-[node name="FeedbackSound" type="AudioStreamPlayer3D" parent="ChargeSeats/ChargeSeatLeft/AudioManager" unique_id=832970587]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 1.647126, 3.8496246)
-stream = ExtResource("17_lvnx6")
-unit_size = 5.0
 
 [node name="ChargeSeatRight" type="Node3D" parent="ChargeSeats" unique_id=1441629348]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52030206, 4.832484)
@@ -758,6 +785,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(201, 231)
 
 [node name="ScreenChargeBoostSeat" parent="ChargeSeats/ChargeSeatRight/TV/TvFrontPannel/SubViewport" unique_id=1990768841 instance=ExtResource("17_u6e0a")]
+side = "right"
 
 [node name="Table" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight" unique_id=2058426050]
 
@@ -768,26 +796,6 @@ shape = SubResource("BoxShape3D_lligg")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ChargeSeats/ChargeSeatRight/Table" unique_id=213035504]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.940697e-08, 0.35000002, -0.25)
 mesh = SubResource("BoxMesh_pc1ns")
-
-[node name="AudioManager" type="Node3D" parent="ChargeSeats/ChargeSeatRight" unique_id=1562126149]
-script = ExtResource("14_bhvbn")
-
-[node name="CycleStat" type="AudioStreamPlayer3D" parent="ChargeSeats/ChargeSeatRight/AudioManager" unique_id=1706118833]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
-stream = ExtResource("15_uq6ph")
-volume_db = 5.0
-unit_size = 5.0
-
-[node name="InvalidStat" type="AudioStreamPlayer3D" parent="ChargeSeats/ChargeSeatRight/AudioManager" unique_id=2139143944]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.5265722, -0.2882347)
-stream = ExtResource("16_sqxto")
-volume_db = 10.0
-unit_size = 5.0
-
-[node name="FeedbackSound" type="AudioStreamPlayer3D" parent="ChargeSeats/ChargeSeatRight/AudioManager" unique_id=1176454015]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 1.647126, 3.8496246)
-stream = ExtResource("17_lvnx6")
-unit_size = 5.0
 
 [node name="BreedPreviewTv" type="Node3D" parent="." unique_id=1149444207]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.237463, 1, 0)

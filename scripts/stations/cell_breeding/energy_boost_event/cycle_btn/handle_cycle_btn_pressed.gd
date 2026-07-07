@@ -10,6 +10,10 @@ extends Node
 # helper 
 @onready var handle_cycled_stat_validity : Node = $HandleCycledStatValidity
 
+# audio
+@onready var left_audio_manager : Node3D = $"../../Audio/LeftAudioManager"
+@onready var right_audio_manager : Node3D = $"../../Audio/RightAudioManager"
+
 
 var left_index : int = -1
 var right_index : int = -1
@@ -23,13 +27,15 @@ func _handle_event_cycle_btn_pressed(side : String, direction : String) :
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		return
 	
-	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
-	
 	# changes index
 	cycle_stat(side, direction)	
 	
 	# update validity and manager stat
-	handle_cycled_stat_validity._check_stats_validity()
+	var valid : bool = handle_cycled_stat_validity._check_stats_validity(side)
+	if valid : 
+		play_audio(side, 'cycle')
+	else : 
+		play_audio(side, 'invalid')
 	
 	sync_charge_boost_display.sync_charge_boost_display()
 	
@@ -101,8 +107,24 @@ func _handle_reset_index_cell_removed(side : String) :
 		'right' :
 			right_index = -1
 		
-		
-		
+###########################	
+
+## Audio helper ##
+func play_audio(side: String, type : String) :
+
+	var audio_manager : Node3D
+	
+	match side : 
+		'left' :
+			audio_manager = left_audio_manager
+		'right' :
+			audio_manager = right_audio_manager
+
+	match type : 
+		'cycle' :
+			audio_manager.play_cycle()
+		'invalid' :
+			audio_manager.play_invalid_stat()
 	
 	
 		

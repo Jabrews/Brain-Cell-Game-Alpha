@@ -38,15 +38,24 @@ func _handle_breeding_panel_cell_recieved(brain_cell: BrainCell, side: String) -
 	sync_charge_boost_display.sync_charge_boost_display()
 
 func _main_cell_removed(side : String) :
+	
+	
 	match side : 
 		'left' :
+			if energy_boost_left_cell : 			
+				GLBreedingComponetsBus.emit_signal('breeding_station_feedback_requested', side, 'main_cell_removed')
+			
 			energy_boost_left_cell = null
 			energy_boost_left_direction = 'none'
 			energy_boost_left_stat = 'none'
 		'right' :
+			if energy_boost_right_cell: 			
+				GLBreedingComponetsBus.emit_signal('breeding_station_feedback_requested', side, 'main_cell_removed')
+				
 			energy_boost_right_cell = null
 			energy_boost_right_direction = 'none'
 			energy_boost_right_stat = 'none'
+		
 	
 	handle_cycle_btn_pressed._handle_reset_index_cell_removed(side)
 	sync_charge_boost_display.sync_charge_boost_display()
@@ -61,7 +70,7 @@ func set_left_energy_boost_cell(brain_cell: BrainCell) -> void:
 		energy_boost_left_cell = brain_cell
 	else:
 		energy_boost_left_cell = null
-		# TODO: emit feedback signal that left boost cell cannot be accepted
+		GLBreedingComponetsBus.emit_signal('breeding_station_feedback_requested', 'left', 'main_cell_missing')
 
 
 func set_right_energy_boost_cell(brain_cell: BrainCell) -> void:
@@ -74,4 +83,4 @@ func set_right_energy_boost_cell(brain_cell: BrainCell) -> void:
 		energy_boost_right_cell = brain_cell
 	else:
 		energy_boost_right_cell = null
-		# TODO: emit feedback signal that right boost cell cannot be accepted
+		GLBreedingComponetsBus.emit_signal('breeding_station_feedback_requested', 'right', 'main_cell_missing')

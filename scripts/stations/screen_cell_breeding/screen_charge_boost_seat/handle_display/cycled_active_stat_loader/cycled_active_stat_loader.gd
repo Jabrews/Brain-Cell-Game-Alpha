@@ -15,7 +15,7 @@ extends Node
 
 
 
-func _handle_recieve_cycled(cycled_index : int, cycled_stat : String) :
+func _handle_recieve_cycled(energy_seat_cell : BrainCell, cycled_index : int, cycled_stat : String) :
 	
 	reset_active_stat_highlights() 
 	
@@ -30,8 +30,8 @@ func _handle_recieve_cycled(cycled_index : int, cycled_stat : String) :
 		stat_invalid_label.visible = !stat_isnt_none
 		
 		
-		if stat_isnt_none :
-			preview_cycled_stat_debuff._handle_preview_debuff(cycled_stat)
+		if stat_isnt_none and energy_seat_cell:
+			preview_cycled_stat_debuff._handle_preview_debuff(cycled_stat, energy_seat_cell )
 
 	# else it is -1. therefore no stat selected
 	else : 
