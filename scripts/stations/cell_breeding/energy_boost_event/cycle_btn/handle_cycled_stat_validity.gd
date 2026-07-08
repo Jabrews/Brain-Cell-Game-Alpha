@@ -50,12 +50,22 @@ func _check_stats_validity(side : String) :
 			if left_boost_stat_is_valid and left_main_stat_is_valid : 
 				return true
 			else :
+				if left_boost_stat_is_valid and not left_main_stat_is_valid : 
+					# dont throw error when none is selected
+					if left_index != -1 :
+						GLBreedingComponetsBus.emit_signal('breeding_station_feedback_requested', 'left', 'main_cell_stat_invalid')
+						
 				return false
 		'right' :		
 			if right_boost_stat_is_valid and right_main_stat_is_valid: 
 				return true
 			else :
-				return false
+				if right_boost_stat_is_valid and not right_main_stat_is_valid: 
+					# dont throw error when none is selected
+					if right_index!= -1 :
+						GLBreedingComponetsBus.emit_signal('breeding_station_feedback_requested', 'right', 'main_cell_stat_invalid')
+						
+					return false
 	
 	
 

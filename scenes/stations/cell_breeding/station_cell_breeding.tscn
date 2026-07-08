@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="5_u6e0a"]
 [ext_resource type="Script" uid="uid://cv0k2dx47qtx6" path="res://scripts/stations/cell_breeding/breeding_load_cell_panel.gd" id="6_bhvbn"]
 [ext_resource type="Script" uid="uid://c7khqkmtlyj5h" path="res://scripts/stations/cell_breeding/energy_boost_event/cycle_btn/handle_cycled_stat_validity.gd" id="6_uq6ph"]
+[ext_resource type="Script" uid="uid://cuid12v3ce1uf" path="res://scripts/stations/cell_breeding/energy_boost_event/direction_btn/direction_btn_visuals.gd" id="8_sqxto"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="9_jfoyh"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="10_7nnq0"]
 [ext_resource type="Script" uid="uid://dileynfi25vpw" path="res://scripts/stations/station_components/cell_breeding/direction_btn/direction_button.gd" id="11_pnqv3"]
@@ -198,7 +199,8 @@ script = ExtResource("6_uq6ph")
 [node name="HandleDirectionBtnPressed" type="Node" parent="EnergyBoostEventManager" unique_id=1290302549]
 script = ExtResource("5_sqxto")
 
-[node name="DirectionBtnController" type="Node" parent="." unique_id=1691782242]
+[node name="DirectionBtnVisuals" type="Node" parent="EnergyBoostEventManager/HandleDirectionBtnPressed" unique_id=1691782242]
+script = ExtResource("8_sqxto")
 
 [node name="Audio" type="Node3D" parent="." unique_id=1500441529]
 
@@ -464,12 +466,14 @@ outline_size = 0
 
 [node name="Direction" type="Node3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel" unique_id=972270184]
 
-[node name="Increase" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel/Direction" unique_id=148347181 groups=["interactable"]]
+[node name="Increase" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel/Direction" unique_id=148347181 node_paths=PackedStringArray("handle_direction_btn_pressed") groups=["interactable"]]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1.0000001, 0, -0.5, 0, -0.8660253, -0.8855903, 0.89280033, -0.28213334)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("11_pnqv3")
 direction = "increase"
+side = "left"
+handle_direction_btn_pressed = NodePath("../../../../../EnergyBoostEventManager/HandleDirectionBtnPressed")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel/Direction/Increase" unique_id=1685799166]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013964772, 0.016622424, 0.00955534)
@@ -500,12 +504,14 @@ font = ExtResource("10_7nnq0")
 font_size = 30
 outline_size = 0
 
-[node name="Decrease" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel/Direction" unique_id=1341607765 groups=["interactable"]]
+[node name="Decrease" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel/Direction" unique_id=1341607765 node_paths=PackedStringArray("handle_direction_btn_pressed") groups=["interactable"]]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1.0000001, 0, -0.5, 0, -0.8660253, -0.46238804, 0.89280033, -1.0151412)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("11_pnqv3")
 direction = "decrease"
+side = "left"
+handle_direction_btn_pressed = NodePath("../../../../../EnergyBoostEventManager/HandleDirectionBtnPressed")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatLeft/ControlPanel/Direction/Decrease" unique_id=1615070595]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013964772, 0.016622424, 0.00955534)
@@ -696,12 +702,14 @@ outline_size = 0
 
 [node name="Direction" type="Node3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel" unique_id=1682511596]
 
-[node name="Increase" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel/Direction" unique_id=1878341245 groups=["interactable"]]
+[node name="Increase" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel/Direction" unique_id=1878341245 node_paths=PackedStringArray("handle_direction_btn_pressed") groups=["interactable"]]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1.0000001, 0, -0.5, 0, -0.8660253, -0.8855903, 0.89280033, -0.28213334)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("11_pnqv3")
 direction = "increase"
+side = "right"
+handle_direction_btn_pressed = NodePath("../../../../../EnergyBoostEventManager/HandleDirectionBtnPressed")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel/Direction/Increase" unique_id=281006476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013964772, 0.016622424, 0.00955534)
@@ -732,12 +740,14 @@ font = ExtResource("10_7nnq0")
 font_size = 30
 outline_size = 0
 
-[node name="Decrease" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel/Direction" unique_id=232394454 groups=["interactable"]]
+[node name="Decrease" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel/Direction" unique_id=232394454 node_paths=PackedStringArray("handle_direction_btn_pressed") groups=["interactable"]]
 transform = Transform3D(-0.8660253, 0, 0.50000006, 0, 1.0000001, 0, -0.5, 0, -0.8660253, -0.46238804, 0.89280033, -1.0151412)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("11_pnqv3")
 direction = "decrease"
+side = "right"
+handle_direction_btn_pressed = NodePath("../../../../../EnergyBoostEventManager/HandleDirectionBtnPressed")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatRight/ControlPanel/Direction/Decrease" unique_id=1206413382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0013964772, 0.016622424, 0.00955534)

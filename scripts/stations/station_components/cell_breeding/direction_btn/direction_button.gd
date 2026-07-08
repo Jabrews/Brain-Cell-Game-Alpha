@@ -1,14 +1,9 @@
 extends InteractableBtn 
 
 @export var direction : String 
-@export  var charge_seat_parent : Node3D 
-
-@onready var direction_button_controller : Node = $"../../../../../DirectionBtnController"
+@export var side : String
+@export var handle_direction_btn_pressed : Node
 
 
 func _on_btn_interacted():
-	
-	
-	var side = charge_seat_parent.side
-	
-	direction_button_controller._handle_direction_btn_pressed(side, direction)
+	handle_direction_btn_pressed._handle_direction_btn_pressed(side, direction)

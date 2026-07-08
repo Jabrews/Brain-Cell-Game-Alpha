@@ -10,6 +10,9 @@ extends Node
 # event manager cycle btn
 @onready var handle_cycle_btn_pressed : Node = $"../../EnergyBoostEventManager/HandleCycleBtnPressed"
 
+# event manager direction btn
+@onready var handle_direction_btn_pressed : Node = $"../../EnergyBoostEventManager/HandleDirectionBtnPressed"
+
 
 
 var energy_boost_left_cell: BrainCell
@@ -33,13 +36,12 @@ func _handle_breeding_panel_cell_recieved(brain_cell: BrainCell, side: String) -
 	# reset index from cycle stat if cell remoeved
 	if not brain_cell : 
 		handle_cycle_btn_pressed._handle_reset_index_cell_removed(side)
+		handle_direction_btn_pressed._handle_reset_direction_cell_removed(side)
 	
 	sync_breeding_display.sync_breeding_cell_display()
 	sync_charge_boost_display.sync_charge_boost_display()
 
 func _main_cell_removed(side : String) :
-	
-	
 	match side : 
 		'left' :
 			if energy_boost_left_cell : 			
@@ -58,6 +60,7 @@ func _main_cell_removed(side : String) :
 		
 	
 	handle_cycle_btn_pressed._handle_reset_index_cell_removed(side)
+	handle_direction_btn_pressed._handle_reset_direction_cell_removed(side)
 	sync_charge_boost_display.sync_charge_boost_display()
 
 func set_left_energy_boost_cell(brain_cell: BrainCell) -> void:

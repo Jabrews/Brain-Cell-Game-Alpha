@@ -10,6 +10,9 @@ extends Node
 # helper 
 @onready var handle_cycled_stat_validity : Node = $HandleCycledStatValidity
 
+# direction event handler
+@onready var handle_direction_btn_pressed : Node = $"../HandleDirectionBtnPressed"
+
 # audio
 @onready var left_audio_manager : Node3D = $"../../Audio/LeftAudioManager"
 @onready var right_audio_manager : Node3D = $"../../Audio/RightAudioManager"
@@ -30,14 +33,33 @@ func _handle_event_cycle_btn_pressed(side : String, direction : String) :
 	# changes index
 	cycle_stat(side, direction)	
 	
-	# update validity and manager stat
+	##### playing correct sound ####
+	# kinda hacky #
+	var curr_index : int 
+	match side : 	
+		'left' :
+			curr_index = left_index
+		'right' : 		
+			curr_index = right_index
+	
 	var valid : bool = handle_cycled_stat_validity._check_stats_validity(side)
-	if valid : 
+	
+	# if none selected dont play invalid
+	if curr_index == -1 :
 		play_audio(side, 'cycle')
-	else : 
-		play_audio(side, 'invalid')
+	# else we either play invalid or correct
+	else :
+		# update validity and manager stat
+		
+		if valid : 
+			play_audio(side, 'cycle')
+		else : 
+			play_audio(side, 'invalid')
+	###################################
 	
 	sync_charge_boost_display.sync_charge_boost_display()
+	# update direction btns with new stat change
+	handle_direction_btn_pressed._handle_boost_cell_stat_cycled(side)
 	
 
 func verify_cell_exist(side : String) -> bool : 

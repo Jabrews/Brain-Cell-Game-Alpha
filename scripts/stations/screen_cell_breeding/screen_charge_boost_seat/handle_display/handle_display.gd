@@ -36,13 +36,13 @@ func _handle_feedback_requested(side : String, type : String) :
 	if side == get_parent().side : 
 		match type : 
 			'main_cell_removed': 
-				display_feedback(3.0, Color.DARK_RED, Color.RED, 'Main Cell\nRemoved')
+				display_feedback(3.0, Color.html('#520000'), Color.RED, 'Main Cell\nRemoved')
 			'main_cell_missing' :
 				var text = "Cannot load\ncell\n\nMain Breeding\npanel empty"
 				display_feedback(2.0, Color.html('#520000'), Color.RED, text)
 			'main_cell_stat_invalid' :
-				var text = "Main Cell's\nStat is\ninvalid"
-				display_feedback(2.0, Color.html('#520000'), Color.RED, text)
+				var text = "Main Cell's\nStat\nInvalid"
+				display_feedback(0.8, Color.html('#520000'), Color.RED, text)
 	
 
 func display_feedback(duration : float, bg_color : Color, text_color : Color, text : String) :
