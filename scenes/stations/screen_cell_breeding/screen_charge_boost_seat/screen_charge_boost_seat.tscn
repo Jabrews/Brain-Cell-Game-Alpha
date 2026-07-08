@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d7qf8wir2u1m"]
 
 [ext_resource type="Script" uid="uid://b3w7yen5wwal2" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/handle_display.gd" id="1_8yt6j"]
-[ext_resource type="Script" uid="uid://b5oohbav5klx2" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat.gd" id="1_dh6gl"]
+[ext_resource type="Script" uid="uid://b5oohbav5klx2" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/screen_charge_boost_seat.gd" id="1_dh6gl"]
 [ext_resource type="Script" uid="uid://hoqn7gekusik" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/energy_seat_loader/energy_seat_loader.gd" id="2_wl5sa"]
 [ext_resource type="Script" uid="uid://cfbnk4pmrth2a" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/energy_seat_loader/reset_stat_display.gd" id="3_0acl2"]
 [ext_resource type="Script" uid="uid://dtgwxl0xv13ly" path="res://scripts/stations/screen_cell_breeding/screen_charge_boost_seat/handle_display/energy_seat_loader/display_stat_display.gd" id="4_bsu6s"]
