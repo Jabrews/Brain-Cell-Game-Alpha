@@ -1,7 +1,0 @@
-extends InteractableBtn
-
-@export var handle_confirm_btn_pressed : Node 
-
-
-func _on_btn_interacted():
-	handle_confirm_btn_pressed._handle_confirm_btn_pressed()

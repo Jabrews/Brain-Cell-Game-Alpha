@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cgqkpu8jvcg4c" path="res://scripts/stations/station_components/cell_trash_can/station_cell_trash_can.gd" id="1_sa7a1"]
 [ext_resource type="Script" uid="uid://bka5qpiah2tfk" path="res://reusable/load_panel/load_panel_cell.gd" id="2_a087l"]
+[ext_resource type="Texture2D" uid="uid://cddy1kb15frun" path="res://models/trashcan_blood/trashcan_blood_mesh_blood_texture.png" id="3_ghw7t"]
+[ext_resource type="Script" uid="uid://b23dmi0pu6r08" path="res://scripts/stations/station_components/cell_trash_can/blood_plane_controller/blood_plane_controller.gd" id="3_n54ju"]
+[ext_resource type="Material" uid="uid://bs0bbx6hgq4ix" path="res://models/trashcan_blood/blood_plane_standard_material_3d.tres" id="3_yb1am"]
+[ext_resource type="Script" uid="uid://mcewsjmnc280" path="res://scripts/stations/station_components/cell_trash_can/blood_plane_controller/blood_plane.gd" id="4_hydvp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3y2t"]
 resource_name = "Material"
@@ -49,6 +53,46 @@ data = PackedVector3Array(-1, 1.8824235, -1, -1, 1.8824235, 1, -1, 1.8824235, 1,
 [sub_resource type="BoxShape3D" id="BoxShape3D_luld1"]
 size = Vector3(1, 0.3, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xf6d3"]
+resource_name = "BloodMat"
+cull_mode = 2
+albedo_texture = ExtResource("3_ghw7t")
+roughness = 0.5
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_a06t3"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "BloodMat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_n54ju"]
+resource_name = "trashcan_blood_mesh_Plane_001"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray("UVGtrq2uUVGtrq2uUVFRUQ=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_xf6d3"),
+"name": "BloodMat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7/+//9//v//f////3/+//9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_a06t3")
+
 [node name="CellTrashCan" type="Node3D" unique_id=995289130]
 script = ExtResource("1_sa7a1")
 
@@ -72,3 +116,12 @@ disable_spawn_flesh_bug_on_cell_death = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel" unique_id=930685742]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 shape = SubResource("BoxShape3D_luld1")
+
+[node name="BloodPlaneController" type="Node3D" parent="." unique_id=1843582134]
+script = ExtResource("3_n54ju")
+
+[node name="BloodPlane" type="MeshInstance3D" parent="BloodPlaneController" unique_id=1360552244]
+transform = Transform3D(0.59959227, 0, 0, 0, 0.9458002, 0, 0, 0, 0.58735013, 0.0047245026, 0.08788347, 0)
+mesh = SubResource("ArrayMesh_n54ju")
+surface_material_override/0 = ExtResource("3_yb1am")
+script = ExtResource("4_hydvp")

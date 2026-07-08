@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_dorrq"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_fyxu6"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_moasq"]
-[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="6_5i7bd"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="6_5i7bd"]
 [ext_resource type="Script" uid="uid://dofuohcmkrtw2" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/progression_manager.gd" id="7_bklrl"]
 [ext_resource type="PackedScene" uid="uid://dtnqsgpp8ysx1" path="res://scenes/stations/station_screens/hidden_interpreter/snake_brain/snake/snake_head.tscn" id="7_dorrq"]
 [ext_resource type="Script" uid="uid://ugq2elmim7fq" path="res://scripts/stations/station_screens/hidden_interpreter/snake_brain/snake/snake.gd" id="7_nwad0"]

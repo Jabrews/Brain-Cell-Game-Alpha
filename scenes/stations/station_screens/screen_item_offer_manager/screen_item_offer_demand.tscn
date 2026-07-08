@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://djm37457jkx7g" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/stat_demand.gd" id="4_4lom8"]
 [ext_resource type="Texture2D" uid="uid://qg03gb4bsm4h" path="res://models/screens/station_item_offer_manager/no_stat_required.png" id="6_jgakq"]
 [ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="6_q5iuy"]
-[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="7_iuynq"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="7_iuynq"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="8_845nu"]
 [ext_resource type="Texture2D" uid="uid://dv8i84kr582qj" path="res://models/scissors_popup/exit.png" id="10_35i8l"]
 

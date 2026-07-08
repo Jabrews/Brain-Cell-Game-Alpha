@@ -12,7 +12,7 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_4twl4"]
 [ext_resource type="Script" uid="uid://ujo1b6wqegoq" path="res://scripts/stations/station_screens/hidden_interpreter/astroid_brain/bubble_spawner.gd" id="4_y7ij6"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_gpbm3"]
-[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="6_6n0x7"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="6_6n0x7"]
 [ext_resource type="PackedScene" uid="uid://gypqhtbchrv6" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/ship/ship.tscn" id="8_ahso5"]
 [ext_resource type="PackedScene" uid="uid://52dp45lrge66" path="res://scenes/stations/station_screens/hidden_interpreter/game_screen_timer/game_screen_timer.tscn" id="13_8yg07"]
 

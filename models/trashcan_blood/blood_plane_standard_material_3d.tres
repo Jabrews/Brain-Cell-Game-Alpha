@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bs0bbx6hgq4ix"]
+
+[ext_resource type="Texture2D" uid="uid://rkwbh4buqdw1" path="res://models/trashcan_blood/blood_texture.png" id="1_v2br2"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_v2br2")
+metallic_specular = 0.0
+texture_filter = 0

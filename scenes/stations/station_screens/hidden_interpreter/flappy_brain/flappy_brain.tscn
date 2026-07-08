@@ -20,7 +20,7 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="17_ydxkp"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="18_ckdxx"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="19_2hnrm"]
-[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/seat_cell_loading/label_press_to_see_result.gd" id="20_w7mvy"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="20_w7mvy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_htrgt"]
 shader = ExtResource("1_fmxj6")

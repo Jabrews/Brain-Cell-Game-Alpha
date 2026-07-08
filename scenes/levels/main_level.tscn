@@ -20,7 +20,7 @@
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://damsstax7yjgn" path="res://scenes/stations/station_components/item_offer_manager/station_item_offer_manager.tscn" id="15_w7r6u"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
-[ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/cell_breeding/station_cell_breeding.tscn" id="16_ngeto"]
+[ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="16_ngeto"]
 [ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
@@ -184,6 +184,13 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.2
 [node name="DefectDecreaser" parent="Stations/ContainerStations" unique_id=1174221731 instance=ExtResource("11_1l4rw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.095333, 0.8529396, 9.287113)
 
+[node name="ItemOfferManager" parent="Stations/ContainerStations" unique_id=359772628 instance=ExtResource("15_w7r6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 7.278219)
+
+[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -2)
+cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
+
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
 
 [node name="HiddenInterpreter" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1493577416 instance=ExtResource("38_5mews")]
@@ -200,13 +207,6 @@ game_screen_scene = ExtResource("12_wv5kd")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.9, 0.6634282, -13)
 interpreter_type = "community"
 game_screen_scene = ExtResource("13_wv5kd")
-
-[node name="ItemOfferManager" parent="Stations/ContainerStations" unique_id=359772628 instance=ExtResource("15_w7r6u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 7.278219)
-
-[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -2)
-cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
