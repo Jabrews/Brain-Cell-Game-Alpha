@@ -57,9 +57,12 @@ func update_collected_cells(cells_to_update: Array[BrainCell]) -> void:
 	var new_collected_cells: Array[BrainCell] = []
 	
 	for cell in collected_cells:
+		
+		
 		var updated_cell = cell
 		
 		for update_cell in cells_to_update:
+			
 			if cell.name == update_cell.name:
 				updated_cell = update_cell
 				GLCellManagerBus.emit_signal('cell_changed', update_cell)
@@ -195,7 +198,13 @@ func _handle_delete_remaining_prisoners() :
 	set_prisoner_cells([])
 
 	
-func _handle_cell_breeded(old_cell_1 : BrainCell, old_cell_2 : BrainCell, new_cell : BrainCell):
+func _handle_cell_breeded(
+	old_cell_1 : BrainCell,
+	old_cell_2 : BrainCell,
+	new_cell : BrainCell,
+	boost_cell_1 : BrainCell,
+	boost_cell_2 : BrainCell
+) -> void:
 	
 	var new_cell_collection = collected_cells.duplicate()
 	
@@ -211,9 +220,21 @@ func _handle_cell_breeded(old_cell_1 : BrainCell, old_cell_2 : BrainCell, new_ce
 	# set
 	set_collected_cells(new_cell_collection)
 	
+	# update boosted cells only if available
+	var boost_cells_to_update : Array[BrainCell] = []
+	
+	if boost_cell_1:
+		boost_cells_to_update.append(boost_cell_1)
+	
+	if boost_cell_2:
+		boost_cells_to_update.append(boost_cell_2)
+	
+	if boost_cells_to_update.size() > 0:
+		update_collected_cells(boost_cells_to_update)
+	
 	# update containers
-	GLCellManagerBus.emit_signal('cell_deleted', old_cell_1.name)
-	GLCellManagerBus.emit_signal('cell_deleted', old_cell_2.name)
+	GLCellManagerBus.emit_signal("cell_deleted", old_cell_1.name)
+	GLCellManagerBus.emit_signal("cell_deleted", old_cell_2.name)
 
 
 func _handle_delete_selected_collected_cell(collected_cell : BrainCell) :

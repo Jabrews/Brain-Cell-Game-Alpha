@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cjfsbwq6outy8" path="res://scenes/stations/station_components/target_cell_comparison/station_target_cell_comparison.tscn" id="11_moggy"]
 [ext_resource type="PackedScene" uid="uid://cda1x50mugho5" path="res://scenes/stations/station_screens/hidden_interpreter/flappy_brain/flappy_brain.tscn" id="11_mvdwn"]
 [ext_resource type="PackedScene" uid="uid://c76td16ka86aa" path="res://scenes/axe_mount/axe_mount.tscn" id="11_v2xyd"]
-[ext_resource type="PackedScene" uid="uid://dth4itprcw7yn" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="11_w7r6u"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="12_63vgv"]
 [ext_resource type="PackedScene" uid="uid://dujkv70lngjrl" path="res://scenes/stations/station_screens/hidden_interpreter/snake_brain/snake_brain.tscn" id="12_wv5kd"]
 [ext_resource type="PackedScene" uid="uid://cjiq6xqka7iyf" path="res://scenes/stations/station_screens/hidden_interpreter/astroid_brain/astroid_brain.tscn" id="13_wv5kd"]
@@ -202,15 +201,12 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.9,
 interpreter_type = "community"
 game_screen_scene = ExtResource("13_wv5kd")
 
-[node name="CellBreeding2" parent="Stations/ContainerStations" unique_id=699940122 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("11_w7r6u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -20.381985)
-cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
-
 [node name="ItemOfferManager" parent="Stations/ContainerStations" unique_id=359772628 instance=ExtResource("15_w7r6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 7.278219)
 
-[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 instance=ExtResource("16_ngeto")]
+[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -2)
+cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)

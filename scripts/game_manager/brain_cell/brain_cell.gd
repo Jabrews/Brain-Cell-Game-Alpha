@@ -51,9 +51,27 @@ func get_stat(stat_type: String) -> BrainCellStat:
 func copy() -> BrainCell:
 	var copied_cell := BrainCell.new(
 		name,
-		strength,
-		intelligence,
-		community,
+		BrainCellStat.new(
+			'strength',
+			strength.enabled,
+			strength.value,
+			strength.defect,
+			strength.hidden,
+		),
+		BrainCellStat.new(
+			'intelligence',
+			intelligence.enabled,
+			intelligence.value,
+			intelligence.defect,
+			intelligence.hidden,
+		),
+		BrainCellStat.new(
+			'community',
+			community.enabled,
+			community.value,
+			community.defect,
+			community.hidden,
+		),
 		life_span,
 		is_target_cell,
 		turn_into_flesh_bug ,

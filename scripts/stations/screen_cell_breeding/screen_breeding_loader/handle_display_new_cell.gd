@@ -11,33 +11,33 @@ const STAT_TYPES : Array[String] = [
 ]
 
 @onready var clean_bars : Array[Sprite2D] = [
-	$StatDisplay/ProgressBars/StrengthBar,
-	$StatDisplay/ProgressBars/IntelligenceBar,
-	$StatDisplay/ProgressBars/CommunityBar
+	$"../NewCellPreview/StatDisplay/ProgressBars/StrengthBar",
+	$"../NewCellPreview/StatDisplay/ProgressBars/IntelligenceBar",
+	$"../NewCellPreview/StatDisplay/ProgressBars/CommunityBar"
 ]
 
 @onready var clean_bar_labels : Array[Label] = [
-	$StatDisplay/ProgressBars/StengthLabel,
-	$StatDisplay/ProgressBars/IntelligenceLabel,
-	$StatDisplay/ProgressBars/CommunityLabel
+	$"../NewCellPreview/StatDisplay/ProgressBars/StengthLabel",
+	$"../NewCellPreview/StatDisplay/ProgressBars/IntelligenceLabel",
+	$"../NewCellPreview/StatDisplay/ProgressBars/CommunityLabel"
 ]
 
 @onready var defect_bars : Array[Sprite2D] = [
-	$StatDisplay/DefectBars/StrengthDefect,
-	$StatDisplay/DefectBars/IntelligenceDefect,
-	$StatDisplay/DefectBars/CommunityDefect
+	$"../NewCellPreview/StatDisplay/DefectBars/StrengthDefect",
+	$"../NewCellPreview/StatDisplay/DefectBars/IntelligenceDefect",
+	$"../NewCellPreview/StatDisplay/DefectBars/CommunityDefect"
 ]
 
 @onready var disabled_labels : Array[Label] = [
-	$StatDisplay/OffDisableLabels/StrengthOffLabel,
-	$StatDisplay/OffDisableLabels/IntelligenceOffLabel,
-	$StatDisplay/OffDisableLabels/CommunityOffLabel
+	$"../NewCellPreview/StatDisplay/OffDisableLabels/StrengthOffLabel",
+	$"../NewCellPreview/StatDisplay/OffDisableLabels/IntelligenceOffLabel",
+	$"../NewCellPreview/StatDisplay/OffDisableLabels/CommunityOffLabel"
 ]
 
 @onready var hide_sprites : Array[Sprite2D] = [
-	$StatDisplay/HideStats/StrengthHide,
-	$StatDisplay/HideStats/IntelligenceHide,
-	$StatDisplay/HideStats/CommunityHide
+	$"../NewCellPreview/StatDisplay/HideStats/StrengthHide",
+	$"../NewCellPreview/StatDisplay/HideStats/IntelligenceHide",
+	$"../NewCellPreview/StatDisplay/HideStats/CommunityHide"
 ]
 
 
@@ -101,7 +101,7 @@ func _create_new_cell_from_copies(
 ) -> BrainCell:
 	
 	# Replace this line if your actual breeder function has a different name.
-	return GAMECellBreeder._get_breeded_cell(
+	return GAMECellBreeder._handle_player_simulate_breeded_cells(
 		copy_main_cell_left,
 		copy_main_cell_right
 	)

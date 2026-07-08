@@ -51,7 +51,7 @@ func _handle_preview_debuff(cycled_stat: String, energy_boost_cell : BrainCell) 
 			selected_clean_bar = clean_bars[2]
 	
 	# get after debuff stat
-	var after_debuff_stat: BrainCellStat = GAMECellBreeder.reduced_cell_charge_helper._get_reduced(cycled_stat, energy_boost_cell)
+	var after_debuff_stat: BrainCellStat = GAMECellBreeder.reduced_cell_charge_stat_helper._get_reduced(cycled_stat, energy_boost_cell)
 	
 	var max_value : float = IVCellCreator.max_stat_value
 	

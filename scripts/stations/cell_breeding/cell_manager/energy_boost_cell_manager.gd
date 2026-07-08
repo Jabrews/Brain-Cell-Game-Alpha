@@ -24,7 +24,6 @@ var energy_boost_right_stat: String = "none"
 var energy_boost_left_direction: String = "none"
 var energy_boost_right_direction: String = "none"
 
-
 func _handle_breeding_panel_cell_recieved(brain_cell: BrainCell, side: String) -> void:
 	match side:
 		"left":

@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://beyeyaat0751v"]
 
 [ext_resource type="Script" uid="uid://c6dfg4gy4sye5" path="res://scripts/stations/cell_breeding/sync_breeding_display.gd" id="1_pnqv3"]
+[ext_resource type="Script" uid="uid://bl5orkpg5lyj5" path="res://scripts/stations/cell_breeding/station_cell_breeding.gd" id="1_wsg6e"]
 [ext_resource type="Script" uid="uid://kagy1ukm8njb" path="res://scripts/stations/cell_breeding/sync_charge_boost_display.gd" id="2_bhvbn"]
-[ext_resource type="Script" uid="uid://561sc704l5ds" path="res://scripts/stations/station_components/cell_breeding/confirm_btn.gd" id="2_jfoyh"]
 [ext_resource type="Script" uid="uid://dmk0sv6xtokfv" path="res://scripts/stations/cell_breeding/cell_manager/main_cell_manager.gd" id="2_u6e0a"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="3_7nnq0"]
 [ext_resource type="Script" uid="uid://c7gyae1oa77b5" path="res://scripts/stations/cell_breeding/cell_manager/energy_boost_cell_manager.gd" id="3_bhvbn"]
+[ext_resource type="Script" uid="uid://dguhm8wddm5g3" path="res://scripts/stations/cell_breeding/final_breeding_request.gd" id="3_lvnx6"]
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="4_pnqv3"]
 [ext_resource type="Script" uid="uid://bisdjqywqfocf" path="res://scripts/stations/cell_breeding/energy_boost_event/cycle_btn/handle_cycle_btn_pressed.gd" id="4_uq6ph"]
 [ext_resource type="Script" uid="uid://44ft4s1of8qf" path="res://scripts/stations/cell_breeding/energy_boost_event/cycle_btn/handle_direction_btn_pressed.gd" id="5_sqxto"]
@@ -14,22 +15,20 @@
 [ext_resource type="Script" uid="uid://c7khqkmtlyj5h" path="res://scripts/stations/cell_breeding/energy_boost_event/cycle_btn/handle_cycled_stat_validity.gd" id="6_uq6ph"]
 [ext_resource type="Script" uid="uid://cuid12v3ce1uf" path="res://scripts/stations/cell_breeding/energy_boost_event/direction_btn/direction_btn_visuals.gd" id="8_sqxto"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="9_jfoyh"]
+[ext_resource type="Script" uid="uid://c1q16e7i7ql44" path="res://scripts/stations/cell_breeding/confirm_btn/handle_confirm_btn_pressed.gd" id="9_lvnx6"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="10_7nnq0"]
 [ext_resource type="Script" uid="uid://dileynfi25vpw" path="res://scripts/stations/station_components/cell_breeding/direction_btn/direction_button.gd" id="11_pnqv3"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="12_u6e0a"]
 [ext_resource type="Script" uid="uid://ddhdnu3kwry8r" path="res://scripts/stations/station_components/cell_breeding/charge_seats/audio_manager.gd" id="14_bhvbn"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="14_khkcf"]
+[ext_resource type="Script" uid="uid://34mhw6h1bv2e" path="res://scripts/stations/cell_breeding/confirm_btn/confirm_btn.gd" id="15_8fhk0"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="15_uq6ph"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="16_sqxto"]
 [ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="17_lvnx6"]
 [ext_resource type="PackedScene" uid="uid://d7qf8wir2u1m" path="res://scenes/stations/screen_cell_breeding/screen_charge_boost_seat/screen_charge_boost_seat.tscn" id="17_u6e0a"]
-[ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="20_t6hjf"]
+[ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/cell_breeding/bred_cell_spawner.gd" id="20_t6hjf"]
 [ext_resource type="PackedScene" uid="uid://bthr7i6oqj4f3" path="res://scenes/stations/screen_cell_breeding/screen_breeding_loader/screen_cell_breeding_loader.tscn" id="22_u6e0a"]
 [ext_resource type="Script" uid="uid://d4ikttr12drm8" path="res://scripts/stations/cell_breeding/energy_boost_event/cycle_btn/btn_cycle_stat.gd" id="23_uq6ph"]
-
-[sub_resource type="GDScript" id="GDScript_j2ru0"]
-script/source = "extends Node
-"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc3k1"]
 albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
@@ -174,13 +173,16 @@ material = SubResource("StandardMaterial3D_617gn")
 [sub_resource type="BoxShape3D" id="BoxShape3D_no7kp"]
 
 [node name="CellBreeding" type="Node3D" unique_id=2146164221]
-script = SubResource("GDScript_j2ru0")
+script = ExtResource("1_wsg6e")
 
 [node name="SyncBreedingDisplay" type="Node" parent="." unique_id=1047685145]
 script = ExtResource("1_pnqv3")
 
 [node name="SyncChargeBoostDisplay" type="Node" parent="." unique_id=1227757807]
 script = ExtResource("2_bhvbn")
+
+[node name="FinalBreedingRequest" type="Node" parent="." unique_id=1478304139]
+script = ExtResource("3_lvnx6")
 
 [node name="MainCellManager" type="Node" parent="." unique_id=2138377285]
 script = ExtResource("2_u6e0a")
@@ -201,6 +203,9 @@ script = ExtResource("5_sqxto")
 
 [node name="DirectionBtnVisuals" type="Node" parent="EnergyBoostEventManager/HandleDirectionBtnPressed" unique_id=1691782242]
 script = ExtResource("8_sqxto")
+
+[node name="HandleConfirmBtnPressed" type="Node" parent="." unique_id=2105124776]
+script = ExtResource("9_lvnx6")
 
 [node name="Audio" type="Node3D" parent="." unique_id=1500441529]
 
@@ -252,7 +257,7 @@ unit_size = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310546, 0)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("2_jfoyh")
+script = ExtResource("15_8fhk0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ConfirmBtn" unique_id=351554587]
 mesh = SubResource("BoxMesh_pkd7s")

@@ -1,6 +1,6 @@
 extends InteractableBtn
 
-@export var handle_confirm_btn_pressed : Node 
+@onready var handle_confirm_btn_pressed : Node = $"../HandleConfirmBtnPressed"
 
 
 func _on_btn_interacted():

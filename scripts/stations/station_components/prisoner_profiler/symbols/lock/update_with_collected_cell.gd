@@ -12,7 +12,7 @@ func _handle_cell_added_to_collection(new_cell : BrainCell) :
 	check_for_stats_past_lock(new_cell)
 	update_locks()
 
-func _handle_cell_breeded(_cell_1, _cell_2, new_cell : BrainCell) :
+func _handle_cell_breeded(_cell_1, _cell_2, new_cell : BrainCell, _other_cell_1 : BrainCell, _other_cell_2 : BrainCell ) :
 	check_for_stats_past_lock(new_cell)
 	update_locks()
 	

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bthr7i6oqj4f3"]
 
+[ext_resource type="Script" uid="uid://crc7fjb1heml0" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_confirm_btn.gd" id="1_2cpjm"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_4c0ba"]
 [ext_resource type="Script" uid="uid://de14s1dnfncm7" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/handle_display.gd" id="1_r1psw"]
 [ext_resource type="Script" uid="uid://bgxus3cjga3vq" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/main_cell_loader/main_cell_loader.gd" id="2_4c0ba"]
@@ -10,9 +11,10 @@
 [ext_resource type="Script" uid="uid://bwkfkdfbvx854" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/main_cell_loader/display_stat/display_stat_left_loader.gd" id="5_p4wos"]
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="6_dghyf"]
 [ext_resource type="Script" uid="uid://bi7y6t8fgygw2" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/main_cell_loader/display_stat/display_stat_right_loader.gd" id="6_wpt8y"]
-[ext_resource type="Script" uid="uid://qu2ipixmab22" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/preview_charge_direction/preview_charge_direction.gd" id="7_5fjj3"]
+[ext_resource type="Script" uid="uid://qu2ipixmab22" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/handle_boost_charge_direction/handle_boost_charge_direction.gd" id="7_5fjj3"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="8_hpsuj"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="9_01ggj"]
+[ext_resource type="Script" uid="uid://c28wtqub5sskk" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display_new_cell.gd" id="9_skw2f"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="10_02mdx"]
 [ext_resource type="Shader" uid="uid://bhfglemkyi0fr" path="res://scripts/shaders/cell_breeder/breeding_with_charge_progress_bar.gdshader" id="12_5fjj3"]
 [ext_resource type="Script" uid="uid://bcp3lvytmlbmb" path="res://scripts/stations/screen_cell_breeding/screen_breeding_loader/handle_display/symbol_manager/handle_checkmarks.gd" id="12_govru"]
@@ -775,6 +777,9 @@ load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948
 
 [node name="ScreenCellBreedingLoader" type="Node2D" unique_id=699431977]
 
+[node name="HandleConfirmBtn" type="Node" parent="." unique_id=421944058]
+script = ExtResource("1_2cpjm")
+
 [node name="HandleDisplay" type="Node" parent="." unique_id=1993122032]
 script = ExtResource("1_r1psw")
 
@@ -793,8 +798,11 @@ script = ExtResource("5_p4wos")
 [node name="DisplayStatRightLoader" type="Node" parent="HandleDisplay/MainCellLoader" unique_id=250326089]
 script = ExtResource("6_wpt8y")
 
-[node name="PreviewChargeDirection" type="Node" parent="HandleDisplay" unique_id=1186098641]
+[node name="HandleBoostChargeDirection" type="Node" parent="HandleDisplay" unique_id=1186098641]
 script = ExtResource("7_5fjj3")
+
+[node name="HandleDisplayNewCell" type="Node" parent="." unique_id=1019873739]
+script = ExtResource("9_skw2f")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1606980219]
 anchors_preset = 8

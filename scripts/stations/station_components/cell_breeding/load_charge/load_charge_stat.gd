@@ -7,12 +7,6 @@ var right_stat_direction : String = 'none'
 
 @onready var direction_btn_controller : Node = $"../DirectionBtnController"
 
-
-func _process(delta: float) -> void: 
-	if Input.is_action_just_pressed('debug1'): 
-		load_charge_stat()
-
-
 func _handle_new_energy_seat_stat_chosen(side : String, stat : String, valid : bool) :
 	
 	match side : 	

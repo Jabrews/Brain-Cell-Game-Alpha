@@ -111,3 +111,9 @@ func _display_clean_stat(
 		"target_value",
 		target_stat.value / max_value
 	)
+
+	left_clean_bars[index].material.set_shader_parameter(
+		"charge_value",
+		cell_stat.value / max_value
+	)
+	
