@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://b23dmi0pu6r08" path="res://scripts/stations/station_components/cell_trash_can/blood_plane_controller/blood_plane_controller.gd" id="3_n54ju"]
 [ext_resource type="Material" uid="uid://bs0bbx6hgq4ix" path="res://models/trashcan_blood/blood_plane_standard_material_3d.tres" id="3_yb1am"]
 [ext_resource type="Script" uid="uid://mcewsjmnc280" path="res://scripts/stations/station_components/cell_trash_can/blood_plane_controller/blood_plane.gd" id="4_hydvp"]
+[ext_resource type="Script" uid="uid://pd16bdsasufd" path="res://scripts/stations/station_components/cell_trash_can/audio_manager.gd" id="7_ahef1"]
+[ext_resource type="AudioStream" uid="uid://i5qqyohaj5ie" path="res://sounds/cell_trash_can/splash.mp3" id="7_eg0p0"]
+[ext_resource type="AudioStream" uid="uid://cmuufdthw41tf" path="res://sounds/cell_trash_can/bubble.mp3" id="8_ahef1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3y2t"]
 resource_name = "Material"
@@ -125,3 +128,18 @@ transform = Transform3D(0.59959227, 0, 0, 0, 0.9458002, 0, 0, 0, 0.58735013, 0.0
 mesh = SubResource("ArrayMesh_n54ju")
 surface_material_override/0 = ExtResource("3_yb1am")
 script = ExtResource("4_hydvp")
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=393992387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4150031, 0)
+script = ExtResource("7_ahef1")
+
+[node name="Splash" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=774007508]
+stream = ExtResource("7_eg0p0")
+volume_db = 5.0
+max_distance = 60.0
+
+[node name="Bubble" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1229466966]
+stream = ExtResource("8_ahef1")
+volume_db = -10.0
+unit_size = 5.0
+max_distance = 30.0

@@ -11,18 +11,24 @@ var bottom_scale : Vector3 = Vector3(0.6, 0.94, 0.58)
 var max_interval : int = 10
 var curr_interval : int = 0
 
+# mesh componnet
 @onready var blood_plane : MeshInstance3D = $BloodPlane
+
+# TODO DELETE THIS HERE
+@onready var audio_manager : Node3D = $"../AudioManager"
+
 
 func _ready() -> void:
 	update_blood_plane()
 
 
-#func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("debug1"):
-		#increment_interval(1)
-	#
-	#if Input.is_action_just_pressed("debug2"):
-		#increment_interval(-1)
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("debug1"):
+		increment_interval(1)
+		audio_manager._play_cell_added_to_trash()
+	
+	if Input.is_action_just_pressed("debug2"):
+		increment_interval(-1)
 
 
 func increment_interval(direction_multiplier: int) -> void:
