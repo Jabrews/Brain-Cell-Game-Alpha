@@ -3,7 +3,7 @@ extends CharacterBody3D
 var designated_brain_cell : BrainCell
 
 # components
-@onready var screen_basic_reciever: Node2D = $StatDisplay/StatMesh/SubViewport/BasicRecieverScreen
+@onready var stat_display : Node3D = $StatDisplay
 @onready var defect_color_manager : Node = $DefectColorManager
 @onready var offer_turn_into_flesh_bug_delay : Timer = $OfferTurnIntoFleshBugDelay
 
@@ -32,7 +32,7 @@ func _ready() -> void:
 		offer_turn_into_flesh_bug_delay.wait_time = turn_delay_time
 		offer_turn_into_flesh_bug_delay.start()
 		
-	screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
+	stat_display._handle_brain_cell_recieved(designated_brain_cell)
 	
 	# des. cell changing listeners
 	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
@@ -114,7 +114,8 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		if state_machine.curr_state.name == 'Froze' :		
 			switch_cell_state('idle')
 		
-	screen_basic_reciever._handle_brain_cell_recieved(designated_brain_cell)
+
+	stat_display._handle_brain_cell_recieved(designated_brain_cell)
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	check_for_cell_dead_on_update()

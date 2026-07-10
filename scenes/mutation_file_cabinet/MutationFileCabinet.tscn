@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dkmet5r7r2ydn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+size = Vector3(1.6, 2.5, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.030957032, 1.0512695, 0.001)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h0eys"]
+size = Vector3(0.030957032, 1, 1.4897095)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
+size = Vector3(0.030957032, 1, 0.001)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t562i"]
+size = Vector3(1.215863, 1, 1.4897095)
+
+[node name="MutationFileCabinet" type="Node3D" unique_id=1303615051]
+
+[node name="CabinetBase" type="StaticBody3D" parent="." unique_id=802540491]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CabinetBase" unique_id=18211336]
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CabinetBase" unique_id=152214112]
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="FileBase" type="StaticBody3D" parent="." unique_id=428245650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.9309088, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FileBase" unique_id=2112466018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.78452146, -1.35, -0.0015685558)
+mesh = SubResource("BoxMesh_h0eys")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FileBase" unique_id=1569812376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7833549, -1.3476803, 0)
+shape = SubResource("BoxShape3D_keru6")
+
+[node name="FileBase2" type="StaticBody3D" parent="." unique_id=907575266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 0.85321015, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FileBase2" unique_id=1096722124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19206846, -1.35, -0.0015685558)
+mesh = SubResource("BoxMesh_t562i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FileBase2" unique_id=2014419228]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7833549, -1.3476803, 0.7443547)
+shape = SubResource("BoxShape3D_keru6")

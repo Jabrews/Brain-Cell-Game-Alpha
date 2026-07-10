@@ -5,7 +5,7 @@ var mutations : Array[BrainCellMutation] = [
 	BrainCellMutation.new('teleport', false),
 	BrainCellMutation.new('sentient', false),
 	BrainCellMutation.new('lonley', false),
-	# TODO add all mutation
+	#BrainCellMutation.new('none', false),
 ]
 
 var mutations_seen : Dictionary = {

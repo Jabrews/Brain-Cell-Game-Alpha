@@ -1,9 +1,10 @@
 extends Node
 
 # componnets
-@onready var stat_mesh : MeshInstance3D = $"../StatMesh"
+@onready var parent_stat_display : Node3D = $".."
 
 func toggle_display_stat_area(toggleValue : bool, player_refrence : CharacterBody3D) : 
-	stat_mesh.player = player_refrence
-	stat_mesh.visible = toggleValue
+	
+	parent_stat_display.player = player_refrence
+	parent_stat_display.visible = toggleValue
 	

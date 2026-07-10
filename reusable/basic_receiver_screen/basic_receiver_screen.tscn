@@ -64,13 +64,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = 2.0
+offset_top = -1.0
 offset_right = 480.0
 offset_bottom = 272.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="ScanLines" type="ColorRect" parent="." unique_id=1824220964]
 material = SubResource("ShaderMaterial_8usb6")
@@ -81,16 +80,17 @@ metadata/_edit_use_anchors_ = true
 [node name="StatDisplay" type="Control" parent="." unique_id=412575760]
 layout_mode = 3
 anchors_preset = 0
+offset_top = 12.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 52.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CellName" type="Label" parent="StatDisplay" unique_id=179676983]
 layout_mode = 0
-offset_left = 154.0
-offset_top = 19.0
-offset_right = 328.0
-offset_bottom = 62.0
+offset_left = 142.0
+offset_top = -2.0
+offset_right = 316.0
+offset_bottom = 41.0
 theme_override_fonts/font = ExtResource("3_jqv5s")
 theme_override_font_sizes/font_size = 20
 text = "None
@@ -99,10 +99,10 @@ horizontal_alignment = 1
 
 [node name="CellLifeSpan" type="Label" parent="StatDisplay" unique_id=323910199]
 layout_mode = 0
-offset_left = 308.0
-offset_top = 6.0
-offset_right = 482.0
-offset_bottom = 52.97059
+offset_left = 299.0
+offset_top = -2.0
+offset_right = 473.0
+offset_bottom = 44.97059
 theme_override_fonts/font = ExtResource("3_jqv5s")
 theme_override_font_sizes/font_size = 12
 text = " Lifespan - 4
@@ -443,3 +443,8 @@ texture_filter = 2
 material = SubResource("ShaderMaterial_t5il4")
 position = Vector2(306, 227)
 texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="Mutation" type="Control" parent="StatDisplay" unique_id=1704781799]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

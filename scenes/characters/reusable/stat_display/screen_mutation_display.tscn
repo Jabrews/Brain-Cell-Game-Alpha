@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://da3p02uurd25c"]
+
+[ext_resource type="Script" uid="uid://3aukri61cbt2" path="res://scripts/characters/reusable/stat_display/mutation_display/screen_mutation_reciever.gd" id="1_ax0dq"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="2_3swiq"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_coli1"]
+[ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="3_jccw8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_coli1"]
+shader = ExtResource("2_3swiq")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="MutationDisplay" type="Node2D" unique_id=1769955241]
+script = ExtResource("1_ax0dq")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1666388344]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -1.0
+offset_right = 180.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="Hidden" type="Control" parent="." unique_id=1238962602]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Hidden" unique_id=763175282]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 168.0
+offset_bottom = 144.0
+
+[node name="HiddenLabel" type="Label" parent="Hidden" unique_id=735031876]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 152.0
+offset_right = 182.0
+offset_bottom = 195.0
+theme_override_fonts/font = ExtResource("2_coli1")
+theme_override_font_sizes/font_size = 20
+text = "Hidden
+"
+horizontal_alignment = 1
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="Hidden" unique_id=1185849153]
+texture_filter = 1
+position = Vector2(96, 77)
+texture = ExtResource("3_jccw8")
+
+[node name="MutationDisplay" type="Control" parent="." unique_id=1602705387]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="MutationDisplay" unique_id=1658353541]
+layout_mode = 0
+offset_top = -1.0
+offset_right = 180.0
+offset_bottom = 24.0
+color = Color(0, 0, 0, 1)
+
+[node name="DisplayType" type="Label" parent="MutationDisplay" unique_id=1214429875]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 174.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("2_coli1")
+theme_override_font_sizes/font_size = 16
+text = "mUTATION
+"
+horizontal_alignment = 1
+
+[node name="PlaceHolderIcon" type="ColorRect" parent="MutationDisplay" unique_id=279799296]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 164.0
+offset_bottom = 168.0
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=49911487]
+material = SubResource("ShaderMaterial_coli1")
+offset_right = 180.0
+offset_bottom = 179.0
