@@ -43,7 +43,6 @@
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
-[ext_resource type="AudioStream" uid="uid://dipbinh30tmv4" path="res://sounds/awsome_ambient_sounds/pitch_me_down.mp3" id="44_ngeto"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -301,7 +300,3 @@ script = ExtResource("14_5ru7i")
 
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]
 script = ExtResource("18_44ape")
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1776631110]
-stream = ExtResource("44_ngeto")
-pitch_scale = 0.52
