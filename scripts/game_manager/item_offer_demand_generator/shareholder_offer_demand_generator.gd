@@ -26,7 +26,7 @@ func generate_demand_cell() -> BrainCell:
 	var intelligence_value: float = get_stat_value('intelligence')
 	var community_value: float = get_stat_value('community')
 	
-	const MAX_DISABLED_STATS: int = 1
+	var MAX_DISABLED_STATS: int = IVShareholderOffers.non_enabled_stats_max
 	
 	var stat_types: Array[String] = [
 		"strength",

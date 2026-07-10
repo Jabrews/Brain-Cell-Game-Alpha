@@ -8,16 +8,24 @@ func _update_defect_event_values(round : int, energy : int) -> void:
 	match round:
 		1:
 			IVDefectEventManager.stats_to_hide = []
-			IVDefectEventManager.defect_event_update_timer_duration = 60
+			IVDefectEventManager.max_defect_event_update_timer_duration = 40
+			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 0
+			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 0
 		2:
 			IVDefectEventManager.stats_to_hide = ["strength"]
-			IVDefectEventManager.defect_event_update_timer_duration = 50
+			IVDefectEventManager.max_defect_event_update_timer_duration = 35
+			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 1
+			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 0
 		3:
 			IVDefectEventManager.stats_to_hide = ["strength", "intelligence"]
-			IVDefectEventManager.defect_event_update_timer_duration = 40
+			IVDefectEventManager.max_defect_event_update_timer_duration = 30
+			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 2
+			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
 		4:
 			IVDefectEventManager.stats_to_hide = ["strength", "intelligence", "community"]
-			IVDefectEventManager.defect_event_update_timer_duration = 35
+			IVDefectEventManager.max_defect_event_update_timer_duration = 25
+			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 3
+			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 2
 
 	apply_defect_values(round, danger_level)
 
@@ -42,12 +50,12 @@ func get_energy_danger_level(energy : int) -> int:
 func apply_defect_values(round : int, danger_level : int) -> void:
 
 	# default safe values
-	IVDefectEventManager.no_event_chance = 98
-	IVDefectEventManager.jolt_cell_container_chance = 1
-	IVDefectEventManager.jolt_hidden_stat_interpreter_chance = 1
+	IVDefectEventManager.no_event_chance= 98
+	IVDefectEventManager.jolt_cell_container_chance= 1
+	IVDefectEventManager.jolt_hidden_stat_interpreter_chance= 1
 	IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt = 1
-	IVDefectEventManager.interpreter_jolt_defect_increase = 20
-	IVDefectEventManager.cell_container_jolt_defect_increase = 20
+	IVDefectEventManager.interpreter_jolt_defect_increase= 20
+	IVDefectEventManager.cell_container_jolt_defect_increase= 20
 
 	match round:
 		1:
@@ -91,17 +99,16 @@ func apply_defect_values(round : int, danger_level : int) -> void:
 					set_defect_values(80, 1, 19, 1, 15, 15)
 				2:
 					set_defect_values(60, 20, 20, 30, 30, 35)
-				3:
 					set_defect_values(50, 30, 20, 35, 35, 35)
 
 
 func set_defect_values(
-	no_event : int,
-	container_jolt : int,
-	interpreter_jolt : int,
-	multiple_interpreter_chance : int,
-	interpreter_increase : int,
-	container_increase : int
+	no_event: int,
+	container_jolt: int,
+	interpreter_jolt: int,
+	multiple_interpreter_chance: int,
+	interpreter_increase: int,
+	container_increase: int
 ) -> void:
 
 	IVDefectEventManager.no_event_chance = no_event

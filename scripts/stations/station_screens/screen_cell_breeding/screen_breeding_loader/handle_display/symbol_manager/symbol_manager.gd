@@ -35,12 +35,10 @@ func check_for_symbols(cell_1 : BrainCell, cell_2 : BrainCell) -> void:
 				i
 			)
 	
-	
-	
-	
 
 func hide_symbols() -> void:
 	for parent_child : Node in get_children():
+
 
 		# don't hide checkmarks
 		if parent_child.name == "LeftCheckmarks" or parent_child.name == "RightCheckmarks":
@@ -49,3 +47,8 @@ func hide_symbols() -> void:
 		for child : Node in parent_child.get_children():
 			if child is CanvasItem:
 				child.visible = false
+
+func hide_checkmarks(side : String, brain_cell : BrainCell) :
+	handle_checkmarks._handle(side, brain_cell)
+	
+	

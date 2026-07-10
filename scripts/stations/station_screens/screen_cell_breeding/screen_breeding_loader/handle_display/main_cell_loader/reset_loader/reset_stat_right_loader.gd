@@ -43,6 +43,7 @@ func _reset() -> void:
 		if clean_bar.material:
 			clean_bar.material.set_shader_parameter("prisoner_value", 0.0)
 			clean_bar.material.set_shader_parameter("target_value", 0.0)
+			clean_bar.material.set_shader_parameter("charge_value", 0.0)
 
 	for stat_label: Label in right_labels:
 		stat_label.modulate.a = 1.0

@@ -50,6 +50,8 @@ IVSnakeBrain="*uid://ds1cpm55tn8o0"
 IVAstroidBrain="*uid://ch03fe2qafsik"
 IVPrisonerProfiler="*uid://d2l2vol5dcd0u"
 GLBreedingComponetsBus="*uid://bcyvxao51fqlo"
+IVCellTrashcan="*uid://5hmd4snxnhly"
+GLCellTrashcanBus="*uid://gsbwpxtaipdf"
 
 [debug]
 

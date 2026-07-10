@@ -13,6 +13,7 @@ var active_cell_body : CharacterBody3D
 
 func _ready() -> void:
 	GLShareholderOfferState.connect('recieve_item_offer_demand', _handle_recieve_item_offer_demand)
+	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 
 
 #### OFFER RECIEVED #####
@@ -117,6 +118,8 @@ func _handle_confirm_btn_pressed() :
 	active_cell_body.switch_cell_state('dying')
 	active_cell_body = null
 	
+	GLCellTrashcanBus.emit_signal('cell_deleted_from_shareholder_offer_station')
+	
 	selected_offer_demand_constructor = null	
 
 
@@ -132,6 +135,7 @@ func handle_offer_failed() :
 	
 #############################
 	
-	
+func _handle_next_round() : 
+	_handle_offer_energy_exspired()
 	
 	

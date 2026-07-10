@@ -105,3 +105,11 @@ func update_symbols(main_left_cell : BrainCell, main_right_cell : BrainCell) -> 
 	
 	if not main_left_cell or not main_right_cell:
 		symbol_manager.hide_symbols()
+		
+	if not main_left_cell : 
+		symbol_manager.hide_checkmarks('left', main_left_cell)
+	
+	if not  main_right_cell: 
+		symbol_manager.hide_checkmarks('right', main_right_cell)
+		
+		

@@ -75,6 +75,8 @@ func handle_round(round : int):
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false
+			## CELL TRASHCAN ##
+			IVCellTrashcan.max_capaicty = 5
 			
 		2 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
@@ -112,11 +114,12 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.68, 0.80, 1.01]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false
-			
+			## CELL TRASHCAN ##
+			IVCellTrashcan.max_capaicty = 6
 			
 		3 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
@@ -152,10 +155,12 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.45, 0.55, 0.68, 0.80, 1.01]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = true
+			## CELL TRASHCAN ##
+			IVCellTrashcan.max_capaicty = 6
 		4 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
 			## ENERGY ##
@@ -190,10 +195,12 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
+			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.45, 0.55, 0.68, 0.80, 0.90, 1.01]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = true
+			## CELL TRASHCAN ##
+			IVCellTrashcan.max_capaicty = 6
 	
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :

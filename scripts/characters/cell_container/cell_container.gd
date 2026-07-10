@@ -36,6 +36,7 @@ func _ready() -> void:
 	
 	# des. cell changing listeners
 	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
+	GLGameManagerBus.connect('process_next_round', _handle_next_round)
 	GLCellManagerBus.connect("cell_changed", _handle_cell_changed)
 	
 	# jolt cell container event (defect manager)
@@ -214,5 +215,6 @@ func _on_offer_turn_into_flesh_bug_delay_timeout() -> void:
 	
 	state_machine.switch_state(state_machine.State.DYING)
 	
-	
+func _handle_next_round() :
+	spawn_flesh_bug_on_death = false
 	

@@ -9,6 +9,13 @@
 [ext_resource type="Script" uid="uid://pd16bdsasufd" path="res://scripts/stations/station_components/cell_trash_can/audio_manager.gd" id="7_ahef1"]
 [ext_resource type="AudioStream" uid="uid://i5qqyohaj5ie" path="res://sounds/cell_trash_can/splash.mp3" id="7_eg0p0"]
 [ext_resource type="AudioStream" uid="uid://cmuufdthw41tf" path="res://sounds/cell_trash_can/bubble.mp3" id="8_ahef1"]
+[ext_resource type="Script" uid="uid://b05onsnk1ssgg" path="res://scripts/stations/station_components/cell_trash_can/capacity_label_manager.gd" id="10_blfo6"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="10_te6ka"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="11_blfo6"]
+[ext_resource type="Script" uid="uid://c7v2bitkehu8k" path="res://scripts/stations/station_components/cell_trash_can/floating_label_creator/floating_label_creator.gd" id="13_nofgj"]
+[ext_resource type="Script" uid="uid://drjsqxx87jmxx" path="res://scripts/stations/station_components/cell_trash_can/floor_blood_manager/floor_stain.gd" id="14_ljsfa"]
+[ext_resource type="Script" uid="uid://crd2losq8bq7f" path="res://scripts/stations/station_components/cell_trash_can/floor_blood_manager/floor_blood_manager.gd" id="14_nfnk8"]
+[ext_resource type="Texture2D" uid="uid://rkwbh4buqdw1" path="res://models/trashcan_blood/blood_texture.png" id="14_yd2m0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3y2t"]
 resource_name = "Material"
@@ -96,10 +103,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a06t3")
 
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+size = Vector3(1.166565, 0.42412567, 0.038726807)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nr5yh"]
+transparency = 1
+albedo_color = Color(0.62, 0.62, 0.62, 1)
+albedo_texture = ExtResource("14_yd2m0")
+metallic_specular = 0.0
+texture_filter = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_rddub"]
+material = SubResource("StandardMaterial3D_nr5yh")
+radius = 1.2
+height = 0.001
+
 [node name="CellTrashCan" type="Node3D" unique_id=995289130]
 script = ExtResource("1_sa7a1")
 
 [node name="TrashCanMesh" type="MeshInstance3D" parent="." unique_id=1931766998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.006401837, 0)
 mesh = SubResource("ArrayMesh_luld1")
 
 [node name="TrashCan" type="StaticBody3D" parent="TrashCanMesh" unique_id=1109020934]
@@ -143,3 +166,47 @@ stream = ExtResource("8_ahef1")
 volume_db = -10.0
 unit_size = 5.0
 max_distance = 30.0
+
+[node name="CapacityLabelManager" type="Node3D" parent="." unique_id=691833766]
+transform = Transform3D(-4.371139e-08, 0.14117086, -0.9899853, 0, 0.9899853, 0.14117086, 1, 6.170774e-09, -4.327363e-08, -0.2040425, 0.046798706, -0.012844324)
+script = ExtResource("10_blfo6")
+
+[node name="CurrAmount" type="Label3D" parent="CapacityLabelManager" unique_id=467362346]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0.29803288, 1.4475034, -0.9610842)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0"
+font = ExtResource("10_te6ka")
+font_size = 60
+
+[node name="Slash" type="Label3D" parent="CapacityLabelManager" unique_id=1772823549]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.0018154085, 1.4569386, -0.9610842)
+outline_modulate = Color(0, 0, 0, 0)
+text = "/"
+font = ExtResource("11_blfo6")
+font_size = 65
+
+[node name="MaxCapacity" type="Label3D" parent="CapacityLabelManager" unique_id=1804427974]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -0.31608284, 1.4427857, -0.9610842)
+outline_modulate = Color(0, 0, 0, 0)
+text = "0"
+font = ExtResource("10_te6ka")
+font_size = 60
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CapacityLabelManager" unique_id=1173205639]
+transform = Transform3D(1, 1.9095836e-14, -1.5276669e-13, -1.15463195e-14, 1, -2.6703267e-16, 0, -2.670326e-16, 1, 0.020355223, 1.4487112, -0.93858296)
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="FloatingLabelCreator" type="Node3D" parent="." unique_id=1774429853]
+script = ExtResource("13_nofgj")
+
+[node name="SpawnPos" type="Node3D" parent="FloatingLabelCreator" unique_id=707011678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5487638, 0)
+
+[node name="FloorBloodManager" type="Node3D" parent="." unique_id=1910424045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14639601, 0)
+script = ExtResource("14_nfnk8")
+
+[node name="FloorStain" type="MeshInstance3D" parent="FloorBloodManager" unique_id=1791390907]
+visible = false
+mesh = SubResource("SphereMesh_rddub")
+script = ExtResource("14_ljsfa")

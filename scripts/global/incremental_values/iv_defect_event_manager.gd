@@ -1,37 +1,17 @@
 extends Node
 
-### defect event manager parent ### 
-var defect_event_update_timer_duration = 10
+# active values used by the event picker
+var no_event_chance: int = 98
+var jolt_cell_container_chance: int = 1
+var jolt_hidden_stat_interpreter_chance: int = 1
+var chance_for_multiple_hidden_stat_interpreter_jolt: int = 0
 
-var no_event_chance = 40
-var jolt_cell_container_chance = 30
-var jolt_hidden_stat_interpreter_chance = 30
+var max_defect_event_update_timer_duration = 10.0
 
-####################################
-
-
-### jolt hidden stat interpreter ###
-
-
-# interpreters we can jolt
-var stats_to_hide : Array[String] = []
-
-
-# all get a jolt
-# if ran_num (0 - 100) is below 25
-# if it is aboce then we do single jolt (below vars)
-var chance_for_multiple_hidden_stat_interpreter_jolt = 25
-
-# the value in which we increase
-var interpreter_jolt_defect_increase = 20
-var interpreter_jolt_energy_decrease_single = 3
+var interpreter_jolt_defect_increase: int = 20
+var cell_container_jolt_defect_increase: int = 20
 var interpreter_jolt_energy_decrease_multiple = 1
+var interpreter_jolt_energy_decrease_single = 2
+	
 
-
-######################################
-
-### jolt cell container ###
-
-# the value in which we increase
-var cell_container_jolt_defect_increase = 10
-######################################
+var stats_to_hide: Array[String] = []

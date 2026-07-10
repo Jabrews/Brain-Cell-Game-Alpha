@@ -11,6 +11,11 @@ func _update_shareholder_items(round : int , energy : int) :
 			#UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			#UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
 		]
+		IVShareholderOffers.energy_reward_min = 35
+		IVShareholderOffers.energy_reward_max = 40
+		IVShareholderOffers.energy_left_to_claim_min = 40
+		IVShareholderOffers.energy_left_to_claim_max = 45
+		IVShareholderOffers.non_enabled_stats_max = 1
 	
 	elif round == 2 :
 		GLShareholderOfferState.items_to_offer = [
@@ -20,6 +25,11 @@ func _update_shareholder_items(round : int , energy : int) :
 			#UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			#UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
 		]
+		IVShareholderOffers.energy_reward_min = 40
+		IVShareholderOffers.energy_reward_max = 45
+		IVShareholderOffers.energy_left_to_claim_min = 35
+		IVShareholderOffers.energy_left_to_claim_max = 40
+		IVShareholderOffers.non_enabled_stats_max = 1
 		
 	elif round == 3 :
 		GLShareholderOfferState.items_to_offer = [
@@ -29,6 +39,12 @@ func _update_shareholder_items(round : int , energy : int) :
 			#UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
 		]
+		IVShareholderOffers.energy_reward_min = 45
+		IVShareholderOffers.energy_reward_max = 50
+		IVShareholderOffers.energy_left_to_claim_min = 30
+		IVShareholderOffers.energy_left_to_claim_max = 40
+		IVShareholderOffers.non_enabled_stats_max = 1
+
 		
 	elif round == 4 :
 		GLShareholderOfferState.items_to_offer = [
@@ -38,6 +54,12 @@ func _update_shareholder_items(round : int , energy : int) :
 			UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
 		]
+		IVShareholderOffers.energy_reward_min = 50
+		IVShareholderOffers.energy_reward_max = 55
+		IVShareholderOffers.energy_left_to_claim_min = 30
+		IVShareholderOffers.energy_left_to_claim_max = 35
+		IVShareholderOffers.non_enabled_stats_max = 0
+
 	
 	var danger_level = get_energy_danger_level(energy)
 	update_hidden_stat_nax(round, danger_level)

@@ -283,8 +283,9 @@ func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell)
 		update_collected_cells([selected_cell])
 	
 func _handle_delete_cells_for_next_round() :
-	
-	for cell in collected_cells :	
+	for cell : BrainCell in collected_cells :	
+		cell.turn_into_flesh_bug = false
+		GLCellManagerBus.emit_signal('cell_changed', cell)
 		GLCellManagerBus.emit_signal('cell_deleted', cell.name)	
 	
 	for cell in prisoner_cells :

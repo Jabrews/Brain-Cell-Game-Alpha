@@ -351,6 +351,7 @@ collision_mask = 4
 script = ExtResource("6_bhvbn")
 cell_reciever = NodePath("../../../MainCellManager/EnergyBoostCellManager")
 breeding_panel_side = "left"
+disable_spawn_flesh_bug_on_cell_death = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatLeft/LoadPanelCell" unique_id=1847887751]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
@@ -586,6 +587,7 @@ collision_mask = 4
 script = ExtResource("6_bhvbn")
 cell_reciever = NodePath("../../../MainCellManager/EnergyBoostCellManager")
 breeding_panel_side = "right"
+disable_spawn_flesh_bug_on_cell_death = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatRight/LoadPanelCell" unique_id=1856274138]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
