@@ -4,6 +4,7 @@ extends Node
 @onready var create_clean_stats : Node = $StatHelpers/HelperCreateClean
 @onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
 @onready var create_hidden_stats : Node = $HelperHidden
+@onready var debug_create_mutaion : Node = $DebugCreateMutation
 
 func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
@@ -28,10 +29,12 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 		### ESC ###
 		var new_name = GAMENameManager.pick_prisoner_names()
 		var life_span = randi_range(2, 4)
+		var mutation = debug_create_mutaion._debug_create()
 		###########
 
 		var new_prisoner_cell = BrainCell.new(
 			new_name,
+			mutation,
 			clean_strength,
 			clean_intelligence,
 			clean_community,

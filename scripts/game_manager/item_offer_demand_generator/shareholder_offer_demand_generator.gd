@@ -72,6 +72,7 @@ func generate_demand_cell() -> BrainCell:
 	
 	var demand_cell := BrainCell.new(
 		"demand_cell",
+		null,
 		strength_stat,
 		intelligence_stat,
 		community_stat,

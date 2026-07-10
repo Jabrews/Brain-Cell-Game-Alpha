@@ -2,6 +2,8 @@ class_name BrainCell
 
 var name : String
 
+var mutation : BrainCellMutation
+
 var strength : BrainCellStat
 var intelligence : BrainCellStat
 var community : BrainCellStat
@@ -13,18 +15,25 @@ var turn_into_flesh_bug : bool
 var cell_is_frozen : bool
 
 
+
+
 @warning_ignore("shadowed_variable")
 func _init(
 	name : String,
+	
+	mutation : BrainCellMutation,
+	
 	strength : BrainCellStat,
 	intelligence : BrainCellStat,
 	community : BrainCellStat,
 	life_span : int,
 	is_target_cell : bool = false,
 	turn_into_flesh_bug : bool = false,
-	cell_is_frozen : bool = false
+	cell_is_frozen : bool = false,
 ):
 	self.name = name
+	
+	self.mutation = mutation
 	
 	self.strength = strength
 	self.intelligence = intelligence
@@ -49,8 +58,21 @@ func get_stat(stat_type: String) -> BrainCellStat:
 
 
 func copy() -> BrainCell:
+	
+	var mutation_copy : BrainCellMutation
+	
+	if mutation : 
+		mutation_copy = BrainCellMutation.new(
+			mutation.type,
+			mutation.hidden,
+		)
+	else : 
+		mutation_copy = null
+		
+	
 	var copied_cell := BrainCell.new(
 		name,
+		mutation_copy,
 		BrainCellStat.new(
 			'strength',
 			strength.enabled,
@@ -82,36 +104,33 @@ func copy() -> BrainCell:
 	
 	
 
-func _print():
+func _to_string() -> String:
 	@warning_ignore("incompatible_ternary")
-	print(
-		"[BrainCell] ",
+	return (
+		"[BrainCell] %s | mutation: %s"
+		+ " | STR: %s enabled: %s defect: %s hidden: %s"
+		+ " | INT: %s enabled: %s defect: %s hidden: %s"
+		+ " | COM: %s enabled: %s defect: %s hidden: %s"
+		+ " | lifespan: %s"
+	) % [
 		name,
-		" | STR: ",
+		mutation,
+
 		strength.value if strength else "NULL",
-		" enabled: ",
 		strength.enabled if strength else "NULL",
-		" defect: ",
 		strength.defect if strength else "NULL",
-		" hidden: ",
 		strength.hidden if strength else "NULL",
-		" | INT: ",
+
 		intelligence.value if intelligence else "NULL",
-		" enabled: ",
 		intelligence.enabled if intelligence else "NULL",
-		" defect: ",
 		intelligence.defect if intelligence else "NULL",
-		" hidden: ",
 		intelligence.hidden if intelligence else "NULL",
-		" | COM: ",
+
 		community.value if community else "NULL",
-		" enabled: ",
 		community.enabled if community else "NULL",
-		" defect: ",
 		community.defect if community else "NULL",
-		" hidden: ",
 		community.hidden if community else "NULL",
-		" | lifespan: ",
+
 		life_span
-	)
+	]
 	

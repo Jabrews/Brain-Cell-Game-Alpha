@@ -23,16 +23,11 @@ func _init(
 	self.hidden = hidden
 
 
-func _print():
-	print(
-		"[Stat] ",
+func _to_string() -> String:
+	return "[Stat] %s | enabled: %s | value: %s | defect: %s | hidden: %s" % [
 		type,
-		" | enabled: ",
 		enabled,
-		" | value: ",
 		value,
-		" | defect: ",
 		defect,
-		" | hidden: ",
 		hidden
-	)
+	]

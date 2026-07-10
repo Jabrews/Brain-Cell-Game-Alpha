@@ -41,6 +41,7 @@ func assemble() :
 	
 	var target_cell : BrainCell = BrainCell.new(
 		new_name,
+		null,
 		target_strength,
 		target_intelligence,
 		target_community,
