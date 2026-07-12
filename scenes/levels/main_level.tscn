@@ -214,8 +214,9 @@ game_screen_scene = ExtResource("13_wv5kd")
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
 
-[node name="MutationFileCabinet" parent="Stations" unique_id=103506904 instance=ExtResource("17_j7s3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 1.3000001, 12)
+[node name="MutationFileCabinet" parent="Stations" unique_id=103506904 node_paths=PackedStringArray("mutation_manager") instance=ExtResource("17_j7s3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 12)
+mutation_manager = NodePath("../../GameManager/MutationManager")
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")

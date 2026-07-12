@@ -28,6 +28,7 @@ func set_player_in_chair(value: bool) -> void:
 	fake_player_camera.current = value
 
 	GLChairBus.emit_signal("toggle_player_sat_on_interpreter_chair", value, 'test-type')
+	GLPlayerState.emit_signal('lock_player_position', value)
 	
 	# let parent station know
 	get_parent()._toggle_handle_player_sat_on_chair(value)

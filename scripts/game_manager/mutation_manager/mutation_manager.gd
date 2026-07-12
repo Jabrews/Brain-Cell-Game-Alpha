@@ -9,8 +9,8 @@ var mutations : Array[BrainCellMutation] = [
 ]
 
 var mutations_seen : Dictionary = {
-	'airborne' : true,
-	'teleport' : true,
-	'sentient' : true,
+	'airborne' : false,
+	'teleport' : false,
+	'sentient' : false,
 	'lonley' : true,
 }

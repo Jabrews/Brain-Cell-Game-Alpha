@@ -1,7 +1,7 @@
 extends Sprite2D 
 
 func _ready() -> void:
-	GLChairBus.connect('toggle_player_sat_on_interpreter_chair', _handle_toggle_player_sat_on_interpreter_chair)
+	GLPlayerState.connect('lock_player_position', _handle_lock_player_position)
 
-func _handle_toggle_player_sat_on_interpreter_chair(toggle_value : bool, _interpreter_type : String) :
+func _handle_lock_player_position(toggle_value : bool) :
 	visible = !toggle_value

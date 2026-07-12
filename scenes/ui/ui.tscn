@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://d53x8j268to" path="res://scripts/ui/hold_display/hold_display.gd" id="12_hc5d0"]
 [ext_resource type="Script" uid="uid://bwy54p8t4ku4o" path="res://scripts/ui/hold_display/update_shader.gd" id="13_n3vwu"]
 [ext_resource type="Script" uid="uid://bs22t135fvsum" path="res://scripts/ui/fade_to_black/fade_to_black.gd" id="16_0i47d"]
+[ext_resource type="Script" uid="uid://divqeid51v8os" path="res://scripts/ui/view_file_cabinet.gd" id="17_mgwkc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
@@ -58,6 +59,7 @@ theme_override_font_sizes/font_size = 22
 text = "Energy Left : 0"
 
 [node name="FPSCounter" type="Label" parent="." unique_id=2019697512]
+texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -73,6 +75,7 @@ script = ExtResource("6_pfayw")
 
 [node name="DropAxeBackAtMount" type="Label" parent="." unique_id=783017163]
 visible = false
+texture_filter = 1
 layout_mode = 0
 offset_left = 158.0
 offset_top = 404.0
@@ -115,19 +118,6 @@ visible = false
 layout_mode = 1
 popup_type = "defect_shot"
 
-[node name="SitInChair" type="Label" parent="." unique_id=756833370]
-visible = false
-layout_mode = 0
-offset_left = 158.0
-offset_top = 404.0
-offset_right = 686.0
-offset_bottom = 438.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 24
-text = "Sit In Chair"
-horizontal_alignment = 1
-script = ExtResource("10_y220t")
-
 [node name="FadeToBlack" type="Control" parent="." unique_id=488336529]
 anchors_preset = 0
 offset_right = 40.0
@@ -157,3 +147,31 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_u7n8c")
 theme_override_font_sizes/font_size = 34
 text = "Round 1"
+
+[node name="SitInChair" type="Label" parent="." unique_id=756833370]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 158.0
+offset_top = 404.0
+offset_right = 686.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 24
+text = "Sit In Chair"
+horizontal_alignment = 1
+script = ExtResource("10_y220t")
+
+[node name="ViewFileCabinet" type="Label" parent="." unique_id=2021863598]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 158.0
+offset_top = 404.0
+offset_right = 686.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 24
+text = "View File Cabinet"
+horizontal_alignment = 1
+script = ExtResource("17_mgwkc")

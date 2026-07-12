@@ -23,7 +23,7 @@ func _ready():
 	# update char refrence state
 	GLPlayerState.player_refrence = self
 	
-	GLChairBus.connect('toggle_player_sat_on_interpreter_chair', _handle_toggle_player_sat_on_interpreter_chair)	
+	GLPlayerState.connect('lock_player_position', _handle_lock_player_position)
 	GLGameManagerBus.connect('reset_player_position', _handle_reset_player_position)	
 	
 	
@@ -74,16 +74,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * mouse_sensitivity_y)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(80))
 
-func _handle_toggle_player_sat_on_interpreter_chair(toggle_value : bool, _interpreter_type : String) :
+func _handle_reset_player_position() :
+	global_position = starting_postion
+	
+func _handle_lock_player_position(toggle_value : bool) :
 	if toggle_value :
 		is_paused = true
 		visible = false
 	else :
 		is_paused = false
 		visible = true
-	
-func _handle_reset_player_position() :
-	global_position = starting_postion
-	
 	
 	
