@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cj81phy2hwn6n"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_r8f85"]
+[ext_resource type="Script" uid="uid://chg0ixvj5clw3" path="res://scripts/stations/station_screens/prisoner_spawner/mutation_found/screen_mutation_found.gd" id="1_ssrvk"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_ygyn4"]
+[ext_resource type="Script" uid="uid://bb4rk7hkji7i3" path="res://scripts/stations/station_screens/prisoner_spawner/label_blinking.gd" id="4_7hsqe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ygyn4"]
+shader = ExtResource("1_r8f85")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenMutationFound" type="Node2D" unique_id=1925796477]
+script = ExtResource("1_ssrvk")
+
+[node name="BG" type="ColorRect" parent="." unique_id=462231805]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 625.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1535393260]
+material = SubResource("ShaderMaterial_ygyn4")
+offset_right = 625.0
+offset_bottom = 142.0
+
+[node name="MutationFound" type="Label" parent="." unique_id=308128509]
+texture_filter = 1
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 613.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_ygyn4")
+theme_override_font_sizes/font_size = 35
+text = "Mutation FOund
+In Batch"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_7hsqe")
+
+[node name="NoMutationFound" type="Label" parent="." unique_id=1148438946]
+visible = false
+texture_filter = 1
+offset_left = 9.0
+offset_top = 2.0
+offset_right = 613.0
+offset_bottom = 136.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_ygyn4")
+theme_override_font_sizes/font_size = 35
+text = "No Mutation
+Found"
+horizontal_alignment = 1
+vertical_alignment = 1

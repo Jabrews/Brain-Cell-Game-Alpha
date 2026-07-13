@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bx7hltqiih6k6"]
+
+[ext_resource type="Script" uid="uid://bv2rmocfecutv" path="res://scripts/stations/station_screens/prisoner_spawner/quanity_in_batch/screen_mutation_quanity_in_batch.gd" id="1_iafgl"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ob52x"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_smwuq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7dgq0"]
+shader = ExtResource("1_ob52x")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenMutationQuanityInBatch" type="Node2D" unique_id=337484274]
+script = ExtResource("1_iafgl")
+
+[node name="BG" type="ColorRect" parent="." unique_id=876179371]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 490.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=105951559]
+material = SubResource("ShaderMaterial_7dgq0")
+offset_right = 492.0
+offset_bottom = 142.0
+
+[node name="TotalMutationInBatch" type="Label" parent="." unique_id=2041919556]
+offset_left = 63.0
+offset_top = 3.0
+offset_right = 463.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 25
+theme_override_fonts/font = ExtResource("2_smwuq")
+theme_override_font_sizes/font_size = 25
+text = "total mutations
+in batch - "
+vertical_alignment = 1
+
+[node name="MutationQuanityNum" type="Label" parent="." unique_id=515569157]
+offset_left = 331.0
+offset_top = 79.0
+offset_right = 371.0
+offset_bottom = 109.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_smwuq")
+theme_override_font_sizes/font_size = 30
+text = "2"
+
+[node name="MutationQuanityUnknown" type="Label" parent="." unique_id=1043201911]
+visible = false
+offset_left = 311.0
+offset_top = 83.0
+offset_right = 451.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_smwuq")
+theme_override_font_sizes/font_size = 20
+text = "Unknown"

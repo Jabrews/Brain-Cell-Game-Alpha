@@ -42,13 +42,13 @@ theme_override_font_sizes/font_size = 30
 text = "LEFT TO PICK"
 
 [node name="OutOfPrisoners" type="Label" parent="." unique_id=1737495274]
-offset_left = -14.0
+offset_left = -33.0
 offset_top = 92.0
-offset_right = 537.0
+offset_right = 518.0
 offset_bottom = 200.0
 theme_override_fonts/font = ExtResource("2_467gw")
 theme_override_font_sizes/font_size = 20
-text = "out of prisoners. 
+text = "out of prisoners.
 
 generate next batch"
 horizontal_alignment = 1
