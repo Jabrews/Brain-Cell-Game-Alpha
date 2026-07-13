@@ -24,3 +24,4 @@ signal target_cell_created(target_cell : BrainCell)
 
 ### DEBUG ###
 signal debug_collected_cells_and_target_create(collected_cells : Array[BrainCell], target_cell : BrainCell)
+signal debug_unhide_collected_cell_mutation(selected_cell : BrainCell)

@@ -7,20 +7,26 @@ extends Node
 
 # mutation parent componnets 
 @onready var display_type_label : Label = $MutationDisplay/DisplayType
-@onready var place_holder_icon_rect : ColorRect = $MutationDisplay/PlaceHolderIcon
+#@onready var place_holder_icon_rect : ColorRect = $MutationDisplay/PlaceHolderIcon
+@onready var mutation_icon : TextureRect = $MutationDisplay/MutationIcon
+@onready var get_mutation_symbol : Node = $GetMutationSymbol
 
 
 
 func _handle_brain_cell_recieved(cell_mutation : BrainCellMutation) -> void:
 	
-	if cell_mutation and cell_mutation.hidden : 
+	if not cell_mutation:
+		no_mutation_found()
+	
+	if cell_mutation.type == 'none': 
 		mutation_hidden()
 		return
-	
-	if cell_mutation and not cell_mutation.hidden : 
+
+	if cell_mutation.hidden:
+		mutation_hidden()
+	else:
 		display_mutation(cell_mutation)
-		return
-	
+		
 	
 	
 func no_mutation_found() :
@@ -37,6 +43,10 @@ func display_mutation(mutation : BrainCellMutation) :
 	hidden_parent.visible = false 
 	mutation_parent.visible = true 
 	display_type_label.text = mutation.type
-	place_holder_icon_rect.color = Color.BLUE
+	mutation_icon.texture = get_mutation_symbol.get_symbol(mutation.type)
+	
+	
+	
+	
 #	
 	

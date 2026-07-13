@@ -19,6 +19,11 @@ func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	
+	# DEBUG
+	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
+	
+	
+	
 	## OTHER ZOOS
 	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
 	
@@ -344,6 +349,12 @@ func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : Bra
 	## spawn container 
 	#GLCellManagerBus.emit_signal('cell_added_to_collection', new_collected_cell)
 #####################
+	
+## DEBUG 
+func _handle_debug_unhide_collected_cell_mutation(selected_cell : BrainCell) : 
+	selected_cell.mutation.hidden = false
+	update_collected_cells([selected_cell])
+	
 	
 	
 	

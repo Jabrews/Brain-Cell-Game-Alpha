@@ -6,6 +6,13 @@ var file_infos: Array[FileInfo] = [
 	FileInfo.new("teleportation", false, ""),
 	FileInfo.new("sentient", false, ""),
 	FileInfo.new("lonley", false, ""),
+	FileInfo.new("disrupter", false, ""),
+	FileInfo.new("exsplosive", false, ""),
+	FileInfo.new("infectious", false, ""),
+	FileInfo.new("cognisance", false, ""),
+	FileInfo.new("telekinetic", false, ""),
+	FileInfo.new("unstable", false, ""),
+	
 ]
 
 # components

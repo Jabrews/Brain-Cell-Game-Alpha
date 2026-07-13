@@ -74,13 +74,26 @@ func _load_file_info(new_designated_file_info: FileInfo = null) -> void:
 func load_file_label_style(style: String) -> void:
 	match style:
 		"unlocked":
-			file_label.text = designated_file_info.type
+			var file_type: String = designated_file_info.type
+
+			if file_type.length() > 10:
+				file_label.scale = Vector3(0.55, 0.55, 0.55)
+				file_label.text = file_type.substr(0, 6) + "."
+			else:
+				file_label.scale = Vector3(0.6, 0.6, 0.6)
+
+				if file_type.length() > 8:
+					file_label.text = file_type.substr(0, 8) + "."
+				else:
+					file_label.text = file_type
+			
+			
 			locked_icon_sprite.visible = false 
 			mutation_icon_sprite.visible = true
 			mutation_icon_sprite.texture = get_mutation_symbol.get_symbol(designated_file_info.type)
-
 		"locked":
 			file_label.text = "locked"
+			file_label.scale = Vector3(0.6, 0.6, 0.6)
 			locked_icon_sprite.visible = true
 			mutation_icon_sprite.visible = false
 
@@ -109,7 +122,7 @@ func _handle_mouse_entered() -> void:
 
 	show_hover_delay_true = true
 
-	await get_tree().create_timer(0.3).timeout
+	await get_tree().create_timer(0.15).timeout
 
 	if show_hover_delay_true:
 		audio_manager.play_valid()

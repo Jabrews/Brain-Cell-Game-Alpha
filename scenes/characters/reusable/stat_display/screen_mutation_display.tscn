@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://3aukri61cbt2" path="res://scripts/characters/reusable/stat_display/mutation_display/screen_mutation_reciever.gd" id="1_ax0dq"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="2_3swiq"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_coli1"]
+[ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="2_rf607"]
 [ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="3_jccw8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_coli1"]
@@ -14,6 +15,9 @@ shader_parameter/scroll_speed = 0.2
 
 [node name="MutationDisplay" type="Node2D" unique_id=1769955241]
 script = ExtResource("1_ax0dq")
+
+[node name="GetMutationSymbol" type="Node" parent="." unique_id=971363386]
+script = ExtResource("2_rf607")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1666388344]
 anchors_preset = 8
@@ -83,7 +87,8 @@ text = "mUTATION
 "
 horizontal_alignment = 1
 
-[node name="PlaceHolderIcon" type="ColorRect" parent="MutationDisplay" unique_id=279799296]
+[node name="MutationIcon" type="TextureRect" parent="MutationDisplay" unique_id=2011731149]
+texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
 offset_top = 32.0

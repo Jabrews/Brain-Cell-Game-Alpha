@@ -29,7 +29,9 @@ extends Node
 )
 @onready var teleport_img : Texture = preload(
 	"res://models/mutation_symbols/teleport.png"
-	
+)
+@onready var unstable_img : Texture = preload(
+	"res://models/mutation_symbols/unstable.png"
 )
 
 func get_symbol(mutation_type : String) :
@@ -42,6 +44,18 @@ func get_symbol(mutation_type : String) :
 			return sentient_img
 		'lonley' : 
 			return lonley_img
+		"disrupter" : 
+			return disrupt_img
+		"exsplosive" : 
+			return exsplosive_img
+		'infectious': 
+			return infectious_img
+		'cognisance' : 
+			return look_img
+		'telekinetic' : 
+			return psychic_img
+		'unstable' : 
+			return unstable_img
 	
 		
 	

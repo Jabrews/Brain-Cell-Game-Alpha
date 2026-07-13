@@ -109,7 +109,7 @@ shadow_mesh = SubResource("ArrayMesh_inwas")
 [sub_resource type="BoxShape3D" id="BoxShape3D_6bag3"]
 size = Vector3(0.0055664033, 0.6833035, 0.3027954)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_44v7a"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_lsj1o"]
 _surfaces = [{
 "aabb": AABB(-0.007294953, 0.06, -0.6043947, 0.014589667, 0.8973517, 1.2087893),
 "format": 34896613377,
@@ -163,7 +163,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAtHBSfz/As3E7IJ87O7xgfj8AAACAIJ87O3BSfz/As3E7AAAAtLxgfj8AAACAAAAAtLxgfj/LUpo+IJ87O3BSfz9kb5g+IJ87O7xgfj/LUpo+AAAAtHBSfz9kb5g+IJ87O3BSfz/As3E7AAAAtHBSfz9kb5g+AAAAtHBSfz/As3E7IJ87O3BSfz9kb5g+IJ87OwAVdT8AAACAAAAAtLxgfj8AAACAAAAAtAAVdT8AAACAIJ87O7xgfj8AAACAAAAAtLxgfj8AAACAAAAAtAAVdT/LUpo+AAAAtAAVdT8AAACAAAAAtHBSfz9kb5g+AAAAtHBSfz/As3E7AAAAtLxgfj/LUpo+AAAAtAAVdT/LUpo+IJ87O7xgfj/LUpo+IJ87OwAVdT/LUpo+AAAAtLxgfj/LUpo+IJ87O7xgfj/LUpo+IJ87OwAVdT8AAACAIJ87OwAVdT/LUpo+IJ87O3BSfz/As3E7IJ87O3BSfz9kb5g+IJ87O7xgfj8AAACA/7///wAA/7//v///AAD/v/+///8AAP+//7///wAA/7//f/+/AAD/v/9//78AAP+//3//vwAA/7//f/+/AAD/v/9///8AAP+//3///wAA/7//f///AAD/v/9///8AAP+//////////7//////////v/////////+//////////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+/AAD/f////7//f/9/////P/9//3////8//3//f////z//f/9/////P////38BgP//////f/9///////9//3/+f////3//f///////fwKA//////9//3/+fw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_44v7a")
+shadow_mesh = SubResource("ArrayMesh_lsj1o")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7nwrf"]
 size = Vector3(0.0055664033, 0.37246627, 0.3027954)
@@ -924,7 +924,7 @@ script = ExtResource("2_v8dss")
 mesh = SubResource("ArrayMesh_bj4q8")
 
 [node name="Label3D" type="Label3D" parent="Files/File" unique_id=1032559688]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 0.006170407, 0.9748964, 0.48256236)
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 0.006170407, 0.9748964, 0.48256236)
 texture_filter = 0
 text = "Wings"
 font = ExtResource("1_t562i")
@@ -938,7 +938,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_6bag3")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File" unique_id=1682879605]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 0.006554723, 0.97748935, 0.35869998)
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 0.006554723, 0.97748935, 0.35869998)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -956,7 +956,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7074306, -0.15815495, -0.21
 mesh = SubResource("ArrayMesh_pjkmp")
 
 [node name="Label3D" type="Label3D" parent="Files/File2" unique_id=341588446]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 1.7108722, 0.8167048, -0.04354898)
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 1.7108722, 0.8167048, -0.04354898)
 texture_filter = 0
 text = "Wings"
 font = ExtResource("1_t562i")
@@ -970,7 +970,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File2" unique_id=417905672]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.7124332, 0.818599, -0.15794837)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.7124332, 0.82051086, -0.15794837)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -988,7 +988,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6257675, -0.15815495, -0.21
 mesh = SubResource("ArrayMesh_v8dss")
 
 [node name="Label3D" type="Label3D" parent="Files/File3" unique_id=2037210678]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 1.6260657, 0.8167048, -0.33998677)
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 1.6260657, 0.8167048, -0.33998677)
 texture_filter = 0
 text = "Wings"
 font = ExtResource("1_t562i")
@@ -1002,7 +1002,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File3" unique_id=10235321]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.6258221, 0.818599, -0.4607215)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.6258221, 0.818599, -0.4607215)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1020,7 +1020,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5335903, -0.15815495, -0.21
 mesh = SubResource("ArrayMesh_0tp8k")
 
 [node name="Label3D" type="Label3D" parent="Files/File4" unique_id=569279500]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 1.5310917, 0.8167048, -0.64292014)
+transform = Transform3D(-2.6226834e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.6226834e-08, 1.5310917, 0.8167048, -0.64292014)
 texture_filter = 0
 text = "Wings"
 font = ExtResource("1_t562i")
@@ -1034,7 +1034,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File4" unique_id=88052633]
-transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.5340867, 0.818599, -0.76692253)
+transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 1.5340867, 0.8230847, -0.76692253)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1066,7 +1066,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File5" unique_id=999294439]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.4558645, 0.81989, 0.14656757)
+transform = Transform3D(-8.742278e-09, 0, 0.2, 0, 0.2, 0, -0.2, 0, -8.742278e-09, 1.4558645, 0.81989, 0.120912984)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1098,7 +1098,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File6" unique_id=483342160]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.3702604, 0.818599, -0.15794837)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.3702604, 0.8279272, -0.17304462)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1130,7 +1130,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File7" unique_id=1102808089]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.2848146, 0.818599, -0.46606058)
+transform = Transform3D(-1.0927847e-08, 0, 0.25, 0, 0.25, 0, -0.25, 0, -1.0927847e-08, 1.2848146, 0.8211412, -0.47717148)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1162,7 +1162,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File8" unique_id=244023099]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.2071576, 0.818599, -0.7516147)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.2071576, 0.8207199, -0.76192796)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1194,7 +1194,7 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File9" unique_id=892360217]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.151812, 0.8239995, 0.1444324)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.151812, 0.82296866, 0.14000735)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
@@ -1208,11 +1208,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17915523, 0, 0)
 script = ExtResource("2_v8dss")
 
 [node name="File_10" type="MeshInstance3D" parent="Files/File10" unique_id=1126106170]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0635905, -0.15815495, -0.2147297)
+transform = Transform3D(1, 0, 0, 0, 1.01, 0, 0, 0, 1, 1.0635905, -0.15815495, -0.2147297)
 mesh = SubResource("ArrayMesh_epm46")
 
 [node name="Label3D" type="Label3D" parent="Files/File10" unique_id=19993936]
-transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 1.0682487, 0.8167048, -0.04185018)
+transform = Transform3D(-3.4969112e-08, 0, 0.8, 0, 0.8, 0, -0.8, 0, -3.4969112e-08, 1.0682487, 0.8234745, -0.04185018)
 texture_filter = 0
 text = "Wings"
 font = ExtResource("1_t562i")
@@ -1226,12 +1226,12 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File10" unique_id=802698667]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.0668375, 0.818599, -0.14671302)
+transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.0669582, 0.8218351, -0.17082027)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
 [node name="LockedIconSprite" type="Sprite3D" parent="Files/File10" unique_id=1515894391]
-transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.0667952, 0.818599, -0.14671302)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.0669159, 0.8218351, -0.16001523)
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
 

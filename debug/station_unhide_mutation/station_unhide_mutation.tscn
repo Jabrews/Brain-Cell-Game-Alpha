@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b4cwkhm8fu843"]
+
+[ext_resource type="Script" uid="uid://ccb31mogpto2n" path="res://debug/station_unhide_mutation/station_unhide_mutation.gd" id="1_4lujp"]
+[ext_resource type="Script" uid="uid://beg3fnl2m5c85" path="res://reusable/load_panel/load_panel_body.gd" id="1_d8pn1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_4lujp"]
+size = Vector3(1.1340027, 1.0718994, 1.1096191)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rm3ff"]
+size = Vector3(1.132782, 1.0638428, 1.1059418)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3e4wy"]
+size = Vector3(1.4238892, 0.15491943, 1.4798584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x2eqx"]
+material = SubResource("StandardMaterial3D_a1kj4")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrihq"]
+size = Vector3(1.5, 0.03720703, 1.5)
+
+[node name="UnhideMutation" type="Node3D" unique_id=1284783246]
+script = ExtResource("1_4lujp")
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=2006347944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5493469, 0, 0.06605244)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1247136965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1990509, 0.5454712, 0.071777344)
+mesh = SubResource("BoxMesh_4lujp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=407866447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2089386, 0.52960205, 0.054237366)
+shape = SubResource("BoxShape3D_rm3ff")
+
+[node name="LoadPanelCellBody" type="Area3D" parent="." unique_id=389903957 node_paths=PackedStringArray("cell_reciever")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7723937, 0.27641124, 0.13352501)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_d8pn1")
+cell_reciever = NodePath("..")
+disable_spawn_flesh_bug_on_cell_death = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCellBody" unique_id=1842845785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_3e4wy")
+
+[node name="PannelCollision" type="StaticBody3D" parent="LoadPanelCellBody" unique_id=1299018808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadPanelCellBody/PannelCollision" unique_id=1362627415]
+mesh = SubResource("BoxMesh_x2eqx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCellBody/PannelCollision" unique_id=1417428392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_xrihq")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=2088225165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 2.260411, 0.1)
+billboard = 1
+text = "DEBUG ONLY"
