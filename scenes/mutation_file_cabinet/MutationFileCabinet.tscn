@@ -7,9 +7,19 @@
 [ext_resource type="Texture2D" uid="uid://6qsg1rfjvnvx" path="res://models/file_cabinet/sample_file_mutation_logo.png" id="5_r6817"]
 [ext_resource type="Texture2D" uid="uid://dk6q43pr021g6" path="res://models/file_cabinet/sample_file_mutation_lock.png" id="6_0tp8k"]
 [ext_resource type="Script" uid="uid://bd2peu55fydah" path="res://reusable/modular_scripts/floating_label/floating_label_2d.gd" id="7_0tp8k"]
+[ext_resource type="Script" uid="uid://dlkwt78hm0yuv" path="res://scripts/mutation_file_cabinet/press_to_leave.gd" id="7_8gn6o"]
+[ext_resource type="Script" uid="uid://dvy0f8mt8i2yy" path="res://scripts/mutation_file_cabinet/audio_manager.gd" id="7_doic2"]
+[ext_resource type="AudioStream" uid="uid://bcgydw07vdwaf" path="res://sounds/file_cabinet/cabinet_open.mp3" id="8_b38vp"]
+[ext_resource type="Script" uid="uid://dxq4d5cq0abum" path="res://scripts/mutation_file_cabinet/file_view/file_view.gd" id="8_hioyw"]
 [ext_resource type="Texture2D" uid="uid://ybnnjg3hknus" path="res://models/file_cabinet/paper.png" id="8_kdclm"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="9_epm46"]
+[ext_resource type="AudioStream" uid="uid://hmosxrk8yh6v" path="res://sounds/file_cabinet/cabinet_close.mp3" id="9_pnxu0"]
+[ext_resource type="AudioStream" uid="uid://dsmv44vw8rqee" path="res://sounds/file_cabinet/invalid_select.mp3" id="10_lsj1o"]
 [ext_resource type="Texture2D" uid="uid://c87dyek62j74i" path="res://models/file_cabinet/exit_btn.png" id="10_rppej"]
+[ext_resource type="Script" uid="uid://cf8jc6njwk8ia" path="res://scripts/mutation_file_cabinet/file_view/exit_btn.gd" id="11_7hlws"]
+[ext_resource type="AudioStream" uid="uid://dt0ni5wysktfa" path="res://sounds/file_cabinet/select_valid.mp3" id="11_bby81"]
+[ext_resource type="AudioStream" uid="uid://c65ij8d7mgpym" path="res://sounds/file_cabinet/page_turning.mp3" id="12_61d2c"]
+[ext_resource type="AudioStream" uid="uid://c4bi3yxvkv5j1" path="res://sounds/file_cabinet/book_close.mp3" id="13_pnxu0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6c3k"]
 resource_name = "FilePaper"
@@ -901,7 +911,6 @@ script = ExtResource("2_51ix1")
 transform = Transform3D(-4.371139e-08, -0.42261833, 0.90630776, 0, 0.90630776, 0.42261833, -1, 1.8473234e-08, -3.961597e-08, 2.152507, 1.1901567, -0.19999999)
 
 [node name="Files" type="Node3D" parent="." unique_id=407075557]
-visible = false
 
 [node name="File" type="Node3D" parent="Files" unique_id=800089281]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7826734, -0.15865985, -0.22912025)
@@ -1395,24 +1404,48 @@ collision_layer = 0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0, -0.20000005)
 shape = SubResource("BoxShape3D_ixuf4")
 
-[node name="ClickToView" type="Label" parent="." unique_id=1648272860]
+[node name="AudioManager" type="Node3D" parent="." unique_id=1714591203]
+script = ExtResource("7_doic2")
+
+[node name="CabinetOpen" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1140648261]
+stream = ExtResource("8_b38vp")
+
+[node name="CabinetClose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1321521585]
+stream = ExtResource("9_pnxu0")
+
+[node name="InvalidSelect" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1416051161]
+stream = ExtResource("10_lsj1o")
+
+[node name="ValidSelect" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=78962418]
+stream = ExtResource("11_bby81")
+
+[node name="PageChose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=520992043]
+stream = ExtResource("12_61d2c")
+
+[node name="PageClose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1779680188]
+stream = ExtResource("13_pnxu0")
+
+[node name="ToLeave" type="Label" parent="." unique_id=6186536]
 visible = false
-texture_filter = 1
-offset_left = 241.0
-offset_top = 447.0
-offset_right = 605.0
-offset_bottom = 475.0
-size_flags_horizontal = 4
+offset_left = 595.0
+offset_top = 37.0
+offset_right = 759.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.69803923)
 theme_override_fonts/font = ExtResource("1_t562i")
-theme_override_font_sizes/font_size = 28
-text = "Click to view"
-script = ExtResource("7_0tp8k")
+text = "Press E to 
+Leave
+"
+horizontal_alignment = 1
+script = ExtResource("7_8gn6o")
 
 [node name="FileView" type="Control" parent="." unique_id=1072467109]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("8_hioyw")
 
 [node name="BlurBg" type="ColorRect" parent="FileView" unique_id=504728592]
 material = SubResource("ShaderMaterial_rppej")
@@ -1465,11 +1498,29 @@ text = "    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius
 autowrap_mode = 1
 autowrap_trim_flags = 128
 
-[node name="ExitBtn" type="Sprite2D" parent="FileView" unique_id=213638814]
+[node name="ExitBtn" type="TextureRect" parent="FileView" unique_id=970978348]
 texture_filter = 1
-position = Vector2(601, 22.5)
+layout_mode = 0
+offset_left = 593.0
+offset_top = 12.999998
+offset_right = 610.0
+offset_bottom = 36.0
 scale = Vector2(1.0588228, 0.826087)
 texture = ExtResource("10_rppej")
+script = ExtResource("11_7hlws")
+
+[node name="ClickToView" type="Label" parent="." unique_id=1648272860]
+visible = false
+texture_filter = 1
+offset_left = 241.0
+offset_top = 447.0
+offset_right = 605.0
+offset_bottom = 475.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_t562i")
+theme_override_font_sizes/font_size = 28
+text = "Click to view"
+script = ExtResource("7_0tp8k")
 
 [connection signal="body_entered" from="DetectPlayerArea" to="." method="_on_detect_player_area_body_entered"]
 [connection signal="body_exited" from="DetectPlayerArea" to="." method="_on_detect_player_area_body_exited"]

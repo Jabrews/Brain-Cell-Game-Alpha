@@ -3,6 +3,12 @@ extends Node3D
 var designated_file_info: FileInfo = null
 var locked: bool = true
 
+# parent componnet
+@onready var mutation_file_cabinet : Node3D = $"../.."
+
+# audio manager componnet
+@onready var audio_manager : Node3D = $"../../AudioManager"
+
 # file components
 @onready var file_label: Label3D = $Label3D
 @onready var detect_mouse_area: Area3D = $Area3D
@@ -18,6 +24,8 @@ var show_hover_delay_true: bool = false
 var original_position: Vector3
 var hover_y_addition: float = 0.06
 var hover_tween: Tween
+var file_being_hover_over : bool 
+
 
 # lock stuff
 var original_lock_pos: Vector3
@@ -36,6 +44,12 @@ func _ready() -> void:
 	
 	detect_mouse_area.mouse_entered.connect(_handle_mouse_entered)
 	detect_mouse_area.mouse_exited.connect(_handle_mouse_exited)
+
+func _process(delta: float) -> void:
+	if file_being_hover_over and designated_file_info and not locked: 
+		if Input.is_action_just_pressed('attack') :
+			mutation_file_cabinet._display_file_view(designated_file_info)
+
 
 
 func _load_file_info(new_designated_file_info: FileInfo = null) -> void:
@@ -75,10 +89,16 @@ func load_file_label_style(style: String) -> void:
 
 func _handle_mouse_entered() -> void:
 	
+	if mutation_file_cabinet.file_being_viewed == true : 
+		return
+	
+	file_being_hover_over = true	
+	
 	if designated_file_info == null:
 		return
 		
 	if locked : 
+		audio_manager.play_invalid()
 		shake_lock()
 		return
 
@@ -87,11 +107,15 @@ func _handle_mouse_entered() -> void:
 	await get_tree().create_timer(0.3).timeout
 
 	if show_hover_delay_true:
+		audio_manager.play_valid()
 		click_to_view_label.visible = true
 		hover_file("up")
 
 
 func _handle_mouse_exited() -> void:
+	
+	file_being_hover_over = false
+	
 	show_hover_delay_true = false
 	click_to_view_label.visible = false 
 	hover_file("down")
