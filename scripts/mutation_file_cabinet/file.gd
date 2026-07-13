@@ -9,6 +9,10 @@ var locked: bool = true
 # audio manager componnet
 @onready var audio_manager : Node3D = $"../../AudioManager"
 
+# get mutation symbol/icon
+@onready var get_mutation_symbol : Node = $"../../GetMutationSymbol"
+
+
 # file components
 @onready var file_label: Label3D = $Label3D
 @onready var detect_mouse_area: Area3D = $Area3D
@@ -73,6 +77,7 @@ func load_file_label_style(style: String) -> void:
 			file_label.text = designated_file_info.type
 			locked_icon_sprite.visible = false 
 			mutation_icon_sprite.visible = true
+			mutation_icon_sprite.texture = get_mutation_symbol.get_symbol(designated_file_info.type)
 
 		"locked":
 			file_label.text = "locked"

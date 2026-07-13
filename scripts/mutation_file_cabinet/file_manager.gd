@@ -1,8 +1,9 @@
 extends Node
 
+# NOTE this all must match mutation manager mutations. specifically the type
 var file_infos: Array[FileInfo] = [
 	FileInfo.new("airborne", false, ""),
-	FileInfo.new("teleport", false, ""),
+	FileInfo.new("teleportation", false, ""),
 	FileInfo.new("sentient", false, ""),
 	FileInfo.new("lonley", false, ""),
 ]

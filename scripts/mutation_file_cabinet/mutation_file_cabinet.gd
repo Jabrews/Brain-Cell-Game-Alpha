@@ -34,10 +34,10 @@ func set_player_viewing_file_cabinet(toggle_value : bool) :
 	press_to_leave_label.visible = toggle_value
 	GLMutationFileCabinetBus.emit_signal('toggle_player_entered_cabinet_area', !toggle_value)
 	GLPlayerState.emit_signal('lock_player_position', toggle_value)
+	file_manager._refresh_file_info_seen_by_player()
 	
 	if toggle_value :	
 		audio_manager.play_cabinet_open()
-		file_manager._refresh_file_info_seen_by_player()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else :
 		audio_manager.play_cabinet_close()

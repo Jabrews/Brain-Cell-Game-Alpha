@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_t562i"]
 [ext_resource type="Script" uid="uid://ci4b00orgwx4c" path="res://scripts/mutation_file_cabinet/file_manager.gd" id="2_51ix1"]
 [ext_resource type="Script" uid="uid://sd776x8egu6b" path="res://scripts/mutation_file_cabinet/file.gd" id="2_v8dss"]
+[ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="3_lsj1o"]
 [ext_resource type="Texture2D" uid="uid://6qsg1rfjvnvx" path="res://models/file_cabinet/sample_file_mutation_logo.png" id="5_r6817"]
 [ext_resource type="Texture2D" uid="uid://dk6q43pr021g6" path="res://models/file_cabinet/sample_file_mutation_lock.png" id="6_0tp8k"]
 [ext_resource type="Script" uid="uid://bd2peu55fydah" path="res://reusable/modular_scripts/floating_label/floating_label_2d.gd" id="7_0tp8k"]
@@ -907,6 +908,9 @@ script = ExtResource("1_pjkmp")
 [node name="FileManager" type="Node" parent="." unique_id=651926462]
 script = ExtResource("2_51ix1")
 
+[node name="GetMutationSymbol" type="Node" parent="." unique_id=1893111078]
+script = ExtResource("3_lsj1o")
+
 [node name="cam" type="Camera3D" parent="." unique_id=526641334]
 transform = Transform3D(-4.371139e-08, -0.42261833, 0.90630776, 0, 0.90630776, 0.42261833, -1, 1.8473234e-08, -3.961597e-08, 2.152507, 1.1901567, -0.19999999)
 
@@ -1030,12 +1034,12 @@ transform = Transform3D(0.99972093, 0.02304664, -0.0051900735, -0.022973573, 0.9
 shape = SubResource("BoxShape3D_7nwrf")
 
 [node name="MutationIconSprite" type="Sprite3D" parent="Files/File4" unique_id=88052633]
-transform = Transform3D(-1.7484556e-08, 0, 0.4, 0, 0.4, 0, -0.4, 0, -1.7484556e-08, 1.5340867, 0.818599, -0.7574487)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.5340867, 0.818599, -0.76692253)
 texture_filter = 0
 texture = ExtResource("5_r6817")
 
 [node name="LockedIconSprite" type="Sprite3D" parent="Files/File4" unique_id=68916162]
-transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.5340444, 0.818599, -0.7574487)
+transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.5340444, 0.818599, -0.76692253)
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
 
