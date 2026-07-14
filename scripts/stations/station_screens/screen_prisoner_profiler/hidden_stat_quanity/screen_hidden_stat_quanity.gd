@@ -4,17 +4,17 @@ extends Node
 @onready var total_hidden_label : Control = $TotalLabel
 # very hacky but we use this to refrence our real functionality
 @onready var reduce_hidden_quanitiy : Node = $"../../../../../../../../GameManager/CellCreator/AssembleCells/HelperHidden/ReduceHiddenQuanitiy"
-@onready var parent_prisoner_profiler : Node3D = $"../../../.."
+@onready var parent_prisoner_profiler : Node3D = $"../../../../.."
 
 @onready var max_label : Label = $MaxLabel
 @onready var max_arrow : Sprite2D = $MaxArrow
 
-var max_stats_to_hide : int 
+var max_stats_to_hide : int
 
 var shake_tween : Tween
 
 
-func _ready() -> void: 
+func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 	
 func _handle_energy_turn_changed() :
@@ -39,7 +39,7 @@ func _profiler_changed_hidden_stat() :
 	
 
 func prisoner_quanity_changed(potential_max_stats_to_hide : int) :
-	var quanity = parent_prisoner_profiler.prisoner_quantity
+	var quanity = parent_prisoner_profiler.current_prisoner_quanity
 	potential_max_stats_to_hide = reduce_hidden_quanitiy._handle_reduce_quanity(quanity, potential_max_stats_to_hide)
 	return potential_max_stats_to_hide
 	
@@ -47,12 +47,11 @@ func prisoner_quanity_changed(potential_max_stats_to_hide : int) :
 func stat_disabled(potential_max_stats_to_hide : int) :
 	# we flip the disabled because its looking for 'enabled'
 	potential_max_stats_to_hide = reduce_hidden_quanitiy._handle_reduce_disabled(
-		!parent_prisoner_profiler.strength_disabled,
-		!parent_prisoner_profiler.intelligence_disabled,
-		!parent_prisoner_profiler.community_disabled,
+		parent_prisoner_profiler.strength_enabled,
+		parent_prisoner_profiler.intelligence_enabled,
+		parent_prisoner_profiler.community_enabled,
 		potential_max_stats_to_hide
 	)
-	
 	return potential_max_stats_to_hide
 	
 	
@@ -61,8 +60,8 @@ func check_for_max_label(potential_max_stats_to_hide : int) :
 		max_label.visible = true
 		max_arrow.visible = true
 	else :
-		max_label.visible = false 
-		max_arrow.visible = false 
+		max_label.visible = false
+		max_arrow.visible = false
 
 	
 func check_for_hidden_stat_min(potential_max_stats_to_hide : int) :

@@ -5,7 +5,6 @@ extends Node
 @onready var assemble_cells : Node = $AssembleCells
 @onready var assemble_target : Node = $AssembleTarget
 @onready var incrmental_value_controller : Node = $"../IncrementalValueController"
-@onready var prisoner_picks : Node = $PrisonerPicks
 
 var current_cell_constructor : CellConstructor
 
@@ -41,7 +40,6 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 
 	current_cell_constructor = cell_constructor
 	
-
 	if not prevent_update_incr_update:
 		var curr_round = GLGameManagerBus.current_round
 		var curr_energy = GLGameManagerBus.curr_energy
@@ -51,8 +49,8 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 			curr_energy,
 		)
 		
-	# decide prisoner quanity			
-	prisoner_picks._handle_prisoner_pricks(cell_constructor.cell_quantity)
+	# decide prisoner picks quanity			
+	GLPrisonerPicks.prisoners_to_pick = cell_constructor.prisoner_picks
 			
 			
 	GLCellManagerBus.emit_signal('delete_remaining_prisoners')

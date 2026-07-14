@@ -35,7 +35,6 @@
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
 [ext_resource type="Script" uid="uid://6f1el8t17ykk" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/debug_create_mutation.gd" id="25_ngeto"]
-[ext_resource type="Script" uid="uid://t2trt0c7dhvc" path="res://scripts/game_manager/cell_creator/helpers/prisoner_picks.gd" id="26_87p7k"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutation_manager/mutation_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
@@ -254,9 +253,6 @@ mutation_manager = NodePath("../../../MutationManager")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")
-
-[node name="PrisonerPicks" type="Node" parent="GameManager/CellCreator" unique_id=1885541045]
-script = ExtResource("26_87p7k")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")

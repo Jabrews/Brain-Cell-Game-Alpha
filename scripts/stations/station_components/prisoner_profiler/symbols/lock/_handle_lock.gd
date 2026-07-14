@@ -10,16 +10,6 @@ extends Node
 @onready var help_lock_small_stat_display : Node = $LockSmallStatDisplay
 
 
-#func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed('debug1') :
-		#IVPrisonerProfiler.strength_stat_lock_percant_index += 1
-		#_generate_locks()
-	#if Input.is_action_just_pressed('debug2') :
-		#IVPrisonerProfiler.strength_stat_lock_percant_index -= 1
-		#_generate_locks()
-		
-		
-
 func _generate_locks() -> void:
 	var max_value: float = IVCellCreator.max_stat_value
 	var total_stat_value: float = IVCellCreator.total_stat_value

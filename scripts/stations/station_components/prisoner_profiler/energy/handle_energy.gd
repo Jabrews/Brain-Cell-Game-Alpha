@@ -1,6 +1,7 @@
 extends Node
 
-var prisoner_quanity_btn_energy_used : int = 0
+var prisoner_picks_energy_used : int = 0
+var safe_mode_energy_gained : int = 0
 var stat_value_energy_used = {
 	'strength' : 0,
 	'intelligence' : 0,
@@ -57,7 +58,8 @@ func _handle_energy_changed() -> void:
 func reset_energy_used() -> void:
 	
 	
-	prisoner_quanity_btn_energy_used = 0
+	prisoner_picks_energy_used = 0
+	safe_mode_energy_gained = 0
 	
 	for key in stat_value_energy_used:
 		stat_value_energy_used[key] = 0
@@ -73,7 +75,8 @@ func recalculate_impending_energy() -> void:
 
 
 func get_total_energy_used() -> int:
-	var total : int = prisoner_quanity_btn_energy_used
+	var total : int = prisoner_picks_energy_used 
+	total += safe_mode_energy_gained
 	
 	for key in stat_value_energy_used:
 		total += stat_value_energy_used[key]
@@ -124,14 +127,27 @@ func _update_energy_toggle_stat_value_enabled(stat_type : String, toggle_value :
 	helper_update_energy_panel._update()
 
 
-func _update_energy_player_pressed_prisoner_quanity_btn(prisoner_quanity : int) -> void:
+func _update_toggle_safe_mode_active(toggle_value : bool) :
 	
-	if prisoner_quanity == 2:
-		prisoner_quanity_btn_energy_used = -10
-	elif prisoner_quanity == 4:
-		prisoner_quanity_btn_energy_used = -20
+	if toggle_value : 	
+		safe_mode_energy_gained = 10
+	else : 
+		safe_mode_energy_gained = 0
+	
+	recalculate_impending_energy()
+	helper_update_energy_panel._update()
+	
+	
+	
+
+func _update_energy_player_pressed_prisoner_picks_btn(prisoner_picks: int) -> void:
+	
+	if prisoner_picks == 1:
+		prisoner_picks_energy_used = -10
+	elif prisoner_picks == 2:
+		prisoner_picks_energy_used = -20
 	else:
-		prisoner_quanity_btn_energy_used = 0
+		prisoner_picks_energy_used = 0
 	
 	recalculate_impending_energy()
 	helper_update_energy_panel._update()

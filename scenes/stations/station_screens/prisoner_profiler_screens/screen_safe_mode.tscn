@@ -1,0 +1,199 @@
+[gd_scene format=3 uid="uid://qq4225jhp0tc"]
+
+[ext_resource type="Script" uid="uid://day8qt2ke7tec" path="res://scripts/stations/station_screens/screen_prisoner_profiler/safe_mode/screen_safe_mode.gd" id="1_qsgae"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="2_a6ltm"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_r8mn3"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_dr1ch"]
+[ext_resource type="Script" uid="uid://dlkwt78hm0yuv" path="res://scripts/mutation_file_cabinet/press_to_leave.gd" id="5_7ahy3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cp02d"]
+shader = ExtResource("2_a6ltm")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pl004"]
+load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
+
+[node name="SafeMode" type="Node2D" unique_id=508341564]
+script = ExtResource("1_qsgae")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1633330818]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 480.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=85775924]
+material = SubResource("ShaderMaterial_cp02d")
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="Active" type="Control" parent="." unique_id=1595648848]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Active" type="Label" parent="Active" unique_id=1038938549]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 460.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0.1333332, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 40
+text = "Active"
+horizontal_alignment = 1
+
+[node name="List" type="Label" parent="Active" unique_id=1929722552]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 69.0
+offset_right = 460.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 17
+text = "1. Only Two prisoners
+2. No mutations possible
+3.      energy"
+
+[node name="EnergyParent" type="Control" parent="Active" unique_id=248554241]
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="Plus" type="Label" parent="Active/EnergyParent" unique_id=1915028709]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 123.0
+offset_right = 503.0
+offset_bottom = 204.0
+theme_override_colors/font_color = Color(0.36720812, 0.825414, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("4_dr1ch")
+theme_override_font_sizes/font_size = 30
+text = "+  "
+
+[node name="Sprite2D" type="Sprite2D" parent="Active/EnergyParent" unique_id=843394793]
+modulate = Color(0.6117647, 1, 0, 1)
+texture_filter = 1
+position = Vector2(117.5, 140.5)
+scale = Vector2(1.5333333, 1.0714284)
+texture = SubResource("CompressedTexture2D_pl004")
+
+[node name="10" type="Label" parent="Active/EnergyParent" unique_id=158553282]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 133.0
+offset_right = 522.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(0.36720812, 0.825414, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 17
+text = "10"
+
+[node name="WarningParent" type="Control" parent="Active" unique_id=2079759868]
+anchors_preset = 0
+offset_top = 177.0
+offset_right = 40.0
+offset_bottom = 217.0
+
+[node name="ColorRect" type="ColorRect" parent="Active/WarningParent" unique_id=196742423]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 95.0
+color = Color(0.30110523, 3.5195612e-07, 9.62615e-08, 1)
+
+[node name="Warning" type="Label" parent="Active/WarningParent" unique_id=1933580589]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 36.0
+offset_right = 473.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 17
+text = "Can only be called once
+per round"
+
+[node name="Warning2" type="Label" parent="Active/WarningParent" unique_id=992330847]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 10.0
+offset_right = 473.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 19
+text = "Warning -"
+script = ExtResource("5_7ahy3")
+
+[node name="Inactive" type="Control" parent="." unique_id=810381670]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Inactive" type="Label" parent="Inactive" unique_id=2122304521]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 16.0
+offset_right = 460.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 40
+text = "inactive"
+horizontal_alignment = 1
+
+[node name="SafeModeDisabled" type="Label" parent="Inactive" unique_id=153695766]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 104.0
+offset_right = 460.0
+offset_bottom = 182.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 14
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 32
+text = "Safe Mode
+Disabled"
+horizontal_alignment = 1
+
+[node name="UsedUp" type="Control" parent="." unique_id=1269468732]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SafeModeUsedUp" type="Label" parent="UsedUp" unique_id=1326831282]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 100.0
+offset_right = 460.0
+offset_bottom = 178.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 14
+theme_override_fonts/font = ExtResource("3_r8mn3")
+theme_override_font_sizes/font_size = 25
+text = "Safe Mode Used
+..."
+horizontal_alignment = 1

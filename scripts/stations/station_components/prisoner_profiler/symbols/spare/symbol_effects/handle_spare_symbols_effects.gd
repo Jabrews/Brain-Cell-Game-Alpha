@@ -8,7 +8,6 @@ var community_spare_symbol : StatSpareSymbol = StatSpareSymbol.new('none', '')
 
 @onready var handle_energy : Node = $"../../../HandleEnergy"
 
-
 func _activate(toggle_value : bool, spare_icon_constructor: SpareIconConstuctor) -> void:
 	
 	match spare_icon_constructor.stat :

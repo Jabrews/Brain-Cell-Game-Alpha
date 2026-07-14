@@ -52,7 +52,7 @@ func _handle_feedback_requested(type : String, data : Dictionary) :
 			show_feedback_screen('invalid energy', Color.YELLOW)
 		'batch_created' :
 			show_feedback_screen('batch created', Color.CADET_BLUE)
-		'prisoner_quanity_not_selected' :
-			show_feedback_screen('select prisoner quanity', Color.RED)
+		'prisoner_picks_not_selected' :
+			show_feedback_screen('select prisoner picks ', Color.RED)
 	
 	

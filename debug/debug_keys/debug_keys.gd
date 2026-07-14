@@ -7,10 +7,7 @@ extends Node
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
-		var cells : Array[BrainCell]= cell_manager.prisoner_cells 
-		for cell in cells : 
-			print('cell name : ', cell.name)
-			print('cell mutation : ', cell.mutation)
+		GLGameManagerBus.emit_signal('proceed_next_round')
 	
 	if Input.is_action_just_pressed('debug2') :	
 		pass

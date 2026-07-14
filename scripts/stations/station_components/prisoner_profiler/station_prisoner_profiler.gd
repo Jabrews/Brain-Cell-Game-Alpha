@@ -1,7 +1,12 @@
 extends Node
 
 var selected_stat : String = ''
-var current_prisoner_quanity : int = 0
+
+var current_prisoner_quanity : int = 4
+var current_prisoner_picks : int = 0
+var safe_mode_active : bool = false
+var safe_mode_used : bool = false
+
 
 var strength_value : int = 0
 var intelligence_value : int = 0
@@ -15,7 +20,6 @@ var community_enabled : bool = true
 var strength_lock_starting_value : int = 0
 var intelligence_lock_starting_value : int = 0
 var community_lock_starting_value : int = 0
-# TODO use for finale assembler directions. prevent 
 var stat_values_inside_lock_range = {
 	'strength' : false,
 	'intelligence' : false,
@@ -23,7 +27,6 @@ var stat_values_inside_lock_range = {
 }
 # innaccesibile
 var inaccessible_starting_value : int = 0
-
 
 # componnets
 # display componnets
@@ -34,8 +37,9 @@ var inaccessible_starting_value : int = 0
 ]
 @onready var screen_small_stat_display : Node2D = $ControlInterface/SmallStatDisplay/TvFrontPanel/SubViewport/SmallStatDisplay
 @onready var control_interface : Node3D = $ControlInterface
-# extra
 @onready var on_off_btn : StaticBody3D = $ControlInterface/Control/OnOffBtn
+@onready var screen_hidden_stat_quanity: Node2D = $StatDisplay/HiddenQuanityTV/TvFrontPannel/SubViewport/ScreenHiddenStatQuanity
+
 
 # helpers
 # symbols
@@ -43,12 +47,14 @@ var inaccessible_starting_value : int = 0
 @onready var handle_lock : Node = $Logic/Symbols/HandleLock
 # spare symbols
 # for getting them and setting with global game manager class
-@onready var handle_spare_symbols: Node = $Logic/Symbols/HandleSpareSymbols 
+@onready var handle_spare_symbols: Node = $Logic/Symbols/HandleSpareSymbols
 # happens after each stat increment to check status
-@onready var spare_symbol_evaluator : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEvaluator 
+@onready var spare_symbol_evaluator : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEvaluator
 # where we hold the finale stat of stat status and its consquences
-@onready var spare_symbol_effects : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEffects 
+@onready var spare_symbol_effects : Node = $Logic/Symbols/HandleSpareSymbols/SpareSymbolEffects
 
+# safe mode
+@onready var handle_safe_mode : Node = $Logic/HandleSafeMode
 # energy
 @onready var handle_energy : Node = $Logic/HandleEnergy
 # extra helpers
@@ -68,16 +74,49 @@ func _ready() -> void:
 	handle_spare_symbols._generate_spare()
 	
 
-func _update_prisoner_quanity(new_prisoner_quanity : int) :
-	current_prisoner_quanity = new_prisoner_quanity
+func _handle_safe_mode_lever_switched() :
+		
+	safe_mode_active = !safe_mode_active
 	
-	# update energy
-	handle_energy._update_energy_player_pressed_prisoner_quanity_btn(current_prisoner_quanity)
+	# refresh small stat screen
+	update_selected_stat('')
+	
+	# TODO 	
+	# can only be done once per round
 	
 	# audio
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 	
+	# switch 
+	if not safe_mode_active :
+		current_prisoner_quanity = 4
+		current_prisoner_picks = 0
+		
+	if safe_mode_active :
+		current_prisoner_quanity = 2
+		current_prisoner_picks = 1
+		
+	# update hidden stat quanity
+	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
 	
+	# update energy
+	handle_energy._update_energy_player_pressed_prisoner_picks_btn(0)
+	handle_energy._update_toggle_safe_mode_active(safe_mode_active)
+	
+
+func _update_prisoner_picks(prisoner_picks : int) :
+	
+	if safe_mode_active :
+		return
+	
+	current_prisoner_picks = prisoner_picks
+	
+	# update energy
+	handle_energy._update_energy_player_pressed_prisoner_picks_btn(prisoner_picks)
+	
+	
+	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+
 
 func update_selected_stat(stat_type : String) :
 	
@@ -107,12 +146,12 @@ func _handle_stat_value_changed(stat_type : String, new_value : int) :
 	# audio
 	audio_manager.play_increment_sound()
 	
-	## check if pris. quanity selected
-	if current_prisoner_quanity == 0 :
+	## check if pris. pricks selected
+	if current_prisoner_picks == 0 :
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
 		GLPrisonerProfilerComponentsBus.emit_signal(
 			'station_feedback_requested',
-			'prisoner_quanity_not_selected',
+			'prisoner_picks_not_selected',
 			{}
 		)
 		audio_manager.play_feedback_sound()
@@ -206,6 +245,12 @@ func _handle_toggle_stat_enabled() :
 	# update energy	
 	handle_energy._update_energy_toggle_stat_value_enabled(selected_stat, enabled_status, last_value)
 	
+	# update hidden stat quanity
+	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
+	
+	# update spare symbol
+	spare_symbol_evaluator._refresh_spare_icon_current_state(selected_stat, enabled_status , last_value)
+	
 	update_display_componnets(selected_stat)
 
 
@@ -234,9 +279,12 @@ func _handle_next_round() :
 	handle_inaccesible._generate_inaccessible()
 	handle_lock._generate_locks()
 	handle_spare_symbols._generate_spare()
+	safe_mode_used = false
 	
 func reset_assembler() :
-	current_prisoner_quanity = 0
+	current_prisoner_quanity = 4
+	current_prisoner_picks = 0
+	safe_mode_active = false
 	strength_value = 0
 	strength_enabled = true
 	intelligence_value = 0
@@ -261,6 +309,17 @@ func handle_generate_btn_pressed() :
 		GLPrisonerProfilerComponentsBus.emit_signal(
 			'station_feedback_requested',
 			'error_prisoner_quanity', {}
+		)
+		audio_manager.play_feedback_sound()
+		return
+		
+	# prevent if prisoner picks not selected
+	if current_prisoner_picks == 0 :
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed')
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			'station_feedback_requested',
+			'prisoner_picks_not_selected',
+			{}
 		)
 		audio_manager.play_feedback_sound()
 		return
@@ -327,10 +386,15 @@ func handle_generate_btn_pressed() :
 	
 	var prisoner_cell_constructor : CellConstructor = CellConstructor.new(
 		current_prisoner_quanity,
+		current_prisoner_picks,
 		strength_stat_constructor,
 		intelligence_stat_constructor,
 		community_stat_constructor
 	)
+	
+	if safe_mode_active : 
+		safe_mode_used = true
+		handle_safe_mode._safe_mode_used()
 	
 	
 	GLCellCreatorBus.emit_signal(
