@@ -1,6 +1,7 @@
 extends Node
 
-@export var mutation_manager : Node 
+# game manager componnet
+@export var mutations_seen_manager : Node 
 
 # componnets
 @onready var file_cam : Camera3D = $cam

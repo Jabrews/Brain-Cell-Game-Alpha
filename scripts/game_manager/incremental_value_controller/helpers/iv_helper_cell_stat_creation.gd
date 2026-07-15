@@ -86,7 +86,7 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 				IVCellCreator.clean_stat_addition_min = 7
 				IVCellCreator.clean_stat_addition_max = 12
 				IVCellCreator.defect_stat_addition_min = 0
-				IVCellCreator.defect_stat_addition_max = 112
+				IVCellCreator.defect_stat_addition_max = 12
 			2 :
 				IVCellCreator.clean_stat_addition_min = 5
 				IVCellCreator.clean_stat_addition_max = 15

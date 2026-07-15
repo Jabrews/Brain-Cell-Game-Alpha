@@ -5,6 +5,7 @@ extends Node
 @onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
 @onready var create_hidden_stats : Node = $HelperHidden
 @onready var debug_create_mutaion : Node = $DebugCreateMutation
+@onready var create_mutations : Node = $HelperCreateMutations
 
 func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
@@ -69,7 +70,11 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
 	######################
 
+	#### CELL MUTATIONS ####
 
+	prisoner_cells = create_mutations._handle_mutations(cell_constructor, prisoner_cells)
+
+	#######################
 	return prisoner_cells
 		
 		

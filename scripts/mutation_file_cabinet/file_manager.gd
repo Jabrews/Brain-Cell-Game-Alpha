@@ -12,7 +12,6 @@ var file_infos: Array[FileInfo] = [
 	FileInfo.new("cognisance", false, ""),
 	FileInfo.new("telekinetic", false, ""),
 	FileInfo.new("unstable", false, ""),
-	
 ]
 
 # components
@@ -20,11 +19,11 @@ var file_infos: Array[FileInfo] = [
 
 
 func _refresh_file_info_seen_by_player() -> void:
-	var mutation_manager: Node = get_parent().mutation_manager
+	var mutations_seen_manager: Node = get_parent().mutations_seen_manager
 
 	# Update seen status for every FileInfo.
 	for file_info: FileInfo in file_infos:
-		var mutation_was_seen: bool = mutation_manager.mutations_seen.get(file_info.type, false)
+		var mutation_was_seen: bool = mutations_seen_manager.mutations_seen.get(file_info.type, false)
 		file_info.seen = mutation_was_seen
 
 	var file_parents: Array[Node] = files_parent_node.get_children()

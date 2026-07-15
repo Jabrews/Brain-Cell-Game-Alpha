@@ -34,9 +34,9 @@
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
-[ext_resource type="Script" uid="uid://6f1el8t17ykk" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/debug_create_mutation.gd" id="25_ngeto"]
+[ext_resource type="Script" uid="uid://dwasjpvk3h1om" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_create_mutations.gd" id="27_8muua"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
-[ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutation_manager/mutation_manager.gd" id="32_62614"]
+[ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
@@ -46,6 +46,7 @@
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
+[ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -214,9 +215,9 @@ game_screen_scene = ExtResource("13_wv5kd")
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
 
-[node name="MutationFileCabinet" parent="Stations" unique_id=103506904 node_paths=PackedStringArray("mutation_manager") instance=ExtResource("17_j7s3e")]
+[node name="MutationFileCabinet" parent="Stations" unique_id=103506904 node_paths=PackedStringArray("mutations_seen_manager") instance=ExtResource("17_j7s3e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 12)
-mutation_manager = NodePath("../../GameManager/MutationManager")
+mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 
 [node name="UnhideMutation" parent="Stations" unique_id=1284783246 instance=ExtResource("18_8muua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
@@ -247,9 +248,10 @@ script = ExtResource("20_wv5kd")
 [node name="PlantHiddenBombs" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperHidden" unique_id=772278210]
 script = ExtResource("21_w7r6u")
 
-[node name="DebugCreateMutation" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1408101034 node_paths=PackedStringArray("mutation_manager")]
-script = ExtResource("25_ngeto")
-mutation_manager = NodePath("../../../MutationManager")
+[node name="HelperCreateMutations" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1408101034]
+script = ExtResource("27_8muua")
+
+[node name="AllHiddenEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=1325533085]
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")
@@ -271,7 +273,7 @@ cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 wait_time = 10.0
 one_shot = true
 
-[node name="MutationManager" type="Node" parent="GameManager" unique_id=1865371392]
+[node name="MutationSeenManager" type="Node" parent="GameManager" unique_id=1865371392]
 script = ExtResource("32_62614")
 
 [node name="IncrementalValueController" type="Node" parent="GameManager" unique_id=823228964]
@@ -291,6 +293,9 @@ script = ExtResource("36_87p7k")
 
 [node name="IVHelperShareholderItems" type="Node" parent="GameManager/IncrementalValueController" unique_id=1162582102]
 script = ExtResource("37_ngeto")
+
+[node name="IVHelperMutations" type="Node" parent="GameManager/IncrementalValueController" unique_id=1442218971]
+script = ExtResource("40_8muua")
 
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
