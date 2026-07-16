@@ -23,8 +23,9 @@ func _process(_delta: float) -> void:
 	
 	if not player:
 		return
-	
-	_face_player_y_only()
+		
+	if visible and player : 
+		_face_player_y_only()
 
 
 func _face_player_y_only() -> void:
@@ -37,3 +38,6 @@ func _face_player_y_only() -> void:
 	var target_yaw: float = atan2(dir.x, dir.z) + yaw_offset
 
 	global_rotation.y = target_yaw
+
+func set_player_reference(player_reference: CharacterBody3D) -> void:
+	player = player_reference

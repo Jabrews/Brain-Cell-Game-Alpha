@@ -87,10 +87,6 @@ func handle_display_stat_info(stat : BrainCellStat) -> void:
 		
 	var target_value = target_stat_value / max_val
 	
-	print('pris : ', prisoner_value)
-	print('target: ', target_value)
-	
-	
 	bar.material.set_shader_parameter("prisoner_value", prisoner_value)
 	bar.material.set_shader_parameter("target_value", target_value)
 

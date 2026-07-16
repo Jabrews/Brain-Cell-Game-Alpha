@@ -25,6 +25,10 @@ func change_progression_step(round : int, curr_energy: int) :
 		
 		# any event calls
 		GLUsableItemBus.emit_signal('spawn_new_usable_items')
+		
+		
+		handle_energy(round, GLGameManagerBus.curr_energy)	
+		
 		GLGameManagerBus.emit_signal('process_next_round')
 		
 		last_round = round

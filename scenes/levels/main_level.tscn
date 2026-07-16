@@ -35,6 +35,9 @@
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
 [ext_resource type="Script" uid="uid://dwasjpvk3h1om" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_create_mutations.gd" id="27_8muua"]
+[ext_resource type="Script" uid="uid://c4gogd5xjpkc1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/apply_helpers/apply_all_hidden_event.gd" id="28_010mg"]
+[ext_resource type="Script" uid="uid://glu7ug3nwrmw" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/get_best_cell.gd" id="29_es3sd"]
+[ext_resource type="Script" uid="uid://ghogw2ee3kui" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/apply_helpers/apply_mutations_default.gd" id="29_qr77o"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
@@ -251,7 +254,16 @@ script = ExtResource("21_w7r6u")
 [node name="HelperCreateMutations" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1408101034]
 script = ExtResource("27_8muua")
 
-[node name="AllHiddenEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=1325533085]
+[node name="ApplyAllHiddenEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=1325533085 node_paths=PackedStringArray("mutation_seen_manager")]
+script = ExtResource("28_010mg")
+mutation_seen_manager = NodePath("../../../../MutationSeenManager")
+
+[node name="ApplyMutationsDefault" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=1605112857 node_paths=PackedStringArray("mutation_seen_manager")]
+script = ExtResource("29_qr77o")
+mutation_seen_manager = NodePath("../../../../MutationSeenManager")
+
+[node name="GetBestCell" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=844674429]
+script = ExtResource("29_es3sd")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")

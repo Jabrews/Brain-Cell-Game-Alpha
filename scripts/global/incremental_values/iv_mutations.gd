@@ -16,7 +16,7 @@ var all_mutations : Array[BrainCellMutation] = [
 var good_mutations : Array[BrainCellMutation] = []
 var bad_mutations : Array[BrainCellMutation] = []
 
-var min_mutations_per_batch : int = 0
+var min_mutations_per_batch : int = 1
 var max_mutations_per_batch : int = 1
 
 var chance_to_exit_mutation_loop : int = 50
@@ -24,4 +24,15 @@ var chance_to_exit_mutation_loop : int = 50
 var good_mutation_chance : int = 25
 var bad_mutation_chance : int = 25
 
-var chance_for_all_hidden_event = 25
+var chance_for_all_hidden_event = 1
+
+## apply both ##
+var chance_to_target_best_cell_for_mutation : int = 25
+
+## apply mutation default ##
+var chance_to_hide_mutation : int = 25
+var min_fake_mutations_per_batch : int = 1
+var max_fake_mutations_per_batch : int = 1
+
+
+## apply all hidden event ##
