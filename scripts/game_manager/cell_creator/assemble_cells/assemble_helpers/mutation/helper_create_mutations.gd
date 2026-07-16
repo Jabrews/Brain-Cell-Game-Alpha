@@ -3,6 +3,7 @@ extends Node
 # componnet apply helpers
 @onready var apply_all_hidden_event : Node = $ApplyAllHiddenEvent
 @onready var apply_mutations_default : Node = $ApplyMutationsDefault
+@onready var sort_best_cells : Node = $SortBestCells
 
 var avaible_good_mutations : Array[BrainCellMutation] = []
 var avaible_bad_mutations : Array[BrainCellMutation] = []
@@ -30,14 +31,12 @@ func _handle_mutations(cell_constructor : CellConstructor, prisoner_cells : Arra
 		return prisoner_cells
 		
 	# chance to not do mutations
-	var ran_num = randi_range(0, 100)
+	var ran_num = randi_range(1, 100)
 	var chance_to_exit_mutation_loop = IVMutations.chance_to_exit_mutation_loop
 	if ran_num <= chance_to_exit_mutation_loop : 
 		print('exit via chance : ', IVMutations.chance_to_exit_mutation_loop)
 		return prisoner_cells
 		
-	#####################
-	
 	
 	### GET MUTATIONS ####
 	
@@ -48,27 +47,29 @@ func _handle_mutations(cell_constructor : CellConstructor, prisoner_cells : Arra
 	# IF found then roll 50/50 ran_num for adding it
 	# make sure it doesnt already exist
 	
-	
-	batch_mutations = get_batch_mutations(batch_mutations)
-	
-	if len(batch_mutations) == 0 : 
-		return prisoner_cells
+	while len(batch_mutations) == 0 : 
+		batch_mutations = get_batch_mutations(batch_mutations)
 	
 	######################
+	
+	## SORT PRISONER CELLS ##	
+	prisoner_cells = sort_best_cells._handle_sort(prisoner_cells)
 	
 	
 	### DECIDE HELPER ####
 	
-	## TODO if less than 50% energy and no mutations in deck force event
+	# TODO set up 
+	prisoner_cells = apply_mutations_default._handle_apply(prisoner_cells, batch_mutations)		
 	
-	# decide if all hidden event	
-	var event_num = randi_range(0, 100)
-	var chance_for_all_hidden_event = IVMutations.chance_for_all_hidden_event
 	
-	if event_num <= chance_for_all_hidden_event : 	
-		prisoner_cells = apply_all_hidden_event._handle_apply(prisoner_cells, batch_mutations)
-	else : 
-		prisoner_cells = apply_mutations_default._handle_apply(prisoner_cells, batch_mutations)		
+	## decide if all hidden event	
+	#var event_num = randi_range(0, 100)
+	#var chance_for_all_hidden_event = IVMutations.chance_for_all_hidden_event
+	#
+	#if event_num <= chance_for_all_hidden_event : 	
+		#prisoner_cells = apply_all_hidden_event._handle_apply(prisoner_cells, batch_mutations)
+	#else : 
+		#prisoner_cells = apply_mutations_default._handle_apply(prisoner_cells, batch_mutations)		
 	######################
 	
 	return prisoner_cells	

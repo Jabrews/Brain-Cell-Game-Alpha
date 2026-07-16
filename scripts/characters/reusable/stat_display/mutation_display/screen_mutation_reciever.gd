@@ -13,7 +13,7 @@ extends Node
 
 
 
-func _handle_brain_cell_recieved(cell_mutation : BrainCellMutation) -> void:
+func _handle_mutation_recieved(cell_mutation : BrainCellMutation) -> void:
 	
 	if not cell_mutation:
 		no_mutation_found()

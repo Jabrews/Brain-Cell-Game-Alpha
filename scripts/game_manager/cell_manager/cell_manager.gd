@@ -352,11 +352,13 @@ func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : Bra
 	
 ## DEBUG 
 func _handle_debug_unhide_collected_cell_mutation(selected_cell : BrainCell) : 
-	selected_cell.mutation.hidden = false
 	
-	if selected_cell.mutation.type == 'none' :
-		selected_cell.mutation = null
-	
+	for mutation : BrainCellMutation in selected_cell.mutations : 
+		mutation.hidden = false	
+		
+		if mutation.type == 'none' :
+			selected_cell.mutations.erase(mutation)
+		
 	update_collected_cells([selected_cell])
 	
 	

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ckrv76w6i5vlp"]
+
+[ext_resource type="Script" uid="uid://4dkkevad5m2s" path="res://scripts/characters/reusable/stat_display/stat_tv_mesh.gd" id="1_xpd8m"]
+[ext_resource type="PackedScene" uid="uid://da3p02uurd25c" path="res://scenes/characters/reusable/stat_display/screen_mutation_display.tscn" id="2_pg7q0"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7ckj6"]
+viewport_path = NodePath("StatDisplay/StatMesh/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mw4ch"]
+albedo_texture = SubResource("ViewportTexture_7ckj6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sdtlu"]
+material = SubResource("StandardMaterial3D_mw4ch")
+size = Vector2(0.6, 0.5)
+
+[node name="MutationMesh" type="MeshInstance3D" unique_id=119858591]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 0, 0)
+mesh = SubResource("PlaneMesh_sdtlu")
+script = ExtResource("1_xpd8m")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=441435649]
+size = Vector2i(180, 180)
+
+[node name="MutationRecieverScreen" parent="SubViewport" unique_id=1769955241 instance=ExtResource("2_pg7q0")]

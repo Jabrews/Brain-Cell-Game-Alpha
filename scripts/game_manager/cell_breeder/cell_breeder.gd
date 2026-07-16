@@ -80,7 +80,7 @@ func _create_breeded_cell(
 
 	var new_cell = BrainCell.new(
 		cell_name,
-		null, #TODO cell breeder should get mutation
+		[], #TODO cell breeder should get mutation
 		_create_stat(
 			"strength",
 			clean_stat_array[0],

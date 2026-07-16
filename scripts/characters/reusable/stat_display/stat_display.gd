@@ -1,8 +1,10 @@
 extends Node3D
 
-@onready var screen_mutation_reciever_display : Node2D =$MutationMesh/SubViewport/MutationRecieverScreen
-@onready var screen_stat_reciever_display : Node2D =$StatMesh/SubViewport/BasicRecieverScreen
-@onready var mutation_mesh : MeshInstance3D = $MutationMesh
+@onready var screen_stat_reciever_display : Node2D = $StatMesh/SubViewport/BasicRecieverScreen
+
+# mutation mesh ndoe stuff
+@onready var mutation_mesh_tv_scene : PackedScene = preload("res://scenes/characters/reusable/stat_display/mutation_mesh_tv.tscn")
+@onready var mutation_mesh_parent : Node3D = $MutationMeshParent
 
 @export var yaw_offset: float = 0.0
 
@@ -10,12 +12,52 @@ var player : CharacterBody3D
 
 
 func _handle_brain_cell_recieved(cell : BrainCell) -> void:
+	
 	screen_stat_reciever_display._handle_brain_cell_recieved(cell)
 	
-	if cell.mutation : 
-		screen_mutation_reciever_display._handle_brain_cell_recieved(cell.mutation)
-	else : 
-		mutation_mesh.visible = false
+	# dealing with mutation screens
+	reset_mutation_tvs()
+	if len(cell.mutations) > 0 : 
+		load_mutation_screen(cell.mutations)
+	
+func load_mutation_screen(mutations : Array[BrainCellMutation]) :	
+	
+	if len(mutations) > 3 : 
+		push_error('too many mutations on cell to display')
+	
+	var mutation_index = 0
+	
+	for mutation in mutations : 	
+		
+		var mutation_mesh_tv_instance : MeshInstance3D = mutation_mesh_tv_scene.instantiate()
+		
+		mutation_mesh_parent.add_child(mutation_mesh_tv_instance)
+		
+		# always apply rotation		
+		#mutation_mesh_tv_instance.rotation = Vector3(90.0, 90.0, 0.0)
+		
+		# set in proper position
+		match mutation_index : 	
+			0 : 
+				mutation_mesh_tv_instance.position = Vector3(0.008, 1.529, -1.05)
+			1 : 
+				mutation_mesh_tv_instance.position = Vector3(0.008, 0.933, -1.05)
+			2 : 
+				mutation_mesh_tv_instance.position = Vector3(0.008, 1.529, -1.73)
+				
+		var screen_mutation_display: Node2D = mutation_mesh_tv_instance.get_node(
+			"SubViewport/MutationRecieverScreen"
+		)
+
+		screen_mutation_display._handle_mutation_recieved(mutation)
+
+		mutation_index += 1
+
+func reset_mutation_tvs() :
+	for mution_mesh_tv : MeshInstance3D in mutation_mesh_parent.get_children() :
+		mution_mesh_tv.queue_free()
+	
+	
 
 func _process(_delta: float) -> void:
 	if not visible:

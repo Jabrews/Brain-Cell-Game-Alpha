@@ -33,7 +33,7 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
 		var new_prisoner_cell = BrainCell.new(
 			new_name,
-			null,
+			[],
 			clean_strength,
 			clean_intelligence,
 			clean_community,

@@ -26,13 +26,9 @@ var bad_mutation_chance : int = 25
 
 var chance_for_all_hidden_event = 1
 
-## apply both ##
-var chance_to_target_best_cell_for_mutation : int = 25
+var amount_of_best_cells_sorted = 2
 
 ## apply mutation default ##
 var chance_to_hide_mutation : int = 25
 var min_fake_mutations_per_batch : int = 1
 var max_fake_mutations_per_batch : int = 1
-
-
-## apply all hidden event ##
