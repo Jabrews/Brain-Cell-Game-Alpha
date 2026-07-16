@@ -3,7 +3,11 @@ extends Node
 # componnet apply helpers
 @onready var apply_all_hidden_event : Node = $ApplyAllHiddenEvent
 @onready var apply_mutations_default : Node = $ApplyMutationsDefault
+
+
+# other heleprs
 @onready var sort_best_cells : Node = $SortBestCells
+@onready var urgency_overide_mutation : Node = $UrgencyOverideMutation
 
 var avaible_good_mutations : Array[BrainCellMutation] = []
 var avaible_bad_mutations : Array[BrainCellMutation] = []
@@ -15,29 +19,36 @@ func _ready() -> void:
 
 func _handle_mutations(cell_constructor : CellConstructor, prisoner_cells : Array[BrainCell]):
 	
+	# we toggle this true when the user needs cells with mutation
+	# often when none mutated cells
+	var force_mutation_urgency : bool = false
+	
+	
 	### EXIT EVENTS ####	
 	if avaible_good_mutations.is_empty() and avaible_bad_mutations.is_empty():
 		return prisoner_cells
 	
 	# if using safe mode
 	if cell_constructor.cell_quantity < 4 : 
-		print('not enough quanity')
 		return prisoner_cells
 		
 	# if no mutations wanted
 	var max_mutations_per_batch : int = IVMutations.max_mutations_per_batch
 	if max_mutations_per_batch <= 0 :
-		print('max mutations per batch = 0 : ', IVMutations.max_fake_mutations_per_batch )
 		return prisoner_cells
 		
 	# chance to not do mutations
 	var ran_num = randi_range(1, 100)
 	var chance_to_exit_mutation_loop = IVMutations.chance_to_exit_mutation_loop
 	if ran_num <= chance_to_exit_mutation_loop : 
-		print('exit via chance : ', IVMutations.chance_to_exit_mutation_loop)
-		return prisoner_cells
 		
-	
+		## OVERIDE EXIT INCASE MUTATION URGENCY ##
+		var overide_exit : bool = urgency_overide_mutation._check_overide()
+		if overide_exit :
+			force_mutation_urgency = true
+		else : 
+			return prisoner_cells
+		
 	### GET MUTATIONS ####
 	
 	# pick mutations for batch
@@ -54,26 +65,33 @@ func _handle_mutations(cell_constructor : CellConstructor, prisoner_cells : Arra
 	
 	## SORT PRISONER CELLS ##	
 	prisoner_cells = sort_best_cells._handle_sort(prisoner_cells)
+	#########################
 	
 	
-	### DECIDE HELPER ####
+	############## APPLY MUTATIONS ##################
 	
-	# TODO set up 
-	prisoner_cells = apply_mutations_default._handle_apply(prisoner_cells, batch_mutations)		
+	### URGENCY ####
+	if not force_mutation_urgency :
+		force_mutation_urgency = urgency_overide_mutation._check_overide()
 	
+	if force_mutation_urgency : 	
+		prisoner_cells = apply_all_hidden_event._handle_apply(prisoner_cells, batch_mutations, true)
+		return prisoner_cells
+	#########################
 	
-	## decide if all hidden event	
-	#var event_num = randi_range(0, 100)
-	#var chance_for_all_hidden_event = IVMutations.chance_for_all_hidden_event
-	#
-	#if event_num <= chance_for_all_hidden_event : 	
-		#prisoner_cells = apply_all_hidden_event._handle_apply(prisoner_cells, batch_mutations)
-	#else : 
-		#prisoner_cells = apply_mutations_default._handle_apply(prisoner_cells, batch_mutations)		
+	### REGULAR DECIDE HELPER ####
+	var event_num = randi_range(0, 100)
+	var chance_for_all_hidden_event = IVMutations.chance_for_all_hidden_event
+	
+	if event_num <= chance_for_all_hidden_event : 	
+		prisoner_cells = apply_all_hidden_event._handle_apply(prisoner_cells, batch_mutations, false)
+	else : 
+		prisoner_cells = apply_mutations_default._handle_apply(prisoner_cells, batch_mutations)		
 	######################
 	
 	return prisoner_cells	
 		
+
 # only continue loop if not past max total 
 # must continue untill min is met
 func get_batch_mutations(batch_mutations : Array[BrainCellMutation]) :

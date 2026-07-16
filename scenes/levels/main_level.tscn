@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://ghogw2ee3kui" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/apply_helpers/apply_mutations_default.gd" id="29_qr77o"]
 [ext_resource type="Script" uid="uid://bt4s0lqsawvmo" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/sort_best_cells.gd" id="30_mj1d0"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
+[ext_resource type="Script" uid="uid://oq36mp5cbjqs" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/urgency_overide_mutation.gd" id="31_mj1d0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
@@ -265,7 +266,8 @@ mutation_seen_manager = NodePath("../../../../MutationSeenManager")
 [node name="SortBestCells" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=356685614]
 script = ExtResource("30_mj1d0")
 
-[node name="OverideExitMutation" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=715320997]
+[node name="UrgencyOverideMutation" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=715320997]
+script = ExtResource("31_mj1d0")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")

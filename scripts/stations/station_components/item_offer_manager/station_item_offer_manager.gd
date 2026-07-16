@@ -115,8 +115,9 @@ func _handle_confirm_btn_pressed() :
 	GLShareholderOfferState.emit_signal('item_offer_success')
 	
 	active_cell_body.spawn_flesh_bug_on_death = false 
-	active_cell_body.switch_cell_state('dying')
-	active_cell_body = null
+	GLCellManagerBus.emit_signal('delete_selected_collected_cell', active_cell_body.designated_brain_cell)
+	#active_cell_body.switch_cell_state('dying')
+	#active_cell_body = null
 	
 	GLCellTrashcanBus.emit_signal('cell_deleted_from_shareholder_offer_station')
 	
