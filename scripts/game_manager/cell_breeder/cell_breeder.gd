@@ -6,6 +6,7 @@ extends Node
 @onready var reduced_cell_charge_stat_helper : Node = $ReducedCellChargeStatHelper
 @onready var reduced_cell_charge_helper : Node = $ReducedCellChargeHelper
 @onready var increase_cell_charge_helper : Node = $IncreaseCellChargeHelper
+@onready var mutation_helper : Node = $MutationHelper
 
 func _ready() -> void:
 	connect_signals()
@@ -80,7 +81,10 @@ func _create_breeded_cell(
 
 	var new_cell = BrainCell.new(
 		cell_name,
-		[], #TODO cell breeder should get mutation
+		mutation_helper._create_mutations(
+			cell_1.mutations,
+			cell_2.mutations
+		),
 		_create_stat(
 			"strength",
 			clean_stat_array[0],

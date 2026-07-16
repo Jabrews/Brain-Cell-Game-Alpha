@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0wtnetxi6per"]
 
 [ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/game_manager/cell_breeder/cell_breeder.gd" id="1_78xhs"]
+[ext_resource type="Script" uid="uid://b2iwd4y5u4jfk" path="res://scripts/game_manager/cell_breeder/helpers/mutation_helper.gd" id="2_8o7bf"]
 [ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/game_manager/cell_breeder/helpers/clean_stat_helper/clean_stat_helper.gd" id="2_y3545"]
 [ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/game_manager/cell_breeder/helpers/defect_stat_helper/defect_stat_helper.gd" id="3_ujhtg"]
 [ext_resource type="Script" uid="uid://wfw8joe2deqf" path="res://scripts/game_manager/cell_breeder/helpers/reduced_cell_charge_stat_helper.gd" id="4_y3545"]
@@ -9,6 +10,9 @@
 
 [node name="CellBreeder" type="Node" unique_id=1798622159]
 script = ExtResource("1_78xhs")
+
+[node name="MutationHelper" type="Node" parent="." unique_id=1898239120]
+script = ExtResource("2_8o7bf")
 
 [node name="CleanStatHelper" type="Node" parent="." unique_id=695787802]
 script = ExtResource("2_y3545")
