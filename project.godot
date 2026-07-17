@@ -54,6 +54,7 @@ IVCellTrashcan="*uid://5hmd4snxnhly"
 GLCellTrashcanBus="*uid://gsbwpxtaipdf"
 GLMutationFileCabinetBus="*uid://dtohx8ijowxkv"
 IVMutations="*uid://bxerlortn8py1"
+GLPrisonerSpawnerBus="*uid://cvxoh5cpd1url"
 
 [debug]
 

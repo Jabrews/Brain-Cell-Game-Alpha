@@ -101,8 +101,6 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 	if changed_brain_cell.name != designated_brain_cell.name:
 		return
 	
-
-	
 	designated_brain_cell = changed_brain_cell
 	
 	# check if cell is froze, if so change stat to frozen
@@ -167,6 +165,8 @@ func check_for_cell_dead_on_start() :
 		# if they can die then kill em
 		if IVCellBreeding.newly_breeded_cell_can_die_from_defect:
 			
+			GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
+			
 			await kill_cell()
 		
 		# if not. that was players free chance.
@@ -184,7 +184,7 @@ func check_for_cell_dead_on_update() :
 	#### age death event ####
 	if designated_brain_cell.life_span <= 0:
 		
-		spawn_flesh_bug_on_death = false
+		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 		
 		await kill_cell()
 		
@@ -194,6 +194,8 @@ func check_for_cell_dead_on_update() :
 	
 	#### defect death event ####
 	if has_fatal_defect():
+		
+		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 		
 		await kill_cell()
 		
@@ -206,15 +208,6 @@ func check_for_cell_dead_on_update() :
 # NOTE : the hidden intepreters itself can still jolt and decrease cell
 func _toggle_cell_put_onto_hidden_interpreter(toggle_value) :
 	on_stat_interpreter = toggle_value
-
-func _on_offer_turn_into_flesh_bug_delay_timeout() -> void:
-	
-	GLCellManagerBus.emit_signal(
-		"delete_selected_collected_cell",
-		designated_brain_cell
-	)
-	
-	state_machine.switch_state(state_machine.State.DYING)
 	
 func _handle_next_round() :
 	spawn_flesh_bug_on_death = false

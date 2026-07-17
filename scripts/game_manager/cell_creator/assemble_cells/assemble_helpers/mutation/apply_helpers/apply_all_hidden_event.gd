@@ -19,6 +19,8 @@ func _handle_apply(
 	else:
 		_apply_regular_mutations(possible_cells, mutations_available)
 
+	GLPrisonerSpawnerBus.emit_signal('apply_mutations_all_hidden')
+
 	return prisoner_cells
 
 

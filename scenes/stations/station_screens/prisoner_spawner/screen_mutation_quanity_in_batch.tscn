@@ -32,6 +32,7 @@ offset_right = 492.0
 offset_bottom = 142.0
 
 [node name="TotalMutationInBatch" type="Label" parent="." unique_id=2041919556]
+visible = false
 offset_left = 63.0
 offset_top = 3.0
 offset_right = 463.0
@@ -45,6 +46,7 @@ in batch - "
 vertical_alignment = 1
 
 [node name="MutationQuanityNum" type="Label" parent="." unique_id=515569157]
+visible = false
 offset_left = 331.0
 offset_top = 79.0
 offset_right = 371.0

@@ -33,6 +33,7 @@ offset_right = 625.0
 offset_bottom = 142.0
 
 [node name="MutationFound" type="Label" parent="." unique_id=308128509]
+visible = false
 texture_filter = 1
 offset_left = 9.0
 offset_top = 2.0
@@ -48,7 +49,6 @@ vertical_alignment = 1
 script = ExtResource("4_7hsqe")
 
 [node name="NoMutationFound" type="Label" parent="." unique_id=1148438946]
-visible = false
 texture_filter = 1
 offset_left = 9.0
 offset_top = 2.0

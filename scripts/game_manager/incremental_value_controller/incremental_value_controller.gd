@@ -62,7 +62,7 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 30
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 0
+			IVUseableItemSpawner.hidden_shots_to_spawn = 12
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
@@ -101,7 +101,7 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 45
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 0
+			IVUseableItemSpawner.hidden_shots_to_spawn = 12
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
@@ -142,7 +142,7 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 60
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 0
+			IVUseableItemSpawner.hidden_shots_to_spawn = 12
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
@@ -182,7 +182,7 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 75
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 0
+			IVUseableItemSpawner.hidden_shots_to_spawn = 12
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0

@@ -44,6 +44,7 @@ func _sort_by_score(cell_a: BrainCell, cell_b: BrainCell) -> bool:
 
 
 func _get_cell_score(cell: BrainCell) -> float:
+	
 	var total_clean: float = (
 		cell.strength.value
 		+ cell.intelligence.value
@@ -54,6 +55,26 @@ func _get_cell_score(cell: BrainCell) -> float:
 		cell.strength.defect
 		+ cell.intelligence.defect
 		+ cell.community.defect
-	) * 0.5
+	) * 1.5
+	
+	var stats_hidden: int = 0
 
-	return total_clean - total_defect
+	if cell.strength.hidden:
+		stats_hidden += 1
+
+	if cell.intelligence.hidden:
+		stats_hidden += 1
+
+	if cell.community.hidden:
+		stats_hidden += 1
+
+	var hidden_stat_penalty: int = 0
+
+	if stats_hidden > 0:
+		# First hidden stat costs 10.
+		hidden_stat_penalty = 10
+
+		# Each additional hidden stat costs 20.
+		hidden_stat_penalty += (stats_hidden - 1) * 2
+
+	return total_clean - total_defect - hidden_stat_penalty

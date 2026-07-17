@@ -34,7 +34,6 @@ func no_mutation_found() :
 	mutation_parent.visible = false
 	
 	
-
 func mutation_hidden() :
 	hidden_parent.visible = true 
 	mutation_parent.visible = false

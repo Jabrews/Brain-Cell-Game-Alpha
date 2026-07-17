@@ -12,6 +12,8 @@ func _handle_apply(
 		return prisoner_cells
 
 	var possible_cells: Array[BrainCell] = prisoner_cells.duplicate()
+	
+	GLPrisonerSpawnerBus.emit_signal('apply_mutation_regular', len(mutations_available))	
 
 	# Apply real mutations starting from the first cell.
 	while not mutations_available.is_empty() and not possible_cells.is_empty():
@@ -21,6 +23,9 @@ func _handle_apply(
 
 	# Apply fake mutations starting from the first remaining cell.
 	_apply_fake_mutations(possible_cells)
+	
+
+	
 
 	return prisoner_cells
 
@@ -66,7 +71,7 @@ func _apply_fake_mutations(possible_cells: Array[BrainCell]) -> void:
 		min_amount,
 		max_amount
 	)
-
+	
 	for i: int in range(fake_mutation_amount):
 		if possible_cells.is_empty():
 			return

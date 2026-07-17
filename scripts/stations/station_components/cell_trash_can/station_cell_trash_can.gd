@@ -13,6 +13,7 @@ func _ready() -> void:
 	GLGameManagerBus.connect('process_next_round', _handle_next_round)
 	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded)
 	GLCellTrashcanBus.connect('cell_deleted_from_shareholder_offer_station', _handle_cell_deleted_from_shareholder_offer_station)
+	GLCellTrashcanBus.connect('cell_killed_update_trashcan', _handle_cell_killed_update_trashcan)
 
 func increment_trash_filled() :
 	
@@ -58,4 +59,7 @@ func _handle_next_round() :
 	flood_blood_manager._reset()
 
 func _handle_cell_deleted_from_shareholder_offer_station() :
+	increment_trash_filled()
+
+func _handle_cell_killed_update_trashcan() :
 	increment_trash_filled()
