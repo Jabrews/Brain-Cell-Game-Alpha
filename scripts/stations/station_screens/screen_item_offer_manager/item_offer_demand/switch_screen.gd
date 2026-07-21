@@ -6,6 +6,7 @@ extends Node
 
 # demands
 @onready var stat_demand : Control = $"../Demand/StatDemand"
+@onready var mutation_demand : Control = $"../Demand/MutationDemand"
 
 # confirm / fail
 @onready var fail_screen : Control = $"../Fail"
@@ -26,6 +27,9 @@ func _switch_offer_screen(offer_type : String) :
 	match offer_type :
 		'cell' :
 			stat_demand.visible = true
+		'mutation' : 
+			mutation_demand.visible = true
+			
 		_ : 
 			stat_demand.visible = false
 

@@ -12,9 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
 [ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://scripts/shaders/target_progress_bar.gdshader" id="14_73nie"]
 [ext_resource type="Script" uid="uid://biokcax5yeanx" path="res://scripts/shareholder_offer_manager/next_offer_request/serve_next_offer_request.gd" id="14_vj8rc"]
-[ext_resource type="Script" uid="uid://ggtyyimdk4mh" path="res://scripts/shareholder_offer_manager/next_offer_request/stat_request.gd" id="15_3nfp3"]
+[ext_resource type="Script" uid="uid://ggtyyimdk4mh" path="res://scripts/shareholder_offer_manager/next_offer_request/stat_request/stat_request.gd" id="15_3nfp3"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="15_ka1nv"]
 [ext_resource type="Texture2D" uid="uid://qg03gb4bsm4h" path="res://models/screens/station_item_offer_manager/no_stat_required.png" id="16_3ji3s"]
+[ext_resource type="Script" uid="uid://dnc5hemtip3f8" path="res://scripts/shareholder_offer_manager/next_offer_request/mutation_request/mutation_request.gd" id="16_3nfp3"]
+[ext_resource type="Texture2D" uid="uid://uxq1vsuemrrx" path="res://models/mutation_symbols/lonley.png" id="16_vj8rc"]
+[ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="17_3nfp3"]
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="17_ka1nv"]
 [ext_resource type="Script" uid="uid://ch4v278bsachl" path="res://scripts/shareholder_offer_manager/next_offer_request/confirm_btn.gd" id="20_3nfp3"]
 
@@ -216,6 +219,7 @@ offset_right = 977.49994
 offset_bottom = 40.000004
 
 [node name="StatRequest" type="Control" parent="ServeNextOfferRequest/RequestScreens" unique_id=491251656]
+visible = false
 anchors_preset = 0
 offset_left = 86.25001
 offset_top = 141.25
@@ -447,6 +451,45 @@ texture_filter = 1
 position = Vector2(392, 36)
 scale = Vector2(1.5760564, 1.3837209)
 texture = ExtResource("16_3ji3s")
+
+[node name="MutationRequest" type="Control" parent="ServeNextOfferRequest/RequestScreens" unique_id=2143328852]
+visible = false
+anchors_preset = 0
+offset_left = 68.75007
+offset_top = -24.999992
+offset_right = 108.75007
+offset_bottom = 15.000008
+script = ExtResource("16_3nfp3")
+
+[node name="GetMutationSymbol" type="Node" parent="ServeNextOfferRequest/RequestScreens/MutationRequest" unique_id=644207398]
+script = ExtResource("17_3nfp3")
+
+[node name="BG" type="ColorRect" parent="ServeNextOfferRequest/RequestScreens/MutationRequest" unique_id=992201720]
+layout_mode = 0
+offset_left = 268.75006
+offset_top = 195.0
+offset_right = 468.75006
+offset_bottom = 370.0
+color = Color(0, 0, 0, 1)
+
+[node name="MutationSprite" type="Sprite2D" parent="ServeNextOfferRequest/RequestScreens/MutationRequest" unique_id=922384416]
+texture_filter = 1
+position = Vector2(368.75012, 289.375)
+scale = Vector2(11.249999, 9.296874)
+texture = ExtResource("16_vj8rc")
+
+[node name="MutationType" type="Label" parent="ServeNextOfferRequest/RequestScreens/MutationRequest" unique_id=1699390477]
+texture_filter = 1
+layout_mode = 0
+offset_left = 48.750042
+offset_top = 165.0
+offset_right = 694.75006
+offset_bottom = 199.0
+theme_override_fonts/font = ExtResource("4_05saj")
+theme_override_font_sizes/font_size = 20
+text = "Lonley"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnergyTillCancel" type="Control" parent="ServeNextOfferRequest" unique_id=36416744]
 anchors_preset = 0

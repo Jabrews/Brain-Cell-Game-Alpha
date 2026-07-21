@@ -70,7 +70,12 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
 	#### CELL MUTATIONS ####
 
-	prisoner_cells = create_mutations._handle_mutations(cell_constructor, prisoner_cells)
+	var stat_constructors : Array[StatConstructor]
+	stat_constructors.append(cell_constructor.strength)
+	stat_constructors.append(cell_constructor.intelligence)
+	stat_constructors.append(cell_constructor.community)
+
+	prisoner_cells = create_mutations._handle_mutations(cell_constructor, prisoner_cells, stat_constructors)
 
 	#######################
 	return prisoner_cells

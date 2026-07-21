@@ -1,27 +1,6 @@
 extends Node
 
-
-func _ready() -> void:
-	GLShareholderOfferState.connect('create_item_offer_demand', _create_demand)
-	
-	
-func _create_demand() :
-	
-	var demand_cell : BrainCell = generate_demand_cell()	
-	var energy_reward : int = randi_range(IVShareholderOffers.energy_reward_min,IVShareholderOffers.energy_reward_max )
-	var energy_left_to_claim : int = randi_range(IVShareholderOffers.energy_left_to_claim_min, IVShareholderOffers.energy_left_to_claim_max)
-	
-	var item_offer_constructor = ItemOfferDemandConstructor.new(
-		'cell',
-		energy_reward,
-		energy_left_to_claim,
-		demand_cell,
-	)	
-	
-	GLShareholderOfferState.emit_signal('recieve_item_offer_demand', item_offer_constructor )
-	
-
-func generate_demand_cell() -> BrainCell:
+func _generate_demand_cell() -> BrainCell:
 	var strength_value: float = get_stat_value('strength')
 	var intelligence_value: float = get_stat_value('intelligence')
 	var community_value: float = get_stat_value('community')

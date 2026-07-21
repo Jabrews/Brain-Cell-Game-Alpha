@@ -90,6 +90,8 @@ func _handle_offer_energy_exspired() :
 	
 	screen_demand_display.switch_screen._play_confirmation_screen('fail')
 	
+	GLShareholderOfferState.emit_signal('item_offer_ended')
+	
 ## called when sucess cell is loaded
 func handle_offer_success() :
 	
@@ -113,6 +115,7 @@ func _handle_confirm_btn_pressed() :
 	await get_tree().create_timer(1.0).timeout
 	
 	GLShareholderOfferState.emit_signal('item_offer_success')
+	GLShareholderOfferState.emit_signal('item_offer_ended')
 	
 	active_cell_body.spawn_flesh_bug_on_death = false 
 	GLCellManagerBus.emit_signal('delete_selected_collected_cell', active_cell_body.designated_brain_cell)
@@ -134,9 +137,12 @@ func handle_offer_failed() :
 	# play fail
 	audio_manager.play_fail()
 	
+	GLShareholderOfferState.emit_signal('item_offer_ended')
+	
 #############################
 	
 func _handle_next_round() : 
 	_handle_offer_energy_exspired()
+	GLShareholderOfferState.emit_signal('item_offer_ended')
 	
 	

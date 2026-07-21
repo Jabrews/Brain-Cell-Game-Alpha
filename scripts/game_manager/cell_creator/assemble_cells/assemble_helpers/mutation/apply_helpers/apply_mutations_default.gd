@@ -49,6 +49,10 @@ func _apply_real_mutation(
 		or randi_range(1, 100) <= IVMutations.chance_to_hide_mutation
 	)
 
+ 	# never hind mutation sentient
+	if mutation.type == 'sentient' : 
+		mutation.hidden = false
+
 	_set_cell_mutation(cell, mutation)
 
 

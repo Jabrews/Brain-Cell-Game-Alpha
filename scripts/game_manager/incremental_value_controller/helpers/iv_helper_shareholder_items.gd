@@ -20,7 +20,7 @@ func _update_shareholder_items(round : int , energy : int) :
 	elif round == 2 :
 		GLShareholderOfferState.items_to_offer = [
 			UseableOfferItem.new('defect_shot','Decreases a chosen stat on a cell container by 15 percant, 3 charges total' ),
-			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats on a cell container.'),
+			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats and mutations on a cell container.'),
 			UseableOfferItem.new('steroid', 'Increases the clean and defect values of a cell container by 30 percant'),
 			#UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			#UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
@@ -34,7 +34,7 @@ func _update_shareholder_items(round : int , energy : int) :
 	elif round == 3 :
 		GLShareholderOfferState.items_to_offer = [
 			UseableOfferItem.new('defect_shot','Decreases a chosen stat on a cell container by 15 percant, 3 charges total' ),
-			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats on a cell container.'),
+			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats and mutations on a cell container.'),
 			UseableOfferItem.new('steroid', 'Increases the clean and defect values of a cell container by 30 percant'),
 			#UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
@@ -49,7 +49,7 @@ func _update_shareholder_items(round : int , energy : int) :
 	elif round == 4 :
 		GLShareholderOfferState.items_to_offer = [
 			UseableOfferItem.new('defect_shot','Decreases a chosen stat on a cell container by 15 percant, 3 charges total' ),
-			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats on a cell container.'),
+			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats and mutations on a cell container.'),
 			UseableOfferItem.new('steroid', 'Increases the clean and defect values of a cell container by 30 percant'),
 			UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
 			UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),

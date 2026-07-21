@@ -4,13 +4,17 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_vswsn"]
 [ext_resource type="Script" uid="uid://b3rv36jf8kxt5" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/switch_screen.gd" id="2_4lom8"]
 [ext_resource type="Shader" uid="uid://1h7isoi7cv3c" path="res://scripts/shaders/target_progress_bar.gdshader" id="2_jgakq"]
-[ext_resource type="Script" uid="uid://b3ekinolrtexg" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/Evaluation/cell_evaluation.gd" id="2_w1531"]
+[ext_resource type="Script" uid="uid://b3ekinolrtexg" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/stat_demand/cell_evaluation.gd" id="2_w1531"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="3_4lom8"]
-[ext_resource type="Script" uid="uid://djm37457jkx7g" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/stat_demand.gd" id="4_4lom8"]
+[ext_resource type="Script" uid="uid://cvn46vjm0plhd" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/mutation_demand/mutation_evaluation.gd" id="3_h4atm"]
+[ext_resource type="Script" uid="uid://djm37457jkx7g" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/stat_demand/stat_demand.gd" id="4_4lom8"]
 [ext_resource type="Texture2D" uid="uid://qg03gb4bsm4h" path="res://models/screens/station_item_offer_manager/no_stat_required.png" id="6_jgakq"]
 [ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="6_q5iuy"]
 [ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="7_iuynq"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="8_845nu"]
+[ext_resource type="Texture2D" uid="uid://dwv6nkljhaqx4" path="res://models/mutation_symbols/disrupt.png" id="9_ni0ha"]
+[ext_resource type="Script" uid="uid://brrycnxarcxjb" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/mutation_demand/demand_mutation.gd" id="9_np4be"]
+[ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="10_1frkd"]
 [ext_resource type="Texture2D" uid="uid://dv8i84kr582qj" path="res://models/scissors_popup/exit.png" id="10_35i8l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgnlf"]
@@ -36,6 +40,9 @@ script = ExtResource("1_jgakq")
 
 [node name="CellEvaluation" type="Node" parent="Evaluations" unique_id=6297575]
 script = ExtResource("2_w1531")
+
+[node name="MutationEvaluation" type="Node" parent="Evaluations" unique_id=1865987878]
+script = ExtResource("3_h4atm")
 
 [node name="SwitchScreen" type="Node" parent="." unique_id=1220083543]
 script = ExtResource("2_4lom8")
@@ -72,6 +79,7 @@ offset_bottom = 260.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
 [node name="NoDemand" type="Control" parent="." unique_id=2046828483]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -98,7 +106,6 @@ text = "No demand Found"
 horizontal_alignment = 1
 
 [node name="Demand" type="Control" parent="." unique_id=940454362]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -321,6 +328,34 @@ theme_override_font_sizes/font_size = 12
 text = "Stat Not Required"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MutationDemand" type="Control" parent="Demand" unique_id=231669160]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_np4be")
+
+[node name="GetMutationSymbol" type="Node" parent="Demand/MutationDemand" unique_id=664765247]
+script = ExtResource("10_1frkd")
+
+[node name="MutationIcon" type="Sprite2D" parent="Demand/MutationDemand" unique_id=1967838093]
+texture_filter = 1
+position = Vector2(232, 160.00002)
+scale = Vector2(11.125001, 9.281249)
+texture = ExtResource("9_ni0ha")
+
+[node name="MutationType" type="Label" parent="Demand/MutationDemand" unique_id=298351536]
+texture_filter = 1
+layout_mode = 0
+offset_left = -8.0
+offset_top = 64.0
+offset_right = 492.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 16
+text = "Disruptor"
+horizontal_alignment = 1
 
 [node name="Confirm" type="Control" parent="." unique_id=1090382697]
 visible = false

@@ -17,7 +17,7 @@ func _update_mutations(round : int , energy : int) :
 		IVMutations.amount_of_best_cells_sorted = 4
 		
 		# most these dont matter for first round
-		IVMutations.chance_to_exit_mutation_loop = 0
+		IVMutations.chance_to_exit_mutation_loop = 1
 		IVMutations.good_mutation_chance= 99
 		IVMutations.bad_mutation_chance= 0
 		IVMutations.chance_to_hide_mutation = 0
@@ -109,7 +109,7 @@ func get_energy_danger_level(energy : int) -> int:
 	
 	var max_energy = GLGameManagerBus.max_energy
 
-	if energy > max_energy * 0.75:
+	if energy > max_energy * 0.80:
 		return 0
 	elif energy > max_energy * 0.6:
 		return 1

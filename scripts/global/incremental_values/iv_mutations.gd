@@ -32,3 +32,9 @@ var amount_of_best_cells_sorted = 2
 var chance_to_hide_mutation : int = 25
 var min_fake_mutations_per_batch : int = 1
 var max_fake_mutations_per_batch : int = 1
+
+## sientient mutation ##
+# toggled after first selected by user
+var picked_sentient_mutation_first_round : bool = false
+# toggled after giving user chance to grab sentient cell
+var served_sentient_cell : bool = false

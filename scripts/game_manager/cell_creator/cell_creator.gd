@@ -37,6 +37,7 @@ func handle_create_target() -> void:
 
 # signal create_prisoner_cells(cell_constructor : CellConstructor)
 func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update_incr_update : bool = false ) -> void:
+	
 
 	current_cell_constructor = cell_constructor
 	

@@ -190,6 +190,14 @@ func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell):
 	new_collection.append(prisoner_cell)
 	set_collected_cells(new_collection)
 	
+	# if sentient first round 
+	if GLGameManagerBus.current_round == 1 : 
+		for mutation : BrainCellMutation in prisoner_cell.mutations : 
+			if mutation.type == 'sentient' : 
+				IVMutations.picked_sentient_mutation_first_round = true
+	
+	
+	
 	# spawn container 
 	GLCellManagerBus.emit_signal('cell_added_to_collection', prisoner_cell)
 	

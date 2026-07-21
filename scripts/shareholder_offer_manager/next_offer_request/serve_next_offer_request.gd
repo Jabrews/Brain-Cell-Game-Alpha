@@ -6,6 +6,7 @@ extends Control
 
 # offer requests
 @onready var stat_request_parent : Control = $RequestScreens/StatRequest
+@onready var mutation_request_parent : Control = $RequestScreens/MutationRequest
 
 # anaimtion helper
 @onready var handle_animation : Node = $HandleAnimation
@@ -16,9 +17,6 @@ func _ready() -> void:
 
 func _handle_recieve_item_offer(item_offer : ItemOfferDemandConstructor) :
 	
-	handle_animation.load_display()
-	
-	
 	header_label.visible = false
 	
 	visible = true
@@ -27,9 +25,21 @@ func _handle_recieve_item_offer(item_offer : ItemOfferDemandConstructor) :
 	energy_reward_label.text = str(item_offer.energy_reward)
 	
 	
+	# dealing with request screens visiblty
+	stat_request_parent.visible = false
+	mutation_request_parent.visible = false
+	
 	match item_offer.demand_type : 	
 		'cell' :
+			stat_request_parent.visible = true
 			stat_request_parent._load_cell(item_offer.demand_cell)
+		'mutation' : 	
+			mutation_request_parent.visible = true
+			mutation_request_parent._load_mutation(item_offer.demand_mutation)
+	
+	# animate
+	handle_animation.load_display()
+	
 
 func _on_button_button_down() -> void:
 	header_label.visible = true 

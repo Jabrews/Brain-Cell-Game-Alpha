@@ -67,6 +67,10 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.can_generate_cell_offer = false
+			IVShareholderOffers.can_generate_mutation_offer = false
+			IVShareholderOffers.chance_of_generating_cell_offer = 0
+			IVShareholderOffers.chance_of_generating_mution_offer = 0
 			IVShareholderOffers.item_offer_energy_percant= 80
 			IVShareholderOffers.first_round_item_offer_energy_percant = 40
 			## HIDDEN STATS ## 
@@ -106,6 +110,10 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.can_generate_cell_offer = true 
+			IVShareholderOffers.can_generate_mutation_offer = false
+			IVShareholderOffers.chance_of_generating_cell_offer = 100
+			IVShareholderOffers.chance_of_generating_mution_offer = 0
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.energy_reward_min = 25
 			IVShareholderOffers.energy_reward_max = 30
@@ -147,6 +155,10 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.can_generate_cell_offer = true 
+			IVShareholderOffers.can_generate_mutation_offer = true 
+			IVShareholderOffers.chance_of_generating_cell_offer = 0
+			IVShareholderOffers.chance_of_generating_mution_offer = 100
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.energy_reward_min = 30
 			IVShareholderOffers.energy_reward_max = 35
@@ -187,6 +199,10 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
+			IVShareholderOffers.can_generate_cell_offer = true 
+			IVShareholderOffers.can_generate_mutation_offer = true 
+			IVShareholderOffers.chance_of_generating_cell_offer = 50
+			IVShareholderOffers.chance_of_generating_mution_offer = 50
 			IVShareholderOffers.item_offer_energy_percant= 75
 			IVShareholderOffers.energy_reward_min = 35
 			IVShareholderOffers.energy_reward_max = 40

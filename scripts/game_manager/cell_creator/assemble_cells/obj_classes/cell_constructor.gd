@@ -28,7 +28,7 @@ func _init(
 
 
 func _to_string() -> String:
-	return "[CellConstructor: quantity=%s, prisoner_picks=%s, hidden_stat_quantity=%s, strength=%s, intelligence=%s, community=%s]" % [
+	return "[CellConstructor: quantity=%s, prisoner_picks=%s, strength=%s, intelligence=%s, community=%s]" % [
 		cell_quantity,
 		prisoner_picks,
 		strength,

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmg01qyr67fvm" path="res://scripts/characters/reusable/stat_display/stat_display.gd" id="1_2uw1u"]
 [ext_resource type="Script" uid="uid://4dkkevad5m2s" path="res://scripts/characters/reusable/stat_display/stat_tv_mesh.gd" id="1_fo6nq"]
+[ext_resource type="Script" uid="uid://cngjdsgc8mqlg" path="res://scripts/characters/reusable/stat_display/shake_sentient_mutation.gd" id="2_2uw1u"]
 [ext_resource type="PackedScene" uid="uid://c2rxycwqgbsjl" path="res://reusable/basic_receiver_screen/basic_receiver_screen.tscn" id="2_fo6nq"]
 [ext_resource type="Script" uid="uid://kok7afrrnhpc" path="res://scripts/characters/reusable/stat_display/stat_display_area.gd" id="3_fo6nq"]
 
@@ -22,6 +23,9 @@ size = Vector3(0.8, 0.8, 0.8)
 visible = false
 script = ExtResource("1_2uw1u")
 yaw_offset = -89.5
+
+[node name="ShakeSentientMutation" type="Node" parent="." unique_id=1250098573]
+script = ExtResource("2_2uw1u")
 
 [node name="StatMesh" type="MeshInstance3D" parent="." unique_id=263691589]
 transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, 0, 1.1827984, -0.024689734)

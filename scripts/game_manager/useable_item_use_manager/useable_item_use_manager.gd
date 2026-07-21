@@ -31,6 +31,12 @@ func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj 
 	selected_brain_cell.strength.hidden = false
 	selected_brain_cell.intelligence.hidden = false
 	selected_brain_cell.community.hidden= false
+	
+	for mutation : BrainCellMutation in selected_brain_cell.mutations : 	
+		mutation.hidden = false 
+		if mutation.type == 'none' : 
+			selected_brain_cell.mutations.erase(mutation)
+	
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 
