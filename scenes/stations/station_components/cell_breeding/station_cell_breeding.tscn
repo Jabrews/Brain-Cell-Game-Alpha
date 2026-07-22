@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="14_khkcf"]
 [ext_resource type="Script" uid="uid://34mhw6h1bv2e" path="res://scripts/stations/station_components/cell_breeding/confirm_btn/confirm_btn.gd" id="15_8fhk0"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="15_uq6ph"]
+[ext_resource type="AudioStream" uid="uid://dfrps3sdbx6" path="res://sounds/station_cell_breeder/skull_warning.mp3" id="16_27jye"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="16_sqxto"]
 [ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="17_lvnx6"]
 [ext_resource type="PackedScene" uid="uid://d7qf8wir2u1m" path="res://scenes/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat/screen_charge_boost_seat.tscn" id="17_u6e0a"]
@@ -231,6 +232,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 3.5002835, 3.6941
 stream = ExtResource("17_lvnx6")
 unit_size = 5.0
 
+[node name="SkullWarning" type="AudioStreamPlayer3D" parent="Audio/LeftAudioManager" unique_id=1881511514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.526572, 3.7117653)
+stream = ExtResource("16_27jye")
+volume_db = -5.0
+unit_size = 5.0
+pitch_scale = 1.2
+
 [node name="RightAudioManager" type="Node3D" parent="Audio" unique_id=1947204694]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52030206, 0.83248377)
 script = ExtResource("14_bhvbn")
@@ -252,6 +260,13 @@ unit_size = 5.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67863774, 3.5002835, 3.69414)
 stream = ExtResource("17_lvnx6")
 unit_size = 5.0
+
+[node name="SkullWarning" type="AudioStreamPlayer3D" parent="Audio/RightAudioManager" unique_id=1229884027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6226176, 3.526572, 3.7117653)
+stream = ExtResource("16_27jye")
+volume_db = -5.0
+unit_size = 5.0
+pitch_scale = 1.2
 
 [node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=121583691]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310546, 0)
@@ -561,6 +576,7 @@ script = ExtResource("14_khkcf")
 
 [node name="SubViewport" type="SubViewport" parent="ChargeSeats/ChargeSeatLeft/TV/TvFrontPannel" unique_id=1080430801]
 disable_3d = true
+anisotropic_filtering_level = 0
 canvas_item_default_texture_filter = 0
 size = Vector2i(201, 231)
 
@@ -798,6 +814,7 @@ script = ExtResource("14_khkcf")
 
 [node name="SubViewport" type="SubViewport" parent="ChargeSeats/ChargeSeatRight/TV/TvFrontPannel" unique_id=1887349075]
 disable_3d = true
+anisotropic_filtering_level = 0
 canvas_item_default_texture_filter = 0
 size = Vector2i(201, 231)
 

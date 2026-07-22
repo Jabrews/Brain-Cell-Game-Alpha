@@ -20,6 +20,7 @@ const STAT_TYPES: Array[String] = [
 	$"../../../StatDisplay/ProgressBars/CommunityBar"
 ]
 
+
 var active_brain_cell: BrainCell
 
 
@@ -39,6 +40,8 @@ func _handle_preview_debuff(cycled_stat: String, energy_boost_cell : BrainCell) 
 			target_stat = target_cell.strength
 			selected_defect_bar = defect_bars[0]
 			selected_clean_bar = clean_bars[0]
+
+			
 		'intelligence' :
 			before_debuff_stat = energy_boost_cell.intelligence
 			target_stat = target_cell.intelligence
@@ -63,6 +66,13 @@ func _handle_preview_debuff(cycled_stat: String, energy_boost_cell : BrainCell) 
 	# set defect stat value
 	selected_defect_bar.material.set_shader_parameter("prior_defect_value", before_debuff_stat.defect / max_value)
 	selected_defect_bar.material.set_shader_parameter("new_defect_value", after_debuff_stat.defect / max_value)
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

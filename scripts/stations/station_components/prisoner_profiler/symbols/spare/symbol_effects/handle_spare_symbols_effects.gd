@@ -47,9 +47,9 @@ func handle_energy_spare_symbol_activated(toggle_value: bool, spare_icon_constru
 		return
 	
 	if spare_icon_constructor.direction == 'down':
-		handle_energy._update_spare_symbol_energy_used(stat_type, -20)
+		handle_energy._update_spare_symbol_energy_used(stat_type, -10)
 	elif spare_icon_constructor.direction == 'up':
-		handle_energy._update_spare_symbol_energy_used(stat_type, 20)
+		handle_energy._update_spare_symbol_energy_used(stat_type, 10)
 	
 	
 	

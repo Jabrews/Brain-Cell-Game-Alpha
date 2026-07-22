@@ -29,13 +29,13 @@ func _handle_mutations(
 	prisoner_cells: Array[BrainCell],
 	stat_constructors : Array[StatConstructor],
 ) -> Array[BrainCell]:
+	
 	# Turned on when the player urgently needs mutated cells.
 	var force_mutation_urgency: bool = false
 
 	# Force the chosen sentient mutation once.
 	if (
-		IVMutations.picked_sentient_mutation_first_round
-		and not IVMutations.served_sentient_cell
+		not IVMutations.served_sentient_cell
 		and cell_constructor.cell_quantity == 4
 	):
 		return serve_sentient_cell_first_round(prisoner_cells, stat_constructors)

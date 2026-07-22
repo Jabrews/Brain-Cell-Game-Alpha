@@ -27,34 +27,78 @@ func _handle_player_simulate_breeded_cells(cell_1 : BrainCell, cell_2 : BrainCel
 
 
 func _handle_player_breeded_cells(
-	main_left_cell : BrainCell,
- 	main_right_cell  : BrainCell, 
-	boost_left_cell : BrainCell,
-	boost_right_cell : BrainCell,
-	boost_left_stat : String,
-	boost_right_stat : String,
-	boost_left_direction : String,
-	boost_right_direction : String,
+	main_left_cell: BrainCell,
+	main_right_cell: BrainCell,
+	boost_left_cell: BrainCell,
+	boost_right_cell: BrainCell,
+	boost_left_stat: String,
+	boost_right_stat: String,
+	boost_left_direction: String,
+	boost_right_direction: String,
 ) -> void:
-	
-	main_left_cell = increase_cell_charge_helper._get_increased(boost_left_stat, boost_left_direction, main_left_cell)
-	main_right_cell= increase_cell_charge_helper._get_increased(boost_right_stat, boost_right_direction, main_right_cell)
-	
-	boost_left_cell = reduced_cell_charge_helper._get_reduced(boost_left_stat, boost_left_direction, boost_left_cell)
-	boost_right_cell = reduced_cell_charge_helper._get_reduced(boost_right_stat, boost_right_direction, boost_right_cell)
-	
-	
-	var new_cell = _create_breeded_cell(main_left_cell, main_right_cell, true)
-#
+	var updated_boost_left_cell: BrainCell = null
+	var updated_boost_right_cell: BrainCell = null
+
+	# Apply boosts only when a boost cell exists.
+	if boost_left_cell:
+		main_left_cell = increase_cell_charge_helper._get_increased(
+			boost_left_stat,
+			boost_left_direction,
+			main_left_cell
+		)
+
+		var boost_left_copy: BrainCell = boost_left_cell.copy()
+
+		updated_boost_left_cell = reduced_cell_charge_helper._get_reduced(
+			boost_left_stat,
+			boost_left_direction,
+			boost_left_copy
+		)
+
+	if boost_right_cell:
+		main_right_cell = increase_cell_charge_helper._get_increased(
+			boost_right_stat,
+			boost_right_direction,
+			main_right_cell
+		)
+
+		var boost_right_copy: BrainCell = boost_right_cell.copy()
+
+		updated_boost_right_cell = reduced_cell_charge_helper._get_reduced(
+			boost_right_stat,
+			boost_right_direction,
+			boost_right_copy
+		)
+
+	var new_cell: BrainCell = _create_breeded_cell(
+		main_left_cell,
+		main_right_cell,
+		true
+	)
+
+	# The boost cell existed, but reducing its charge destroyed it.
+	if boost_left_cell and not updated_boost_left_cell:
+		GLCellManagerBus.emit_signal(
+			"delete_selected_collected_cell",
+			boost_left_cell
+		)
+		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')
+
+	if boost_right_cell and not updated_boost_right_cell:
+		GLCellManagerBus.emit_signal(
+			"delete_selected_collected_cell",
+			boost_right_cell
+		)
+		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')
+
 	GLCellManagerBus.emit_signal(
-		'cell_breeded',
+		"cell_breeded",
 		main_left_cell,
 		main_right_cell,
 		new_cell,
-		boost_left_cell, 
-		boost_right_cell
+		updated_boost_left_cell,
+		updated_boost_right_cell
 	)
-	
 
 
 func _create_breeded_cell(

@@ -12,6 +12,11 @@ func _get_reduced(selected_stat: String, selected_direction : String, boost_cell
 	var cell: BrainCell = boost_cell.copy()
 	var old_stat: BrainCellStat = cell.get(selected_stat)
 	
+	# if we are at 1.0 kill
+	if old_stat.value <= 20.0 : 
+		return null
+	
+	
 	if old_stat == null:
 		push_error("Invalid selected_stat: " + selected_stat)
 		return cell

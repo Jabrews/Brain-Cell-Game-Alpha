@@ -216,7 +216,7 @@ func _handle_cell_breeded(
 	old_cell_2 : BrainCell,
 	new_cell : BrainCell,
 	boost_cell_1 : BrainCell,
-	boost_cell_2 : BrainCell
+	boost_cell_2 : BrainCell,
 ) -> void:
 	
 	var new_cell_collection = collected_cells.duplicate()

@@ -82,9 +82,9 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 			1 : 
 				IVHiddenStats.max_stats_to_hide = 6
 			2 : 
-				IVHiddenStats.max_stats_to_hide = 7
+				IVHiddenStats.max_stats_to_hide = 6
 			3 : 
-				IVHiddenStats.max_stats_to_hide = 8
+				IVHiddenStats.max_stats_to_hide = 7
 	
 	
 	

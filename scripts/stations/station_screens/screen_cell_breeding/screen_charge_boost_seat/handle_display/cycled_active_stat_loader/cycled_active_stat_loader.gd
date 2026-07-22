@@ -10,14 +10,18 @@ extends Node
 @onready var stat_valid_label : Label = $"../../StatDisplay/Validity/Valid"
 @onready var stat_invalid_label : Label = $"../../StatDisplay/Validity/Invalid"
 
-# helper cycled_stat_debuff
+# helpers
 @onready var preview_cycled_stat_debuff : Node = $PreviewCycledStatDebuff
+@onready var preview_death_alert : Node = $PreviewDeathAlert
+
+
 
 
 
 func _handle_recieve_cycled(energy_seat_cell : BrainCell, cycled_index : int, cycled_stat : String) :
 	
 	reset_active_stat_highlights() 
+	preview_death_alert._reset()		
 	
 	# if cycled index is acutall stat
 	if cycled_index != -1  :
@@ -32,14 +36,17 @@ func _handle_recieve_cycled(energy_seat_cell : BrainCell, cycled_index : int, cy
 		
 		if stat_isnt_none and energy_seat_cell:
 			preview_cycled_stat_debuff._handle_preview_debuff(cycled_stat, energy_seat_cell )
+			preview_death_alert._handle_preview_death_alert(cycled_stat, energy_seat_cell)		
+			
+			
 
 	# else it is -1. therefore no stat selected
 	else : 
 		stat_valid_label.visible = false
 		stat_invalid_label.visible = false
+		
+		
 			
-		
-		
 	
 func reset_active_stat_highlights() :
 	for active_highlight : Sprite2D in active_stat_highlights : 

@@ -25,7 +25,7 @@ func _handle_request_new_profiler_spare_icons() -> void:
 
 	var min_to_create: int = IVPrisonerProfiler.spare_symbol_minimum_created
 	var max_to_create: int = IVPrisonerProfiler.spare_symbol_max_created
-	var spare_symbols_available: Array = IVPrisonerProfiler.spare_symbols_avaible
+	var spare_symbols_available: Array = IVPrisonerProfiler.spare_symbols_avaible.duplicate()
 
 	var amount_to_create: int = 0
 
@@ -51,6 +51,9 @@ func _handle_request_new_profiler_spare_icons() -> void:
 				break
 
 			var random_symbol_data: Dictionary = spare_symbols_available.pick_random()
+			
+			# remove from avaible symbol			
+			spare_symbols_available.erase(random_symbol_data)
 
 			var symbol_type: String = random_symbol_data.keys()[0]
 			var symbol_direction: String = random_symbol_data[symbol_type].pick_random()

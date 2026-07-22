@@ -8,12 +8,15 @@
 [ext_resource type="Script" uid="uid://dk1f47jw332df" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat/handle_display/cycled_active_stat_loader/cycled_active_stat_loader.gd" id="5_1cqm4"]
 [ext_resource type="Script" uid="uid://cekrf12uu0h4u" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat/handle_display/cycled_active_stat_loader/preview_cycled_stat_debuff.gd" id="6_0nno5"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="7_u1top"]
+[ext_resource type="Script" uid="uid://b5wrp4ix7mu13" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat/handle_display/cycled_active_stat_loader/preview_death_alert.gd" id="8_ct3vk"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="8_njyou"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="9_mowg2"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="10_xo2bu"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="11_odynf"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="12_lr2a2"]
 [ext_resource type="Texture2D" uid="uid://c6aslvaxw0sey" path="res://models/screens/charge_seat/highlight.png" id="13_wghld"]
+[ext_resource type="Texture2D" uid="uid://djxgrddvaiim5" path="res://models/breeding_skull/breeding_skull.png" id="15_jdk76"]
+[ext_resource type="Script" uid="uid://b5w83ifnr3pk8" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat/handle_display/skull_sprite.gd" id="16_fkch0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vlppi"]
 shader = ExtResource("7_u1top")
@@ -457,6 +460,9 @@ script = ExtResource("5_1cqm4")
 [node name="PreviewCycledStatDebuff" type="Node" parent="HandleDisplay/CycledActiveStatLoader" unique_id=737408404]
 script = ExtResource("6_0nno5")
 
+[node name="PreviewDeathAlert" type="Node" parent="HandleDisplay/CycledActiveStatLoader" unique_id=505620300]
+script = ExtResource("8_ct3vk")
+
 [node name="BG" type="ColorRect" parent="." unique_id=532101988]
 anchors_preset = 8
 anchor_left = 0.5
@@ -482,7 +488,6 @@ offset_bottom = 226.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
 [node name="StatDisplay" type="Control" parent="." unique_id=397082228]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -749,7 +754,37 @@ text = "INVALID
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DeathAlert" type="Control" parent="StatDisplay" unique_id=1785129697]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthDeathAlert" type="Sprite2D" parent="StatDisplay/DeathAlert" unique_id=1023589666]
+visible = false
+modulate = Color(1, 0, 0.20000029, 1)
+texture_filter = 1
+position = Vector2(100, 66)
+texture = ExtResource("15_jdk76")
+script = ExtResource("16_fkch0")
+
+[node name="IntelligenceDeathAlert" type="Sprite2D" parent="StatDisplay/DeathAlert" unique_id=1618623521]
+visible = false
+modulate = Color(1, 0, 0.20000029, 1)
+texture_filter = 1
+position = Vector2(100, 123)
+texture = ExtResource("15_jdk76")
+script = ExtResource("16_fkch0")
+
+[node name="CommunityDeathAlert" type="Sprite2D" parent="StatDisplay/DeathAlert" unique_id=588928003]
+visible = false
+modulate = Color(1, 0, 0.20000029, 1)
+texture_filter = 1
+position = Vector2(100, 178)
+texture = ExtResource("15_jdk76")
+script = ExtResource("16_fkch0")
+
 [node name="NoCell" type="Control" parent="." unique_id=2071064501]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
