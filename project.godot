@@ -56,6 +56,8 @@ GLMutationFileCabinetBus="*uid://dtohx8ijowxkv"
 IVMutations="*uid://bxerlortn8py1"
 GLPrisonerSpawnerBus="*uid://cvxoh5cpd1url"
 GLMutationEventBus="*uid://hyxxt1n7icvf"
+GLEntityRoomManagementBus="*uid://dvm6v8uu1i21w"
+IVRandomMutationEventTrigger="*uid://cr54vb4wtode5"
 
 [debug]
 

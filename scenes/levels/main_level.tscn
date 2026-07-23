@@ -30,6 +30,7 @@
 [ext_resource type="Script" uid="uid://cfkbsod3fqx61" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_defect.gd" id="18_v2xyd"]
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
 [ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/jolt_hidden_stat_interpreter.gd" id="20_5xq6v"]
+[ext_resource type="Script" uid="uid://hndem18jdi0y" path="res://scripts/game_manager/entitiy_room_management/entity_room_management.gd" id="20_ea07q"]
 [ext_resource type="Script" uid="uid://bxx34i2lndwh7" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/reduce_hidden_quanity.gd" id="20_wv5kd"]
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
@@ -42,8 +43,10 @@
 [ext_resource type="Script" uid="uid://oq36mp5cbjqs" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/urgency_overide_mutation.gd" id="31_mj1d0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
+[ext_resource type="Script" uid="uid://cj34bbhkcqph6" path="res://scripts/game_manager/random_mutation_event_trigger/random_mutation_event_trigger.gd" id="35_36h02"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
+[ext_resource type="Script" uid="uid://bnivyf65vigvm" path="res://scripts/game_manager/random_mutation_event_trigger/send_mutation_event.gd" id="36_3kcnf"]
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
 [ext_resource type="Script" uid="uid://dt54n7ye7aevd" path="res://scripts/game_manager/shareholder_offer_generator/shareholder_offer_demand_generator.gd" id="37_87p7k"]
@@ -52,7 +55,9 @@
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
 [ext_resource type="Script" uid="uid://br3pbbqwcoh5o" path="res://scripts/game_manager/shareholder_offer_generator/offer_helpers/generate_cell_offer.gd" id="47_qjatd"]
+[ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://bdnbjj8c2wdys" path="res://scripts/game_manager/shareholder_offer_generator/offer_helpers/generate_mutation_offer.gd" id="48_ea07q"]
+[ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -66,6 +71,9 @@ size = Vector3(1, 5, 15)
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xrfk"]
 size = Vector3(1, 5, 15)
 
+[sub_resource type="BoxMesh" id="BoxMesh_qjatd"]
+size = Vector3(1, 3.445, 15)
+
 [sub_resource type="Environment" id="Environment_h7hv4"]
 background_mode = 1
 ambient_light_color = Color(0.20110431, 0.21357447, 0.074715756, 1)
@@ -78,6 +86,18 @@ vertices = PackedVector3Array(-24.5, 0.45, -7.75, -21.75, 0.45, -7.75, -21.5, 0.
 polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(7, 6, 8), PackedInt32Array(2, 0, 6), PackedInt32Array(6, 0, 8), PackedInt32Array(8, 0, 9), PackedInt32Array(6, 3, 10), PackedInt32Array(6, 10, 2), PackedInt32Array(7, 8, 11), PackedInt32Array(11, 8, 14), PackedInt32Array(11, 14, 12), PackedInt32Array(12, 14, 13), PackedInt32Array(16, 15, 12), PackedInt32Array(12, 15, 11), PackedInt32Array(19, 18, 17), PackedInt32Array(17, 13, 14), PackedInt32Array(14, 20, 17), PackedInt32Array(17, 20, 19), PackedInt32Array(18, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(1, 23, 0), PackedInt32Array(0, 23, 24), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 28), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 25), PackedInt32Array(4, 5, 29), PackedInt32Array(29, 5, 28), PackedInt32Array(23, 30, 24), PackedInt32Array(24, 30, 25), PackedInt32Array(24, 25, 31), PackedInt32Array(26, 27, 32), PackedInt32Array(32, 27, 34), PackedInt32Array(32, 34, 33), PackedInt32Array(33, 34, 16), PackedInt32Array(34, 15, 16), PackedInt32Array(36, 35, 37), PackedInt32Array(37, 35, 38), PackedInt32Array(38, 35, 39), PackedInt32Array(32, 33, 39), PackedInt32Array(39, 33, 38), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 43), PackedInt32Array(43, 40, 44), PackedInt32Array(44, 40, 45), PackedInt32Array(39, 35, 43), PackedInt32Array(43, 35, 42), PackedInt32Array(37, 46, 36), PackedInt32Array(36, 46, 47), PackedInt32Array(46, 22, 47), PackedInt32Array(47, 22, 48), PackedInt32Array(48, 49, 47), PackedInt32Array(46, 21, 22), PackedInt32Array(44, 45, 50), PackedInt32Array(50, 45, 51), PackedInt32Array(31, 50, 24), PackedInt32Array(24, 50, 51), PackedInt32Array(41, 52, 40), PackedInt32Array(40, 52, 53), PackedInt32Array(49, 48, 52), PackedInt32Array(52, 48, 53)]
 geometry_source_geometry_mode = 1
 geometry_source_group_name = &"nav_mesh_coll"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_awaeu"]
+size = Vector3(0.1, 4.618823, 3.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.1, 4.1984377, 3.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ea07q"]
+size = Vector3(0.1, 4, 3.0946898)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_36h02"]
+size = Vector3(0.1, 4.1984377, 3)
 
 [node name="MainLevel" type="Node3D" unique_id=716844902]
 
@@ -115,6 +135,30 @@ mesh = SubResource("BoxMesh_umov7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall2" unique_id=2067656085]
 shape = SubResource("BoxShape3D_7xrfk")
 
+[node name="Wall5" type="StaticBody3D" parent="Enviroment" unique_id=201051332 groups=["nav_mesh_coll"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1557055, 2.495707, -6.2520885)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Wall6" type="StaticBody3D" parent="Enviroment/Wall5" unique_id=498997592 groups=["nav_mesh_coll"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -18.270018)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall5/Wall6" unique_id=1305758597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("BoxMesh_qjatd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall5/Wall6" unique_id=1437791522]
+shape = SubResource("BoxShape3D_7xrfk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall5" unique_id=1060727596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -2, 0)
+mesh = SubResource("BoxMesh_qjatd")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall5" unique_id=1398652591]
+shape = SubResource("BoxShape3D_7xrfk")
+
 [node name="Lights" type="Node3D" parent="Enviroment" unique_id=966134524]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lights" unique_id=1619563916]
@@ -131,6 +175,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall3" unique_id=903573612]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall3" unique_id=815923405]
@@ -142,6 +187,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall4" unique_id=1686241323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall4" unique_id=1160025713]
@@ -179,26 +225,26 @@ transform = Transform3D(-0.59446096, 0, -0.8041245, 0, 1, 0, 0.8041245, 0, -0.59
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
 [node name="CellContainerSpawner" parent="Stations/ContainerStations" unique_id=1385341540 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("3_fon25")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6220264, 0, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6220264, 0, 18)
 cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="CellAnalyzer" parent="Stations/ContainerStations" unique_id=1894764592 instance=ExtResource("4_r2y5v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3779736, 0.03572035, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.3779736, 0.03572035, 18)
 
 [node name="CellTrashCan" parent="Stations/ContainerStations" unique_id=995289130 instance=ExtResource("9_kb5nk")]
-transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4999999, 9.937117, 0, 13.870552)
+transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4999999, 9.937117, 0, 17.870552)
 
 [node name="TargetCellComparison" parent="Stations/ContainerStations" unique_id=1263804446 instance=ExtResource("11_moggy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.232382, 0, -1.4660921)
 
 [node name="DefectDecreaser" parent="Stations/ContainerStations" unique_id=1174221731 instance=ExtResource("11_1l4rw")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.095333, 0.8529396, 9.287113)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.095333, 0.8529396, 13.287113)
 
 [node name="ItemOfferManager" parent="Stations/ContainerStations" unique_id=359772628 instance=ExtResource("15_w7r6u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 7.278219)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 11.278219)
 
 [node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
 cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
@@ -222,7 +268,7 @@ game_screen_scene = ExtResource("13_wv5kd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
 
 [node name="MutationFileCabinet" parent="Stations" unique_id=103506904 node_paths=PackedStringArray("mutations_seen_manager") instance=ExtResource("17_j7s3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 16)
 mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 
 [node name="UnhideMutation" parent="Stations" unique_id=1284783246 instance=ExtResource("18_8muua")]
@@ -230,6 +276,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")
+
+[node name="EntityRoomManagement" type="Node" parent="GameManager" unique_id=97282220]
+script = ExtResource("20_ea07q")
 
 [node name="CellCreator" type="Node" parent="GameManager" unique_id=1432438607]
 script = ExtResource("10_c7w6w")
@@ -277,6 +326,20 @@ script = ExtResource("22_dn28p")
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
 
+[node name="RandomMutationEventTrigger" type="Node" parent="GameManager" unique_id=1935449708]
+script = ExtResource("35_36h02")
+
+[node name="SendMutationEvent" type="Node" parent="GameManager/RandomMutationEventTrigger" unique_id=2105502864 node_paths=PackedStringArray("cell_manager", "entity_room_management")]
+script = ExtResource("36_3kcnf")
+cell_manager = NodePath("../../CellManager")
+entity_room_management = NodePath("../../EntityRoomManagement")
+
+[node name="MutationEventDelay" type="Timer" parent="GameManager/RandomMutationEventTrigger" unique_id=359982110]
+wait_time = 5.0
+
+[node name="MutationSeenManager" type="Node" parent="GameManager" unique_id=1865371392]
+script = ExtResource("32_62614")
+
 [node name="DefectEventManager" type="Node" parent="GameManager" unique_id=1995310140]
 script = ExtResource("18_58boi")
 
@@ -290,9 +353,6 @@ cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 [node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=1548402198]
 wait_time = 10.0
 one_shot = true
-
-[node name="MutationSeenManager" type="Node" parent="GameManager" unique_id=1865371392]
-script = ExtResource("32_62614")
 
 [node name="IncrementalValueController" type="Node" parent="GameManager" unique_id=823228964]
 script = ExtResource("31_alpj0")
@@ -315,6 +375,9 @@ script = ExtResource("37_ngeto")
 [node name="IVHelperMutations" type="Node" parent="GameManager/IncrementalValueController" unique_id=1442218971]
 script = ExtResource("40_8muua")
 
+[node name="IVHelperMutationEventTrigger" type="Node" parent="GameManager/IncrementalValueController" unique_id=444874289]
+script = ExtResource("48_3ujpq")
+
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
 
@@ -326,6 +389,88 @@ script = ExtResource("47_qjatd")
 
 [node name="GenerateMutationOffer" type="Node" parent="GameManager/ShareholderOfferDemandGenerator" unique_id=35595692]
 script = ExtResource("48_ea07q")
+
+[node name="EntranceAreasRoom" type="Node" parent="." unique_id=432962381]
+
+[node name="PrisonerRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=1525945135]
+
+[node name="Entrance" type="Area3D" parent="EntranceAreasRoom/PrisonerRoom" unique_id=1497302286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1, 1, -1.2)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "prisoner_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/PrisonerRoom/Entrance" unique_id=237205008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5337279, 1.45)
+shape = SubResource("BoxShape3D_awaeu")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="MainRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=2034625860]
+
+[node name="Entrance1" type="Area3D" parent="EntranceAreasRoom/MainRoom" unique_id=156977295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3, 1, -1.2)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "main_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/MainRoom/Entrance1" unique_id=211465126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.45)
+shape = SubResource("BoxShape3D_qa1qv")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="Entrance2" type="Area3D" parent="EntranceAreasRoom/MainRoom" unique_id=1766045013]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.7, 1, -5.6)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "main_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/MainRoom/Entrance2" unique_id=291887310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5, 1.2855897)
+shape = SubResource("BoxShape3D_ea07q")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="Entrance3" type="Area3D" parent="EntranceAreasRoom/MainRoom" unique_id=1736509028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9, 0.7, 5.4)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "main_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/MainRoom/Entrance3" unique_id=1475924401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5, 1.2855897)
+shape = SubResource("BoxShape3D_ea07q")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="InterpreterRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=1988347560]
+
+[node name="Entrance" type="Area3D" parent="EntranceAreasRoom/InterpreterRoom" unique_id=1974331961]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.9999995, 1, -7.7)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "interpreter_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/InterpreterRoom/Entrance" unique_id=1915261967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.0000005)
+shape = SubResource("BoxShape3D_36h02")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="ComparisonRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=687055088]
+
+[node name="Entrance" type="Area3D" parent="EntranceAreasRoom/ComparisonRoom" unique_id=865240045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.7, 0.7, 5.4)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "comparison_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/ComparisonRoom/Entrance" unique_id=1179369434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5, 1.2855897)
+shape = SubResource("BoxShape3D_ea07q")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
 
 [node name="UseableItemSpawnManager" type="Node" parent="." unique_id=622852825 node_paths=PackedStringArray("player")]
 script = ExtResource("16_44ape")

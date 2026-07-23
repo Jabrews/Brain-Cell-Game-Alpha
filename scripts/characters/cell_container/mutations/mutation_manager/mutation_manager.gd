@@ -14,17 +14,6 @@ var paused_constant_events: Array[MutationEvent] = []
 func _ready() -> void:
 	GLMutationEventBus.connect('attempt_to_trigger_random_mutation_event', _handle_attempt_to_trigger_random_mutation_event)
 	
-func _process(delta: float) -> void: 
-	if Input.is_action_just_pressed('debug2'):
-		
-		var designated_brain_cell : BrainCell = cell_container.designated_brain_cell
-		
-		print('cell name : ', designated_brain_cell.name)	
-		for active_mutation_event in active_mutation_events : 
-			print('active mutations : ', active_mutation_event.name )
-	
-
-
 # called when cell is initilized/updated
 func _constant_cell_mutations_refresh(cell_mutations : Array[BrainCellMutation]) :
 	

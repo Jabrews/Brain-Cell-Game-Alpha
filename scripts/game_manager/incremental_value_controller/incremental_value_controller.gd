@@ -10,6 +10,7 @@ var last_round : int = 0
 @onready var iv_helper_cell_stat_creation : Node = $IVHelperCellStatCreation
 @onready var iv_helper_shareholder_items : Node = $IVHelperShareholderItems
 @onready var iv_helper_mutations : Node = $IVHelperMutations
+@onready var iv_helper_mutation_event_trigger : Node = $IVHelperMutationEventTrigger
 
 func _ready() -> void:
 	# when energy changes outside of prisoner generation
@@ -232,6 +233,7 @@ func handle_energy(round : int, energy: int) :
 	iv_helper_cell_stat_creation._update_cell_stat_creation(round, energy)
 	iv_helper_shareholder_items._update_shareholder_items(round, energy)
 	iv_helper_mutations._update_mutations(round, energy)
+	iv_helper_mutation_event_trigger._update_mutations_event_trigger(round, energy)
 	
 
 func _handle_energy_changed() :
