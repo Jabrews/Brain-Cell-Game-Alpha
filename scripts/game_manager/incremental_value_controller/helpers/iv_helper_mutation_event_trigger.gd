@@ -5,16 +5,38 @@ func _update_mutations_event_trigger(round : int , energy : int) :
 	if round == 1 :
 		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 10.0
 		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 15.0
-		
+		IVRandomMutationEventTrigger.succession_event_delay_min_wait_timer = 0.0
+		IVRandomMutationEventTrigger.succession_event_delay_max_wait_timer = 0.0
+		IVRandomMutationEventTrigger.chance_for_succession_event = 0
+		IVRandomMutationEventTrigger.chance_to_trigger_other_room_cell = 0
+		IVRandomMutationEventTrigger.chance_for_mutation_on_interpeter_cell = 0
 	
 	elif round == 2 :
-		pass
+		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 20.0
+		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 25.0
+		IVRandomMutationEventTrigger.succession_event_delay_min_wait_timer = 10.0
+		IVRandomMutationEventTrigger.succession_event_delay_max_wait_timer = 15.0
+		IVRandomMutationEventTrigger.chance_for_succession_event = 10
+		IVRandomMutationEventTrigger.chance_to_trigger_other_room_cell = 25
+		IVRandomMutationEventTrigger.chance_for_mutation_on_interpeter_cell = 15
 		
 	elif round == 3 :
-		pass
+		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 20.0
+		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 30.0
+		IVRandomMutationEventTrigger.succession_event_delay_min_wait_timer = 10.0
+		IVRandomMutationEventTrigger.succession_event_delay_max_wait_timer = 20.0
+		IVRandomMutationEventTrigger.chance_for_succession_event = 20
+		IVRandomMutationEventTrigger.chance_to_trigger_other_room_cell = 25
+		IVRandomMutationEventTrigger.chance_for_mutation_on_interpeter_cell = 20
 
 	elif round == 4 :
-		pass
+		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 15.0
+		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 25.0
+		IVRandomMutationEventTrigger.succession_event_delay_min_wait_timer = 5.0
+		IVRandomMutationEventTrigger.succession_event_delay_max_wait_timer = 20.0
+		IVRandomMutationEventTrigger.chance_for_succession_event = 40
+		IVRandomMutationEventTrigger.chance_to_trigger_other_room_cell = 40
+		IVRandomMutationEventTrigger.chance_for_mutation_on_interpeter_cell = 25
 
 	
 	var danger_level = get_energy_danger_level(energy)
