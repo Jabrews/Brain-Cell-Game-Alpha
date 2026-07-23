@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bkm7jfq8jwdcc"]
+
+[ext_resource type="Script" uid="uid://dcg2pw5pom61j" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/lonley/constant_lonley_starvation.gd" id="1_hvl5q"]
+
+[node name="ConstantLonleyStarvation" type="Node3D" unique_id=1391752523]
+script = ExtResource("1_hvl5q")

@@ -488,6 +488,7 @@ offset_bottom = 226.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
 [node name="StatDisplay" type="Control" parent="." unique_id=397082228]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -784,7 +785,6 @@ texture = ExtResource("15_jdk76")
 script = ExtResource("16_fkch0")
 
 [node name="NoCell" type="Control" parent="." unique_id=2071064501]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

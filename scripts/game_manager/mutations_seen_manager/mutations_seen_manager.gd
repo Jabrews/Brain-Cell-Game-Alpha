@@ -2,15 +2,15 @@ extends Node
 
 var mutations_seen: Dictionary = {
 	"airborne": true,
-	"teleportation": false,
+	"teleportation": true,
 	"sentient": true,
 	"lonley": true,
 	"disrupter": true,
 	"exsplosive": true,
-	"infectious": false,
+	"infectious": true,
 	"cognisance": true,
 	"telekinetic": true,
-	"unstable": false,
+	"unstable": true,
 }
 
 

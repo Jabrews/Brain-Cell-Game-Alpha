@@ -65,7 +65,7 @@ func apply_real_mutation(
 	# Sentient should always be visible.
 	if mutation.type == "sentient":
 		mutation.hidden = false
-
+		
 	set_cell_mutation(cell, mutation)
 
 	return mutation.hidden
@@ -101,7 +101,8 @@ func apply_fake_mutations(
 
 		var fake_mutation: BrainCellMutation = BrainCellMutation.new(
 			"none",
-			true
+			true,
+			[]
 		)
 
 		set_cell_mutation(cell, fake_mutation)

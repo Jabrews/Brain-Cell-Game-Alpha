@@ -55,6 +55,7 @@ GLCellTrashcanBus="*uid://gsbwpxtaipdf"
 GLMutationFileCabinetBus="*uid://dtohx8ijowxkv"
 IVMutations="*uid://bxerlortn8py1"
 GLPrisonerSpawnerBus="*uid://cvxoh5cpd1url"
+GLMutationEventBus="*uid://hyxxt1n7icvf"
 
 [debug]
 

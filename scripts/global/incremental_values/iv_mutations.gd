@@ -1,16 +1,34 @@
 extends Node
 
 var all_mutations : Array[BrainCellMutation] = [
-	BrainCellMutation.new('airborne', false),
-	BrainCellMutation.new('teleportation', false),
-	BrainCellMutation.new('sentient', false),
-	BrainCellMutation.new('lonley', false),
-	BrainCellMutation.new('disrupter', false),
-	BrainCellMutation.new("exsplosive", false),
-	BrainCellMutation.new('infectious', false),
-	BrainCellMutation.new('cognisance', false),
-	BrainCellMutation.new('telekinetic', false),
-	BrainCellMutation.new('unstable', false),
+	# AIRBORNE
+	BrainCellMutation.new('airborne', false, [
+		MutationEvent.new('airborne_fly', 'random_event')
+	]),
+	# SENTIENT
+	BrainCellMutation.new('sentient', false, [
+		MutationEvent.new('sentient_talk', 'constant')
+	]),
+	# LONLEY
+	BrainCellMutation.new('lonley', false, [
+		MutationEvent.new('lonley_starvation', 'constant')
+	]),
+	# DISRUPTOR
+	BrainCellMutation.new('disrupter', false, [
+		MutationEvent.new('disrupter_disrupt', 'random_event')
+	]),
+	# TELEPORTATION 
+	BrainCellMutation.new('teleportation', false, []),
+	# EXSPLOSIVE
+	BrainCellMutation.new("exsplosive", false, []),
+	# INFECTIOUS
+	BrainCellMutation.new('infectious', false, []),
+	# COGNISANCE
+	BrainCellMutation.new('cognisance', false, []),
+	# TELEKINETIC
+	BrainCellMutation.new('telekinetic', false, []),
+	# UNSTABLE
+	BrainCellMutation.new('unstable', false, []),
 ]
 
 var good_mutations : Array[BrainCellMutation] = []

@@ -140,13 +140,13 @@ func _set_hidden_mutation(
 	if cell == null or source_mutation == null:
 		return
 
-	# Create a new mutation so the global mutation object is not modified.
+	# Create a complete copy so the global mutation is not modified.
 	var mutation_copy := BrainCellMutation.new(
 		source_mutation.type,
-		true
+		true,
+		source_mutation.mutation_events.duplicate()
 	)
 
-	mutation_copy.hidden = true
 	cell.mutations = [mutation_copy]
 
 
@@ -154,7 +154,7 @@ func _apply_hidden_none_mutation_to_cell(cell: BrainCell) -> void:
 	if cell == null:
 		return
 
-	var hidden_none_mutation := BrainCellMutation.new("none", true)
+	var hidden_none_mutation := BrainCellMutation.new("none", true, [])
 	hidden_none_mutation.hidden = true
 
 	cell.mutations = [hidden_none_mutation]

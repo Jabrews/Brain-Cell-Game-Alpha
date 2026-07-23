@@ -5,7 +5,8 @@ func _update_mutations(round : int , energy : int) :
 	
 	if round == 1 :
 		IVMutations.good_mutations= [
-			BrainCellMutation.new('sentient', false),
+			# sentient
+			IVMutations.all_mutations[1],
 		]
 		IVMutations.bad_mutations= []
 		
@@ -26,12 +27,16 @@ func _update_mutations(round : int , energy : int) :
 	
 	elif round == 2 :
 		IVMutations.good_mutations= [
-			BrainCellMutation.new('airborne', false),
-			BrainCellMutation.new('sentient', false),
+			# airborne
+			IVMutations.all_mutations[0],
+			# sentient
+			IVMutations.all_mutations[1],
 		]
 		IVMutations.bad_mutations= [
-			BrainCellMutation.new('lonley', false),
-			BrainCellMutation.new('disrupter', false),
+			# lonley
+			IVMutations.all_mutations[2],
+			# disrupter 
+			IVMutations.all_mutations[3],
 		]
 		
 		IVMutations.min_mutations_per_batch = 1

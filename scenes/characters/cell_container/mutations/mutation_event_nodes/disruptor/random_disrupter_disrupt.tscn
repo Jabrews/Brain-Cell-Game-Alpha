@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c5uywmjqqa4g7"]
+
+[ext_resource type="Script" uid="uid://cmu36envfcp47" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/random_disrupter_disrupt.gd" id="1_v20ls"]
+
+[node name="RandomDisrupterDisrupt" type="Node3D" unique_id=634586220]
+script = ExtResource("1_v20ls")

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b07x1w6awvra7"]
+
+[ext_resource type="Script" uid="uid://bofxttrj45glm" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/constant_sentient_talk.gd" id="1_kuhs7"]
+
+[node name="ConstantSentientTalk" type="Node3D" unique_id=915212961]
+script = ExtResource("1_kuhs7")

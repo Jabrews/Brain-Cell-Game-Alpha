@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cuym642x3ota0"]
+
+[ext_resource type="Script" uid="uid://b24ewkia8plfg" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/airborne/random_airborne_fly.gd" id="1_fncib"]
+
+[node name="RandomAirborneFly" type="Node3D" unique_id=1172033506]
+script = ExtResource("1_fncib")

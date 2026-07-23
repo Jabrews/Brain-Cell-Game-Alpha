@@ -27,18 +27,19 @@ func _ready() -> void:
 func _handle_mutations(
 	cell_constructor: CellConstructor,
 	prisoner_cells: Array[BrainCell],
-	stat_constructors : Array[StatConstructor],
+	stat_constructors: Array[StatConstructor],
 ) -> Array[BrainCell]:
-	
-	# Turned on when the player urgently needs mutated cells.
 	var force_mutation_urgency: bool = false
 
-	# Force the chosen sentient mutation once.
+	# Force the sentient mutation once.
 	if (
 		not IVMutations.served_sentient_cell
 		and cell_constructor.cell_quantity == 4
 	):
-		return serve_sentient_cell_first_round(prisoner_cells, stat_constructors)
+		return serve_sentient_cell_first_round(
+			prisoner_cells,
+			stat_constructors
+		)
 
 	###############
 	# EXIT EVENTS #
@@ -61,7 +62,9 @@ func _handle_mutations(
 	var random_exit_number: int = randi_range(1, 100)
 
 	if random_exit_number <= IVMutations.chance_to_exit_mutation_loop:
-		var override_exit: bool = urgency_overide_mutation._check_overide()
+		var override_exit: bool = (
+			urgency_overide_mutation._check_overide()
+		)
 
 		if override_exit:
 			force_mutation_urgency = true
@@ -83,13 +86,22 @@ func _handle_mutations(
 		var demand_chance: int = randi_range(1, 100)
 
 		if demand_chance <= 50:
-			batch_mutations.append(demand_mutation)
+			# Retrieve the complete configured mutation object.
+			var complete_demand_mutation: BrainCellMutation = (
+				get_available_mutation(demand_mutation.type)
+			)
+
+			if complete_demand_mutation:
+				batch_mutations.append(complete_demand_mutation)
 
 	# Keep trying until at least one mutation is selected.
 	while batch_mutations.is_empty():
 		var previous_size: int = batch_mutations.size()
 
-		batch_mutations = get_batch_mutations(batch_mutations, stat_constructors)
+		batch_mutations = get_batch_mutations(
+			batch_mutations,
+			stat_constructors
+		)
 
 		# Prevent an infinite loop when nothing can be selected.
 		if (
@@ -144,13 +156,17 @@ func _handle_mutations(
 
 func serve_sentient_cell_first_round(
 	prisoner_cells: Array[BrainCell],
-	stat_constructors : Array[StatConstructor]
+	stat_constructors: Array[StatConstructor]
 ) -> Array[BrainCell]:
-	var batch_mutations: Array[BrainCellMutation] = [
-		BrainCellMutation.new("sentient", false)
-	]
+	var batch_mutations: Array[BrainCellMutation] = []
 
-	# Prevent sentient from being selected again in this mutation batch.
+	var sentient_mutation: BrainCellMutation = get_available_mutation(
+		"sentient"
+	)
+
+	batch_mutations.append(sentient_mutation)
+
+	# Prevent sentient from being selected again in this batch.
 	_remove_available_mutation("sentient")
 
 	# Roll for additional mutations when more than one is permitted.
@@ -163,9 +179,11 @@ func serve_sentient_cell_first_round(
 
 		var previous_size: int = batch_mutations.size()
 
-		batch_mutations = get_batch_mutations(batch_mutations, stat_constructors)
+		batch_mutations = get_batch_mutations(
+			batch_mutations,
+			stat_constructors
+		)
 
-		# Nothing was selected during this roll.
 		if batch_mutations.size() == previous_size:
 			break
 
@@ -174,15 +192,28 @@ func serve_sentient_cell_first_round(
 		batch_mutations
 	)
 
-	# This remains true after the round changes so sentient is only forced once.
 	IVMutations.served_sentient_cell = true
 
 	return prisoner_cells
 
 
+func get_available_mutation(
+	mutation_type: String
+) -> BrainCellMutation:
+	for mutation: BrainCellMutation in avaible_good_mutations:
+		if mutation.type == mutation_type:
+			return mutation
+
+	for mutation: BrainCellMutation in avaible_bad_mutations:
+		if mutation.type == mutation_type:
+			return mutation
+
+	return null
+
+
 func get_batch_mutations(
 	batch_mutations: Array[BrainCellMutation],
-	stat_constructors : Array[StatConstructor]
+	stat_constructors: Array[StatConstructor]
 ) -> Array[BrainCellMutation]:
 	var max_mutations_per_batch: int = (
 		IVMutations.max_mutations_per_batch
@@ -199,25 +230,27 @@ func get_batch_mutations(
 		batch_mutations.size() < min_mutations_per_batch
 	)
 
-
 	var good_mutation_chance: int = IVMutations.good_mutation_chance
 	var bad_mutation_chance: int = IVMutations.bad_mutation_chance
-	
+
 	# Boost or decrease chances depending on active
 	# prisoner-profiler symbols.
-	for stat_constructor : StatConstructor in stat_constructors : 
-		if stat_constructor.spare_symbol.type == 'good_mutation' : 		
-			match stat_constructor.spare_symbol.direction : 
-				'up' :
+	for stat_constructor: StatConstructor in stat_constructors:
+		if stat_constructor.spare_symbol.type == "good_mutation":
+			match stat_constructor.spare_symbol.direction:
+				"up":
 					good_mutation_chance += 10
-				'down' : 
-					good_mutation_chance += -10
-		elif stat_constructor.spare_symbol.type == 'bad_mutation' :
-			match stat_constructor.spare_symbol.direction : 
-				'up' :
+
+				"down":
+					good_mutation_chance -= 10
+
+		elif stat_constructor.spare_symbol.type == "bad_mutation":
+			match stat_constructor.spare_symbol.direction:
+				"up":
 					bad_mutation_chance += 10
-				'down' : 
-					bad_mutation_chance += -10
+
+				"down":
+					bad_mutation_chance -= 10
 
 	if should_force_mutation:
 		var all_available_mutations: Array[BrainCellMutation] = []
@@ -237,7 +270,15 @@ func get_batch_mutations(
 			all_available_mutations.pick_random()
 		)
 
-		if not batch_mutations.has(selected_mutation):
+		# Retrieve the complete configured mutation object.
+		selected_mutation = get_available_mutation(
+			selected_mutation.type
+		)
+
+		if (
+			selected_mutation
+			and not batch_mutations.has(selected_mutation)
+		):
 			batch_mutations.append(selected_mutation)
 
 		return batch_mutations
@@ -252,7 +293,15 @@ func get_batch_mutations(
 			avaible_good_mutations.pick_random()
 		)
 
-		if not batch_mutations.has(selected_good_mutation):
+		# Retrieve the complete configured mutation object.
+		selected_good_mutation = get_available_mutation(
+			selected_good_mutation.type
+		)
+
+		if (
+			selected_good_mutation
+			and not batch_mutations.has(selected_good_mutation)
+		):
 			batch_mutations.append(selected_good_mutation)
 
 		return batch_mutations
@@ -267,13 +316,23 @@ func get_batch_mutations(
 			avaible_bad_mutations.pick_random()
 		)
 
-		if not batch_mutations.has(selected_bad_mutation):
+		# Retrieve the complete configured mutation object.
+		selected_bad_mutation = get_available_mutation(
+			selected_bad_mutation.type
+		)
+
+		if (
+			selected_bad_mutation
+			and not batch_mutations.has(selected_bad_mutation)
+		):
 			batch_mutations.append(selected_bad_mutation)
 
 	return batch_mutations
 
 
-func _remove_available_mutation(mutation_type: String) -> void:
+func _remove_available_mutation(
+	mutation_type: String
+) -> void:
 	for index: int in range(
 		avaible_good_mutations.size() - 1,
 		-1,
@@ -302,9 +361,8 @@ func _remove_available_mutation(mutation_type: String) -> void:
 func _handle_process_next_round() -> void:
 	fill_avaible_mutations()
 
-	# reset serve sentient cell
+	# Reset serving the sentient cell.
 	IVMutations.served_sentient_cell = false
-
 
 
 func fill_avaible_mutations() -> void:
@@ -317,4 +375,5 @@ func fill_avaible_mutations() -> void:
 	avaible_bad_mutations = (
 		IVMutations.bad_mutations.duplicate()
 	)
+	
 	
