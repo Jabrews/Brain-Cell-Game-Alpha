@@ -31,6 +31,8 @@ func _update_mutations(round : int , energy : int) :
 			#IVMutations.all_mutations[0],
 			# sentient
 			#IVMutations.all_mutations[1],# debug
+		
+		
 		IVMutations.bad_mutations= [
 			# lonley
 			IVMutations.all_mutations[2],# debug

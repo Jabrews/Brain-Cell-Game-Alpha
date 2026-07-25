@@ -8,10 +8,8 @@ extends Node3D
 @onready var mutation_mesh_parent : Node3D = $MutationMeshParent
 @onready var shake_sentient_mutation : Node = $ShakeSentientMutation
 
-
-
-
 @export var yaw_offset: float = 0.0
+var show_distance : float = 4.0
 
 var player : CharacterBody3D
 
@@ -87,6 +85,7 @@ func _process(_delta: float) -> void:
 		
 	if visible and player : 
 		_face_player_y_only()
+		_auto_turn_off()
 
 
 func _face_player_y_only() -> void:
@@ -105,3 +104,16 @@ func _face_player_y_only() -> void:
 
 func set_player_reference(player_reference: CharacterBody3D) -> void:
 	player = player_reference
+
+
+
+func _auto_turn_off() -> void:
+
+	if player == null:
+		return
+
+	var distance_to_player: float = global_position.distance_to(
+		player.global_position
+	)
+
+	visible = distance_to_player <= show_distance

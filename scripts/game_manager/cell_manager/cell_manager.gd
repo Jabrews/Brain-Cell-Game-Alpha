@@ -18,6 +18,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
+	GLCellManagerBus.connect('mutation_frowny_increase_defect', _handle_mutation_frowny_increase_defect)
 	
 	# DEBUG
 	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
@@ -331,6 +332,18 @@ func _handle_defect_decreaser_used(selected_brain_cell : BrainCell) :
 	selected_brain_cell.community.defect = max( 0.0, selected_brain_cell.community.defect - decrease_amount)
 
 	update_collected_cells([selected_brain_cell])
+
+
+func _handle_mutation_frowny_increase_defect(selected_cell : BrainCell) : 
+	var increase_amount = 40
+
+	selected_cell.strength.defect += increase_amount
+
+	selected_cell.intelligence.defect += increase_amount
+
+	selected_cell.community.defect += increase_amount
+
+	update_collected_cells([selected_cell])
 
 
 ### OTHER ZOOS ###

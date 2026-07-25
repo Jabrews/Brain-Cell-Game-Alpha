@@ -11,6 +11,7 @@ extends MutationNode
 
 # Other components
 @onready var detect_other_cells_area: Area3D = $DetectOtherCellArea
+@onready var face_sprite : Sprite3D = $FaceSpriteManager/FaceSprite
 
 # Audio components
 @onready var face_entry_sounds: Array[AudioStreamPlayer3D] = [
@@ -19,10 +20,31 @@ extends MutationNode
 	$CryStartSound,
 ]
 
+# cry particle
+@onready var cry_particle :GPUParticles3D = $CryParticle
+
 
 var current_face_type: String = "smile"
 var is_lonely: bool = false
 var cry_active: bool = false
+
+@export var hide_distance: float = 2.7
+
+
+func _process(_delta: float) -> void:
+	var player: Node3D = GLPlayerState.player_refrence
+
+	if player == null:
+		return
+
+	var distance_to_player: float = global_position.distance_to(
+		player.global_position
+	)
+
+	if distance_to_player <= hide_distance:
+		face_sprite.modulate.a = 0.05
+	else:
+		face_sprite.modulate.a = 1.0
 
 
 func _ready_overide() -> void:
@@ -62,6 +84,13 @@ func switch_current_face_type(new_face_type: String) -> void:
 	
 	if new_face_type == 'frown' and current_face_type == 'cry' :
 		skip_entry_sound = true
+	
+	if new_face_type == 'cry' :
+		cry_particle.emitting = true 
+	else :
+		cry_particle.emitting = false 
+		
+		
 				
 
 	current_face_type = new_face_type
@@ -75,6 +104,7 @@ func switch_current_face_type(new_face_type: String) -> void:
 func play_entry_sound() -> void:
 	for entry_sound: AudioStreamPlayer3D in face_entry_sounds:
 		entry_sound.stop()
+	
 
 	match current_face_type:
 		"smile":
@@ -119,6 +149,10 @@ func _handle_cry_delay_timeout() -> void:
 
 	if current_face_type != "frown":
 		return
+	
+	
+	GLCellManagerBus.emit_signal('mutation_frowny_increase_defect', parent_cell_container.designated_brain_cell)
+	
 
 	cry_active = true
 	switch_current_face_type("cry")

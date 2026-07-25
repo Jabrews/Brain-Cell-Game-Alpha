@@ -7,19 +7,38 @@
 [ext_resource type="AudioStream" uid="uid://wgbdjltm3h8u" path="res://sounds/cell_container/mutations/lonely/frown_start.mp3" id="5_wn1e5"]
 [ext_resource type="AudioStream" uid="uid://db2rsvg0wf4b1" path="res://sounds/cell_container/mutations/lonely/cry_start.mp3" id="6_guk1o"]
 [ext_resource type="Script" uid="uid://b3cc2cqj6lrs1" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/lonley/detect_other_cells_area.gd" id="7_xhjdo"]
+[ext_resource type="Texture2D" uid="uid://1fua0pirwd11" path="res://models/mutations/constant_lonley_starvation/tear.png" id="8_fykb3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
 size = Vector3(4, 2, 4)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y5bnc"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anjkl"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.19999999, 0.42666662, 1, 1)
+albedo_texture = ExtResource("8_fykb3")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xtnwy"]
+material = SubResource("StandardMaterial3D_anjkl")
+size = Vector2(0.2, 0.2)
+orientation = 2
 
 [node name="ConstantLonleyStarvation" type="Node3D" unique_id=1391752523]
 script = ExtResource("1_hvl5q")
 
 [node name="StartDelayTimer" type="Timer" parent="." unique_id=1361387916]
-wait_time = 2.0
+wait_time = 7.0
 autostart = true
 
 [node name="CheckForOtherCellsTimer" type="Timer" parent="." unique_id=1666403375]
-wait_time = 3.0
+wait_time = 2.5
 
 [node name="CryDelayTimer" type="Timer" parent="." unique_id=1841459419]
 wait_time = 3.0
@@ -56,3 +75,11 @@ script = ExtResource("7_xhjdo")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectOtherCellArea" unique_id=8528921]
 shape = SubResource("BoxShape3D_qa1qv")
 debug_color = Color(0.84313726, 0.38039216, 0, 0.09019608)
+
+[node name="CryParticle" type="GPUParticles3D" parent="." unique_id=884284146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22635984, 0)
+emitting = false
+amount = 25
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_y5bnc")
+draw_pass_1 = SubResource("PlaneMesh_xtnwy")
