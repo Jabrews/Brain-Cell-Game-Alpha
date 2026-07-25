@@ -49,7 +49,7 @@ func _ready() -> void:
 	detect_mouse_area.mouse_entered.connect(_handle_mouse_entered)
 	detect_mouse_area.mouse_exited.connect(_handle_mouse_exited)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if file_being_hover_over and designated_file_info and not locked: 
 		if Input.is_action_just_pressed('attack') :
 			mutation_file_cabinet._display_file_view(designated_file_info)

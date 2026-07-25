@@ -16,9 +16,12 @@ func state_start() -> void :
 	
 func state_process(_delta) -> void:
 	
-	
 	# move with raycast
 	if player_ray_cast:
+		
+		# let mutation know its currenty being picked up 		
+		parent_cell_container.mutation_manager._handle_cell_picked_up()
+		
 		var origin = player_ray_cast.global_transform.origin
 		var direction = -player_ray_cast.global_transform.basis.z.normalized()
 		var target_pos = origin + direction * 2.0

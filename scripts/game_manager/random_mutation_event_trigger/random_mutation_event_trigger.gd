@@ -8,6 +8,9 @@ extends Node
 @onready var send_mutation_event : Node = $SendMutationEvent
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') :
+		send_mutation_event._send_event()
 
 
 var waiting_for_succession_event: bool = false

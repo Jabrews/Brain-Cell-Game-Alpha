@@ -35,7 +35,7 @@ func state_start() :
 		cell_container_parent,
 		"scale",
 		Vector3.ONE * 0.001,
-		1.0
+		0.5
 	).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	
 	# shaking effect
@@ -51,7 +51,7 @@ func state_start() :
 			cell_container_parent,
 			"position",
 			original_pos + random_offset,
-			0.03
+			0.02
 		)
 
 	# reset position
@@ -59,7 +59,7 @@ func state_start() :
 		cell_container_parent,
 		"position",
 		original_pos,
-		0.03
+		0.02
 	)
 
 	await tween.finished

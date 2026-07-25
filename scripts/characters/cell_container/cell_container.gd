@@ -18,6 +18,8 @@ var on_stat_interpreter : bool = false
 # when they die from breeding prevent
 var spawn_flesh_bug_on_death : bool = true
 
+var prevent_gravity : bool = false
+
 
 func _ready() -> void:
 	
@@ -153,8 +155,6 @@ func has_fatal_defect() -> bool:
 
 func kill_cell() -> void:
 	
-	await get_tree().create_timer(1.0).timeout
-	
 	GLCellManagerBus.emit_signal(
 		"delete_selected_collected_cell",
 		designated_brain_cell
@@ -173,7 +173,7 @@ func check_for_cell_dead_on_start() :
 			
 			GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 			
-			await kill_cell()
+			kill_cell()
 		
 		# if not. that was players free chance.
 		# now next badly breeded cell will die
@@ -192,7 +192,7 @@ func check_for_cell_dead_on_update() :
 		
 		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 		
-		await kill_cell()
+		kill_cell()
 		
 		return
 	##########################
@@ -203,7 +203,7 @@ func check_for_cell_dead_on_update() :
 		
 		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 		
-		await kill_cell()
+		kill_cell()
 		
 		return
 	############################

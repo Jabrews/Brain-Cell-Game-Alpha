@@ -58,6 +58,8 @@
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://bdnbjj8c2wdys" path="res://scripts/game_manager/shareholder_offer_generator/offer_helpers/generate_mutation_offer.gd" id="48_ea07q"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
+[ext_resource type="PackedScene" uid="uid://csxul1ta0njxi" path="res://scenes/ceiling_fan/ceiling_fan.tscn" id="59_m2qbd"]
+[ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -80,6 +82,12 @@ ambient_light_color = Color(0.20110431, 0.21357447, 0.074715756, 1)
 fog_enabled = true
 fog_light_color = Color(0.10628634, 0.11559991, 0.025737353, 1)
 fog_density = 0.05
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ms0m2"]
+size = Vector3(1, 5, 17)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_otmbb"]
+size = Vector3(1, 5, 15)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_v2xyd"]
 vertices = PackedVector3Array(-24.5, 0.45, -7.75, -21.75, 0.45, -7.75, -21.5, 0.45, -8.75, -17, 0.45, -9.25, -16.75, 0.45, -8.25, -11.25, 0.45, -8.25, -11.25, 0.45, -17.25, -10, 0.45, -17.5, -10, 0.45, -24.5, -24.5, 0.45, -24.5, -18.5, 0.45, -9.25, -9, 0.45, -17.25, 14.75, 0.45, -12.25, 15.75, 0.45, -12.5, 15.75, 0.45, -24.5, -9, 0.45, -3, 14.75, 0.45, -2.75, 17, 0.45, -12.25, 17, 0.45, -10.25, 24.5, 0.45, -10.25, 24.5, 0.45, -24.5, 17, 0.45, 1.5, 24.5, 0.45, 1.5, -21.5, 0.45, -6.75, -24.5, 0.45, 3, -11.25, 0.45, 1.75, -10, 0.45, 1.5, -10, 0.45, -1.25, -11.25, 0.45, -1.5, -17, 0.45, -7.25, -19.75, 0.45, -6.75, -11.25, 0.45, 3.25, -9.5, 0.45, 1.5, 14.75, 0.45, 1.25, -9, 0.45, -1.5, 14.75, 0.45, 5.75, 15.75, 0.45, 5.5, 15.75, 0.45, 3.75, 14.75, 0.45, 3.5, -9, 0.45, 1.75, 15.75, 0.45, 24.5, 15.75, 0.45, 21.75, 14.75, 0.45, 21.5, -9, 0.45, 17.5, -10, 0.45, 17.75, -10, 0.45, 24.5, 17, 0.45, 3.5, 17, 0.45, 5.75, 24.5, 0.45, 7.75, 17, 0.45, 7.75, -11.25, 0.45, 17.5, -24.5, 0.45, 24.5, 17, 0.45, 21.5, 24.5, 0.45, 24.5)
@@ -179,7 +187,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall3" unique_id=815923405]
-shape = SubResource("BoxShape3D_7xrfk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+shape = SubResource("BoxShape3D_ms0m2")
 
 [node name="Wall4" type="StaticBody3D" parent="Enviroment" unique_id=348325151 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.844295, 2.495707, 13.747911)
@@ -191,7 +200,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall4" unique_id=1160025713]
-shape = SubResource("BoxShape3D_7xrfk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shape = SubResource("BoxShape3D_otmbb")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Enviroment" unique_id=456962782]
 visible = false
@@ -329,10 +339,11 @@ script = ExtResource("12_63vgv")
 [node name="RandomMutationEventTrigger" type="Node" parent="GameManager" unique_id=1935449708]
 script = ExtResource("35_36h02")
 
-[node name="SendMutationEvent" type="Node" parent="GameManager/RandomMutationEventTrigger" unique_id=2105502864 node_paths=PackedStringArray("cell_manager", "entity_room_management")]
+[node name="SendMutationEvent" type="Node" parent="GameManager/RandomMutationEventTrigger" unique_id=2105502864 node_paths=PackedStringArray("cell_manager", "entity_room_management", "cell_container_parent_node")]
 script = ExtResource("36_3kcnf")
 cell_manager = NodePath("../../CellManager")
 entity_room_management = NodePath("../../EntityRoomManagement")
+cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
 
 [node name="MutationEventDelay" type="Timer" parent="GameManager/RandomMutationEventTrigger" unique_id=359982110]
 wait_time = 5.0
@@ -488,3 +499,18 @@ script = ExtResource("14_5ru7i")
 
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]
 script = ExtResource("18_44ape")
+
+[node name="CelingFanManager" type="Node" parent="." unique_id=1795027568]
+script = ExtResource("59_ms0m2")
+
+[node name="CeilingFan" parent="CelingFanManager" unique_id=829669894 instance=ExtResource("59_m2qbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3000002, 5, 9.200001)
+room = "main_room"
+
+[node name="CeilingFan2" parent="CelingFanManager" unique_id=1454637000 instance=ExtResource("59_m2qbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 5, 0.10000038)
+room = "main_room"
+
+[node name="CeilingFan3" parent="CelingFanManager" unique_id=199999115 instance=ExtResource("59_m2qbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 5, -11.499999)
+room = "interpreter_room"

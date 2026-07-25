@@ -4,6 +4,9 @@ extends Node
 # parent cell container
 @onready var cell_container : CharacterBody3D = $".."
 
+# componnet parent node
+@onready var mutation_parent_node : Node3D = $MutationsParentNode
+
 # helper components
 @onready var sync_active_mutations : Node = $SyncActiveMutations
 
@@ -84,7 +87,6 @@ func cell_random_event_ended(
 		# remove from active
 		if mutation_event.name == ended_mutation_event.name:
 			active_mutation_events.remove_at(index)
-
 	# get back paused events
 	reinstate_paused_events()
 	
@@ -96,3 +98,12 @@ func reinstate_paused_events() -> void:
 	active_mutation_events.append_array(paused_constant_events)
 	paused_constant_events.clear()
 		
+func _handle_cell_picked_up() :
+	for mutation : Node3D in mutation_parent_node.get_children() :
+		if mutation.random_event : 
+			if mutation.stop_on_pickup : 
+				mutation.random_event_finished()
+				mutation._stop()
+			
+			
+	

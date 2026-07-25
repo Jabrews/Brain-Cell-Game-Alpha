@@ -26,30 +26,33 @@ func _update_mutations(round : int , energy : int) :
 		
 	
 	elif round == 2 :
-		IVMutations.good_mutations= [
+		IVMutations.good_mutations= []
 			# airborne
-			IVMutations.all_mutations[0],
+			#IVMutations.all_mutations[0],
 			# sentient
-			IVMutations.all_mutations[1],
-		]
+			#IVMutations.all_mutations[1],# debug
 		IVMutations.bad_mutations= [
 			# lonley
-			IVMutations.all_mutations[2],
+			IVMutations.all_mutations[2],# debug
 			# disrupter 
-			IVMutations.all_mutations[3],
+			#IVMutations.all_mutations[3], # debug
 		]
+		
 		
 		IVMutations.min_mutations_per_batch = 1
 		IVMutations.max_mutations_per_batch = 2
 		IVMutations.min_fake_mutations_per_batch = 0
 		IVMutations.max_fake_mutations_per_batch = 1
-		IVMutations.chance_for_all_hidden_event = 35
+		#IVMutations.chance_for_all_hidden_event = 35
+		IVMutations.chance_for_all_hidden_event = 0 # debug
 		IVMutations.amount_of_best_cells_sorted = 2
 		
-		IVMutations.chance_to_exit_mutation_loop = 25
-		IVMutations.good_mutation_chance = 40
-		IVMutations.bad_mutation_chance= 50
-		IVMutations.chance_to_hide_mutation = 50
+		#IVMutations.chance_to_exit_mutation_loop = 25
+		IVMutations.chance_to_exit_mutation_loop = 0 #debug
+		#IVMutations.good_mutation_chance = 40
+		IVMutations.good_mutation_chance = 100 #debug
+		#IVMutations.bad_mutation_chance= 50
+		IVMutations.chance_to_hide_mutation = 0 # debug
 		
 	elif round == 3 :
 		IVMutations.good_mutations= [

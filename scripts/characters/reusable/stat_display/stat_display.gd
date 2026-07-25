@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var screen_stat_reciever_display : Node2D = $StatMesh/SubViewport/BasicRecieverScreen
+@onready var parent_body : CharacterBody3D = $".."
 
 # mutation mesh ndoe stuff
 @onready var mutation_mesh_tv_scene : PackedScene = preload("res://scenes/characters/reusable/stat_display/mutation_mesh_tv.tscn")
@@ -79,12 +80,19 @@ func _process(_delta: float) -> void:
 	
 	if not player:
 		return
+	
+	
+	if not parent_body.velocity == Vector3.ZERO : 
+		return
 		
 	if visible and player : 
 		_face_player_y_only()
 
 
 func _face_player_y_only() -> void:
+	
+	rotation = Vector3.ZERO
+	
 	var dir: Vector3 = player.global_position - global_position
 	dir.y = 0.0
 

@@ -52,7 +52,10 @@ func apply_real_mutation(
 		return false
 
 	var mutation: BrainCellMutation = mutations_available.pop_front()
-
+	
+	if not mutation : 
+		return false
+	
 	var mutation_seen: bool = mutation_seen_manager._find_mutation_seen(
 		mutation.type
 	)

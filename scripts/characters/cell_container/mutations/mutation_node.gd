@@ -8,6 +8,7 @@ class_name MutationNode
 
 var designated_mutation_event: MutationEvent
 var random_event: bool = false
+var stop_on_pickup : bool = false
 
 
 func _ready() -> void:

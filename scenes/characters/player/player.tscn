@@ -61,6 +61,7 @@ mesh = SubResource("CapsuleMesh_u8vuu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1721746271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.018192291, 0)
 shape = SubResource("CapsuleShape3D_3vyb7")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=77891920]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8983867, 0)
@@ -77,6 +78,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3.5)
 collision_mask = 18
 collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("2_g2els")
 
 [node name="InteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1568495012]
@@ -84,13 +86,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3)
 collision_mask = 34
 collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("3_qhqgy")
+
+[node name="DropItemDelayTimer" type="Timer" parent="CameraPivot/Camera3D/RayCastController/InteractRay" unique_id=675034111]
+one_shot = true
 
 [node name="StatDisplayRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1939760921 groups=["usable_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3)
 collision_mask = 66
 collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("4_hss88")
 
 [node name="UseableItemRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1178014007]
@@ -98,6 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3)
 collision_mask = 390
 collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("6_mk55u")
 
 [node name="UseSteroid" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=1192498463]
@@ -120,6 +128,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -3.5)
 collision_mask = 1024
 collide_with_areas = true
+debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("8_6nfx3")
 
 [node name="UseableItemHandPreview" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1495413384]
@@ -147,6 +156,7 @@ collision_mask = 512
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CameraPivot/Camera3D/PlayerAxe/hurt_box" unique_id=1650159294]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00064086914, 0.40289307, -1.8638916)
 shape = SubResource("BoxShape3D_6nfx3")
+debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="CanSwingDelayTimer" type="Timer" parent="CameraPivot/Camera3D/PlayerAxe" unique_id=146908623]
 wait_time = 0.8

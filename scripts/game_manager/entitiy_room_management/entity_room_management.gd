@@ -1,7 +1,5 @@
 extends Node
 		
-var entity_room_profiles: Array[EntityRoomProfile] = []
-		
 		
 func _ready() -> void:
 	
@@ -16,7 +14,7 @@ func _ready() -> void:
 	
 	
 	# put player in by default
-	entity_room_profiles.append(
+	GLEntityRoomManagementBus.entity_room_profiles.append(
 		EntityRoomProfile.new(
 			'player',
 			'player',
@@ -26,9 +24,9 @@ func _ready() -> void:
 	
 func _handle_process_next_round() :
 	# reset
-	entity_room_profiles = []
+	GLEntityRoomManagementBus.entity_room_profiles = []
 	# add player at spawn
-	entity_room_profiles.append(
+	GLEntityRoomManagementBus.entity_room_profiles.append(
 		EntityRoomProfile.new(
 			'player',
 			'player',
@@ -38,14 +36,14 @@ func _handle_process_next_round() :
 
 			
 func _handle_delete_selected_collected_cell(brain_cell : BrainCell) :
-	for room_profile : EntityRoomProfile in entity_room_profiles :
+	for room_profile : EntityRoomProfile in GLEntityRoomManagementBus.entity_room_profiles:
 		if room_profile.entity_name == brain_cell.name:
-			entity_room_profiles.erase(room_profile)
+			GLEntityRoomManagementBus.entity_room_profiles.erase(room_profile)
 	
 	
 func _handle_prisoner_picked_by_player(brain_cell : BrainCell) :
 	
-	entity_room_profiles.append(
+	GLEntityRoomManagementBus.entity_room_profiles.append(
 		EntityRoomProfile.new(
 			'cell_container',
 			brain_cell.name,
@@ -54,7 +52,7 @@ func _handle_prisoner_picked_by_player(brain_cell : BrainCell) :
 	)
 	
 func _handle_entity_changed_room(target_entity_name : String, new_room_name : String) :
-	for room_profile : EntityRoomProfile in entity_room_profiles :
+	for room_profile : EntityRoomProfile in GLEntityRoomManagementBus.entity_room_profiles:
 		if room_profile.entity_name == target_entity_name:
 			room_profile.room_name = new_room_name
 	
