@@ -60,7 +60,7 @@ func start_regular_event_timer() -> void:
 		max_wait_time
 	)
 
-	mutation_event_delay_timer.start()
+	#mutation_event_delay_timer.start()
 
 
 func start_succession_event_timer() -> void:

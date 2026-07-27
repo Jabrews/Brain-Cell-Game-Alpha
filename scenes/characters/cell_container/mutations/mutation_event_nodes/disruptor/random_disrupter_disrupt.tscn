@@ -1,6 +1,90 @@
 [gd_scene format=3 uid="uid://c5uywmjqqa4g7"]
 
 [ext_resource type="Script" uid="uid://cmu36envfcp47" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/random_disrupter_disrupt.gd" id="1_v20ls"]
+[ext_resource type="Script" uid="uid://rh0lc0e62c67" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/particle_manager.gd" id="2_y8uvx"]
+[ext_resource type="AudioStream" uid="uid://dncik6lbvdbpe" path="res://sounds/cell_container/mutations/disruptor/binary_beep.mp3" id="3_k4dpl"]
+[ext_resource type="AudioStream" uid="uid://ccheam8adibfc" path="res://sounds/cell_container/mutations/disruptor/hack_start.mp3" id="4_ds7hn"]
+[ext_resource type="AudioStream" uid="uid://dw8iyogq4qdll" path="res://sounds/cell_container/mutations/disruptor/hack_finished.mp3" id="5_s7wm2"]
+[ext_resource type="AudioStream" uid="uid://dd83l8gujdtni" path="res://sounds/cell_container/mutations/disruptor/hack_success.mp3" id="6_1auds"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="7_begev"]
+[ext_resource type="Script" uid="uid://837kypiikcsh" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/status_label.gd" id="8_dbx8t"]
 
 [node name="RandomDisrupterDisrupt" type="Node3D" unique_id=634586220]
 script = ExtResource("1_v20ls")
+
+[node name="ParticleManager" type="Node3D" parent="." unique_id=170153468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39602315, 0)
+script = ExtResource("2_y8uvx")
+
+[node name="ParticleSpawnPoints" type="Node3D" parent="ParticleManager" unique_id=1691001255]
+
+[node name="1" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=1350859602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7392354, 0.7553265, 0)
+
+[node name="2" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=879848559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8376673, 0.685827, 0)
+
+[node name="3" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=1818670457]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01243633, 0.48118472, 0.76234746)
+
+[node name="4" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=1545291936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01243633, 0.8472079, -1.016974)
+
+[node name="5" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=987966733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5681475, 0.8472079, -0.6512518)
+
+[node name="6" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=393861019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5959225, 0.52235353, 0.4184549)
+
+[node name="7" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=1882044723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5959225, 0.52235353, -0.8114711)
+
+[node name="8" type="Node3D" parent="ParticleManager/ParticleSpawnPoints" unique_id=1119399691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6465003, 0.6168071, 0.42630517)
+
+[node name="ParticlesParentNode" type="Node3D" parent="ParticleManager" unique_id=1419312953]
+
+[node name="NewParticlesDelayTimer" type="Timer" parent="ParticleManager" unique_id=2023450735]
+wait_time = 1.5
+
+[node name="BinaryBeepSound" type="AudioStreamPlayer3D" parent="." unique_id=2046839732]
+stream = ExtResource("3_k4dpl")
+pitch_scale = 0.8
+max_distance = 30.0
+
+[node name="DisruptStart" type="AudioStreamPlayer3D" parent="." unique_id=2115658591]
+stream = ExtResource("4_ds7hn")
+max_distance = 40.0
+
+[node name="DisruptFailed" type="AudioStreamPlayer3D" parent="." unique_id=659760040]
+stream = ExtResource("5_s7wm2")
+max_distance = 40.0
+
+[node name="DisruptSuccess" type="AudioStreamPlayer3D" parent="." unique_id=742947890]
+stream = ExtResource("6_1auds")
+volume_db = -5.0
+max_distance = 40.0
+
+[node name="HackSuccess" type="Label3D" parent="." unique_id=672893112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92115873, 0)
+visible = false
+billboard = 1
+double_sided = false
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+text = "hack successful"
+font = ExtResource("7_begev")
+outline_size = 0
+script = ExtResource("8_dbx8t")
+
+[node name="HackFailed" type="Label3D" parent="." unique_id=1871544944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92115873, 0)
+visible = false
+billboard = 1
+double_sided = false
+texture_filter = 0
+modulate = Color(1.1070073e-06, 0.6381143, 0.37028253, 1)
+text = "hack failed"
+font = ExtResource("7_begev")
+outline_size = 0
+script = ExtResource("8_dbx8t")

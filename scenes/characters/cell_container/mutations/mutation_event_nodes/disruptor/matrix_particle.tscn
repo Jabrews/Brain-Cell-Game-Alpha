@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dj6br7wy72f4n"]
+
+[ext_resource type="Script" uid="uid://dwxh62dob3jt" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/matrix_particle.gd" id="1_fblm0"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_oso55"]
+
+[node name="MatrixParticle" type="Node3D" unique_id=464710078]
+script = ExtResource("1_fblm0")
+
+[node name="Particle1" type="Label3D" parent="." unique_id=1896698765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79847187, 0)
+billboard = 1
+double_sided = false
+texture_filter = 0
+text = "A"
+font = ExtResource("2_oso55")
+outline_size = 0
+
+[node name="Particle2" type="Label3D" parent="." unique_id=598763639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.59938616, 0)
+billboard = 1
+double_sided = false
+texture_filter = 0
+text = "A"
+font = ExtResource("2_oso55")
+outline_size = 0
+
+[node name="Particle3" type="Label3D" parent="." unique_id=573279507]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3808015, 0)
+billboard = 1
+double_sided = false
+texture_filter = 0
+text = "A"
+font = ExtResource("2_oso55")
+outline_size = 0
+
+[node name="Particle4" type="Label3D" parent="." unique_id=2131193017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17443222, 0)
+billboard = 1
+double_sided = false
+texture_filter = 0
+text = "A"
+font = ExtResource("2_oso55")
+outline_size = 0
+
+[node name="Particle5" type="Label3D" parent="." unique_id=345396255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.012506664, 0)
+billboard = 1
+double_sided = false
+texture_filter = 0
+text = "A"
+font = ExtResource("2_oso55")
+outline_size = 0
+
+[node name="KillTimer" type="Timer" parent="." unique_id=1942961664]
+one_shot = true
+
+[node name="ChangeParticleTimer" type="Timer" parent="." unique_id=403795411]
+wait_time = 0.3
