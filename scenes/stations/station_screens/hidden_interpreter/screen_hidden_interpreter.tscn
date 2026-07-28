@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://chnqpb78l4ykx" path="res://scripts/stations/station_screens/hidden_interpreter/idle_screen.gd" id="4_g4hcn"]
 [ext_resource type="Texture2D" uid="uid://coohyk4jppfv4" path="res://models/hidden_stat_interpreter_bar/filled_hidden_stat_interpreter_bar-export.png" id="5_16pp1"]
 [ext_resource type="Script" uid="uid://35fgeunwnc0q" path="res://scripts/stations/station_screens/hidden_interpreter/blinking_label.gd" id="8_16pp1"]
+[ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="9_g4hcn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3tbmk"]
 shader = ExtResource("2_8ml75")
@@ -205,6 +206,43 @@ theme_override_colors/font_color = Color(0.18, 1, 0.24833328, 1)
 theme_override_fonts/font = ExtResource("3_170mx")
 theme_override_font_sizes/font_size = 34
 text = "Finished"
+horizontal_alignment = 1
+
+[node name="InterupterWarning" type="Control" parent="." unique_id=2020817215]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="InterupterWarning" unique_id=983175867]
+texture_filter = 1
+position = Vector2(240, 135.50002)
+scale = Vector2(0.9916666, 0.98888886)
+texture = ExtResource("9_g4hcn")
+
+[node name="Label" type="Label" parent="InterupterWarning" unique_id=1664574262]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 96.0
+offset_right = 538.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.4627451)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 47
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="InterupterWarning" unique_id=1283326910]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 161.0
+offset_right = 538.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.4627451)
+theme_override_fonts/font = ExtResource("3_170mx")
+theme_override_font_sizes/font_size = 15
+text = "technical difficulties"
 horizontal_alignment = 1
 
 [connection signal="timeout" from="JoltDetectedPleaseReset/Reset/BlinkTimer" to="JoltDetectedPleaseReset/Reset" method="_on_blink_timer_timeout"]
