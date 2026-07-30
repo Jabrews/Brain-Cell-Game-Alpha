@@ -1,16 +1,32 @@
 [gd_scene format=3 uid="uid://b07x1w6awvra7"]
 
 [ext_resource type="Script" uid="uid://bofxttrj45glm" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/constant_sentient_talk.gd" id="1_kuhs7"]
-[ext_resource type="Script" uid="uid://lkjon1nq1mp2" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble.gd" id="2_05ffk"]
-[ext_resource type="Script" uid="uid://duhyp2tnia0fw" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble_tv.gd" id="2_axnjd"]
+[ext_resource type="Script" uid="uid://lkjon1nq1mp2" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble/speech_bubble.gd" id="2_05ffk"]
+[ext_resource type="Script" uid="uid://duhyp2tnia0fw" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble/speech_bubble_tv.gd" id="2_axnjd"]
+[ext_resource type="Script" uid="uid://dhvyehaav5qbo" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble/helpers/update_container_basis.gd" id="3_20g0a"]
 [ext_resource type="PackedScene" uid="uid://d07mwncl5myhr" path="res://scenes/characters/cell_container/mutations/mutation_event_nodes/sentient/screen_text_speech_bubble.tscn" id="3_axnjd"]
+[ext_resource type="Script" uid="uid://2brmbpb7d6db" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble/helpers/update_label_styles.gd" id="4_8ko76"]
+[ext_resource type="Script" uid="uid://660d8bcarxnl" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble/helpers/text_sound_manager.gd" id="5_cqfcb"]
+[ext_resource type="AudioStream" uid="uid://dh34d7swigarb" path="res://sounds/cell_container/mutations/sentient/normal/normal_1.mp3" id="5_wt4mf"]
+[ext_resource type="AudioStream" uid="uid://enj2awdsaatg" path="res://sounds/cell_container/mutations/sentient/normal/normal_2.mp3" id="6_s0evx"]
+[ext_resource type="AudioStream" uid="uid://d3crakaj0p4m4" path="res://sounds/cell_container/mutations/sentient/normal/normal_3.mp3" id="7_20g0a"]
+[ext_resource type="AudioStream" uid="uid://cjctkk5chjfx2" path="res://sounds/cell_container/mutations/sentient/mad/mad_1.mp3" id="8_8ko76"]
+[ext_resource type="AudioStream" uid="uid://dg8sci1jb41cp" path="res://sounds/cell_container/mutations/sentient/mad/mad_2.mp3" id="9_cqfcb"]
+[ext_resource type="AudioStream" uid="uid://b6a65ebbfpak5" path="res://sounds/cell_container/mutations/sentient/mad/mad_3.mp3" id="10_hqest"]
+[ext_resource type="AudioStream" uid="uid://c34n5focb2bq2" path="res://sounds/cell_container/mutations/sentient/important/important_1.mp3" id="11_arif8"]
+[ext_resource type="AudioStream" uid="uid://dpiy3gnqr4ae1" path="res://sounds/cell_container/mutations/sentient/important/important_2.mp3" id="12_81kqb"]
+[ext_resource type="AudioStream" uid="uid://dunrmhd1vrtvo" path="res://sounds/cell_container/mutations/sentient/important/important_3.mp3" id="13_4gcrm"]
+[ext_resource type="AudioStream" uid="uid://bwvv2a818utk5" path="res://sounds/cell_container/mutations/sentient/text_bubble_start.mp3" id="14_s0evx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_weyje"]
 resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
 shading_mode = 0
+texture_filter = 0
 billboard_mode = 1
+proximity_fade_distance = 10.0
+distance_fade_max_distance = 20.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_1p4qm"]
 material = SubResource("StandardMaterial3D_weyje")
@@ -19,8 +35,44 @@ material = SubResource("StandardMaterial3D_weyje")
 script = ExtResource("1_kuhs7")
 
 [node name="SpeechBubble" type="Node3D" parent="." unique_id=58424051]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1677723, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63432, 0)
 script = ExtResource("2_05ffk")
+
+[node name="UpdateContainerBasis" type="Node" parent="SpeechBubble" unique_id=607081507]
+script = ExtResource("3_20g0a")
+
+[node name="UpdateLabelStyles" type="Node" parent="SpeechBubble" unique_id=365448220]
+script = ExtResource("4_8ko76")
+
+[node name="TextSoundManager" type="Node3D" parent="SpeechBubble" unique_id=970460250]
+script = ExtResource("5_cqfcb")
+
+[node name="Normal1" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1201644967]
+stream = ExtResource("5_wt4mf")
+
+[node name="Normal2" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1731531921]
+stream = ExtResource("6_s0evx")
+
+[node name="Normal3" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=690022763]
+stream = ExtResource("7_20g0a")
+
+[node name="Mad1" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1964439712]
+stream = ExtResource("8_8ko76")
+
+[node name="Mad2" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1733056621]
+stream = ExtResource("9_cqfcb")
+
+[node name="Mad3" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=795876132]
+stream = ExtResource("10_hqest")
+
+[node name="Important1" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=434589077]
+stream = ExtResource("11_arif8")
+
+[node name="Important2" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1357558727]
+stream = ExtResource("12_81kqb")
+
+[node name="Important3" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=762328112]
+stream = ExtResource("13_4gcrm")
 
 [node name="SpeechBubbleTV" type="MeshInstance3D" parent="SpeechBubble" unique_id=857716770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27445364, 0)
@@ -33,3 +85,10 @@ transparent_bg = true
 canvas_item_default_texture_filter = 0
 
 [node name="ScreenTextSpeechBubble" parent="SpeechBubble/SpeechBubbleTV/SubViewport" unique_id=477634312 instance=ExtResource("3_axnjd")]
+
+[node name="TextIncrementDelay" type="Timer" parent="SpeechBubble" unique_id=1231075039]
+wait_time = 0.1
+ignore_time_scale = true
+
+[node name="TextBubbleStart" type="AudioStreamPlayer3D" parent="SpeechBubble" unique_id=2032493425]
+stream = ExtResource("14_s0evx")
