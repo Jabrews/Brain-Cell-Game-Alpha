@@ -26,19 +26,19 @@ func _update_mutations(round : int , energy : int) :
 		
 	
 	elif round == 2 :
-		IVMutations.good_mutations= []
+		IVMutations.good_mutations= [
 			# airborne
 			#IVMutations.all_mutations[0],
 			# sentient
-			#IVMutations.all_mutations[1],# debug
+			IVMutations.all_mutations[1],# debug
+	]	
 		
 		
-		IVMutations.bad_mutations= [
+		IVMutations.bad_mutations= []
 			# lonley
 			#IVMutations.all_mutations[2],# debug
 			# disrupter 
-			IVMutations.all_mutations[3], # debug
-		]
+			#IVMutations.all_mutations[3], # debug
 		
 		
 		IVMutations.min_mutations_per_batch = 1

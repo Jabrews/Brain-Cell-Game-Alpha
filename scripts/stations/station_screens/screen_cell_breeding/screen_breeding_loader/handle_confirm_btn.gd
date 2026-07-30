@@ -4,6 +4,8 @@ extends Node
 @onready var press_to_see_result_label : Label = $"../SeatCellLoading/PressBtnToSeeResult"
 @onready var parent_seat_cell_loading : Node2D = $"../SeatCellLoading"
 @onready var parent_new_cell_preview : Node2D = $"../NewCellPreview"
+@onready var parent_disrupt_manager_loader : Control = $"../DisruptorManagerSeatLoading"
+@onready var parent_disrupt_new_cell : Control = $"../DisruptorManagerNewCell"
 
 
 # final breeding handler
@@ -53,7 +55,9 @@ func show_loader_display(show_label: bool) -> void:
 	can_breed = false
 	
 	parent_seat_cell_loading.visible = true
+	parent_disrupt_manager_loader.visible = true
 	parent_new_cell_preview.visible = false
+	parent_disrupt_new_cell.visible = false
 	press_to_see_result_label.visible = show_label
 
 
@@ -62,7 +66,9 @@ func show_new_cell_display() -> void:
 	can_breed = true
 	
 	parent_seat_cell_loading.visible = false
+	parent_disrupt_manager_loader.visible = false 
 	parent_new_cell_preview.visible = true
+	parent_disrupt_new_cell.visible = true 
 	press_to_see_result_label.visible = false
 
 func initate_breeding(): 	

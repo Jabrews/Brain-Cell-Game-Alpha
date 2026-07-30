@@ -6,6 +6,10 @@
 [ext_resource type="Script" uid="uid://bur3pfwuehd2p" path="res://scripts/stations/station_screens/screen_item_offer_manager/energy_left_to_claim/switch_screen.gd" id="2_loa62"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_o8ugq"]
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_4jaa7"]
+[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="7_bgx5p"]
+[ext_resource type="Texture2D" uid="uid://cnadverlbc0j2" path="res://models/mutations/random_disruptor_disrupt/interupt_interpreter.png" id="8_5d43v"]
+[ext_resource type="Script" uid="uid://c60lpiyrexkgh" path="res://scripts/stations/station_screens/screen_item_offer_manager/disruptor/disruptor_manager_energy_left_to_claim.gd" id="9_5d43v"]
+[ext_resource type="Script" uid="uid://tp63bilvru4r" path="res://scripts/stations/station_screens/screen_cell_breeding/interupt/disruptor_arrow_blocker.gd" id="10_bq2uj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y6i2n"]
 shader = ExtResource("1_n72sx")
@@ -100,3 +104,84 @@ material = SubResource("ShaderMaterial_y6i2n")
 offset_top = -15.0
 offset_right = 453.0
 offset_bottom = 255.0
+
+[node name="DisruptorWarning" type="Control" parent="." unique_id=224831421]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+script = ExtResource("7_bgx5p")
+active_room_name = "main_room"
+
+[node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=1803567278]
+texture_filter = 1
+position = Vector2(115.49999, 74.49999)
+scale = Vector2(1.1592039, 0.6394849)
+texture = ExtResource("8_5d43v")
+
+[node name="Label" type="Label" parent="DisruptorWarning" unique_id=306510230]
+layout_mode = 0
+offset_left = -176.0
+offset_top = 52.0
+offset_right = 422.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.41568628)
+theme_override_fonts/font = ExtResource("2_grdld")
+theme_override_font_sizes/font_size = 28
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DisruptorWarning" unique_id=2124543432]
+layout_mode = 0
+offset_left = -178.0
+offset_top = 91.0
+offset_right = 420.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.41568628)
+theme_override_fonts/font = ExtResource("2_grdld")
+theme_override_font_sizes/font_size = 7
+text = "technical difficulties"
+horizontal_alignment = 1
+
+[node name="FlashDelayTimer" type="Timer" parent="DisruptorWarning" unique_id=2106979651]
+wait_time = 0.5
+
+[node name="DisruptorManagerEnergyLeftToClaim" type="Control" parent="." unique_id=1633164372]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_5d43v")
+
+[node name="ArrowBlocker" type="Control" parent="DisruptorManagerEnergyLeftToClaim" unique_id=962050350]
+anchors_preset = 0
+offset_left = -153.0
+offset_top = -21.0
+offset_right = -113.0
+offset_bottom = 19.0
+script = ExtResource("10_bq2uj")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerEnergyLeftToClaim/ArrowBlocker" unique_id=1314766362]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 66.0
+offset_right = 380.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerEnergyLeftToClaim/ArrowBlocker" unique_id=481271571]
+texture_filter = 1
+layout_mode = 0
+offset_left = 231.0
+offset_top = 73.0
+offset_right = 331.0
+offset_bottom = 173.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("2_grdld")
+theme_override_font_sizes/font_size = 100
+text = "0"
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerEnergyLeftToClaim/ArrowBlocker" unique_id=124841571]
+wait_time = 0.5

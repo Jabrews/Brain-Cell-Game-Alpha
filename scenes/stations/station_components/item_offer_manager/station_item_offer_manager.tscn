@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c5tb2u3nb0fa0" path="res://scenes/hoverable_mesh_scenes/hidden_stat_reveal_btn.tscn" id="12_7mwfe"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="13_yvgg7"]
 [ext_resource type="AudioStream" uid="uid://s4gimaovwlok" path="res://sounds/station_item_offer_demand/completed.mp3" id="14_lg71w"]
+[ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="15_5c7qg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5gpp"]
 albedo_color = Color(0, 0, 0, 1)
@@ -225,3 +226,13 @@ stream = ExtResource("9_fgh6q")
 
 [node name="Confirm" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1415207068]
 stream = ExtResource("14_lg71w")
+
+[node name="DisriputRecievers" type="Node3D" parent="." unique_id=1574165832]
+
+[node name="DemandDisplayReciever" parent="DisriputRecievers" unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("15_5c7qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8225968, 2, 0.121338844)
+parent_disruptable_screen = NodePath("../../Displays/DemandDisplay/SubViewport/ItemOfferDemand")
+
+[node name="EnergyToClaimDisplayReciever" parent="DisriputRecievers" unique_id=712842712 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("15_5c7qg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8225968, 2, 0.121338844)
+parent_disruptable_screen = NodePath("../../Displays/EnergyLeftToClaimDisplay/SubViewport/EnergyLeftToClaimDisplay")

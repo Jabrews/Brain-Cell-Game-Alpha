@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ru543voa3egh"]
 
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_2leus"]
-[ext_resource type="Script" uid="uid://csfd0ug03qh4b" path="res://reusable/screen_disruptor_hack_text/hack_text.gd" id="1_7do1e"]
+[ext_resource type="Script" uid="uid://csfd0ug03qh4b" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.gd" id="1_7do1e"]
 
 [node name="HackText" type="Control" unique_id=848987525]
 layout_mode = 3

@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="17_2m55x"]
 [ext_resource type="PackedScene" uid="uid://5a1rtusg0sih" path="res://scenes/stations/station_components/hidden_interpreter/energy_decrease_symbol.tscn" id="17_nseoi"]
 [ext_resource type="Script" uid="uid://c37qtvh1gk3el" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_spawner.gd" id="18_nseoi"]
+[ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="19_7cbjn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pqduu"]
 size = Vector3(2.11, 2.2, 3.5)
@@ -283,3 +284,7 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 
 [node name="Spawn3" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=1240467369]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.6352744, 2.3386102, 2.3282068)
+
+[node name="DisruptableReciever" parent="." unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("19_7cbjn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3254786, -0.11959982)
+parent_disruptable_screen = NodePath("../InterpreterTV/TvFrontPannel/SubViewport/ScreenHiddenInterpreter")

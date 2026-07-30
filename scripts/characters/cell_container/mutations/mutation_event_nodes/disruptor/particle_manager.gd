@@ -19,7 +19,7 @@ extends Node
 
 @onready var particle_parent_node: Node3D = $ParticlesParentNode
 @onready var new_particles_delay_timer: Timer = $NewParticlesDelayTimer
-@onready var binary_beep_sound : AudioStreamPlayer3D = $"../BinaryBeepSound"
+@onready var binary_beep_sound : AudioStreamPlayer3D = $"../Sounds/BinaryBeepSound"
 
 var total_particles: int = 3
 

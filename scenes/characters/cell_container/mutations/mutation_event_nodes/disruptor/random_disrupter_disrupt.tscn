@@ -4,10 +4,23 @@
 [ext_resource type="Script" uid="uid://rh0lc0e62c67" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/particle_manager.gd" id="2_y8uvx"]
 [ext_resource type="AudioStream" uid="uid://dncik6lbvdbpe" path="res://sounds/cell_container/mutations/disruptor/binary_beep.mp3" id="3_k4dpl"]
 [ext_resource type="AudioStream" uid="uid://ccheam8adibfc" path="res://sounds/cell_container/mutations/disruptor/hack_start.mp3" id="4_ds7hn"]
+[ext_resource type="Script" uid="uid://dcqbjbi86i5x3" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/detect_disruptable.gd" id="5_oj3hr"]
 [ext_resource type="AudioStream" uid="uid://dw8iyogq4qdll" path="res://sounds/cell_container/mutations/disruptor/hack_finished.mp3" id="5_s7wm2"]
+[ext_resource type="Script" uid="uid://b5hdhcx4mv30i" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/hint_hack_circle_manager.gd" id="5_yn1o4"]
 [ext_resource type="AudioStream" uid="uid://dd83l8gujdtni" path="res://sounds/cell_container/mutations/disruptor/hack_success.mp3" id="6_1auds"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="7_begev"]
 [ext_resource type="Script" uid="uid://837kypiikcsh" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/disruptor/status_label.gd" id="8_dbx8t"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qa1qv"]
+radius = 0.8343784
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yn1o4"]
+transparency = 1
+albedo_color = Color(0.29466665, 1, 0.07999998, 0.0627451)
+metallic_specular = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_dbx8t"]
+material = SubResource("StandardMaterial3D_yn1o4")
 
 [node name="RandomDisrupterDisrupt" type="Node3D" unique_id=634586220]
 script = ExtResource("1_v20ls")
@@ -47,24 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6465003, 0.6168071, 0.42630
 [node name="NewParticlesDelayTimer" type="Timer" parent="ParticleManager" unique_id=2023450735]
 wait_time = 1.5
 
-[node name="BinaryBeepSound" type="AudioStreamPlayer3D" parent="." unique_id=2046839732]
-stream = ExtResource("3_k4dpl")
-pitch_scale = 0.8
-max_distance = 30.0
-
-[node name="DisruptStart" type="AudioStreamPlayer3D" parent="." unique_id=2115658591]
-stream = ExtResource("4_ds7hn")
-max_distance = 40.0
-
-[node name="DisruptFailed" type="AudioStreamPlayer3D" parent="." unique_id=659760040]
-stream = ExtResource("5_s7wm2")
-max_distance = 40.0
-
-[node name="DisruptSuccess" type="AudioStreamPlayer3D" parent="." unique_id=742947890]
-stream = ExtResource("6_1auds")
-volume_db = -5.0
-max_distance = 40.0
-
 [node name="HackSuccess" type="Label3D" parent="." unique_id=672893112]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92115873, 0)
 visible = false
@@ -88,3 +83,45 @@ text = "hack failed"
 font = ExtResource("7_begev")
 outline_size = 0
 script = ExtResource("8_dbx8t")
+
+[node name="WarnDisruptorScreensTimer" type="Timer" parent="." unique_id=1315306991]
+
+[node name="DetectDisruptable" type="Area3D" parent="." unique_id=508251494]
+collision_layer = 0
+collision_mask = 4096
+monitoring = false
+monitorable = false
+script = ExtResource("5_oj3hr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectDisruptable" unique_id=735279150]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+shape = SubResource("SphereShape3D_qa1qv")
+
+[node name="HintHackCircleManager" type="Node3D" parent="." unique_id=2103374998]
+script = ExtResource("5_yn1o4")
+
+[node name="HintHackCircle" type="MeshInstance3D" parent="HintHackCircleManager" unique_id=922364936]
+mesh = SubResource("SphereMesh_dbx8t")
+
+[node name="ReapplySizeTimer" type="Timer" parent="HintHackCircleManager" unique_id=1918289850]
+wait_time = 0.1
+
+[node name="Sounds" type="Node3D" parent="." unique_id=1911183182]
+
+[node name="BinaryBeepSound" type="AudioStreamPlayer3D" parent="Sounds" unique_id=2046839732]
+stream = ExtResource("3_k4dpl")
+pitch_scale = 0.8
+max_distance = 30.0
+
+[node name="DisruptStart" type="AudioStreamPlayer3D" parent="Sounds" unique_id=2115658591]
+stream = ExtResource("4_ds7hn")
+max_distance = 40.0
+
+[node name="DisruptFailed" type="AudioStreamPlayer3D" parent="Sounds" unique_id=659760040]
+stream = ExtResource("5_s7wm2")
+max_distance = 40.0
+
+[node name="DisruptSuccess" type="AudioStreamPlayer3D" parent="Sounds" unique_id=742947890]
+stream = ExtResource("6_1auds")
+volume_db = -5.0
+max_distance = 40.0

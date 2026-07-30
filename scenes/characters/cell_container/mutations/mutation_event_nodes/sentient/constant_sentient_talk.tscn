@@ -1,6 +1,35 @@
 [gd_scene format=3 uid="uid://b07x1w6awvra7"]
 
 [ext_resource type="Script" uid="uid://bofxttrj45glm" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/constant_sentient_talk.gd" id="1_kuhs7"]
+[ext_resource type="Script" uid="uid://lkjon1nq1mp2" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble.gd" id="2_05ffk"]
+[ext_resource type="Script" uid="uid://duhyp2tnia0fw" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/speech_bubble_tv.gd" id="2_axnjd"]
+[ext_resource type="PackedScene" uid="uid://d07mwncl5myhr" path="res://scenes/characters/cell_container/mutations/mutation_event_nodes/sentient/screen_text_speech_bubble.tscn" id="3_axnjd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_weyje"]
+resource_local_to_scene = true
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_1p4qm"]
+material = SubResource("StandardMaterial3D_weyje")
 
 [node name="ConstantSentientTalk" type="Node3D" unique_id=915212961]
 script = ExtResource("1_kuhs7")
+
+[node name="SpeechBubble" type="Node3D" parent="." unique_id=58424051]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1677723, 0)
+script = ExtResource("2_05ffk")
+
+[node name="SpeechBubbleTV" type="MeshInstance3D" parent="SpeechBubble" unique_id=857716770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27445364, 0)
+mesh = SubResource("QuadMesh_1p4qm")
+script = ExtResource("2_axnjd")
+
+[node name="SubViewport" type="SubViewport" parent="SpeechBubble/SpeechBubbleTV" unique_id=2019995045]
+disable_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+
+[node name="ScreenTextSpeechBubble" parent="SpeechBubble/SpeechBubbleTV/SubViewport" unique_id=477634312 instance=ExtResource("3_axnjd")]

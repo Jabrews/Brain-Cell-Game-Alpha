@@ -59,6 +59,7 @@ GLMutationEventBus="*uid://hyxxt1n7icvf"
 GLEntityRoomManagementBus="*uid://dvm6v8uu1i21w"
 IVRandomMutationEventTrigger="*uid://cr54vb4wtode5"
 GLCeilingFanPlacementsState="*uid://bx0032j3rgho7"
+GLMutationDisruptState="*uid://0c5led7aoxe2"
 
 [debug]
 
@@ -91,6 +92,8 @@ axe_mount=""
 flesh_bug=""
 astroid=""
 bubble=""
+hack_skull=""
+disruptable_reciever=""
 
 [input]
 
@@ -158,12 +161,14 @@ attack={
 3d_physics/layer_4="player_items"
 2d_physics/layer_5="bubble"
 3d_physics/layer_5="hoverable"
+2d_physics/layer_6="hack_skull"
 3d_physics/layer_6="interactable"
 3d_physics/layer_7="stat_display_area"
 3d_physics/layer_8="usable_item"
 3d_physics/layer_9="prisoner"
 3d_physics/layer_10="flesh_bug"
 3d_physics/layer_11="axe_interact"
+3d_physics/layer_13="disruptable_reciever"
 
 [physics]
 

@@ -16,6 +16,11 @@
 [ext_resource type="Script" uid="uid://brrycnxarcxjb" path="res://scripts/stations/station_screens/screen_item_offer_manager/item_offer_demand/mutation_demand/demand_mutation.gd" id="9_np4be"]
 [ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="10_1frkd"]
 [ext_resource type="Texture2D" uid="uid://dv8i84kr582qj" path="res://models/scissors_popup/exit.png" id="10_35i8l"]
+[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="17_6sop0"]
+[ext_resource type="Script" uid="uid://clp500umgtj7v" path="res://scripts/stations/station_screens/screen_item_offer_manager/disruptor/disruptor_manager_item_offer_demand.gd" id="17_u8ke1"]
+[ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="18_6d7h4"]
+[ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="18_478il"]
+[ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="19_6sop0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tgnlf"]
 shader = ExtResource("2_jgakq")
@@ -467,3 +472,1571 @@ texture = ExtResource("10_35i8l")
 material = SubResource("ShaderMaterial_68vql")
 offset_right = 480.0
 offset_bottom = 270.0
+
+[node name="DisruptorWarning" type="Control" parent="." unique_id=1304140787]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_6sop0")
+active_room_name = "main_room"
+
+[node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=67072838]
+texture_filter = 1
+position = Vector2(240, 136.5)
+scale = Vector2(1, 0.9962963)
+texture = ExtResource("18_478il")
+
+[node name="Label" type="Label" parent="DisruptorWarning" unique_id=483044702]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 96.0
+offset_right = 538.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 47
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DisruptorWarning" unique_id=1987935666]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 161.0
+offset_right = 538.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("1_vswsn")
+theme_override_font_sizes/font_size = 15
+text = "technical difficulties"
+horizontal_alignment = 1
+
+[node name="FlashDelayTimer" type="Timer" parent="DisruptorWarning" unique_id=345508880]
+wait_time = 0.5
+
+[node name="DisruptorManagerItemOfferDemand" type="Control" parent="." unique_id=1532747879]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_u8ke1")
+
+[node name="HackTextManager" type="Control" parent="DisruptorManagerItemOfferDemand" unique_id=272782088]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("18_6d7h4")
+active_text_amount = 30
+
+[node name="HackTextParentNode" type="Control" parent="DisruptorManagerItemOfferDemand/HackTextManager" unique_id=1044645717]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HackText" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=848987525 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 31.0
+offset_top = 31.0
+offset_right = 31.0
+offset_bottom = 31.0
+
+[node name="HackText2" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=767727725 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 348.0
+offset_top = 51.0
+offset_right = 348.0
+offset_bottom = 51.0
+
+[node name="HackText3" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1801044849 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 82.0
+offset_top = 144.0
+offset_right = 82.0
+offset_bottom = 144.0
+
+[node name="HackText4" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=338391455 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 124.0
+offset_top = 64.0
+offset_right = 124.0
+offset_bottom = 64.0
+
+[node name="HackText5" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1397217826 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 441.0
+offset_top = 84.0
+offset_right = 441.0
+offset_bottom = 84.0
+
+[node name="HackText6" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2065416493 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 175.0
+offset_top = 177.0
+offset_right = 175.0
+offset_bottom = 177.0
+
+[node name="HackText7" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1258397966 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 157.0
+offset_right = 7.0
+offset_bottom = 157.0
+
+[node name="HackText8" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1391926339 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 311.0
+offset_top = 121.0
+offset_right = 311.0
+offset_bottom = 121.0
+
+[node name="HackText9" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=346063601 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 45.0
+offset_top = 214.0
+offset_right = 45.0
+offset_bottom = 214.0
+
+[node name="HackText10" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1468433464 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 25.0
+
+[node name="HackText11" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2000959262 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 260.0
+offset_top = 186.0
+offset_right = 260.0
+offset_bottom = 186.0
+
+[node name="HackText12" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1898970273 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 79.0
+offset_top = 110.0
+offset_right = 79.0
+offset_bottom = 110.0
+
+[node name="HackText14" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1846990356 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 130.0
+offset_top = 223.0
+offset_right = 130.0
+offset_bottom = 223.0
+
+[node name="HackText15" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1275318008 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 355.0
+offset_top = 34.0
+offset_right = 355.0
+offset_bottom = 34.0
+
+[node name="HackText16" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=493298846 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 189.0
+offset_top = 127.0
+offset_right = 189.0
+offset_bottom = 127.0
+
+[node name="HackText17" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=36394712 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 105.0
+offset_right = 21.0
+offset_bottom = 105.0
+
+[node name="HackText18" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=794763422 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 338.0
+offset_top = 125.0
+offset_right = 338.0
+offset_bottom = 125.0
+
+[node name="HackText19" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1227273747 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 72.0
+offset_top = 218.0
+offset_right = 72.0
+offset_bottom = 218.0
+
+[node name="HackText20" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1442563137 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 297.0
+offset_top = 29.0
+offset_right = 297.0
+offset_bottom = 29.0
+
+[node name="HackText13" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=401918738 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 406.0
+offset_top = 37.0
+offset_right = 406.0
+offset_bottom = 37.0
+
+[node name="HackText21" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=702466506 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 144.0
+offset_top = 169.0
+offset_right = 144.0
+offset_bottom = 169.0
+
+[node name="HackText22" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=475646751 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 186.0
+offset_top = 89.0
+offset_right = 186.0
+offset_bottom = 89.0
+
+[node name="HackText23" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1274670583 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 466.0
+offset_top = 93.0
+offset_right = 466.0
+offset_bottom = 93.0
+
+[node name="HackText24" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=998146850 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 200.0
+offset_top = 186.0
+offset_right = 200.0
+offset_bottom = 186.0
+
+[node name="HackText25" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1360077370 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 242.0
+offset_top = 106.0
+offset_right = 242.0
+offset_bottom = 106.0
+
+[node name="HackText26" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=255948332 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 402.0
+offset_top = 162.0
+offset_right = 402.0
+offset_bottom = 162.0
+
+[node name="HackText27" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1907505249 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 293.0
+offset_top = 219.0
+offset_right = 293.0
+offset_bottom = 219.0
+
+[node name="HackText28" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=399252368 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 125.0
+offset_top = 199.0
+offset_right = 125.0
+offset_bottom = 199.0
+
+[node name="HackText29" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=719344993 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 132.0
+offset_top = 83.0
+offset_right = 132.0
+offset_bottom = 83.0
+
+[node name="HackText30" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=331357827 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 449.0
+offset_top = 103.0
+offset_right = 449.0
+offset_bottom = 103.0
+
+[node name="HackText31" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1829664590 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 183.0
+offset_top = 196.0
+offset_right = 183.0
+offset_bottom = 196.0
+
+[node name="HackText32" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1354581598 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 225.0
+offset_top = 116.0
+offset_right = 225.0
+offset_bottom = 116.0
+
+[node name="HackText33" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=448108817 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 241.0
+offset_top = 153.0
+offset_right = 241.0
+offset_bottom = 153.0
+
+[node name="HackText34" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=64599743 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 276.0
+offset_top = 229.0
+offset_right = 276.0
+offset_bottom = 229.0
+
+[node name="HackText35" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2003825425 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 108.0
+offset_top = 209.0
+offset_right = 108.0
+offset_bottom = 209.0
+
+[node name="HackText36" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=254143208 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 412.0
+offset_top = 173.0
+offset_right = 412.0
+offset_bottom = 173.0
+
+[node name="HackText37" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1003693238 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 178.0
+offset_top = 219.0
+offset_right = 178.0
+offset_bottom = 219.0
+
+[node name="HackText38" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1028288212 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 371.0
+offset_top = 77.0
+offset_right = 371.0
+offset_bottom = 77.0
+
+[node name="HackText39" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=456218027 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 361.0
+offset_top = 238.0
+offset_right = 361.0
+offset_bottom = 238.0
+
+[node name="HackText40" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=78548143 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 158.0
+offset_top = 107.0
+offset_right = 158.0
+offset_bottom = 107.0
+
+[node name="HackText41" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2080728712 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 244.0
+offset_top = 195.0
+offset_right = 244.0
+offset_bottom = 195.0
+
+[node name="HackText42" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=629180035 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 382.0
+offset_top = 128.0
+offset_right = 382.0
+offset_bottom = 128.0
+
+[node name="HackText43" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=257498929 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 303.0
+offset_top = 233.0
+offset_right = 303.0
+offset_bottom = 233.0
+
+[node name="HackText44" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1983492153 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 197.0
+offset_top = 18.0
+offset_right = 197.0
+offset_bottom = 18.0
+
+[node name="HackText45" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2086360824 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 187.0
+offset_top = 179.0
+offset_right = 187.0
+offset_bottom = 179.0
+
+[node name="HackText46" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1570970582 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 6.0
+offset_top = 103.0
+offset_right = 6.0
+offset_bottom = 103.0
+
+[node name="HackText47" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=996360287 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 57.0
+offset_top = 216.0
+offset_right = 57.0
+offset_bottom = 216.0
+
+[node name="HackText48" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1322636818 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 282.0
+offset_top = 27.0
+offset_right = 282.0
+offset_bottom = 27.0
+
+[node name="HackText49" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2142437206 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 317.0
+offset_top = 40.0
+offset_right = 317.0
+offset_bottom = 40.0
+
+[node name="HackText50" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1392970001 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 307.0
+offset_top = 201.0
+offset_right = 307.0
+offset_bottom = 201.0
+
+[node name="HackText51" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1953512418 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 126.0
+offset_top = 125.0
+offset_right = 126.0
+offset_bottom = 125.0
+
+[node name="HackText52" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=840976706 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 177.0
+offset_top = 238.0
+offset_right = 177.0
+offset_bottom = 238.0
+
+[node name="HackText53" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2115439602 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 402.0
+offset_top = 49.0
+offset_right = 402.0
+offset_bottom = 49.0
+
+[node name="HackText54" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=357163927 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 111.0
+offset_top = 178.0
+offset_right = 111.0
+offset_bottom = 178.0
+
+[node name="HackText55" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=927083683 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 304.0
+offset_top = 36.0
+offset_right = 304.0
+offset_bottom = 36.0
+
+[node name="HackText56" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=126418691 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 294.0
+offset_top = 197.0
+offset_right = 294.0
+offset_bottom = 197.0
+
+[node name="HackText57" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=171667035 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 91.0
+offset_top = 66.0
+offset_right = 91.0
+offset_bottom = 66.0
+
+[node name="HackText58" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1156364316 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 177.0
+offset_top = 154.0
+offset_right = 177.0
+offset_bottom = 154.0
+
+[node name="HackText59" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=907743836 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 156.0
+offset_top = 110.0
+offset_right = 156.0
+offset_bottom = 110.0
+
+[node name="HackText60" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=70875280 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 207.0
+offset_top = 223.0
+offset_right = 207.0
+offset_bottom = 223.0
+
+[node name="HackText61" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1931150352 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 432.0
+offset_top = 34.0
+offset_right = 432.0
+offset_bottom = 34.0
+
+[node name="HackText62" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1512860565 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 467.0
+offset_top = 47.0
+offset_right = 467.0
+offset_bottom = 47.0
+
+[node name="HackText63" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=278089343 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 457.0
+offset_top = 208.0
+offset_right = 457.0
+offset_bottom = 208.0
+
+[node name="HackText64" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1118877013 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 276.0
+offset_top = 132.0
+offset_right = 276.0
+offset_bottom = 132.0
+
+[node name="HackText65" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1634813759 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 327.0
+offset_top = 245.0
+offset_right = 327.0
+offset_bottom = 245.0
+
+[node name="HackText66" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1354377840 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 231.0
+offset_top = 29.0
+offset_right = 231.0
+offset_bottom = 29.0
+
+[node name="HackText67" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=234702297 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 266.0
+offset_top = 42.0
+offset_right = 266.0
+offset_bottom = 42.0
+
+[node name="HackText68" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1825201533 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 256.0
+offset_top = 203.0
+offset_right = 256.0
+offset_bottom = 203.0
+
+[node name="HackText69" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1909469857 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 75.0
+offset_top = 127.0
+offset_right = 75.0
+offset_bottom = 127.0
+
+[node name="HackText70" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1355249412 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 126.0
+offset_top = 240.0
+offset_right = 126.0
+offset_bottom = 240.0
+
+[node name="HackText71" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1451240095 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 351.0
+offset_top = 51.0
+offset_right = 351.0
+offset_bottom = 51.0
+
+[node name="HackText72" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1727736913 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 60.0
+offset_bottom = 180.0
+
+[node name="HackText73" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=618704172 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 340.0
+offset_top = 5.0
+offset_right = 340.0
+offset_bottom = 5.0
+
+[node name="HackText74" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=569133422 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 375.0
+offset_top = 18.0
+offset_right = 375.0
+offset_bottom = 18.0
+
+[node name="HackText75" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2010283331 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 365.0
+offset_top = 179.0
+offset_right = 365.0
+offset_bottom = 179.0
+
+[node name="HackText76" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=413538141 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 184.0
+offset_top = 103.0
+offset_right = 184.0
+offset_bottom = 103.0
+
+[node name="HackText77" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2113582367 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 235.0
+offset_top = 216.0
+offset_right = 235.0
+offset_bottom = 216.0
+
+[node name="HackText78" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=476224142 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 460.0
+offset_top = 27.0
+offset_right = 460.0
+offset_bottom = 27.0
+
+[node name="HackText79" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1305349774 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 169.0
+offset_top = 156.0
+offset_right = 169.0
+offset_bottom = 156.0
+
+[node name="HackText80" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1122971363 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 206.0
+offset_top = 22.0
+offset_right = 206.0
+offset_bottom = 22.0
+
+[node name="HackText81" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1544198270 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 241.0
+offset_top = 35.0
+offset_right = 241.0
+offset_bottom = 35.0
+
+[node name="HackText82" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=543612529 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 231.0
+offset_top = 196.0
+offset_right = 231.0
+offset_bottom = 196.0
+
+[node name="HackText83" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=258913920 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 50.0
+offset_top = 120.0
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="HackText84" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1209487517 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 101.0
+offset_top = 233.0
+offset_right = 101.0
+offset_bottom = 233.0
+
+[node name="HackText85" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1314607273 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 326.0
+offset_top = 44.0
+offset_right = 326.0
+offset_bottom = 44.0
+
+[node name="HackText86" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1740943143 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 35.0
+offset_top = 173.0
+offset_right = 35.0
+offset_bottom = 173.0
+
+[node name="HackText87" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1603192879 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 91.0
+offset_top = 60.0
+offset_right = 91.0
+offset_bottom = 60.0
+
+[node name="HackText88" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=320206239 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 408.0
+offset_top = 80.0
+offset_right = 408.0
+offset_bottom = 80.0
+
+[node name="HackText89" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2083307420 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 142.0
+offset_top = 173.0
+offset_right = 142.0
+offset_bottom = 173.0
+
+[node name="HackText90" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1672310629 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 30.0
+offset_top = 49.0
+offset_right = 30.0
+offset_bottom = 49.0
+
+[node name="HackText91" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1623749139 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 347.0
+offset_top = 69.0
+offset_right = 347.0
+offset_bottom = 69.0
+
+[node name="HackText92" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1134123317 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 81.0
+offset_top = 162.0
+offset_right = 81.0
+offset_bottom = 162.0
+
+[node name="HackText93" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1139396012 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 50.0
+offset_right = 7.0
+offset_bottom = 50.0
+
+[node name="HackText94" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1567395922 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 324.0
+offset_top = 70.0
+offset_right = 324.0
+offset_bottom = 70.0
+
+[node name="HackText95" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1165159758 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 58.0
+offset_top = 163.0
+offset_right = 58.0
+offset_bottom = 163.0
+
+[node name="HackText96" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1349129827 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 100.0
+offset_top = 83.0
+offset_right = 100.0
+offset_bottom = 83.0
+
+[node name="HackText97" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1195902230 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 417.0
+offset_top = 103.0
+offset_right = 417.0
+offset_bottom = 103.0
+
+[node name="HackText98" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1245871654 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 151.0
+offset_top = 196.0
+offset_right = 151.0
+offset_bottom = 196.0
+
+[node name="HackText99" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1934997902 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 115.0
+offset_top = 31.0
+offset_right = 115.0
+offset_bottom = 31.0
+
+[node name="HackText100" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=568435463 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 287.0
+offset_top = 140.0
+offset_right = 287.0
+offset_bottom = 140.0
+
+[node name="HackText101" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1739996276 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 233.0
+offset_right = 21.0
+offset_bottom = 233.0
+
+[node name="HackText102" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1255686357 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 246.0
+offset_top = 44.0
+offset_right = 246.0
+offset_bottom = 44.0
+
+[node name="HackText103" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1044043717 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 236.0
+offset_top = 205.0
+offset_right = 236.0
+offset_bottom = 205.0
+
+[node name="HackText104" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1123820178 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 55.0
+offset_top = 129.0
+offset_right = 55.0
+offset_bottom = 129.0
+
+[node name="HackText105" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1700388948 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 106.0
+offset_top = 242.0
+offset_right = 106.0
+offset_bottom = 242.0
+
+[node name="HackText106" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=882811000 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 331.0
+offset_top = 53.0
+offset_right = 331.0
+offset_bottom = 53.0
+
+[node name="HackText107" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1159472862 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 165.0
+offset_top = 146.0
+offset_right = 165.0
+offset_bottom = 146.0
+
+[node name="HackText108" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1869515627 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 74.0
+offset_top = 45.0
+offset_right = 74.0
+offset_bottom = 45.0
+
+[node name="HackText109" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1245544124 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 314.0
+offset_top = 144.0
+offset_right = 314.0
+offset_bottom = 144.0
+
+[node name="HackText110" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1986458059 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 48.0
+offset_top = 237.0
+offset_right = 48.0
+offset_bottom = 237.0
+
+[node name="HackText111" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1794264567 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 273.0
+offset_top = 48.0
+offset_right = 273.0
+offset_bottom = 48.0
+
+[node name="HackText112" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=248984165 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 382.0
+offset_top = 56.0
+offset_right = 382.0
+offset_bottom = 56.0
+
+[node name="HackText113" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1543952731 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 120.0
+offset_top = 188.0
+offset_right = 120.0
+offset_bottom = 188.0
+
+[node name="HackText114" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2120900995 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 162.0
+offset_top = 108.0
+offset_right = 162.0
+offset_bottom = 108.0
+
+[node name="HackText115" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1444173060 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 442.0
+offset_top = 112.0
+offset_right = 442.0
+offset_bottom = 112.0
+
+[node name="HackText116" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1686878798 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 176.0
+offset_top = 205.0
+offset_right = 176.0
+offset_bottom = 205.0
+
+[node name="HackText117" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1401167404 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 218.0
+offset_top = 125.0
+offset_right = 218.0
+offset_bottom = 125.0
+
+[node name="HackText118" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=444210190 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 378.0
+offset_top = 181.0
+offset_right = 378.0
+offset_bottom = 181.0
+
+[node name="HackText119" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=126219973 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 269.0
+offset_top = 238.0
+offset_right = 269.0
+offset_bottom = 238.0
+
+[node name="HackText120" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1250875367 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 101.0
+offset_top = 218.0
+offset_right = 101.0
+offset_bottom = 218.0
+
+[node name="HackText121" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1547423660 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 108.0
+offset_top = 102.0
+offset_right = 108.0
+offset_bottom = 102.0
+
+[node name="HackText122" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1118233776 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 425.0
+offset_top = 122.0
+offset_right = 425.0
+offset_bottom = 122.0
+
+[node name="HackText123" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1209184715 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 159.0
+offset_top = 215.0
+offset_right = 159.0
+offset_bottom = 215.0
+
+[node name="HackText124" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1642396910 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 201.0
+offset_top = 135.0
+offset_right = 201.0
+offset_bottom = 135.0
+
+[node name="HackText125" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=659140457 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 217.0
+offset_top = 172.0
+offset_right = 217.0
+offset_bottom = 172.0
+
+[node name="HackText126" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1956421208 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 252.0
+offset_top = 248.0
+offset_right = 252.0
+offset_bottom = 248.0
+
+[node name="HackText127" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1290698194 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 84.0
+offset_top = 228.0
+offset_right = 84.0
+offset_bottom = 228.0
+
+[node name="HackText128" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1521394855 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 388.0
+offset_top = 192.0
+offset_right = 388.0
+offset_bottom = 192.0
+
+[node name="HackText129" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=928501702 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 154.0
+offset_top = 238.0
+offset_right = 154.0
+offset_bottom = 238.0
+
+[node name="HackText130" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=509734762 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 347.0
+offset_top = 96.0
+offset_right = 347.0
+offset_bottom = 96.0
+
+[node name="HackText131" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2099939398 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 432.0
+offset_top = 167.0
+offset_right = 432.0
+offset_bottom = 167.0
+
+[node name="HackText132" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2053279781 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 134.0
+offset_top = 126.0
+offset_right = 134.0
+offset_bottom = 126.0
+
+[node name="HackText133" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=461932087 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 220.0
+offset_top = 214.0
+offset_right = 220.0
+offset_bottom = 214.0
+
+[node name="HackText134" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=628067705 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 358.0
+offset_top = 147.0
+offset_right = 358.0
+offset_bottom = 147.0
+
+[node name="HackText135" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=325304056 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 279.0
+offset_top = 252.0
+offset_right = 279.0
+offset_bottom = 252.0
+
+[node name="HackText136" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=614300659 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 173.0
+offset_top = 37.0
+offset_right = 173.0
+offset_bottom = 37.0
+
+[node name="HackText137" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=484070975 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 163.0
+offset_top = 198.0
+offset_right = 163.0
+offset_bottom = 198.0
+
+[node name="HackText138" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=89407313 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 100.0
+offset_top = 16.0
+offset_right = 100.0
+offset_bottom = 16.0
+
+[node name="HackText139" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=919255699 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 33.0
+offset_top = 235.0
+offset_right = 33.0
+offset_bottom = 235.0
+
+[node name="HackText140" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=59787667 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 258.0
+offset_top = 46.0
+offset_right = 258.0
+offset_bottom = 46.0
+
+[node name="HackText141" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1059153439 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 293.0
+offset_top = 59.0
+offset_right = 293.0
+offset_bottom = 59.0
+
+[node name="HackText142" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=46328687 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 283.0
+offset_top = 220.0
+offset_right = 283.0
+offset_bottom = 220.0
+
+[node name="HackText143" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=20746629 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 102.0
+offset_top = 144.0
+offset_right = 102.0
+offset_bottom = 144.0
+
+[node name="HackText144" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=603212713 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 336.0
+offset_top = 164.0
+offset_right = 336.0
+offset_bottom = 164.0
+
+[node name="HackText145" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1425234108 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 378.0
+offset_top = 68.0
+offset_right = 378.0
+offset_bottom = 68.0
+
+[node name="HackText146" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=305448144 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 87.0
+offset_top = 197.0
+offset_right = 87.0
+offset_bottom = 197.0
+
+[node name="HackText147" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=115563469 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 280.0
+offset_top = 55.0
+offset_right = 280.0
+offset_bottom = 55.0
+
+[node name="HackText148" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1440875502 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 216.0
+offset_right = 270.0
+offset_bottom = 216.0
+
+[node name="HackText149" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1995544211 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 67.0
+offset_top = 85.0
+offset_right = 67.0
+offset_bottom = 85.0
+
+[node name="HackText150" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1607825601 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 153.0
+offset_top = 173.0
+offset_right = 153.0
+offset_bottom = 173.0
+
+[node name="HackText151" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=971238782 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 132.0
+offset_top = 129.0
+offset_right = 132.0
+offset_bottom = 129.0
+
+[node name="HackText152" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=425494863 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 183.0
+offset_top = 242.0
+offset_right = 183.0
+offset_bottom = 242.0
+
+[node name="HackText153" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1664269128 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 408.0
+offset_top = 53.0
+offset_right = 408.0
+offset_bottom = 53.0
+
+[node name="HackText154" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=764821719 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 108.0
+offset_top = 121.0
+offset_right = 108.0
+offset_bottom = 121.0
+
+[node name="HackText155" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=296257713 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 433.0
+offset_top = 227.0
+offset_right = 433.0
+offset_bottom = 227.0
+
+[node name="HackText156" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=281153590 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 252.0
+offset_top = 151.0
+offset_right = 252.0
+offset_bottom = 151.0
+
+[node name="HackText157" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=812026787 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 383.0
+offset_top = 217.0
+offset_right = 383.0
+offset_bottom = 217.0
+
+[node name="HackText158" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1859550475 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 207.0
+offset_top = 48.0
+offset_right = 207.0
+offset_bottom = 48.0
+
+[node name="HackText159" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2119131718 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 242.0
+offset_top = 61.0
+offset_right = 242.0
+offset_bottom = 61.0
+
+[node name="HackText160" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1958443484 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 232.0
+offset_top = 222.0
+offset_right = 232.0
+offset_bottom = 222.0
+
+[node name="HackText161" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1882904492 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 51.0
+offset_top = 146.0
+offset_right = 51.0
+offset_bottom = 146.0
+
+[node name="HackText162" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1869346912 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 72.0
+offset_top = 245.0
+offset_right = 72.0
+offset_bottom = 245.0
+
+[node name="HackText163" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=343016601 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 327.0
+offset_top = 70.0
+offset_right = 327.0
+offset_bottom = 70.0
+
+[node name="HackText164" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1934089765 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 36.0
+offset_top = 199.0
+offset_right = 36.0
+offset_bottom = 199.0
+
+[node name="HackText165" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1610720671 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 316.0
+offset_top = 24.0
+offset_right = 316.0
+offset_bottom = 24.0
+
+[node name="HackText166" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1427547533 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 351.0
+offset_top = 37.0
+offset_right = 351.0
+offset_bottom = 37.0
+
+[node name="HackText167" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=773809062 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 341.0
+offset_top = 198.0
+offset_right = 341.0
+offset_bottom = 198.0
+
+[node name="HackText168" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=768413383 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 232.0
+offset_top = 83.0
+offset_right = 232.0
+offset_bottom = 83.0
+
+[node name="HackText169" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=361751882 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 211.0
+offset_top = 235.0
+offset_right = 211.0
+offset_bottom = 235.0
+
+[node name="HackText170" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=2112058652 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 436.0
+offset_top = 46.0
+offset_right = 436.0
+offset_bottom = 46.0
+
+[node name="HackText171" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1371091130 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 145.0
+offset_top = 175.0
+offset_right = 145.0
+offset_bottom = 175.0
+
+[node name="HackText172" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=855922367 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 182.0
+offset_top = 41.0
+offset_right = 182.0
+offset_bottom = 41.0
+
+[node name="HackText173" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1550957203 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 217.0
+offset_top = 54.0
+offset_right = 217.0
+offset_bottom = 54.0
+
+[node name="HackText174" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=129509562 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 207.0
+offset_top = 215.0
+offset_right = 207.0
+offset_bottom = 215.0
+
+[node name="HackText175" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=496457940 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 26.0
+offset_top = 139.0
+offset_right = 26.0
+offset_bottom = 139.0
+
+[node name="HackText176" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=349506783 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 294.0
+offset_top = 165.0
+offset_right = 294.0
+offset_bottom = 165.0
+
+[node name="HackText177" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1088610733 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 302.0
+offset_top = 63.0
+offset_right = 302.0
+offset_bottom = 63.0
+
+[node name="HackText178" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1864605454 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 11.0
+offset_top = 192.0
+offset_right = 11.0
+offset_bottom = 192.0
+
+[node name="HackText179" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1042685357 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 67.0
+offset_top = 79.0
+offset_right = 67.0
+offset_bottom = 79.0
+
+[node name="HackText180" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1745779248 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 384.0
+offset_top = 99.0
+offset_right = 384.0
+offset_bottom = 99.0
+
+[node name="HackText181" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=269595920 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 118.0
+offset_top = 192.0
+offset_right = 118.0
+offset_bottom = 192.0
+
+[node name="HackText182" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=604140721 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 6.0
+offset_bottom = 68.0
+
+[node name="HackText183" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=194195339 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 323.0
+offset_top = 88.0
+offset_right = 323.0
+offset_bottom = 88.0
+
+[node name="HackText184" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=312883442 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 57.0
+offset_top = 181.0
+offset_right = 57.0
+offset_bottom = 181.0
+
+[node name="HackText185" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1344060184 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 174.0
+offset_top = 98.0
+offset_right = 174.0
+offset_bottom = 98.0
+
+[node name="HackText186" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=748433777 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 182.0
+offset_top = 117.0
+offset_right = 182.0
+offset_bottom = 117.0
+
+[node name="HackText187" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=1467682165 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 200.0
+offset_top = 61.0
+offset_right = 200.0
+offset_bottom = 61.0
+
+[node name="HackText188" parent="DisruptorManagerItemOfferDemand/HackTextManager/HackTextParentNode" unique_id=723706373 instance=ExtResource("19_6sop0")]
+visible = false
+layout_mode = 1
+offset_left = 29.0
+offset_top = 71.0
+offset_right = 29.0
+offset_bottom = 71.0
+
+[node name="SwitchHackTextTimer" type="Timer" parent="DisruptorManagerItemOfferDemand/HackTextManager" unique_id=559959575]
+wait_time = 3.0

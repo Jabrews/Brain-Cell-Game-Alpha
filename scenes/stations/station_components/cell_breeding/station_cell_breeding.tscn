@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bthr7i6oqj4f3" path="res://scenes/stations/station_screens/screen_cell_breeding/screen_breeding_loader/screen_cell_breeding_loader.tscn" id="22_u6e0a"]
 [ext_resource type="Script" uid="uid://d4ikttr12drm8" path="res://scripts/stations/station_components/cell_breeding/energy_boost_event/cycle_btn/btn_cycle_stat.gd" id="23_uq6ph"]
 [ext_resource type="Script" uid="uid://ds5pbcufv5c0j" path="res://scripts/stations/station_components/cell_breeding/energy_boost_event/direction_btn/direction_btn.gd" id="24_y45wp"]
+[ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="31_c0lhn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sc3k1"]
 albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
@@ -868,3 +869,17 @@ mesh = SubResource("BoxMesh_hdjl7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BredCellSpawner/TopCube" unique_id=843726198]
 shape = SubResource("BoxShape3D_no7kp")
+
+[node name="DisruptableRecievers" type="Node3D" parent="." unique_id=685737971]
+
+[node name="LeftBoostSeatReciever" parent="DisruptableRecievers" unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("31_c0lhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4.4)
+parent_disruptable_screen = NodePath("../../ChargeSeats/ChargeSeatLeft/TV/TvFrontPannel/SubViewport/ScreenChargeBoostSeat")
+
+[node name="RightBoostSeatReciever" parent="DisruptableRecievers" unique_id=553747885 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("31_c0lhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4.6)
+parent_disruptable_screen = NodePath("../../ChargeSeats/ChargeSeatRight/TV/TvFrontPannel/SubViewport/ScreenChargeBoostSeat")
+
+[node name="BreedingScreenReciever" parent="DisruptableRecievers" unique_id=641940292 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("31_c0lhn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, -0.10000008)
+parent_disruptable_screen = NodePath("../../BreedPreviewTv/TvFrontPannel/SubViewport/ScreenCellBreedingLoader")
