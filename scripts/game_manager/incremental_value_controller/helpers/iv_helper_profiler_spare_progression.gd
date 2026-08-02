@@ -7,31 +7,13 @@ func _update_spare_progression(round : int , energy : int) :
 	if round == 1 :	
 		IVPrisonerProfiler.spare_symbols_avaible = [
 			{'defect' : ['up', 'down']}	,
-			#{'good_mutation' : ['up', 'down']},
-			#{'bad_mutation' : ['up', 'down']},
-			#{'energy' : ['up', 'down']},
-			{'energy' : ['up']},
+			{'good_mutation' : ['up', 'down']},
+			{'bad_mutation' : ['up', 'down']},
+			{'energy' : ['up', 'down']},
 			
 		]
 		
-	
 	elif round == 2 :
-		IVPrisonerProfiler.spare_symbols_avaible = [
-			{'defect' : ['up', 'down']}	,
-			#{'good_mutation' : ['up', 'down']},
-			#{'bad_mutation' : ['up', 'down']},
-			{'energy' : ['up', 'down']},
-		]
-		
-	elif round == 3 :
-		IVPrisonerProfiler.spare_symbols_avaible = [
-			{'defect' : ['up', 'down']}	,
-			{'good_mutation' : ['up', 'down']},
-			#{'bad_mutation' : ['up', 'down']},
-			{'energy' : ['up', 'down']},
-		]
-	
-	elif round == 4 : 
 		IVPrisonerProfiler.spare_symbols_avaible = [
 			{'defect' : ['up', 'down']}	,
 			{'good_mutation' : ['up', 'down']},
@@ -42,20 +24,21 @@ func _update_spare_progression(round : int , energy : int) :
 	var danger_level = get_energy_danger_level(energy)		
 	update_hidden_stat_nax(round, danger_level)
 		
+func get_energy_danger_level(energy: int) -> int:
+	# 75%–100% = 0
+	# 50%–75%  = 1
+	# 25%–50%  = 2
+	# 0%–25%   = 3
 
-func get_energy_danger_level(energy : int) -> int:
-	# high energy = safer
-	# low energy = more dangerous
-	
-	var max_energy = GLGameManagerBus.max_energy
+	var max_energy: int = GLGameManagerBus.max_energy
+	var energy_percent: float = float(energy) / float(max_energy)
 
-	if energy > max_energy * 0.75:
+	if energy_percent >= 0.75:
 		return 0
-	elif energy > max_energy * 0.5:
+	elif energy_percent >= 0.50:
 		return 1
-	elif energy > max_energy * .25:
+	elif energy_percent >= 0.25:
 		return 2
-
 	else:
 		return 3
 	
@@ -107,56 +90,3 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 				IVPrisonerProfiler.spare_symbol_max_created = 1
 				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 5
 				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 6
-	
-	elif round == 3 : 	
-		match danger_level :
-			0 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 1
-				IVPrisonerProfiler.spare_symbol_max_created = 1
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 4
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 6
-			1 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 1
-				IVPrisonerProfiler.spare_symbol_max_created = 2
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 5
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 6
-			2 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 1
-				IVPrisonerProfiler.spare_symbol_max_created = 2
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 5
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 6
-			3 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 2
-				IVPrisonerProfiler.spare_symbol_max_created = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 6
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 7
-	
-	elif round == 4 :
-		match danger_level :
-			0 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 1
-				IVPrisonerProfiler.spare_symbol_max_created = 1
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
-			1 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 2
-				IVPrisonerProfiler.spare_symbol_max_created = 2
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 4
-			2 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 2
-				IVPrisonerProfiler.spare_symbol_max_created = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 4
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
-			3 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 2
-				IVPrisonerProfiler.spare_symbol_max_created = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 4
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
-	
-	
-	
-	
-	
-	
-	

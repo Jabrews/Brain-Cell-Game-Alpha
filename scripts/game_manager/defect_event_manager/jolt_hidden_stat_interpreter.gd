@@ -5,7 +5,7 @@ extends Node
 func _handle_jolt() :
 	
 	# dont jolt if no stats to hide (round 1)	
-	if len(IVDefectEventManager.stats_to_hide) == 0 :
+	if len(IVHiddenStats.stats_to_hide) == 0 :
 		return
 	
 	# random num (1 - 100)
@@ -17,7 +17,7 @@ func _handle_jolt() :
 		
 		GLDefectEventMangerBus.emit_signal(
 			"event_hidden_stat_interpreter_jolt",
-			IVDefectEventManager.stats_to_hide,
+			IVHiddenStats.stats_to_hide,
 		)
 		
 		# emit sound
@@ -30,7 +30,7 @@ func _handle_jolt() :
 
 func decide_single_stat_interpreter() -> void:
 	
-	var stats_to_hide = IVDefectEventManager.stats_to_hide	
+	var stats_to_hide = IVHiddenStats.stats_to_hide	
 	
 	var random_stat = stats_to_hide.pick_random()
 	

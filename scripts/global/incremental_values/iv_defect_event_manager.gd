@@ -13,5 +13,3 @@ var cell_container_jolt_defect_increase: int = 20
 var interpreter_jolt_energy_decrease_multiple = 1
 var interpreter_jolt_energy_decrease_single = 2
 	
-
-var stats_to_hide: Array[String] = []

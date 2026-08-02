@@ -7,40 +7,31 @@ func _update_defect_event_values(round : int, energy : int) -> void:
 
 	match round:
 		1:
-			IVDefectEventManager.stats_to_hide = []
 			IVDefectEventManager.max_defect_event_update_timer_duration = 40
 			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 0
 			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 0
 		2:
-			IVDefectEventManager.stats_to_hide = ["strength"]
 			IVDefectEventManager.max_defect_event_update_timer_duration = 35
 			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 1
 			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 0
-		3:
-			IVDefectEventManager.stats_to_hide = ["strength", "intelligence"]
-			IVDefectEventManager.max_defect_event_update_timer_duration = 30
-			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 2
-			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
-		4:
-			IVDefectEventManager.stats_to_hide = ["strength", "intelligence", "community"]
-			IVDefectEventManager.max_defect_event_update_timer_duration = 25
-			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 3
-			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 2
 
 	apply_defect_values(round, danger_level)
 
 
-func get_energy_danger_level(energy : int) -> int:
-	# high energy = safer
-	# low energy = more dangerous
-	
-	var max_energy = GLGameManagerBus.max_energy
+func get_energy_danger_level(energy: int) -> int:
+	# 75%–100% = 0
+	# 50%–75%  = 1
+	# 25%–50%  = 2
+	# 0%–25%   = 3
 
-	if energy > max_energy * 0.75:
+	var max_energy: int = GLGameManagerBus.max_energy
+	var energy_percent: float = float(energy) / float(max_energy)
+
+	if energy_percent >= 0.75:
 		return 0
-	elif energy > max_energy * 0.5:
+	elif energy_percent >= 0.50:
 		return 1
-	elif energy > max_energy * .25:
+	elif energy_percent >= 0.25:
 		return 2
 	else:
 		return 3
@@ -79,27 +70,6 @@ func apply_defect_values(round : int, danger_level : int) -> void:
 					set_defect_values(70, 12, 18, 10, 25, 25)
 				3:
 					set_defect_values(50, 20, 30, 15, 30, 30)
-
-		3:
-			match danger_level:
-				0:
-					set_defect_values(98, 1, 1, 1, 20, 20)
-				1:
-					set_defect_values(75, 10, 15, 15, 20, 20)
-				2:
-					set_defect_values(70, 15, 15, 20, 25, 25)
-				3:
-					set_defect_values(65, 15, 20, 25, 30, 30)
-
-		4:
-			match danger_level:
-				0:
-					set_defect_values(98, 1, 1, 0, 10, 10)
-				1:
-					set_defect_values(80, 1, 19, 1, 15, 15)
-				2:
-					set_defect_values(60, 20, 20, 30, 30, 35)
-					set_defect_values(50, 30, 20, 35, 35, 35)
 
 
 func set_defect_values(

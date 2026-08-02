@@ -15,36 +15,25 @@ func _update_cell_stat_creation(round : int , energy : int) :
 		IVCellCreator.chance_to_half_defect = 40
 		IVCellCreator.chance_to_half_clean = 50
 		
-	elif round == 3 :
-		IVCellCreator.chance_of_bad_stats = 60
-		IVCellCreator.chance_of_no_defect = 25
-		IVCellCreator.chance_to_half_defect = 20
-		IVCellCreator.chance_to_half_clean = 55
-		
-		
-	elif round == 4 :
-		IVCellCreator.chance_of_bad_stats = 65
-		IVCellCreator.chance_of_no_defect = 15
-		IVCellCreator.chance_to_half_defect = 0
-		IVCellCreator.chance_to_half_clean = 60
-	
 	var danger_level = get_energy_danger_level(energy)
 	update_hidden_stat_nax(round, danger_level)
 		
 
-func get_energy_danger_level(energy : int) -> int:
-	# high energy = safer
-	# low energy = more dangerous
-	
-	var max_energy = GLGameManagerBus.max_energy
+func get_energy_danger_level(energy: int) -> int:
+	# 75%–100% = 0
+	# 50%–75%  = 1
+	# 25%–50%  = 2
+	# 0%–25%   = 3
 
-	if energy > max_energy * 0.75:
+	var max_energy: int = GLGameManagerBus.max_energy
+	var energy_percent: float = float(energy) / float(max_energy)
+
+	if energy_percent >= 0.75:
 		return 0
-	elif energy > max_energy * 0.5:
+	elif energy_percent >= 0.50:
 		return 1
-	elif energy > max_energy * .25:
+	elif energy_percent >= 0.25:
 		return 2
-
 	else:
 		return 3
 	
@@ -98,34 +87,6 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 				IVCellCreator.defect_stat_addition_min = 5
 				IVCellCreator.defect_stat_addition_max = 10
 	
-	elif round == 3 :
-		match danger_level :
-			0 :
-				pass
-	
-			1 :
-				pass
-	
-			2 :
-				pass
-	
-			3 :
-				pass
-	
-	
-	elif round == 4 :
-		match danger_level :
-			0 :
-				pass
-	
-			1 :
-				pass
-	
-			2 :
-				pass
-	
-			3 :
-				pass
 	
 	
 	

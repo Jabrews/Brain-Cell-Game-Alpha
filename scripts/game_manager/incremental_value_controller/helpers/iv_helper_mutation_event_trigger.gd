@@ -27,19 +27,21 @@ func _update_mutations_event_trigger(round : int , energy : int) :
 	update_mutation_turn(round, danger_level)
 		
 
-func get_energy_danger_level(energy : int) -> int:
-	# high energy = safer
-	# low energy = more dangerous
-	
-	var max_energy = GLGameManagerBus.max_energy
+func get_energy_danger_level(energy: int) -> int:
+	# 75%–100% = 0
+	# 50%–75%  = 1
+	# 25%–50%  = 2
+	# 0%–25%   = 3
 
-	if energy > max_energy * 0.80:
+	var max_energy: int = GLGameManagerBus.max_energy
+	var energy_percent: float = float(energy) / float(max_energy)
+
+	if energy_percent >= 0.75:
 		return 0
-	elif energy > max_energy * 0.6:
+	elif energy_percent >= 0.50:
 		return 1
-	elif energy > max_energy * .25:
+	elif energy_percent >= 0.25:
 		return 2
-
 	else:
 		return 3
 	
