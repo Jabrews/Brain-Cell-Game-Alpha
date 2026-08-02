@@ -58,10 +58,14 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 
 	var new_prisoner_cells : Array[BrainCell] = assemble_cells.assemble(cell_constructor)
 	
+	# shuffle cells
+	new_prisoner_cells.shuffle()
+	
 	
 	cell_manager.set_prisoner_cells(
 		new_prisoner_cells
 	)
+	
 
 	GLCellCreatorBus.emit_signal(
 		"get_newest_prisoner_cells",
@@ -73,7 +77,6 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 	if GLShareholderOfferState.await_user_choose_shareholder_offer_before_create:
 		return
 	#################################
-
 
 
 

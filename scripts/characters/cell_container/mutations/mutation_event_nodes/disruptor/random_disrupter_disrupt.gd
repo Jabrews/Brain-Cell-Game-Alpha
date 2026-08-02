@@ -26,6 +26,7 @@ func _ready_overide() :
 	
 func _start() :
 	
+	reveal_mutation()
 	
 	# play particles and sound
 	s_disrupt_start.play()	
@@ -38,7 +39,7 @@ func _start() :
 	detect_disruptable_area._search()
 	
 	# duration of warning
-	await get_tree().create_timer(7.0).timeout
+	await get_tree().create_timer(4.0).timeout
 	
 	# stop particles and sound
 	particle_manager._stop()

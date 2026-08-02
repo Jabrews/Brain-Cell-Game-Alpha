@@ -1,5 +1,10 @@
 extends Node
 
+signal toggle_cell_near_death_event(toggle_value : bool, cell_name : String)
+signal item_used_on_cell(item_type: String, cell_name : String)
+
+
+var last_near_death_dialouge : Sentient_Dialogue
 
 # ROUND 1
 var round_1_dialogue: Array[Sentient_Dialogue] = [
@@ -164,3 +169,97 @@ var round_4_dialogue: Array[Sentient_Dialogue] = [
 		"mad"
 	),
 ]
+
+# near death event dialouge
+var round_1_near_death_dialouge : Array[Sentient_Dialogue] = [
+	Sentient_Dialogue.new('NARRR... GLOO. GLOEW!', 'mad'),
+	Sentient_Dialogue.new('STEWP! YAD!', 'mad'),
+	Sentient_Dialogue.new('GLOOR! , GLOPEN!', 'mad'),
+	Sentient_Dialogue.new('FARGOO! LOT!... LAR', 'mad'),
+]
+
+
+var other_round_death_dialouge : Array[Sentient_Dialogue] = [
+	Sentient_Dialogue.new("NO!... NO!... PLEASE!", "mad"),
+	Sentient_Dialogue.new("GHH!... IT PLEAS!!","mad"),
+	Sentient_Dialogue.new("Mrr... don't...\nI don't want to die...","mad"),
+	Sentient_Dialogue.new("My... kids...\nplease...", "mad"),
+	Sentient_Dialogue.new("NOT AGAIN!\nNOT AGAIN!", "mad"
+	),
+]
+
+var round_1_shot_thanks : Sentient_Dialogue = Sentient_Dialogue.new('glorrp loop!', 'normal')
+var other_round_shot_thanks : Sentient_Dialogue = Sentient_Dialogue.new('thanks!', 'normal')
+
+func _get_sentient_dialouge() -> Sentient_Dialogue :
+	
+	var selected_dialouge : Sentient_Dialogue = null
+	
+	match GLGameManagerBus.current_round : 	
+		1 :
+			if not round_1_dialogue.is_empty() : 
+				selected_dialouge = round_1_dialogue.pick_random()
+		2: 
+			if not round_2_dialogue.is_empty() : 
+				selected_dialouge = round_2_dialogue.pick_random()
+		3 : 
+			if not round_3_dialogue.is_empty() : 
+				selected_dialouge = round_3_dialogue.pick_random()
+		4 : 
+			if not round_4_dialogue.is_empty() : 
+				selected_dialouge = round_4_dialogue.pick_random()
+	
+	return selected_dialouge 
+
+
+func _remove_sentient_dialouge(dialouge : Sentient_Dialogue) -> void : 
+		match GLGameManagerBus.current_round : 	
+			1 :
+				round_1_dialogue.erase(dialouge)
+			2:
+				round_2_dialogue.erase(dialouge)
+			3 : 
+				round_3_dialogue.erase(dialouge)
+			4 : 
+				round_4_dialogue.erase(dialouge)
+	
+	
+func _get_near_death_dialouge() -> Sentient_Dialogue :	
+	
+	
+	var selected_dialouge : Sentient_Dialogue 
+	
+	
+	if GLGameManagerBus.current_round == 1 : 
+		selected_dialouge = round_1_near_death_dialouge.pick_random()
+	else : 
+		selected_dialouge = other_round_death_dialouge.pick_random()
+	
+	# dont show same one twice
+	if selected_dialouge == last_near_death_dialouge :	
+		_get_near_death_dialouge()
+	
+	# set last one
+	last_near_death_dialouge  = selected_dialouge
+	
+	return selected_dialouge
+	
+
+func _get_shot_thanks_dialouge() -> Sentient_Dialogue :
+	
+	var selected_dialouge : Sentient_Dialogue
+	
+	if GLGameManagerBus.current_round == 1 : 	
+		selected_dialouge = round_1_shot_thanks
+	
+	else : 
+		selected_dialouge = other_round_shot_thanks
+		
+	return selected_dialouge
+	
+	
+	
+	
+	
+		
+	

@@ -60,6 +60,8 @@ GLEntityRoomManagementBus="*uid://dvm6v8uu1i21w"
 IVRandomMutationEventTrigger="*uid://cr54vb4wtode5"
 GLCeilingFanPlacementsState="*uid://bx0032j3rgho7"
 GLMutationDisruptState="*uid://0c5led7aoxe2"
+GLMutationSentientState="*uid://wodwg6xhek0q"
+GLMutationSeenManagerBus="*uid://d4j1w4dkwb67"
 
 [debug]
 

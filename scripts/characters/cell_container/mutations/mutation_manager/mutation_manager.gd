@@ -62,7 +62,6 @@ func _handle_attempt_to_trigger_random_mutation_event(mutation_event: MutationEv
 		if active_event.event_type == "constant":
 			# add paused event
 			pausable_constant_events.append(active_event)
-			
 			# remove from active pool (will be added back)
 			active_mutation_events.erase(active_event)
 	# if found

@@ -7,11 +7,16 @@ extends Node3D
 @onready var mutation_mesh_tv_scene : PackedScene = preload("res://scenes/characters/reusable/stat_display/mutation_mesh_tv.tscn")
 @onready var mutation_mesh_parent : Node3D = $MutationMeshParent
 @onready var shake_sentient_mutation : Node = $ShakeSentientMutation
+@onready var stat_mesh : MeshInstance3D = $StatMesh
 
 @export var yaw_offset: float = 0.0
 var show_distance : float = 4.0
 
 var player : CharacterBody3D
+
+
+func _ready() -> void:
+	GLMutationSentientState.connect('toggle_cell_near_death_event', _handle_toggle_cell_near_death_event)
 
 
 func _handle_brain_cell_recieved(cell : BrainCell) -> void:
@@ -117,3 +122,18 @@ func _auto_turn_off() -> void:
 	)
 
 	visible = distance_to_player <= show_distance
+
+
+func _handle_toggle_cell_near_death_event(toggle_value : bool, cell_name : String) :
+	
+	var brain_cell : BrainCell = parent_body.designated_brain_cell 
+	
+	if brain_cell.name == cell_name : 
+		if toggle_value : 
+			stat_mesh.visible = false
+			mutation_mesh_parent.visible = false
+		else : 
+			stat_mesh.visible = true 
+			mutation_mesh_parent.visible = true
+	
+	

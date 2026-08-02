@@ -3,19 +3,19 @@ extends Node
 var all_mutations : Array[BrainCellMutation] = [
 	# AIRBORNE
 	BrainCellMutation.new('airborne', false, [
-		MutationEvent.new('airborne_fly', 'random_event')
+		MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )
 	]),
 	# SENTIENT
 	BrainCellMutation.new('sentient', false, [
-		MutationEvent.new('sentient_talk', 'constant')
+		MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)
 	]),
 	# LONLEY
 	BrainCellMutation.new('lonley', false, [
-		MutationEvent.new('lonley_starvation', 'constant')
+		MutationEvent.new('lonley_starvation', 'constant', 'lonley', 0)
 	]),
 	# DISRUPTOR
 	BrainCellMutation.new('disrupter', false, [
-		MutationEvent.new('disrupter_disrupt', 'random_event')
+		MutationEvent.new('disrupter_disrupt', 'random_event', 'disrupter', 0)
 	]),
 	# TELEPORTATION 
 	BrainCellMutation.new('teleportation', false, []),
@@ -53,6 +53,6 @@ var max_fake_mutations_per_batch : int = 1
 
 ## sientient mutation ##
 # toggled after first selected by user
-var picked_sentient_mutation_first_round : bool = false
+var picked_sentient_mutation_first_round : bool = true 
 # toggled after giving user chance to grab sentient cell
 var served_sentient_cell : bool = false

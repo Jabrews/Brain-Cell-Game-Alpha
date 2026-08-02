@@ -35,7 +35,7 @@ material = SubResource("StandardMaterial3D_weyje")
 script = ExtResource("1_kuhs7")
 
 [node name="SpeechBubble" type="Node3D" parent="." unique_id=58424051]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.63432, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44658852, 0)
 script = ExtResource("2_05ffk")
 
 [node name="UpdateContainerBasis" type="Node" parent="SpeechBubble" unique_id=607081507]
@@ -49,12 +49,18 @@ script = ExtResource("5_cqfcb")
 
 [node name="Normal1" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1201644967]
 stream = ExtResource("5_wt4mf")
+volume_db = -4.0
+pitch_scale = 0.8
 
 [node name="Normal2" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1731531921]
 stream = ExtResource("6_s0evx")
+volume_db = -4.0
+pitch_scale = 0.8
 
 [node name="Normal3" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=690022763]
 stream = ExtResource("7_20g0a")
+volume_db = -4.0
+pitch_scale = 0.8
 
 [node name="Mad1" type="AudioStreamPlayer3D" parent="SpeechBubble/TextSoundManager" unique_id=1964439712]
 stream = ExtResource("8_8ko76")
@@ -92,3 +98,13 @@ ignore_time_scale = true
 
 [node name="TextBubbleStart" type="AudioStreamPlayer3D" parent="SpeechBubble" unique_id=2032493425]
 stream = ExtResource("14_s0evx")
+
+[node name="GetNewDialougeDelayTimer" type="Timer" parent="." unique_id=1966229974]
+wait_time = 25.0
+
+[node name="CheckIfPlayerEnteredRoomTimer" type="Timer" parent="." unique_id=568643345]
+wait_time = 3.0
+
+[node name="PlayNearDeathEventDialouge" type="Timer" parent="." unique_id=24676858]
+wait_time = 2.0
+one_shot = true

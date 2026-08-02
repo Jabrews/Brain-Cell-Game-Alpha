@@ -10,7 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://1fua0pirwd11" path="res://models/mutations/constant_lonley_starvation/tear.png" id="8_fykb3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
-size = Vector3(4, 2, 4)
+custom_solver_bias = 1.0
+size = Vector3(7, 2, 5)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y5bnc"]
 emission_shape = 1
@@ -41,7 +42,7 @@ autostart = true
 wait_time = 2.5
 
 [node name="CryDelayTimer" type="Timer" parent="." unique_id=1841459419]
-wait_time = 3.0
+wait_time = 6.0
 
 [node name="FaceSpriteManager" type="Node3D" parent="." unique_id=1328529603]
 script = ExtResource("2_sf0a6")

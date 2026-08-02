@@ -12,6 +12,9 @@ var curr_timer_timeout_time: float
 
 
 func _ready() -> void:
+	
+
+	
 	GLGameManagerBus.connect("process_next_round", _handle_next_round)
 	GLCellTrashcanBus.connect("cell_added_to_trashcan", _handle_cell_added_to_trash_can)
 

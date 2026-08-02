@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://drjsqxx87jmxx" path="res://scripts/stations/station_components/cell_trash_can/floor_blood_manager/floor_stain.gd" id="14_ljsfa"]
 [ext_resource type="Script" uid="uid://crd2losq8bq7f" path="res://scripts/stations/station_components/cell_trash_can/floor_blood_manager/floor_blood_manager.gd" id="14_nfnk8"]
 [ext_resource type="Texture2D" uid="uid://rkwbh4buqdw1" path="res://models/trashcan_blood/blood_texture.png" id="14_yd2m0"]
+[ext_resource type="Script" uid="uid://bia6jq7grwvlc" path="res://scripts/stations/station_components/cell_trash_can/detect_cell_area.gd" id="17_nr5yh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3y2t"]
 resource_name = "Material"
@@ -118,6 +119,9 @@ material = SubResource("StandardMaterial3D_nr5yh")
 radius = 1.2
 height = 0.001
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_ixuf4"]
+radius = 3.0
+
 [node name="CellTrashCan" type="Node3D" unique_id=995289130]
 script = ExtResource("1_sa7a1")
 
@@ -210,3 +214,12 @@ script = ExtResource("14_nfnk8")
 visible = false
 mesh = SubResource("SphereMesh_rddub")
 script = ExtResource("14_ljsfa")
+
+[node name="DetectCellArea" type="Area3D" parent="." unique_id=1626993262]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("17_nr5yh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectCellArea" unique_id=412811388]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -0.099999994)
+shape = SubResource("SphereShape3D_ixuf4")

@@ -7,10 +7,10 @@ func _ready() -> void:
 	GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
 	GLCellManagerBus.connect('delete_selected_collected_cell', _handle_delete_selected_collected_cell)
 	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
+	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded)
 	
 	# room entrance area signal
 	GLEntityRoomManagementBus.connect('entity_changed_room', _handle_entity_changed_room)
-	
 	
 	
 	# put player in by default
@@ -57,6 +57,13 @@ func _handle_entity_changed_room(target_entity_name : String, new_room_name : St
 			room_profile.room_name = new_room_name
 	
 	
-		
-		
+func _handle_cell_breeded(_cell_1, _cell_2, new_cell : BrainCell, _cell_3, _cell_4) : 
+	GLEntityRoomManagementBus.entity_room_profiles.append(
+		EntityRoomProfile.new(
+			'cell_container',
+			new_cell.name,
+			'main_room'
+		)
+	)
+	
 		

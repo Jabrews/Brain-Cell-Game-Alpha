@@ -12,7 +12,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :
 		send_mutation_event._send_event()
 
-
 var waiting_for_succession_event: bool = false
 var current_event_can_retry: bool = false
 
@@ -60,7 +59,7 @@ func start_regular_event_timer() -> void:
 		max_wait_time
 	)
 
-	#mutation_event_delay_timer.start()
+	mutation_event_delay_timer.start()
 
 
 func start_succession_event_timer() -> void:

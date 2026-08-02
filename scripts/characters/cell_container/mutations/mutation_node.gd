@@ -28,6 +28,23 @@ func random_event_finished() -> void:
 		designated_mutation_event
 	)
 
+func reveal_mutation() :
+	
+	var mutation_name = designated_mutation_event.mutation_name	
+	
+	# if not already unhidden. then unhide
+	var curr_brain_cell : BrainCell = parent_cell_container.designated_brain_cell
+	
+	# unhide if possible
+	for mutation : BrainCellMutation in curr_brain_cell.mutations :
+		if mutation.type == mutation_name : 
+			if mutation.hidden : 
+				GLCellManagerBus.emit_signal('unhide_cell_mutation', curr_brain_cell, mutation)
+			
+	# toggle mutation seen true if possible
+	GLMutationSeenManagerBus.emit_signal('mutation_seen_by_player', mutation_name)
+	
+
 # ready
 func _ready_overide() :
 	pass

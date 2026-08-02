@@ -43,11 +43,11 @@
 [ext_resource type="Script" uid="uid://oq36mp5cbjqs" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/urgency_overide_mutation.gd" id="31_mj1d0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
-[ext_resource type="Script" uid="uid://cj34bbhkcqph6" path="res://scripts/game_manager/random_mutation_event_trigger/random_mutation_event_trigger.gd" id="35_36h02"]
+[ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/rework/trigger_mutation_event.gd" id="35_lp30k"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
-[ext_resource type="Script" uid="uid://bnivyf65vigvm" path="res://scripts/game_manager/random_mutation_event_trigger/send_mutation_event.gd" id="36_3kcnf"]
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
+[ext_resource type="Script" uid="uid://103bbjkr2rsp" path="res://scripts/game_manager/random_mutation_event_trigger/rework/get_valid_possible_mutation_event_choices.gd" id="36_r52yi"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
 [ext_resource type="Script" uid="uid://dt54n7ye7aevd" path="res://scripts/game_manager/shareholder_offer_generator/shareholder_offer_demand_generator.gd" id="37_87p7k"]
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
@@ -252,7 +252,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.2
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.095333, 0.8529396, 13.287113)
 
 [node name="ItemOfferManager" parent="Stations/ContainerStations" unique_id=359772628 instance=ExtResource("15_w7r6u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 11.278219)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 9.278219)
 
 [node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
@@ -337,17 +337,13 @@ script = ExtResource("22_dn28p")
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
 
-[node name="RandomMutationEventTrigger" type="Node" parent="GameManager" unique_id=1935449708]
-script = ExtResource("35_36h02")
+[node name="TriggerMutationEvent" type="Node" parent="GameManager" unique_id=1034953006]
+script = ExtResource("35_lp30k")
 
-[node name="SendMutationEvent" type="Node" parent="GameManager/RandomMutationEventTrigger" unique_id=2105502864 node_paths=PackedStringArray("cell_manager", "entity_room_management", "cell_container_parent_node")]
-script = ExtResource("36_3kcnf")
-cell_manager = NodePath("../../CellManager")
-entity_room_management = NodePath("../../EntityRoomManagement")
-cell_container_parent_node = NodePath("../../../Characters/ContainerParentNode")
+[node name="TriggerDelayTimer" type="Timer" parent="GameManager/TriggerMutationEvent" unique_id=1763102479]
 
-[node name="MutationEventDelay" type="Timer" parent="GameManager/RandomMutationEventTrigger" unique_id=359982110]
-wait_time = 5.0
+[node name="GetValidPossibleMutationEvents" type="Node" parent="GameManager/TriggerMutationEvent" unique_id=298237220]
+script = ExtResource("36_r52yi")
 
 [node name="MutationSeenManager" type="Node" parent="GameManager" unique_id=1865371392]
 script = ExtResource("32_62614")

@@ -19,6 +19,7 @@ func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	GLCellManagerBus.connect('mutation_frowny_increase_defect', _handle_mutation_frowny_increase_defect)
+	GLCellManagerBus.connect('unhide_cell_mutation', _handle_unhide_cell_mutation)
 	
 	# DEBUG
 	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
@@ -186,6 +187,11 @@ func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell):
 	# delete from prisoners
 	delete_prisoner_cells([prisoner_cell])
 	
+	# remove none mutation
+	for mutation : BrainCellMutation in prisoner_cell.mutations : 
+		if mutation.type == 'none' : 
+			prisoner_cell.mutations.erase(mutation)
+	
 	# add to collection
 	var new_collection = collected_cells
 	new_collection.append(prisoner_cell)
@@ -344,6 +350,20 @@ func _handle_mutation_frowny_increase_defect(selected_cell : BrainCell) :
 	selected_cell.community.defect += increase_amount
 
 	update_collected_cells([selected_cell])
+
+func _handle_unhide_cell_mutation(selected_brain_cell : BrainCell, selected_brain_cell_mutation : BrainCellMutation) :
+	
+	for mutation : BrainCellMutation in selected_brain_cell.mutations : 
+		if mutation.name == selected_brain_cell_mutation.name :
+			mutation.hidden = false
+	
+	update_collected_cells([selected_brain_cell])
+	
+	
+	
+	
+	
+	
 
 
 ### OTHER ZOOS ###

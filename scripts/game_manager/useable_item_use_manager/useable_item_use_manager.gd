@@ -24,6 +24,8 @@ func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj 
 			selected_brain_cell.community.defect -= IVItemStats.defect_shot_decrease
 		_ : 
 			push_error('no stat found for defect shot decrease : ', selected_stat)
+		
+	GLMutationSentientState.emit_signal('item_used_on_cell', 'defect_shot', selected_brain_cell.name)	
 			
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
@@ -36,6 +38,8 @@ func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj 
 		mutation.hidden = false 
 		if mutation.type == 'none' : 
 			selected_brain_cell.mutations.erase(mutation)
+	
+	GLMutationSentientState.emit_signal('item_used_on_cell', 'hidden_shot', selected_brain_cell.name)	
 	
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	

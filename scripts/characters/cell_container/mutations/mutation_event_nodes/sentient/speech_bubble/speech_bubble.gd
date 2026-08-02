@@ -4,14 +4,11 @@ extends Node
 @onready var update_container_basis: Node = $UpdateContainerBasis
 @onready var update_label_styles: Node = $UpdateLabelStyles
 @onready var text_sound_manager: Node3D = $TextSoundManager
-
 # Bubble components
 @onready var speech_bubble_label: Label = \
 	$SpeechBubbleTV/SubViewport/ScreenTextSpeechBubble/VBoxContainer/PanelContainer/Label
-
 @onready var mesh_instance: MeshInstance3D = $SpeechBubbleTV
 @onready var text_increment_delay_timer: Timer = $TextIncrementDelay
-
 # Audio
 @onready var text_bubble_start: AudioStreamPlayer3D = $TextBubbleStart
 
@@ -37,14 +34,14 @@ func _ready() -> void:
 func _start_text(
 	sentient_dialogue: Sentient_Dialogue,
 	override_current_text: bool = false
-) -> void:
+) -> bool:
 	if not _dialogue_is_valid(sentient_dialogue):
-		return
+		return false
 
 	# Ignore this dialogue if another one is already active,
 	# unless overriding was explicitly requested.
 	if text_is_loaded and not override_current_text:
-		return
+		return false
 
 	text_is_loaded = true
 
@@ -58,23 +55,25 @@ func _start_text(
 
 	# This dialogue may have been overridden during the frame wait.
 	if active_sequence_id != dialogue_sequence_id:
-		return
+		return false
 
 	update_container_basis._set_starting_height()
 	update_container_basis._update()
-
+	
 	_fade_bubble_in()
 	text_bubble_start.play()
-
+	
 	await _type_dialogue(
 		sentient_dialogue,
 		active_sequence_id
 	)
 
 	if active_sequence_id != dialogue_sequence_id:
-		return
+		return false
 
 	await _finish_dialogue(active_sequence_id)
+	
+	return true
 
 
 func _prepare_new_dialogue(
