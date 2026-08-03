@@ -121,8 +121,6 @@ func handle_round(round : int):
 			IVShareholderOffers.energy_left_to_claim_min = 30
 			IVShareholderOffers.energy_left_to_claim_max = 35
 			IVShareholderOffers.non_enabled_stats_max = 1
-			## HIDDEN STATS ## 
-			IVHiddenStats.stats_to_hide = ['strength']
 			## PRISONER PROFILER ##
 			IVPrisonerProfiler.stat_increment_amount = 10
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
@@ -134,96 +132,9 @@ func handle_round(round : int):
 			IVCellDefectDecreaser.station_enabled = false
 			## CELL TRASHCAN ##
 			IVCellTrashcan.max_capaicty = 6
-			
-		3 :
-			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
-			## ENERGY ##
-			GLGameManagerBus.curr_energy = 130
-			GLGameManagerBus.max_energy = 130
-			## BREEDING ##
-			IVCellBreeding.max_cell_breeding_attempts = 6
-			IVCellBreeding.curr_cell_breeding_attempt = 0
-			## BREEDING SCALING ##
-			IVCellBreeding.clean_stat_increase_case_min = 0.5
-			IVCellBreeding.defect_stat_increase_case_min = 0.55
-			## CELL CREATOR ##
-			IVCellCreator.max_stat_value = 320
-			## USEABLE ITEMS ##
-			IVItemStats.defect_shot_decrease = 60
-			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 12
-			IVUseableItemSpawner.steroids_to_spawn = 0
-			IVUseableItemSpawner.ice_cube_to_spawn = 0
-			IVUseableItemSpawner.scissors_to_spawn = 0
-			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.can_generate_cell_offer = true 
-			IVShareholderOffers.can_generate_mutation_offer = true 
-			IVShareholderOffers.chance_of_generating_cell_offer = 0
-			IVShareholderOffers.chance_of_generating_mution_offer = 100
-			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.energy_reward_min = 30
-			IVShareholderOffers.energy_reward_max = 35
-			IVShareholderOffers.energy_left_to_claim_min = 35
-			IVShareholderOffers.energy_left_to_claim_max = 40
-			IVShareholderOffers.non_enabled_stats_max = 1
-			## HIDDEN STATS ## 
-			IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
-			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 20
-			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
-			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
-			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.45, 0.55, 0.68, 0.80, 1.01]
-			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
-			## DEFECT DECREASER ##
-			IVCellDefectDecreaser.station_enabled = true
-			## CELL TRASHCAN ##
-			IVCellTrashcan.max_capaicty = 6
-		4 :
-			IVCellBreeding.newly_breeded_cell_can_die_from_defect = true
-			## ENERGY ##
-			GLGameManagerBus.curr_energy = 150
-			GLGameManagerBus.max_energy = 150
-			## BREEDING ##
-			IVCellBreeding.max_cell_breeding_attempts = 7
-			IVCellBreeding.curr_cell_breeding_attempt = 0
-			## BREEDING SCALING ##
-			IVCellBreeding.clean_stat_increase_case_min = 0.5
-			IVCellBreeding.defect_stat_increase_case_min = 0.6
-			## CELL CREATOR ##
-			IVCellCreator.max_stat_value = 400
-			## USEABLE ITEMS ##
-			IVItemStats.defect_shot_decrease = 75
-			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 12
-			IVUseableItemSpawner.steroids_to_spawn = 0
-			IVUseableItemSpawner.ice_cube_to_spawn = 0
-			IVUseableItemSpawner.scissors_to_spawn = 0
-			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.can_generate_cell_offer = true 
-			IVShareholderOffers.can_generate_mutation_offer = true 
-			IVShareholderOffers.chance_of_generating_cell_offer = 50
-			IVShareholderOffers.chance_of_generating_mution_offer = 50
-			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.energy_reward_min = 35
-			IVShareholderOffers.energy_reward_max = 40
-			IVShareholderOffers.energy_left_to_claim_min = 40
-			IVShareholderOffers.energy_left_to_claim_max = 45
-			IVShareholderOffers.non_enabled_stats_max = 0
-			## HIDDEN STATS ## 
-			IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
-			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 20
-			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
-			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
-			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.45, 0.55, 0.68, 0.80, 0.90, 1.01]
-			IVPrisonerProfiler.per_stat_increment_energy_decrease = 2
-			## DEFECT DECREASER ##
-			IVCellDefectDecreaser.station_enabled = true
-			## CELL TRASHCAN ##
-			IVCellTrashcan.max_capaicty = 6
-	
+
+
+
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :
 	
@@ -235,6 +146,6 @@ func handle_energy(round : int, energy: int) :
 	iv_helper_mutations._update_mutations(round, energy)
 	iv_helper_mutation_event_trigger._update_mutations_event_trigger(round, energy)
 	
-
+	
 func _handle_energy_changed() :
 	handle_energy(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)

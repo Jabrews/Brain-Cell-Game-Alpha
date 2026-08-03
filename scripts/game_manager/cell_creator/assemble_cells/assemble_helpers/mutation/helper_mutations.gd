@@ -18,7 +18,7 @@ func _handle_create_mutations(
 	var energy_phase: int = get_energy_phase()
 
 	## exit loop ##
-	if cell_constructor.prisoner_picks != 4 : 	
+	if cell_constructor.cell_quantity != 4 : 	
 		return prisoner_cells
 	
 	var exit_mutation_loop = roll_to_exit_mutation_loop._handle_roll(energy_phase)
@@ -28,30 +28,44 @@ func _handle_create_mutations(
 	###############
 	
 	## sort best cells ##
-	prisoner_cells = sort_best_cells._sort(prisoner_cells)
+	prisoner_cells = sort_best_cells._handle_sort(prisoner_cells)
 	#####################
 	
 	## get mutations ##	
-	var batch_mutations : Array[BrainCellMutation] = get_batch_mutations._get_mutations()
+	var batch_mutations : Array[BrainCellMutation] = get_batch_mutations._get_mutations(energy_phase)
 	
 	if batch_mutations.is_empty()	 : 
 		return prisoner_cells
 	###################
 	
-	## chance of hiding all mutations ##
-	if energy_phase > 0 : # phase 0 has no chance of this
-		var chance_of_all_hidden_event = IVMutations.chance_for_all_hidden_event	
-		var ran_num = randi_range(0, 101)	
-		if chance_of_all_hidden_event >= ran_num : 
+	## Chance of hiding all mutations ##
+	var chance_of_all_hidden_event: int = (
+		IVMutations.chance_for_all_hidden_event
+	)
+
+	var ran_num: int = randi_range(1, 100)
+
+	if ran_num <= chance_of_all_hidden_event:
 			
-			prisoner_cells = all_hidden_event._apply_all_hidden_event(batch_mutations, prisoner_cells)
-			
-			return prisoner_cells			
-	## else. default serving ##
-	else :	
-		prisoner_cells = default_mutation_serving._apply_default_mutation_serving(batch_mutations, prisoner_cells, energy_phase)
+		GLPrisonerSpawnerBus.emit_signal('apply_mutations_all_hidden')			
+				
+		prisoner_cells = all_hidden_event._apply_all_hidden_event(
+			prisoner_cells,
+			batch_mutations
+		)
+
+		return prisoner_cells
+
+	## Default serving ##
 	
-	# return cells with mutations applied
+	GLPrisonerSpawnerBus.emit_signal('apply_mutation_regular', len(batch_mutations))	
+	
+	prisoner_cells = default_mutation_serving._apply_default_mutation_serving(
+		prisoner_cells,
+		batch_mutations,
+		energy_phase
+	)
+
 	return prisoner_cells
 
 func get_energy_phase() -> int:

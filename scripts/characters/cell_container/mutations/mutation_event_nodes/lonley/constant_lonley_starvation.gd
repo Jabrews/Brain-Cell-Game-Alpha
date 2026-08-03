@@ -64,7 +64,7 @@ func _ready_overide() -> void:
 
 func _start() -> void:
 	
-	reveal_mutation()
+	unhide_mutation()
 	
 	is_lonely = false
 	cry_active = false

@@ -26,7 +26,7 @@ func _ready_overide() :
 	
 func _start() :
 	
-	reveal_mutation()
+	unhide_mutation()
 	
 	# play particles and sound
 	s_disrupt_start.play()	

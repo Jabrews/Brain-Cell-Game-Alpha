@@ -56,7 +56,7 @@ func _handle_prisoner_picked_by_player(_prisoner_cell : BrainCell) :
 	
 	if GLPrisonerPicks.prisoners_to_pick <= 0 :
 		GLCellManagerBus.emit_signal('delete_remaining_prisoners')
-	
+
 	
 	
 	

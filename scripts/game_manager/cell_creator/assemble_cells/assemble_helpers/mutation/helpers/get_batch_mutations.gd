@@ -10,6 +10,9 @@ func _ready() -> void:
 		"process_next_round",
 		_handle_process_next_round
 	)
+	
+	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
+	
 
 	_fill_available_mutations()
 
@@ -41,32 +44,43 @@ func _get_mutations(
 		get_energy_phase_chance(energy_phase)
 	)
 
-	# Every slot above the minimum gets its own roll.
 	var extra_slots: int = max_amount - min_amount
 
 	for slot: int in range(extra_slots):
 		var roll: int = randi_range(1, 100)
 
-		# min chance passed. add an extra mutation
 		if roll <= extra_mutation_chance:
 			mutation_amount += 1
 
-	# Cannot select more mutations than remain available.
 	if mutation_amount > available_mutations.size():
 		mutation_amount = available_mutations.size()
 
+	# Temporary pool used only for this batch.
+	var mutation_pool: Array[BrainCellMutation] = (
+		available_mutations.duplicate()
+	)
+
 	for amount: int in range(mutation_amount):
+		if mutation_pool.is_empty():
+			break
+
 		var selected_mutation: BrainCellMutation = (
-			available_mutations.pick_random()
+			mutation_pool.pick_random()
 		)
 
-		# add to selected
 		selected_mutations.append(selected_mutation)
-		# delete from avaible
-		available_mutations.erase(selected_mutation)
+
+		# Prevent this mutation type from being selected
+		# more than once in the current batch.
+		for index: int in range(
+			mutation_pool.size() - 1,
+			-1,
+			-1
+		):
+			if mutation_pool[index].type == selected_mutation.type:
+				mutation_pool.remove_at(index)
 
 	return selected_mutations
-
 
 func get_energy_phase_chance(
 	energy_phase: int
@@ -95,3 +109,22 @@ func _handle_process_next_round() -> void:
 
 func _fill_available_mutations() -> void:
 	available_mutations = IVMutations.mutations.duplicate()
+	
+func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell) :
+	
+	for mutation in prisoner_cell.mutations : 
+		
+		# if mutation is revealed and its been picked then add info to file cabinet
+		if mutation.hidden == false : 
+			GLMutationSeenManagerBus.emit_signal('mutation_seen_by_player', mutation.type)
+		
+		# remove from avaible
+		for avaible_mutation : BrainCellMutation in available_mutations : 		
+			if avaible_mutation.type == mutation.type : 
+				available_mutations.erase(avaible_mutation)
+			
+		
+		
+		
+		
+		

@@ -17,6 +17,7 @@ func _handle_mutation_recieved(cell_mutation : BrainCellMutation) -> void:
 	
 	if not cell_mutation:
 		no_mutation_found()
+		return
 	
 	if cell_mutation.type == 'none': 
 		mutation_hidden()

@@ -61,7 +61,7 @@
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="PackedScene" uid="uid://csxul1ta0njxi" path="res://scenes/ceiling_fan/ceiling_fan.tscn" id="59_m2qbd"]
 [ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
-[ext_resource type="PackedScene" uid="uid://dj6br7wy72f4n" path="res://scenes/characters/cell_container/mutations/mutation_event_nodes/disruptor/matrix_particle.tscn" id="61_otmbb"]
+[ext_resource type="PackedScene" uid="uid://b3rgeck31iwbg" path="res://debug/admin_panel/admin_panel.tscn" id="62_l5rsp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
 size = Vector3(50, 0.1, 50)
@@ -496,9 +496,6 @@ script = ExtResource("14_5ru7i")
 
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 
-[node name="DEBUG" type="Node" parent="." unique_id=882007240]
-script = ExtResource("18_44ape")
-
 [node name="CelingFanManager" type="Node" parent="." unique_id=1795027568]
 script = ExtResource("59_ms0m2")
 
@@ -514,5 +511,8 @@ room = "main_room"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 5, -11.499999)
 room = "interpreter_room"
 
-[node name="MatrixParticle" parent="." unique_id=464710078 instance=ExtResource("61_otmbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, 0)
+[node name="DEBUG" type="Node" parent="." unique_id=882007240]
+script = ExtResource("18_44ape")
+
+[node name="AdminPanel" parent="." unique_id=1308868169 instance=ExtResource("62_l5rsp")]
+visible = false

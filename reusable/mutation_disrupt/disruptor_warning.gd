@@ -16,6 +16,7 @@ func _handle_disrupt_incoming(room_name : String) :
 		if flash_delay_timer.is_stopped() : 
 			flash_delay_timer.start()
 			visible = true
+		
 	else :
 		flash_delay_timer.stop()
 		visible = false 

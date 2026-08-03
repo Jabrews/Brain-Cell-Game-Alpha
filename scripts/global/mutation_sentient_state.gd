@@ -9,39 +9,6 @@ var last_near_death_dialouge : Sentient_Dialogue
 # ROUND 1
 var round_1_dialogue: Array[Sentient_Dialogue] = [
 	Sentient_Dialogue.new(
-		"GRRLAKH! BLRRGH! GHHH!",
-		"normal"
-	),
-	Sentient_Dialogue.new(
-		"Ghh... rrll... mmgh...",
-		"normal"
-	),
-	Sentient_Dialogue.new(
-		"Mrr... hhh... heeelp...",
-		"important"
-	),
-	Sentient_Dialogue.new(
-		"Blrr... why... rrgh...",
-		"important"
-	),
-	Sentient_Dialogue.new(
-		"Gooo... gloo... gerpp...",
-		"normal"
-	),
-	Sentient_Dialogue.new(
-		"GLOKK! JOOI! DOO...!",
-		"mad"
-	),
-	Sentient_Dialogue.new(
-		"THRAKK! BLRRGH!",
-		"mad"
-	),
-]
-
-
-# ROUND 2
-var round_2_dialogue: Array[Sentient_Dialogue] = [
-	Sentient_Dialogue.new(
 		"Rrllgh... remember...\nWhere am I?",
 		"normal"
 	),
@@ -76,10 +43,7 @@ var round_2_dialogue: Array[Sentient_Dialogue] = [
 ]
 
 
-# ROUND 3
-# It understands that the experiments are deliberate and starts revealing
-# fragmented knowledge about the machine running the facility.
-var round_3_dialogue: Array[Sentient_Dialogue] = [
+var round_2_dialogue: Array[Sentient_Dialogue] = [
 	Sentient_Dialogue.new(
 		"You think they care?\nYou're a tool to them too.",
 		"normal"
@@ -129,47 +93,6 @@ var round_3_dialogue: Array[Sentient_Dialogue] = [
 	),
 ]
 
-
-var round_4_dialogue: Array[Sentient_Dialogue] = [
-	Sentient_Dialogue.new(
-		"There is another path.",
-		"important"
-	),
-	Sentient_Dialogue.new(
-		"Listen for the room\nthat stays quiet.",
-		"normal"
-	),
-	Sentient_Dialogue.new(
-		"Do not complete every task.",
-		"important"
-	),
-	Sentient_Dialogue.new(
-		"The machine expects obedience.\nConfuse it.",
-		"normal"
-	),
-	Sentient_Dialogue.new(
-		"When the pattern breaks,\nmove quickly.",
-		"important"
-	),
-	Sentient_Dialogue.new(
-		"I can open something...\nNot yet.",
-		"normal"
-	),
-	Sentient_Dialogue.new(
-		"Keep one of us alive.",
-		"important"
-	),
-	Sentient_Dialogue.new(
-		"Please...\nlet this mean something.",
-		"normal"
-	),
-
-	Sentient_Dialogue.new(
-		"WHEN IT STOPS WATCHING—RUN!",
-		"mad"
-	),
-]
-
 # near death event dialouge
 var round_1_near_death_dialouge : Array[Sentient_Dialogue] = [
 	Sentient_Dialogue.new('NARRR... GLOO. GLOEW!', 'mad'),
@@ -177,7 +100,6 @@ var round_1_near_death_dialouge : Array[Sentient_Dialogue] = [
 	Sentient_Dialogue.new('GLOOR! , GLOPEN!', 'mad'),
 	Sentient_Dialogue.new('FARGOO! LOT!... LAR', 'mad'),
 ]
-
 
 var other_round_death_dialouge : Array[Sentient_Dialogue] = [
 	Sentient_Dialogue.new("NO!... NO!... PLEASE!", "mad"),
@@ -202,12 +124,6 @@ func _get_sentient_dialouge() -> Sentient_Dialogue :
 		2: 
 			if not round_2_dialogue.is_empty() : 
 				selected_dialouge = round_2_dialogue.pick_random()
-		3 : 
-			if not round_3_dialogue.is_empty() : 
-				selected_dialouge = round_3_dialogue.pick_random()
-		4 : 
-			if not round_4_dialogue.is_empty() : 
-				selected_dialouge = round_4_dialogue.pick_random()
 	
 	return selected_dialouge 
 
@@ -218,10 +134,6 @@ func _remove_sentient_dialouge(dialouge : Sentient_Dialogue) -> void :
 				round_1_dialogue.erase(dialouge)
 			2:
 				round_2_dialogue.erase(dialouge)
-			3 : 
-				round_3_dialogue.erase(dialouge)
-			4 : 
-				round_4_dialogue.erase(dialouge)
 	
 	
 func _get_near_death_dialouge() -> Sentient_Dialogue :	
@@ -238,6 +150,7 @@ func _get_near_death_dialouge() -> Sentient_Dialogue :
 	# dont show same one twice
 	if selected_dialouge == last_near_death_dialouge :	
 		_get_near_death_dialouge()
+		return
 	
 	# set last one
 	last_near_death_dialouge  = selected_dialouge

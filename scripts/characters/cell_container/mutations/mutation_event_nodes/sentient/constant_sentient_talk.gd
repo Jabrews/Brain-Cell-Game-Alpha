@@ -53,7 +53,7 @@ func _ready_overide() :
 
 func _start() :
 	
-	reveal_mutation()	
+	unhide_mutation()
 	
 	start_new_dialouge_timer()
 

@@ -127,7 +127,7 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.min_mutations_per_batch = 2
 				IVMutations.max_mutations_per_batch = 2
 				IVMutations.min_fake_mutations_per_batch = 1
-				IVMutations.max_fake_mutations_per_batch = 30
+				IVMutations.max_fake_mutations_per_batch = 2
 				IVMutations.chance_for_all_hidden_event = 40
 				IVMutations.amount_of_best_cells_sorted = 4
 				IVMutations.chance_to_exit_mutation_loop = 20

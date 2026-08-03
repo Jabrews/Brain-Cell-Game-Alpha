@@ -4,5 +4,5 @@ extends Node
 var mutation_event_delay_min_wait_time : float = 25.0
 var mutation_event_delay_max_wait_time : float = 35.0
 
-var chance_to_skip_mutation_event : int = 25.0
+var chance_to_skip_mutation_event : int = 25
 	

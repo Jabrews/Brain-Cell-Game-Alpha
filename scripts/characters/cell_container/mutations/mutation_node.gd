@@ -28,7 +28,10 @@ func random_event_finished() -> void:
 		designated_mutation_event
 	)
 
-func reveal_mutation() :
+
+				#GLMutationSeenManagerBus.emit_signal('mutation_seen_by_player', mutation_name)
+
+func unhide_mutation() :
 	
 	var mutation_name = designated_mutation_event.mutation_name	
 	

@@ -58,7 +58,7 @@ func _physics_process(delta: float) -> void:
 
 func _start() -> void:
 	
-	reveal_mutation()
+	unhide_mutation()
 	
 	raycast_manager.switch_raycast_state("none")
 	
