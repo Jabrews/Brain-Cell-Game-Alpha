@@ -6,6 +6,7 @@ func _handle_sort(
 ) -> Array[BrainCell]:
 
 	if prisoner_cells.is_empty():
+		push_error('handle sort cells given empty array')
 		return prisoner_cells
 
 	var amount_of_best_cells_to_sort: int = clamp(

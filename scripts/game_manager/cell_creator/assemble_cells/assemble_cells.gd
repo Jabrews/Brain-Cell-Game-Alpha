@@ -4,7 +4,7 @@ extends Node
 @onready var create_clean_stats : Node = $StatHelpers/HelperCreateClean
 @onready var create_defect_stats : Node = $StatHelpers/HelperCreateDefect
 @onready var create_hidden_stats : Node = $HelperHidden
-@onready var create_mutations : Node = $HelperCreateMutations
+@onready var create_mutations : Node = $HelperMutations
 
 func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
@@ -70,16 +70,8 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
 	#### CELL MUTATIONS ####
 
-	var stat_constructors : Array[StatConstructor]
-	stat_constructors.append(cell_constructor.strength)
-	stat_constructors.append(cell_constructor.intelligence)
-	stat_constructors.append(cell_constructor.community)
-
-	prisoner_cells = create_mutations._handle_mutations(cell_constructor, prisoner_cells, stat_constructors)
+	prisoner_cells = create_mutations._handle_create_mutations(cell_constructor, prisoner_cells)
 
 	#######################
-	return prisoner_cells
-		
-		
 	
-##
+	return prisoner_cells

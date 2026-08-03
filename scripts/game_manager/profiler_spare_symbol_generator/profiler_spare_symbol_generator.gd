@@ -236,8 +236,6 @@ func get_good_bad_symbol_direction(symbol_direction : String, symbol_type : Stri
 	
 	if symbol_type == 'defect' :
 		flip_direction = true
-	elif symbol_type == 'bad_mutation' : 
-		flip_direction = true
 	
 	if flip_direction : 
 		if symbol_direction == 'up' :

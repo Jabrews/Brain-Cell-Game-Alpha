@@ -4,36 +4,23 @@ extends Node
 func _update_mutations(round : int , energy : int) :
 	
 	if round == 1 :
-		IVMutations.good_mutations= [
-			# sentient
-			IVMutations.all_mutations[1],
-		]
-		IVMutations.good_mutations= [
+		IVMutations.mutations= [
 			# airborne
 			IVMutations.all_mutations[0],
 			# sentient
 			IVMutations.all_mutations[1],
-		]	
-		
-		
-		IVMutations.bad_mutations= [
 			# lonley
 			IVMutations.all_mutations[2],# debug
 			# disrupter 
 			IVMutations.all_mutations[3], # debug
-		]
-	
+		]	
 	
 	elif round == 2 :
-		IVMutations.good_mutations= [
+		IVMutations.mutations= [
 			# airborne
 			IVMutations.all_mutations[0],
 			# sentient
 			IVMutations.all_mutations[1],
-		]	
-		
-		
-		IVMutations.bad_mutations= [
 			# lonley
 			IVMutations.all_mutations[2],# debug
 			# disrupter 
@@ -75,8 +62,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 0
 				IVMutations.amount_of_best_cells_sorted = 1
 				IVMutations.chance_to_exit_mutation_loop = 50
-				IVMutations.good_mutation_chance= 75
-				IVMutations.bad_mutation_chance= 25
 				IVMutations.chance_to_hide_mutation = 25
 
 			1 :
@@ -87,8 +72,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 10
 				IVMutations.amount_of_best_cells_sorted = 2
 				IVMutations.chance_to_exit_mutation_loop = 30
-				IVMutations.good_mutation_chance= 50
-				IVMutations.bad_mutation_chance= 50
 				IVMutations.chance_to_hide_mutation = 50
 			2 :
 				IVMutations.min_mutations_per_batch = 1
@@ -98,8 +81,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 20
 				IVMutations.amount_of_best_cells_sorted = 3
 				IVMutations.chance_to_exit_mutation_loop = 25
-				IVMutations.good_mutation_chance= 25
-				IVMutations.bad_mutation_chance= 75
 				IVMutations.chance_to_hide_mutation = 50
 			3 :
 				IVMutations.min_mutations_per_batch = 2
@@ -109,8 +90,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 40
 				IVMutations.amount_of_best_cells_sorted = 4
 				IVMutations.chance_to_exit_mutation_loop = 20
-				IVMutations.good_mutation_chance= 50
-				IVMutations.bad_mutation_chance= 50
 				IVMutations.chance_to_hide_mutation = 50
 
 	
@@ -124,8 +103,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 0
 				IVMutations.amount_of_best_cells_sorted = 1
 				IVMutations.chance_to_exit_mutation_loop = 50
-				IVMutations.good_mutation_chance= 75
-				IVMutations.bad_mutation_chance= 25
 				IVMutations.chance_to_hide_mutation = 25
 
 			1 :
@@ -136,8 +113,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 10
 				IVMutations.amount_of_best_cells_sorted = 2
 				IVMutations.chance_to_exit_mutation_loop = 30
-				IVMutations.good_mutation_chance= 50
-				IVMutations.bad_mutation_chance= 50
 				IVMutations.chance_to_hide_mutation = 50
 			2 :
 				IVMutations.min_mutations_per_batch = 1
@@ -147,8 +122,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 20
 				IVMutations.amount_of_best_cells_sorted = 3
 				IVMutations.chance_to_exit_mutation_loop = 25
-				IVMutations.good_mutation_chance= 25
-				IVMutations.bad_mutation_chance= 75
 				IVMutations.chance_to_hide_mutation = 50
 			3 :
 				IVMutations.min_mutations_per_batch = 2
@@ -158,8 +131,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.chance_for_all_hidden_event = 40
 				IVMutations.amount_of_best_cells_sorted = 4
 				IVMutations.chance_to_exit_mutation_loop = 20
-				IVMutations.good_mutation_chance= 50
-				IVMutations.bad_mutation_chance= 50
 				IVMutations.chance_to_hide_mutation = 50
 
 	

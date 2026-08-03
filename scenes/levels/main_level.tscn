@@ -35,22 +35,23 @@
 [ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
-[ext_resource type="Script" uid="uid://dwasjpvk3h1om" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_create_mutations.gd" id="27_8muua"]
-[ext_resource type="Script" uid="uid://c4gogd5xjpkc1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/apply_helpers/apply_all_hidden_event.gd" id="28_010mg"]
-[ext_resource type="Script" uid="uid://ghogw2ee3kui" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/apply_helpers/apply_mutations_default.gd" id="29_qr77o"]
-[ext_resource type="Script" uid="uid://bt4s0lqsawvmo" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/sort_best_cells.gd" id="30_mj1d0"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
-[ext_resource type="Script" uid="uid://oq36mp5cbjqs" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/urgency_overide_mutation.gd" id="31_mj1d0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
-[ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/rework/trigger_mutation_event.gd" id="35_lp30k"]
+[ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
+[ext_resource type="Script" uid="uid://dpxrm4asdg8ty" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/roll_to_exit_mutation_loop.gd" id="34_lp30k"]
+[ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/trigger_mutation_event.gd" id="35_lp30k"]
+[ext_resource type="Script" uid="uid://dppco6rsi6d8d" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/sort_best_cells.gd" id="35_r52yi"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
+[ext_resource type="Script" uid="uid://62h8dj2swe3i" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/get_batch_mutations.gd" id="36_24n7g"]
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
-[ext_resource type="Script" uid="uid://103bbjkr2rsp" path="res://scripts/game_manager/random_mutation_event_trigger/rework/get_valid_possible_mutation_event_choices.gd" id="36_r52yi"]
+[ext_resource type="Script" uid="uid://103bbjkr2rsp" path="res://scripts/game_manager/random_mutation_event_trigger/get_valid_possible_mutation_event_choices.gd" id="36_r52yi"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
 [ext_resource type="Script" uid="uid://dt54n7ye7aevd" path="res://scripts/game_manager/shareholder_offer_generator/shareholder_offer_demand_generator.gd" id="37_87p7k"]
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
+[ext_resource type="Script" uid="uid://cwmjjbbbap4ly" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/all_hidden_event.gd" id="37_y36b7"]
+[ext_resource type="Script" uid="uid://conaqje0n7bu8" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/default_mutation_serving.gd" id="38_0ycs4"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
@@ -314,22 +315,23 @@ script = ExtResource("20_wv5kd")
 [node name="PlantHiddenBombs" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperHidden" unique_id=772278210]
 script = ExtResource("21_w7r6u")
 
-[node name="HelperCreateMutations" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1408101034]
-script = ExtResource("27_8muua")
+[node name="HelperMutations" type="Node" parent="GameManager/CellCreator/AssembleCells" unique_id=1648631149]
+script = ExtResource("33_l5rsp")
 
-[node name="ApplyAllHiddenEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=1325533085 node_paths=PackedStringArray("mutation_seen_manager")]
-script = ExtResource("28_010mg")
-mutation_seen_manager = NodePath("../../../../MutationSeenManager")
+[node name="RollToExitMutationEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=1438795290]
+script = ExtResource("34_lp30k")
 
-[node name="ApplyMutationsDefault" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=1605112857 node_paths=PackedStringArray("mutation_seen_manager")]
-script = ExtResource("29_qr77o")
-mutation_seen_manager = NodePath("../../../../MutationSeenManager")
+[node name="SortBestCells" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=1144047160]
+script = ExtResource("35_r52yi")
 
-[node name="SortBestCells" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=356685614]
-script = ExtResource("30_mj1d0")
+[node name="GetBatchMutations" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=472798789]
+script = ExtResource("36_24n7g")
 
-[node name="UrgencyOverideMutation" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperCreateMutations" unique_id=715320997]
-script = ExtResource("31_mj1d0")
+[node name="AllHiddenEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=1500737794]
+script = ExtResource("37_y36b7")
+
+[node name="DefaultMutationServing" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=447647096]
+script = ExtResource("38_0ycs4")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")

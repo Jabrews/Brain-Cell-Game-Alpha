@@ -7,17 +7,12 @@ func _update_spare_progression(round : int , energy : int) :
 	if round == 1 :	
 		IVPrisonerProfiler.spare_symbols_avaible = [
 			{'defect' : ['up', 'down']}	,
-			{'good_mutation' : ['up', 'down']},
-			{'bad_mutation' : ['up', 'down']},
 			{'energy' : ['up', 'down']},
-			
 		]
 		
 	elif round == 2 :
 		IVPrisonerProfiler.spare_symbols_avaible = [
 			{'defect' : ['up', 'down']}	,
-			{'good_mutation' : ['up', 'down']},
-			{'bad_mutation' : ['up', 'down']},
 			{'energy' : ['up', 'down']},
 		]
 	
