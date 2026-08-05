@@ -11,16 +11,6 @@ func _update_mutations_event_trigger(round : int , energy : int) :
 		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 20.0
 		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 25.0
 		IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 30
-		
-	elif round == 3 :
-		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 20.0
-		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 30.0
-		IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 20
-
-	elif round == 4 :
-		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 15.0
-		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 25.0
-		IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 15
 
 	
 	var danger_level = get_energy_danger_level(energy)
@@ -75,35 +65,6 @@ func update_mutation_turn(round : int, danger_level : int) :
 			3 :
 				pass
 
-	
-	elif round == 3 :
-		match danger_level :
-			0 :
-				pass
-	
-			1 :
-				pass
-	
-			2 :
-				pass
-	
-			3 :
-				pass
-	
-	
-	elif round == 4 :
-		match danger_level :
-			0 :
-				pass
-	
-			1 :
-				pass
-	
-			2 :
-				pass
-	
-			3 :
-				pass
 	
 	verify_mutation_and_fake_quanity_surpass()
 	

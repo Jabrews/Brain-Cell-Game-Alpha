@@ -1,0 +1,104 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter"
+			],
+			"mutations_chosen": [
+				"airborne"
+			],
+			"mutations_picked_by_player": [
+				"airborne"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"2": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"sentient",
+				"lonley",
+				"disrupter"
+			],
+			"mutations_chosen": [
+				"disrupter"
+			],
+			"mutations_picked_by_player": [
+				"disrupter"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"3": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 1,
+			"fake_mutations_applied": 0,
+			"max_mutations": 2,
+			"min_mutations": 1,
+			"mutations_available": [
+				"sentient",
+				"lonley"
+			],
+			"mutations_chosen": [],
+			"mutations_picked_by_player": [],
+			"skipped": true,
+			"why_skipped": "quanity != 4"
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 11.9439848644259,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Skyler",
+					"why_unlikley": "EXCLUDED because cell is in a different room"
+				}
+			],
+			"turn": 1,
+			"wait_time": 14.0455754632432,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 2,
+			"finale_choice": null,
+			"mutation_events": [],
+			"turn": 3,
+			"wait_time": 11.6202146744644,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		}
+	],
+	"date_created": "2026-08-05",
+	"id": 2
+}

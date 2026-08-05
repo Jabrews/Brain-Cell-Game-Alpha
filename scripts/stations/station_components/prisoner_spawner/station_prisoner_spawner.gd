@@ -50,7 +50,6 @@ func create_cell_instance(designated_brain_cell : BrainCell) -> void:
 	
 	
 func _handle_prisoner_picked_by_player(_prisoner_cell : BrainCell) :
-	
 	GLPrisonerPicks.prisoners_to_pick -= 1	
 	screen_pick_quanity._update()
 	

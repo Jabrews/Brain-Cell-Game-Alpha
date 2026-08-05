@@ -10,7 +10,7 @@ func _create_inital() -> AdminPanelRoot :
 	return AdminPanelRoot.new(
 		next_id,
 		Time.get_date_string_from_system(),
-		TESTDATA.new('blue')
+		{},
 	)
 	
 	

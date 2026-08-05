@@ -7,17 +7,22 @@ func _ready() -> void:
 	GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
 
 
-
 func _handle_roll(energy_phase: int) -> bool:
 	match energy_phase:
 		0:
-			# High energy:
-			# Always allow a roll to skip mutations.
-			return roll_to_exit_mutation_loop()
+			var should_exit: bool = roll_to_exit_mutation_loop()
+
+			if should_exit and GameAdminPanel.enabled:
+				GameAdminPanel.updater_admin_batch_mutation.skipped = true
+				GameAdminPanel.updater_admin_batch_mutation.why_skipped = (
+					"rolled to exit mutation loop | chance: %s"
+					% IVMutations.chance_to_exit_mutation_loop
+				)
+
+			return should_exit
 
 		1:
-			# Medium energy:
-			# Never allow two skips consecutively.
+			# Do not allow two consecutive exits.
 			if just_exited_mutation_loop:
 				just_exited_mutation_loop = false
 				return false
@@ -27,11 +32,16 @@ func _handle_roll(energy_phase: int) -> bool:
 			if should_exit:
 				just_exited_mutation_loop = true
 
+				if GameAdminPanel.enabled:
+					GameAdminPanel.updater_admin_batch_mutation.skipped = true
+					GameAdminPanel.updater_admin_batch_mutation.why_skipped = (
+						"rolled to exit mutation loop | chance: %s"
+						% IVMutations.chance_to_exit_mutation_loop
+					)
+
 			return should_exit
 
 		2:
-			# Low energy:
-			# Never skip mutations.
 			just_exited_mutation_loop = false
 			return false
 
@@ -44,11 +54,7 @@ func _handle_roll(energy_phase: int) -> bool:
 
 
 func roll_to_exit_mutation_loop() -> bool:
-	var chance_to_exit: int = clampi(
-		IVMutations.chance_to_exit_mutation_loop,
-		0,
-		100
-	)
+	var chance_to_exit: int = IVMutations.chance_to_exit_mutation_loop
 
 	var random_number: int = randi_range(1, 100)
 

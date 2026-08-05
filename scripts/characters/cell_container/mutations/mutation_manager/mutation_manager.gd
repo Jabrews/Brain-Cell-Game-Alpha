@@ -72,6 +72,11 @@ func _handle_attempt_to_trigger_random_mutation_event(mutation_event: MutationEv
 	#### ADD TO ACTIVE ###	
 	active_mutation_events.append(mutation_event)	
 	
+	# let admin panel know we done random mutation event
+	GLMutationEventBus.emit_signal('finished_trigger_event', mutation_event.event_name)
+	
+	
+	
 	# SYNC	
 	sync_active_mutations._sync(active_mutation_events)
 

@@ -90,6 +90,9 @@ func _apply_default_mutation_serving(prisoner_cells: Array[BrainCell], batch_mut
 		cells_without_mutation.erase(selected_cell)
 
 		var none_mutation: BrainCellMutation = BrainCellMutation.new("none", true, [] )
+		
+		if GameAdminPanel.enabled :
+			GameAdminPanel.updater_admin_batch_mutation.fake_mutations_applied += 1
 
 		selected_cell.mutations.append(none_mutation)
 

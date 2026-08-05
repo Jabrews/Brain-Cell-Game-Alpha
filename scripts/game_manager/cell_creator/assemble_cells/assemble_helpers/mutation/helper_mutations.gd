@@ -16,9 +16,24 @@ func _handle_create_mutations(
 ) -> Array[BrainCell]:
 
 	var energy_phase: int = get_energy_phase()
+	
+	if GameAdminPanel.enabled :
+		GameAdminPanel.updater_admin_batch_mutation.energy_phase = energy_phase
+		GameAdminPanel.updater_admin_batch_mutation.min_mutations= IVMutations.min_mutations_per_batch 
+		GameAdminPanel.updater_admin_batch_mutation.max_mutations= IVMutations.max_fake_mutations_per_batch
+		for mutation: BrainCellMutation in get_batch_mutations.available_mutations:
+			GameAdminPanel.updater_admin_batch_mutation.mutations_available.append(
+				mutation.type
+			)
+	
 
 	## exit loop ##
 	if cell_constructor.cell_quantity != 4 : 	
+		
+		if GameAdminPanel.enabled :
+			GameAdminPanel.updater_admin_batch_mutation.skipped = true 
+			GameAdminPanel.updater_admin_batch_mutation.why_skipped = "quanity != 4"
+		
 		return prisoner_cells
 	
 	var exit_mutation_loop = roll_to_exit_mutation_loop._handle_roll(energy_phase)
@@ -42,8 +57,12 @@ func _handle_create_mutations(
 	var chance_of_all_hidden_event: int = (
 		IVMutations.chance_for_all_hidden_event
 	)
+	
+	if GameAdminPanel.enabled : 
+		GameAdminPanel.updater_admin_batch_mutation.all_hidden_event_chance = IVMutations.chance_for_all_hidden_event
 
 	var ran_num: int = randi_range(1, 100)
+
 
 	if ran_num <= chance_of_all_hidden_event:
 			
@@ -53,6 +72,10 @@ func _handle_create_mutations(
 			prisoner_cells,
 			batch_mutations
 		)
+		
+		if GameAdminPanel.enabled :
+			GameAdminPanel.updater_admin_batch_mutation.all_hidden_event_applied = true
+			
 
 		return prisoner_cells
 

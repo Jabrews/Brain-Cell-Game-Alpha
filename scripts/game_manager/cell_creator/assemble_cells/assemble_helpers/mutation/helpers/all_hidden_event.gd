@@ -32,6 +32,10 @@ func _apply_all_hidden_event(
 					[]
 				)
 			)
+			
+			
+			if GameAdminPanel.enabled :
+				GameAdminPanel.updater_admin_batch_mutation.fake_mutations_applied += 1
 
 			cell.mutations.append(none_mutation)
 

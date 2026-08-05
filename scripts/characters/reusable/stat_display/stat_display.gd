@@ -57,14 +57,6 @@ func load_mutation_screen(mutations : Array[BrainCellMutation]) :
 
 		screen_mutation_display._handle_mutation_recieved(mutation)
 		
-		# shaking first round sientient
-		if mutation.type == 'sentient'	 :
-			if GLGameManagerBus.current_round == 1  :
-				if IVMutations.picked_sentient_mutation_first_round : 
-					shake_sentient_mutation._toggle_sentient_shake(false, mutation_mesh_tv_instance)
-				else : 
-					shake_sentient_mutation._toggle_sentient_shake(true, mutation_mesh_tv_instance)
-
 		mutation_index += 1
 
 func reset_mutation_tvs() :
