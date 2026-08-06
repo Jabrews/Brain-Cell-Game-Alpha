@@ -2,23 +2,12 @@ extends Area3D
 
 @export var parent_disruptable_screen : Node2D
 
-func _ready() -> void:
-	GLMutationDisruptState.connect('disrupt_incoming', _handle_disrupt_incoming)
-	GLMutationDisruptState.connect('disrupt_ended', _handle_disrupt_ended)
-	
 #func _process(delta: float) -> void:	
 	#if Input.is_action_just_pressed('debug1') :
 		#_toggle_disrupt_manager(true)
 	#elif Input.is_action_just_pressed('debug2') :
 		#_toggle_disrupt_manager(false)
 	
-	
-func _handle_disrupt_incoming(_room_type) :
-	monitorable = true
-
-func _handle_disrupt_ended() :
-	monitorable = false
-
 func _toggle_disrupt_manager(toggle_value : bool) :
 	
 	var disrupt_managers : Array[Node] = get_manager_node()

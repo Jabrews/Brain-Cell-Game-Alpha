@@ -500,11 +500,11 @@ script = ExtResource("14_5ru7i")
 script = ExtResource("59_ms0m2")
 
 [node name="CeilingFan" parent="CelingFanManager" unique_id=829669894 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3000002, 5, 9.200001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 5, 9.200001)
 room = "main_room"
 
 [node name="CeilingFan2" parent="CelingFanManager" unique_id=1454637000 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.8, 5, 0.10000038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4000006, 5, 0.10000038)
 room = "main_room"
 
 [node name="CeilingFan3" parent="CelingFanManager" unique_id=199999115 instance=ExtResource("59_m2qbd")]

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://domuoprppqy3v"]
+
+[ext_resource type="Script" uid="uid://cx0mtejod6587" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/random_telekinetic_shoot.gd" id="1_fa78k"]
+[ext_resource type="Script" uid="uid://scqe4b4e3akt" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal_manager.gd" id="2_y566e"]
+
+[node name="RandomTelekineticShoot" type="Node3D" unique_id=450202422]
+script = ExtResource("1_fa78k")
+
+[node name="CrystalManager" type="Node3D" parent="." unique_id=1599245314]
+script = ExtResource("2_y566e")
+shoot_delay = 2.5
+
+[node name="Pos1" type="Node3D" parent="CrystalManager" unique_id=1628397985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.3000001, 0)
+
+[node name="Pos2" type="Node3D" parent="CrystalManager" unique_id=1536701462]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3000001, 2.9802322e-08)
+
+[node name="Pos3" type="Node3D" parent="CrystalManager" unique_id=1271360766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 5.9604645e-08)
+
+[node name="ParentCrystalNode" type="Node3D" parent="CrystalManager" unique_id=1046529884]

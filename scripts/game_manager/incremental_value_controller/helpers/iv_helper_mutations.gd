@@ -6,13 +6,15 @@ func _update_mutations(round : int , energy : int) :
 	if round == 1 :
 		IVMutations.mutations= [
 			# airborne
-			IVMutations.all_mutations[0],
+			#IVMutations.all_mutations[0],
 			# sentient
-			IVMutations.all_mutations[1],
+			#IVMutations.all_mutations[1],
 			# lonley
-			IVMutations.all_mutations[2],# debug
+			#IVMutations.all_mutations[2],
 			# disrupter 
-			IVMutations.all_mutations[3], # debug
+			#IVMutations.all_mutations[3], 
+			# telekentic 
+			IVMutations.all_mutations[8],
 		]	
 	
 	elif round == 2 :
@@ -89,7 +91,7 @@ func update_mutation_turn(round : int, danger_level : int) :
 				IVMutations.min_mutations_per_batch = 2
 				IVMutations.max_mutations_per_batch = 2
 				IVMutations.min_fake_mutations_per_batch = 1
-				IVMutations.max_fake_mutations_per_batch = 30
+				IVMutations.max_fake_mutations_per_batch = 2
 				IVMutations.chance_for_all_hidden_event = 40
 				IVMutations.amount_of_best_cells_sorted = 4
 				#IVMutations.chance_to_exit_mutation_loop = 20

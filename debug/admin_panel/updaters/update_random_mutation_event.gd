@@ -35,14 +35,19 @@ func _handle_finished_trigger_event(chosen_mutation_event_name : String = '') ->
 	GameAdminPanel.updater_random_mutation_event= new_admin_random_mutation_event 
 
 
-func get_danger_level()	:
+func get_danger_level() -> int:
 	# 75%–100% = 0
 	# 50%–75%  = 1
 	# 25%–50%  = 2
 	# 0%–25%   = 3
 
-	var energy : int = GLGameManagerBus.curr_energy
+	var energy: int = GLGameManagerBus.curr_energy
 	var max_energy: int = GLGameManagerBus.max_energy
+
+	if max_energy <= 0:
+		push_error("Max energy must be greater than 0.")
+		return 3
+
 	var energy_percent: float = float(energy) / float(max_energy)
 
 	if energy_percent >= 0.75:
@@ -51,8 +56,5 @@ func get_danger_level()	:
 		return 1
 	elif energy_percent >= 0.25:
 		return 2
-	else : 
-		push_error('danger level not found')
-		return 0
-	
-	
+	else:
+		return 3

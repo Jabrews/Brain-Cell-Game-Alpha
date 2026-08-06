@@ -9,6 +9,7 @@ extends Node
 
 # helper components
 @onready var sync_active_mutations : Node = $SyncActiveMutations
+@onready var create_random_mutation_event_listener : Node3D = $CreateRandomMutationEventListeners
 
 
 var active_mutation_events: Array[MutationEvent] = []
@@ -26,6 +27,9 @@ func _constant_cell_mutations_refresh(cell_mutations : Array[BrainCellMutation])
 		for mutation_event : MutationEvent in mutation.mutation_events :
 			if mutation_event.event_type == 'constant' :
 				active_mutation_events.append(mutation_event)
+		
+			if mutation_event.event_type == 'random_event' : 
+				create_random_mutation_event_listener._create(mutation_event)
 	
 	# SYNC
 	sync_active_mutations._sync(active_mutation_events)

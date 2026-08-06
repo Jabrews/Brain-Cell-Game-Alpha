@@ -39,7 +39,7 @@ func _start() :
 	detect_disruptable_area._search()
 	
 	# duration of warning
-	await get_tree().create_timer(4.0).timeout
+	await get_tree().create_timer(7.0).timeout
 	
 	# stop particles and sound
 	particle_manager._stop()
@@ -86,7 +86,7 @@ func _handle_warning_disruptor_screens_timer_timeout() :
 func toggle_warning_disruptor(toggle_value : bool) :
 	if toggle_value : 	
 		warning_disruptor_screens_timer.start()
-		hint_hack_circle_manager._start()	
+		hint_hack_circle_manager._start()
 	if not toggle_value : 
 		warning_disruptor_screens_timer.stop()
 		GLMutationDisruptState.emit_signal('disrupt_ended')
@@ -95,7 +95,10 @@ func toggle_warning_disruptor(toggle_value : bool) :
 func _activate_disruptable_recievers(disruptable_recievers : Array[Area3D]) :
 	for disruptable_reciever in disruptable_recievers :
 		disruptable_reciever._toggle_disrupt_manager(true)
-
+		
+func _exit_tree() -> void:
+		warning_disruptor_screens_timer.stop()
+		GLMutationDisruptState.emit_signal('disrupt_ended')
 
 	
 func _stop() :

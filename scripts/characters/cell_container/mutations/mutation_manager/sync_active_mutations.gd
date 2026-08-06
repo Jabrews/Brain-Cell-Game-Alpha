@@ -24,6 +24,13 @@ extends Node
 	"res://scenes/characters/cell_container/mutations/mutation_event_nodes/lonley/constant_lonley_starvation.tscn"
 )
 
+# TELIKENTIC
+@onready var random_telekinetic_shoot_p_s : PackedScene = preload(
+	"res://scenes/characters/cell_container/mutations/mutation_event_nodes/telekinetic/random_telekinetic_shoot.tscn"
+)
+
+
+
 
 func _sync(
 	active_mutation_events: Array[MutationEvent]
@@ -93,6 +100,12 @@ func mutation_event_name_to_node(
 		"lonley_starvation":
 			return (
 				constant_lonley_starvation_p_s.instantiate()
+				as MutationNode
+			)
+		
+		'telekinetic_shoot' : 
+			return (
+				random_telekinetic_shoot_p_s.instantiate()
 				as MutationNode
 			)
 

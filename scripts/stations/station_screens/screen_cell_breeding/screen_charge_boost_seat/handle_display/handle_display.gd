@@ -53,7 +53,8 @@ func display_feedback(duration : float, bg_color : Color, text_color : Color, te
 	feedback_text_label.add_theme_color_override("font_color", text_color)	
 	feedback_text_label.text = text
 	
-	await get_tree().create_timer(duration).timeout
+	if get_tree() :
+		await get_tree().create_timer(duration).timeout
 	
 	feedback_screen_parent.visible = false 
 	

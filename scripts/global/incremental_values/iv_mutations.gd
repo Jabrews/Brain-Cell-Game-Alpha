@@ -26,7 +26,9 @@ var all_mutations : Array[BrainCellMutation] = [
 	# COGNISANCE
 	BrainCellMutation.new('cognisance', false, []),
 	# TELEKINETIC
-	BrainCellMutation.new('telekinetic', false, []),
+	BrainCellMutation.new('telekinetic', false, [
+		MutationEvent.new('telekinetic_shoot', 'random_event', 'telekinetic', 0)
+	]),
 	# UNSTABLE
 	BrainCellMutation.new('unstable', false, []),
 ]

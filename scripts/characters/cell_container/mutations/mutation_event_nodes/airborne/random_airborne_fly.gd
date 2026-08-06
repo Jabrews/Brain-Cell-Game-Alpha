@@ -1,9 +1,9 @@
 extends MutationNode
 
 
-@export var rotation_speed: float = 8.0
-@export var horizontal_fly_speed: float = 1.5
-@export var upward_fly_speed: float = 1.5
+@export var rotation_speed: float = 10.0
+@export var horizontal_fly_speed: float = 0.75
+@export var upward_fly_speed: float = 0.75
 
 # componnets
 @onready var raycast_manager: Node3D = $RaycastManager

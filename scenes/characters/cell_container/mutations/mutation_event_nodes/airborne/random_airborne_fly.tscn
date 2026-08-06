@@ -22,7 +22,7 @@ loop_offset = 4.175
 script = ExtResource("1_fncib")
 
 [node name="FlyDurationTimer" type="Timer" parent="." unique_id=719981133]
-wait_time = 2.6
+wait_time = 5.5
 one_shot = true
 
 [node name="RaycastManager" type="Node3D" parent="." unique_id=1261997695]

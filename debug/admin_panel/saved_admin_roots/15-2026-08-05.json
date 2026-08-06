@@ -1,0 +1,591 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"telekinetic"
+			],
+			"mutations_picked_by_player": [
+				"telekinetic"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 10.5715857781168,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 10.276665357322,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room",
+					"event was the previously selected event"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 13.3953541583318,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 11.3284933782176,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room",
+					"event was the previously selected event"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 10.714751275033,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room",
+					"event was the previously selected event"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 14.1342787380761,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 11.8288609815727,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room",
+					"event was the previously selected event"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 13.1368157278019,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 12.7553813676663,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 14.2498614137646,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 13.4494648405019,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room",
+					"event was the previously selected event"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 11.4967542893858,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": {
+				"chance": -1,
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Cameron",
+				"reasons_why_unlikley": [
+					"cell is away from player's room",
+					"event was the previously selected event"
+				],
+				"situation_increase_applied": false
+			},
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 11.8947574555591,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 13.3789992588358,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 13.0044902462411,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		}
+	],
+	"date_created": "2026-08-05",
+	"id": 15
+}

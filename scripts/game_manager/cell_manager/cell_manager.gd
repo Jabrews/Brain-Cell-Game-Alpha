@@ -20,6 +20,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	GLCellManagerBus.connect('mutation_frowny_increase_defect', _handle_mutation_frowny_increase_defect)
 	GLCellManagerBus.connect('unhide_cell_mutation', _handle_unhide_cell_mutation)
+	GLCellManagerBus.connect('collected_cell_changed', _handle_collected_cell_changed)	
 	
 	# DEBUG
 	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
@@ -64,7 +65,6 @@ func update_collected_cells(cells_to_update: Array[BrainCell]) -> void:
 	var new_collected_cells: Array[BrainCell] = []
 	
 	for cell in collected_cells:
-		
 		
 		var updated_cell = cell
 		
@@ -196,14 +196,6 @@ func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell):
 	var new_collection = collected_cells
 	new_collection.append(prisoner_cell)
 	set_collected_cells(new_collection)
-	
-	# if sentient first round 
-	if GLGameManagerBus.current_round == 1 : 
-		for mutation : BrainCellMutation in prisoner_cell.mutations : 
-			if mutation.type == 'sentient' : 
-				IVMutations.picked_sentient_mutation_first_round = true
-	
-	
 	
 	# spawn container 
 	GLCellManagerBus.emit_signal('cell_added_to_collection', prisoner_cell)
@@ -359,6 +351,10 @@ func _handle_unhide_cell_mutation(selected_brain_cell : BrainCell, selected_brai
 	
 	update_collected_cells([selected_brain_cell])
 	
+
+func _handle_collected_cell_changed(cell : BrainCell) :
+	
+	update_collected_cells([cell])
 	
 	
 	

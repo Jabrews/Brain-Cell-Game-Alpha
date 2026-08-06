@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://ddkrjsdt73gin" path="res://scripts/characters/cell_container/life_span_change_effect.gd" id="11_bs8vk"]
 [ext_resource type="Script" uid="uid://3721rmieuqng" path="res://scripts/characters/cell_container/mutations/mutation_manager/mutation_manager.gd" id="11_h4f5j"]
 [ext_resource type="Script" uid="uid://cemcpqv1son0t" path="res://scripts/characters/cell_container/mutations/mutation_manager/sync_active_mutations.gd" id="12_wr7hu"]
+[ext_resource type="Script" uid="uid://dtpqj0v6i3o3d" path="res://scripts/characters/cell_container/mutations/mutation_manager/create_random_mutation_event_listener.gd" id="13_f4kmu"]
 [ext_resource type="AudioStream" uid="uid://x5sdvjw3mat1" path="res://sounds/player_local_sounds/cell_container/water_splash.mp3" id="16_7580g"]
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
@@ -111,6 +112,9 @@ script = ExtResource("11_h4f5j")
 script = ExtResource("12_wr7hu")
 
 [node name="MutationsParentNode" type="Node3D" parent="MutationManager" unique_id=1210618941]
+
+[node name="CreateRandomMutationEventListeners" type="Node3D" parent="MutationManager" unique_id=838214751]
+script = ExtResource("13_f4kmu")
 
 [node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
 

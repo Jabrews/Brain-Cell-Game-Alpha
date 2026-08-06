@@ -8,75 +8,45 @@
 			"max_mutations": 1,
 			"min_mutations": 0,
 			"mutations_available": [
-				"airborne",
-				"sentient",
-				"lonley",
-				"disrupter"
+				"telekinetic"
 			],
 			"mutations_chosen": [
-				"disrupter"
+				"telekinetic"
 			],
 			"mutations_picked_by_player": [
-				"disrupter"
+				"telekinetic"
 			],
 			"skipped": false,
 			"why_skipped": ""
-		},
-		"2": {
-			"all_hidden_event_applied": false,
-			"all_hidden_event_chance": 10,
-			"energy_phase": 1,
-			"fake_mutations_applied": 0,
-			"max_mutations": 1,
-			"min_mutations": 1,
-			"mutations_available": [
-				"airborne",
-				"sentient",
-				"lonley"
-			],
-			"mutations_chosen": [
-				"airborne"
-			],
-			"mutations_picked_by_player": [
-				"airborne"
-			],
-			"skipped": false,
-			"why_skipped": ""
-		},
-		"3": {
-			"all_hidden_event_applied": false,
-			"all_hidden_event_chance": 0,
-			"energy_phase": 1,
-			"fake_mutations_applied": 0,
-			"max_mutations": 2,
-			"min_mutations": 1,
-			"mutations_available": [
-				"sentient",
-				"lonley"
-			],
-			"mutations_chosen": [],
-			"mutations_picked_by_player": [],
-			"skipped": true,
-			"why_skipped": "quanity != 4"
 		}
 	},
 	"admin_random_mutation_event": [
 		{
-			"danger_level": 1,
+			"danger_level": 0,
 			"finale_choice": null,
-			"mutation_events": [],
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
 			"turn": 1,
-			"wait_time": 11.7492550871619,
+			"wait_time": 12.7672197234522,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": "no valid random mutation event choices found"
 		},
 		{
-			"danger_level": 1,
+			"danger_level": 0,
 			"finale_choice": {
 				"chance": -1,
-				"mutation_event_name": "disrupter_disrupt",
-				"parent_cell_name": "Dakota",
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Remy",
 				"reasons_why_unlikley": [
 					"cell is away from player's room"
 				],
@@ -85,8 +55,8 @@
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Dakota",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
 						"cell is away from player's room"
 					],
@@ -94,285 +64,187 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 12.7528046572903,
+			"wait_time": 10.1229516391777,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
-			"danger_level": 1,
+			"danger_level": 0,
 			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				}
-			],
-			"turn": 1,
-			"wait_time": 11.5974952935502,
-			"wait_time_max": 15.0,
-			"wait_time_min": 10.0,
-			"why_none_chose": "no valid random mutation event choices found"
-		},
-		{
-			"danger_level": 1,
-			"finale_choice": null,
-			"mutation_events": [
-				{
-					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				}
-			],
-			"turn": 1,
-			"wait_time": 12.0728806555503,
-			"wait_time_max": 15.0,
-			"wait_time_min": 10.0,
-			"why_none_chose": "no valid random mutation event choices found"
-		},
-		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "disrupter_disrupt",
-				"parent_cell_name": "Sunny",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
-			"mutation_events": [
-				{
-					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				}
-			],
-			"turn": 2,
-			"wait_time": 14.1006674856537,
-			"wait_time_max": 15.0,
-			"wait_time_min": 10.0,
-			"why_none_chose": ""
-		},
-		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "airborne_fly",
-				"parent_cell_name": "Ira",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
-			"mutation_events": [
-				{
-					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"cell is away from player's room",
-						"event was the previously selected event"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				}
-			],
-			"turn": 2,
-			"wait_time": 12.4407850413574,
-			"wait_time_max": 15.0,
-			"wait_time_min": 10.0,
-			"why_none_chose": ""
-		},
-		{
-			"danger_level": 2,
-			"finale_choice": null,
-			"mutation_events": [
-				{
-					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 2,
-			"wait_time": 10.1508329913436,
+			"turn": 1,
+			"wait_time": 10.6633212002782,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
+			"danger_level": 0,
 			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 2,
-			"wait_time": 13.8592892976021,
+			"turn": 1,
+			"wait_time": 14.7618188883455,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
+			"danger_level": 0,
 			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 12.3779456304634,
+			"turn": 1,
+			"wait_time": 11.781648004793,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": "no valid random mutation event choices found"
+			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
+			"danger_level": 0,
 			"finale_choice": {
 				"chance": -1,
-				"mutation_event_name": "disrupter_disrupt",
-				"parent_cell_name": "Sunny",
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Remy",
 				"reasons_why_unlikley": [
-					"cell is away from player's room"
+					"cell is away from player's room",
+					"event was the previously selected event"
 				],
 				"situation_increase_applied": false
 			},
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
+						"cell is away from player's room",
+						"event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 13.2330312333418,
+			"turn": 1,
+			"wait_time": 10.2266148516047,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
-			"danger_level": 2,
+			"danger_level": 0,
 			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"1st ROUND EXCLUDED | cell is in a different room"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 12.7986364940219,
+			"turn": 1,
+			"wait_time": 11.0541994351881,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": "no valid random mutation event choices found"
+			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 14.7307806909543,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 12.6075521960585,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 14.4438838857207,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
 			"finale_choice": {
 				"chance": -1,
-				"mutation_event_name": "disrupter_disrupt",
-				"parent_cell_name": "Sunny",
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Remy",
 				"reasons_why_unlikley": [
 					"cell is away from player's room",
 					"event was the previously selected event"
@@ -382,150 +254,147 @@
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
 						"cell is away from player's room",
 						"event was the previously selected event"
 					],
 					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 10.5023721296848,
+			"turn": 1,
+			"wait_time": 10.4677454034207,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "airborne_fly",
-				"parent_cell_name": "Ira",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
+			"danger_level": 0,
+			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"cell is away from player's room",
-						"event was the previously selected event"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 13.0311208564285,
+			"turn": 1,
+			"wait_time": 13.772790347765,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": ""
+			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "disrupter_disrupt",
-				"parent_cell_name": "Sunny",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
+			"danger_level": 0,
+			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"cell is away from player's room",
-						"event was the previously selected event"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 13.4276892058762,
+			"turn": 1,
+			"wait_time": 11.2887792855437,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": ""
+			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "airborne_fly",
-				"parent_cell_name": "Ira",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
+			"danger_level": 0,
+			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"cell is away from player's room",
-						"event was the previously selected event"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 11.8195499882233,
+			"turn": 1,
+			"wait_time": 12.0813133808849,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": ""
+			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 11.6369667165481,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 14.8889749582838,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": null,
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 10.9404571075455,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
 			"finale_choice": {
 				"chance": -1,
-				"mutation_event_name": "airborne_fly",
-				"parent_cell_name": "Ira",
+				"mutation_event_name": "telekinetic_shoot",
+				"parent_cell_name": "Remy",
 				"reasons_why_unlikley": [
 					"cell is away from player's room",
 					"event was the previously selected event"
@@ -535,17 +404,8 @@
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Sunny",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Ira",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
 						"cell is away from player's room",
 						"event was the previously selected event"
@@ -553,87 +413,51 @@
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 11.1833743469623,
+			"turn": 1,
+			"wait_time": 11.8686947243446,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "airborne_fly",
-				"parent_cell_name": "Quinn",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
+			"danger_level": 0,
+			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Quinn",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Quinn",
-					"reasons_why_unlikley": [
-						"cell is away from player's room"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 10.7547691621068,
+			"turn": 1,
+			"wait_time": 13.6656311092612,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": ""
+			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
-			"danger_level": 2,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "airborne_fly",
-				"parent_cell_name": "Quinn",
-				"reasons_why_unlikley": [
-					"cell is away from player's room",
-					"event was the previously selected event"
-				],
-				"situation_increase_applied": false
-			},
+			"danger_level": 0,
+			"finale_choice": null,
 			"mutation_events": [
 				{
 					"chance": -1,
-					"mutation_event_name": "disrupter_disrupt",
-					"parent_cell_name": "Quinn",
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Remy",
 					"reasons_why_unlikley": [
-						"cell is away from player's room"
-					],
-					"situation_increase_applied": false
-				},
-				{
-					"chance": -1,
-					"mutation_event_name": "airborne_fly",
-					"parent_cell_name": "Quinn",
-					"reasons_why_unlikley": [
-						"cell is away from player's room",
-						"event was the previously selected event"
+						"only available event was the previously selected event"
 					],
 					"situation_increase_applied": false
 				}
 			],
-			"turn": 3,
-			"wait_time": 12.9325738146186,
+			"turn": 1,
+			"wait_time": 11.8855073620783,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": ""
+			"why_none_chose": "only available event was the previously selected event"
 		}
 	],
 	"date_created": "2026-08-05",

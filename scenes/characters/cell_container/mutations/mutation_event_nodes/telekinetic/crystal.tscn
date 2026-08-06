@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bv5ge50dv3xk1"]
+
+[ext_resource type="Script" uid="uid://cqr03rhw3e6ch" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/crystal.gd" id="1_5w6e4"]
+[ext_resource type="Script" uid="uid://4w4817vrcxqo" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/crystal_state_machine.gd" id="1_xq402"]
+[ext_resource type="Script" uid="uid://dlrfvs6p7yc5m" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/idle_state.gd" id="2_ogabw"]
+[ext_resource type="Script" uid="uid://b4j8tmkccxbyq" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/attack_state.gd" id="4_j62av"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upvxa"]
+albedo_color = Color(0, 0, 1, 1)
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_upvxa")
+size = Vector3(0.4, 0.8, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.4, 0.8, 0.4)
+
+[node name="Crystal" type="CharacterBody3D" unique_id=1301898347]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+script = ExtResource("1_5w6e4")
+
+[node name="CrystalStateMachine" type="Node" parent="." unique_id=1562940776]
+script = ExtResource("1_xq402")
+
+[node name="Idle" type="Node" parent="CrystalStateMachine" unique_id=642877778]
+script = ExtResource("2_ogabw")
+
+[node name="Attack" type="Node" parent="CrystalStateMachine" unique_id=348157635]
+script = ExtResource("4_j62av")
+bullet_speed = 17.0
+homing_delay = 1.0
+homing_duration = 1.0
+homing_strength = 0.7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1777442164]
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1834928306]
+shape = SubResource("BoxShape3D_qa1qv")
