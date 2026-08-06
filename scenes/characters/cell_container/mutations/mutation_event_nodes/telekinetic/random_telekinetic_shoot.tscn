@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cx0mtejod6587" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/random_telekinetic_shoot.gd" id="1_fa78k"]
 [ext_resource type="Script" uid="uid://scqe4b4e3akt" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal_manager.gd" id="2_y566e"]
+[ext_resource type="AudioStream" uid="uid://pt0ul3o5iy2" path="res://sounds/cell_container/mutations/telekentic/telekenetic_start.mp3" id="3_lc2sr"]
+[ext_resource type="AudioStream" uid="uid://c5txpf5qqy8g" path="res://sounds/cell_container/mutations/telekentic/telekentic_shoot.mp3" id="4_ip6gj"]
 
 [node name="RandomTelekineticShoot" type="Node3D" unique_id=450202422]
 script = ExtResource("1_fa78k")
@@ -11,12 +13,20 @@ script = ExtResource("2_y566e")
 shoot_delay = 2.5
 
 [node name="Pos1" type="Node3D" parent="CrystalManager" unique_id=1628397985]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.3000001, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.3000001, 0)
 
 [node name="Pos2" type="Node3D" parent="CrystalManager" unique_id=1536701462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.3000001, 2.9802322e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 1.3000001, 2.9802322e-08)
 
 [node name="Pos3" type="Node3D" parent="CrystalManager" unique_id=1271360766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 5.9604645e-08)
 
 [node name="ParentCrystalNode" type="Node3D" parent="CrystalManager" unique_id=1046529884]
+
+[node name="Start" type="AudioStreamPlayer3D" parent="." unique_id=684761720]
+stream = ExtResource("3_lc2sr")
+max_distance = 150.0
+
+[node name="Shoot" type="AudioStreamPlayer3D" parent="." unique_id=441532225]
+stream = ExtResource("4_ip6gj")
+max_distance = 150.0

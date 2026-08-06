@@ -9,7 +9,7 @@ var wait_time: float  #
 var wait_time_min: float  #
 var wait_time_max: float  #
 var mutation_events: Array[RandomMutationEvent]
-var finale_choice: RandomMutationEvent
+var finale_choice: String 
 var why_none_chose: String
 
 
@@ -21,7 +21,7 @@ func _init(
 	wait_time_min: int = 0,
 	wait_time_max: int = 0,
 	mutation_events: Array[RandomMutationEvent] = [],
-	finale_choice: RandomMutationEvent = null,
+	finale_choice: String = "",
 	why_none_chose: String = ""
 ) -> void:
 	self.turn = turn
@@ -67,18 +67,6 @@ static func from_dictionary(data: Dictionary) -> AdminRandomMutationEvent:
 				RandomMutationEvent.from_dictionary(raw_event)
 			)
 
-	var loaded_finale_choice: RandomMutationEvent = null
-
-	var raw_finale_choice: Variant = data.get(
-		"finale_choice",
-		null
-	)
-
-	if raw_finale_choice is Dictionary:
-		loaded_finale_choice = (
-			RandomMutationEvent.from_dictionary(raw_finale_choice)
-		)
-
 	return AdminRandomMutationEvent.new(
 		int(data.get("turn", 0)),
 		int(data.get("danger_level", 0)),
@@ -86,7 +74,7 @@ static func from_dictionary(data: Dictionary) -> AdminRandomMutationEvent:
 		int(data.get("wait_time_min", 0)),
 		int(data.get("wait_time_max", 0)),
 		loaded_mutation_events,
-		loaded_finale_choice,
+		str(data.get("finale_choice", "")),
 		str(data.get("why_none_chose", ""))
 	)
 
@@ -102,10 +90,6 @@ func to_dictionary() -> Dictionary:
 			mutation_event.to_dictionary()
 		)
 
-	var serialized_finale_choice: Variant = null
-
-	if finale_choice != null:
-		serialized_finale_choice = finale_choice.to_dictionary()
 
 	return {
 		"turn": turn,
@@ -114,7 +98,7 @@ func to_dictionary() -> Dictionary:
 		"wait_time_min": wait_time_min,
 		"wait_time_max": wait_time_max,
 		"mutation_events": serialized_mutation_events,
-		"finale_choice": serialized_finale_choice,
+		"finale_choice": finale_choice,
 		"why_none_chose": why_none_chose
 	}
 

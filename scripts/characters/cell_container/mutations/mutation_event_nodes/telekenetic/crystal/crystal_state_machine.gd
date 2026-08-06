@@ -2,10 +2,12 @@ extends Node
 
 @onready var idle_state : Node = $Idle
 @onready var attack_state : Node = $Attack
+@onready var dead_state : Node = $Dead
 
 enum State {
 	IDLE,
 	ATTACK,
+	DEAD,
 }
 
 var states : Dictionary
@@ -16,7 +18,8 @@ func _ready():
 
 	states = {
 		State.IDLE: idle_state,
-		State.ATTACK : attack_state
+		State.ATTACK : attack_state,
+		State.DEAD : dead_state,
 	}
 
 	switch_state(State.IDLE)

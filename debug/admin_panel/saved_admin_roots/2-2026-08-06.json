@@ -23,20 +23,12 @@
 	"admin_random_mutation_event": [
 		{
 			"danger_level": 0,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "telekinetic_shoot",
-				"parent_cell_name": "Greer",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
+			"finale_choice": "Jamie-telekinetic_shoot",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Greer",
+					"parent_cell_name": "Jamie",
 					"reasons_why_unlikley": [
 						"cell is away from player's room"
 					],
@@ -44,19 +36,19 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 14.5778412291973,
+			"wait_time": 12.9518582828271,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Greer",
+					"parent_cell_name": "Jamie",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
@@ -64,48 +56,39 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 14.0165628495301,
+			"wait_time": 12.6263349612766,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "Jamie-telekinetic_shoot",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Greer",
+					"parent_cell_name": "Jamie",
 					"reasons_why_unlikley": [
-						"only available event was the previously selected event"
+						"cell is away from player's room"
 					],
 					"situation_increase_applied": false
 				}
 			],
 			"turn": 1,
-			"wait_time": 13.4437548554842,
+			"wait_time": 14.7063375892968,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": "only available event was the previously selected event"
+			"why_none_chose": ""
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "telekinetic_shoot",
-				"parent_cell_name": "Greer",
-				"reasons_why_unlikley": [
-					"cell is away from player's room",
-					"event was the previously selected event"
-				],
-				"situation_increase_applied": false
-			},
+			"finale_choice": "Jamie-telekinetic_shoot",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Greer",
+					"parent_cell_name": "Jamie",
 					"reasons_why_unlikley": [
 						"cell is away from player's room",
 						"event was the previously selected event"
@@ -114,32 +97,72 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 10.8907002059467,
+			"wait_time": 10.593747965673,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Greer",
+					"parent_cell_name": "Jamie",
 					"reasons_why_unlikley": [
-						"only available event was the previously selected event"
+						"1st ROUND EXCLUDED | cell is in a different room"
 					],
 					"situation_increase_applied": false
 				}
 			],
 			"turn": 1,
-			"wait_time": 14.3237869132073,
+			"wait_time": 14.1398785620793,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
-			"why_none_chose": "only available event was the previously selected event"
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Jamie",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 11.619269937334,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Jamie-telekinetic_shoot",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Jamie",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 10.8285829626345,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": ""
 		}
 	],
-	"date_created": "2026-08-05",
-	"id": 16
+	"date_created": "2026-08-06",
+	"id": 2
 }

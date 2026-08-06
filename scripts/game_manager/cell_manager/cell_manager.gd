@@ -20,6 +20,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	GLCellManagerBus.connect('mutation_frowny_increase_defect', _handle_mutation_frowny_increase_defect)
 	GLCellManagerBus.connect('unhide_cell_mutation', _handle_unhide_cell_mutation)
+	GLCellManagerBus.connect('cell_hit_by_crystal', _handle_cell_hiy_by_crystals)
 	GLCellManagerBus.connect('collected_cell_changed', _handle_collected_cell_changed)	
 	
 	# DEBUG
@@ -351,10 +352,26 @@ func _handle_unhide_cell_mutation(selected_brain_cell : BrainCell, selected_brai
 	
 	update_collected_cells([selected_brain_cell])
 	
+func _handle_cell_hiy_by_crystals(cell : BrainCell) :
+	
+	print('hit ', cell.name)	
+	
+	if cell.strength.enabled : 
+		cell.strength.defect += 30
+	if cell.intelligence.enabled : 
+		cell.intelligence.defect += 30
+	if cell.community.enabled : 
+		cell.community.defect += 30
+	
+	print('hit ')	
+	
+	update_collected_cells([cell])	
+	
 
 func _handle_collected_cell_changed(cell : BrainCell) :
 	
 	update_collected_cells([cell])
+	
 	
 	
 	

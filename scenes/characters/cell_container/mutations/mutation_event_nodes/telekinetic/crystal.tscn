@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://4w4817vrcxqo" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/crystal_state_machine.gd" id="1_xq402"]
 [ext_resource type="Script" uid="uid://dlrfvs6p7yc5m" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/idle_state.gd" id="2_ogabw"]
 [ext_resource type="Script" uid="uid://b4j8tmkccxbyq" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/attack_state.gd" id="4_j62av"]
+[ext_resource type="Script" uid="uid://5paoep3vvlo4" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/telekenetic/crystal/dead_state.gd" id="5_n8c0v"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="6_8t7k4"]
+[ext_resource type="AudioStream" uid="uid://be8uedwdo1ofc" path="res://sounds/cell_container/mutations/telekentic/crystal_break.mp3" id="7_r6ag4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upvxa"]
 albedo_color = Color(0, 0, 1, 1)
@@ -11,13 +14,35 @@ metallic_specular = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
 material = SubResource("StandardMaterial3D_upvxa")
-size = Vector3(0.4, 0.8, 0.4)
+size = Vector3(0.3, 0.6, 0.3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
-size = Vector3(0.4, 0.8, 0.4)
+size = Vector3(0.2, 0.5, 0.2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8t7k4"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 4.135, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8t7k4"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("6_8t7k4")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_n8c0v"]
+material = SubResource("StandardMaterial3D_8t7k4")
+size = Vector2(0.1, 0.1)
+orientation = 2
 
 [node name="Crystal" type="CharacterBody3D" unique_id=1301898347]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+collision_layer = 8192
+collision_mask = 0
 script = ExtResource("1_5w6e4")
 
 [node name="CrystalStateMachine" type="Node" parent="." unique_id=1562940776]
@@ -33,8 +58,33 @@ homing_delay = 1.0
 homing_duration = 1.0
 homing_strength = 0.7
 
+[node name="Dead" type="Node" parent="CrystalStateMachine" unique_id=1220409362]
+script = ExtResource("5_n8c0v")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1777442164]
 mesh = SubResource("BoxMesh_qa1qv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1834928306]
 shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="DetectCollisionArea" type="Area3D" parent="." unique_id=1591170559]
+collision_layer = 0
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectCollisionArea" unique_id=973260019]
+transform = Transform3D(0.99999833, 0, 0, 0, 1, 0, 0, 0, 0.99999833, 0, 0, 0)
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="DeadParticles" type="GPUParticles3D" parent="." unique_id=1984755527]
+emitting = false
+amount = 12
+lifetime = 4.0
+one_shot = true
+speed_scale = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_8t7k4")
+draw_pass_1 = SubResource("PlaneMesh_n8c0v")
+
+[node name="Break" type="AudioStreamPlayer3D" parent="." unique_id=597406772]
+stream = ExtResource("7_r6ag4")
+max_distance = 25.0

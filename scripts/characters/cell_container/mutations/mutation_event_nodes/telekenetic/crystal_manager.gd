@@ -5,6 +5,7 @@ extends Node3D
 ]
 @onready var parent_crystal_node : Node3D = $ParentCrystalNode
 @onready var crystal_scene : PackedScene = preload("res://scenes/characters/cell_container/mutations/mutation_event_nodes/telekinetic/crystal.tscn")
+@onready var s_shoot : AudioStreamPlayer3D = $"../Shoot"
 
 
 var rotate_to_face_player : bool = true
@@ -37,6 +38,9 @@ func _attack_player() :
 	rotate_to_face_player = false
 	
 	for crystal : CharacterBody3D in parent_crystal_node.get_children() :
+		
+		s_shoot.play()
+		
 		
 		crystal.state_machine.switch_state(crystal.state_machine.State.ATTACK)
 		

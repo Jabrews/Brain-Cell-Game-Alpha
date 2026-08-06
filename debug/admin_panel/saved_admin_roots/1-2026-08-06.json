@@ -23,20 +23,12 @@
 	"admin_random_mutation_event": [
 		{
 			"danger_level": 0,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "telekinetic_shoot",
-				"parent_cell_name": "Jules",
-				"reasons_why_unlikley": [
-					"cell is away from player's room"
-				],
-				"situation_increase_applied": false
-			},
+			"finale_choice": "Hollis-telekinetic_shoot",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
+					"parent_cell_name": "Hollis",
 					"reasons_why_unlikley": [
 						"cell is away from player's room"
 					],
@@ -44,19 +36,19 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 10.0921319983903,
+			"wait_time": 12.5116046482254,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": ""
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
+					"parent_cell_name": "Hollis",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
@@ -64,19 +56,19 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 10.2129715418374,
+			"wait_time": 13.06592281435,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
+					"parent_cell_name": "Hollis",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
@@ -84,19 +76,19 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 0.0,
-			"wait_time_max": 0.0,
-			"wait_time_min": 0.0,
+			"wait_time": 10.5341139460119,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
+					"parent_cell_name": "Hollis",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
@@ -104,19 +96,19 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 0.0,
-			"wait_time_max": 0.0,
-			"wait_time_min": 0.0,
+			"wait_time": 12.3092686876543,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": null,
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
+					"parent_cell_name": "Hollis",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
@@ -124,49 +116,19 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 0.0,
-			"wait_time_max": 0.0,
-			"wait_time_min": 0.0,
+			"wait_time": 14.7628644212047,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		},
 		{
 			"danger_level": 0,
-			"finale_choice": {
-				"chance": -1,
-				"mutation_event_name": "telekinetic_shoot",
-				"parent_cell_name": "Jules",
-				"reasons_why_unlikley": [
-					"cell is away from player's room",
-					"event was the previously selected event"
-				],
-				"situation_increase_applied": false
-			},
+			"finale_choice": "",
 			"mutation_events": [
 				{
 					"chance": -1,
 					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
-					"reasons_why_unlikley": [
-						"cell is away from player's room",
-						"event was the previously selected event"
-					],
-					"situation_increase_applied": false
-				}
-			],
-			"turn": 1,
-			"wait_time": 0.0,
-			"wait_time_max": 0.0,
-			"wait_time_min": 0.0,
-			"why_none_chose": ""
-		},
-		{
-			"danger_level": 0,
-			"finale_choice": null,
-			"mutation_events": [
-				{
-					"chance": -1,
-					"mutation_event_name": "telekinetic_shoot",
-					"parent_cell_name": "Jules",
+					"parent_cell_name": "Hollis",
 					"reasons_why_unlikley": [
 						"only available event was the previously selected event"
 					],
@@ -174,12 +136,12 @@
 				}
 			],
 			"turn": 1,
-			"wait_time": 14.6410554408266,
+			"wait_time": 12.6901246595785,
 			"wait_time_max": 15.0,
 			"wait_time_min": 10.0,
 			"why_none_chose": "only available event was the previously selected event"
 		}
 	],
-	"date_created": "2026-08-05",
-	"id": 10
+	"date_created": "2026-08-06",
+	"id": 1
 }

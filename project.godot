@@ -177,6 +177,7 @@ admin_panel={
 3d_physics/layer_10="flesh_bug"
 3d_physics/layer_11="axe_interact"
 3d_physics/layer_13="disruptable_reciever"
+3d_physics/layer_14="crystal"
 
 [physics]
 

@@ -16,6 +16,7 @@ signal delete_cells_for_next_round()
 signal defect_decreaser_used(cell : BrainCell)
 signal mutation_frowny_increase_defect(cell : BrainCell)
 signal unhide_cell_mutation(cell : BrainCell, mutation : BrainCellMutation)
+signal cell_hit_by_crystal(cell : BrainCell)
 # this signal is only for rare cases where i just pass in updated cell
 # the rest acutally contain the logic in the listner function
 signal collected_cell_changed(new_cell : BrainCell)

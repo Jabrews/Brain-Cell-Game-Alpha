@@ -15,12 +15,12 @@ func _ready() -> void:
 func _handle_next_turn() : 
 	current_turn += 1
 
-func _handle_finished_trigger_event(chosen_mutation_event_name : String = '') -> void:
+func _handle_finished_trigger_event(_chosen_mutation_event_name : String = '') -> void:
 	
 	# update chose field if possible. else leave blank
-	for mutation: RandomMutationEvent in GameAdminPanel.updater_random_mutation_event.mutation_events:
-		if mutation.mutation_event_name == chosen_mutation_event_name: 
-			GameAdminPanel.updater_random_mutation_event.finale_choice = mutation
+	#for mutation: RandomMutationEvent in GameAdminPanel.updater_random_mutation_event.mutation_events:
+		#if mutation.mutation_event_name == chosen_mutation_event_name: 
+			#GameAdminPanel.updater_random_mutation_event.finale_choice = mutation.mutation_event_name
 			
 	# update turn
 	GameAdminPanel.updater_random_mutation_event.turn = current_turn
