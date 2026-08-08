@@ -5,16 +5,13 @@ func _ready() -> void:
 
 
 var mutations_seen: Dictionary = {
-	"airborne": false,
-	"teleportation": false,
+	"airborne": true,
 	"sentient": true,
-	"lonley": false,
-	"disrupter": false,
-	"exsplosive": false,
-	"infectious": false,
-	"cognisance": false,
-	"telekinetic": false,
-	"unstable": false,
+	"lonley": true,
+	"disrupter": true,
+	"exsplosive": true,
+	"cognisance": true,
+	"telekinetic": true,
 }
 
 func _find_mutation_seen(mutation_type: String) -> bool:

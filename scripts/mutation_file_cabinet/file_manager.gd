@@ -2,16 +2,13 @@ extends Node
 
 # NOTE this all must match mutation manager mutations. specifically the type
 var file_infos: Array[FileInfo] = [
-	FileInfo.new("airborne", false, ""),
-	FileInfo.new("teleportation", false, ""),
-	FileInfo.new("sentient", false, ""),
-	FileInfo.new("lonley", false, ""),
-	FileInfo.new("disrupter", false, ""),
-	FileInfo.new("exsplosive", false, ""),
-	FileInfo.new("infectious", false, ""),
-	FileInfo.new("cognisance", false, ""),
-	FileInfo.new("telekinetic", false, ""),
-	FileInfo.new("unstable", false, ""),
+	FileInfo.new("airborne", false, "Cell possesses the ability of flight.\n\nInstead of flying recreationally, it uses this ability to commit suicide.\n\nFoundation recommends keeping the cell away from ceiling fans and other machinery capable."),
+	FileInfo.new("sentient", false, "Cell possesses a strong human like\npresence.\n\nPerhaps memories of the past still keep it\ncompany.\n\nBrain has never presented any hazardous anomalies to the Foundation's knowledge. "),
+	FileInfo.new("lonley", false, "Cell is extremely codependent and must always have another cell within a 3 foot radius.\n\nIf left alone, cell will slowly cry itself to death.\n\nFoundation supplies a face hologram above the cell to help with understanding"),
+	FileInfo.new("disrupter", false, "Cell has access to strange energy waves, allowing it to alter nearby hologram screens.\n\nFoundation has recorded this behavior becoming less prevalent when the cell is hidden from technological devices. "),
+	FileInfo.new("exsplosive", false, "Cell contains trace amounts of unstable compounds, causing the cell to explode after a certain amount of time.\n\nExplosion will kill other cells and scientists nearby.\nFoundation recommends disposing of the cell before instability reaches critical levels. "),
+	FileInfo.new("cognisance", false, "Cell is extremely hostile and will attempt to attack nearby scientists.\n\nIt has never been recorded moving while directly observed and seems to prefer striking when the user's back is turned. "),
+	FileInfo.new("telekinetic", false, "Cell possesses strong psychic energy.\n\nFoundation has recorded manifestations of the cell producing crystal objects to attack nearby scientists."),
 ]
 
 # components

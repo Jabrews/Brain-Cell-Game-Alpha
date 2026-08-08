@@ -19,7 +19,6 @@
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
-[ext_resource type="PackedScene" uid="uid://damsstax7yjgn" path="res://scenes/stations/station_components/item_offer_manager/station_item_offer_manager.tscn" id="15_w7r6u"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
 [ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="16_ngeto"]
 [ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
@@ -49,16 +48,13 @@
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
 [ext_resource type="Script" uid="uid://103bbjkr2rsp" path="res://scripts/game_manager/random_mutation_event_trigger/get_valid_possible_mutation_event_choices.gd" id="36_r52yi"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
-[ext_resource type="Script" uid="uid://dt54n7ye7aevd" path="res://scripts/game_manager/shareholder_offer_generator/shareholder_offer_demand_generator.gd" id="37_87p7k"]
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
 [ext_resource type="Script" uid="uid://cwmjjbbbap4ly" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/all_hidden_event.gd" id="37_y36b7"]
 [ext_resource type="Script" uid="uid://conaqje0n7bu8" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/default_mutation_serving.gd" id="38_0ycs4"]
 [ext_resource type="PackedScene" uid="uid://dttes4islfno1" path="res://scenes/stations/station_components/hidden_interpreter/station_hidden_interpreter.tscn" id="38_5mews"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
-[ext_resource type="Script" uid="uid://br3pbbqwcoh5o" path="res://scripts/game_manager/shareholder_offer_generator/offer_helpers/generate_cell_offer.gd" id="47_qjatd"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
-[ext_resource type="Script" uid="uid://bdnbjj8c2wdys" path="res://scripts/game_manager/shareholder_offer_generator/offer_helpers/generate_mutation_offer.gd" id="48_ea07q"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="PackedScene" uid="uid://csxul1ta0njxi" path="res://scenes/ceiling_fan/ceiling_fan.tscn" id="59_m2qbd"]
 [ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
@@ -387,9 +383,6 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.2
 [node name="DefectDecreaser" parent="Stations/ContainerStations" unique_id=1174221731 instance=ExtResource("11_1l4rw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 13.095333, 0.8529396, 12.387114)
 
-[node name="ItemOfferManager" parent="Stations/ContainerStations" unique_id=359772628 instance=ExtResource("15_w7r6u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.546982, 0.06436849, 6.678219)
-
 [node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
 cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
@@ -525,15 +518,6 @@ script = ExtResource("48_3ujpq")
 
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
-
-[node name="ShareholderOfferDemandGenerator" type="Node" parent="GameManager" unique_id=240364795]
-script = ExtResource("37_87p7k")
-
-[node name="GenerateCellOffer" type="Node" parent="GameManager/ShareholderOfferDemandGenerator" unique_id=1867724522]
-script = ExtResource("47_qjatd")
-
-[node name="GenerateMutationOffer" type="Node" parent="GameManager/ShareholderOfferDemandGenerator" unique_id=35595692]
-script = ExtResource("48_ea07q")
 
 [node name="EntranceAreasRoom" type="Node" parent="." unique_id=432962381]
 

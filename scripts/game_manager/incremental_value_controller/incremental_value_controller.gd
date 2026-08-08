@@ -66,13 +66,9 @@ func handle_round(round : int):
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
-			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.can_generate_cell_offer = false
-			IVShareholderOffers.can_generate_mutation_offer = false
-			IVShareholderOffers.chance_of_generating_cell_offer = 0
-			IVShareholderOffers.chance_of_generating_mution_offer = 0
-			IVShareholderOffers.item_offer_energy_percant= 80
-			IVShareholderOffers.first_round_item_offer_energy_percant = 40
+			## SHAREHOLDER OFFER
+			IVShareholderOffers.first_item_offer_energy_percant= 80
+			IVShareholderOffers.second_item_offer_energy_percant= 40
 			# HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = []
 			## PRISONER PROFILER ##
@@ -110,16 +106,8 @@ func handle_round(round : int):
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
 			## SHAREHOLDER OFFERS ##
-			IVShareholderOffers.can_generate_cell_offer = true 
-			IVShareholderOffers.can_generate_mutation_offer = false
-			IVShareholderOffers.chance_of_generating_cell_offer = 100
-			IVShareholderOffers.chance_of_generating_mution_offer = 0
-			IVShareholderOffers.item_offer_energy_percant= 75
-			IVShareholderOffers.energy_reward_min = 25
-			IVShareholderOffers.energy_reward_max = 30
-			IVShareholderOffers.energy_left_to_claim_min = 30
-			IVShareholderOffers.energy_left_to_claim_max = 35
-			IVShareholderOffers.non_enabled_stats_max = 1
+			IVShareholderOffers.first_item_offer_energy_percant= 70
+			IVShareholderOffers.second_item_offer_energy_percant= 35
 			## PRISONER PROFILER ##
 			IVPrisonerProfiler.stat_increment_amount = 10
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0

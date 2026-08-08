@@ -1,0 +1,108 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 1,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"airborne"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"2": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 1,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"disrupter"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"3": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 1,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 1,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [],
+			"mutations_picked_by_player": [],
+			"skipped": true,
+			"why_skipped": "rolled to exit mutation loop | chance: 15"
+		},
+		"4": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 20,
+			"energy_phase": 1,
+			"fake_mutations_applied": 1,
+			"max_mutations": 2,
+			"min_mutations": 1,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"lonley"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 3,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 4,
+			"wait_time": 11.6522917782733,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		}
+	],
+	"date_created": "2026-08-08",
+	"id": 56
+}

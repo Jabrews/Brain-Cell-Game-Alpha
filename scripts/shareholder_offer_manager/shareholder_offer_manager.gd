@@ -9,7 +9,7 @@ extends Node
 @onready var item_offer_card_2 : TextureRect = $ServeItemOffer/Card2Container
 
 
-var has_served_energy_based_card : bool = false
+var has_served_first_card : bool = false
 var has_served_second_card : bool = false
 
 
@@ -18,7 +18,9 @@ func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 	GLGameManagerBus.connect('energy_changed', _handle_energy_turn_changed)
-	GLShareholderOfferState.connect('item_offer_success', _handle_item_offer_success)
+	
+	toggle_display_lock(false)
+	toggle_mouse_filter(false)
 
 func _handle_energy_turn_changed() :
 
@@ -28,23 +30,23 @@ func _handle_energy_turn_changed() :
 	var energy_percent : float = (curr_energy / float(max_energy)) * 100.0
 	
 
-	if energy_percent <= IVShareholderOffers.item_offer_energy_percant and not has_served_energy_based_card:
+	if energy_percent <= IVShareholderOffers.first_item_offer_energy_percant and not has_served_first_card:
 		serve_item_cards()
-		has_served_energy_based_card = true
+		has_served_first_card = true
 	
-	# first round doesnt care about request just give another card after first one 
-	elif energy_percent <= IVShareholderOffers.first_round_item_offer_energy_percant and not has_served_second_card : 
+	
+	elif energy_percent <= IVShareholderOffers.second_item_offer_energy_percant and not has_served_second_card : 
 		serve_item_cards()
 		has_served_second_card = true
 	
 
 func _handle_next_round() :
-	has_served_energy_based_card = false
+	has_served_first_card = false
 	has_served_second_card = false
 
 func serve_item_cards() :
-	
 	toggle_display_lock(true)
+	toggle_mouse_filter(true)
 	
 	serve_item_offer_parent.visible = true
 	
@@ -90,11 +92,8 @@ func handle_card_picked(offer_card : TextureRect) :
 	var item_offer : UseableOfferItem = offer_card.designated_useable_item_offer 
 	GLShareholderOfferState.emit_signal('spawn_item_to_offer', item_offer)
 	
-	if not has_served_second_card and not GLGameManagerBus.current_round == 1 : # first round doesnt care
-		GLShareholderOfferState.emit_signal('create_item_offer_demand')
-		has_served_second_card = true
-	else : 
-		toggle_display_lock(false)
+	toggle_display_lock(false)
+	toggle_mouse_filter(false)
 		
 func toggle_display_lock(toggleValue : bool) :
 	
@@ -104,14 +103,18 @@ func toggle_display_lock(toggleValue : bool) :
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
 	else :
+		print('got here')
 		header_label.visible = false
 		blur_bg.visible = false 
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false 
 		
-		
-func _handle_item_offer_success() :
-	serve_item_cards()
+
+func toggle_mouse_filter(toggle_value : bool ) :
+	if toggle_value : 
+		serve_item_offer_parent.mouse_filter = Control.MOUSE_FILTER_STOP
+	else : 
+		serve_item_offer_parent.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 		
 		

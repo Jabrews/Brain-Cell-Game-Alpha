@@ -894,7 +894,7 @@ shadow_mesh = SubResource("ArrayMesh_0f8cl")
 size = Vector3(1.2675781, 2.2876587, 1.3939819)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ixuf4"]
-size = Vector3(3.3, 0.6, 3.4)
+size = Vector3(3.3, 0.6, 1.0969483)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rppej"]
 shader = ExtResource("9_epm46")
@@ -1405,7 +1405,7 @@ shape = SubResource("BoxShape3D_keru6")
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectPlayerArea" unique_id=527993512]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0, -0.20000005)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0, -0.17425543)
 shape = SubResource("BoxShape3D_ixuf4")
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=1714591203]
@@ -1444,6 +1444,7 @@ horizontal_alignment = 1
 script = ExtResource("7_8gn6o")
 
 [node name="FileView" type="Control" parent="." unique_id=1072467109]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -1462,7 +1463,7 @@ offset_right = 815.0
 offset_bottom = 443.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+mouse_behavior_recursive = 1
 color = Color(1, 1, 1, 0)
 
 [node name="PaperBG" type="TextureRect" parent="FileView" unique_id=1566835126]
@@ -1472,6 +1473,8 @@ offset_left = 248.0
 offset_top = 8.0
 offset_right = 616.0
 offset_bottom = 472.0
+mouse_filter = 0
+mouse_behavior_recursive = 1
 texture = ExtResource("8_kdclm")
 
 [node name="MutationType" type="Label" parent="FileView" unique_id=113685689]
@@ -1481,6 +1484,8 @@ offset_left = 264.0
 offset_top = 64.0
 offset_right = 593.0
 offset_bottom = 87.0
+mouse_filter = 0
+mouse_behavior_recursive = 1
 theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
 theme_override_fonts/font = ExtResource("1_t562i")
 theme_override_font_sizes/font_size = 21
@@ -1492,14 +1497,20 @@ texture_filter = 1
 custom_maximum_size = Vector2(277, 107)
 layout_mode = 0
 offset_left = 293.0
-offset_top = 341.0
+offset_top = 342.0
 offset_right = 570.0
-offset_bottom = 448.0
+offset_bottom = 449.0
+mouse_filter = 0
+mouse_behavior_recursive = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_t562i")
 theme_override_font_sizes/font_size = 8
-text = "    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit"
-autowrap_mode = 1
+text = "Cell possesses a strong human like presence.
+
+Perhaps memories of the past still keep it company.
+
+Brain has never presented any hazardous anomalies to the Foundation's knowledge."
+autowrap_mode = 3
 autowrap_trim_flags = 128
 
 [node name="ExitBtn" type="TextureRect" parent="FileView" unique_id=970978348]

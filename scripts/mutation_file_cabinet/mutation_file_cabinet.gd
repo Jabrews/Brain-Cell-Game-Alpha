@@ -16,18 +16,20 @@ var file_being_viewed : bool = false
 var player_in_cabinet_area : bool = false
 var player_viewing_files : bool = false
 
-func _process(_delta: float) -> void: 
+func _process(_delta: float) -> void:
+	
 	
 	if player_in_cabinet_area : 
+		
 		if Input.is_action_just_pressed('interact') :
 			
 			if file_being_viewed : 
 				return
-			
-			if not player_viewing_files:
-				set_player_viewing_file_cabinet(true)
-			else : 
-				set_player_viewing_file_cabinet(false)			
+			else :
+				if not player_viewing_files:
+					set_player_viewing_file_cabinet(true)
+				else : 
+					set_player_viewing_file_cabinet(false)			
 	
 func set_player_viewing_file_cabinet(toggle_value : bool) :
 	player_viewing_files = toggle_value

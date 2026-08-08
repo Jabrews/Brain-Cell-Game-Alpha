@@ -1,0 +1,27 @@
+{
+	"admin_batch_mutation": {},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 0,
+			"wait_time": 13.2126431029328,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 0,
+			"wait_time": 11.9105465853155,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		}
+	],
+	"date_created": "2026-08-08",
+	"id": 47
+}
