@@ -142,8 +142,8 @@ func _finish_dialogue(sequence_id: int) -> void:
 func _dialogue_is_valid(
 	sentient_dialogue: Sentient_Dialogue
 ) -> bool:
+	
 	if sentient_dialogue == null:
-		push_error("Sentient dialogue is null.")
 		return false
 
 	if sentient_dialogue.text.is_empty():

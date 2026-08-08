@@ -81,7 +81,7 @@ load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd4
 [node name="DefectDecreaser" type="Node3D" unique_id=1174221731]
 script = ExtResource("1_73vxk")
 
-[node name="Table" type="StaticBody3D" parent="." unique_id=313422764]
+[node name="Table" type="StaticBody3D" parent="." unique_id=313422764 groups=["nav_mesh_coll"]]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1394228260]
 mesh = SubResource("BoxMesh_m2qw0")
@@ -89,7 +89,7 @@ mesh = SubResource("BoxMesh_m2qw0")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=321380724]
 shape = SubResource("BoxShape3D_u4c5m")
 
-[node name="Stand" type="StaticBody3D" parent="." unique_id=263379530]
+[node name="Stand" type="StaticBody3D" parent="." unique_id=263379530 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9085454, 2.4410467)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stand" unique_id=273154614]
@@ -140,7 +140,7 @@ size = Vector2i(480, 270)
 
 [node name="DefectDecrease" parent="DefectDecreaseTv/TvFrontPannel/SubViewport" unique_id=1232910235 instance=ExtResource("4_qq7dh")]
 
-[node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=778029575]
+[node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=778029575 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.011122763, 1.1560335, -1.603759)
 collision_layer = 0
 collision_mask = 0
@@ -170,7 +170,7 @@ original_coll_shape = NodePath("../CollisionShape3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ConfirmBtn/HoverableMesh" unique_id=1482800438]
 shape = SubResource("BoxShape3D_ix23r")
 
-[node name="Stand2" type="StaticBody3D" parent="." unique_id=787535855]
+[node name="Stand2" type="StaticBody3D" parent="." unique_id=787535855 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9085454, -1.5589533)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Stand2" unique_id=549297728]

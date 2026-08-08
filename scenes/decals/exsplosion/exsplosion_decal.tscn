@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://lcgnnv31yq5r"]
+
+[ext_resource type="Script" uid="uid://mtexx7mol3vo" path="res://scripts/decals/exsplosion/exsplosion_decal.gd" id="1_6qrsx"]
+[ext_resource type="Texture2D" uid="uid://cpbekfr5njbun" path="res://models/decals/exsplosion_decal.png" id="1_jiisw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nngkf"]
+size = Vector3(1.315, 0.022282714, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpigg"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_jiisw")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_gpigg")
+
+[node name="ExsplosionDecal" type="RigidBody3D" unique_id=320285272]
+collision_layer = 32768
+collision_mask = 2
+continuous_cd = true
+script = ExtResource("1_6qrsx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1267872152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0044274908, 0)
+shape = SubResource("BoxShape3D_nngkf")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=276124995]
+visible = false
+mesh = SubResource("PlaneMesh_qa1qv")

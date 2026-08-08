@@ -25,10 +25,7 @@ func _ready():
 	
 	GLPlayerState.connect('lock_player_position', _handle_lock_player_position)
 	GLGameManagerBus.connect('reset_player_position', _handle_reset_player_position)	
-	
-	
-	
-	
+	GLMutationExsplosiveState.connect('shake_player_cam_from_exsplode', _handle_shake_player_cam_from_exsplode)
 	
 func _physics_process(delta: float) -> void:
 	
@@ -84,5 +81,35 @@ func _handle_lock_player_position(toggle_value : bool) :
 	else :
 		is_paused = false
 		visible = true
+	
+func _handle_shake_player_cam_from_exsplode() -> void:
+	var original_position: Vector3 = camera_pivot.position
+
+	var shake_tween: Tween = create_tween()
+
+	var shake_amount: float = 0.12
+	var shake_step_time: float = 0.04
+	var shake_steps: int = 8
+
+	for i: int in range(shake_steps):
+		var random_offset: Vector3 = Vector3(
+			randf_range(-shake_amount, shake_amount),
+			randf_range(-shake_amount, shake_amount),
+			0.0
+		)
+
+		shake_tween.tween_property(
+			camera_pivot,
+			"position",
+			original_position + random_offset,
+			shake_step_time
+		)
+
+	shake_tween.tween_property(
+		camera_pivot,
+		"position",
+		original_position,
+		shake_step_time
+	)
 	
 	

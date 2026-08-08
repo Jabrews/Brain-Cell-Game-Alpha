@@ -1,4 +1,3 @@
-
 extends MutationNode
 
 @onready var speech_bubble : Node3D = $SpeechBubble
@@ -59,7 +58,7 @@ func _start() :
 
 
 func start_new_dialouge_timer() :
-	get_new_dialouge_delay_timer.wait_time = randi_range(60, 300) # 60 - 300
+	get_new_dialouge_delay_timer.wait_time = randi_range(10, 12) # 30 - 50
 	get_new_dialouge_delay_timer.start()
 
 

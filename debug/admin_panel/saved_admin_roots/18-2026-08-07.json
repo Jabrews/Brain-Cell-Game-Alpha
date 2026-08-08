@@ -1,0 +1,165 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 1,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"telekinetic",
+				"exsplosive"
+			],
+			"mutations_chosen": [
+				"exsplosive"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"2": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"telekinetic",
+				"exsplosive"
+			],
+			"mutations_chosen": [
+				"exsplosive"
+			],
+			"mutations_picked_by_player": [
+				"exsplosive"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"3": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"telekinetic"
+			],
+			"mutations_picked_by_player": [
+				"telekinetic"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 2,
+			"wait_time": 11.8312978268701,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 2,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 2,
+			"wait_time": 11.5359840212786,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 2,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 2,
+			"wait_time": 10.7042841393046,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 1,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 3,
+			"wait_time": 13.1698572417234,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 1,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Cameron",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 3,
+			"wait_time": 14.2774157252967,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 1,
+			"finale_choice": "Skyler-telekinetic_shoot",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "telekinetic_shoot",
+					"parent_cell_name": "Skyler",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 3,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		}
+	],
+	"date_created": "2026-08-07",
+	"id": 18
+}

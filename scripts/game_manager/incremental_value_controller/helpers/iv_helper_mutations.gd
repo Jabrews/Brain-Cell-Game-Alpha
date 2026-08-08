@@ -14,7 +14,11 @@ func _update_mutations(round : int , energy : int) :
 			# disrupter 
 			#IVMutations.all_mutations[3], 
 			# telekentic 
-			IVMutations.all_mutations[8],
+			#IVMutations.all_mutations[8],
+			# cognisance
+			#IVMutations.all_mutations[7],
+			# exsplosive 
+			IVMutations.all_mutations[5]
 		]	
 	
 	elif round == 2 :

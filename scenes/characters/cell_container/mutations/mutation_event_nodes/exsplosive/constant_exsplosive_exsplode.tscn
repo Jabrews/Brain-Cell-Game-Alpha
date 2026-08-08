@@ -1,0 +1,234 @@
+[gd_scene format=3 uid="uid://cnnflcyersy85"]
+
+[ext_resource type="Script" uid="uid://c74a7qtrd0kc3" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/exsplosive/constant_exsplosive_exsplode.gd" id="1_5ug5c"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_0k70c"]
+[ext_resource type="Script" uid="uid://cjq3fpdb8ke3r" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/exsplosive/timer_labels_manager/timer_labels_manager.gd" id="2_ah38n"]
+[ext_resource type="Script" uid="uid://dfr64ep22p3wp" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/exsplosive/timer_labels_manager/label_visuals_manager.gd" id="3_mr272"]
+[ext_resource type="AudioStream" uid="uid://dgfw2uoxhjn65" path="res://sounds/cell_container/mutations/exsplosive/every_30_test.mp3" id="5_83kkp"]
+[ext_resource type="AudioStream" uid="uid://cy1y76eyt2p40" path="res://sounds/cell_container/mutations/exsplosive/last_15_beep.mp3" id="6_0r1lf"]
+[ext_resource type="AudioStream" uid="uid://da47h25ulxpwq" path="res://sounds/cell_container/mutations/exsplosive/regular_click.mp3" id="7_83kkp"]
+[ext_resource type="Texture2D" uid="uid://bfyhev1067oin" path="res://models/particles/exsplosion_white.png" id="8_p80u7"]
+[ext_resource type="Script" uid="uid://b5hu10i8tg5bc" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/exsplosive/exsplode_particle_manager.gd" id="8_vks0h"]
+[ext_resource type="Texture2D" uid="uid://cp1vkfta605sx" path="res://models/particles/exsplosion.png" id="9_vhooc"]
+[ext_resource type="Texture2D" uid="uid://djqek0416fqcs" path="res://models/particles/exsplosion_orange.png" id="10_y77di"]
+[ext_resource type="AudioStream" uid="uid://ba075gcblxcau" path="res://sounds/cell_container/mutations/exsplosive/exsplode_2.mp3" id="12_dorjs"]
+[ext_resource type="AudioStream" uid="uid://dqnadxu4a0nnk" path="res://sounds/cell_container/mutations/exsplosive/shine.mp3" id="13_inyoa"]
+[ext_resource type="Script" uid="uid://cin8y466dliom" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/exsplosive/detect_exsplode_entities.gd" id="14_5y2ef"]
+
+[sub_resource type="Gradient" id="Gradient_p80u7"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_p80u7"]
+gradient = SubResource("Gradient_p80u7")
+
+[sub_resource type="Curve" id="Curve_vhooc"]
+_data = [Vector2(0, 0.7692307), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vhooc"]
+curve = SubResource("Curve_vhooc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p80u7"]
+emission_shape = 1
+emission_sphere_radius = 2.5
+spread = 0.16
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.14999999
+angular_velocity_min = 9.999984
+angular_velocity_max = 19.999983
+radial_velocity_min = 1.9999776
+radial_velocity_max = 2.9999776
+gravity = Vector3(0, 2, 0)
+scale_curve = SubResource("CurveTexture_vhooc")
+color_ramp = SubResource("GradientTexture1D_p80u7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wuj4l"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("8_p80u7")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_deefm"]
+material = SubResource("StandardMaterial3D_wuj4l")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y77di"]
+emission_shape = 1
+emission_sphere_radius = 1.5
+spread = 41.189
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.14999999
+angular_velocity_min = 19.999983
+angular_velocity_max = 24.999983
+radial_velocity_min = 1.9999776
+radial_velocity_max = 2.9999776
+gravity = Vector3(0, -1, 0)
+scale_curve = SubResource("CurveTexture_vhooc")
+color_ramp = SubResource("GradientTexture1D_p80u7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vks0h"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("9_vhooc")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dorjs"]
+material = SubResource("StandardMaterial3D_vks0h")
+size = Vector2(0.8, 0.8)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dorjs"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("10_y77di")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_inyoa"]
+material = SubResource("StandardMaterial3D_dorjs")
+size = Vector2(0.8, 0.8)
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_inyoa"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 41.189
+initial_velocity_min = 0.099999994
+initial_velocity_max = 0.14999999
+angular_velocity_min = 1.9999839
+angular_velocity_max = 4.999984
+radial_velocity_min = 0.99997765
+radial_velocity_max = 1.4999776
+gravity = Vector3(0, -0.3, 0)
+scale_curve = SubResource("CurveTexture_vhooc")
+color_ramp = SubResource("GradientTexture1D_p80u7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5y2ef"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("10_y77di")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6asm7"]
+material = SubResource("StandardMaterial3D_5y2ef")
+size = Vector2(0.4, 0.4)
+orientation = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qa1qv"]
+radius = 3.0
+
+[node name="ConstantExsplosiveExsplode" type="Node3D" unique_id=1516398449]
+script = ExtResource("1_5ug5c")
+time_to_exsplode = 100
+
+[node name="TimerLabelsManager" type="Node3D" parent="." unique_id=1268293399]
+script = ExtResource("2_ah38n")
+
+[node name="LabelVisualsManager" type="Node" parent="TimerLabelsManager" unique_id=1292921141]
+script = ExtResource("3_mr272")
+
+[node name="HeaderTimeLeft" type="Label3D" parent="TimerLabelsManager" unique_id=1955422269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+billboard = 1
+text = "Time Left"
+font = ExtResource("2_0k70c")
+outline_size = 0
+
+[node name="MinSeconds" type="Label3D" parent="TimerLabelsManager" unique_id=2135822723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+billboard = 1
+text = "2 -00"
+font = ExtResource("2_0k70c")
+font_size = 19
+outline_size = 0
+
+[node name="30SecondBeep" type="AudioStreamPlayer3D" parent="TimerLabelsManager" unique_id=2068974905]
+stream = ExtResource("5_83kkp")
+volume_db = -10.0
+pitch_scale = 1.7
+max_distance = 35.0
+
+[node name="Last15Click" type="AudioStreamPlayer3D" parent="TimerLabelsManager" unique_id=242685200]
+stream = ExtResource("6_0r1lf")
+max_distance = 20.0
+
+[node name="RegularClick" type="AudioStreamPlayer3D" parent="TimerLabelsManager" unique_id=784865120]
+stream = ExtResource("7_83kkp")
+pitch_scale = 1.4
+max_distance = 15.0
+
+[node name="IncrementSecond" type="Timer" parent="." unique_id=1759760443]
+wait_time = 0.1
+
+[node name="ExsplodeParticleManager" type="Node3D" parent="." unique_id=988088995]
+script = ExtResource("8_vks0h")
+
+[node name="SmokeParticle" type="GPUParticles3D" parent="ExsplodeParticleManager" unique_id=1499066027]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+emitting = false
+amount = 35
+lifetime = 1.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_p80u7")
+draw_pass_1 = SubResource("PlaneMesh_deefm")
+
+[node name="RedParticle" type="GPUParticles3D" parent="ExsplodeParticleManager" unique_id=1163397672]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y77di")
+draw_pass_1 = SubResource("PlaneMesh_dorjs")
+
+[node name="OrangeParticle" type="GPUParticles3D" parent="ExsplodeParticleManager" unique_id=1281558028]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+emitting = false
+amount = 15
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_y77di")
+draw_pass_1 = SubResource("PlaneMesh_inyoa")
+
+[node name="BlackParticle" type="GPUParticles3D" parent="ExsplodeParticleManager" unique_id=1215857596]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+emitting = false
+amount = 35
+lifetime = 1.7
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_inyoa")
+draw_pass_1 = SubResource("PlaneMesh_6asm7")
+
+[node name="Exsplode" type="AudioStreamPlayer3D" parent="." unique_id=785687119]
+stream = ExtResource("12_dorjs")
+volume_db = -2.0
+pitch_scale = 0.9
+max_distance = 80.0
+
+[node name="Shine" type="AudioStreamPlayer3D" parent="." unique_id=1545228179]
+stream = ExtResource("13_inyoa")
+volume_db = -2.0
+max_distance = 25.0
+
+[node name="DetectExsplodeEntities" type="Area3D" parent="." unique_id=1044076377]
+collision_layer = 0
+collision_mask = 517
+monitoring = false
+monitorable = false
+script = ExtResource("14_5y2ef")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectExsplodeEntities" unique_id=1168960448]
+shape = SubResource("SphereShape3D_qa1qv")

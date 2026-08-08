@@ -28,7 +28,7 @@ var current_face_type: String = "smile"
 var is_lonely: bool = false
 var cry_active: bool = false
 
-@export var hide_distance: float = 2.7
+@export var hide_distance: float = 2.0
 
 
 func _process(_delta: float) -> void:

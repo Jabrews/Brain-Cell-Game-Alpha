@@ -100,7 +100,7 @@ ignore_time_scale = true
 stream = ExtResource("14_s0evx")
 
 [node name="GetNewDialougeDelayTimer" type="Timer" parent="." unique_id=1966229974]
-wait_time = 25.0
+wait_time = 10.0
 
 [node name="CheckIfPlayerEnteredRoomTimer" type="Timer" parent="." unique_id=568643345]
 wait_time = 3.0

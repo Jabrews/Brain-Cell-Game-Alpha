@@ -269,7 +269,7 @@ volume_db = -5.0
 unit_size = 5.0
 pitch_scale = 1.2
 
-[node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=121583691]
+[node name="ConfirmBtn" type="StaticBody3D" parent="." unique_id=121583691 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.310546, 0)
 collision_layer = 0
 collision_mask = 0
@@ -296,7 +296,7 @@ original_coll_shape = NodePath("../CollisionShape3D")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ConfirmBtn/HoverableMesh" unique_id=166809355]
 shape = SubResource("BoxShape3D_gph5o")
 
-[node name="Table" type="StaticBody3D" parent="." unique_id=1195427228]
+[node name="Table" type="StaticBody3D" parent="." unique_id=1195427228 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4969301, 0)
 collision_layer = 2
 collision_mask = 0
@@ -584,7 +584,7 @@ size = Vector2i(201, 231)
 [node name="ScreenChargeBoostSeat" parent="ChargeSeats/ChargeSeatLeft/TV/TvFrontPannel/SubViewport" unique_id=340738513 instance=ExtResource("17_u6e0a")]
 side = "left"
 
-[node name="Table" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft" unique_id=1188176807]
+[node name="Table" type="StaticBody3D" parent="ChargeSeats/ChargeSeatLeft" unique_id=1188176807 groups=["nav_mesh_coll"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatLeft/Table" unique_id=1111792946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35074234, -0.25314236)
@@ -822,7 +822,7 @@ size = Vector2i(201, 231)
 [node name="ScreenChargeBoostSeat" parent="ChargeSeats/ChargeSeatRight/TV/TvFrontPannel/SubViewport" unique_id=1990768841 instance=ExtResource("17_u6e0a")]
 side = "right"
 
-[node name="Table" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight" unique_id=2058426050]
+[node name="Table" type="StaticBody3D" parent="ChargeSeats/ChargeSeatRight" unique_id=2058426050 groups=["nav_mesh_coll"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ChargeSeats/ChargeSeatRight/Table" unique_id=1339360319]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35074234, -0.25314236)

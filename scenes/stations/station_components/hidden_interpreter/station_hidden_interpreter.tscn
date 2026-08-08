@@ -110,7 +110,7 @@ script = ExtResource("1_d8rjw")
 
 [node name="TimerIncrement" type="Timer" parent="TimerIncrement" unique_id=898310556]
 
-[node name="Table" type="StaticBody3D" parent="." unique_id=1316949117]
+[node name="Table" type="StaticBody3D" parent="." unique_id=1316949117 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49693012, 0)
 collision_layer = 2
 collision_mask = 0
@@ -121,7 +121,7 @@ shape = SubResource("BoxShape3D_pqduu")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1758328684]
 mesh = SubResource("BoxMesh_n813k")
 
-[node name="LoaderPanel" type="StaticBody3D" parent="." unique_id=153228035]
+[node name="LoaderPanel" type="StaticBody3D" parent="." unique_id=153228035 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LoaderPanel" unique_id=793571926]
@@ -130,7 +130,7 @@ mesh = SubResource("BoxMesh_pqduu")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoaderPanel" unique_id=1278594017]
 shape = SubResource("BoxShape3D_n813k")
 
-[node name="JoltBtn" type="StaticBody3D" parent="." unique_id=35710442]
+[node name="JoltBtn" type="StaticBody3D" parent="." unique_id=35710442 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3723109, 0.91657674, 0.26174688)
 collision_layer = 0
 collision_mask = 0
@@ -172,7 +172,7 @@ is_hidden_interpreter_panel = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
 shape = SubResource("BoxShape3D_etvtj")
 
-[node name="PannelCollision" type="StaticBody3D" parent="LoadPanelCellBody" unique_id=28090423]
+[node name="PannelCollision" type="StaticBody3D" parent="LoadPanelCellBody" unique_id=28090423 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
 collision_layer = 2
 collision_mask = 0
@@ -186,7 +186,7 @@ shape = SubResource("BoxShape3D_x71qd")
 
 [node name="InterpreterTV" type="Node3D" parent="." unique_id=1959546229]
 
-[node name="TVBody" type="StaticBody3D" parent="InterpreterTV" unique_id=370791356]
+[node name="TVBody" type="StaticBody3D" parent="InterpreterTV" unique_id=370791356 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2450507, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="InterpreterTV/TVBody" unique_id=1366828845]

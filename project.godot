@@ -63,6 +63,8 @@ GLMutationDisruptState="*uid://0c5led7aoxe2"
 GLMutationSentientState="*uid://wodwg6xhek0q"
 GLMutationSeenManagerBus="*uid://d4j1w4dkwb67"
 GameAdminPanel="*uid://r0ub6u77gjq0"
+GLMutationCognisanceState="*uid://vcm3ux2ckx3e"
+GLMutationExsplosiveState="*uid://6kgkl132k8e0"
 
 [debug]
 
@@ -97,6 +99,7 @@ astroid=""
 bubble=""
 hack_skull=""
 disruptable_reciever=""
+detect_cognisance_area=""
 
 [input]
 
@@ -178,6 +181,8 @@ admin_panel={
 3d_physics/layer_11="axe_interact"
 3d_physics/layer_13="disruptable_reciever"
 3d_physics/layer_14="crystal"
+3d_physics/layer_15="detect_cognisance_area"
+3d_physics/layer_16="decal"
 
 [physics]
 

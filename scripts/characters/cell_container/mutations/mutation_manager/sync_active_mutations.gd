@@ -2,6 +2,7 @@ extends Node
 
 # Parent component
 @onready var mutations_parent_node: Node3D = $"../MutationsParentNode"
+@onready var cell_container_parent_node : CharacterBody3D = $"../.."
 
 
 # SENTIENT
@@ -29,8 +30,16 @@ extends Node
 	"res://scenes/characters/cell_container/mutations/mutation_event_nodes/telekinetic/random_telekinetic_shoot.tscn"
 )
 
+# COGNISANCE 
+@onready var constant_cognisance_stalk_p_s : PackedScene = preload(
+	"res://scenes/characters/cell_container/mutations/mutation_event_nodes/cognisance/constant_cognisance_stalk.tscn"
+	
+)
 
-
+# EXSPLOSIVE
+@onready var constant_exsplosive_exsplode : PackedScene = preload(
+	"res://scenes/characters/cell_container/mutations/mutation_event_nodes/exsplosive/constant_exsplosive_exsplode.tscn"
+)
 
 func _sync(
 	active_mutation_events: Array[MutationEvent]
@@ -54,6 +63,7 @@ func _sync(
 		# Set properties before starting.
 		mutation_event_node.name = mutation_event_name
 		mutation_event_node.designated_mutation_event = mutation_event
+		mutation_event_node.parent_cell_container = cell_container_parent_node
 		mutation_event_node.random_event = (
 			mutation_event.event_type == "random"
 		)
@@ -106,6 +116,17 @@ func mutation_event_name_to_node(
 		'telekinetic_shoot' : 
 			return (
 				random_telekinetic_shoot_p_s.instantiate()
+				as MutationNode
+			)
+		
+		'cognisance_stalk' :
+			return (
+				constant_cognisance_stalk_p_s.instantiate()
+				as MutationNode
+			)
+		'exsplosive_exsplode' :
+			return (
+				constant_exsplosive_exsplode.instantiate()
 				as MutationNode
 			)
 

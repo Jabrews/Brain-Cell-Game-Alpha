@@ -24,7 +24,7 @@ func _start() :
 	# attack
 	crystals_manager._attack_player()
 	
-	await get_tree().create_timer(10.0).timeout
+	await get_tree().create_timer(6.0).timeout
 	
 	random_event_finished()
 

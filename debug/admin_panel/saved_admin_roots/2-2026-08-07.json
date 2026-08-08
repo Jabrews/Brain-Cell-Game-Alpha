@@ -1,0 +1,137 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"sentient"
+			],
+			"mutations_chosen": [
+				"sentient"
+			],
+			"mutations_picked_by_player": [
+				"sentient"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 13.7218586657728,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 13.7834929993217,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 13.2051379071051,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 13.0498324951605,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 10.1258978338532,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 12.851278723024,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 13.6056934067481,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 10.791380065327,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 12.6184257350994,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 11.9784983597147,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 10.1742109301899,
+			"wait_time_max": 15.0,
+			"wait_time_min": 10.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		}
+	],
+	"date_created": "2026-08-07",
+	"id": 2
+}

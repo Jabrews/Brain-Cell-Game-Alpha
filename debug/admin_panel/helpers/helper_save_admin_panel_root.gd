@@ -5,14 +5,22 @@ var saved_root_directory: String = (
 	"res://debug/admin_panel/saved_admin_roots/"
 )
 
-
 func _save(
 	admin_panel_root: AdminPanelRoot
 ) -> void:
+	
+	
 	if not admin_panel_root:
 		push_error("Cannot save a null AdminPanelRoot.")
 		return
-
+	
+	## get rid of non needing info ##
+	if not GameAdminPanel.save_updater_admin_batch_mutation: 
+		admin_panel_root.admin_batch_mutation = {} 
+	if not GameAdminPanel.save_random_mutation_event : 
+		admin_panel_root.admin_random_mutation_event = []
+	
+	
 	# Create the folder if it does not exist.
 	if not DirAccess.dir_exists_absolute(saved_root_directory):
 		var directory_error: Error = (

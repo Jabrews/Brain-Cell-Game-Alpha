@@ -37,7 +37,6 @@ func change_progression_step(round : int, curr_energy: int) :
 	
 	handle_energy(round, GLGameManagerBus.curr_energy)
 	
-	
 	GLGameManagerBus.emit_signal('proceed_next_energy_turn')
 	
 
@@ -63,7 +62,7 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 30
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 12
+			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0
@@ -74,7 +73,7 @@ func handle_round(round : int):
 			IVShareholderOffers.chance_of_generating_mution_offer = 0
 			IVShareholderOffers.item_offer_energy_percant= 80
 			IVShareholderOffers.first_round_item_offer_energy_percant = 40
-			## HIDDEN STATS ## 
+			# HIDDEN STATS ## 
 			IVHiddenStats.stats_to_hide = []
 			## PRISONER PROFILER ##
 			IVPrisonerProfiler.stat_increment_amount = 10
@@ -106,7 +105,7 @@ func handle_round(round : int):
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 45
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
-			IVUseableItemSpawner.hidden_shots_to_spawn = 12
+			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
 			IVUseableItemSpawner.scissors_to_spawn = 0

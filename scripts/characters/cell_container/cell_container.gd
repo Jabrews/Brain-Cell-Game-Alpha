@@ -7,6 +7,7 @@ var designated_brain_cell : BrainCell
 @onready var defect_color_manager : Node = $DefectColorManager
 @onready var offer_turn_into_flesh_bug_delay : Timer = $OfferTurnIntoFleshBugDelay
 @onready var mutation_manager : Node = $MutationManager
+@onready var container_mesh : MeshInstance3D = $MeshInstance3D
 
 # state machine
 @onready var state_machine : Node = $StateMachine

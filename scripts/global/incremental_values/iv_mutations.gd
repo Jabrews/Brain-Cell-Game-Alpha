@@ -18,13 +18,17 @@ var all_mutations : Array[BrainCellMutation] = [
 		MutationEvent.new('disrupter_disrupt', 'random_event', 'disrupter', 0)
 	]),
 	# TELEPORTATION 
-	BrainCellMutation.new('teleportation', false, []),
+	BrainCellMutation.new('teleportation', false, []), 
 	# EXSPLOSIVE
-	BrainCellMutation.new("exsplosive", false, []),
+	BrainCellMutation.new("exsplosive", false, [
+		MutationEvent.new('exsplosive_exsplode', 'constant', 'exsplosive', 0)
+	]),
 	# INFECTIOUS
 	BrainCellMutation.new('infectious', false, []),
 	# COGNISANCE
-	BrainCellMutation.new('cognisance', false, []),
+	BrainCellMutation.new('cognisance', false, [
+		MutationEvent.new('cognisance_stalk', 'constant', 'cognisance', 0)
+	]),
 	# TELEKINETIC
 	BrainCellMutation.new('telekinetic', false, [
 		MutationEvent.new('telekinetic_shoot', 'random_event', 'telekinetic', 0)
