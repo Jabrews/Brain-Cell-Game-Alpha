@@ -15,6 +15,7 @@ var held_useable_item_obj : UseableItemObject
 
 func _ready() -> void:
 	GLUsableItemBus.connect('pop_up_chose_stat', _handle_pop_up_chose_stat)
+	GLUsableItemBus.connect('scissors_pop_up_chose_mutation', _handle_scissors_pop_up_chose_mutation)
 
 
 func _process(_delta):
@@ -147,6 +148,13 @@ func _handle_pop_up_chose_stat(selected_stat : String, selected_cell : BrainCell
 		if item_used_up :
 			handle_item_used_up()
 	if useable_item_obj.item_type == 'scissors' :
-		use_scissors.use(selected_stat, selected_cell, useable_item_obj)
-		handle_item_used_up()	
+		use_scissors.use_stat(selected_stat, selected_cell, useable_item_obj)
+		handle_item_used_up()
+		
+func _handle_scissors_pop_up_chose_mutation(selected_mutation_type: String, selected_cell : BrainCell, useable_item_obj : UseableItemObject) :
+	if not useable_item_obj.item_type == 'scissors' :
+		push_error('somehow chose mutation without being scissors')
+	
+	use_scissors.use_mutation(selected_mutation_type, selected_cell, useable_item_obj)
+	handle_item_used_up()
 	

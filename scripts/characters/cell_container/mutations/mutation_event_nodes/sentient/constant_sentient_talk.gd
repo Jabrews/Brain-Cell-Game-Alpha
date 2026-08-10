@@ -58,7 +58,7 @@ func _start() :
 
 
 func start_new_dialouge_timer() :
-	get_new_dialouge_delay_timer.wait_time = randi_range(10, 12) # 30 - 50
+	get_new_dialouge_delay_timer.wait_time = randi_range(10, 65) # 10 - 60 
 	get_new_dialouge_delay_timer.start()
 
 
@@ -149,6 +149,7 @@ func play_saved_dialouge() :
 
 
 func verify_player_in_same_room_as_cell() -> bool :
+	
 	var cell_room_profile : EntityRoomProfile
 	var player_room_profile : EntityRoomProfile
 	

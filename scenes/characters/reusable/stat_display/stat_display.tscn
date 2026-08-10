@@ -5,6 +5,9 @@
 [ext_resource type="Script" uid="uid://cngjdsgc8mqlg" path="res://scripts/characters/reusable/stat_display/shake_sentient_mutation.gd" id="2_2uw1u"]
 [ext_resource type="PackedScene" uid="uid://c2rxycwqgbsjl" path="res://reusable/basic_receiver_screen/basic_receiver_screen.tscn" id="2_fo6nq"]
 [ext_resource type="Script" uid="uid://kok7afrrnhpc" path="res://scripts/characters/reusable/stat_display/stat_display_area.gd" id="3_fo6nq"]
+[ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="6_awdqm"]
+[ext_resource type="Script" uid="uid://d1sbc2iw1f1el" path="res://scripts/characters/reusable/stat_display/disruptable_reciever/stat_reciever.gd" id="7_ttv57"]
+[ext_resource type="Script" uid="uid://db3irjqdyw2bf" path="res://scripts/characters/reusable/stat_display/disruptable_reciever/mutation_reciever.gd" id="7_x71ok"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7ckj6"]
 viewport_path = NodePath("StatDisplay/StatMesh/SubViewport")
@@ -47,3 +50,12 @@ script = ExtResource("3_fo6nq")
 shape = SubResource("BoxShape3D_8yf24")
 
 [node name="MutationMeshParent" type="Node3D" parent="." unique_id=1312006427]
+
+[node name="DisruptableRecievers" type="Node3D" parent="." unique_id=1224618023]
+
+[node name="StatReciever" parent="DisruptableRecievers" unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("6_awdqm")]
+script = ExtResource("7_ttv57")
+parent_disruptable_screen = NodePath("../../StatMesh/SubViewport/BasicRecieverScreen")
+
+[node name="MutationReciever" parent="DisruptableRecievers" unique_id=501539958 instance=ExtResource("6_awdqm")]
+script = ExtResource("7_x71ok")

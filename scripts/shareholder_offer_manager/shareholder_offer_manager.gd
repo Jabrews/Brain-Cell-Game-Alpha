@@ -103,7 +103,6 @@ func toggle_display_lock(toggleValue : bool) :
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
 	else :
-		print('got here')
 		header_label.visible = false
 		blur_bg.visible = false 
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

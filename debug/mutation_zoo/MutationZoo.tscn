@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://c2tdfqqmi5ue0"]
+
+[ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="1_4iqyy"]
+[ext_resource type="Script" uid="uid://c2gw01uvssnof" path="res://debug/mutation_zoo/create_cell.gd" id="1_77sgj"]
+[ext_resource type="PackedScene" uid="uid://5aiid51oaqct" path="res://scenes/characters/player/player.tscn" id="2_2bfbm"]
+[ext_resource type="Script" uid="uid://m1437dxxt1fm" path="res://debug/mutation_zoo/trigger_mutation_event.gd" id="3_3uspc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3mpk0"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_77sgj"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="Environment" id="Environment_2bfbm"]
+background_mode = 1
+ambient_light_color = Color(0.20110431, 0.21357447, 0.074715756, 1)
+fog_enabled = true
+fog_light_color = Color(0.10628634, 0.11559991, 0.025737353, 1)
+fog_density = 0.05
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_3uspc"]
+vertices = PackedVector3Array(-24.25, 0.40000007, -24.25, -24.25, 0.40000007, 24.25, 24.25, 0.40000007, 24.25, 24.25, 0.40000007, -24.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"nav_mesh_coll"
+agent_radius = 0.7
+agent_max_slope = 20.0
+
+[node name="MutationZoo" type="Node3D" unique_id=1245098742]
+
+[node name="Env" type="Node3D" parent="." unique_id=1293142576]
+
+[node name="Floor" type="StaticBody3D" parent="Env" unique_id=1005403914 groups=["nav_mesh_coll"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Env/Floor" unique_id=2110780581]
+mesh = SubResource("BoxMesh_3mpk0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/Floor" unique_id=25233840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 0)
+shape = SubResource("BoxShape3D_77sgj")
+debug_color = Color(0.7096456, 0.4859149, 0, 1)
+
+[node name="Lights" type="Node3D" parent="Env" unique_id=1893312940]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Env/Lights" unique_id=1454298089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+omni_range = 89.985
+omni_attenuation = -0.091
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env" unique_id=851782558]
+environment = SubResource("Environment_2bfbm")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Env" unique_id=31867002]
+navigation_mesh = SubResource("NavigationMesh_3uspc")
+
+[node name="TriggerMutationEvent" type="Node" parent="." unique_id=1565759033 node_paths=PackedStringArray("cell_container_parent_node")]
+script = ExtResource("3_3uspc")
+cell_container_parent_node = NodePath("../Char/CellContainerParentNode")
+
+[node name="CreateCell" type="Node3D" parent="." unique_id=665662523]
+script = ExtResource("1_77sgj")
+
+[node name="SpawnPos" type="Node3D" parent="CreateCell" unique_id=860013561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CellContainerSpawner" parent="." unique_id=1385341540 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("1_4iqyy")]
+cell_container_parent_node = NodePath("../Char/CellContainerParentNode")
+
+[node name="Char" type="Node" parent="." unique_id=1070004734]
+
+[node name="Player" parent="Char" unique_id=1124472616 instance=ExtResource("2_2bfbm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.933587, 2, -4)
+
+[node name="CellContainerParentNode" type="Node" parent="Char" unique_id=830439544]

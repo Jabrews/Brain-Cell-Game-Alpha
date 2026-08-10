@@ -45,6 +45,7 @@ wait_time = 2.5
 wait_time = 6.0
 
 [node name="FaceSpriteManager" type="Node3D" parent="." unique_id=1328529603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2912143, 0)
 script = ExtResource("2_sf0a6")
 
 [node name="FaceSprite" type="Sprite3D" parent="FaceSpriteManager" unique_id=622413499]

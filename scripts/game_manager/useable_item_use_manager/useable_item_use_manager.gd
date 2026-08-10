@@ -11,7 +11,8 @@ func connect_signals() :
 	GLUsableItemBus.connect('use_hidden_shot', _handle_use_hidden_shot)
 	GLUsableItemBus.connect('use_steroid', _handle_use_steroid)
 	GLUsableItemBus.connect('use_ice_cube', _handle_use_icecube)
-	GLUsableItemBus.connect('use_scissors', _handle_use_scissors)
+	GLUsableItemBus.connect('use_scissors_stat', _handle_use_scissors_stat)
+	GLUsableItemBus.connect('use_scissors_mutation', _handle_use_scissors_mutation)
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) : 
@@ -66,8 +67,7 @@ func _handle_use_icecube(selected_brain_cell : BrainCell, _useable_item_obj : Us
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	
 	
-func _handle_use_scissors(selected_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) :
-	
+func _handle_use_scissors_stat(selected_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) :
 	
 	match selected_stat :	
 		'strength' :
@@ -90,5 +90,23 @@ func _handle_use_scissors(selected_cell : BrainCell, _useable_item_obj : Useable
 		
 #	
 	GLCellManagerBus.emit_signal('cell_changed', selected_cell)
+
+func _handle_use_scissors_mutation(selected_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_mutation_type: String) :
+	
+	var selected_mutation : BrainCellMutation	
+	
+	for mutation : BrainCellMutation in selected_cell.mutations : 
+		if mutation.type == selected_mutation_type : 
+			selected_mutation = mutation
+	
+	if not selected_mutation : 
+		push_error('selected mutation unable to be found for using scissors | cell ', selected_cell.name, ' | mutation type : ', selected_mutation_type)
+	
+	selected_cell.mutations.erase(selected_mutation)
+	
+	GLCellManagerBus.emit_signal('cell_changed', selected_cell)
+	
+	
+	
 	
 	

@@ -9,7 +9,10 @@ extends Node
 
 # helper components
 @onready var sync_active_mutations : Node = $SyncActiveMutations
-@onready var create_random_mutation_event_listener : Node3D = $CreateRandomMutationEventListeners
+@onready var create_event_listener: Node3D = $CreateEventListeners
+# helper verifty componnets
+@onready var verify_event_listener : Node = $VerifyEventListeners
+@onready var verify_active_and_paused_events : Node = $VerifyActiveAndPausedEvents
 
 
 var active_mutation_events: Array[MutationEvent] = []
@@ -19,7 +22,11 @@ func _ready() -> void:
 	GLMutationEventBus.connect('attempt_to_trigger_random_mutation_event', _handle_attempt_to_trigger_random_mutation_event)
 	
 # called when cell is initilized/updated
-func _constant_cell_mutations_refresh(cell_mutations : Array[BrainCellMutation]) :
+func _mutations_refresh(cell_mutations : Array[BrainCellMutation]) :
+	
+	verify_event_listener._verify(cell_mutations)
+	active_mutation_events = verify_active_and_paused_events._verify(cell_mutations, active_mutation_events)
+	paused_constant_events = verify_active_and_paused_events._verify(cell_mutations, paused_constant_events)
 	
 	# loop through mutations
 	for mutation : BrainCellMutation in cell_mutations : 
@@ -29,7 +36,7 @@ func _constant_cell_mutations_refresh(cell_mutations : Array[BrainCellMutation])
 				active_mutation_events.append(mutation_event)
 		
 			if mutation_event.event_type == 'random_event' : 
-				create_random_mutation_event_listener._create(mutation_event)
+				create_event_listener._create(mutation_event)
 	
 	# SYNC
 	sync_active_mutations._sync(active_mutation_events)

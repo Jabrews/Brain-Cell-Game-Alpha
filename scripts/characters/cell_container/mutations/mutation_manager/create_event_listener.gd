@@ -3,6 +3,9 @@ extends Node3D
 @onready var airborne_random_event_listner_p_s : PackedScene = preload("res://scenes/characters/cell_container/mutations/mutation_random_event_listeners/airborne/airborne_random_event_listener.tscn" )
 @onready var disruptor_random_event_listner_p_s : PackedScene = preload("res://scenes/characters/cell_container/mutations/mutation_random_event_listeners/disruptor/disruptor_random_event_listener.tscn")
 
+@onready var event_listener_parent_node : Node3D = $"../EventListenerParentNode"
+
+
 func _create(mutation_event : MutationEvent) :
 	
 	# only random events get these
@@ -22,7 +25,7 @@ func _create(mutation_event : MutationEvent) :
 	var listener_instance : Node3D = listener_scene.instantiate()
 	
 	listener_instance.designated_mutation_event = mutation_event
-	add_child(listener_instance)
+	event_listener_parent_node.add_child(listener_instance)
 	
 func get_packed_scene(mutation_type : String) -> PackedScene :
 	match mutation_type : 	
@@ -35,7 +38,7 @@ func get_packed_scene(mutation_type : String) -> PackedScene :
 
 
 func verify_doesnt_exist(event_name: String) -> bool : 
-	for listener : Node3D in get_children() :
+	for listener : Node3D in event_listener_parent_node.get_children() :
 		var designated_mutation_event : MutationEvent = listener.designated_mutation_event 
 		if designated_mutation_event.event_name == event_name :
 			return true

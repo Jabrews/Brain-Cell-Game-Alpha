@@ -18,8 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="11_3womk"]
 [ext_resource type="Script" uid="uid://ddkrjsdt73gin" path="res://scripts/characters/cell_container/life_span_change_effect.gd" id="11_bs8vk"]
 [ext_resource type="Script" uid="uid://3721rmieuqng" path="res://scripts/characters/cell_container/mutations/mutation_manager/mutation_manager.gd" id="11_h4f5j"]
+[ext_resource type="Script" uid="uid://csoaef2o7hcvd" path="res://scripts/characters/cell_container/mutations/mutation_manager/verify/verify_event_listener.gd" id="12_i0wlu"]
 [ext_resource type="Script" uid="uid://cemcpqv1son0t" path="res://scripts/characters/cell_container/mutations/mutation_manager/sync_active_mutations.gd" id="12_wr7hu"]
-[ext_resource type="Script" uid="uid://dtpqj0v6i3o3d" path="res://scripts/characters/cell_container/mutations/mutation_manager/create_random_mutation_event_listener.gd" id="13_f4kmu"]
+[ext_resource type="Script" uid="uid://dtpqj0v6i3o3d" path="res://scripts/characters/cell_container/mutations/mutation_manager/create_event_listener.gd" id="13_f4kmu"]
+[ext_resource type="Script" uid="uid://coob1xx37u3a1" path="res://scripts/characters/cell_container/mutations/mutation_manager/verify/verify_active_and_paused_events.gd" id="14_f6f0d"]
 [ext_resource type="AudioStream" uid="uid://x5sdvjw3mat1" path="res://sounds/player_local_sounds/cell_container/water_splash.mp3" id="16_7580g"]
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
@@ -108,13 +110,21 @@ script = ExtResource("11_bs8vk")
 [node name="MutationManager" type="Node3D" parent="." unique_id=1503776081]
 script = ExtResource("11_h4f5j")
 
+[node name="VerifyEventListeners" type="Node" parent="MutationManager" unique_id=574255966]
+script = ExtResource("12_i0wlu")
+
+[node name="VerifyActiveAndPausedEvents" type="Node" parent="MutationManager" unique_id=1716772576]
+script = ExtResource("14_f6f0d")
+
 [node name="SyncActiveMutations" type="Node" parent="MutationManager" unique_id=197846856]
 script = ExtResource("12_wr7hu")
 
+[node name="CreateEventListeners" type="Node3D" parent="MutationManager" unique_id=838214751]
+script = ExtResource("13_f4kmu")
+
 [node name="MutationsParentNode" type="Node3D" parent="MutationManager" unique_id=1210618941]
 
-[node name="CreateRandomMutationEventListeners" type="Node3D" parent="MutationManager" unique_id=838214751]
-script = ExtResource("13_f4kmu")
+[node name="EventListenerParentNode" type="Node3D" parent="MutationManager" unique_id=1972135655]
 
 [node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
 

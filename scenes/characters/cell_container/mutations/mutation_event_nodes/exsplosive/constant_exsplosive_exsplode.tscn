@@ -137,15 +137,17 @@ script = ExtResource("2_ah38n")
 script = ExtResource("3_mr272")
 
 [node name="HeaderTimeLeft" type="Label3D" parent="TimerLabelsManager" unique_id=1955422269]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0.012712061)
 billboard = 1
+texture_filter = 0
 text = "Time Left"
 font = ExtResource("2_0k70c")
 outline_size = 0
 
 [node name="MinSeconds" type="Label3D" parent="TimerLabelsManager" unique_id=2135822723]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0.012128033)
 billboard = 1
+texture_filter = 0
 text = "2 -00"
 font = ExtResource("2_0k70c")
 font_size = 19
@@ -167,7 +169,6 @@ pitch_scale = 1.4
 max_distance = 15.0
 
 [node name="IncrementSecond" type="Timer" parent="." unique_id=1759760443]
-wait_time = 0.1
 
 [node name="ExsplodeParticleManager" type="Node3D" parent="." unique_id=988088995]
 script = ExtResource("8_vks0h")

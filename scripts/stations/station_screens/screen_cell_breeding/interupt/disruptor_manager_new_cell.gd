@@ -2,6 +2,7 @@ extends Node
 
 @onready var hack_text_manager : Control = $HackTextManager
 
+var displaying_interuption = false
 
 func _ready() -> void:
 	GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
@@ -11,6 +12,7 @@ func _handle_process_next_round() :
 
 
 func _display_interuption(toggle_value : bool) : 
+	displaying_interuption = toggle_value
 	if toggle_value : 
 		hack_text_manager._start_hack_text()
 	else : 

@@ -846,7 +846,7 @@ panel empty"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DisruptorWarning" type="Control" parent="." unique_id=1090636716]
+[node name="DisruptorWarning" type="Control" parent="." unique_id=1090636716 node_paths=PackedStringArray("disrupt_manager")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -855,6 +855,7 @@ offset_right = 41.0
 offset_bottom = 40.0
 script = ExtResource("18_2mx5v")
 active_room_name = "main_room"
+disrupt_manager = NodePath("../DisruptorManagerBoostSeat")
 
 [node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=280246474]
 texture_filter = 1

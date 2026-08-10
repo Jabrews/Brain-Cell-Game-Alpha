@@ -12,7 +12,27 @@ func _update_mutations(round : int , energy : int) :
 			# lonley
 			IVMutations.all_mutations[2],
 			# disrupter 
-			IVMutations.all_mutations[3], 
+			IVMutations.all_mutations[3],
+			# exsplosive 
+			#IVMutations.all_mutations[4],
+			# cognisance
+			#IVMutations.all_mutations[5],
+			# telekentic 
+			#IVMutations.all_mutations[6],
+
+
+		]
+	
+	elif round == 2 :
+		IVMutations.mutations= [
+			# airborne
+			#IVMutations.all_mutations[0],
+			# sentient
+			#IVMutations.all_mutations[1],
+			# lonley
+			#IVMutations.all_mutations[2],
+			# disrupter 
+			IVMutations.all_mutations[3],
 			# exsplosive 
 			IVMutations.all_mutations[4],
 			# cognisance
@@ -21,23 +41,6 @@ func _update_mutations(round : int , energy : int) :
 			IVMutations.all_mutations[6],
 
 
-		]	
-	
-	elif round == 2 :
-		IVMutations.mutations= [
-			# airborne
-			IVMutations.all_mutations[0],
-			# sentient
-			IVMutations.all_mutations[1],
-			# lonley
-			IVMutations.all_mutations[2],
-			# disrupter 
-			IVMutations.all_mutations[3], 
-			# exsplosive 
-			IVMutations.all_mutations[4],
-			# cognisance
-			# telekentic 
-			IVMutations.all_mutations[6],
 		]
 		
 	var danger_level = get_energy_danger_level(energy)

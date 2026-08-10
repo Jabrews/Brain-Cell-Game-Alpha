@@ -231,7 +231,7 @@ theme_override_font_sizes/font_size = 34
 text = "Finished"
 horizontal_alignment = 1
 
-[node name="DisruptorWarning" type="Control" parent="." unique_id=2020817215]
+[node name="DisruptorWarning" type="Control" parent="." unique_id=2020817215 node_paths=PackedStringArray("disrupt_manager")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -239,6 +239,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("9_4pxo1")
 active_room_name = "interpreter_room"
+disrupt_manager = NodePath("../DisruptorManagerInterpreter")
 
 [node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=983175867]
 texture_filter = 1

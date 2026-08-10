@@ -40,14 +40,15 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 	if round == 1 :	
 		match danger_level :
 			0 : 
-				IVHiddenStats.max_stats_to_hide = 2
+				IVHiddenStats.max_stats_to_hide = 0
 			1 : 
-				IVHiddenStats.max_stats_to_hide = 3
+				IVHiddenStats.max_stats_to_hide = 1
+				IVHiddenStats.stats_to_hide = ['strength']
 			2 : 
-				IVHiddenStats.max_stats_to_hide = 4
+				IVHiddenStats.max_stats_to_hide = 3
 				IVHiddenStats.stats_to_hide = ['strength']
 			3 : 
-				IVHiddenStats.max_stats_to_hide = 5
+				IVHiddenStats.max_stats_to_hide = 6
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 	
 	elif round == 2 :
@@ -56,11 +57,11 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 				IVHiddenStats.max_stats_to_hide = 3
 				IVHiddenStats.stats_to_hide = ['strength']
 			1 : 
-				IVHiddenStats.max_stats_to_hide = 5
+				IVHiddenStats.max_stats_to_hide = 6
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
 			2 : 
-				IVHiddenStats.max_stats_to_hide = 6
+				IVHiddenStats.max_stats_to_hide = 9
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
 			3 : 
-				IVHiddenStats.max_stats_to_hide = 7
+				IVHiddenStats.max_stats_to_hide = 10
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']

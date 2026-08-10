@@ -17,17 +17,17 @@ loop = true
 
 [node name="ConstantCognisanceStalk" type="Node3D" unique_id=947441138]
 script = ExtResource("1_r4hed")
-initate_walk_min_time = 10.0
-fall_delay_min_time = 60.0
-fall_delay_max_time = 300.0
+initate_walk_max_time = 10.0
+fall_delay_min_time = 30.0
+fall_delay_max_time = 200.0
 
 [node name="MoveTowardsPlayer" type="Node" parent="." unique_id=764458029]
 script = ExtResource("2_8ks62")
-walking_speed = 6.2
+walking_speed = 6.5
 
 [node name="DetectPlayerLooking" type="Node" parent="." unique_id=1025645570]
 script = ExtResource("3_1jysq")
-player_look_threshold = 0.1
+player_look_threshold = 0.09
 
 [node name="StartDelay" type="Timer" parent="." unique_id=1616311837]
 wait_time = 10.0

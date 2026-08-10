@@ -36,6 +36,7 @@ var last_15_scale_tween: Tween
 
 # Font color
 var red_font_color: Color = Color.RED
+var regular_font_color : Color = Color.WHITE
 
 
 var increased_regular_click: bool = false
@@ -45,6 +46,9 @@ var last_30_started: bool = false
 
 func _ready() -> void:
 	original_parent_position = parent_manager.position
+	
+	header_time_left_label.modulate = regular_font_color 
+	min_seconds_label.modulate = regular_font_color 
 
 
 func _refresh_visuals(
@@ -161,10 +165,10 @@ func visual_every_30() -> void:
 
 	await every_30_scale_tween.finished
 
-	# Do not turn white again if we have entered the final 30 seconds.
+	# Do not turn regular color again if we have entered the final 30 seconds.
 	if not stop_flashing_red:
-		header_time_left_label.modulate = Color.WHITE
-		min_seconds_label.modulate = Color.WHITE
+		header_time_left_label.modulate = regular_font_color
+		min_seconds_label.modulate = regular_font_color 
 
 
 func flash_red_each_second() -> void:
@@ -176,5 +180,5 @@ func flash_red_each_second() -> void:
 	if stop_flashing_red:
 		return
 
-	header_time_left_label.modulate = Color.WHITE
-	min_seconds_label.modulate = Color.WHITE
+	header_time_left_label.modulate = regular_font_color 
+	min_seconds_label.modulate = regular_font_color 

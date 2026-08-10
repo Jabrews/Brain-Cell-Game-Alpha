@@ -26,8 +26,8 @@
 [ext_resource type="Texture2D" uid="uid://c5k5ibq6s2pn2" path="res://models/screens/breeding_symbols/arrow_UP.png" id="17_6dnre"]
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="18_b1ii0"]
 [ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="19_klfi8"]
+[ext_resource type="Script" uid="uid://b3gfucopkv7ts" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_breeding_loader/disrupt/breeding_loader_disrupt_warning.gd" id="27_ok6h4"]
 [ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="27_rc7kt"]
-[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="27_rgwpx"]
 [ext_resource type="Script" uid="uid://tp63bilvru4r" path="res://scripts/stations/station_screens/screen_cell_breeding/interupt/disruptor_arrow_blocker.gd" id="28_0av1a"]
 [ext_resource type="Script" uid="uid://coiycsqa767cw" path="res://scripts/stations/station_screens/screen_cell_breeding/interupt/disruptor_manager_seat_loading.gd" id="28_v560m"]
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="29_u6spa"]
@@ -1684,7 +1684,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("27_rgwpx")
+script = ExtResource("27_ok6h4")
 active_room_name = "main_room"
 
 [node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=1319788637]

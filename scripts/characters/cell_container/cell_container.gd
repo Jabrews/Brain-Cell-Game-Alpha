@@ -50,7 +50,7 @@ func _ready() -> void:
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	# update constant mutations
-	mutation_manager._constant_cell_mutations_refresh(designated_brain_cell.mutations)
+	mutation_manager._mutations_refresh(designated_brain_cell.mutations)
 	
 	
 	check_for_cell_dead_on_start()
@@ -123,7 +123,8 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 
 	stat_display._handle_brain_cell_recieved(designated_brain_cell)
 	defect_color_manager.update_defect_color_manager(designated_brain_cell)
-	mutation_manager._constant_cell_mutations_refresh(designated_brain_cell.mutations)
+	mutation_manager._mutations_refresh(designated_brain_cell.mutations)
+	
 	
 	check_for_cell_dead_on_update()
 	

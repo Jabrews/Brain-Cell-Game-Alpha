@@ -5,6 +5,11 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_coli1"]
 [ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="2_rf607"]
 [ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="3_jccw8"]
+[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="6_q0e86"]
+[ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="7_3ivkc"]
+[ext_resource type="Script" uid="uid://c3gwkfkmo6fr8" path="res://scripts/characters/reusable/stat_display/mutation_display/disruptor_manager_mutation_display.gd" id="8_q0e86"]
+[ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="9_k15i7"]
+[ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="10_vketu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_coli1"]
 shader = ExtResource("2_3swiq")
@@ -99,3 +104,276 @@ offset_bottom = 168.0
 material = SubResource("ShaderMaterial_coli1")
 offset_right = 180.0
 offset_bottom = 179.0
+
+[node name="DisruptorWarning" type="Control" parent="." unique_id=1629320867 node_paths=PackedStringArray("disrupt_manager")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_q0e86")
+active_room_name = "main_room"
+disrupt_manager = NodePath("../DisruptorManagerMutationDisplay")
+
+[node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=587894666]
+texture_filter = 1
+position = Vector2(89.99999, 89.00001)
+scale = Vector2(0.37499997, 0.6666667)
+texture = ExtResource("7_3ivkc")
+
+[node name="Label" type="Label" parent="DisruptorWarning" unique_id=958809504]
+layout_mode = 0
+offset_left = -207.0
+offset_top = 50.0
+offset_right = 391.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("2_coli1")
+theme_override_font_sizes/font_size = 24
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DisruptorWarning" unique_id=296842556]
+layout_mode = 0
+offset_left = -208.0
+offset_top = 79.0
+offset_right = 390.0
+offset_bottom = 142.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("2_coli1")
+theme_override_font_sizes/font_size = 6
+text = "technical difficulties"
+horizontal_alignment = 1
+
+[node name="FlashDelayTimer" type="Timer" parent="DisruptorWarning" unique_id=1571209382]
+wait_time = 0.5
+
+[node name="DisruptorManagerMutationDisplay" type="Control" parent="." unique_id=1480469331]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_q0e86")
+
+[node name="HackTextManager" type="Control" parent="DisruptorManagerMutationDisplay" unique_id=223268266]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_k15i7")
+active_text_amount = 10
+
+[node name="HackTextParentNode" type="Control" parent="DisruptorManagerMutationDisplay/HackTextManager" unique_id=1486203705]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HackText" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=848987525 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 31.0
+offset_top = 31.0
+offset_right = 31.0
+offset_bottom = 31.0
+
+[node name="HackText2" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=9984598 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 90.0
+offset_top = 56.0
+offset_right = 90.0
+offset_bottom = 56.0
+
+[node name="HackText3" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1153950450 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 82.0
+offset_top = 144.0
+offset_right = 82.0
+offset_bottom = 144.0
+
+[node name="HackText4" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1300634106 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 43.0
+offset_top = 4.0
+offset_right = 43.0
+offset_bottom = 4.0
+
+[node name="HackText5" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=35741778 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 134.0
+offset_top = 4.0
+offset_right = 134.0
+offset_bottom = 4.0
+
+[node name="HackText6" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1022114562 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 31.0
+offset_top = 124.0
+offset_right = 31.0
+offset_bottom = 124.0
+
+[node name="HackText7" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1289146772 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 157.0
+offset_right = 7.0
+offset_bottom = 157.0
+
+[node name="HackText8" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=671989320 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 53.0
+offset_top = 126.0
+offset_right = 53.0
+offset_bottom = 126.0
+
+[node name="HackText9" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1637419322 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 54.0
+offset_top = 88.0
+offset_right = 54.0
+offset_bottom = 88.0
+
+[node name="HackText10" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=357284867 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 16.0
+offset_top = 42.0
+offset_right = 16.0
+offset_bottom = 42.0
+
+[node name="HackText11" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=977718079 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 11.0
+offset_top = 65.0
+offset_right = 11.0
+offset_bottom = 65.0
+
+[node name="HackText12" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=508349702 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 79.0
+offset_top = 110.0
+offset_right = 79.0
+offset_bottom = 110.0
+
+[node name="HackText13" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1764095100 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 138.0
+offset_top = 135.0
+offset_right = 138.0
+offset_bottom = 135.0
+
+[node name="HackText14" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=300057398 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 139.0
+offset_top = 97.0
+offset_right = 139.0
+offset_bottom = 97.0
+
+[node name="HackText15" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=399212533 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 91.0
+offset_top = 4.0
+offset_right = 91.0
+offset_bottom = 4.0
+
+[node name="HackText16" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1291705111 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 53.0
+offset_top = 50.0
+offset_right = 53.0
+offset_bottom = 50.0
+
+[node name="HackText17" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1696585362 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 105.0
+offset_right = 21.0
+offset_bottom = 105.0
+
+[node name="HackText18" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1200651004 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 49.0
+offset_top = 149.0
+offset_right = 49.0
+offset_bottom = 149.0
+
+[node name="HackText19" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=2113936567 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 81.0
+offset_top = 92.0
+offset_right = 81.0
+offset_bottom = 92.0
+
+[node name="HackText20" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=2022350581 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 45.0
+offset_top = 106.0
+offset_right = 45.0
+offset_bottom = 106.0
+
+[node name="HackText21" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=480379615 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 32.0
+offset_top = 81.0
+offset_right = 32.0
+offset_bottom = 81.0
+
+[node name="HackText22" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1632272132 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 121.0
+offset_top = 89.0
+offset_right = 121.0
+offset_bottom = 89.0
+
+[node name="HackText23" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1017364092 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 141.0
+offset_top = 158.0
+offset_right = 141.0
+offset_bottom = 158.0
+
+[node name="HackText24" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=525216490 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 61.0
+offset_top = 29.0
+offset_right = 61.0
+offset_bottom = 29.0
+
+[node name="HackText25" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=639035253 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 152.0
+offset_top = 48.0
+offset_right = 152.0
+offset_bottom = 48.0
+
+[node name="HackText26" parent="DisruptorManagerMutationDisplay/HackTextManager/HackTextParentNode" unique_id=1771094149 instance=ExtResource("10_vketu")]
+visible = false
+layout_mode = 1
+offset_left = 118.0
+offset_top = 127.0
+offset_right = 118.0
+offset_bottom = 127.0
+
+[node name="SwitchHackTextTimer" type="Timer" parent="DisruptorManagerMutationDisplay/HackTextManager" unique_id=944562793]
+wait_time = 3.0

@@ -14,6 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="8_ekdri"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="9_cih2x"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="10_hij5s"]
+[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="15_dqnac"]
+[ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="16_ekdri"]
+[ext_resource type="Script" uid="uid://b3ghyaq1od780" path="res://reusable/basic_receiver_screen/disruptor_manager_reciever_screen.gd" id="17_tqrwa"]
+[ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="19_yqc08"]
+[ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="20_00lp2"]
+[ext_resource type="Script" uid="uid://cqmugyg8o67v" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull_manager.gd" id="21_6f23f"]
+[ext_resource type="Script" uid="uid://d3lf08jd0o5ml" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/detect_skull_area.gd" id="22_6umcr"]
+[ext_resource type="Script" uid="uid://cvo413kvxj0ic" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull.gd" id="23_0ssro"]
+[ext_resource type="Texture2D" uid="uid://4df418kwwq1u" path="res://models/mutations/random_disruptor_disrupt/hack_skull.png" id="24_oqbwp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8usb6"]
 shader = ExtResource("2_dst7k")
@@ -42,6 +51,21 @@ shader_parameter/noise_scale = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7n0j8"]
+size = Vector2(480, 6.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0s8g"]
+size = Vector2(480, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qa4yh"]
+size = Vector2(6, 268)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5aqu"]
+size = Vector2(5, 268)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7h7l"]
+size = Vector2(40, 40)
 
 [node name="BasicReciverScreen" type="Node2D" unique_id=724718654]
 script = ExtResource("1_v6ql6")
@@ -86,6 +110,18 @@ offset_bottom = 52.0
 metadata/_edit_use_anchors_ = true
 
 [node name="CellName" type="Label" parent="StatDisplay" unique_id=179676983]
+layout_mode = 0
+offset_left = 142.0
+offset_top = -2.0
+offset_right = 316.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 20
+text = "None
+"
+horizontal_alignment = 1
+
+[node name="CellName2" type="Label" parent="StatDisplay" unique_id=388022744]
 layout_mode = 0
 offset_left = 142.0
 offset_top = -2.0
@@ -448,3 +484,345 @@ texture = SubResource("CompressedTexture2D_tqrwa")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="DisruptorWarning" type="Control" parent="." unique_id=1725156046 node_paths=PackedStringArray("disrupt_manager")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_dqnac")
+active_room_name = "main_room"
+disrupt_manager = NodePath("../DisruptorManagerRecieverScreen")
+
+[node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=760669875]
+texture_filter = 1
+position = Vector2(240, 135.00002)
+scale = Vector2(1, 1.0074075)
+texture = ExtResource("16_ekdri")
+
+[node name="Label" type="Label" parent="DisruptorWarning" unique_id=1019416481]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 96.0
+offset_right = 538.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 47
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DisruptorWarning" unique_id=1997922349]
+layout_mode = 0
+offset_left = -60.0
+offset_top = 161.0
+offset_right = 538.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("3_jqv5s")
+theme_override_font_sizes/font_size = 15
+text = "technical difficulties"
+horizontal_alignment = 1
+
+[node name="FlashDelayTimer" type="Timer" parent="DisruptorWarning" unique_id=2143109415]
+wait_time = 0.5
+
+[node name="DisruptorManagerRecieverScreen" type="Control" parent="." unique_id=856442917]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("17_tqrwa")
+
+[node name="HackTextManager" type="Control" parent="DisruptorManagerRecieverScreen" unique_id=1927369078]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("19_yqc08")
+active_text_amount = 10
+
+[node name="HackTextParentNode" type="Control" parent="DisruptorManagerRecieverScreen/HackTextManager" unique_id=79930958]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HackText" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=848987525 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 31.0
+offset_top = 31.0
+offset_right = 31.0
+offset_bottom = 31.0
+
+[node name="HackText2" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1686473406 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 348.0
+offset_top = 51.0
+offset_right = 348.0
+offset_bottom = 51.0
+
+[node name="HackText3" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1860464423 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 82.0
+offset_top = 144.0
+offset_right = 82.0
+offset_bottom = 144.0
+
+[node name="HackText4" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=339692684 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 124.0
+offset_top = 64.0
+offset_right = 124.0
+offset_bottom = 64.0
+
+[node name="HackText5" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=998287701 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 441.0
+offset_top = 84.0
+offset_right = 441.0
+offset_bottom = 84.0
+
+[node name="HackText6" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=160652904 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 175.0
+offset_top = 177.0
+offset_right = 175.0
+offset_bottom = 177.0
+
+[node name="HackText7" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1055979980 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 157.0
+offset_right = 7.0
+offset_bottom = 157.0
+
+[node name="HackText8" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=113595800 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 311.0
+offset_top = 121.0
+offset_right = 311.0
+offset_bottom = 121.0
+
+[node name="HackText9" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1232071867 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 45.0
+offset_top = 214.0
+offset_right = 45.0
+offset_bottom = 214.0
+
+[node name="HackText10" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1426164913 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 25.0
+
+[node name="HackText11" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1481843094 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 260.0
+offset_top = 186.0
+offset_right = 260.0
+offset_bottom = 186.0
+
+[node name="HackText12" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=770977843 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 79.0
+offset_top = 110.0
+offset_right = 79.0
+offset_bottom = 110.0
+
+[node name="HackText13" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=41892030 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 396.0
+offset_top = 130.0
+offset_right = 396.0
+offset_bottom = 130.0
+
+[node name="HackText14" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1252952861 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 130.0
+offset_top = 223.0
+offset_right = 130.0
+offset_bottom = 223.0
+
+[node name="HackText15" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1172137259 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 355.0
+offset_top = 34.0
+offset_right = 355.0
+offset_bottom = 34.0
+
+[node name="HackText16" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1389256475 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 202.0
+offset_top = 181.0
+offset_right = 202.0
+offset_bottom = 181.0
+
+[node name="HackText17" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1036610398 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 105.0
+offset_right = 21.0
+offset_bottom = 105.0
+
+[node name="HackText18" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=997165513 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 338.0
+offset_top = 125.0
+offset_right = 338.0
+offset_bottom = 125.0
+
+[node name="HackText19" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=41974605 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 72.0
+offset_top = 218.0
+offset_right = 72.0
+offset_bottom = 218.0
+
+[node name="HackText20" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1966178410 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 297.0
+offset_top = 29.0
+offset_right = 297.0
+offset_bottom = 29.0
+
+[node name="HackText21" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1285636758 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 280.0
+offset_top = 59.0
+offset_right = 280.0
+offset_bottom = 59.0
+
+[node name="HackText22" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1904975569 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 220.0
+offset_right = 270.0
+offset_bottom = 220.0
+
+[node name="HackText23" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=596172022 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 89.0
+offset_top = 144.0
+offset_right = 89.0
+offset_bottom = 144.0
+
+[node name="HackText24" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=604357596 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 406.0
+offset_top = 164.0
+offset_right = 406.0
+offset_bottom = 164.0
+
+[node name="HackText25" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1371359902 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 105.0
+offset_top = 183.0
+offset_right = 105.0
+offset_bottom = 183.0
+
+[node name="HackText26" parent="DisruptorManagerRecieverScreen/HackTextManager/HackTextParentNode" unique_id=1397309592 instance=ExtResource("20_00lp2")]
+visible = false
+layout_mode = 1
+offset_left = 422.0
+offset_top = 203.0
+offset_right = 422.0
+offset_bottom = 203.0
+
+[node name="SwitchHackTextTimer" type="Timer" parent="DisruptorManagerRecieverScreen/HackTextManager" unique_id=1173378142]
+wait_time = 3.0
+
+[node name="HackSkullManager" type="Control" parent="DisruptorManagerRecieverScreen" unique_id=1652670690]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_6f23f")
+
+[node name="DetectSkullAreas" type="Node2D" parent="DisruptorManagerRecieverScreen/HackSkullManager" unique_id=305977809]
+
+[node name="Top" type="Area2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas" unique_id=309804578]
+position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("22_6umcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas/Top" unique_id=1871921904]
+position = Vector2(240, 7.75)
+shape = SubResource("RectangleShape2D_7n0j8")
+
+[node name="Bottom" type="Area2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas" unique_id=765547154]
+position = Vector2(0, 264)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("22_6umcr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas/Bottom" unique_id=237126754]
+position = Vector2(240, 4)
+shape = SubResource("RectangleShape2D_v0s8g")
+
+[node name="Left" type="Area2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas" unique_id=1583175020]
+position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("22_6umcr")
+flip_direction_x = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas/Left" unique_id=831266107]
+position = Vector2(3, 139)
+shape = SubResource("RectangleShape2D_qa4yh")
+
+[node name="Right" type="Area2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas" unique_id=561964580]
+position = Vector2(479, -2)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("22_6umcr")
+flip_direction_x = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/DetectSkullAreas/Right" unique_id=823363398]
+position = Vector2(-2.5, 139)
+shape = SubResource("RectangleShape2D_u5aqu")
+
+[node name="HackSkull" type="CharacterBody2D" parent="DisruptorManagerRecieverScreen/HackSkullManager" unique_id=1360140842 groups=["hack_skull"]]
+visible = false
+position = Vector2(252, 145)
+scale = Vector2(2, 2)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("23_0ssro")
+
+[node name="HackSkull" type="Sprite2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/HackSkull" unique_id=1167795450]
+texture_filter = 1
+texture = ExtResource("24_oqbwp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerRecieverScreen/HackSkullManager/HackSkull" unique_id=75088148]
+shape = SubResource("RectangleShape2D_y7h7l")

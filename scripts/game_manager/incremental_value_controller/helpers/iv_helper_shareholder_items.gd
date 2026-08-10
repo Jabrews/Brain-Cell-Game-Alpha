@@ -18,7 +18,7 @@ func _update_shareholder_items(round : int , energy : int) :
 			UseableOfferItem.new('hidden_shot', 'Reveals all hidden stats on a cell container.'),
 			UseableOfferItem.new('steroid', 'Increases the clean and defect values of a cell container by 30 percant'),
 			UseableOfferItem.new('ice_cube', 'Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction.'),
-			UseableOfferItem.new('scissors', 'Cut off a chosen stat from a cell.'),
+			UseableOfferItem.new('scissors', 'Cut off a chosen stat or mutation from a cell.'),
 		]
 	
 	var danger_level = get_energy_danger_level(energy)

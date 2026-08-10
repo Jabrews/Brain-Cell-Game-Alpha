@@ -61,11 +61,11 @@ func handle_round(round : int):
 			IVCellCreator.max_stat_value = 160
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 30
-			IVUseableItemSpawner.defect_shots_to_spawn = 0
+			IVUseableItemSpawner.defect_shots_to_spawn = 1
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0
-			IVUseableItemSpawner.scissors_to_spawn = 0
+			IVUseableItemSpawner.scissors_to_spawn = 1
 			## SHAREHOLDER OFFER
 			IVShareholderOffers.first_item_offer_energy_percant= 80
 			IVShareholderOffers.second_item_offer_energy_percant= 40
