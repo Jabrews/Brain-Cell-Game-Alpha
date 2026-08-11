@@ -17,6 +17,8 @@
 [ext_resource type="Script" uid="uid://bwy54p8t4ku4o" path="res://scripts/ui/hold_display/update_shader.gd" id="13_n3vwu"]
 [ext_resource type="Script" uid="uid://bs22t135fvsum" path="res://scripts/ui/fade_to_black/fade_to_black.gd" id="16_0i47d"]
 [ext_resource type="Script" uid="uid://divqeid51v8os" path="res://scripts/ui/view_file_cabinet.gd" id="17_mgwkc"]
+[ext_resource type="Script" uid="uid://dn1hbdbmjlyif" path="res://scripts/ui/event_notice_manager/event_notice_manager.gd" id="18_ygedu"]
+[ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
@@ -119,6 +121,7 @@ layout_mode = 1
 popup_type = "defect_shot"
 
 [node name="FadeToBlack" type="Control" parent="." unique_id=488336529]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -175,3 +178,44 @@ theme_override_font_sizes/font_size = 24
 text = "View File Cabinet"
 horizontal_alignment = 1
 script = ExtResource("17_mgwkc")
+
+[node name="EventNoticeManager" type="Control" parent="." unique_id=803210852]
+layout_mode = 1
+anchors_preset = 0
+script = ExtResource("18_ygedu")
+
+[node name="Spot1" type="Control" parent="EventNoticeManager" unique_id=1927085247]
+anchors_preset = 0
+offset_left = 696.0
+offset_top = 400.0
+offset_right = 696.0
+offset_bottom = 400.0
+script = ExtResource("19_svq4k")
+spot_num = 1
+
+[node name="Spot2" type="Control" parent="EventNoticeManager" unique_id=123130193]
+anchors_preset = 0
+offset_left = 696.0
+offset_top = 328.0
+offset_right = 696.0
+offset_bottom = 328.0
+script = ExtResource("19_svq4k")
+spot_num = 2
+
+[node name="Spot3" type="Control" parent="EventNoticeManager" unique_id=2026601181]
+anchors_preset = 0
+offset_left = 696.0
+offset_top = 256.0
+offset_right = 696.0
+offset_bottom = 256.0
+script = ExtResource("19_svq4k")
+spot_num = 3
+
+[node name="Spot4" type="Control" parent="EventNoticeManager" unique_id=1413037423]
+anchors_preset = 0
+offset_left = 696.0
+offset_top = 184.0
+offset_right = 696.0
+offset_bottom = 184.0
+script = ExtResource("19_svq4k")
+spot_num = 4

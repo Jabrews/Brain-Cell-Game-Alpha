@@ -1,0 +1,49 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter"
+			],
+			"mutations_chosen": [
+				"disrupter"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"2": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne",
+				"sentient",
+				"lonley",
+				"disrupter"
+			],
+			"mutations_chosen": [
+				"sentient"
+			],
+			"mutations_picked_by_player": [
+				"sentient"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [],
+	"date_created": "2026-08-11",
+	"id": 117
+}

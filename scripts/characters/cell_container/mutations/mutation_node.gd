@@ -15,7 +15,10 @@ func _ready() -> void:
 	_ready_overide()
 
 func mutation_start() -> void:
+	create_event_notice_if_random()
 	_start()
+	
+	
 
 # Called by SyncActiveMutations when this node should be removed.
 func mutation_stop() -> void:
@@ -59,3 +62,16 @@ func _start() -> void:
 
 func _stop() -> void:
 	pass
+
+
+
+func create_event_notice_if_random() :
+	
+	if designated_mutation_event.event_type == 'random_event' :
+		
+		var cell_name : String = parent_cell_container.designated_brain_cell.name
+		
+		GLEventNoticeManagerBus.emit_signal('create_event_notice',
+		 EventNotice.new('mutation_event', cell_name.to_upper() + ' is experiencing a mutation event')
+		)
+	

@@ -15,9 +15,14 @@ func _handle_jolt() :
 	# all interpreters jolt
 	if ran_num <= all_jolt_chance:
 		
+		
 		GLDefectEventMangerBus.emit_signal(
 			"event_hidden_stat_interpreter_jolt",
 			IVHiddenStats.stats_to_hide,
+		)
+		
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', 
+			EventNotice.new('defect_event', 'ALL hidden stat interpreters jolting')		
 		)
 		
 		# emit sound
@@ -37,12 +42,17 @@ func decide_single_stat_interpreter() -> void:
 	match  random_stat :
 		'strength' :
 			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
+
 		'intelligence':
 			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['intelligence'])
 		'community' :
 			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['community'])
 		_ :
 			print('undable to find random stat : ', random_stat)
+	
+	GLEventNoticeManagerBus.emit_signal('create_event_notice', 
+		EventNotice.new('defect_event', random_stat.to_upper() + ' hidden stat interpreter jolting')		
+	)
 	
 	
 	

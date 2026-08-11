@@ -34,6 +34,7 @@ func get_energy_danger_level(energy: int) -> int:
 	else:
 		return 3
 
+@warning_ignore('shadowed_global_identifier')
 func update_mutation_turn(round  : int, danger_level : int) :
 	
 	if round == 1:

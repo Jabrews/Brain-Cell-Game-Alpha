@@ -24,8 +24,15 @@ func _handle_jolt() :
 	# pick random valid container
 	var random_container_cell = valid_cells.pick_random()
 
+	var cell_name : String = random_container_cell.designated_brain_cell.name
+	
 	# emit signal
 	GLDefectEventMangerBus.emit_signal(
 		"event_cell_container_jolt",
-		random_container_cell.designated_brain_cell.name
+		cell_name,
 	)
+	
+	GLEventNoticeManagerBus.emit_signal('create_event_notice', 
+		EventNotice.new('defect_event', cell_name.to_upper() + ' is experiencing a mutation event')	
+	)
+#	

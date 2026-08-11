@@ -21,6 +21,9 @@ var spawn_flesh_bug_on_death : bool = true
 
 var prevent_gravity : bool = false
 
+var cell_aged_event_notice_created: bool = false
+
+
 
 func _ready() -> void:
 	
@@ -119,6 +122,14 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 	if not designated_brain_cell.cell_is_frozen :
 		if state_machine.curr_state.name == 'Froze' :		
 			switch_cell_state('idle')
+	
+	if designated_brain_cell.life_span == 1 : 
+		GLEventNoticeManagerBus.emit_signal('create_event_notice',
+			EventNotice.new("age_warning", designated_brain_cell.name.to_upper() + " has reached critical age."
+		)
+		)
+
+		
 		
 
 	stat_display._handle_brain_cell_recieved(designated_brain_cell)

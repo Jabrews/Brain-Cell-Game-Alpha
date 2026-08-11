@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://c65gt76psrhvr"]
+
+[ext_resource type="Texture2D" uid="uid://b8adtratnklhr" path="res://models/event_notice/black_bg.png" id="1_ac3he"]
+[ext_resource type="Script" uid="uid://d0frvthcqhs41" path="res://scripts/ui/event_notice_manager/event_notice/event_notice.gd" id="1_mjokq"]
+[ext_resource type="Script" uid="uid://rn1rr78ebnyf" path="res://scripts/ui/event_notice_manager/event_notice/popup_sound_manager.gd" id="2_4qbvk"]
+[ext_resource type="Script" uid="uid://dqq0c7ftbo1op" path="res://scripts/ui/event_notice_manager/event_notice/load_style.gd" id="2_c7w4r"]
+[ext_resource type="Texture2D" uid="uid://chpwgvkrcgnti" path="res://models/event_notice/timer.png" id="2_mjokq"]
+[ext_resource type="AudioStream" uid="uid://bhvpqsqbmjcwn" path="res://sounds/event_notice/default_sound.mp3" id="2_rfx8t"]
+[ext_resource type="AudioStream" uid="uid://c648nyfpqu604" path="res://sounds/event_notice/emergency_sound.mp3" id="3_4qbvk"]
+[ext_resource type="Shader" uid="uid://bhq5ffj7jsibn" path="res://scripts/ui/event_notice_manager/shader/loading_timer.gdshader" id="4_4x8tm"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_7vpr4"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_c7w4r"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="5_dii35"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dii35"]
+shader = ExtResource("4_4x8tm")
+shader_parameter/progress = 0.0
+shader_parameter/base_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+shader_parameter/progress_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7w4r"]
+shader = ExtResource("5_dii35")
+shader_parameter/hologram_enabled = false
+shader_parameter/shimmer_speed = 0.6000000285
+shader_parameter/shimmer_strength = 0.50000002375
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(1, 0.7, 0.7, 1)
+
+[node name="EventNotice" type="Control" unique_id=896096087]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_mjokq")
+
+[node name="PopupSoundManager" type="Node2D" parent="." unique_id=752306958]
+script = ExtResource("2_4qbvk")
+
+[node name="Default" type="AudioStreamPlayer2D" parent="PopupSoundManager" unique_id=275702337]
+stream = ExtResource("2_rfx8t")
+
+[node name="Emergency" type="AudioStreamPlayer2D" parent="PopupSoundManager" unique_id=814953005]
+stream = ExtResource("3_4qbvk")
+
+[node name="LoadStyle" type="Node" parent="." unique_id=480655066]
+script = ExtResource("2_c7w4r")
+
+[node name="bg" type="TextureRect" parent="." unique_id=1547401648]
+modulate = Color(1, 1, 1, 0.76862746)
+texture_filter = 1
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 64.0
+texture = ExtResource("1_ac3he")
+
+[node name="ProgressDial" type="TextureRect" parent="." unique_id=1986379027]
+texture_filter = 1
+material = SubResource("ShaderMaterial_dii35")
+layout_mode = 0
+offset_left = 128.0
+offset_right = 144.0
+offset_bottom = 17.0
+texture = ExtResource("2_mjokq")
+flip_h = true
+flip_v = true
+
+[node name="Header" type="Label" parent="." unique_id=712527664]
+material = SubResource("ShaderMaterial_c7w4r")
+custom_minimum_size = Vector2(216, 33)
+custom_maximum_size = Vector2(216, 33)
+layout_mode = 0
+offset_left = -40.0
+offset_right = 176.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(0.91685265, 0, 0.24557137, 1)
+theme_override_fonts/font = ExtResource("4_7vpr4")
+theme_override_font_sizes/font_size = 8
+text = "Defect Event
+ Detected"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Body" type="Label" parent="." unique_id=2080535667]
+custom_minimum_size = Vector2(128, 29)
+custom_maximum_size = Vector2(128, 29)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 32.0
+offset_right = 136.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("5_c7w4r")
+theme_override_font_sizes/font_size = 10
+text = "cell is experiencing jolt of defect"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="IncrementProgress" type="Timer" parent="." unique_id=1495815092]
+wait_time = 0.5

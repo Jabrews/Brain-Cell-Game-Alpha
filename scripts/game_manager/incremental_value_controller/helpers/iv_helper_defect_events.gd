@@ -1,29 +1,56 @@
 extends Node
 
-@warning_ignore("shadowed_global_identifier")
-func _update_defect_event_values(round : int, energy : int) -> void:
 
+@warning_ignore("shadowed_global_identifier")
+func _update_defect_event_values(round: int, energy: int) -> void:
 	var danger_level := get_energy_danger_level(energy)
 
 	match round:
 		1:
 			IVDefectEventManager.max_defect_event_update_timer_duration = 40
-			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 0
-			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 0
-		2:
-			IVDefectEventManager.max_defect_event_update_timer_duration = 35
-			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 1
-			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 0
+			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 2
+			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
+			IVDefectEventManager.no_event_chance = 50
+			IVDefectEventManager.jolt_cell_container_chance = 25
+			IVDefectEventManager.jolt_hidden_stat_interpreter_chance = 25
+			IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt = 50
+			IVDefectEventManager.interpreter_jolt_defect_increase = 20
+			IVDefectEventManager.cell_container_jolt_defect_increase = 20
 
-	apply_defect_values(round, danger_level)
+			match danger_level:
+				0:
+					pass
+				1:
+					pass
+				2:
+					pass
+				3:
+					pass
+
+
+		2:
+			IVDefectEventManager.max_defect_event_update_timer_duration = 40
+			IVDefectEventManager.interpreter_jolt_energy_decrease_single = 2
+			IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
+			IVDefectEventManager.no_event_chance = 50
+			IVDefectEventManager.jolt_cell_container_chance = 25
+			IVDefectEventManager.jolt_hidden_stat_interpreter_chance = 25
+			IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt = 50
+			IVDefectEventManager.interpreter_jolt_defect_increase = 20
+			IVDefectEventManager.cell_container_jolt_defect_increase = 20
+
+			match danger_level:
+				0:
+					pass
+				1:
+					pass
+				2:
+					pass
+				3:
+					pass
 
 
 func get_energy_danger_level(energy: int) -> int:
-	# 75%–100% = 0
-	# 50%–75%  = 1
-	# 25%–50%  = 2
-	# 0%–25%   = 3
-
 	var max_energy: int = GLGameManagerBus.max_energy
 	var energy_percent: float = float(energy) / float(max_energy)
 
@@ -35,55 +62,3 @@ func get_energy_danger_level(energy: int) -> int:
 		return 2
 	else:
 		return 3
-
-
-@warning_ignore("shadowed_global_identifier")
-func apply_defect_values(round : int, danger_level : int) -> void:
-
-	# default safe values
-	IVDefectEventManager.no_event_chance= 98
-	IVDefectEventManager.jolt_cell_container_chance= 1
-	IVDefectEventManager.jolt_hidden_stat_interpreter_chance= 1
-	IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt = 1
-	IVDefectEventManager.interpreter_jolt_defect_increase= 20
-	IVDefectEventManager.cell_container_jolt_defect_increase= 20
-
-	match round:
-		1:
-			match danger_level:
-				0:
-					set_defect_values(98, 1, 1, 1, 20, 20)
-				1:
-					set_defect_values(90, 9, 1, 1, 20, 20)
-				2:
-					set_defect_values(80, 19, 1, 1, 20, 20)
-				3:
-					set_defect_values(70, 29, 1, 1, 20, 20)
-
-		2:
-			match danger_level:
-				0:
-					set_defect_values(98, 1, 1, 1, 20, 20)
-				1:
-					set_defect_values(80, 19, 1, 1, 20, 20)
-				2:
-					set_defect_values(70, 12, 18, 10, 25, 25)
-				3:
-					set_defect_values(50, 20, 30, 15, 30, 30)
-
-
-func set_defect_values(
-	no_event: int,
-	container_jolt: int,
-	interpreter_jolt: int,
-	multiple_interpreter_chance: int,
-	interpreter_increase: int,
-	container_increase: int
-) -> void:
-
-	IVDefectEventManager.no_event_chance = no_event
-	IVDefectEventManager.jolt_cell_container_chance = container_jolt
-	IVDefectEventManager.jolt_hidden_stat_interpreter_chance = interpreter_jolt
-	IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt = multiple_interpreter_chance
-	IVDefectEventManager.interpreter_jolt_defect_increase = interpreter_increase
-	IVDefectEventManager.cell_container_jolt_defect_increase = container_increase

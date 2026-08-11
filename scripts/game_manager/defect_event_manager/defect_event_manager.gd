@@ -10,6 +10,11 @@ extends Node
 
 var curr_timer_timeout_time: float
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') : 
+		chance_for_defect_event()
+
+
 
 func _ready() -> void:
 	
@@ -46,7 +51,7 @@ func chance_for_defect_event() -> void:
 
 	var ran_num: int = randi_range(1, 100)
 
-	if ran_num <= no_event_chance:
+	if ran_num < no_event_chance:
 		return
 
 	elif ran_num <= no_event_chance + jolt_hidden_stat_interpreter_chance:
