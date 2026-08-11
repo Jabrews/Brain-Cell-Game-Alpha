@@ -3,7 +3,6 @@ extends Node
 # componnets
 @onready var parent_stat_display: Node3D = $".."
 
-
 func toggle_display_stat_area(toggle_value: bool, player_reference: CharacterBody3D) -> void:
 	parent_stat_display.visible = toggle_value
 	

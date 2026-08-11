@@ -11,6 +11,10 @@ var player_ray_cast : RayCast3D
 
 func state_start() -> void :
 	# hide stat display
+	
+	stat_display.toggle_cell_picked_up(true)
+	
+	
 	stat_display.visible = false
 	picked_up_sound.play()
 	
@@ -49,3 +53,5 @@ func state_end() -> void :
 	
 	# reset ray cast
 	player_ray_cast = null
+	
+	stat_display.toggle_cell_picked_up(false)

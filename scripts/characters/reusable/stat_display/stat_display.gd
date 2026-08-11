@@ -14,6 +14,7 @@ var show_distance : float = 4.0
 
 var player : CharacterBody3D
 
+var cell_picked_up : bool = false
 
 func _ready() -> void:
 	GLMutationSentientState.connect('toggle_cell_near_death_event', _handle_toggle_cell_near_death_event)
@@ -70,6 +71,10 @@ func handle_first_round_sientient_cell_bounce() :
 	
 
 func _process(_delta: float) -> void:
+	
+	if cell_picked_up :	
+		visible = false
+	
 	if not visible:
 		return
 	
@@ -128,4 +133,5 @@ func _handle_toggle_cell_near_death_event(toggle_value : bool, cell_name : Strin
 			stat_mesh.visible = true 
 			mutation_mesh_parent.visible = true
 	
-	
+func toggle_cell_picked_up(toggle_value : bool) : 
+	cell_picked_up = toggle_value
