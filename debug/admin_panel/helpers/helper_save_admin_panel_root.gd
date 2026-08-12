@@ -11,7 +11,6 @@ func _save(
 	
 	
 	if not admin_panel_root:
-		push_error("Cannot save a null AdminPanelRoot.")
 		return
 	
 	## get rid of non needing info ##

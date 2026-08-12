@@ -19,6 +19,7 @@ func _stop_search() -> void:
 
 func _handle_area_entered(area: Area3D) -> void:
 	if area.is_in_group("disruptable_reciever"):
+		
 		if not found_disruptable_receivers.has(area):
 			found_disruptable_receivers.append(area)
 

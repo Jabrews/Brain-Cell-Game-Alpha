@@ -10,11 +10,6 @@ extends Node
 
 var curr_timer_timeout_time: float
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') : 
-		chance_for_defect_event()
-
-
 
 func _ready() -> void:
 	

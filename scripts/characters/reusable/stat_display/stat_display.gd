@@ -6,8 +6,12 @@ extends Node3D
 # mutation mesh ndoe stuff
 @onready var mutation_mesh_tv_scene : PackedScene = preload("res://scenes/characters/reusable/stat_display/mutation_mesh_tv.tscn")
 @onready var mutation_mesh_parent : Node3D = $MutationMeshParent
-@onready var shake_sentient_mutation : Node = $ShakeSentientMutation
 @onready var stat_mesh : MeshInstance3D = $StatMesh
+# disruptable_recievers
+@onready var stat_disruptable_reciever : Area3D = $DisruptableRecievers/StatReciever
+@onready var mutation_disruptable_reciever : Area3D = $DisruptableRecievers/MutationReciever
+
+
 
 @export var yaw_offset: float = 0.0
 var show_distance : float = 4.0
@@ -21,6 +25,8 @@ func _ready() -> void:
 
 
 func _handle_brain_cell_recieved(cell : BrainCell) -> void:
+	
+	update_disruptable_recievers(cell.mutations)
 	
 	screen_stat_reciever_display._handle_brain_cell_recieved(cell)
 	
@@ -64,10 +70,6 @@ func reset_mutation_tvs() :
 	for mution_mesh_tv : MeshInstance3D in mutation_mesh_parent.get_children() :
 		mution_mesh_tv.queue_free()
 		
-func handle_first_round_sientient_cell_bounce() :		
-	pass
-
-	
 	
 
 func _process(_delta: float) -> void:
@@ -135,3 +137,28 @@ func _handle_toggle_cell_near_death_event(toggle_value : bool, cell_name : Strin
 	
 func toggle_cell_picked_up(toggle_value : bool) : 
 	cell_picked_up = toggle_value
+
+func update_disruptable_recievers(mutations : Array[BrainCellMutation]) : 
+	
+	var found_disruptable_mutation : bool = false	
+	
+	for mutation : BrainCellMutation in mutations: 	
+		if mutation.type == 'disrupter' : 
+			found_disruptable_mutation = true
+	
+	if found_disruptable_mutation:
+		stat_disruptable_reciever.set_deferred("monitorable", false)
+		mutation_disruptable_reciever.set_deferred("monitorable", false)
+	else:
+		stat_disruptable_reciever.set_deferred("monitorable", true)
+		mutation_disruptable_reciever.set_deferred("monitorable", true)
+	
+				
+			
+			
+	
+	
+	
+	
+	
+	

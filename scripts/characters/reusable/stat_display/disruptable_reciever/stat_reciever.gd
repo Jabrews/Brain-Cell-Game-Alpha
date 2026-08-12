@@ -6,10 +6,6 @@ extends Area3D
 	
 func _toggle_disrupt_manager(toggle_value : bool) :
 	
-	var is_disruptor : bool = verify_cell_is_not_disruptor()
-	if is_disruptor : 
-		return
-	
 	var disrupt_managers : Array[Node] = get_manager_node()
 	
 	for disrupt_manager : Node in disrupt_managers : 
@@ -26,13 +22,6 @@ func get_manager_node() :
 	return disrupt_managers
 
 
-func verify_cell_is_not_disruptor() -> bool : 
-	var parent_cell : BrainCell = parent_stat_display.parent_body.designated_brain_cell
-	for mutation in parent_cell.mutations : 
-		if mutation.type == 'disrupter' : 
-			return true
-	return false	
-	
 	
 			
 			
