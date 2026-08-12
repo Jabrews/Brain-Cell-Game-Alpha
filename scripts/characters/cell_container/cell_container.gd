@@ -125,8 +125,7 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 	
 	if designated_brain_cell.life_span == 1 : 
 		GLEventNoticeManagerBus.emit_signal('create_event_notice',
-			EventNotice.new("age_warning", designated_brain_cell.name.to_upper() + " has reached critical age."
-		)
+			EventNotice.new("age_warning", designated_brain_cell.name.to_upper() + " has reached critical age.", {})
 		)
 
 		

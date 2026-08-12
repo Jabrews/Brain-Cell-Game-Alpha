@@ -22,6 +22,7 @@ func mutation_start() -> void:
 
 # Called by SyncActiveMutations when this node should be removed.
 func mutation_stop() -> void:
+	delete_event_notice_if_random()
 	_stop()
 
 
@@ -30,9 +31,8 @@ func random_event_finished() -> void:
 	parent_mutation_manager.cell_random_event_ended(
 		designated_mutation_event
 	)
+	delete_event_notice_if_random()
 
-
-				#GLMutationSeenManagerBus.emit_signal('mutation_seen_by_player', mutation_name)
 
 func unhide_mutation() :
 	
@@ -72,6 +72,14 @@ func create_event_notice_if_random() :
 		var cell_name : String = parent_cell_container.designated_brain_cell.name
 		
 		GLEventNoticeManagerBus.emit_signal('create_event_notice',
-		 EventNotice.new('mutation_event', cell_name.to_upper() + ' is experiencing a mutation event')
+		 EventNotice.new('mutation_event', cell_name.to_upper() + ' is experiencing a mutation event', {'cell_name' : cell_name})
 		)
 	
+
+func delete_event_notice_if_random() :
+	
+	if designated_mutation_event.event_type == 'random_event' :
+		
+		var cell_name : String = parent_cell_container.designated_brain_cell.name
+		
+		GLEventNoticeManagerBus.emit_signal('delete_event_notice_mutation', cell_name)

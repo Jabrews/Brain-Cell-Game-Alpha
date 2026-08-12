@@ -1,0 +1,678 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne"
+			],
+			"mutations_chosen": [
+				"airborne"
+			],
+			"mutations_picked_by_player": [
+				"airborne"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 40.5386768102934,
+			"wait_time_max": 95.0,
+			"wait_time_min": 40.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": 0,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 84.6786220688186,
+			"wait_time_max": 95.0,
+			"wait_time_min": 40.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": 0,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room",
+						"event was the previously selected event"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": 0,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"only available event was the previously selected event"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "only available event was the previously selected event"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [
+				{
+					"chance": -1,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"1st ROUND EXCLUDED | cell is in a different room"
+					],
+					"situation_increase_applied": false
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "no valid random mutation event choices found"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": 0,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Riley-airborne_fly",
+			"mutation_events": [
+				{
+					"chance": 0,
+					"mutation_event_name": "airborne_fly",
+					"parent_cell_name": "Riley",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		}
+	],
+	"date_created": "2026-08-12",
+	"id": 126
+}

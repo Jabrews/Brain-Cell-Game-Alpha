@@ -185,6 +185,8 @@ func _handle_defect_event_jolt(selected_interpreters : Array) :
 	
 func _handle_stop_jolt_btn_pressed() :
 	
+	GLEventNoticeManagerBus.emit_signal('delete_event_notice_hidden_stat_interpreter', interpreter_type)
+	
 	jolt_active = false
 	audio_manager.toggle_play_jolt(false)
 	jolt_particles.emitting = false 

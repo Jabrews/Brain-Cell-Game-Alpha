@@ -121,18 +121,6 @@ text = "None
 "
 horizontal_alignment = 1
 
-[node name="CellName2" type="Label" parent="StatDisplay" unique_id=388022744]
-layout_mode = 0
-offset_left = 142.0
-offset_top = -2.0
-offset_right = 316.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("3_jqv5s")
-theme_override_font_sizes/font_size = 20
-text = "None
-"
-horizontal_alignment = 1
-
 [node name="CellLifeSpan" type="Label" parent="StatDisplay" unique_id=323910199]
 layout_mode = 0
 offset_left = 299.0
@@ -220,6 +208,7 @@ scale = Vector2(0.993, 0.715)
 texture = ExtResource("5_1mnjr")
 
 [node name="StengthLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=47486304]
+texture_filter = 1
 layout_mode = 0
 offset_left = 22.0
 offset_top = 64.0
@@ -230,6 +219,7 @@ theme_override_font_sizes/font_size = 14
 text = "Strength"
 
 [node name="IntelligenceLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=1272712862]
+texture_filter = 1
 layout_mode = 0
 offset_left = 8.0
 offset_top = 141.0
@@ -241,6 +231,7 @@ theme_override_font_sizes/font_size = 11
 text = "Intelligence"
 
 [node name="CommunityLabel" type="Label" parent="StatDisplay/ProgressBars" unique_id=1784749889]
+texture_filter = 1
 layout_mode = 0
 offset_left = 12.0
 offset_top = 215.0
@@ -264,6 +255,7 @@ offset_top = -19.0
 offset_bottom = -19.0
 
 [node name="MaxLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=183994969]
+texture_filter = 1
 layout_mode = 0
 offset_left = 436.0
 offset_top = 47.0
@@ -277,6 +269,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MinLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Strength" unique_id=1838991074]
+texture_filter = 1
 layout_mode = 0
 offset_left = 132.0
 offset_top = 48.0
@@ -296,6 +289,7 @@ offset_top = -9.0
 offset_bottom = -9.0
 
 [node name="MaxLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=1011231043]
+texture_filter = 1
 layout_mode = 0
 offset_left = 436.0
 offset_top = 113.0
@@ -309,6 +303,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MinLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Intelligence" unique_id=1123066119]
+texture_filter = 1
 layout_mode = 0
 offset_left = 132.0
 offset_top = 114.0
@@ -328,6 +323,7 @@ offset_top = -2.0
 offset_bottom = -2.0
 
 [node name="MaxLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1875767931]
+texture_filter = 1
 layout_mode = 0
 offset_left = 436.0
 offset_top = 180.0
@@ -341,6 +337,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MinLabel" type="Label" parent="StatDisplay/ProgressLabels/MinMaxLabels/Community" unique_id=1186650036]
+texture_filter = 1
 layout_mode = 0
 offset_left = 132.0
 offset_top = 181.0
@@ -360,6 +357,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="StrengthCurrLabel" type="Label" parent="StatDisplay/ProgressLabels/CurrValueLabels" unique_id=2120806324]
+texture_filter = 1
 layout_mode = 0
 offset_left = 219.0
 offset_top = 57.0
@@ -374,6 +372,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IntelligenceCurrLabel" type="Label" parent="StatDisplay/ProgressLabels/CurrValueLabels" unique_id=152705114]
+texture_filter = 1
 layout_mode = 0
 offset_left = 219.0
 offset_top = 133.0
@@ -388,6 +387,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CommunityCurrLabel" type="Label" parent="StatDisplay/ProgressLabels/CurrValueLabels" unique_id=1684668197]
+texture_filter = 1
 layout_mode = 0
 offset_left = 219.0
 offset_top = 208.0
@@ -502,6 +502,7 @@ scale = Vector2(1, 1.0074075)
 texture = ExtResource("16_ekdri")
 
 [node name="Label" type="Label" parent="DisruptorWarning" unique_id=1019416481]
+texture_filter = 1
 layout_mode = 0
 offset_left = -60.0
 offset_top = 96.0

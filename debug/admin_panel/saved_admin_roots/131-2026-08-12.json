@@ -1,0 +1,24 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"airborne"
+			],
+			"mutations_chosen": [
+				"airborne"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [],
+	"date_created": "2026-08-12",
+	"id": 131
+}

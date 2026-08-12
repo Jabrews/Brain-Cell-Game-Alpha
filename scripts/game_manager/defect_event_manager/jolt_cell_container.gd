@@ -33,6 +33,6 @@ func _handle_jolt() :
 	)
 	
 	GLEventNoticeManagerBus.emit_signal('create_event_notice', 
-		EventNotice.new('defect_event', cell_name.to_upper() + ' is experiencing a mutation event')	
+		EventNotice.new('defect_event', cell_name.to_upper() + ' is experiencing a mutation event', {'cell_name' : cell_name})	
 	)
 #	

@@ -8,6 +8,11 @@ func _handle_jolt() :
 	if len(IVHiddenStats.stats_to_hide) == 0 :
 		return
 	
+	if len(IVHiddenStats.stats_to_hide) == 1 :
+		decide_single_stat_interpreter()
+		return
+	
+	
 	# random num (1 - 100)
 	var ran_num = randi_range(1, 100)
 	var all_jolt_chance = IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt
@@ -22,7 +27,7 @@ func _handle_jolt() :
 		)
 		
 		GLEventNoticeManagerBus.emit_signal('create_event_notice', 
-			EventNotice.new('defect_event', 'ALL hidden stat interpreters jolting')		
+			EventNotice.new('defect_event', 'ALL hidden stat interpreters jolting', {'interpreters' : IVHiddenStats.stats_to_hide.duplicate()} , 1.5)
 		)
 		
 		# emit sound
@@ -51,7 +56,7 @@ func decide_single_stat_interpreter() -> void:
 			print('undable to find random stat : ', random_stat)
 	
 	GLEventNoticeManagerBus.emit_signal('create_event_notice', 
-		EventNotice.new('defect_event', random_stat.to_upper() + ' hidden stat interpreter jolting')		
+		EventNotice.new('defect_event', random_stat.to_upper() + ' hidden stat interpreter jolting', {'interpreters' : [random_stat]}, 1.0)		
 	)
 	
 	

@@ -9,6 +9,7 @@ extends Node
 @onready var body_label: Label = $Body
 @onready var progress_dial: TextureRect = $ProgressDial
 @onready var increment_progress_timer: Timer = $IncrementProgress
+@onready var whoosh_sound : AudioStreamPlayer2D = $WhooshSound
 
 var designated_event_notice: EventNotice
 
@@ -16,6 +17,9 @@ var is_finishing: bool = false
 
 
 func _ready() -> void:
+	
+	GLGameManagerBus.connect('process_next_round', _handle_next_round)	
+	
 	# Create unique materials
 	header_label.material = header_label.material.duplicate()
 	progress_dial.material = progress_dial.material.duplicate()
@@ -32,7 +36,13 @@ func _ready() -> void:
 	)
 
 
-	increment_progress_timer.wait_time = get_wait_time_from_type(event_type)
+	# default wait time applying based on type
+	if designated_event_notice.wait_time_overide == 0.0 :
+		increment_progress_timer.wait_time = get_wait_time_from_type(event_type)
+	# else overide
+	else : 
+		increment_progress_timer.wait_time = designated_event_notice.wait_time_overide	
+		
 	increment_progress_timer.start()
 	
 	popup_sound_manager._play(event_type)
@@ -69,10 +79,10 @@ func get_wait_time_from_type(event_type : String) -> float:
 			return 0.5
 
 		"age_warning":
-			return 1.0
+			return 0.5
 
 		"default":
-			return 1.2
+			return 1.0
 		
 		_:
 			push_error(
@@ -120,7 +130,6 @@ func _handle_progress_complete() -> void:
 
 	increment_progress_timer.stop()
 
-
 	# Its direct parent is the CURRENT spot.
 	var current_spot: Control = get_parent()
 
@@ -129,17 +138,29 @@ func _handle_progress_complete() -> void:
 
 	var event_notice_manager: Node = current_spot.parent_event_notice_manager
 
-	# Fade this specific notice.
-	var fade_tween := create_tween()
 
-	fade_tween.tween_property(
+	var exit_tween := create_tween()
+
+	exit_tween.tween_property(
+		self,
+		"position:x",
+		150.0,
+		0.7
+	)
+
+	exit_tween.parallel().tween_property(
 		self,
 		"modulate:a",
 		0.0,
-		0.5
+		0.7
 	)
+	
+	whoosh_sound.play()
 
-	await fade_tween.finished
+	await exit_tween.finished
+	
+	if not is_instance_valid(self):
+		return
 
 	# It could theoretically have moved during the fade,
 	# so retrieve its current spot again.
@@ -147,10 +168,28 @@ func _handle_progress_complete() -> void:
 
 	if is_instance_valid(current_spot):
 		current_spot.spot_is_occupied = false
-
+		
 	self.queue_free()
+	
+	
 
 	if is_instance_valid(event_notice_manager):
 		event_notice_manager.call_deferred(
 			"_handle_spot_freed"
 		)
+
+func _handle_next_round() -> void:
+	increment_progress_timer.stop()
+
+	if is_finishing:
+		return
+
+	_handle_progress_complete()
+	
+func _delete_early() -> void : 	
+	increment_progress_timer.stop()
+
+	if is_finishing:
+		return
+
+	_handle_progress_complete()

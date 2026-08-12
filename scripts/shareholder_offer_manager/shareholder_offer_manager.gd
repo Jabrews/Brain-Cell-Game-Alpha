@@ -50,13 +50,15 @@ func _handle_energy_turn_changed() -> void:
 	if serve_first_card_next_turn:
 		serve_first_card_next_turn = false
 		has_served_first_card = true
-
+		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
+		
 		serve_item_cards()
 		return
 
 	if serve_second_card_next_turn:
 		serve_second_card_next_turn = false
 		has_served_second_card = true
+		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
 
 		serve_item_cards()
 		return
@@ -88,10 +90,16 @@ func _check_if_offer_should_be_scheduled() -> void:
 			"create_event_notice",
 			EventNotice.new(
 				"default",
-				"Item offer incoming next turn."
+				"Item offer incoming next turn.",
+				{'serve_num' : 1}
 			)
 		)
 
+		return
+
+
+	# Don't schedule second while first is still waiting.
+	if serve_first_card_next_turn:
 		return
 
 
@@ -107,7 +115,8 @@ func _check_if_offer_should_be_scheduled() -> void:
 			"create_event_notice",
 			EventNotice.new(
 				"default",
-				"Item offer incoming next turn."
+				"Item offer incoming next turn.",
+				{'serve_num' : 2}
 			)
 		)
 

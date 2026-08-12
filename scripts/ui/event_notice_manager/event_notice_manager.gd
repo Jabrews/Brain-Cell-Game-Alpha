@@ -15,22 +15,6 @@ func _ready() -> void:
 	GLEventNoticeManagerBus.connect('create_event_notice', _create_event_notice)
 
 
-
-func _process(_delta: float) -> void:
-	
-	pass
-	
-	#elif Input.is_action_just_pressed("debug2"):
-		#_create_event_notice(
-
-		#)
-#
-	#elif Input.is_action_just_pressed("debug3"):
-		#_create_event_notice(
-
-		#)
-		
-
 func _create_event_notice(event_notice: EventNotice) -> void:
 	
 	if event_notice.event_type == 'defect_event' or event_notice.event_type == 'mutation_event'	 :
@@ -49,6 +33,7 @@ func _create_event_notice(event_notice: EventNotice) -> void:
 	valid_spot.add_child(event_instance)
 
 	event_instance.position = Vector2.ZERO
+	
 
 
 func get_valid_spot() -> Control:
@@ -84,5 +69,8 @@ func _handle_spot_freed() -> void:
 
 			event_notice.reparent(target_spot)
 			event_notice.position = Vector2.ZERO
-
+			
 			break
+
+	
+	

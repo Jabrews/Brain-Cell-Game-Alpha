@@ -112,6 +112,9 @@ func _handle_defect_increase_delay_timer_timeout() :
 		GLCellManagerBus.emit_signal('cell_container_jolt_increase_cell_defect', designated_brain_cell)
 
 func state_end() : 
+	
+	GLEventNoticeManagerBus.emit_signal('delete_event_notice_defect_cell', designated_brain_cell.name)
+	
 	# get rid of obj refrence
 	designated_brain_cell = null
 	# kill tween
@@ -126,5 +129,7 @@ func state_end() :
 	jolt_particles.emitting = false
 	
 	jolt_sound_loop.stop()
+	
+	
 
 	

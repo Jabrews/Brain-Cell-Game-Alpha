@@ -1,0 +1,77 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 1,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"disrupter"
+			],
+			"mutations_chosen": [
+				"disrupter"
+			],
+			"mutations_picked_by_player": [
+				"disrupter"
+			],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 59.7670613634681,
+			"wait_time_max": 95.0,
+			"wait_time_min": 40.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "Jordan-disrupter_disrupt",
+			"mutation_events": [
+				{
+					"chance": 0,
+					"mutation_event_name": "disrupter_disrupt",
+					"parent_cell_name": "Jordan",
+					"reasons_why_unlikley": [
+						"cell is away from player's room"
+					],
+					"situation_increase_applied": true
+				}
+			],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": ""
+		},
+		{
+			"danger_level": 0,
+			"finale_choice": "",
+			"mutation_events": [],
+			"turn": 1,
+			"wait_time": 0.0,
+			"wait_time_max": 0.0,
+			"wait_time_min": 0.0,
+			"why_none_chose": "random mutation skipped: 60"
+		}
+	],
+	"date_created": "2026-08-12",
+	"id": 125
+}

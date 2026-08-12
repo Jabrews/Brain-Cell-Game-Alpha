@@ -6,11 +6,16 @@
 [ext_resource type="Script" uid="uid://dqq0c7ftbo1op" path="res://scripts/ui/event_notice_manager/event_notice/load_style.gd" id="2_c7w4r"]
 [ext_resource type="Texture2D" uid="uid://chpwgvkrcgnti" path="res://models/event_notice/timer.png" id="2_mjokq"]
 [ext_resource type="AudioStream" uid="uid://bhvpqsqbmjcwn" path="res://sounds/event_notice/default_sound.mp3" id="2_rfx8t"]
+[ext_resource type="Script" uid="uid://b8ubunhugk23c" path="res://scripts/ui/event_notice_manager/event_notice/delete_notice_helpers/del_notice_mutation_event.gd" id="2_t1ybq"]
 [ext_resource type="AudioStream" uid="uid://c648nyfpqu604" path="res://sounds/event_notice/emergency_sound.mp3" id="3_4qbvk"]
+[ext_resource type="Script" uid="uid://c8emfg74wbvu8" path="res://scripts/ui/event_notice_manager/event_notice/delete_notice_helpers/del_notice_defect_event_cell.gd" id="3_6rxed"]
 [ext_resource type="Shader" uid="uid://bhq5ffj7jsibn" path="res://scripts/ui/event_notice_manager/shader/loading_timer.gdshader" id="4_4x8tm"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_7vpr4"]
+[ext_resource type="Script" uid="uid://cb3m4ptbj5qio" path="res://scripts/ui/event_notice_manager/event_notice/delete_notice_helpers/del_notice_defect_event_interpreter.gd" id="4_80f7h"]
+[ext_resource type="Script" uid="uid://cqaoda4wxpa01" path="res://scripts/ui/event_notice_manager/event_notice/delete_notice_helpers/del_notice_shareholder_item_offer.gd" id="5_8nkvr"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="5_c7w4r"]
 [ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="5_dii35"]
+[ext_resource type="AudioStream" uid="uid://bfkkq7h3snmtg" path="res://sounds/event_notice/exit_sound.mp3" id="14_65ai2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dii35"]
 shader = ExtResource("4_4x8tm")
@@ -31,6 +36,20 @@ shader_parameter/hologram_tint = Color(1, 0.7, 0.7, 1)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_mjokq")
+
+[node name="DeleteNoticeHelpers" type="Node" parent="." unique_id=1445703988]
+
+[node name="DelNoticeMutationEvent" type="Node" parent="DeleteNoticeHelpers" unique_id=443899992]
+script = ExtResource("2_t1ybq")
+
+[node name="DelNoticeDefectEventCell" type="Node" parent="DeleteNoticeHelpers" unique_id=204627517]
+script = ExtResource("3_6rxed")
+
+[node name="DelNoticeDefectEventInterpreter" type="Node" parent="DeleteNoticeHelpers" unique_id=1359714085]
+script = ExtResource("4_80f7h")
+
+[node name="DelNoticeShareholderItemOffer" type="Node" parent="DeleteNoticeHelpers" unique_id=358624978]
+script = ExtResource("5_8nkvr")
 
 [node name="PopupSoundManager" type="Node2D" parent="." unique_id=752306958]
 script = ExtResource("2_4qbvk")
@@ -97,3 +116,7 @@ autowrap_mode = 2
 
 [node name="IncrementProgress" type="Timer" parent="." unique_id=1495815092]
 wait_time = 0.5
+
+[node name="WhooshSound" type="AudioStreamPlayer2D" parent="." unique_id=186721262]
+stream = ExtResource("14_65ai2")
+volume_db = 10.0
