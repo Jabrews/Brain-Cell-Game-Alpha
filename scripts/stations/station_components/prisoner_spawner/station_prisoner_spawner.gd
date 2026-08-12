@@ -8,7 +8,7 @@ extends Node
 	$PrisonerSpawnSpots/Spot3,
 	$PrisonerSpawnSpots/Spot4,
 ]
-@onready var prisoner_instance : PackedScene = preload("res://scenes/characters/prisoner/Prisoner.tscn")
+@onready var prisoner_instance : PackedScene = preload("res://scenes/characters/prisoner/prisoner.tscn")
 @onready var screen_pick_quanity : Node2D = $MaxPickQuanityTV/TvFrontPannel/SubViewport/ScreenPickQuanity
 
 func _ready() -> void:

@@ -2,7 +2,7 @@ extends Node3D
 
 # components
 @export var cell_container_parent_node : Node # THIS IS FOR BREDCELLSPAWNER
-@onready var cell_container_instance : PackedScene = preload("res://scenes/characters/cell_container/CellContainer.tscn")
+@onready var cell_container_instance : PackedScene = preload("res://scenes/characters/cell_container/cell_container.tscn")
 @onready var spawn_position : Node3D = $SpawnPos
 
 

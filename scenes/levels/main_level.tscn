@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
 [ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="16_ngeto"]
 [ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
-[ext_resource type="PackedScene" uid="uid://dkmet5r7r2ydn" path="res://scenes/mutation_file_cabinet/MutationFileCabinet.tscn" id="17_j7s3e"]
+[ext_resource type="PackedScene" uid="uid://dkmet5r7r2ydn" path="res://scenes/mutation_file_cabinet/mutation_file_cabinet.tscn" id="17_j7s3e"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="PackedScene" uid="uid://b4cwkhm8fu843" path="res://debug/station_unhide_mutation/station_unhide_mutation.tscn" id="18_8muua"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]

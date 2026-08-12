@@ -1,7 +1,7 @@
 extends Node
 
 # components
-@onready var cell_container_instance : PackedScene = preload('res://scenes/characters/cell_container/CellContainer.tscn')
+@onready var cell_container_instance : PackedScene = preload('res://scenes/characters/cell_container/cell_container.tscn')
 @onready var spawn_position : Node3D = $SpawnPos
 @onready var parent_cell_breeding_station : Node = $".."
 
