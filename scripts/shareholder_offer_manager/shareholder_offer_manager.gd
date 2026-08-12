@@ -51,6 +51,8 @@ func _handle_energy_turn_changed() -> void:
 		serve_first_card_next_turn = false
 		has_served_first_card = true
 		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
+		GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', false)
+
 		
 		serve_item_cards()
 		return
@@ -59,6 +61,8 @@ func _handle_energy_turn_changed() -> void:
 		serve_second_card_next_turn = false
 		has_served_second_card = true
 		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
+		GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', false)
+		
 
 		serve_item_cards()
 		return
@@ -85,7 +89,7 @@ func _check_if_offer_should_be_scheduled() -> void:
 		and not serve_first_card_next_turn
 	):
 		serve_first_card_next_turn = true
-
+		
 		GLEventNoticeManagerBus.emit_signal(
 			"create_event_notice",
 			EventNotice.new(
@@ -94,6 +98,8 @@ func _check_if_offer_should_be_scheduled() -> void:
 				{'serve_num' : 1}
 			)
 		)
+		
+
 
 		return
 
@@ -110,7 +116,7 @@ func _check_if_offer_should_be_scheduled() -> void:
 		and not serve_second_card_next_turn
 	):
 		serve_second_card_next_turn = true
-
+		
 		GLEventNoticeManagerBus.emit_signal(
 			"create_event_notice",
 			EventNotice.new(
@@ -119,6 +125,7 @@ func _check_if_offer_should_be_scheduled() -> void:
 				{'serve_num' : 2}
 			)
 		)
+		
 
 
 func _handle_next_round() -> void:
@@ -151,6 +158,8 @@ func serve_item_cards() -> void:
 
 
 func handle_card_picked(offer_card: TextureRect) -> void:
+	
+	
 	var tween := create_tween()
 
 	tween.set_pause_mode(
@@ -178,6 +187,8 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 	)
 
 	await tween.finished
+	
+	GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', true)
 
 	serve_item_offer_parent.visible = false
 
@@ -195,6 +206,9 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 
 
 func toggle_display_lock(toggle_value: bool) -> void:
+	
+
+	
 	if toggle_value:
 		header_label.visible = true
 		blur_bg.visible = true

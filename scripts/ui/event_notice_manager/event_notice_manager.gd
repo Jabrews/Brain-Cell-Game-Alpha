@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 @onready var event_notice_p_s: PackedScene = preload(
 	"res://scenes/ui/event_notice.tscn"
@@ -13,7 +13,7 @@ extends Node
 
 func _ready() -> void:
 	GLEventNoticeManagerBus.connect('create_event_notice', _create_event_notice)
-
+	GLEventNoticeManagerBus.connect('toggle_hide_event_notice', _handle_toggle_hide_event_notice )
 
 func _create_event_notice(event_notice: EventNotice) -> void:
 	
@@ -72,5 +72,6 @@ func _handle_spot_freed() -> void:
 			
 			break
 
-	
+func _handle_toggle_hide_event_notice(toggle_value : bool): 
+	visible = toggle_value	
 	

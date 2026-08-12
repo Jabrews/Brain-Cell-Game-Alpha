@@ -1,0 +1,101 @@
+{
+	"admin_batch_mutation": {
+		"1": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [],
+			"mutations_picked_by_player": [],
+			"skipped": true,
+			"why_skipped": "rolled to exit mutation loop | chance: 50"
+		},
+		"2": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [],
+			"mutations_picked_by_player": [],
+			"skipped": true,
+			"why_skipped": "rolled to exit mutation loop | chance: 50"
+		},
+		"3": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [],
+			"mutations_picked_by_player": [],
+			"skipped": true,
+			"why_skipped": "rolled to exit mutation loop | chance: 50"
+		},
+		"4": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 0,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 0,
+			"mutations_available": [
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"disrupter"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		},
+		"5": {
+			"all_hidden_event_applied": false,
+			"all_hidden_event_chance": 10,
+			"energy_phase": 0,
+			"fake_mutations_applied": 0,
+			"max_mutations": 1,
+			"min_mutations": 1,
+			"mutations_available": [
+				"disrupter",
+				"exsplosive",
+				"cognisance",
+				"telekinetic"
+			],
+			"mutations_chosen": [
+				"cognisance"
+			],
+			"mutations_picked_by_player": [],
+			"skipped": false,
+			"why_skipped": ""
+		}
+	},
+	"admin_random_mutation_event": [],
+	"date_created": "2026-08-12",
+	"id": 145
+}
