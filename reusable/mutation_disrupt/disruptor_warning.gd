@@ -8,6 +8,7 @@ extends Control
 @export var disrupt_manager : Control
 
 
+
 func _ready() -> void:
 	GLMutationDisruptState.connect('disrupt_incoming', _handle_disrupt_incoming)
 	GLMutationDisruptState.connect('disrupt_ended', _handle_disrupt_ended)
@@ -17,7 +18,6 @@ func _handle_disrupt_incoming(room_name : String) :
 	
 	if disrupt_manager.displaying_interuption : 
 		return
-	
 	
 	if active_room_name == room_name : 
 		if flash_delay_timer.is_stopped() : 
@@ -35,3 +35,8 @@ func _handle_disrupt_ended() :
 
 func _handle_flash_delay_timer_timeout() :
 	visible = !visible
+
+
+	
+	
+	

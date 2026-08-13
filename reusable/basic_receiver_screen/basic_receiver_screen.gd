@@ -8,6 +8,12 @@ extends Node
 @export var invalid_cell_placeholder_screen: PackedScene = null
 var placeholder_screen_instance : Node
 
+## relates to disruptor ##
+@export var is_cell_container : bool = false
+@export var is_basic_station : bool = false
+@export var basic_station_room_name : String = ''
+
+
 # helper components
 @onready var reset_stat_display : Node = $ResetStatDisplay
 @onready var handle_disabled_stats : Node = $HandleDisabledStats

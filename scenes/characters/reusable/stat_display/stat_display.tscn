@@ -36,6 +36,7 @@ size = Vector2i(476, 266)
 
 [node name="BasicRecieverScreen" parent="StatMesh/SubViewport" unique_id=724718654 instance=ExtResource("2_fo6nq")]
 disable_progress_labels = false
+is_cell_container = true
 
 [node name="StatDisplayArea" type="Area3D" parent="." unique_id=487541945 groups=["stat_display_area"]]
 collision_layer = 64

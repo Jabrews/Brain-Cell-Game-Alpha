@@ -14,9 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="8_ekdri"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="9_cih2x"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="10_hij5s"]
-[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="15_dqnac"]
+[ext_resource type="Script" uid="uid://c36qkvyf4kht7" path="res://reusable/basic_receiver_screen/disruptor/disruptor_wanring_basic_reciever_screen.gd" id="15_tqrwa"]
 [ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="16_ekdri"]
-[ext_resource type="Script" uid="uid://b3ghyaq1od780" path="res://reusable/basic_receiver_screen/disruptor_manager_reciever_screen.gd" id="17_tqrwa"]
+[ext_resource type="Script" uid="uid://b3ghyaq1od780" path="res://reusable/basic_receiver_screen/disruptor/disruptor_manager_reciever_screen.gd" id="17_tqrwa"]
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="19_yqc08"]
 [ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="20_00lp2"]
 [ext_resource type="Script" uid="uid://cqmugyg8o67v" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull_manager.gd" id="21_6f23f"]
@@ -491,8 +491,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("15_dqnac")
-active_room_name = "main_room"
+script = ExtResource("15_tqrwa")
 disrupt_manager = NodePath("../DisruptorManagerRecieverScreen")
 
 [node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=760669875]
