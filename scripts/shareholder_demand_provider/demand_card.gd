@@ -4,17 +4,27 @@ extends TextureRect
 @onready var type_image : TextureRect = $TypeImage
 @onready var card_hover : TextureRect = $CardHover
 @onready var flavor_text : Label = $FlavorText
+@onready var energy_gain_parent : Control =$EnergyGain
+@onready var energy_gain_label : Label = $EnergyGain/EnergyText
 # type img textures
 @onready var effects_defect_img : Texture = preload("res://models/shareholder_demand_provider/effects_defect.png")
 @onready var effects_prisoner_img : Texture = preload("res://models/shareholder_demand_provider/prisoner_effect.png")
 @onready var parent_shareholder_demand_provider : Node3D = $"../.."
+# sound
+@onready var s_hover : AudioStreamPlayer3D = $"../../Sounds/Hover"
 
 var designated_demand_item : DemandItem
 
 var starting_pos : Vector2
 var up_down_tween : Tween
 
+var energy_parent_non_hover : float = 0.4
+var energy_parent_hover : float = 1.0
+
+
 func _ready() -> void:
+	
+	energy_gain_parent.modulate.a = energy_parent_non_hover
 
 	await get_tree().process_frame
 
@@ -34,6 +44,10 @@ func _process(_delta: float) -> void:
 
 func update(demand_item : DemandItem) :
 	
+	energy_gain_parent.modulate.a = energy_parent_non_hover
+	
+	energy_gain_label.text = '+' + str(demand_item.demand_energy)
+	
 	position = starting_pos
 	modulate.a = 1.0
 	
@@ -51,7 +65,12 @@ func update(demand_item : DemandItem) :
 
 func _handle_mouse_entered():
 
+
+	s_hover.play()
+
 	card_hover.visible = true
+	energy_gain_parent.modulate.a = energy_parent_hover	
+	
 
 	if up_down_tween:
 		up_down_tween.kill()
@@ -79,6 +98,7 @@ func _handle_mouse_entered():
 func _handle_mouse_exited():
 
 	card_hover.visible = false
+	energy_gain_parent.modulate.a = energy_parent_non_hover 
 
 	if up_down_tween:
 		up_down_tween.kill()

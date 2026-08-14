@@ -5,8 +5,11 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_05saj"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_73nie"]
 [ext_resource type="Texture2D" uid="uid://bsjekw3rerm0s" path="res://models/shareholder_demand_provider/card_hover.png" id="9_3ji3s"]
+[ext_resource type="AudioStream" uid="uid://bkp77rktyfino" path="res://sounds/cards/hover.mp3" id="10_gjcp8"]
 [ext_resource type="Texture2D" uid="uid://uol8k4qh6ujx" path="res://models/share_holder_offer_card/item_card_bg.png" id="11_05saj"]
+[ext_resource type="AudioStream" uid="uid://c5ktjoher1m0m" path="res://sounds/cards/select.mp3" id="11_ten8p"]
 [ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer_card.gd" id="12_5kdy1"]
+[ext_resource type="AudioStream" uid="uid://qtyrv5brghid" path="res://sounds/cards/start.mp3" id="12_ten8p"]
 [ext_resource type="Texture2D" uid="uid://dq0mvp0t01m" path="res://models/share_holder_offer_card/item_steroid.png" id="13_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
 
@@ -201,3 +204,20 @@ theme_override_font_sizes/font_size = 10
 text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Audio" type="Control" parent="ServeItemOffer" unique_id=630135771]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hover" type="AudioStreamPlayer2D" parent="ServeItemOffer/Audio" unique_id=1515882110]
+process_mode = 3
+stream = ExtResource("10_gjcp8")
+
+[node name="Select" type="AudioStreamPlayer2D" parent="ServeItemOffer/Audio" unique_id=1494838975]
+process_mode = 3
+stream = ExtResource("11_ten8p")
+
+[node name="Start" type="AudioStreamPlayer2D" parent="ServeItemOffer/Audio" unique_id=1635951673]
+process_mode = 3
+stream = ExtResource("12_ten8p")

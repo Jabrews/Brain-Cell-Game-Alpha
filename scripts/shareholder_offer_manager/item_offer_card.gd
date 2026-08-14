@@ -5,6 +5,7 @@ extends TextureRect
 @onready var card_hover : TextureRect = $CardHover
 @onready var flavor_text : Label = $FlavorText
 @onready var shareholder_offer_manager : Node = $"../.."
+@onready var s_hover : AudioStreamPlayer2D = $"../Audio/Hover"
 # type img textures
 @onready var defect_shot_png : Texture = preload("res://models/share_holder_offer_card/item_defect.png")
 @onready var hidden_shot_png : Texture = preload("res://models/share_holder_offer_card/item_hidden_shot.png")
@@ -19,6 +20,7 @@ var up_down_tween : Tween
 
 
 func _ready() -> void:
+	
 
 	await get_tree().process_frame
 
@@ -60,6 +62,8 @@ func update(useable_item_offer : UseableOfferItem) :
 	
 
 func _handle_mouse_entered():
+
+	s_hover.play()
 
 	card_hover.visible = true
 

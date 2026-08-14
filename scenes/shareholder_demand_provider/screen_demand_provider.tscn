@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c706uih7ltbsp"]
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_0sn6p"]
+[ext_resource type="Script" uid="uid://dkcqwe8yuusa7" path="res://scripts/shareholder_demand_provider/screen_demand_provider.gd" id="1_a7xm1"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_qam8n"]
 [ext_resource type="Texture2D" uid="uid://cifp1vddlmcse" path="res://models/shareholder_demand_provider/inactive_card_bg.png" id="3_qam8n"]
 
@@ -12,52 +13,114 @@ shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
 [node name="DemandProviderScreen" type="Node2D" unique_id=213631623]
-
-[node name="BG" type="ColorRect" parent="." unique_id=1733941573]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 2.0
-offset_right = 480.0
-offset_bottom = 272.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.37994444, 0.419106, 0.44523096, 1)
+script = ExtResource("1_a7xm1")
 
 [node name="ScanLines" type="ColorRect" parent="." unique_id=223505099]
 material = SubResource("ShaderMaterial_a7xm1")
 offset_right = 480.0
 offset_bottom = 270.0
 
-[node name="Header" type="Label" parent="." unique_id=1008292908]
+[node name="LoadedParent" type="Control" parent="." unique_id=1053240145]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="LoadedParent" unique_id=1733941573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 460.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.37994444, 0.419106, 0.44523096, 1)
+
+[node name="DemandLoaded" type="Label" parent="LoadedParent" unique_id=1008292908]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 80.0
+offset_left = 60.0
 offset_top = 14.0
-offset_right = 416.0
+offset_right = 396.0
 offset_bottom = 44.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_qam8n")
 theme_override_font_sizes/font_size = 24
 text = "Demand Loaded"
 
-[node name="Card" type="Sprite2D" parent="." unique_id=683569993]
+[node name="Card" type="Sprite2D" parent="LoadedParent" unique_id=683569993]
 texture_filter = 1
 position = Vector2(112.00001, 160)
 scale = Vector2(0.45625, 0.428)
 texture = ExtResource("3_qam8n")
 
-[node name="Card2" type="Sprite2D" parent="." unique_id=778977088]
+[node name="Card2" type="Sprite2D" parent="LoadedParent" unique_id=778977088]
 texture_filter = 1
 position = Vector2(240, 160)
 scale = Vector2(0.45625, 0.428)
 texture = ExtResource("3_qam8n")
 
-[node name="Card3" type="Sprite2D" parent="." unique_id=21418742]
+[node name="Card3" type="Sprite2D" parent="LoadedParent" unique_id=21418742]
 texture_filter = 1
 position = Vector2(360, 160)
 scale = Vector2(0.45625, 0.428)
 texture = ExtResource("3_qam8n")
+
+[node name="UnloadedParent" type="Control" parent="." unique_id=752789691]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="UnloadedParent" unique_id=1308854845]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -18.0
+offset_right = 460.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.19544604, 0.2201795, 0.23746616, 1)
+
+[node name="DemandLoaded3" type="Label" parent="UnloadedParent" unique_id=1097766624]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 36.0
+offset_top = 104.0
+offset_right = 420.0
+offset_bottom = 134.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qam8n")
+theme_override_font_sizes/font_size = 20
+text = "Demand Card Used..."
+
+[node name="DemandLoaded4" type="Label" parent="UnloadedParent" unique_id=614035509]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 60.0
+offset_top = 136.0
+offset_right = 444.0
+offset_bottom = 166.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_qam8n")
+theme_override_font_sizes/font_size = 15
+text = "Wait Till Next Round"

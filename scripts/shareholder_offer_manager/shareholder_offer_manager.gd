@@ -1,10 +1,12 @@
 extends Node
 
 # components
-
 @onready var serve_item_offer_parent: Control = $ServeItemOffer
 @onready var header_label: Label = $HeaderLabel
 @onready var blur_bg: ColorRect = $BlurBg
+# sounds
+@onready var s_start : AudioStreamPlayer2D = $ServeItemOffer/Audio/Start
+@onready var s_select : AudioStreamPlayer2D = $ServeItemOffer/Audio/Select
 
 # cards
 
@@ -53,7 +55,7 @@ func _handle_energy_turn_changed() -> void:
 		has_served_first_card = true
 		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
 		GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', false)
-
+		s_start.play()
 		
 		serve_item_cards()
 		return
@@ -63,7 +65,7 @@ func _handle_energy_turn_changed() -> void:
 		has_served_second_card = true
 		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
 		GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', false)
-		
+		s_start.play()
 
 		serve_item_cards()
 		return
@@ -160,10 +162,13 @@ func serve_item_cards() -> void:
 	item_offer_card_1.update(item_1)
 	item_offer_card_2.update(item_2)
 	item_offer_card_3.update(item_3)
+	
+	GLPlayerState.emit_signal('lock_player_position', true)
 
 
 func handle_card_picked(offer_card: TextureRect) -> void:
 	
+	s_select.play()
 	
 	var tween := create_tween()
 
@@ -208,6 +213,7 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 
 	toggle_display_lock(false)
 	toggle_mouse_filter(false)
+	GLPlayerState.emit_signal('lock_player_position', false)
 
 
 func toggle_display_lock(toggle_value: bool) -> void:
