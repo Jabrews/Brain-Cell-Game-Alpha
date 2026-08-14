@@ -10,6 +10,7 @@ extends Node
 
 @onready var item_offer_card_1: TextureRect = $ServeItemOffer/Card1Container
 @onready var item_offer_card_2: TextureRect = $ServeItemOffer/Card2Container
+@onready var item_offer_card_3 : TextureRect = $ServeItemOffer/Card3Container
 
 
 var serve_first_card_next_turn: bool = false
@@ -151,10 +152,14 @@ func serve_item_cards() -> void:
 	# get random item for card 2
 	var item_2 = item_to_offer_copy.pick_random()
 	item_to_offer_copy.erase(item_2)
+	
+	var item_3 = item_to_offer_copy.pick_random()
+	item_to_offer_copy.erase(item_3)
 
 	# set cards
 	item_offer_card_1.update(item_1)
 	item_offer_card_2.update(item_2)
+	item_offer_card_3.update(item_3)
 
 
 func handle_card_picked(offer_card: TextureRect) -> void:

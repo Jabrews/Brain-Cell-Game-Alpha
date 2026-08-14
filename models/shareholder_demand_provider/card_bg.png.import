@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkf55ntuwjn6t"
-path="res://.godot/imported/effects_defect.png-499ce844de8b6ee101b0ad465cdea07a.ctex"
+uid="uid://b7fpfcpiqgvw7"
+path="res://.godot/imported/card_bg.png-d7af17375d81ccce839219d15b7af157.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/share_holder_offer_card/effects_defect.png"
-dest_files=["res://.godot/imported/effects_defect.png-499ce844de8b6ee101b0ad465cdea07a.ctex"]
+source_file="res://models/shareholder_demand_provider/card_bg.png"
+dest_files=["res://.godot/imported/card_bg.png-d7af17375d81ccce839219d15b7af157.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b2vqkhvvch5hx"
-path="res://.godot/imported/prisoner_effect.png-2c3665faea1a0a0f449018060226ff92.ctex"
+path="res://.godot/imported/prisoner_effect.png-3914b4ebd8c4cde1782932c3594d333e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/share_holder_offer_card/prisoner_effect.png"
-dest_files=["res://.godot/imported/prisoner_effect.png-2c3665faea1a0a0f449018060226ff92.ctex"]
+source_file="res://models/shareholder_demand_provider/prisoner_effect.png"
+dest_files=["res://.godot/imported/prisoner_effect.png-3914b4ebd8c4cde1782932c3594d333e.ctex"]
 
 [params]
 

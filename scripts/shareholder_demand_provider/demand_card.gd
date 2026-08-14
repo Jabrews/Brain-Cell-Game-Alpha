@@ -4,17 +4,15 @@ extends TextureRect
 @onready var type_image : TextureRect = $TypeImage
 @onready var card_hover : TextureRect = $CardHover
 @onready var flavor_text : Label = $FlavorText
-@onready var shareholder_offer_manager : Node = $"../.."
 # type img textures
-@onready var effects_breeding_img : Texture = preload("res://models/share_holder_offer_card/effects_breeding.png")
-@onready var effects_defect_img : Texture = preload("res://models/share_holder_offer_card/effects_defect.png")
-@onready var effects_prisoner_img : Texture = preload("res://models/share_holder_offer_card/prisoner_effect.png")
+@onready var effects_defect_img : Texture = preload("res://models/shareholder_demand_provider/effects_defect.png")
+@onready var effects_prisoner_img : Texture = preload("res://models/shareholder_demand_provider/prisoner_effect.png")
+@onready var parent_shareholder_demand_provider : Node3D = $"../.."
 
-var designated_stat_offer : StatOfferItem
+var designated_demand_item : DemandItem
 
 var starting_pos : Vector2
 var up_down_tween : Tween
-
 
 func _ready() -> void:
 
@@ -32,24 +30,22 @@ func _process(_delta: float) -> void:
 			up_down_tween.kill()
 			# reset position. this is important for when card re-appears, getting it in the right pos
 			position = starting_pos
-			shareholder_offer_manager.handle_card_picked('stat', self)
+			parent_shareholder_demand_provider._handle_card_picked(self)
 
-func update(stat_offer : StatOfferItem) :
+func update(demand_item : DemandItem) :
 	
 	position = starting_pos
 	modulate.a = 1.0
 	
-	designated_stat_offer = stat_offer
+	designated_demand_item = demand_item 
 	
-	match designated_stat_offer.effect_type :
-		'effects_prisoners' :
+	match designated_demand_item.demand_type:
+		'prisoner' :
 			type_image.texture = effects_prisoner_img
-		'effects_breeding' :
-			type_image.texture = effects_breeding_img
-		'effects_defect' :
+		'defect' :
 			type_image.texture = effects_defect_img
 		
-	flavor_text.text = designated_stat_offer.flavor_text
+	flavor_text.text = designated_demand_item.demand_text
 	
 	
 

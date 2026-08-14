@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://divqeid51v8os" path="res://scripts/ui/view_file_cabinet.gd" id="17_mgwkc"]
 [ext_resource type="Script" uid="uid://dn1hbdbmjlyif" path="res://scripts/ui/event_notice_manager/event_notice_manager.gd" id="18_ygedu"]
 [ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
+[ext_resource type="Script" uid="uid://cw31gxlbj441f" path="res://scripts/ui/view_demands.gd" id="20_ygedu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
@@ -219,3 +220,17 @@ offset_right = 696.0
 offset_bottom = 184.0
 script = ExtResource("19_svq4k")
 spot_num = 4
+
+[node name="ViewDemands" type="Label" parent="." unique_id=1289168979]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 158.0
+offset_top = 404.0
+offset_right = 686.0
+offset_bottom = 438.0
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 24
+text = "View Demands"
+horizontal_alignment = 1
+script = ExtResource("20_ygedu")

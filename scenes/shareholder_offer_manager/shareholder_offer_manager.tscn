@@ -4,9 +4,9 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_ten8p"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_05saj"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_73nie"]
-[ext_resource type="Texture2D" uid="uid://bsjekw3rerm0s" path="res://models/share_holder_offer_card/card_hover.png" id="9_3ji3s"]
+[ext_resource type="Texture2D" uid="uid://bsjekw3rerm0s" path="res://models/shareholder_demand_provider/card_hover.png" id="9_3ji3s"]
 [ext_resource type="Texture2D" uid="uid://uol8k4qh6ujx" path="res://models/share_holder_offer_card/item_card_bg.png" id="11_05saj"]
-[ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer/item_offer_card.gd" id="12_5kdy1"]
+[ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer_card.gd" id="12_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://dq0mvp0t01m" path="res://models/share_holder_offer_card/item_steroid.png" id="13_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
 
@@ -58,9 +58,9 @@ process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(160, 250)
 layout_mode = 0
-offset_left = 200.0
+offset_left = 128.0
 offset_top = 115.0
-offset_right = 360.0
+offset_right = 288.0
 offset_bottom = 365.0
 texture = ExtResource("11_05saj")
 script = ExtResource("12_5kdy1")
@@ -108,9 +108,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 76.0
+offset_left = -83.0
 offset_top = -125.0
-offset_right = 236.0
+offset_right = 77.0
 offset_bottom = 125.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -135,6 +135,58 @@ offset_bottom = 254.0
 texture = ExtResource("9_3ji3s")
 
 [node name="FlavorText" type="Label" parent="ServeItemOffer/Card2Container" unique_id=1761929236]
+layout_mode = 0
+offset_left = 17.5
+offset_top = 161.0
+offset_right = 144.5
+offset_bottom = 228.0
+theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("7_73nie")
+theme_override_font_sizes/font_size = 10
+text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Card3Container" type="TextureRect" parent="ServeItemOffer" unique_id=775966164]
+process_mode = 3
+texture_filter = 1
+custom_minimum_size = Vector2(160, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 133.0
+offset_top = -125.0
+offset_right = 293.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_05saj")
+script = ExtResource("12_5kdy1")
+
+[node name="TypeImage" type="TextureRect" parent="ServeItemOffer/Card3Container" unique_id=950441658]
+layout_mode = 0
+offset_left = 24.5
+offset_top = 20.0
+offset_right = 134.5
+offset_bottom = 120.0
+texture = ExtResource("13_5kdy1")
+
+[node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card3Container" unique_id=108583878]
+visible = false
+layout_mode = 0
+offset_left = -1.5
+offset_top = 2.0
+offset_right = 160.5
+offset_bottom = 254.0
+texture = ExtResource("9_3ji3s")
+
+[node name="FlavorText" type="Label" parent="ServeItemOffer/Card3Container" unique_id=508751026]
 layout_mode = 0
 offset_left = 17.5
 offset_top = 161.0

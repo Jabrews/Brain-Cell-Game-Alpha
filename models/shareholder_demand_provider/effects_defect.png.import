@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dytqlp8nnogkl"
-path="res://.godot/imported/effects_breeding.png-31c9e6874339b4d6a7dc94d801347786.ctex"
+uid="uid://bkf55ntuwjn6t"
+path="res://.godot/imported/effects_defect.png-d4ab9aff97972f99112635f011a2060d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/share_holder_offer_card/effects_breeding.png"
-dest_files=["res://.godot/imported/effects_breeding.png-31c9e6874339b4d6a7dc94d801347786.ctex"]
+source_file="res://models/shareholder_demand_provider/effects_defect.png"
+dest_files=["res://.godot/imported/effects_defect.png-d4ab9aff97972f99112635f011a2060d.ctex"]
 
 [params]
 
