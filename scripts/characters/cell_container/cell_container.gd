@@ -23,6 +23,8 @@ var prevent_gravity : bool = false
 
 var cell_aged_event_notice_created: bool = false
 
+var emited_age_warning : bool = false
+
 
 
 func _ready() -> void:
@@ -123,10 +125,11 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 		if state_machine.curr_state.name == 'Froze' :		
 			switch_cell_state('idle')
 	
-	if designated_brain_cell.life_span == 1 : 
+	if designated_brain_cell.life_span == 1 and not emited_age_warning : 
 		GLEventNoticeManagerBus.emit_signal('create_event_notice',
 			EventNotice.new("age_warning", designated_brain_cell.name.to_upper() + " has reached critical age.", {})
 		)
+		emited_age_warning = true
 
 		
 		

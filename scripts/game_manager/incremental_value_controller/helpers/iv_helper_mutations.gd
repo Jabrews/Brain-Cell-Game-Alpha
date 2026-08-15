@@ -29,11 +29,11 @@ func _update_mutations(round : int , energy : int) :
 			# disrupter 
 			IVMutations.all_mutations[3],
 			# exsplosive 
-			IVMutations.all_mutations[4],
+			#IVMutations.all_mutations[4],
 			# cognisance
-			IVMutations.all_mutations[5],
+			#IVMutations.all_mutations[5],
 			# telekentic 
-			IVMutations.all_mutations[6],
+			#IVMutations.all_mutations[6],
 
 
 		]

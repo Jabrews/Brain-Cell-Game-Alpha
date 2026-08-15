@@ -1,0 +1,690 @@
+[gd_scene format=3 uid="uid://bpi5dt0umx4rp"]
+
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_m6url"]
+[ext_resource type="Script" uid="uid://cuqcwe0jrpqyw" path="res://scripts/stations/hidden_interpreter/screen/screen_hidden_interpreter.gd" id="1_w1xh1"]
+[ext_resource type="Script" uid="uid://cmopqyalt7yc0" path="res://scripts/stations/hidden_interpreter/screen/progress/progress.gd" id="2_g126x"]
+[ext_resource type="Script" uid="uid://83yxt43asj4k" path="res://scripts/stations/hidden_interpreter/screen/jolt_detected/blink.gd" id="2_vgu6i"]
+[ext_resource type="Script" uid="uid://db2ak2ycc6jil" path="res://scripts/stations/hidden_interpreter/screen/update_stat_type_labels.gd" id="2_yln6k"]
+[ext_resource type="Texture2D" uid="uid://cpm2vamakki7b" path="res://models/hidden_interpreter/bar_value.png" id="3_0ocna"]
+[ext_resource type="Texture2D" uid="uid://dnj1ok0v3f5aq" path="res://models/hidden_interpreter/unplug_icon.png" id="3_vgu6i"]
+[ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="4_a8g64"]
+[ext_resource type="Texture2D" uid="uid://cnadverlbc0j2" path="res://models/mutations/random_disruptor_disrupt/interupt_interpreter.png" id="5_j4ldq"]
+[ext_resource type="Script" uid="uid://ci7nvyovbeqhk" path="res://scripts/stations/hidden_interpreter/screen/jolt_detected/jolt_detected.gd" id="6_dmpde"]
+[ext_resource type="Script" uid="uid://bg3var88qxpma" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/disruptor_manager_interpreter.gd" id="6_w1xh1"]
+[ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="7_0ocna"]
+[ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="8_jped7"]
+[ext_resource type="Texture2D" uid="uid://oedsxa78yeqf" path="res://models/hidden_interpreter/disrupted_bar_frames.png" id="9_0ocna"]
+[ext_resource type="Script" uid="uid://bggetbmra8aj0" path="res://scripts/stations/hidden_interpreter/screen/disruptor/time_blocker.gd" id="11_g126x"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a8g64"]
+load_path = "res://.godot/imported/bar_bg.png-3507573eb26ce67e6f973ca5e5983d90.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jped7"]
+atlas = ExtResource("9_0ocna")
+region = Rect2(0, 0, 250, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g126x"]
+atlas = ExtResource("9_0ocna")
+region = Rect2(250, 0, 250, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yln6k"]
+atlas = ExtResource("9_0ocna")
+region = Rect2(500, 0, 250, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmpde"]
+atlas = ExtResource("9_0ocna")
+region = Rect2(750, 0, 250, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qa1qv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jped7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g126x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yln6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmpde")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="ScreenHiddenInterpreter" type="Node2D" unique_id=456064842]
+script = ExtResource("1_w1xh1")
+
+[node name="UpdateStatTypeLabels" type="Node" parent="." unique_id=1603989099]
+script = ExtResource("2_yln6k")
+
+[node name="BG" type="ColorRect" parent="." unique_id=488806653]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 270.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.37, 0, 0.13566671, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ProgressScreen" type="Control" parent="." unique_id=463714116]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_g126x")
+
+[node name="TimeLeft" type="Label" parent="ProgressScreen" unique_id=2044546172]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 73.0
+offset_right = 264.0
+offset_bottom = 99.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "Time Left"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="ProgressScreen" unique_id=1088611491]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 98.0
+offset_right = 263.0
+offset_bottom = 120.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 26
+text = "1-00"
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="TextureProgressBar" parent="ProgressScreen" unique_id=1211119445]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.0
+offset_top = 141.0
+offset_right = 411.0
+offset_bottom = 201.0
+scale = Vector2(1, 1.5428572)
+texture_under = SubResource("CompressedTexture2D_a8g64")
+texture_progress = ExtResource("3_0ocna")
+
+[node name="StatName" type="Label" parent="ProgressScreen" unique_id=1151378325]
+texture_filter = 1
+layout_mode = 0
+offset_top = 16.0
+offset_right = 270.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.89269775, 0.8258167, 0, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="NoCellDetectScreen" type="Control" parent="." unique_id=1222880264]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatName" type="Label" parent="NoCellDetectScreen" unique_id=1994477673]
+texture_filter = 1
+layout_mode = 0
+offset_top = 16.0
+offset_right = 270.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.89269775, 0.8258167, 0, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="NoCellDetectScreen" unique_id=1732725306]
+texture_filter = 1
+layout_mode = 0
+offset_top = 97.0
+offset_right = 270.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 26
+text = "No Cell
+Detected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoHiddenStatDetected" type="Control" parent="." unique_id=1892284975]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="NoHiddenStatDetected" unique_id=1184296471]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 98.0
+offset_right = 280.0
+offset_bottom = 176.0
+theme_override_colors/font_color = Color(1, 0.18039216, 0.18039216, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 24
+text = "NO HIDDEN 
+STAT 
+DETECTED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JoltDetected" type="Control" parent="." unique_id=1087479387]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_dmpde")
+
+[node name="StatName" type="Label" parent="JoltDetected" unique_id=1821125766]
+texture_filter = 1
+layout_mode = 0
+offset_top = 16.0
+offset_right = 270.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0.89269775, 0.8258167, 0, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="JoltDetected" unique_id=266645259]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 55.0
+offset_right = 270.0
+offset_bottom = 133.0
+theme_override_colors/font_color = Color(1, 0.18039216, 0.18039216, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "Jolt detected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blink" type="Control" parent="JoltDetected" unique_id=1771881140]
+anchors_preset = 0
+script = ExtResource("2_vgu6i")
+
+[node name="Reset" type="Label" parent="JoltDetected/Blink" unique_id=1202099843]
+texture_filter = 1
+layout_mode = 0
+offset_top = 120.0
+offset_right = 270.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(1, 0.20999998, 0.20999998, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 30
+text = "Reset"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="Sprite2D" parent="JoltDetected/Blink" unique_id=1291638521]
+texture_filter = 1
+position = Vector2(134.00002, 215)
+scale = Vector2(4.147059, 2.7916667)
+texture = ExtResource("3_vgu6i")
+
+[node name="BlinkTimer" type="Timer" parent="JoltDetected/Blink" unique_id=2079123918]
+wait_time = 0.5
+
+[node name="Finished" type="Control" parent="." unique_id=850539421]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Finished" unique_id=1475859724]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 112.0
+offset_right = 271.0
+offset_bottom = 183.0
+theme_override_colors/font_color = Color(0.18, 1, 0.24833328, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 28
+text = "Finished"
+horizontal_alignment = 1
+
+[node name="DisruptorWarning" type="Control" parent="." unique_id=133934553 node_paths=PackedStringArray("disrupt_manager")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_a8g64")
+active_room_name = "interpreter_room"
+disrupt_manager = NodePath("../DisruptorManagerInterpreter")
+
+[node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=1080368684]
+texture_filter = 1
+position = Vector2(135, 137)
+scale = Vector2(1.3432839, 1.1587983)
+texture = ExtResource("5_j4ldq")
+
+[node name="Label" type="Label" parent="DisruptorWarning" unique_id=889953083]
+layout_mode = 0
+offset_left = -160.0
+offset_top = 81.0
+offset_right = 438.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.4627451)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 47
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DisruptorWarning" unique_id=178562757]
+layout_mode = 0
+offset_left = -160.0
+offset_top = 139.0
+offset_right = 438.0
+offset_bottom = 202.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.4627451)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 10
+text = "technical difficulties"
+horizontal_alignment = 1
+
+[node name="FlashDelayTimer" type="Timer" parent="DisruptorWarning" unique_id=1018792842]
+wait_time = 0.5
+
+[node name="DisruptorManagerInterpreter" type="Control" parent="." unique_id=1810565488]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_w1xh1")
+
+[node name="ProgressBlocker" type="Control" parent="DisruptorManagerInterpreter" unique_id=1424356408]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BarBlocker" type="AnimatedSprite2D" parent="DisruptorManagerInterpreter/ProgressBlocker" unique_id=1566345189]
+visible = false
+texture_filter = 1
+position = Vector2(137, 164)
+scale = Vector2(1, 1.5333333)
+sprite_frames = SubResource("SpriteFrames_qa1qv")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.8833031
+
+[node name="TimeBlockers" type="Control" parent="DisruptorManagerInterpreter/ProgressBlocker" unique_id=95740005]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeBlocker" type="Control" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers" unique_id=1434450022]
+visible = false
+anchors_preset = 0
+offset_top = 2.0
+offset_right = 40.0
+offset_bottom = 42.0
+script = ExtResource("11_g126x")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker" unique_id=380261996]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 96.0
+offset_right = 105.0
+offset_bottom = 121.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker" unique_id=175697585]
+texture_filter = 1
+layout_mode = 0
+offset_left = 85.0
+offset_top = 99.0
+offset_right = 106.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker" unique_id=1392008299]
+wait_time = 0.5
+
+[node name="TimeBlocker2" type="Control" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers" unique_id=2048627233]
+visible = false
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 2.0
+offset_right = 63.0
+offset_bottom = 42.0
+script = ExtResource("11_g126x")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker2" unique_id=436473318]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 96.0
+offset_right = 105.0
+offset_bottom = 121.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker2" unique_id=1205981920]
+texture_filter = 1
+layout_mode = 0
+offset_left = 85.0
+offset_top = 99.0
+offset_right = 106.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker2" unique_id=2050948058]
+wait_time = 0.5
+
+[node name="TimeBlocker3" type="Control" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers" unique_id=248348416]
+visible = false
+anchors_preset = 0
+offset_left = 46.0
+offset_top = 2.0
+offset_right = 86.0
+offset_bottom = 42.0
+script = ExtResource("11_g126x")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker3" unique_id=1908319263]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 96.0
+offset_right = 105.0
+offset_bottom = 121.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker3" unique_id=1800549033]
+texture_filter = 1
+layout_mode = 0
+offset_left = 85.0
+offset_top = 99.0
+offset_right = 106.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker3" unique_id=1333040982]
+wait_time = 0.5
+
+[node name="TimeBlocker4" type="Control" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers" unique_id=1101833064]
+visible = false
+anchors_preset = 0
+offset_left = 69.0
+offset_top = 2.0
+offset_right = 109.0
+offset_bottom = 42.0
+script = ExtResource("11_g126x")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker4" unique_id=223825022]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 96.0
+offset_right = 105.0
+offset_bottom = 121.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker4" unique_id=545193862]
+texture_filter = 1
+layout_mode = 0
+offset_left = 85.0
+offset_top = 99.0
+offset_right = 106.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker4" unique_id=651775349]
+wait_time = 0.5
+
+[node name="TimeBlocker5" type="Control" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers" unique_id=1154689019]
+visible = false
+anchors_preset = 0
+offset_left = 91.0
+offset_top = 2.0
+offset_right = 131.0
+offset_bottom = 42.0
+script = ExtResource("11_g126x")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker5" unique_id=1141102209]
+layout_mode = 0
+offset_left = 82.0
+offset_top = 96.0
+offset_right = 105.0
+offset_bottom = 121.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker5" unique_id=1623450635]
+texture_filter = 1
+layout_mode = 0
+offset_left = 85.0
+offset_top = 99.0
+offset_right = 106.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_m6url")
+theme_override_font_sizes/font_size = 20
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerInterpreter/ProgressBlocker/TimeBlockers/TimeBlocker5" unique_id=431352334]
+wait_time = 0.5
+
+[node name="HackTextManager" type="Control" parent="DisruptorManagerInterpreter" unique_id=1633273914]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_0ocna")
+active_text_amount = 15
+
+[node name="HackTextParentNode" type="Control" parent="DisruptorManagerInterpreter/HackTextManager" unique_id=1262427735]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HackText140" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1558581189 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 149.0
+offset_top = 67.0
+offset_right = 149.0
+offset_bottom = 67.0
+
+[node name="HackText141" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=508932106 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 28.0
+offset_top = 54.0
+offset_right = 28.0
+offset_bottom = 54.0
+
+[node name="HackText142" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1081609946 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 85.0
+offset_top = 67.0
+offset_right = 85.0
+offset_bottom = 67.0
+
+[node name="HackText143" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1784232717 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 231.0
+offset_top = 94.0
+offset_right = 231.0
+offset_bottom = 94.0
+
+[node name="HackText144" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1440429652 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 127.0
+offset_top = 85.0
+offset_right = 127.0
+offset_bottom = 85.0
+
+[node name="HackText145" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=724519140 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 10.0
+offset_top = 80.0
+offset_right = 10.0
+offset_bottom = 80.0
+
+[node name="HackText146" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=580393031 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 46.0
+offset_top = 104.0
+offset_right = 46.0
+offset_bottom = 104.0
+
+[node name="HackText147" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=17040865 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 233.0
+offset_top = 50.0
+offset_right = 233.0
+offset_bottom = 50.0
+
+[node name="HackText148" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=24942120 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 85.0
+offset_top = 39.0
+offset_right = 85.0
+offset_bottom = 39.0
+
+[node name="HackText149" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1680346155 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 204.0
+offset_top = 108.0
+offset_right = 204.0
+offset_bottom = 108.0
+
+[node name="HackText150" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1912486365 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 78.0
+offset_top = 115.0
+offset_right = 78.0
+offset_bottom = 115.0
+
+[node name="HackText153" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1488213760 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 180.0
+offset_top = 49.0
+offset_right = 180.0
+offset_bottom = 49.0
+
+[node name="HackText151" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=848987525 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 130.0
+offset_top = 178.0
+offset_right = 130.0
+offset_bottom = 178.0
+
+[node name="HackText152" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=375381602 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 75.0
+offset_top = 172.0
+offset_right = 75.0
+offset_bottom = 172.0
+
+[node name="HackText154" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1944781003 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 154.0
+offset_top = 202.0
+offset_right = 154.0
+offset_bottom = 202.0
+
+[node name="HackText155" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1046756277 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 200.0
+offset_top = 221.0
+offset_right = 200.0
+offset_bottom = 221.0
+
+[node name="HackText156" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=791335904 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 116.0
+offset_top = 203.0
+offset_right = 116.0
+offset_bottom = 203.0
+
+[node name="HackText157" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1841850924 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 27.0
+offset_top = 210.0
+offset_right = 27.0
+offset_bottom = 210.0
+
+[node name="HackText158" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=433172841 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 16.0
+offset_top = 122.0
+offset_right = 16.0
+offset_bottom = 122.0
+
+[node name="HackText159" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=1896758030 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 133.0
+offset_top = 142.0
+offset_right = 133.0
+offset_bottom = 142.0
+
+[node name="HackText160" parent="DisruptorManagerInterpreter/HackTextManager/HackTextParentNode" unique_id=327546231 instance=ExtResource("8_jped7")]
+visible = false
+layout_mode = 1
+offset_left = 179.0
+offset_top = 161.0
+offset_right = 179.0
+offset_bottom = 161.0
+
+[node name="SwitchHackTextTimer" type="Timer" parent="DisruptorManagerInterpreter/HackTextManager" unique_id=532439]
+wait_time = 3.0
+
+[connection signal="timeout" from="JoltDetected/Blink/BlinkTimer" to="JoltDetected/Blink/Reset" method="_on_blink_timer_timeout"]

@@ -47,11 +47,11 @@ size = Vector3(0.6, 0.6, 0.6)
 [sub_resource type="BoxShape3D" id="BoxShape3D_etvtj"]
 size = Vector3(1.4238892, 0.15491943, 1.4798584)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cbjn"]
 albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cn0gf"]
-material = SubResource("StandardMaterial3D_a1kj4")
+material = SubResource("StandardMaterial3D_7cbjn")
 size = Vector3(1, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x71qd"]
@@ -66,12 +66,12 @@ size = Vector3(1.35, 1.3, 1.4)
 [sub_resource type="ViewportTexture" id="ViewportTexture_i1r25"]
 viewport_path = NodePath("InterpreterTv/TvFrontPannel/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ayhvi"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_i1r25")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_niabr"]
-material = SubResource("StandardMaterial3D_0jyhj")
+material = SubResource("StandardMaterial3D_ayhvi")
 size = Vector2(1.2, 1.1)
 orientation = 0
 
@@ -89,7 +89,7 @@ emission_sphere_radius = 3.0
 initial_velocity_max = 0.5
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cbjn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_asyqq"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 0.7908931, 0.75616145, 1)
@@ -98,7 +98,7 @@ texture_filter = 0
 billboard_mode = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ayhvi"]
-material = SubResource("StandardMaterial3D_7cbjn")
+material = SubResource("StandardMaterial3D_asyqq")
 size = Vector2(0.3, 0.3)
 orientation = 2
 

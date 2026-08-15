@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://fxsl4oi3vhoo"]
+
+[ext_resource type="Script" uid="uid://bpudhxfsl2plk" path="res://scripts/stations/hidden_interpreter/component/station_hidden_interpreter.gd" id="1_gow6p"]
+[ext_resource type="Script" uid="uid://beg3fnl2m5c85" path="res://reusable/load_panel/load_panel_body.gd" id="1_q5brb"]
+[ext_resource type="Script" uid="uid://bckw1tmotbckq" path="res://scripts/stations/hidden_interpreter/component/progress_time_spent_manager.gd" id="2_g2njo"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="2_i481v"]
+[ext_resource type="PackedScene" uid="uid://bpi5dt0umx4rp" path="res://scenes/stations/hidden_interpreter/screen/screen_hidden_interpreter.tscn" id="3_q5brb"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="4_k5va8"]
+[ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="5_2rnm3"]
+[ext_resource type="Script" uid="uid://c37qtvh1gk3el" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_spawner.gd" id="6_ulbnn"]
+[ext_resource type="PackedScene" uid="uid://5a1rtusg0sih" path="res://scenes/stations/station_components/hidden_interpreter/energy_decrease_symbol.tscn" id="7_gow6p"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jicqo"]
+size = Vector3(1.4, 2.2, 1.6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4iwe7"]
+size = Vector3(1.4, 2.2, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cc8wa"]
+size = Vector3(1.4238892, 0.15491943, 1.4798584)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vbto"]
+material = SubResource("StandardMaterial3D_a1kj4")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6xxed"]
+size = Vector3(1.5, 0.03720703, 1.5)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8nmvo"]
+viewport_path = NodePath("InterpreterTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_8nmvo")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ft7d2"]
+material = SubResource("StandardMaterial3D_0jyhj")
+size = Vector2(1.4, 1.3)
+orientation = 0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ulbnn"]
+emission_shape = 1
+emission_sphere_radius = 3.0
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cbjn"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.3324974, 0, 0.016211929, 1)
+albedo_texture = ExtResource("4_k5va8")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_gow6p"]
+material = SubResource("StandardMaterial3D_7cbjn")
+size = Vector2(0.3, 0.3)
+orientation = 2
+
+[node name="HiddenInterpreter" type="Node3D" unique_id=620646669]
+script = ExtResource("1_gow6p")
+
+[node name="ProgressTimeSpentManager" type="Node" parent="." unique_id=1274714191]
+script = ExtResource("2_g2njo")
+
+[node name="IncrementTimeSpent" type="Timer" parent="ProgressTimeSpentManager" unique_id=1643141305]
+
+[node name="Table" type="StaticBody3D" parent="." unique_id=1050066268 groups=["nav_mesh_coll"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1795913074]
+shape = SubResource("BoxShape3D_jicqo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Table" unique_id=1276316299]
+mesh = SubResource("BoxMesh_4iwe7")
+
+[node name="LoadPanelCellBody" type="Area3D" parent="." unique_id=1574716464 node_paths=PackedStringArray("cell_reciever")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0062690377, 0.2923827, 0.012838371)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_q5brb")
+cell_reciever = NodePath("..")
+is_hidden_interpreter_panel = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCellBody" unique_id=254777179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.80381477, 0)
+shape = SubResource("BoxShape3D_cc8wa")
+
+[node name="PannelCollision" type="StaticBody3D" parent="LoadPanelCellBody" unique_id=546979148 groups=["nav_mesh_coll"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.82772946, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LoadPanelCellBody/PannelCollision" unique_id=2105575377]
+mesh = SubResource("BoxMesh_2vbto")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadPanelCellBody/PannelCollision" unique_id=1828038812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006396532, 0)
+shape = SubResource("BoxShape3D_6xxed")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="." unique_id=259682028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7122747, 0.253083, 0)
+mesh = SubResource("PlaneMesh_ft7d2")
+script = ExtResource("2_i481v")
+
+[node name="SubViewport" type="SubViewport" parent="TvFrontPannel" unique_id=1556599569]
+disable_3d = true
+scaling_3d_mode = 5
+canvas_item_default_texture_filter = 0
+size = Vector2i(270, 270)
+render_target_update_mode = 4
+
+[node name="ScreenHiddenInterpreter" parent="TvFrontPannel/SubViewport" unique_id=456064842 instance=ExtResource("3_q5brb")]
+
+[node name="JoltParticles" type="GPUParticles3D" parent="." unique_id=1798808185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7144637, 0)
+emitting = false
+amount = 12
+lifetime = 0.4
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ulbnn")
+draw_pass_1 = SubResource("PlaneMesh_gow6p")
+
+[node name="DisruptableReciever" parent="." unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("5_2rnm3")]
+parent_disruptable_screen = NodePath("../TvFrontPannel/SubViewport/ScreenHiddenInterpreter")
+
+[node name="EnergyDecreaseSpawner" type="Node3D" parent="." unique_id=1403976759]
+script = ExtResource("6_ulbnn")
+energy_decrease_symbol_scene = ExtResource("7_gow6p")
+
+[node name="SpawnDelay" type="Timer" parent="EnergyDecreaseSpawner" unique_id=832608461]
+wait_time = 5.0
+
+[node name="SpawnSpots" type="Node3D" parent="EnergyDecreaseSpawner" unique_id=1380800405]
+
+[node name="Spawn1" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=2049315680]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 2.3386102, 2.6281414)
+
+[node name="Spawn2" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=221854741]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 2.1618297, -0.45434725)
+
+[node name="Spawn3" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=1658468259]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.6352744, 2.3386102, 2.3282068)

@@ -113,7 +113,6 @@ scale = Vector2(1, 1.5428572)
 nine_patch_stretch = true
 texture_under = ExtResource("4_bvh1a")
 texture_progress = ExtResource("5_16pp1")
-metadata/_edit_use_anchors_ = true
 
 [node name="NoCellDetected" type="Control" parent="." unique_id=190695349]
 visible = false
@@ -166,6 +165,7 @@ STAT DETECTED"
 horizontal_alignment = 1
 
 [node name="JoltDetectedPleaseReset" type="Control" parent="." unique_id=366826745]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -275,6 +275,7 @@ horizontal_alignment = 1
 wait_time = 0.5
 
 [node name="DisruptorManagerInterpreter" type="Control" parent="." unique_id=1307968160]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
