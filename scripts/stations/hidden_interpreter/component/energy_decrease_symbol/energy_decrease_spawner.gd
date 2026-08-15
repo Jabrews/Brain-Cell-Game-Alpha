@@ -24,7 +24,7 @@ func _stop_spawning_decrease_particles() -> void:
 
 
 func _start_random_spawn_timer() -> void:
-	spawn_delay_timer.wait_time = randf_range(4.0, 7.0)
+	spawn_delay_timer.wait_time = randf_range(6.0, 7.0)
 	spawn_delay_timer.start()
 
 

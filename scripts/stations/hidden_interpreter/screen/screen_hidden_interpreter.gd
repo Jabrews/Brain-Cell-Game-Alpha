@@ -6,6 +6,7 @@ extends Node
 @onready var no_hidden_stat_detected : Control =$NoHiddenStatDetected
 @onready var jolt_detected : Control = $JoltDetected
 @onready var finished : Control = $Finished
+@onready var off : Control = $OffScreen
 # component station parent
 @onready var interpreter_station_parent : Node3D = $"../../.."
 # component helpers
@@ -35,6 +36,10 @@ func _switch_screen(type : String) :
 			jolt_detected._toggle_active(true)
 		'finished' :
 			finished.visible = true
+		'off' : 
+			off.visible = true
+			
+			
 
 func _update_progress_bar(time_spent : float) :
 	progress._update_progress_bar(time_spent)
@@ -51,3 +56,4 @@ func reset_screens() :
 	no_hidden_stat_detected.visible = false
 	jolt_detected.visible = false
 	finished.visible = false
+	off.visible = false 

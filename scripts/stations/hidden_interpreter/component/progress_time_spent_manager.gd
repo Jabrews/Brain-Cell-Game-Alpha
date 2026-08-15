@@ -21,6 +21,7 @@ func _update(action: String) -> void:
 		"stop":
 			increment_time_spent_timer.stop()
 			time_spent = 0
+			progress_screen._toggle_loading(true)
 
 func _handle_increment_time_spent_timer_timeout() : 
 	time_spent += 1

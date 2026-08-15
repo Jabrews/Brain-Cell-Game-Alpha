@@ -43,7 +43,6 @@ IVCellDefectDecreaser="*uid://bk0qwkq6easio"
 GAMECellBreeder="*uid://d0wtnetxi6per"
 GAMENameManager="*uid://bbink7k6gloh3"
 GLChairBus="*uid://dptbw5litabm1"
-GLInterpreterGames="*uid://bleuf4oh1igdo"
 IVFlappyBrain="*uid://c30hoeuma0kvb"
 GLHoldingDisplayBus="*uid://bx560aqp5rpi6"
 IVSnakeBrain="*uid://ds1cpm55tn8o0"
@@ -102,6 +101,7 @@ bubble=""
 hack_skull=""
 disruptable_reciever=""
 detect_cognisance_area=""
+interpreter_plug=""
 
 [input]
 
@@ -195,6 +195,7 @@ debug4={
 3d_physics/layer_14="crystal"
 3d_physics/layer_15="detect_cognisance_area"
 3d_physics/layer_16="decal"
+3d_physics/layer_17="interpreter_plug"
 
 [physics]
 

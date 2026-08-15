@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://bl8vhketvm1av"]
+
+[ext_resource type="Script" uid="uid://bnf25a4u6u1aw" path="res://scripts/stations/hidden_interpreter/component/plugin/plugin.gd" id="1_b1710"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="2_la4ic"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+size = Vector3(0.6, 0.90000004, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.6, 0.90000004, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1710"]
+albedo_color = Color(1, 0.69, 0.69, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2fy1t"]
+material = SubResource("StandardMaterial3D_b1710")
+size = Vector3(0.525, 0.835, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
+size = Vector3(1.1, 1.1, 0.3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jkakp"]
+emission_shape = 1
+emission_sphere_radius = 0.7
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7cbjn"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.3324974, 0, 0.016211929, 1)
+albedo_texture = ExtResource("2_la4ic")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ad3kw"]
+material = SubResource("StandardMaterial3D_7cbjn")
+size = Vector2(0.15, 0.15)
+orientation = 2
+
+[node name="Plugin" type="StaticBody3D" unique_id=1902165158]
+script = ExtResource("1_b1710")
+
+[node name="PluginMesh" type="MeshInstance3D" parent="." unique_id=2008443228]
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="PluginColl" type="CollisionShape3D" parent="." unique_id=683174320]
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="FaceMesh" type="MeshInstance3D" parent="." unique_id=1336860835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.27774292)
+mesh = SubResource("BoxMesh_2fy1t")
+
+[node name="DetectPlugArea" type="Area3D" parent="." unique_id=1181658145]
+collision_layer = 2
+collision_mask = 65536
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectPlugArea" unique_id=1804472349]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04999999, 0.050000012, 0.45000002)
+shape = SubResource("BoxShape3D_keru6")
+
+[node name="JoltParticles" type="GPUParticles3D" parent="." unique_id=1656786513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21446371, 0.5)
+emitting = false
+amount = 7
+lifetime = 0.4
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_jkakp")
+draw_pass_1 = SubResource("PlaneMesh_ad3kw")
+
+[node name="PluginPos" type="Node3D" parent="." unique_id=837892833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.40000004)

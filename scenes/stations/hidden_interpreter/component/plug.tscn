@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cnjxx2w8km4am"]
+
+[ext_resource type="Script" uid="uid://dg5xwxeofenhv" path="res://scripts/stations/hidden_interpreter/component/plug/plug.gd" id="1_10a67"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_m6o5v"]
+size = Vector3(0.4, 0.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.4, 0.4, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6o5v"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+material = SubResource("StandardMaterial3D_m6o5v")
+size = Vector3(0.06416015, 0.05732422, 0.14316407)
+
+[sub_resource type="BoxMesh" id="BoxMesh_10a67"]
+material = SubResource("StandardMaterial3D_m6o5v")
+size = Vector3(0.06416015, 0.05732422, 0.14316407)
+
+[node name="Plug" type="RigidBody3D" unique_id=407764137 groups=["interpreter_plug"]]
+collision_layer = 65536
+collision_mask = 2
+script = ExtResource("1_10a67")
+
+[node name="PlugMesh" type="MeshInstance3D" parent="." unique_id=1282437285]
+mesh = SubResource("BoxMesh_m6o5v")
+
+[node name="MeshInstance3D2" type="CollisionShape3D" parent="." unique_id=1595659720]
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="PlugProngs" type="Node3D" parent="." unique_id=753414509]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PlugProngs" unique_id=1133521991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0015521497, -0.11173815, -0.17819)
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PlugProngs" unique_id=4962122]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09844785, 0.07104347, -0.17819)
+mesh = SubResource("BoxMesh_10a67")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PlugProngs" unique_id=1181699536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10155215, 0.07104347, -0.17819)
+mesh = SubResource("BoxMesh_keru6")
