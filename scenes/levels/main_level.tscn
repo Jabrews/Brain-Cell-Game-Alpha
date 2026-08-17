@@ -354,6 +354,7 @@ debug_color = Color(0.74498844, 0.20878527, 0.9999998, 1)
 
 [node name="Floor2" type="StaticBody3D" parent="Enviroment" unique_id=602902947 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5000005, 0)
+visible = false
 collision_layer = 2
 collision_mask = 0
 

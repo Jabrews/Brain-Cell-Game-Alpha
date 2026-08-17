@@ -1,8 +1,8 @@
 extends Node
 
 
-var max_rounds = 2
-var current_round = 1
+var max_rounds = 1
+var current_round = 0
 
 var curr_energy : int = 100
 var max_energy : int = 100

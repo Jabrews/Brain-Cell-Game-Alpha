@@ -40,20 +40,6 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 	if round == 1 :	
 		match danger_level :
 			0 : 
-				IVHiddenStats.max_stats_to_hide = 0
-			1 : 
-				IVHiddenStats.max_stats_to_hide = 1
-				IVHiddenStats.stats_to_hide = ['strength']
-			2 : 
-				IVHiddenStats.max_stats_to_hide = 3
-				IVHiddenStats.stats_to_hide = ['strength']
-			3 : 
-				IVHiddenStats.max_stats_to_hide = 6
-				IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
-	
-	elif round == 2 :
-		match danger_level :
-			0 : 
 				IVHiddenStats.max_stats_to_hide = 3
 				IVHiddenStats.stats_to_hide = ['strength']
 			1 : 
@@ -65,3 +51,6 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 			3 : 
 				IVHiddenStats.max_stats_to_hide = 10
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
+	
+	elif round == 2 :
+		pass

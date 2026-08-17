@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bsjekw3rerm0s" path="res://models/shareholder_demand_provider/card_hover.png" id="8_8wd7k"]
 [ext_resource type="Script" uid="uid://cbebuqo1cpmcu" path="res://scripts/shareholder_demand_provider/exit_btn.gd" id="11_ubwkr"]
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="12_0ovh7"]
+[ext_resource type="Script" uid="uid://dlkwt78hm0yuv" path="res://scripts/mutation_file_cabinet/press_to_leave.gd" id="13_2xeq3"]
 [ext_resource type="AudioStream" uid="uid://bkp77rktyfino" path="res://sounds/cards/hover.mp3" id="13_lautt"]
 [ext_resource type="AudioStream" uid="uid://c5ktjoher1m0m" path="res://sounds/cards/select.mp3" id="14_2xeq3"]
 [ext_resource type="AudioStream" uid="uid://qtyrv5brghid" path="res://sounds/cards/start.mp3" id="15_f0trr"]
@@ -409,6 +410,21 @@ autowrap_mode = 2
 position = Vector2(99, 284)
 scale = Vector2(2.1833332, 2.6428566)
 texture = ExtResource("12_0ovh7")
+
+[node name="ToLeave" type="Label" parent="CardContainer" unique_id=1640507515]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 424.0
+offset_right = 652.0
+offset_bottom = 478.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.69803923)
+theme_override_fonts/font = ExtResource("5_0ovh7")
+theme_override_font_sizes/font_size = 14
+text = "Only One
+ Per Round
+"
+horizontal_alignment = 1
+script = ExtResource("13_2xeq3")
 
 [node name="Sounds" type="Node3D" parent="." unique_id=1210066923]
 process_mode = 3

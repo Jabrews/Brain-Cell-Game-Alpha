@@ -46,48 +46,9 @@ func handle_round(round : int):
 	match round :
 		1 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
-			# ENERGY ##
+			## ENERGY ##
 			GLGameManagerBus.curr_energy = 100
 			GLGameManagerBus.max_energy = 100
-			## BREEDING ##
-			IVCellBreeding.max_cell_breeding_attempts = 5
-			IVCellBreeding.curr_cell_breeding_attempt = 0
-			## BREEDING SCALING ##
-			IVCellBreeding.clean_stat_increase_case_min = 0.4
-			IVCellBreeding.defect_stat_increase_case_min = 0.5
-			IVCellBreeding.low_add_percant_scale = 0.9
-			IVCellBreeding.high_add_percant_scale = 0.7
-			## CELL CREATOR ##
-			IVCellCreator.max_stat_value = 160
-			## USEABLE ITEMS ##
-			IVItemStats.defect_shot_decrease = 30
-			IVUseableItemSpawner.defect_shots_to_spawn = 1
-			IVUseableItemSpawner.hidden_shots_to_spawn = 0
-			IVUseableItemSpawner.steroids_to_spawn = 0
-			IVUseableItemSpawner.ice_cube_to_spawn = 0
-			IVUseableItemSpawner.scissors_to_spawn = 1
-			## SHAREHOLDER OFFER
-			IVShareholderOffers.first_item_offer_energy_percant= 90
-			IVShareholderOffers.second_item_offer_energy_percant= 50
-			# HIDDEN STATS ## 
-			IVHiddenStats.stats_to_hide = []
-			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 10
-			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
-			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
-			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.80, 1.01,]
-			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
-			## DEFECT DECREASER ##
-			IVCellDefectDecreaser.station_enabled = false
-			## CELL TRASHCAN ##
-			IVCellTrashcan.max_capaicty = 5
-			
-		2 :
-			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
-			## ENERGY ##
-			GLGameManagerBus.curr_energy = 120
-			GLGameManagerBus.max_energy = 120
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -119,6 +80,10 @@ func handle_round(round : int):
 			IVCellDefectDecreaser.station_enabled = false
 			## CELL TRASHCAN ##
 			IVCellTrashcan.max_capaicty = 6
+			
+		2 :
+			pass
+
 
 
 
