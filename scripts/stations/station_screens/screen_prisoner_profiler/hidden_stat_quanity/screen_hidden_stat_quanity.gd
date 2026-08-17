@@ -18,12 +18,15 @@ func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed)
 	
 func _handle_energy_turn_changed() :
+	
+	await get_tree().process_frame
+	
 	total_hidden_label.text = str(IVHiddenStats.max_stats_to_hide)
 	max_stats_to_hide = IVHiddenStats.max_stats_to_hide
 	
 	max_label.text = str(IVHiddenStats.max_stats_to_hide)
 	
-	
+	_profiler_changed_hidden_stat()
 
 func _profiler_changed_hidden_stat() :
 	
@@ -38,11 +41,12 @@ func _profiler_changed_hidden_stat() :
 	check_for_hidden_stat_min(potential_max_stats_to_hide)
 	
 
+# TODO
+# fix logic and names here isnt about quanity but picks now
 func prisoner_quanity_changed(potential_max_stats_to_hide : int) :
 	var quanity = parent_prisoner_profiler.current_prisoner_quanity
 	potential_max_stats_to_hide = reduce_hidden_quanitiy._handle_reduce_quanity(quanity, potential_max_stats_to_hide)
 	return potential_max_stats_to_hide
-	
 	
 func stat_disabled(potential_max_stats_to_hide : int) :
 	# we flip the disabled because its looking for 'enabled'

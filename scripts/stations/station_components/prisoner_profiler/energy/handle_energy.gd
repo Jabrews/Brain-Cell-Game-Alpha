@@ -117,11 +117,11 @@ func _update_energy_toggle_stat_value_enabled(stat_type : String, toggle_value :
 	if toggle_value == false:
 		match stat_type:
 			'strength':
-				stat_value_energy_used['strength'] = 5
+				stat_value_energy_used['strength'] = 2
 			'intelligence':
-				stat_value_energy_used['intelligence'] = 5
+				stat_value_energy_used['intelligence'] = 2
 			'community':
-				stat_value_energy_used['community'] = 5
+				stat_value_energy_used['community'] = 2
 	
 	recalculate_impending_energy()
 	helper_update_energy_panel._update()
@@ -143,9 +143,9 @@ func _update_toggle_safe_mode_active(toggle_value : bool) :
 func _update_energy_player_pressed_prisoner_picks_btn(prisoner_picks: int) -> void:
 	
 	if prisoner_picks == 1:
-		prisoner_picks_energy_used = -10
+		prisoner_picks_energy_used = -5
 	elif prisoner_picks == 2:
-		prisoner_picks_energy_used = -20
+		prisoner_picks_energy_used = -10
 	else:
 		prisoner_picks_energy_used = 0
 	

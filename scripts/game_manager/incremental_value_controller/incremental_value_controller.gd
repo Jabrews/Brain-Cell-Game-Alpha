@@ -58,7 +58,7 @@ func handle_round(round : int):
 			IVCellBreeding.low_add_percant_scale = 0.7
 			IVCellBreeding.high_add_percant_scale = 0.6
 			## CELL CREATOR ##
-			IVCellCreator.max_stat_value = 230
+			IVCellCreator.max_stat_value = 300
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 45
 			IVUseableItemSpawner.defect_shots_to_spawn = 0
@@ -74,7 +74,7 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.35, 0.55, 0.68, 0.80, 1.01]
+			IVPrisonerProfiler.stat_lock_percantages = [0.10, 0.25, 0.35, 0.55, 0.68, 0.80, 0.84, 0.92, 0.98, 1.01]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false

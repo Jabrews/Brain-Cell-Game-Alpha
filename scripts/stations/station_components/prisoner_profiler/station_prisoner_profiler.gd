@@ -81,8 +81,6 @@ func _handle_safe_mode_lever_switched() :
 	# refresh small stat screen
 	update_selected_stat('')
 	
-	# TODO 	
-	# can only be done once per round
 	
 	# audio
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
@@ -114,6 +112,8 @@ func _update_prisoner_picks(prisoner_picks : int) :
 	# update energy
 	handle_energy._update_energy_player_pressed_prisoner_picks_btn(prisoner_picks)
 	
+	screen_hidden_stat_quanity._profiler_changed_hidden_stat()
+	
 	
 	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
 
@@ -128,6 +128,7 @@ func update_selected_stat(stat_type : String) :
 	# the only display componnets we need to update if it has none
 	var stat_value = util_stat_type_to.stat_type_to_value(stat_type)
 	var stat_enabled = util_stat_type_to.stat_type_to_enabled(stat_type)
+	
 	
 	screen_small_stat_display._update_stat(stat_type, stat_value, stat_enabled)
 	control_interface._update_stat(stat_type, stat_value, stat_enabled)
