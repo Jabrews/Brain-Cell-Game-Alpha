@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://bl8vhketvm1av" path="res://scenes/stations/hidden_interpreter/component/plugin.tscn" id="11_36h02"]
 [ext_resource type="PackedScene" uid="uid://cjfsbwq6outy8" path="res://scenes/stations/station_components/target_cell_comparison/station_target_cell_comparison.tscn" id="11_moggy"]
 [ext_resource type="PackedScene" uid="uid://c76td16ka86aa" path="res://scenes/axe_mount/axe_mount.tscn" id="11_v2xyd"]
+[ext_resource type="PackedScene" uid="uid://cjcq26gdhvsfk" path="res://scenes/stations/hidden_interpreter/component/lever.tscn" id="12_3kcnf"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="12_63vgv"]
+[ext_resource type="PackedScene" uid="uid://vgie5w5m3275" path="res://scenes/stations/hidden_interpreter/component/emergency_light.tscn" id="13_3ujpq"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
@@ -58,25 +60,22 @@
 [ext_resource type="PackedScene" uid="uid://b3rgeck31iwbg" path="res://debug/admin_panel/admin_panel.tscn" id="62_l5rsp"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
-size = Vector3(50, 0.1, 50)
+size = Vector3(50, 0.05, 50)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_fon25"]
-size = Vector3(50, 0.2, 50)
+size = Vector3(50, 0.5, 50)
 
 [sub_resource type="BoxMesh" id="BoxMesh_umov7"]
 size = Vector3(1, 5, 15)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ujpq"]
+size = Vector3(1, 6, 14.3)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xrfk"]
 size = Vector3(1, 5, 14.3)
 
-[sub_resource type="BoxMesh" id="BoxMesh_24n7g"]
-size = Vector3(1, 4.7000003, 16.4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_l5rsp"]
-size = Vector3(1, 4.7000003, 16.4)
-
 [sub_resource type="BoxMesh" id="BoxMesh_qjatd"]
-size = Vector3(1, 3.445, 15)
+size = Vector3(1, 3, 15)
 
 [sub_resource type="Environment" id="Environment_h7hv4"]
 background_mode = 1
@@ -138,6 +137,24 @@ size = Vector3(1.1, 4.8, 9.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_lp30k"]
 size = Vector3(1, 4.8, 9.6)
 
+[sub_resource type="BoxMesh" id="BoxMesh_24n7g"]
+size = Vector3(1, 4.7000003, 16.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l5rsp"]
+size = Vector3(1, 4.7000003, 16.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3kcnf"]
+size = Vector3(1, 2.8, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3kcnf"]
+size = Vector3(1, 2.1000001, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3ujpq"]
+size = Vector3(1, 0.3, 11.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m2qbd"]
+size = Vector3(1, 0.3, 11.1)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_awaeu"]
 size = Vector3(0.1, 4.618823, 3.9)
 
@@ -172,10 +189,12 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall1" unique_id=249778948]
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 0)
 mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall1" unique_id=1823593709]
-shape = SubResource("BoxShape3D_7xrfk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9000001, 0)
+shape = SubResource("BoxShape3D_3ujpq")
 
 [node name="Wall2" type="StaticBody3D" parent="Enviroment" unique_id=885812073 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.155705, 2.495707, 9.747911)
@@ -183,6 +202,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall2" unique_id=493280077]
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 0)
 mesh = SubResource("BoxMesh_umov7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall2" unique_id=2067656085]
@@ -193,22 +213,8 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1
 collision_layer = 2
 collision_mask = 0
 
-[node name="Wall6" type="StaticBody3D" parent="Enviroment/Wall5" unique_id=498997592 groups=["nav_mesh_coll"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -18.270018)
-collision_layer = 2
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall5/Wall6" unique_id=1305758597]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50000477, 1.9275, -0.70000076)
-mesh = SubResource("BoxMesh_24n7g")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall5/Wall6" unique_id=1437791522]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000038, 1.9499998, -0.6499996)
-shape = SubResource("BoxShape3D_l5rsp")
-debug_color = Color(0.74498844, 0.20878527, 0.9999998, 1)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall5" unique_id=1060727596]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -2, 0)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, -0.5, -4.059812, -2.3841858e-07)
 mesh = SubResource("BoxMesh_qjatd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall5" unique_id=1398652591]
@@ -230,7 +236,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall3" unique_id=903573612]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 3.75)
 mesh = SubResource("BoxMesh_l5rsp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall3" unique_id=815923405]
@@ -243,7 +249,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall4" unique_id=1686241323]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, -0.5)
 mesh = SubResource("BoxMesh_lp30k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall4" unique_id=1160025713]
@@ -260,7 +266,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall6" unique_id=1232231636]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.5)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 5.5)
 mesh = SubResource("BoxMesh_r52yi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall6" unique_id=85352472]
@@ -273,7 +279,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall7" unique_id=1180584383]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.29999924)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 0.29999924)
 mesh = SubResource("BoxMesh_0ycs4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall7" unique_id=1582507328]
@@ -286,7 +292,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall8" unique_id=1116246042]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.29999924)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 0.29999924)
 mesh = SubResource("BoxMesh_y36b7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall8" unique_id=434017859]
@@ -299,7 +305,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall9" unique_id=1155413417]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.29999924)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 0.29999924)
 mesh = SubResource("BoxMesh_6ixvf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall9" unique_id=1133893258]
@@ -312,7 +318,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall10" unique_id=25619308]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.0999985)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 6.0999985)
 mesh = SubResource("BoxMesh_dixnm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall10" unique_id=1849743349]
@@ -325,12 +331,76 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall11" unique_id=557034648]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05000019, -0.099999905, -1.75)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0.05000019, -0.02706194, -1.75)
 mesh = SubResource("BoxMesh_pq8fj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall11" unique_id=1246679191]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999905, -1.7999992)
 shape = SubResource("BoxShape3D_lp30k")
+
+[node name="Wall12" type="StaticBody3D" parent="Enviroment" unique_id=498997592 groups=["nav_mesh_coll"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 16.114311, 0.49570704, -6.2520876)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall12" unique_id=1305758597]
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, -0.50000525, 2.0251877, -0.70000076)
+mesh = SubResource("BoxMesh_24n7g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall12" unique_id=1437791522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5000038, 1.9499998, -0.6499996)
+shape = SubResource("BoxShape3D_l5rsp")
+debug_color = Color(0.74498844, 0.20878527, 0.9999998, 1)
+
+[node name="Floor2" type="StaticBody3D" parent="Enviroment" unique_id=602902947 groups=["nav_mesh_coll"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5000005, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Enviroment/Floor2" unique_id=952379611]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999981, 0)
+mesh = SubResource("BoxMesh_k57ag")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Floor2" unique_id=844918140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1500001, 0)
+shape = SubResource("BoxShape3D_fon25")
+debug_color = Color(0.7096456, 0.4859149, 0, 1)
+
+[node name="Wall14" type="StaticBody3D" parent="Enviroment" unique_id=2032447001 groups=["nav_mesh_coll"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3442945, 4.095707, -6.7520885)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall14" unique_id=611213788]
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, -0.40690422, 0)
+mesh = SubResource("BoxMesh_3kcnf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall14" unique_id=1596521460]
+shape = SubResource("BoxShape3D_3kcnf")
+
+[node name="Wall15" type="StaticBody3D" parent="Enviroment" unique_id=36501293 groups=["nav_mesh_coll"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.1557055, 5.995707, -6.7520885)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall15" unique_id=1801160629]
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_3ujpq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall15" unique_id=631560930]
+shape = SubResource("BoxShape3D_m2qbd")
+
+[node name="Wall16" type="StaticBody3D" parent="Enviroment" unique_id=1461393756 groups=["nav_mesh_coll"]]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.655705, 4.095707, -6.7520885)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Wall16" unique_id=2127782692]
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, -0.25809574, 0)
+mesh = SubResource("BoxMesh_3kcnf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Wall16" unique_id=1219483345]
+shape = SubResource("BoxShape3D_3kcnf")
 
 [node name="Charcters" type="Node" parent="." unique_id=1683906565]
 
@@ -375,7 +445,7 @@ transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.232382, 0, -1.4660921)
 
 [node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.7, 0)
 cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
@@ -383,12 +453,51 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 [node name="Stations" type="Node" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1482589801]
 
 [node name="HiddenInterpreter4" parent="Stations/ContainerStations/HiddenStatInterpreters/Stations" unique_id=620646669 instance=ExtResource("15_ms0m2")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5.4, 1, -13.700001)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 1, -13.300001)
+
+[node name="HiddenInterpreter5" parent="Stations/ContainerStations/HiddenStatInterpreters/Stations" unique_id=415527323 instance=ExtResource("15_ms0m2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 1, -13.300001)
+stat_type = "intelligence"
+
+[node name="HiddenInterpreter6" parent="Stations/ContainerStations/HiddenStatInterpreters/Stations" unique_id=951601281 instance=ExtResource("15_ms0m2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, 1, -13.300001)
+stat_type = "community"
 
 [node name="Plugins" type="Node" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=2007164654]
 
 [node name="Plugin" parent="Stations/ContainerStations/HiddenStatInterpreters/Plugins" unique_id=1902165158 instance=ExtResource("11_36h02")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 0.6000001, -16.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9, 0.9000001, -16.9)
+
+[node name="Plugin2" parent="Stations/ContainerStations/HiddenStatInterpreters/Plugins" unique_id=1067418920 instance=ExtResource("11_36h02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 0.9000001, -16.9)
+stat_type = "intelligence"
+
+[node name="Plugin3" parent="Stations/ContainerStations/HiddenStatInterpreters/Plugins" unique_id=710263365 instance=ExtResource("11_36h02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0.9000001, -16.9)
+stat_type = "community"
+
+[node name="LeverParent" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=432106297 node_paths=PackedStringArray("strength_interpreter", "intelligence_interpreter", "community_interpreter", "strength_plugin", "intelligence_plugin", "community_plugin") instance=ExtResource("12_3kcnf")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.6, 2.4, -9.7)
+strength_interpreter = NodePath("../Stations/HiddenInterpreter4")
+intelligence_interpreter = NodePath("../Stations/HiddenInterpreter5")
+community_interpreter = NodePath("../Stations/HiddenInterpreter6")
+strength_plugin = NodePath("../Plugins/Plugin")
+intelligence_plugin = NodePath("../Plugins/Plugin2")
+community_plugin = NodePath("../Plugins/Plugin3")
+
+[node name="EmergencyLights" type="Node" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=692387654]
+
+[node name="EmergencyLight" parent="Stations/ContainerStations/HiddenStatInterpreters/EmergencyLights" unique_id=298010187 instance=ExtResource("13_3ujpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 5.6, -16.2)
+
+[node name="EmergencyLight2" parent="Stations/ContainerStations/HiddenStatInterpreters/EmergencyLights" unique_id=1791619578 instance=ExtResource("13_3ujpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 5.6, -7.9000006)
+
+[node name="EmergencyLight3" parent="Stations/ContainerStations/HiddenStatInterpreters/EmergencyLights" unique_id=1911791304 instance=ExtResource("13_3ujpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -7.9000006)
+
+[node name="EmergencyLight4" parent="Stations/ContainerStations/HiddenStatInterpreters/EmergencyLights" unique_id=2131813906 instance=ExtResource("13_3ujpq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -16.1)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, -3.1650834)
@@ -608,15 +717,15 @@ script = ExtResource("14_5ru7i")
 script = ExtResource("59_ms0m2")
 
 [node name="CeilingFan" parent="CelingFanManager" unique_id=829669894 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 5, 9.200001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 5.2999997, 9.200001)
 room = "main_room"
 
 [node name="CeilingFan2" parent="CelingFanManager" unique_id=1454637000 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4000006, 5, 0.10000038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4000006, 5.2999997, 0.10000038)
 room = "main_room"
 
 [node name="CeilingFan3" parent="CelingFanManager" unique_id=199999115 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 5, -11.499999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 5.2999997, -11.499999)
 room = "interpreter_room"
 
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]

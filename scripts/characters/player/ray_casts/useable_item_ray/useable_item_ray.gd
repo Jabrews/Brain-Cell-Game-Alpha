@@ -17,7 +17,6 @@ func _ready() -> void:
 	GLUsableItemBus.connect('pop_up_chose_stat', _handle_pop_up_chose_stat)
 	GLUsableItemBus.connect('scissors_pop_up_chose_mutation', _handle_scissors_pop_up_chose_mutation)
 
-
 func _process(_delta):
 
 	var collider = get_collider()

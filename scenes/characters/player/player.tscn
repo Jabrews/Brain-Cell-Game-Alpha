@@ -75,7 +75,7 @@ script = ExtResource("2_6avc5")
 
 [node name="HoverEffectRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1742144226]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
-target_position = Vector3(0, 0, -3.5)
+target_position = Vector3(0, 0, -4)
 collision_mask = 18
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0, 0, 0)
@@ -83,7 +83,7 @@ script = ExtResource("2_g2els")
 
 [node name="InteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1568495012]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -4)
 collision_mask = 34
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0, 0, 0)
@@ -102,10 +102,10 @@ script = ExtResource("4_hss88")
 
 [node name="UseableItemRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1178014007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -4)
 collision_mask = 390
 collide_with_areas = true
-debug_shape_custom_color = Color(0, 0, 0, 0)
+debug_shape_custom_color = Color(0, 0, 0, 0.4)
 script = ExtResource("6_mk55u")
 
 [node name="UseSteroid" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=1192498463]
@@ -202,6 +202,7 @@ volume_db = -20.0
 
 [node name="HiddenInterpreterAllJolt" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1611324764]
 stream = ExtResource("18_svuau")
+volume_db = 10.0
 pitch_scale = 0.9
 
 [node name="PrisonerSelected" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=790383614]

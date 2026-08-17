@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://cnjxx2w8km4am"]
 
 [ext_resource type="Script" uid="uid://dg5xwxeofenhv" path="res://scripts/stations/hidden_interpreter/component/plug/plug.gd" id="1_10a67"]
+[ext_resource type="Script" uid="uid://uh72fdmoj058" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/state_machine.gd" id="2_1bptc"]
+[ext_resource type="Script" uid="uid://d3fbum1rsxiws" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/idle.gd" id="3_nrj4v"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="3_qbha0"]
+[ext_resource type="Script" uid="uid://cgufydwmveilr" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/picked_up.gd" id="3_yetqu"]
+[ext_resource type="PackedScene" uid="uid://ch2a6uaj8jyto" path="res://scenes/hoverable_mesh_scenes/plug_hover.tscn" id="4_qbha0"]
+[ext_resource type="Script" uid="uid://dbbi4cwbp454i" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/plugged_in.gd" id="5_0414i"]
+[ext_resource type="Script" uid="uid://bdrlx3ucdjd40" path="res://scripts/stations/hidden_interpreter/component/plug/interactable_pickup.gd" id="5_vhidi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m6o5v"]
 size = Vector3(0.4, 0.4, 0.2)
@@ -8,26 +15,44 @@ size = Vector3(0.4, 0.4, 0.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
 size = Vector3(0.4, 0.4, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6o5v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qbha0"]
 albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_keru6"]
-material = SubResource("StandardMaterial3D_m6o5v")
+material = SubResource("StandardMaterial3D_qbha0")
 size = Vector3(0.06416015, 0.05732422, 0.14316407)
 
 [sub_resource type="BoxMesh" id="BoxMesh_10a67"]
-material = SubResource("StandardMaterial3D_m6o5v")
+material = SubResource("StandardMaterial3D_qbha0")
 size = Vector3(0.06416015, 0.05732422, 0.14316407)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yetqu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nrj4v"]
 
 [node name="Plug" type="RigidBody3D" unique_id=407764137 groups=["interpreter_plug"]]
 collision_layer = 65536
 collision_mask = 2
+mass = 10.0
+lock_rotation = true
 script = ExtResource("1_10a67")
+
+[node name="StateMachine" type="Node" parent="." unique_id=196146759]
+script = ExtResource("2_1bptc")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=2102586619]
+script = ExtResource("3_nrj4v")
+
+[node name="PickedUp" type="Node" parent="StateMachine" unique_id=952190912]
+script = ExtResource("3_yetqu")
+
+[node name="PluggedIn" type="Node" parent="StateMachine" unique_id=708429758]
+script = ExtResource("5_0414i")
 
 [node name="PlugMesh" type="MeshInstance3D" parent="." unique_id=1282437285]
 mesh = SubResource("BoxMesh_m6o5v")
 
-[node name="MeshInstance3D2" type="CollisionShape3D" parent="." unique_id=1595659720]
+[node name="PlugColl" type="CollisionShape3D" parent="." unique_id=1595659720]
 shape = SubResource("BoxShape3D_qa1qv")
 
 [node name="PlugProngs" type="Node3D" parent="." unique_id=753414509]
@@ -43,3 +68,23 @@ mesh = SubResource("BoxMesh_10a67")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="PlugProngs" unique_id=1181699536]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10155215, 0.07104347, -0.17819)
 mesh = SubResource("BoxMesh_keru6")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="." unique_id=1628562242 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("3_qbha0")
+hover_mesh_scene = ExtResource("4_qbha0")
+hover_mesh_scale = 0.1
+orignal_mesh = NodePath("../PlugMesh")
+original_coll_shape = NodePath("../PlugColl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HoverableMesh" unique_id=1375919163]
+shape = SubResource("BoxShape3D_yetqu")
+
+[node name="InteractablePickup" type="StaticBody3D" parent="." unique_id=1941422655 groups=["interactable"]]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("5_vhidi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractablePickup" unique_id=708215379]
+shape = SubResource("BoxShape3D_nrj4v")

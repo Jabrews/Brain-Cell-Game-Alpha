@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://cjcq26gdhvsfk"]
+
+[ext_resource type="Script" uid="uid://cyi0vtrnkmuhd" path="res://scripts/stations/hidden_interpreter/component/lever/lever.gd" id="1_br3j5"]
+[ext_resource type="Script" uid="uid://jl7dngo57x0a" path="res://scripts/stations/hidden_interpreter/component/lever/lever_parent.gd" id="1_gcamc"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_jewrw"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_qob87"]
+[ext_resource type="PackedScene" uid="uid://chv1ouv0plpqu" path="res://scenes/hoverable_mesh_scenes/interpreter_lever_hover.tscn" id="2_jewrw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qob87"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_qob87")
+size = Vector3(0.8, 1, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q5byv"]
+size = Vector3(0.8, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_br3j5"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+material = SubResource("StandardMaterial3D_br3j5")
+size = Vector3(0.1, 0.092, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.1, 0.092, 0.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gcamc"]
+
+[node name="LeverParent" type="Node3D" unique_id=432106297]
+script = ExtResource("1_gcamc")
+
+[node name="LeverBase" type="StaticBody3D" parent="." unique_id=1476337239]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeverBase" unique_id=1757178587]
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeverBase" unique_id=573672772]
+shape = SubResource("BoxShape3D_q5byv")
+
+[node name="Lever" type="StaticBody3D" parent="." unique_id=1117936974]
+transform = Transform3D(1, 0, 0, 0, 0.76604444, 0.6427876, 0, -0.6427876, 0.76604444, 0, 0.2, 0.3)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("1_br3j5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Lever" unique_id=692819969]
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lever" unique_id=423765773]
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Lever" unique_id=997853288 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_jewrw")
+hover_mesh_scene = ExtResource("2_jewrw")
+hover_mesh_scale = 0.1
+hover_mesh_scale_x = 0.0
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Lever/HoverableMesh" unique_id=1668361339]
+shape = SubResource("BoxShape3D_gcamc")
+
+[node name="LeverRules" type="Label3D" parent="." unique_id=609999949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.3, -0.045942284)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Reset All 
+Machines"
+font = ExtResource("1_qob87")
+font_size = 25
+
+[node name="LeverRules2" type="Label3D" parent="." unique_id=2135144944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 7.450581e-09, -0.045942284)
+texture_filter = 0
+modulate = Color(1, 0.3, 0.3, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "note - 
+will reset progress"
+font = ExtResource("1_qob87")
+font_size = 14

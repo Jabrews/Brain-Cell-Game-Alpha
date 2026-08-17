@@ -3,6 +3,7 @@ extends Node
 @export var stat_type : String = 'strength'
 
 # components
+@onready var plug : RigidBody3D =$Plug
 @onready var screen_hidden_interpreter : Node2D = $TvFrontPannel/SubViewport/ScreenHiddenInterpreter
 @onready var progress_time_spent_manager : Node = $ProgressTimeSpentManager
 @onready var jolt_particles : GPUParticles3D = $JoltParticles 
@@ -12,14 +13,6 @@ extends Node
 var loaded_cell_container : CharacterBody3D
 var jolt_active : bool = false
 var plugged_in : bool = true 
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug2') : 
-		_handle_plug('in')
-	elif Input.is_action_just_pressed('debug3') : 
-		_handle_plug('out')
-		
 
 
 func _ready() -> void:
@@ -106,6 +99,10 @@ func _handle_plug(plug_status : String) :
 
 			
 func _handle_defect_event_jolt(selected_interpreters : Array): 	
+	
+	if not plugged_in : 	
+		return
+	
 	for selected_interpreter_type : String in selected_interpreters : 
 		if selected_interpreter_type == stat_type:
 			
@@ -116,6 +113,8 @@ func _handle_defect_event_jolt(selected_interpreters : Array):
 			jolt_particles.emitting = true
 			
 			jolt_active = true
+			
+
 			
 			audio_manager.toggle_play_jolt(true)
 			audio_manager.toggle_play_idle_drone(false)
@@ -137,6 +136,9 @@ func _handle_defect_event_jolt_ended(lever_flipped : bool = false) :
 	
 	# let event notice know we stopped jolt
 	GLEventNoticeManagerBus.emit_signal('delete_event_notice_hidden_stat_interpreter', stat_type)
+	
+	# kinda hacky. gets to lights though
+	GLDefectEventMangerBus.emit_signal('stopped_jolt', stat_type)
 	
 	# if cell is still on panel
 	if loaded_cell_container : 
