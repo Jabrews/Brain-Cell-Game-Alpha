@@ -2,6 +2,8 @@ extends Node
 
 
 @onready var progress_bar: TextureProgressBar = $ProgressBar
+@onready var s_beep : AudioStreamPlayer3D = $"../../../Beep"
+@onready var s_alert_beep : AudioStreamPlayer3D = $"../../../Alert"
 
 const FLASH_COLOR := Color(1.0, 0.25, 0.25)
 
@@ -13,6 +15,13 @@ func _ready() -> void:
 	GLGameManagerBus.connect("process_next_round", _handle_next_round)
 	GLGameManagerBus.connect("proceed_next_energy_turn", _handle_next_energy_turn)
 	GLGameManagerBus.connect("energy_changed", _handle_energy_changed)
+	
+	# hacky way to fix sound
+	s_beep.volume_db = -50
+	await get_tree().create_timer(4.0).timeout
+	s_beep.volume_db = 25
+	
+		
 
 
 func _handle_next_round() -> void:
@@ -27,16 +36,16 @@ func _handle_next_round() -> void:
 func _handle_next_energy_turn() -> void:
 	
 	# quick await for cinnamatic
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(0.6).timeout
 	
-	_update_progress()
+	_update_progress(true)
 
 
 func _handle_energy_changed() -> void:
 	_update_progress()
 
 
-func _update_progress() -> void:
+func _update_progress(play_sound : bool = false) -> void:
 	
 	await get_tree().create_timer(0.1).timeout
 	
@@ -54,6 +63,10 @@ func _update_progress() -> void:
 	progress_tween = create_tween()
 	progress_tween.set_trans(Tween.TRANS_SINE)
 	progress_tween.set_ease(Tween.EASE_IN_OUT)
+	
+	if play_sound : 
+		s_beep.play()
+	
 
 	progress_tween.tween_property(
 		progress_bar,
@@ -63,6 +76,11 @@ func _update_progress() -> void:
 	)
 
 	_update_low_energy_flash(curr_energy, max_energy)
+	
+	
+	if play_sound : 
+		await progress_tween.finished 
+		s_beep.stop()
 
 
 func _update_low_energy_flash(curr_energy: int, max_energy: int) -> void:
@@ -78,6 +96,9 @@ func _start_flash() -> void:
 	# Don't create another flash tween if one is already running.
 	if flash_tween and flash_tween.is_running():
 		return
+	
+	s_alert_beep.play()
+		
 
 	flash_tween = create_tween()
 	flash_tween.set_loops()
