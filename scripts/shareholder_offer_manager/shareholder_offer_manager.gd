@@ -28,15 +28,18 @@ func _ready() -> void:
 		_handle_next_round
 	)
 
-	GLGameManagerBus.connect(
-		"proceed_next_energy_turn",
-		_handle_energy_turn_changed
-	)
+	# instead now we wait till cinnamatic finished
+	#GLGameManagerBus.connect(
+		#"proceed_next_energy_turn",
+		#_handle_energy_turn_changed
+	#)
 
 	GLGameManagerBus.connect(
 		"energy_changed",
 		_handle_energy_changed
 	)
+	
+	GLCinnamaticBus.connect('toggle_showing_cinnamatic', _handle_toggle_showing_cinnamatic)
 
 	toggle_display_lock(false)
 	toggle_mouse_filter(false)
@@ -215,6 +218,9 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 	toggle_mouse_filter(false)
 	GLPlayerState.emit_signal('lock_player_position', false)
 
+func _handle_toggle_showing_cinnamatic(toggle_value : bool) : 
+	if toggle_value == false : 	
+		_handle_energy_turn_changed()
 
 func toggle_display_lock(toggle_value: bool) -> void:
 	

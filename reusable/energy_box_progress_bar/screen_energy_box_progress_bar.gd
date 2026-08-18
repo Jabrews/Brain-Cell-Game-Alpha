@@ -25,6 +25,10 @@ func _handle_next_round() -> void:
 
 
 func _handle_next_energy_turn() -> void:
+	
+	# quick await for cinnamatic
+	await get_tree().create_timer(1.0).timeout
+	
 	_update_progress()
 
 

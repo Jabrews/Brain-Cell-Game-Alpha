@@ -20,12 +20,16 @@
 [ext_resource type="Script" uid="uid://dn1hbdbmjlyif" path="res://scripts/ui/event_notice_manager/event_notice_manager.gd" id="18_ygedu"]
 [ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
 [ext_resource type="Script" uid="uid://cw31gxlbj441f" path="res://scripts/ui/view_demands.gd" id="20_ygedu"]
+[ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
 shader_parameter/progress = 0.0
 shader_parameter/selected_color = Color(0.168607, 0.60320264, 0.621988, 1)
 shader_parameter/white_threshold = 0.85
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ygedu"]
+load_path = "res://.godot/imported/3_blood_display.png-f8ace423e03d060f39c0522706cf1d23.ctex"
 
 [node name="UI" type="Control" unique_id=885223017]
 layout_mode = 3
@@ -250,3 +254,13 @@ theme_override_font_sizes/font_size = 50
 text = "View Demands"
 horizontal_alignment = 1
 script = ExtResource("20_ygedu")
+
+[node name="CinnamaticOverlay" type="Sprite2D" parent="." unique_id=1472742570]
+process_mode = 3
+visible = false
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+position = Vector2(640, 360)
+scale = Vector2(1.498829, 1.5)
+texture = SubResource("CompressedTexture2D_ygedu")
+script = ExtResource("21_oopc8")

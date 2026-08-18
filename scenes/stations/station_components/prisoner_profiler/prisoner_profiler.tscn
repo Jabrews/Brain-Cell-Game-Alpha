@@ -52,6 +52,7 @@
 [ext_resource type="Script" uid="uid://d3abljcarpoy3" path="res://scripts/stations/station_components/prisoner_profiler/limit_quanity/safe_mode_lever.gd" id="51_pf5p3"]
 [ext_resource type="Texture2D" uid="uid://cr1u5gyc11csm" path="res://models/energy_box/energy_cirlce.png" id="54_8n66l"]
 [ext_resource type="Script" uid="uid://8hgkketut0i1" path="res://scripts/stations/station_components/prisoner_profiler/limit_quanity/safe_mode_lights.gd" id="54_cpl65"]
+[ext_resource type="Script" uid="uid://cu11i8yjwc10" path="res://scripts/stations/station_components/prisoner_profiler/energy_cinnamatic/energy_cinnamatic.gd" id="55_53sf7"]
 [ext_resource type="PackedScene" uid="uid://qq4225jhp0tc" path="res://scenes/stations/station_screens/prisoner_profiler_screens/screen_safe_mode.tscn" id="55_wm6wt"]
 [ext_resource type="PackedScene" uid="uid://n6qo1vnymopt" path="res://reusable/energy_box_progress_bar/screen_energy_box_progress_bar.tscn" id="57_vwyqi"]
 
@@ -270,6 +271,11 @@ material = SubResource("StandardMaterial3D_53sf7")
 size = Vector3(0.01, 0.3, 1.2)
 subdivide_width = 16
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_53sf7"]
+material = SubResource("StandardMaterial3D_7fjcn")
+size = Vector2(1.4, 0.2)
+orientation = 0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rhey"]
 albedo_color = Color(0, 0, 0, 1)
 metallic_specular = 0.0
@@ -280,29 +286,30 @@ material = SubResource("StandardMaterial3D_0rhey")
 size = Vector3(0.01, 0.23172608, 1.4468353)
 subdivide_width = 16
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_53sf7"]
-material = SubResource("StandardMaterial3D_7fjcn")
-size = Vector2(1.4, 0.2)
-orientation = 0
-
 [node name="PrisonerProfiler" type="Node3D" unique_id=672067400]
 script = ExtResource("1_iwmj8")
 
 [node name="Logic" type="Node" parent="." unique_id=2085216556]
+process_mode = 3
 
 [node name="UtilStatTypeTo" type="Node" parent="Logic" unique_id=1293406886]
+process_mode = 3
 script = ExtResource("2_5kdf7")
 
 [node name="HandleCycleStat" type="Node" parent="Logic" unique_id=1465069877]
+process_mode = 3
 script = ExtResource("1_d2mkq")
 
 [node name="HandleIncrementStat" type="Node" parent="Logic" unique_id=1064971111]
+process_mode = 3
 script = ExtResource("3_c22aw")
 
 [node name="HandleSafeMode" type="Node" parent="Logic" unique_id=1645034658]
+process_mode = 3
 script = ExtResource("5_72ean")
 
 [node name="Symbols" type="Node" parent="Logic" unique_id=460213634]
+process_mode = 3
 
 [node name="HandleLock" type="Node" parent="Logic/Symbols" unique_id=756191861]
 script = ExtResource("4_xndck")
@@ -344,12 +351,15 @@ script = ExtResource("10_maiyk")
 script = ExtResource("16_jheh3")
 
 [node name="HandleEnergy" type="Node" parent="Logic" unique_id=417109098]
+process_mode = 3
 script = ExtResource("8_5vb5l")
 
 [node name="ControlInterfaceEnergyHelper" type="Node" parent="Logic/HandleEnergy" unique_id=1560915229]
+process_mode = 3
 script = ExtResource("9_d5oif")
 
 [node name="UpdateEnergyPanel" type="Node" parent="Logic/HandleEnergy" unique_id=2055681758]
+process_mode = 3
 script = ExtResource("10_5kdf7")
 
 [node name="StatDisplay" type="Node3D" parent="." unique_id=1636587425]
@@ -1036,6 +1046,7 @@ render_target_update_mode = 4
 [node name="LimitQuanity" parent="SafeMode/SafeModeTV/TvFrontPannel/SubViewport" unique_id=508341564 instance=ExtResource("55_wm6wt")]
 
 [node name="EnergyBox" type="Node3D" parent="." unique_id=1738670449]
+process_mode = 3
 transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 5.370636, 0.88424337, 2.1794724)
 
 [node name="Box" type="StaticBody3D" parent="EnergyBox" unique_id=523268507]
@@ -1065,6 +1076,7 @@ mesh = SubResource("CylinderMesh_qa1qv")
 transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.35372782, 1.3026482, 1.4736471)
 
 [node name="EnergyUsed" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1128461170]
+process_mode = 3
 transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.20124102, 1.1034586, -1.6378584)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
@@ -1075,6 +1087,7 @@ font_size = 34
 outline_size = 0
 
 [node name="EnergyUsedText" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1381322148]
+process_mode = 3
 transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.20124054, 1.1117218, -1.3370085)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
@@ -1085,6 +1098,7 @@ font_size = 34
 outline_size = 0
 
 [node name="EnerfyLeft" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1069418868]
+process_mode = 3
 transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19186187, 0.91453934, -1.8530335)
 texture_filter = 0
 modulate = Color(1, 1, 0, 1)
@@ -1095,6 +1109,7 @@ font_size = 28
 outline_size = 0
 
 [node name="EnerfyLeftText" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1754173674]
+process_mode = 3
 transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19186187, 0.93283963, -1.4087639)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -1104,17 +1119,20 @@ font_size = 28
 outline_size = 0
 
 [node name="EnergyIcon2" type="Sprite3D" parent="EnergyBox/EnergyPanel" unique_id=522958205]
+process_mode = 3
 transform = Transform3D(1.07288365e-07, 0, 0.70000005, 0, 0.84000003, 0, -0.8400001, 0, 8.940697e-08, -0.19064426, 1.1019042, -1.7963233)
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_pl004")
 
 [node name="EnergyIcon3" type="Sprite3D" parent="EnergyBox/EnergyPanel" unique_id=947618727]
+process_mode = 3
 transform = Transform3D(-5.9604645e-08, 0, 0.90000004, 0, 0.9, 0, -0.90000004, 0, -5.9604645e-08, -0.19064474, 0.91454816, -2.001401)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_pl004")
 
 [node name="PanelMesh" type="MeshInstance3D" parent="EnergyBox/EnergyPanel" unique_id=102272748]
+process_mode = 3
 transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, -0.20725036, 1.0209124, -1.5012183)
 mesh = SubResource("BoxMesh_8n66l")
 
@@ -1124,6 +1142,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.021252632, 0.70000005, 0)
 [node name="CurrEnergyLabels" type="Node3D" parent="EnergyBox/CurrentPanel" unique_id=1139384356]
 
 [node name="CurrEnergy" type="Label3D" parent="EnergyBox/CurrentPanel/CurrEnergyLabels" unique_id=1647995414]
+process_mode = 3
 transform = Transform3D(2.9802298e-08, 0, 0.9999993, 0, 1, 0, -0.9999993, 0, 2.9802298e-08, 0.15010953, 3.0869508, -0.3233298)
 texture_filter = 0
 modulate = Color(1, 1, 0, 1)
@@ -1134,6 +1153,7 @@ font_size = 25
 outline_size = 0
 
 [node name="CurrEnergyText" type="Label3D" parent="EnergyBox/CurrentPanel/CurrEnergyLabels" unique_id=520319194]
+process_mode = 3
 transform = Transform3D(2.9802298e-08, 0, 0.9999993, 0, 1, 0, -0.9999993, 0, 2.9802298e-08, 0.15153646, 3.0972943, 0.1178118)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -1143,31 +1163,36 @@ font_size = 25
 outline_size = 0
 
 [node name="EnergyIcon" type="Sprite3D" parent="EnergyBox/CurrentPanel/CurrEnergyLabels" unique_id=1329961299]
+process_mode = 3
 transform = Transform3D(-5.9604595e-08, 0, 0.89999926, 0, 0.9, 0, -0.89999926, 0, -5.9604595e-08, 0.16308379, 3.0933747, -0.44151485)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_pl004")
 
 [node name="PanelMesh" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyLabels" unique_id=1935633770]
+process_mode = 3
 transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 3.0751996, -0.024114843)
 mesh = SubResource("BoxMesh_vwyqi")
 
 [node name="CurrEnergyScreen" type="Node3D" parent="EnergyBox/CurrentPanel" unique_id=349382227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0502429, 0)
 
-[node name="TVBG" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1226799785]
-transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 2.7169476, -0.0010056496)
-mesh = SubResource("BoxMesh_53sf7")
-
 [node name="TvFrontPannel" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1757250473]
+process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16239882, 2.7208986, 0.0020780563)
 mesh = SubResource("PlaneMesh_53sf7")
 script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="EnergyBox/CurrentPanel/CurrEnergyScreen/TvFrontPannel" unique_id=598228643]
+process_mode = 3
 canvas_item_default_texture_filter = 0
 size = Vector2i(245, 40)
 
 [node name="ScreenEnergyBox" parent="EnergyBox/CurrentPanel/CurrEnergyScreen/TvFrontPannel/SubViewport" unique_id=1979986246 instance=ExtResource("57_vwyqi")]
+process_mode = 3
+
+[node name="TVBG" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1226799785]
+transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 2.7169476, -0.0010056496)
+mesh = SubResource("BoxMesh_53sf7")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="EnergyBox/CurrentPanel" unique_id=259607023]
 transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 3.0000002, 2.5000005, 0)
@@ -1177,3 +1202,20 @@ spot_range = 3.849
 transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, 0.13752031, 2.2719011, 0)
 texture_filter = 0
 texture = ExtResource("54_8n66l")
+
+[node name="EnergyCinnamatic" type="Node3D" parent="." unique_id=1649399563]
+process_mode = 3
+script = ExtResource("55_53sf7")
+
+[node name="Camera3D" type="Camera3D" parent="EnergyCinnamatic" unique_id=1866567070]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.476574, 3.930224, 3.8965273)
+fov = 70.0
+
+[node name="StartPoint" type="Node3D" parent="EnergyCinnamatic" unique_id=1363828331]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.476574, 3.930224, 11.131142)
+
+[node name="EndPoint" type="Node3D" parent="EnergyCinnamatic" unique_id=1965366429]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.476574, 3.930224, 4.544622)

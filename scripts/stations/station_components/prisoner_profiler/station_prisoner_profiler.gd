@@ -408,6 +408,8 @@ func handle_generate_btn_pressed() :
 		'batch_created',
 		{}
 	)
+	GLCinnamaticBus.emit_signal('toggle_energy_cinnamatic', true)	
+	
 
 	reset_assembler()
 	
