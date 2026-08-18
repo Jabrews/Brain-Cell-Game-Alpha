@@ -19,9 +19,9 @@
 [ext_resource type="Script" uid="uid://b3ghyaq1od780" path="res://reusable/basic_receiver_screen/disruptor/disruptor_manager_reciever_screen.gd" id="17_tqrwa"]
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="19_yqc08"]
 [ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="20_00lp2"]
-[ext_resource type="Script" uid="uid://cqmugyg8o67v" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull_manager.gd" id="21_6f23f"]
-[ext_resource type="Script" uid="uid://d3lf08jd0o5ml" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/detect_skull_area.gd" id="22_6umcr"]
-[ext_resource type="Script" uid="uid://cvo413kvxj0ic" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull.gd" id="23_0ssro"]
+[ext_resource type="Script" uid="uid://vrgil8tm4o4l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull_manager.gd" id="21_6f23f"]
+[ext_resource type="Script" uid="uid://d2ayejpb3dr5n" path="res://reusable/mutation_disrupt/disruptor_skull/detect_skull_area.gd" id="22_6umcr"]
+[ext_resource type="Script" uid="uid://dqw7inj07cg6l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull.gd" id="23_0ssro"]
 [ext_resource type="Texture2D" uid="uid://4df418kwwq1u" path="res://models/mutations/random_disruptor_disrupt/hack_skull.png" id="24_oqbwp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8usb6"]

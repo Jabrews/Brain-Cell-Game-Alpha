@@ -1,34 +1,59 @@
 extends Node
 
-# componnets
-@onready var handle_switch_screen : Node = $HandleSwitchScreen
-@onready var idle_screen : Control = $IdleScreen
-@onready var parent_station_interpreter : Node3D = $"../../../.."
-var game_screen_instance : Node2D 
+# component screens
+@onready var progress: Control = $ProgressScreen
+@onready var no_cell_detected : Control = $NoCellDetectScreen
+@onready var no_hidden_stat_detected : Control =$NoHiddenStatDetected
+@onready var jolt_detected : Control = $JoltDetected
+@onready var finished : Control = $Finished
+@onready var off : Control = $OffScreen
+# component station parent
+@onready var interpreter_station_parent : Node3D = $"../../.."
+# component helpers
+@onready var update_stat_type_labels : Node = $UpdateStatTypeLabels
 
-@onready var stat_names_labels : Array[Label] = [
-	$IdleScreen/StatName,
-	$NoCellDetected/StatName,
-	$JoltDetectedPleaseReset/StatName
-]
-
+# component disruptor
+@onready var disrupt_progress_blocker : Control = $DisruptorManagerInterpreter/ProgressBlocker
 
 func _ready() -> void:
-	# load correct stat type name into screens
-	for label : Label in stat_names_labels :
-		label.text = str(parent_station_interpreter.interpreter_type)
+	var stat_type = interpreter_station_parent.stat_type
+	update_stat_type_labels._update(stat_type)
 
-func _switch_screen(screen_type : String, info_screen_type) :
-	handle_switch_screen._switch(screen_type, info_screen_type)
 
-func _handle_timer_increment(current_value : int) :
-	idle_screen._handle_increment(current_value)
+func _switch_screen(type : String) : 
+	reset_screens()	
 	
-	if game_screen_instance :
-		game_screen_instance._handle_increment(current_value)
-	
+	match type : 	
+		'progress_screen' :
+			progress.visible = true
+			disrupt_progress_blocker.visible = true
+		'no_cell_detected' :
+			no_cell_detected.visible = true
+		'no_hidden_stat_detected' :
+			no_hidden_stat_detected.visible = true
+		'jolt_detected' : 
+			jolt_detected.visible = true
+			jolt_detected._toggle_active(true)
+		'finished' :
+			finished.visible = true
+		'off' : 
+			off.visible = true
+			
+			
 
-func _handle_timer_reset() :
-	idle_screen._reset_increment()
+func _update_progress_bar(time_spent : float) :
+	progress._update_progress_bar(time_spent)
 
+func reset_screens() :
+	# stop blink on jolt	
+	jolt_detected._toggle_active(false)
+	# stop showing disrupter stuff ONLY for progress blocker
+	disrupt_progress_blocker.visible = false
 	
+	
+	progress.visible = false	
+	no_cell_detected.visible = false
+	no_hidden_stat_detected.visible = false
+	jolt_detected.visible = false
+	finished.visible = false
+	off.visible = false 

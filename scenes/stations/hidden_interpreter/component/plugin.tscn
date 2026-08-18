@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl8vhketvm1av"]
 
-[ext_resource type="Script" uid="uid://bnf25a4u6u1aw" path="res://scripts/stations/hidden_interpreter/component/plugin/plugin.gd" id="1_b1710"]
+[ext_resource type="Script" uid="uid://bnf25a4u6u1aw" path="res://scripts/stations/station_components/hidden_interpreter/plugin/plugin.gd" id="1_b1710"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="2_la4ic"]
 [ext_resource type="AudioStream" uid="uid://cmjqou41mdhdm" path="res://sounds/interpreter_plugin/plugged_in.mp3" id="3_jkakp"]
 [ext_resource type="AudioStream" uid="uid://dn64njlpl0fsa" path="res://sounds/interpreter_plugin/unplug_sound.mp3" id="4_ad3kw"]

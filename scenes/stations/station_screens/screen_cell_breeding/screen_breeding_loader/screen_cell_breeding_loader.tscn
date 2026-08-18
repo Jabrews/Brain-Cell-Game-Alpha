@@ -33,9 +33,9 @@
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="29_u6spa"]
 [ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="30_u1r82"]
 [ext_resource type="Script" uid="uid://dyobg1msd3kw7" path="res://scripts/stations/station_screens/screen_cell_breeding/interupt/disruptor_manager_new_cell.gd" id="32_4ebp3"]
-[ext_resource type="Script" uid="uid://cqmugyg8o67v" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull_manager.gd" id="33_ok6h4"]
-[ext_resource type="Script" uid="uid://d3lf08jd0o5ml" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/detect_skull_area.gd" id="34_gs2dg"]
-[ext_resource type="Script" uid="uid://cvo413kvxj0ic" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/hack_skull.gd" id="35_m11cf"]
+[ext_resource type="Script" uid="uid://vrgil8tm4o4l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull_manager.gd" id="33_ok6h4"]
+[ext_resource type="Script" uid="uid://d2ayejpb3dr5n" path="res://reusable/mutation_disrupt/disruptor_skull/detect_skull_area.gd" id="34_ok6h4"]
+[ext_resource type="Script" uid="uid://dqw7inj07cg6l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull.gd" id="35_m11cf"]
 [ext_resource type="Texture2D" uid="uid://4df418kwwq1u" path="res://models/mutations/random_disruptor_disrupt/hack_skull.png" id="36_ia2wh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vw6ab"]
@@ -2060,7 +2060,7 @@ position = Vector2(0, -2)
 collision_layer = 0
 collision_mask = 32
 monitoring = false
-script = ExtResource("34_gs2dg")
+script = ExtResource("34_ok6h4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Top" unique_id=1351845873]
 position = Vector2(240, 7.75)
@@ -2071,7 +2071,7 @@ position = Vector2(0, 264)
 collision_layer = 0
 collision_mask = 32
 monitoring = false
-script = ExtResource("34_gs2dg")
+script = ExtResource("34_ok6h4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Bottom" unique_id=883029319]
 position = Vector2(240, 4)
@@ -2082,8 +2082,7 @@ position = Vector2(0, -2)
 collision_layer = 0
 collision_mask = 32
 monitoring = false
-script = ExtResource("34_gs2dg")
-flip_direction_x = true
+script = ExtResource("34_ok6h4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Left" unique_id=1596704698]
 position = Vector2(3, 139)
@@ -2094,8 +2093,7 @@ position = Vector2(479, -2)
 collision_layer = 0
 collision_mask = 32
 monitoring = false
-script = ExtResource("34_gs2dg")
-flip_direction_x = true
+script = ExtResource("34_ok6h4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Right" unique_id=421311066]
 position = Vector2(-2.5, 139)

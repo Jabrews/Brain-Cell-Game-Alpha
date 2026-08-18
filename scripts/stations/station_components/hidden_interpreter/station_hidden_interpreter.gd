@@ -1,200 +1,179 @@
 extends Node
 
-@export var interpreter_type: String
+@export var stat_type : String = 'strength'
 
-var interpreter_active: bool = false
-var active_brain_cell_container: CharacterBody3D = null
-
-var current_screen: String = "INFO_SCREEN"
-var current_info_screen_type: String = "NO_CELL_DETECTED"
-
-var player_sitting_in_chair : bool = false
-
-var jolt_active : bool = false
-
-
-
-# components helpers
-@onready var timer_increment: Node = $TimerIncrement
-@onready var screen_hidden_interpreter: Node2D = $InterpreterTV/TvFrontPannel/SubViewport/ScreenHiddenInterpreter
+# components
+@onready var plug : RigidBody3D =$Plug
+@onready var screen_hidden_interpreter : Node2D = $TvFrontPannel/SubViewport/ScreenHiddenInterpreter
+@onready var progress_time_spent_manager : Node = $ProgressTimeSpentManager
+@onready var jolt_particles : GPUParticles3D = $JoltParticles 
+@onready var energy_decrease_spawner : Node3D = $EnergyDecreaseSpawner
 @onready var audio_manager : Node3D = $AudioManager
 
-# jolt 
-@onready var jolt_particles : GPUParticles3D = $JoltParticles
-@onready var energy_decrease_spawner : Node3D = $EnergyDecreaseSpawner
-
-
-## this is the game screen the hidden stat interpreter loads
-@export var game_screen_scene : PackedScene 
-
+var loaded_cell_container : CharacterBody3D
+var jolt_active : bool = false
+var plugged_in : bool = true 
 
 
 func _ready() -> void:
-	switch_screen("INFO_SCREEN", "NO_CELL_DETECTED")
+	screen_hidden_interpreter._switch_screen('no_cell_detected')
 	
 	GLDefectEventMangerBus.connect('event_hidden_stat_interpreter_jolt', _handle_defect_event_jolt)	
-
-
-#### STATE MACHINE ####
-func switch_screen(type: String, info_screen_type: String = "") -> void:
 	
-	if jolt_active :	
+
+func _handle_panel_body_recieved(cell_container : CharacterBody3D) :
+	
+	loaded_cell_container = cell_container
+	
+	audio_manager.toggle_play_idle_drone(false)
+	
+	if not plugged_in : 
 		return
 	
-	if type != "INFO_SCREEN" and not active_brain_cell_container:
-		type = "INFO_SCREEN"
-		info_screen_type = "NO_CELL_DETECTED"
-	
-	current_screen = type
-
-	if type == "INFO_SCREEN":
-		current_info_screen_type = info_screen_type
-		audio_manager.toggle_play_idle_drone(false)
-		_handle_info_screen_type(info_screen_type)
-
-	elif type == "IDLE_SCREEN":
-		timer_increment._start_timer()
-
-	elif type == "GAME_SCREEN":
-		timer_increment._start_timer()
-
-	screen_hidden_interpreter._switch_screen(type, info_screen_type)
-
-
-func _handle_info_screen_type(info_screen_type: String) -> void:
-	
-	
-	
-	match info_screen_type:
-		"NO_CELL_DETECTED":
-			timer_increment._reset_timer()
-		"INVALID_STAT":
-			timer_increment._reset_timer()
-			audio_manager.play_hidden_stat_invalid()
-		"JOLT":
-			timer_increment._pause_timer()
-
-			
-		"FINISHED":
-			timer_increment._reset_timer()
-			audio_manager.play_finished()
-		_:
-			push_error('invalid info screen type for hidden interpreter : ', info_screen_type)
-#######################
-
-
-#### INCREMENT AND FINISHED ####
-func _handle_interpreter_timer_increment(current_time_increment: int) -> void:
-	if current_screen == "IDLE_SCREEN" or current_screen == "GAME_SCREEN":
-		screen_hidden_interpreter._handle_timer_increment(current_time_increment)
-
-func _handle_interpreter_timer_finished() -> void:
-	## UNHIDE STAT ON CELL
-	GLCellManagerBus.emit_signal('hidden_stat_interpreted',
-	 	active_brain_cell_container.designated_brain_cell,
-		interpreter_type
-	)
-	active_brain_cell_container = null
-	switch_screen("INFO_SCREEN", "FINISHED")
-
-	
-
-func _handle_interpreter_timer_reset() -> void:
-	screen_hidden_interpreter._handle_timer_reset()
-	
-################################
-
-
-#### RECEIVING CELL BODY ####
-func _handle_panel_body_recieved(cell_container: CharacterBody3D) -> void:
-	
-	active_brain_cell_container = cell_container
-	
-
-	if not active_brain_cell_container:
-		switch_screen("INFO_SCREEN", "NO_CELL_DETECTED")
+	if jolt_active : 
+		# if cell is picked up during jolt. reset progress
+		if not cell_container: 
+			progress_time_spent_manager._update('stop')
 		return
 	
-	var active_designated_brain_cell: BrainCell = active_brain_cell_container.designated_brain_cell
-
-	if not active_designated_brain_cell:
-		switch_screen("INFO_SCREEN", "NO_CELL_DETECTED")
+	
+	if not cell_container : 
+		screen_hidden_interpreter._switch_screen('no_cell_detected')
+		progress_time_spent_manager._update('stop')
 		return
-
-	var cell_has_valid_stat: bool = _cell_has_hidden_interpreter_stat(active_designated_brain_cell)
-
-	## prevent during jolt
-	if jolt_active :
+	
+	
+	var designated_brain_cell : BrainCell = cell_container.designated_brain_cell
+	
+	var valid_stat_found : bool = verify_cell_stat_valid(designated_brain_cell)
+	
+	if not valid_stat_found : 
+		screen_hidden_interpreter._switch_screen('no_hidden_stat_detected')
+		progress_time_spent_manager._update('stop')
+		audio_manager.play_hidden_stat_invalid()
 		return
-
-	if cell_has_valid_stat:
-		switch_screen("IDLE_SCREEN")
+	if valid_stat_found : 
+		screen_hidden_interpreter._switch_screen('progress_screen')
+		progress_time_spent_manager._update('start')
 		audio_manager.play_stat_accepted()
+		
 		audio_manager.toggle_play_idle_drone(true)
-	else:
-		switch_screen("INFO_SCREEN", "INVALID_STAT")
+		
+		return
+	
 
 
-func _cell_has_hidden_interpreter_stat(brain_cell: BrainCell) -> bool:
-	match interpreter_type:
-		"strength":
-			return brain_cell.strength.hidden
-
-		"intelligence":
-			return brain_cell.intelligence.hidden
-
-		"community":
-			return brain_cell.community.hidden
-
-		_:
-			push_error("Invalid interpreter_type: " + interpreter_type)
+func verify_cell_stat_valid(brain_cell : BrainCell) -> bool : 
+	
+	match stat_type : 	
+		'strength' :
+			return brain_cell.strength.hidden and brain_cell.strength.enabled 
+		'intelligence' :
+			return brain_cell.intelligence.hidden and brain_cell.intelligence.enabled 
+		'community' :
+			return brain_cell.community.hidden and brain_cell.community.enabled 
+		_ : 
+			push_error('invalid stat type on interpreter found : ', stat_type)
 			return false
-########################
-
-#### CHAIR ###
-func _toggle_handle_player_sat_on_chair(toggle_value : bool) :
-	player_sitting_in_chair = toggle_value
-	
-	if player_sitting_in_chair :	
-		switch_screen('GAME_SCREEN')
-	
-	else :
-		if active_brain_cell_container :  
-			switch_screen('IDLE_SCREEN')
-		else :
-			switch_screen('NO_CELL_DETECTED')
-	
-####### POINT COLLECTED FROM GAME ###
-func _handle_point_collected(point_amount : int) :
-	timer_increment._point_collected(point_amount)
-	
-#### JOLT EVENT ####
-func _handle_defect_event_jolt(selected_interpreters : Array) : 
-	for selected_interpreter_type : String in selected_interpreters : 
-		if selected_interpreter_type == interpreter_type :
 			
-			switch_screen('INFO_SCREEN', 'JOLT')	
+
+func _handle_plug(plug_status : String) : 
+	
+	# handle time
+	if loaded_cell_container : 
+		progress_time_spent_manager._update('pause')
+	else : 
+		progress_time_spent_manager._update('stop')
+		
+	match plug_status : 
+		'in' :
+			plugged_in = true
+			_handle_panel_body_recieved(loaded_cell_container)
+		'out' : 
+			plugged_in = false
+			screen_hidden_interpreter._switch_screen('off')
+			_handle_defect_event_jolt_ended(false)
+
+				
+			
+
+			
+func _handle_defect_event_jolt(selected_interpreters : Array): 	
+	
+	if not plugged_in : 	
+		return
+	
+	for selected_interpreter_type : String in selected_interpreters : 
+		if selected_interpreter_type == stat_type:
+			
+			screen_hidden_interpreter._switch_screen('jolt_detected')
+			
+			progress_time_spent_manager._update('pause')
 			
 			jolt_particles.emitting = true
-			audio_manager.toggle_play_jolt(true)
+			
 			jolt_active = true
+			
+
+			
+			audio_manager.toggle_play_jolt(true)
+			audio_manager.toggle_play_idle_drone(false)
+			
+			#audio_manager.toggle_play_jolt(true)
 			energy_decrease_spawner._start_spawning_decrease_particles(selected_interpreters)
 			
-			if active_brain_cell_container :
-				active_brain_cell_container.switch_cell_state('jolt')
-	
-func _handle_stop_jolt_btn_pressed() :
-	
-	GLEventNoticeManagerBus.emit_signal('delete_event_notice_hidden_stat_interpreter', interpreter_type)
-	
-	jolt_active = false
-	audio_manager.toggle_play_jolt(false)
+			if loaded_cell_container:
+				loaded_cell_container.switch_cell_state('jolt')
+
+func _handle_defect_event_jolt_ended(lever_flipped : bool = false) :
 	jolt_particles.emitting = false 
+			
+	jolt_active = false 
+	
 	energy_decrease_spawner._stop_spawning_decrease_particles()
 	
-	if active_brain_cell_container : 
-		switch_screen('IDLE_SCREEN')	
-		if active_brain_cell_container :
-			active_brain_cell_container.switch_cell_state('idle')
+	audio_manager.toggle_play_jolt(false)
+	
+	# let event notice know we stopped jolt
+	GLEventNoticeManagerBus.emit_signal('delete_event_notice_hidden_stat_interpreter', stat_type)
+	
+	# kinda hacky. gets to lights though
+	GLDefectEventMangerBus.emit_signal('stopped_jolt', stat_type)
+	
+	# if cell is still on panel
+	if loaded_cell_container : 
+		loaded_cell_container.switch_cell_state('idle')
+	
+		# when lever is flipped we do reset progress
+		if lever_flipped : 		
+			progress_time_spent_manager._update('stop')
+		
 	else : 
-		switch_screen("INFO_SCREEN", "NO_CELL_DETECTED")
+		progress_time_spent_manager._update('stop')
+	
+	# reset screen 
+	_handle_panel_body_recieved(loaded_cell_container)
+			
+func _handle_discover_hidden() : 
+	
+	if not loaded_cell_container : 
+		push_error('unable to find loaded cell container. although finished')
+		return
+		
+	audio_manager.play_finished()
+		
+	var designated_brain_cell : BrainCell = loaded_cell_container.designated_brain_cell
+	
+	GLCellManagerBus.emit_signal('hidden_stat_interpreted', designated_brain_cell,  stat_type)
+	
+	screen_hidden_interpreter._switch_screen('finished')
+	
+	
+	
+	
+	
+	
+
+
+	
+	

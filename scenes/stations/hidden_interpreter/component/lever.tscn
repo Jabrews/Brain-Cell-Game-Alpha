@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjcq26gdhvsfk"]
 
-[ext_resource type="Script" uid="uid://cyi0vtrnkmuhd" path="res://scripts/stations/hidden_interpreter/component/lever/lever.gd" id="1_br3j5"]
-[ext_resource type="Script" uid="uid://jl7dngo57x0a" path="res://scripts/stations/hidden_interpreter/component/lever/lever_parent.gd" id="1_gcamc"]
+[ext_resource type="Script" uid="uid://cyi0vtrnkmuhd" path="res://scripts/stations/station_components/hidden_interpreter/lever/lever.gd" id="1_br3j5"]
+[ext_resource type="Script" uid="uid://jl7dngo57x0a" path="res://scripts/stations/station_components/hidden_interpreter/lever/lever_parent.gd" id="1_gcamc"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="1_jewrw"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_qob87"]
 [ext_resource type="PackedScene" uid="uid://chv1ouv0plpqu" path="res://scenes/hoverable_mesh_scenes/interpreter_lever_hover.tscn" id="2_jewrw"]

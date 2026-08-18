@@ -1,21 +1,21 @@
 [gd_scene format=3 uid="uid://bpi5dt0umx4rp"]
 
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="1_m6url"]
-[ext_resource type="Script" uid="uid://cuqcwe0jrpqyw" path="res://scripts/stations/hidden_interpreter/screen/screen_hidden_interpreter.gd" id="1_w1xh1"]
-[ext_resource type="Script" uid="uid://cmopqyalt7yc0" path="res://scripts/stations/hidden_interpreter/screen/progress/progress.gd" id="2_g126x"]
-[ext_resource type="Script" uid="uid://83yxt43asj4k" path="res://scripts/stations/hidden_interpreter/screen/jolt_detected/blink.gd" id="2_vgu6i"]
-[ext_resource type="Script" uid="uid://db2ak2ycc6jil" path="res://scripts/stations/hidden_interpreter/screen/update_stat_type_labels.gd" id="2_yln6k"]
+[ext_resource type="Script" uid="uid://cuqcwe0jrpqyw" path="res://scripts/stations/station_screens/hidden_interpreter/screen_hidden_interpreter.gd" id="1_w1xh1"]
+[ext_resource type="Script" uid="uid://cmopqyalt7yc0" path="res://scripts/stations/station_screens/hidden_interpreter/progress/progress.gd" id="2_g126x"]
+[ext_resource type="Script" uid="uid://83yxt43asj4k" path="res://scripts/stations/station_screens/hidden_interpreter/jolt_detected/blink.gd" id="2_vgu6i"]
+[ext_resource type="Script" uid="uid://db2ak2ycc6jil" path="res://scripts/stations/station_screens/hidden_interpreter/update_stat_type_labels.gd" id="2_yln6k"]
 [ext_resource type="Texture2D" uid="uid://cpm2vamakki7b" path="res://models/hidden_interpreter/bar_value.png" id="3_0ocna"]
 [ext_resource type="Texture2D" uid="uid://dnj1ok0v3f5aq" path="res://models/hidden_interpreter/unplug_icon.png" id="3_vgu6i"]
 [ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="4_a8g64"]
 [ext_resource type="Texture2D" uid="uid://cnadverlbc0j2" path="res://models/mutations/random_disruptor_disrupt/interupt_interpreter.png" id="5_j4ldq"]
-[ext_resource type="Script" uid="uid://ci7nvyovbeqhk" path="res://scripts/stations/hidden_interpreter/screen/jolt_detected/jolt_detected.gd" id="6_dmpde"]
+[ext_resource type="Script" uid="uid://ci7nvyovbeqhk" path="res://scripts/stations/station_screens/hidden_interpreter/jolt_detected/jolt_detected.gd" id="6_dmpde"]
 [ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="6_rp46s"]
-[ext_resource type="Script" uid="uid://bg3var88qxpma" path="res://scripts/stations/station_screens/hidden_interpreter/interuptor/disruptor_manager_interpreter.gd" id="6_w1xh1"]
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="7_0ocna"]
 [ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="8_jped7"]
 [ext_resource type="Texture2D" uid="uid://oedsxa78yeqf" path="res://models/hidden_interpreter/disrupted_bar_frames.png" id="9_0ocna"]
-[ext_resource type="Script" uid="uid://bggetbmra8aj0" path="res://scripts/stations/hidden_interpreter/screen/disruptor/time_blocker.gd" id="11_g126x"]
+[ext_resource type="Script" uid="uid://bggetbmra8aj0" path="res://scripts/stations/station_screens/hidden_interpreter/disruptor/time_blocker.gd" id="11_g126x"]
+[ext_resource type="Script" uid="uid://wd0ywfpjsl4e" path="res://scripts/stations/station_screens/hidden_interpreter/disruptor/disruptor_manager_hidden_interpreter.gd" id="12_rp46s"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a8g64"]
 load_path = "res://.godot/imported/bar_bg.png-3507573eb26ce67e6f973ca5e5983d90.ctex"
@@ -505,7 +505,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("6_w1xh1")
+script = ExtResource("12_rp46s")
 
 [node name="ProgressBlocker" type="Control" parent="DisruptorManagerInterpreter" unique_id=1424356408]
 visible = false

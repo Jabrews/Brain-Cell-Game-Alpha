@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5a1rtusg0sih"]
 
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="1_8o3pm"]
-[ext_resource type="Script" uid="uid://bhrkufdybuk8p" path="res://scripts/stations/hidden_interpreter/component/energy_decrease_symbol/energy_decrease_symbol.gd" id="2_a5xg8"]
+[ext_resource type="Script" uid="uid://bhrkufdybuk8p" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_symbol.gd" id="2_a5xg8"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_khowm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khowm"]

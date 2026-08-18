@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://vgie5w5m3275"]
 
-[ext_resource type="Script" uid="uid://b87c7n3uct0hl" path="res://scripts/stations/hidden_interpreter/component/emergency_light/emergency_light.gd" id="1_hqsws"]
+[ext_resource type="Script" uid="uid://b87c7n3uct0hl" path="res://scripts/stations/station_components/hidden_interpreter/emergency_light/emergency_light.gd" id="1_hqsws"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rfdy0"]
 size = Vector3(0.5, 0.5, 0.5)

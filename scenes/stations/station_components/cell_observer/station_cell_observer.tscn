@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c2rxycwqgbsjl" path="res://reusable/basic_receiver_screen/basic_receiver_screen.tscn" id="3_f8y3u"]
 [ext_resource type="PackedScene" uid="uid://dmtd6w1i541n8" path="res://reusable/hoverable/bouncing_sprite_scenes/key_e.tscn" id="4_6dmfr"]
 [ext_resource type="PackedScene" uid="uid://bex7onw4dih4n" path="res://scenes/stations/station_screens/cell_observer/screen_observer_list_index.tscn" id="4_f8y3u"]
+[ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="9_lc282"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r2y5v"]
 albedo_color = Color(0, 0, 0, 1)
@@ -167,3 +168,7 @@ original_coll_shape = NodePath("../CollisionShape3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RightBtn/HoverableMesh" unique_id=1171953364]
 shape = SubResource("BoxShape3D_1d532")
+
+[node name="DisruptableReciever" parent="." unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("9_lc282")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0536156, 1.6754941)
+parent_disruptable_screen = NodePath("../ObserverTV/TvFrontPannel/SubViewport/BasicReciverScreen")

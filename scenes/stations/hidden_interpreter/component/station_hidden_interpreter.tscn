@@ -1,23 +1,23 @@
 [gd_scene format=4 uid="uid://fxsl4oi3vhoo"]
 
-[ext_resource type="Script" uid="uid://bpudhxfsl2plk" path="res://scripts/stations/hidden_interpreter/component/station_hidden_interpreter.gd" id="1_gow6p"]
+[ext_resource type="Script" uid="uid://bpudhxfsl2plk" path="res://scripts/stations/station_components/hidden_interpreter/station_hidden_interpreter.gd" id="1_gow6p"]
 [ext_resource type="Script" uid="uid://beg3fnl2m5c85" path="res://reusable/load_panel/load_panel_body.gd" id="1_q5brb"]
-[ext_resource type="Script" uid="uid://bckw1tmotbckq" path="res://scripts/stations/hidden_interpreter/component/progress_time_spent_manager.gd" id="2_g2njo"]
+[ext_resource type="Script" uid="uid://bckw1tmotbckq" path="res://scripts/stations/station_components/hidden_interpreter/progress_time_spent_manager.gd" id="2_g2njo"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="2_i481v"]
 [ext_resource type="PackedScene" uid="uid://bpi5dt0umx4rp" path="res://scenes/stations/hidden_interpreter/screen/screen_hidden_interpreter.tscn" id="3_q5brb"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="4_k5va8"]
 [ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="5_2rnm3"]
-[ext_resource type="Script" uid="uid://c37qtvh1gk3el" path="res://scripts/stations/hidden_interpreter/component/energy_decrease_symbol/energy_decrease_spawner.gd" id="6_ulbnn"]
+[ext_resource type="Script" uid="uid://c37qtvh1gk3el" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_spawner.gd" id="6_ulbnn"]
 [ext_resource type="PackedScene" uid="uid://5a1rtusg0sih" path="res://scenes/stations/hidden_interpreter/component/energy_decrease_symbol.tscn" id="7_gow6p"]
-[ext_resource type="Script" uid="uid://45sg3v2v03yt" path="res://scripts/stations/station_components/hidden_interpreter/audio_manager.gd" id="10_4yxue"]
+[ext_resource type="Script" uid="uid://c1b5fl6kro71e" path="res://scripts/stations/station_components/hidden_interpreter/audio_manager.gd" id="10_k67sj"]
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="11_h2l15"]
 [ext_resource type="AudioStream" uid="uid://c7ncshh48gvd7" path="res://sounds/hidden_stat_interpreter/interpreter_finished.mp3" id="12_jgci0"]
 [ext_resource type="AudioStream" uid="uid://c6pdl0o33b0rt" path="res://sounds/hidden_stat_interpreter/hidden_stat_accept.mp3" id="13_8kmrx"]
 [ext_resource type="AudioStream" uid="uid://b8vn2bineow4" path="res://sounds/hidden_stat_interpreter/jolt_start.mp3" id="14_k67sj"]
 [ext_resource type="PackedScene" uid="uid://cnjxx2w8km4am" path="res://scenes/stations/hidden_interpreter/component/plug.tscn" id="15_h2l15"]
-[ext_resource type="Script" uid="uid://d25npf8gch4ln" path="res://scripts/stations/hidden_interpreter/component/plug_distance_manager.gd" id="16_jgci0"]
+[ext_resource type="Script" uid="uid://d25npf8gch4ln" path="res://scripts/stations/station_components/hidden_interpreter/plug_distance_manager.gd" id="16_jgci0"]
 [ext_resource type="AudioStream" uid="uid://caidtfsgigkuh" path="res://sounds/hidden_stat_interpreter/plug_snap.mp3" id="17_8kmrx"]
-[ext_resource type="Script" uid="uid://l283gx4aiw7t" path="res://scripts/stations/hidden_interpreter/component/coord_manager.gd" id="18_k67sj"]
+[ext_resource type="Script" uid="uid://l283gx4aiw7t" path="res://scripts/stations/station_components/hidden_interpreter/coord_manager.gd" id="18_k67sj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jicqo"]
 size = Vector3(1.4, 2.2, 1.6)
@@ -175,7 +175,7 @@ transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, 
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=380838061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8696864, 0)
-script = ExtResource("10_4yxue")
+script = ExtResource("10_k67sj")
 
 [node name="InterpreterInvalidStat" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1560095296]
 stream = ExtResource("11_h2l15")

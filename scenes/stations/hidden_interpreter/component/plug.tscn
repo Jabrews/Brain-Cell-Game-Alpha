@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cnjxx2w8km4am"]
 
-[ext_resource type="Script" uid="uid://dg5xwxeofenhv" path="res://scripts/stations/hidden_interpreter/component/plug/plug.gd" id="1_10a67"]
-[ext_resource type="Script" uid="uid://uh72fdmoj058" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/state_machine.gd" id="2_1bptc"]
-[ext_resource type="Script" uid="uid://d3fbum1rsxiws" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/idle.gd" id="3_nrj4v"]
+[ext_resource type="Script" uid="uid://dg5xwxeofenhv" path="res://scripts/stations/station_components/hidden_interpreter/plug/plug.gd" id="1_10a67"]
+[ext_resource type="Script" uid="uid://uh72fdmoj058" path="res://scripts/stations/station_components/hidden_interpreter/plug/state_machine/state_machine.gd" id="2_1bptc"]
+[ext_resource type="Script" uid="uid://d3fbum1rsxiws" path="res://scripts/stations/station_components/hidden_interpreter/plug/state_machine/idle.gd" id="3_nrj4v"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="3_qbha0"]
-[ext_resource type="Script" uid="uid://cgufydwmveilr" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/picked_up.gd" id="3_yetqu"]
+[ext_resource type="Script" uid="uid://cgufydwmveilr" path="res://scripts/stations/station_components/hidden_interpreter/plug/state_machine/picked_up.gd" id="3_yetqu"]
 [ext_resource type="PackedScene" uid="uid://ch2a6uaj8jyto" path="res://scenes/hoverable_mesh_scenes/plug_hover.tscn" id="4_qbha0"]
-[ext_resource type="Script" uid="uid://dbbi4cwbp454i" path="res://scripts/stations/hidden_interpreter/component/plug/state_machine/plugged_in.gd" id="5_0414i"]
-[ext_resource type="Script" uid="uid://bdrlx3ucdjd40" path="res://scripts/stations/hidden_interpreter/component/plug/interactable_pickup.gd" id="5_vhidi"]
+[ext_resource type="Script" uid="uid://dbbi4cwbp454i" path="res://scripts/stations/station_components/hidden_interpreter/plug/state_machine/plugged_in.gd" id="5_0414i"]
+[ext_resource type="Script" uid="uid://bdrlx3ucdjd40" path="res://scripts/stations/station_components/hidden_interpreter/plug/interactable_pickup.gd" id="5_vhidi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m6o5v"]
 size = Vector3(0.4, 0.4, 0.2)
