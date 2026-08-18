@@ -361,6 +361,7 @@ offset_bottom = 173.0
 texture = ExtResource("7_l8tng")
 
 [node name="CardHover" type="TextureRect" parent="CardContainer/Card3Container" unique_id=1694854794]
+visible = false
 layout_mode = 0
 offset_left = -1.5
 offset_top = 2.0

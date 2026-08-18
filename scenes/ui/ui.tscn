@@ -42,24 +42,24 @@ script = ExtResource("1_aac20")
 [node name="DropItemLabel" type="Label" parent="UseableItemManager" unique_id=1966094915]
 visible = false
 layout_mode = 0
-offset_left = 170.0
-offset_top = 438.0
-offset_right = 650.0
-offset_bottom = 462.0
+offset_left = 368.0
+offset_top = 664.0
+offset_right = 968.0
+offset_bottom = 694.0
 theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 30
 text = "Press F To Drop Item"
 
 [node name="ItemEnergyLevel" type="Label" parent="UseableItemManager" unique_id=1174816212]
 visible = false
 layout_mode = 0
-offset_left = 7.0
-offset_top = 6.0
-offset_right = 101.0
-offset_bottom = 29.0
+offset_left = 8.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 70.0
 theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 22
-text = "Energy Left : 0"
+theme_override_font_sizes/font_size = 26
+text = "Charge Left : 0"
 
 [node name="FPSCounter" type="Label" parent="." unique_id=2019697512]
 texture_filter = 1

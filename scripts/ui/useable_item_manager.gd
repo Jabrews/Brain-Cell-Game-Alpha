@@ -19,7 +19,7 @@ func _handle_item_picked_up(useable_item_obj : UseableItemObject) :
 	drop_item_label.visible = true
 	if useable_item_obj.item_has_energy :
 		item_energy_level_label.visible = true
-		item_energy_level_label.text = 'Energy Left : ' + str(useable_item_obj.item_energy)
+		item_energy_level_label.text = 'Charge Left : ' + str(useable_item_obj.item_energy)
 	
 
 func _handle_item_used(item_used_up : bool, useable_item_obj : UseableItemObject): 
@@ -29,6 +29,6 @@ func _handle_item_used(item_used_up : bool, useable_item_obj : UseableItemObject
 	
 	if not item_used_up :
 		if useable_item_obj.item_has_energy : 
-			item_energy_level_label.text = 'Energy Left : ' + str(useable_item_obj.item_energy)
+			item_energy_level_label.text = 'Charge Left : ' + str(useable_item_obj.item_energy)
 	
 	
