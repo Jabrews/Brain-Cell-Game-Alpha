@@ -1,0 +1,192 @@
+[gd_scene format=3 uid="uid://chyrlawstjobv"]
+
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_xqsqu"]
+[ext_resource type="Texture2D" uid="uid://ce77j707dch2x" path="res://models/screens/prisoner_profiler_symbols/bad_mutation.png" id="2_yolc2"]
+[ext_resource type="Texture2D" uid="uid://uv314a4i73tl" path="res://models/screens/prisoner_profiler_symbols/mutation.png" id="3_t48g2"]
+[ext_resource type="Texture2D" uid="uid://chyb1sra7gn6f" path="res://models/screens/prisoner_profiler_symbols/defect.png" id="4_73k77"]
+[ext_resource type="Texture2D" uid="uid://64xdf1eyalih" path="res://models/screens/prisoner_profiler_symbols/energy.png" id="5_5o16d"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ujpq"]
+albedo_color = Color(0.6337567, 0.6337568, 0.6337567, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_q6qdq"]
+material = SubResource("StandardMaterial3D_3ujpq")
+size = Vector3(0.01, 1.8629272, 1.2174804)
+subdivide_width = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr3jd"]
+albedo_color = Color(0.19434929, 0.19434926, 0.19434926, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_m0mbe"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.33367187, 1.1429297)
+subdivide_width = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_towan"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.28583986, 1.1297461)
+subdivide_width = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_nj8j0"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.26134032, 1.120957)
+subdivide_width = 16
+
+[sub_resource type="BoxMesh" id="BoxMesh_8u5in"]
+material = SubResource("StandardMaterial3D_cr3jd")
+size = Vector3(0.01, 0.26289064, 1.1141211)
+subdivide_width = 16
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gtrk"]
+load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
+
+[node name="ProfilerKey" type="Node3D" unique_id=712150991]
+
+[node name="PanelMesh2" type="MeshInstance3D" parent="." unique_id=1568852544]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875055, 3.0436807, -2.7321472)
+mesh = SubResource("BoxMesh_q6qdq")
+
+[node name="BG" type="Node3D" parent="." unique_id=728059847]
+
+[node name="PanelMesh" type="MeshInstance3D" parent="BG" unique_id=276077727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831591, 3.7435026, -2.7298717)
+mesh = SubResource("BoxMesh_m0mbe")
+
+[node name="PanelMesh2" type="MeshInstance3D" parent="BG" unique_id=1223664927]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20689428, 3.345048, -2.7314577)
+mesh = SubResource("BoxMesh_m0mbe")
+
+[node name="PanelMesh3" type="MeshInstance3D" parent="BG" unique_id=1240131043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831603, 2.9746933, -2.72328)
+mesh = SubResource("BoxMesh_towan")
+
+[node name="PanelMesh4" type="MeshInstance3D" parent="BG" unique_id=803950543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831597, 2.658739, -2.7188854)
+mesh = SubResource("BoxMesh_nj8j0")
+
+[node name="PanelMesh5" type="MeshInstance3D" parent="BG" unique_id=218395618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20831591, 2.3421907, -2.7154672)
+mesh = SubResource("BoxMesh_8u5in")
+
+[node name="2PrisonersGenerated" type="Label3D" parent="." unique_id=1524810982]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.18627912, 3.756548, -2.5040717)
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "1 Prisoners
+Picks"
+font = ExtResource("1_xqsqu")
+font_size = 21
+outline_size = 0
+
+[node name="2PrisonersGeneratedCost" type="Label3D" parent="." unique_id=1165999482]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.18865216, 3.7602186, -3.04353)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 10"
+font = ExtResource("1_xqsqu")
+font_size = 26
+outline_size = 0
+
+[node name="4PrisonersGenerated" type="Label3D" parent="." unique_id=1375913446]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.18627912, 3.3515334, -2.5040717)
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "2 Prisoners
+Picks"
+font = ExtResource("1_xqsqu")
+font_size = 21
+outline_size = 0
+
+[node name="4PrisonersGeneratedCost" type="Label3D" parent="." unique_id=465578844]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.17603827, 3.3555822, -3.0342908)
+texture_filter = 0
+modulate = Color(1, 0, 0, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "- 20"
+font = ExtResource("1_xqsqu")
+font_size = 26
+outline_size = 0
+
+[node name="Mutation" type="Node3D" parent="." unique_id=2111661599]
+
+[node name="BadMuationSprite3D" type="Sprite3D" parent="Mutation" unique_id=1112019692]
+transform = Transform3D(7.450581e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, 7.450581e-09, -0.19970077, 2.979321, -2.2530296)
+texture_filter = 0
+texture = ExtResource("2_yolc2")
+
+[node name="GoodMuationSprite3D" type="Sprite3D" parent="Mutation" unique_id=1286108939]
+transform = Transform3D(7.450581e-09, 0, 0.15, 0, 0.15, 0, -0.15, 0, 7.450581e-09, -0.20297086, 2.979321, -2.3792048)
+texture_filter = 0
+texture = ExtResource("3_t48g2")
+
+[node name="4PrisonersGenerated" type="Label3D" parent="Mutation" unique_id=685530029]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19407701, 2.9860477, -2.875937)
+pixel_size = 0.004
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "un-stable Vs stable
+chance of cells mutation"
+font = ExtResource("1_xqsqu")
+font_size = 20
+outline_size = 0
+autowrap_trim_flags = 128
+
+[node name="Defect" type="Node3D" parent="." unique_id=1965411565]
+
+[node name="DefectSprite3D" type="Sprite3D" parent="Defect" unique_id=1312988225]
+transform = Transform3D(2.2351742e-08, 0, 0.20000002, 0, 0.2, 0, -0.20000002, 0, 2.2351742e-08, -0.20137578, 2.6639729, -2.304363)
+texture_filter = 0
+texture = ExtResource("4_73k77")
+
+[node name="4PrisonersGenerated" type="Label3D" parent="Defect" unique_id=521177510]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19802761, 2.6679182, -2.8596494)
+pixel_size = 0.004
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = "chance of new cells 
+having more or less defect "
+font = ExtResource("1_xqsqu")
+font_size = 18
+outline_size = 0
+autowrap_trim_flags = 128
+
+[node name="Energy" type="Node3D" parent="." unique_id=330326460]
+
+[node name="EnergySprite3D" type="Sprite3D" parent="Energy" unique_id=672555624]
+transform = Transform3D(1.1175871e-08, 0, 0.13, 0, 0.13, 0, -0.13, 0, 1.1175871e-08, -0.20163596, 2.3460455, -2.2927122)
+texture_filter = 0
+texture = ExtResource("5_5o16d")
+
+[node name="4PrisonersGenerated" type="Label3D" parent="Energy" unique_id=437246435]
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19718659, 2.3489947, -2.8118613)
+pixel_size = 0.004
+texture_filter = 0
+modulate = Color(0.94677585, 0.95643777, 0.9975652, 1)
+outline_modulate = Color(0, 0, 0, 0)
+text = " using 
+more or less energy"
+font = ExtResource("1_xqsqu")
+font_size = 20
+outline_size = 0
+autowrap_trim_flags = 128
+
+[node name="EnergyIcon2" type="Sprite3D" parent="." unique_id=1861898490]
+transform = Transform3D(8.940697e-08, 0, 0.70000005, 0, 0.7, 0, -0.70000005, 0, 8.940697e-08, -0.1970973, 3.7577147, -3.213181)
+modulate = Color(1, 0, 0, 1)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_2gtrk")
+
+[node name="EnergyIcon3" type="Sprite3D" parent="." unique_id=1229960626]
+transform = Transform3D(8.940697e-08, 0, 0.70000005, 0, 0.7, 0, -0.70000005, 0, 8.940697e-08, -0.19840801, 3.3546023, -3.2096562)
+modulate = Color(1, 0, 0, 1)
+texture_filter = 0
+texture = SubResource("CompressedTexture2D_2gtrk")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=303147659]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 3.0000002, 3.0585651, -2.7660205)
+spot_range = 3.849
