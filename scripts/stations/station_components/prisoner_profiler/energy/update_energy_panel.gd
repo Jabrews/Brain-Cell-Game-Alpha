@@ -1,10 +1,10 @@
 extends Node
 
 # components
-@onready var curr_energy_label : Label3D = $"../../../EnergyDisplay/EnergyPanel/CurrEnergy"
-@onready var energy_used_label : Label3D = $"../../../EnergyDisplay/EnergyPanel/EnergyUsed"
-@onready var energy_used_sprite : Sprite3D = $"../../../EnergyDisplay/EnergyPanel/EnergyIcon2"
-@onready var energy_left_label : Label3D = $"../../../EnergyDisplay/EnergyPanel/EnerfyLeft"
+@onready var curr_energy_label : Label3D = $"../../../EnergyBox/CurrentPanel/CurrEnergyLabels/CurrEnergy"
+@onready var energy_used_label : Label3D = $"../../../EnergyBox/EnergyPanel/EnergyUsed"
+@onready var energy_used_sprite : Sprite3D = $"../../../EnergyBox/EnergyPanel/EnergyIcon2"
+@onready var energy_left_label : Label3D = $"../../../EnergyBox/EnergyPanel/EnerfyLeft"
 @onready var helper_handle_energy : Node = $".."
 
 func _update() :
