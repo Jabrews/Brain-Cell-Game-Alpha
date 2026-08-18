@@ -32,7 +32,7 @@ func _profiler_changed_hidden_stat() :
 	
 	var potential_max_stats_to_hide : int = max_stats_to_hide
 	
-	potential_max_stats_to_hide = prisoner_quanity_changed(potential_max_stats_to_hide)
+	potential_max_stats_to_hide = prisoner_picks_changed(potential_max_stats_to_hide)
 	potential_max_stats_to_hide = stat_disabled(potential_max_stats_to_hide)
 	
 	total_hidden_label.text = str(potential_max_stats_to_hide)
@@ -40,13 +40,10 @@ func _profiler_changed_hidden_stat() :
 	check_for_max_label(potential_max_stats_to_hide)
 	check_for_hidden_stat_min(potential_max_stats_to_hide)
 	
-
-# TODO
-# fix logic and names here isnt about quanity but picks now
-func prisoner_quanity_changed(potential_max_stats_to_hide : int) :
-	var quanity = parent_prisoner_profiler.current_prisoner_quanity
-	potential_max_stats_to_hide = reduce_hidden_quanitiy._handle_reduce_quanity(quanity, potential_max_stats_to_hide)
-	return potential_max_stats_to_hide
+func prisoner_picks_changed(potantial_max_stats_to_hide : int) : 
+	var picks = parent_prisoner_profiler.current_prisoner_picks 
+	potantial_max_stats_to_hide =  reduce_hidden_quanitiy._handle_reduce_prisoner_picks(picks, potantial_max_stats_to_hide)
+	return potantial_max_stats_to_hide
 	
 func stat_disabled(potential_max_stats_to_hide : int) :
 	# we flip the disabled because its looking for 'enabled'

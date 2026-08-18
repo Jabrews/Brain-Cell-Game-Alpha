@@ -20,7 +20,7 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 		return new_prisoners
 	
 	# reduce hidden quanity	using constructor
-	max_stats_to_hide = recduce_hidden_quanity._handle_reduce_quanity(constructor.cell_quantity, max_stats_to_hide)
+	max_stats_to_hide = recduce_hidden_quanity._handle_reduce_prisoner_picks(constructor.prisoner_picks, max_stats_to_hide)
 	# notice this looks extremly hacky
 	# this is because we need to access this helper inside the prisoner profiler
 	max_stats_to_hide = recduce_hidden_quanity._handle_reduce_disabled(
