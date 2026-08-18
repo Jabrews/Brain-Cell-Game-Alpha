@@ -56,6 +56,7 @@
 [ext_resource type="Script" uid="uid://d3abljcarpoy3" path="res://scripts/stations/station_components/prisoner_profiler/limit_quanity/safe_mode_lever.gd" id="51_pf5p3"]
 [ext_resource type="Script" uid="uid://8hgkketut0i1" path="res://scripts/stations/station_components/prisoner_profiler/limit_quanity/safe_mode_lights.gd" id="54_cpl65"]
 [ext_resource type="PackedScene" uid="uid://qq4225jhp0tc" path="res://scenes/stations/station_screens/prisoner_profiler_screens/screen_safe_mode.tscn" id="55_wm6wt"]
+[ext_resource type="PackedScene" uid="uid://n6qo1vnymopt" path="res://reusable/energy_box_progress_bar/screen_energy_box_progress_bar.tscn" id="57_vwyqi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l25tc"]
 size = Vector3(0.02, 0.46619385, 0.36737794)
@@ -185,6 +186,7 @@ viewport_path = NodePath("HiddenQuanityTV/TvFrontPannel/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7fjcn"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_l25tc")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lbckn"]
 material = SubResource("StandardMaterial3D_7fjcn")
@@ -291,12 +293,12 @@ subdivide_width = 16
 
 [sub_resource type="BoxMesh" id="BoxMesh_53sf7"]
 material = SubResource("StandardMaterial3D_53sf7")
-size = Vector3(0.01, 0.55917966, 1.4)
+size = Vector3(0.01, 0.2914551, 1.2270019)
 subdivide_width = 16
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_53sf7"]
 material = SubResource("StandardMaterial3D_7fjcn")
-size = Vector2(1.33, 0.495)
+size = Vector2(1.185, 0.255)
 orientation = 0
 
 [node name="PrisonerProfiler" type="Node3D" unique_id=672067400]
@@ -1295,7 +1297,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0085063, 1.5218186, 1.07288
 mesh = SubResource("BoxMesh_kwr0x")
 
 [node name="EnergyBox" type="Node3D" parent="." unique_id=1738670449]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.6, 0)
 
 [node name="Box" type="StaticBody3D" parent="EnergyBox" unique_id=523268507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -1410,14 +1412,21 @@ mesh = SubResource("BoxMesh_vwyqi")
 [node name="CurrEnergyScreen" type="Node3D" parent="EnergyBox/CurrentPanel" unique_id=349382227]
 
 [node name="TVBG" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1226799785]
-transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 2.5985389, -0.0241149)
+transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 2.7480445, -0.018914694)
 mesh = SubResource("BoxMesh_53sf7")
 
 [node name="TvFrontPannel" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1757250473]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16239882, 2.5928597, -0.020759046)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16239882, 2.7489815, -0.020759046)
 mesh = SubResource("PlaneMesh_53sf7")
 script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="EnergyBox/CurrentPanel/CurrEnergyScreen/TvFrontPannel" unique_id=598228643]
-size = Vector2i(480, 270)
+canvas_item_default_texture_filter = 0
+size = Vector2i(244, 40)
 render_target_update_mode = 4
+
+[node name="ScreenEnergyBox" parent="EnergyBox/CurrentPanel/CurrEnergyScreen/TvFrontPannel/SubViewport" unique_id=1979986246 instance=ExtResource("57_vwyqi")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="EnergyBox/CurrentPanel" unique_id=259607023]
+transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 3.0000002, 2.5000005, 0)
+spot_range = 3.849

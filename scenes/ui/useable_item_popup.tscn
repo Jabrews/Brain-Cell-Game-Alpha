@@ -74,26 +74,26 @@ offset_bottom = 270.0
 layout_mode = 0
 offset_left = 104.0
 offset_top = 32.0
-offset_right = 704.0
-offset_bottom = 432.0
+offset_right = 968.0
+offset_bottom = 576.0
 color = Color(0, 0, 0, 1)
 
 [node name="BG1" type="ColorRect" parent="." unique_id=1961708497]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 40.0
-offset_right = 697.0
-offset_bottom = 424.0
+offset_right = 960.0
+offset_bottom = 568.0
 color = Color(0.38464698, 5.8358535e-07, 1.6845763e-07, 1)
 
 [node name="CellName" type="Label" parent="." unique_id=1483955051]
 layout_mode = 0
-offset_left = 316.0
-offset_top = 53.0
-offset_right = 490.0
-offset_bottom = 104.0
+offset_left = 118.0
+offset_top = 48.0
+offset_right = 952.0
+offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 35
 text = "None
 "
 horizontal_alignment = 1
@@ -101,9 +101,9 @@ horizontal_alignment = 1
 [node name="Strength" type="Control" parent="." unique_id=694292925]
 anchors_preset = 0
 offset_left = -16.0
-offset_top = -16.0
+offset_top = 8.0
 offset_right = 25.27
-offset_bottom = 24.0
+offset_bottom = 48.0
 script = ExtResource("4_eww3u")
 stat_type = "strength"
 
@@ -111,17 +111,18 @@ stat_type = "strength"
 texture_filter = 1
 material = SubResource("ShaderMaterial_03g4r")
 layout_mode = 0
-offset_left = 237.0
-offset_top = 134.99998
-offset_right = 547.0
-offset_bottom = 174.99998
+offset_left = 191.99998
+offset_top = 152.0
+offset_right = 771.21124
+offset_bottom = 208.07887
 scale = Vector2(1.2706935, 1.1412497)
 texture = ExtResource("5_jw7ry")
 
 [node name="Highlight" type="Sprite2D" parent="Strength" unique_id=361072694]
 visible = false
 texture_filter = 1
-position = Vector2(432, 158)
+position = Vector2(559.99994, 176)
+scale = Vector2(1.8916259, 1.6551725)
 texture = ExtResource("6_l3a33")
 
 [node name="DefectBar" type="TextureProgressBar" parent="Strength" unique_id=832598936]
@@ -129,10 +130,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
 anchor_bottom = 0.225
-offset_left = 236.0
-offset_top = 175.0
-offset_right = 627.0
-offset_bottom = 202.0
+offset_left = 192.0
+offset_top = 214.99998
+offset_right = 928.0
+offset_bottom = 239.9998
 scale = Vector2(1, 0.32000244)
 value = 50.0
 nine_patch_stretch = true
@@ -141,12 +142,12 @@ texture_progress = ExtResource("8_fr6x8")
 
 [node name="Label" type="Label" parent="Strength" unique_id=303943207]
 layout_mode = 0
-offset_left = 339.0
-offset_top = 122.0
-offset_right = 499.0
-offset_bottom = 145.0
+offset_left = 448.0
+offset_top = 120.0
+offset_right = 688.0
+offset_bottom = 150.0
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Strength"
 
 [node name="Hide" type="Sprite2D" parent="Strength" unique_id=1771436976]
@@ -154,140 +155,141 @@ visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_5skub")
-position = Vector2(435, 169)
-scale = Vector2(1.2634921, 1.3499999)
+position = Vector2(560, 192)
+scale = Vector2(2.336508, 2)
 texture = SubResource("CompressedTexture2D_y6twq")
 
-[node name="Intelligence" type="Control" parent="." unique_id=2025501082]
+[node name="Intelligence" type="Control" parent="." unique_id=200129578]
 anchors_preset = 0
 offset_left = -16.0
-offset_top = 90.0
-offset_right = 24.0
-offset_bottom = 130.0
+offset_top = 152.0
+offset_right = 25.27
+offset_bottom = 192.0
 script = ExtResource("4_eww3u")
-stat_type = "intelligence"
+stat_type = "strength"
 
-[node name="Bar" type="TextureRect" parent="Intelligence" unique_id=521675920]
+[node name="Bar" type="TextureRect" parent="Intelligence" unique_id=1514770825]
 texture_filter = 1
 material = SubResource("ShaderMaterial_03g4r")
 layout_mode = 0
-offset_left = 235.99998
-offset_top = 134.99998
-offset_right = 546.0
-offset_bottom = 174.99998
+offset_left = 191.99998
+offset_top = 152.0
+offset_right = 771.21124
+offset_bottom = 208.07887
 scale = Vector2(1.2706935, 1.1412497)
 texture = ExtResource("5_jw7ry")
 
-[node name="DefectBar" type="TextureProgressBar" parent="Intelligence" unique_id=1505006957]
+[node name="Highlight" type="Sprite2D" parent="Intelligence" unique_id=62692961]
+visible = false
+texture_filter = 1
+position = Vector2(559.99994, 176)
+scale = Vector2(1.8916259, 1.6551725)
+texture = ExtResource("6_l3a33")
+
+[node name="DefectBar" type="TextureProgressBar" parent="Intelligence" unique_id=1464868701]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
 anchor_bottom = 0.225
-offset_left = 236.0
-offset_top = 175.99998
-offset_right = 627.0
-offset_bottom = 202.99998
+offset_left = 192.0
+offset_top = 214.99998
+offset_right = 928.0
+offset_bottom = 239.9998
 scale = Vector2(1, 0.32000244)
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("7_lmn1t")
 texture_progress = ExtResource("8_fr6x8")
 
-[node name="Label" type="Label" parent="Intelligence" unique_id=2043037798]
+[node name="Label" type="Label" parent="Intelligence" unique_id=74175171]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 122.0
-offset_right = 544.0
-offset_bottom = 145.0
+offset_left = 400.0
+offset_top = 120.0
+offset_right = 760.0
+offset_bottom = 150.0
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Intelligence"
 
-[node name="Highlight" type="Sprite2D" parent="Intelligence" unique_id=1770765787]
-visible = false
-texture_filter = 1
-position = Vector2(432, 158)
-texture = ExtResource("6_l3a33")
-
-[node name="Hide" type="Sprite2D" parent="Intelligence" unique_id=346682080]
+[node name="Hide" type="Sprite2D" parent="Intelligence" unique_id=838116270]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_5skub")
-position = Vector2(435, 169)
-scale = Vector2(1.2634921, 1.3499999)
+position = Vector2(560, 192)
+scale = Vector2(2.336508, 2)
 texture = SubResource("CompressedTexture2D_y6twq")
 
-[node name="Community" type="Control" parent="." unique_id=107885652]
+[node name="Community" type="Control" parent="." unique_id=1038952386]
 anchors_preset = 0
 offset_left = -16.0
-offset_top = 198.0
-offset_right = 24.0
-offset_bottom = 238.0
+offset_top = 296.0
+offset_right = 25.27
+offset_bottom = 336.0
 script = ExtResource("4_eww3u")
-stat_type = "community"
+stat_type = "strength"
 
-[node name="Bar" type="TextureRect" parent="Community" unique_id=117102178]
+[node name="Bar" type="TextureRect" parent="Community" unique_id=1768643702]
 texture_filter = 1
 material = SubResource("ShaderMaterial_03g4r")
 layout_mode = 0
-offset_left = 234.99998
-offset_top = 134.00002
-offset_right = 545.0
-offset_bottom = 174.00002
+offset_left = 191.99998
+offset_top = 152.0
+offset_right = 771.21124
+offset_bottom = 208.07887
 scale = Vector2(1.2706935, 1.1412497)
 texture = ExtResource("5_jw7ry")
 
-[node name="DefectBar" type="TextureProgressBar" parent="Community" unique_id=1112303360]
+[node name="Highlight" type="Sprite2D" parent="Community" unique_id=1114529376]
+visible = false
+texture_filter = 1
+position = Vector2(559.99994, 176)
+scale = Vector2(1.8916259, 1.6551725)
+texture = ExtResource("6_l3a33")
+
+[node name="DefectBar" type="TextureProgressBar" parent="Community" unique_id=1324129316]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
 anchor_bottom = 0.225
-offset_left = 236.0
-offset_top = 174.99998
-offset_right = 627.0
-offset_bottom = 201.99998
+offset_left = 192.0
+offset_top = 214.99998
+offset_right = 928.0
+offset_bottom = 239.9998
 scale = Vector2(1, 0.32000244)
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("7_lmn1t")
 texture_progress = ExtResource("8_fr6x8")
 
-[node name="Label" type="Label" parent="Community" unique_id=1475303156]
+[node name="Label" type="Label" parent="Community" unique_id=1326732301]
 layout_mode = 0
-offset_left = 334.0
-offset_top = 122.0
-offset_right = 574.0
-offset_bottom = 145.0
+offset_left = 400.0
+offset_top = 120.0
+offset_right = 760.0
+offset_bottom = 150.0
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 30
 text = "Community"
 
-[node name="Highlight" type="Sprite2D" parent="Community" unique_id=531992271]
-visible = false
-texture_filter = 1
-position = Vector2(433, 158)
-texture = ExtResource("6_l3a33")
-
-[node name="Hide" type="Sprite2D" parent="Community" unique_id=752464604]
+[node name="Hide" type="Sprite2D" parent="Community" unique_id=928691937]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_5skub")
-position = Vector2(435, 169)
-scale = Vector2(1.2634921, 1.3499999)
+position = Vector2(560, 192)
+scale = Vector2(2.336508, 2)
 texture = SubResource("CompressedTexture2D_y6twq")
 
 [node name="ExitBtn" type="TextureRect" parent="." unique_id=311109360]
 texture_filter = 1
 layout_mode = 0
-offset_left = 648.0
+offset_left = 896.0
 offset_top = 48.0
-offset_right = 700.0
-offset_bottom = 98.0
+offset_right = 976.0
+offset_bottom = 120.85713
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("12_s0cho")
-stretch_mode = 3
 script = ExtResource("13_26dn3")
 
 [node name="DefectShot" type="Control" parent="." unique_id=436035817]
@@ -304,22 +306,23 @@ offset_top = 52.0
 offset_right = 326.0
 offset_bottom = 75.0
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "Charges Left -"
 
 [node name="ChargestLeft" type="Label" parent="DefectShot" unique_id=1476966604]
 layout_mode = 0
-offset_left = 305.0
+offset_left = 360.0
 offset_top = 52.0
-offset_right = 497.0
+offset_right = 552.0
 offset_bottom = 75.0
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "3"
 
 [node name="Scissors" type="Control" parent="." unique_id=1507897016]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = 264.0
+offset_right = 304.0
 offset_bottom = 40.0
 script = ExtResource("14_nr6rx")
 
@@ -343,31 +346,31 @@ script = ExtResource("16_jw7ry")
 layout_mode = 0
 offset_left = 712.0
 offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 152.0
+offset_right = 872.0
+offset_bottom = 192.0
 color = Color(0, 0, 0, 1)
 
 [node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=770131417]
 layout_mode = 0
 offset_left = 720.0
 offset_top = 40.0
-offset_right = 824.0
-offset_bottom = 144.0
+offset_right = 864.0
+offset_bottom = 184.0
 color = Color(0.38431373, 0, 0, 1)
 
 [node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=536864818]
 texture_filter = 1
 layout_mode = 0
-offset_left = 728.0
-offset_top = 48.0
-offset_right = 816.0
-offset_bottom = 136.0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
 mouse_filter = 2
 
 [node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=409357691]
 texture_filter = 1
-position = Vector2(772, 92)
-scale = Vector2(0.5789471, 0.6470588)
+position = Vector2(792, 110)
+scale = Vector2(0.94736826, 1.0294119)
 texture = ExtResource("14_oag2g")
 
 [node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=891450947]
@@ -375,104 +378,108 @@ visible = false
 layout_mode = 0
 offset_left = 712.0
 offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 152.0
+offset_right = 872.0
+offset_bottom = 192.0
 mouse_filter = 2
 texture = ExtResource("19_lmn1t")
 expand_mode = 1
 
-[node name="MutationCard2" type="Control" parent="Scissors/PopupMutationManager" unique_id=1326646905]
+[node name="MutationCard2" type="Control" parent="Scissors/PopupMutationManager" unique_id=599761293]
 anchors_preset = 0
 offset_left = 8.0
-offset_top = 144.0
+offset_top = 192.0
 offset_right = 48.0
-offset_bottom = 184.0
+offset_bottom = 232.0
 script = ExtResource("16_jw7ry")
 
-[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1040705856]
+[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1555471984]
 layout_mode = 0
 offset_left = 712.0
 offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 152.0
+offset_right = 872.0
+offset_bottom = 192.0
 color = Color(0, 0, 0, 1)
 
-[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1490723330]
+[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1600758361]
 layout_mode = 0
 offset_left = 720.0
 offset_top = 40.0
-offset_right = 824.0
-offset_bottom = 144.0
+offset_right = 864.0
+offset_bottom = 184.0
 color = Color(0.38431373, 0, 0, 1)
 
-[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=543948782]
+[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1561026798]
 texture_filter = 1
 layout_mode = 0
-offset_left = 728.0
-offset_top = 48.0
-offset_right = 816.0
-offset_bottom = 136.0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+mouse_filter = 2
 
-[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=771721555]
+[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1484572996]
 texture_filter = 1
-position = Vector2(772, 92)
-scale = Vector2(0.5789471, 0.6470588)
+position = Vector2(792, 110)
+scale = Vector2(0.94736826, 1.0294119)
 texture = ExtResource("14_oag2g")
 
-[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=207700840]
+[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=2016830430]
 visible = false
 layout_mode = 0
 offset_left = 712.0
 offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 152.0
+offset_right = 872.0
+offset_bottom = 192.0
+mouse_filter = 2
 texture = ExtResource("19_lmn1t")
 expand_mode = 1
 
-[node name="MutationCard3" type="Control" parent="Scissors/PopupMutationManager" unique_id=973756862]
+[node name="MutationCard3" type="Control" parent="Scissors/PopupMutationManager" unique_id=746875013]
 anchors_preset = 0
 offset_left = 8.0
-offset_top = 280.0
+offset_top = 384.0
 offset_right = 48.0
-offset_bottom = 320.0
+offset_bottom = 424.0
 script = ExtResource("16_jw7ry")
 
-[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=995818586]
+[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1969557567]
 layout_mode = 0
 offset_left = 712.0
 offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 152.0
+offset_right = 872.0
+offset_bottom = 192.0
 color = Color(0, 0, 0, 1)
 
-[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=689362321]
+[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1879526124]
 layout_mode = 0
 offset_left = 720.0
 offset_top = 40.0
-offset_right = 824.0
-offset_bottom = 144.0
+offset_right = 864.0
+offset_bottom = 184.0
 color = Color(0.38431373, 0, 0, 1)
 
-[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=735830864]
+[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=79056047]
 texture_filter = 1
 layout_mode = 0
-offset_left = 728.0
-offset_top = 48.0
-offset_right = 816.0
-offset_bottom = 136.0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+mouse_filter = 2
 
-[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=2024633856]
+[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=770453454]
 texture_filter = 1
-position = Vector2(772, 92)
-scale = Vector2(0.5789471, 0.6470588)
+position = Vector2(792, 110)
+scale = Vector2(0.94736826, 1.0294119)
 texture = ExtResource("14_oag2g")
 
-[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1574564840]
+[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1155806222]
 visible = false
 layout_mode = 0
 offset_left = 712.0
 offset_top = 32.0
-offset_right = 832.0
-offset_bottom = 152.0
+offset_right = 872.0
+offset_bottom = 192.0
+mouse_filter = 2
 texture = ExtResource("19_lmn1t")
 expand_mode = 1

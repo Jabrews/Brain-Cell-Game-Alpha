@@ -1431,12 +1431,13 @@ stream = ExtResource("13_pnxu0")
 
 [node name="ToLeave" type="Label" parent="." unique_id=6186536]
 visible = false
-offset_left = 595.0
-offset_top = 37.0
-offset_right = 759.0
-offset_bottom = 91.0
+offset_left = 960.0
+offset_top = 52.0
+offset_right = 1290.0
+offset_bottom = 148.0
 theme_override_colors/font_color = Color(1, 1, 1, 0.69803923)
 theme_override_fonts/font = ExtResource("1_t562i")
+theme_override_font_sizes/font_size = 30
 text = "Press E to 
 Leave
 "
@@ -1459,8 +1460,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -3.0
-offset_right = 815.0
-offset_bottom = 443.0
+offset_right = 1240.0
+offset_bottom = 680.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_behavior_recursive = 1
@@ -1469,10 +1470,10 @@ color = Color(1, 1, 1, 0)
 [node name="PaperBG" type="TextureRect" parent="FileView" unique_id=1566835126]
 texture_filter = 1
 layout_mode = 0
-offset_left = 248.0
-offset_top = 8.0
-offset_right = 616.0
-offset_bottom = 472.0
+offset_left = 392.0
+offset_top = 24.0
+offset_right = 944.0
+offset_bottom = 688.0
 mouse_filter = 0
 mouse_behavior_recursive = 1
 texture = ExtResource("8_kdclm")
@@ -1480,31 +1481,32 @@ texture = ExtResource("8_kdclm")
 [node name="MutationType" type="Label" parent="FileView" unique_id=113685689]
 texture_filter = 1
 layout_mode = 0
-offset_left = 264.0
-offset_top = 64.0
-offset_right = 593.0
-offset_bottom = 87.0
+offset_left = 432.0
+offset_top = 104.0
+offset_right = 904.0
+offset_bottom = 130.0
 mouse_filter = 0
 mouse_behavior_recursive = 1
 theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
 theme_override_fonts/font = ExtResource("1_t562i")
-theme_override_font_sizes/font_size = 21
+theme_override_font_sizes/font_size = 26
 text = "Mutation Type"
 horizontal_alignment = 1
 
 [node name="MutationInfo" type="Label" parent="FileView" unique_id=1120710463]
 texture_filter = 1
-custom_maximum_size = Vector2(277, 107)
+custom_minimum_size = Vector2(424, 152)
+custom_maximum_size = Vector2(424, 152)
 layout_mode = 0
-offset_left = 293.0
-offset_top = 342.0
-offset_right = 570.0
-offset_bottom = 449.0
+offset_left = 456.0
+offset_top = 504.0
+offset_right = 880.0
+offset_bottom = 656.0
 mouse_filter = 0
 mouse_behavior_recursive = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_t562i")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "Cell possesses a strong human like presence.
 
 Perhaps memories of the past still keep it company.
@@ -1516,10 +1518,10 @@ autowrap_trim_flags = 128
 [node name="ExitBtn" type="TextureRect" parent="FileView" unique_id=970978348]
 texture_filter = 1
 layout_mode = 0
-offset_left = 593.0
-offset_top = 12.999998
-offset_right = 610.0
-offset_bottom = 36.0
+offset_left = 912.0
+offset_top = 31.999998
+offset_right = 934.6667
+offset_bottom = 61.052628
 scale = Vector2(1.0588228, 0.826087)
 texture = ExtResource("10_rppej")
 script = ExtResource("11_7hlws")
@@ -1527,13 +1529,13 @@ script = ExtResource("11_7hlws")
 [node name="ClickToView" type="Label" parent="." unique_id=1648272860]
 visible = false
 texture_filter = 1
-offset_left = 241.0
-offset_top = 447.0
-offset_right = 605.0
-offset_bottom = 475.0
+offset_left = 432.0
+offset_top = 656.0
+offset_right = 887.0
+offset_bottom = 691.0
 size_flags_horizontal = 4
 theme_override_fonts/font = ExtResource("1_t562i")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 35
 text = "Click to view"
 script = ExtResource("7_0tp8k")
 

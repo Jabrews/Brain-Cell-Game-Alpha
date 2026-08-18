@@ -127,6 +127,7 @@ viewport_path = NodePath("ChargeSeats/LeftSeat/TV/TvFrontPannel/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sle5"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_esl4w")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yivno"]
 material = SubResource("StandardMaterial3D_0sle5")
@@ -152,6 +153,7 @@ viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5kxe"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_fxynw")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8m8aq"]
 material = SubResource("StandardMaterial3D_d5kxe")

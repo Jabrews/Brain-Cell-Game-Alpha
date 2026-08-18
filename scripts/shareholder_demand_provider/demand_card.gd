@@ -37,6 +37,10 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed('attack') :	
 		if card_hover.visible :
+			
+			if not get_parent().visible  :
+				return
+				
 			up_down_tween.kill()
 			# reset position. this is important for when card re-appears, getting it in the right pos
 			position = starting_pos

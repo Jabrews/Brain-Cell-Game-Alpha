@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://c5ktjoher1m0m" path="res://sounds/cards/select.mp3" id="11_ten8p"]
 [ext_resource type="Script" uid="uid://tr8wpxp11wct" path="res://scripts/shareholder_offer_manager/item_offer_card.gd" id="12_5kdy1"]
 [ext_resource type="AudioStream" uid="uid://qtyrv5brghid" path="res://sounds/cards/start.mp3" id="12_ten8p"]
-[ext_resource type="Texture2D" uid="uid://dq0mvp0t01m" path="res://models/share_holder_offer_card/item_steroid.png" id="13_5kdy1"]
 [ext_resource type="Texture2D" uid="uid://cfo745i5iwjge" path="res://models/share_holder_offer_card/item_ice_cube.png" id="13_gue60"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mvdwn"]
@@ -36,12 +35,12 @@ color = Color(1, 1, 1, 0)
 [node name="HeaderLabel" type="Label" parent="." unique_id=1733478266]
 visible = false
 texture_filter = 1
-offset_left = 109.0
-offset_top = 11.0
-offset_right = 755.0
-offset_bottom = 45.0
+offset_left = 326.0
+offset_top = 16.0
+offset_right = 991.0
+offset_bottom = 51.0
 theme_override_fonts/font = ExtResource("4_05saj")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 35
 text = "Shareholder Offer -"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -61,35 +60,34 @@ process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(160, 250)
 layout_mode = 0
-offset_left = 128.0
-offset_top = 115.0
-offset_right = 288.0
-offset_bottom = 365.0
+offset_left = 238.0
+offset_top = 188.0
+offset_right = 468.0
+offset_bottom = 547.375
 texture = ExtResource("11_05saj")
 script = ExtResource("12_5kdy1")
 
 [node name="FlavorText" type="Label" parent="ServeItemOffer/Card1Container" unique_id=466691836]
 layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
+offset_left = 26.0
+offset_top = 231.0
+offset_right = 204.0
+offset_bottom = 329.0
 theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
 theme_override_constants/line_spacing = 0
 theme_override_constants/paragraph_spacing = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("7_73nie")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="TypeImage" type="TextureRect" parent="ServeItemOffer/Card1Container" unique_id=2058757921]
 layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
+offset_left = 38.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 166.0
 texture = ExtResource("13_gue60")
 
 [node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card1Container" unique_id=828140258]
@@ -97,113 +95,97 @@ visible = false
 layout_mode = 0
 offset_left = -1.5
 offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
+offset_right = 230.0
+offset_bottom = 359.0
 texture = ExtResource("9_3ji3s")
 
-[node name="Card2Container" type="TextureRect" parent="ServeItemOffer" unique_id=829915536]
+[node name="Card2Container" type="TextureRect" parent="ServeItemOffer" unique_id=1355895654]
 process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(160, 250)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -83.0
-offset_top = -125.0
-offset_right = 77.0
-offset_bottom = 125.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 531.0
+offset_top = 188.0
+offset_right = 761.0
+offset_bottom = 547.375
 texture = ExtResource("11_05saj")
 script = ExtResource("12_5kdy1")
 
-[node name="TypeImage" type="TextureRect" parent="ServeItemOffer/Card2Container" unique_id=1468690995]
+[node name="FlavorText" type="Label" parent="ServeItemOffer/Card2Container" unique_id=2021456083]
 layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
-texture = ExtResource("13_5kdy1")
-
-[node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card2Container" unique_id=7978613]
-visible = false
-layout_mode = 0
-offset_left = -1.5
-offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
-texture = ExtResource("9_3ji3s")
-
-[node name="FlavorText" type="Label" parent="ServeItemOffer/Card2Container" unique_id=1761929236]
-layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
+offset_left = 26.0
+offset_top = 231.0
+offset_right = 204.0
+offset_bottom = 329.0
 theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
 theme_override_constants/line_spacing = 0
 theme_override_constants/paragraph_spacing = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("7_73nie")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Card3Container" type="TextureRect" parent="ServeItemOffer" unique_id=775966164]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 133.0
-offset_top = -125.0
-offset_right = 293.0
-offset_bottom = 125.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_05saj")
-script = ExtResource("12_5kdy1")
-
-[node name="TypeImage" type="TextureRect" parent="ServeItemOffer/Card3Container" unique_id=950441658]
+[node name="TypeImage" type="TextureRect" parent="ServeItemOffer/Card2Container" unique_id=601561300]
 layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
-texture = ExtResource("13_5kdy1")
+offset_left = 38.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 166.0
+texture = ExtResource("13_gue60")
 
-[node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card3Container" unique_id=108583878]
+[node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card2Container" unique_id=1040007979]
 visible = false
 layout_mode = 0
 offset_left = -1.5
 offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
+offset_right = 230.0
+offset_bottom = 359.0
 texture = ExtResource("9_3ji3s")
 
-[node name="FlavorText" type="Label" parent="ServeItemOffer/Card3Container" unique_id=508751026]
+[node name="Card3Container" type="TextureRect" parent="ServeItemOffer" unique_id=1255158715]
+process_mode = 3
+texture_filter = 1
+custom_minimum_size = Vector2(160, 250)
 layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
+offset_left = 818.0
+offset_top = 188.0
+offset_right = 1048.0
+offset_bottom = 547.375
+texture = ExtResource("11_05saj")
+script = ExtResource("12_5kdy1")
+
+[node name="FlavorText" type="Label" parent="ServeItemOffer/Card3Container" unique_id=791879454]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 231.0
+offset_right = 204.0
+offset_bottom = 329.0
 theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
 theme_override_constants/line_spacing = 0
 theme_override_constants/paragraph_spacing = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("7_73nie")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="TypeImage" type="TextureRect" parent="ServeItemOffer/Card3Container" unique_id=103978746]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 24.0
+offset_right = 192.0
+offset_bottom = 166.0
+texture = ExtResource("13_gue60")
+
+[node name="CardHover" type="TextureRect" parent="ServeItemOffer/Card3Container" unique_id=418791318]
+visible = false
+layout_mode = 0
+offset_left = -1.5
+offset_top = 2.0
+offset_right = 230.0
+offset_bottom = 359.0
+texture = ExtResource("9_3ji3s")
 
 [node name="Audio" type="Control" parent="ServeItemOffer" unique_id=630135771]
 anchors_preset = 0

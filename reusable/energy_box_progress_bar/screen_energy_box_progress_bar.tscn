@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://n6qo1vnymopt"]
+
+[ext_resource type="Script" uid="uid://i37l6kqxd17b" path="res://reusable/energy_box_progress_bar/screen_energy_box_progress_bar.gd" id="1_2ypv0"]
+[ext_resource type="Texture2D" uid="uid://bcn4752a73blj" path="res://models/energy_box/EnergyBar_under.png" id="2_r47nq"]
+[ext_resource type="Texture2D" uid="uid://da7snr6e50eqi" path="res://models/energy_box/EnergyBar_over.png" id="3_cvo01"]
+
+[node name="ScreenEnergyBox" type="Node2D" unique_id=1979986246]
+script = ExtResource("1_2ypv0")
+
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=1834224372]
+texture_filter = 1
+offset_right = 4.0
+offset_bottom = 27.0
+texture_under = ExtResource("2_r47nq")
+texture_progress = ExtResource("3_cvo01")

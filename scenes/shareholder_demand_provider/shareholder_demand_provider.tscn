@@ -34,6 +34,7 @@ viewport_path = NodePath("DefectDecreaseTv/TvFrontPannel/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_kbtuw")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_3gw4e"]
 material = SubResource("StandardMaterial3D_0jyhj")
@@ -153,12 +154,12 @@ color = Color(1, 1, 1, 0)
 [node name="HeaderLabel" type="Label" parent="." unique_id=1691091184]
 visible = false
 texture_filter = 1
-offset_left = 109.0
-offset_top = 11.0
-offset_right = 755.0
-offset_bottom = 45.0
+offset_left = 344.0
+offset_top = 8.0
+offset_right = 990.0
+offset_bottom = 42.0
 theme_override_fonts/font = ExtResource("5_0ovh7")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 30
 text = "Shareholder Demands -"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -170,76 +171,62 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 16.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Button" type="Button" parent="CardContainer" unique_id=2024177526]
-z_index = 1
-texture_filter = 1
-layout_mode = 0
-offset_left = 368.0
-offset_top = 424.0
-offset_right = 478.0
-offset_bottom = 459.0
-theme_override_fonts/font = ExtResource("5_0ovh7")
-theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_qa1qv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ubwkr")
-action_mode = 0
-text = "Exit"
-script = ExtResource("11_ubwkr")
 
 [node name="Card1Container" type="TextureRect" parent="CardContainer" unique_id=2116320187]
 process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(160, 250)
 layout_mode = 0
-offset_left = 120.0
-offset_top = 72.0
-offset_right = 280.0
-offset_bottom = 322.0
+offset_left = 240.0
+offset_top = 128.0
+offset_right = 470.0
+offset_bottom = 487.375
 texture = ExtResource("4_imiqb")
 script = ExtResource("5_l8tng")
 
 [node name="FlavorText" type="Label" parent="CardContainer/Card1Container" unique_id=1565041264]
 layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
+offset_left = 28.0
+offset_top = 230.0
+offset_right = 203.0
+offset_bottom = 331.0
 theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
 theme_override_constants/line_spacing = 0
 theme_override_constants/paragraph_spacing = 0
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("6_ubwkr")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 16
 text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="TypeImage" type="TextureRect" parent="CardContainer/Card1Container" unique_id=1350912916]
 layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
+offset_left = 37.0
+offset_top = 29.0
+offset_right = 194.0
+offset_bottom = 173.0
 texture = ExtResource("7_l8tng")
 
 [node name="CardHover" type="TextureRect" parent="CardContainer/Card1Container" unique_id=749824500]
-visible = false
 layout_mode = 0
 offset_left = -1.5
 offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
+offset_right = 232.0
+offset_bottom = 360.0
 texture = ExtResource("8_8wd7k")
 
 [node name="EnergyGain" type="Control" parent="CardContainer/Card1Container" unique_id=206556494]
 modulate = Color(1, 1, 1, 0.38039216)
 anchors_preset = 0
-offset_left = 17.0
-offset_right = 57.0
-offset_bottom = 40.0
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 88.0
+offset_bottom = 152.0
 
 [node name="EnergyText" type="Label" parent="CardContainer/Card1Container/EnergyGain" unique_id=523533424]
 texture_filter = 1
@@ -263,160 +250,176 @@ position = Vector2(99, 284)
 scale = Vector2(2.1833332, 2.6428566)
 texture = ExtResource("12_0ovh7")
 
-[node name="Card2Container" type="TextureRect" parent="CardContainer" unique_id=626387599]
+[node name="Card2Container" type="TextureRect" parent="CardContainer" unique_id=1815333062]
 process_mode = 3
 texture_filter = 1
 custom_minimum_size = Vector2(160, 250)
+layout_mode = 0
+offset_left = 533.0
+offset_top = 128.0
+offset_right = 763.0
+offset_bottom = 487.375
+texture = ExtResource("4_imiqb")
+script = ExtResource("5_l8tng")
+
+[node name="FlavorText" type="Label" parent="CardContainer/Card2Container" unique_id=1107854318]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 230.0
+offset_right = 203.0
+offset_bottom = 331.0
+theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("6_ubwkr")
+theme_override_font_sizes/font_size = 16
+text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TypeImage" type="TextureRect" parent="CardContainer/Card2Container" unique_id=2114372693]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 29.0
+offset_right = 194.0
+offset_bottom = 173.0
+texture = ExtResource("7_l8tng")
+
+[node name="CardHover" type="TextureRect" parent="CardContainer/Card2Container" unique_id=1134876376]
+layout_mode = 0
+offset_left = -1.5
+offset_top = 2.0
+offset_right = 232.0
+offset_bottom = 360.0
+texture = ExtResource("8_8wd7k")
+
+[node name="EnergyGain" type="Control" parent="CardContainer/Card2Container" unique_id=522139634]
+modulate = Color(1, 1, 1, 0.38039216)
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 88.0
+offset_bottom = 152.0
+
+[node name="EnergyText" type="Label" parent="CardContainer/Card2Container/EnergyGain" unique_id=200970907]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 250.0
+offset_right = 145.0
+offset_bottom = 317.0
+theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("6_ubwkr")
+theme_override_font_sizes/font_size = 50
+text = "+10"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EnergyIcon" type="Sprite2D" parent="CardContainer/Card2Container/EnergyGain" unique_id=1046141148]
+position = Vector2(99, 284)
+scale = Vector2(2.1833332, 2.6428566)
+texture = ExtResource("12_0ovh7")
+
+[node name="Card3Container" type="TextureRect" parent="CardContainer" unique_id=2055140263]
+process_mode = 3
+texture_filter = 1
+custom_minimum_size = Vector2(160, 250)
+layout_mode = 0
+offset_left = 820.0
+offset_top = 128.0
+offset_right = 1050.0
+offset_bottom = 487.375
+texture = ExtResource("4_imiqb")
+script = ExtResource("5_l8tng")
+
+[node name="FlavorText" type="Label" parent="CardContainer/Card3Container" unique_id=2076616342]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 230.0
+offset_right = 203.0
+offset_bottom = 331.0
+theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("6_ubwkr")
+theme_override_font_sizes/font_size = 16
+text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TypeImage" type="TextureRect" parent="CardContainer/Card3Container" unique_id=401884590]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 29.0
+offset_right = 194.0
+offset_bottom = 173.0
+texture = ExtResource("7_l8tng")
+
+[node name="CardHover" type="TextureRect" parent="CardContainer/Card3Container" unique_id=1694854794]
+layout_mode = 0
+offset_left = -1.5
+offset_top = 2.0
+offset_right = 232.0
+offset_bottom = 360.0
+texture = ExtResource("8_8wd7k")
+
+[node name="EnergyGain" type="Control" parent="CardContainer/Card3Container" unique_id=146479995]
+modulate = Color(1, 1, 1, 0.38039216)
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 112.0
+offset_right = 88.0
+offset_bottom = 152.0
+
+[node name="EnergyText" type="Label" parent="CardContainer/Card3Container/EnergyGain" unique_id=1377049078]
+texture_filter = 1
+layout_mode = 0
+offset_left = 18.0
+offset_top = 250.0
+offset_right = 145.0
+offset_bottom = 317.0
+theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("6_ubwkr")
+theme_override_font_sizes/font_size = 50
+text = "+10"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="EnergyIcon" type="Sprite2D" parent="CardContainer/Card3Container/EnergyGain" unique_id=956329401]
+position = Vector2(99, 284)
+scale = Vector2(2.1833332, 2.6428566)
+texture = ExtResource("12_0ovh7")
+
+[node name="Button" type="Button" parent="CardContainer" unique_id=2024177526]
+z_index = 1
+texture_filter = 1
 layout_mode = 0
 offset_left = 568.0
-offset_top = 72.0
-offset_right = 728.0
-offset_bottom = 322.0
-texture = ExtResource("4_imiqb")
-script = ExtResource("5_l8tng")
-
-[node name="TypeImage" type="TextureRect" parent="CardContainer/Card2Container" unique_id=360159599]
-layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
-texture = ExtResource("7_l8tng")
-
-[node name="CardHover" type="TextureRect" parent="CardContainer/Card2Container" unique_id=2038080706]
-visible = false
-layout_mode = 0
-offset_left = -1.5
-offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
-texture = ExtResource("8_8wd7k")
-
-[node name="FlavorText" type="Label" parent="CardContainer/Card2Container" unique_id=1452333354]
-layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("6_ubwkr")
-theme_override_font_sizes/font_size = 10
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="EnergyGain" type="Control" parent="CardContainer/Card2Container" unique_id=1294154310]
-modulate = Color(1, 1, 1, 0.38039216)
-anchors_preset = 0
-offset_left = 17.0
-offset_right = 57.0
-offset_bottom = 40.0
-
-[node name="EnergyText" type="Label" parent="CardContainer/Card2Container/EnergyGain" unique_id=2126046619]
-texture_filter = 1
-layout_mode = 0
-offset_left = 18.0
-offset_top = 250.0
-offset_right = 145.0
-offset_bottom = 317.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("6_ubwkr")
-theme_override_font_sizes/font_size = 50
-text = "+10"
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="EnergyIcon" type="Sprite2D" parent="CardContainer/Card2Container/EnergyGain" unique_id=1410825588]
-position = Vector2(99, 284)
-scale = Vector2(2.1833332, 2.6428566)
-texture = ExtResource("12_0ovh7")
-
-[node name="Card3Container" type="TextureRect" parent="CardContainer" unique_id=67741243]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
-layout_mode = 0
-offset_left = 344.0
-offset_top = 72.0
-offset_right = 504.0
-offset_bottom = 322.0
-texture = ExtResource("4_imiqb")
-script = ExtResource("5_l8tng")
-
-[node name="TypeImage" type="TextureRect" parent="CardContainer/Card3Container" unique_id=792875768]
-layout_mode = 0
-offset_left = 24.5
-offset_top = 20.0
-offset_right = 134.5
-offset_bottom = 120.0
-texture = ExtResource("7_l8tng")
-
-[node name="CardHover" type="TextureRect" parent="CardContainer/Card3Container" unique_id=541203439]
-visible = false
-layout_mode = 0
-offset_left = -1.5
-offset_top = 2.0
-offset_right = 160.5
-offset_bottom = 254.0
-texture = ExtResource("8_8wd7k")
-
-[node name="FlavorText" type="Label" parent="CardContainer/Card3Container" unique_id=1382561151]
-layout_mode = 0
-offset_left = 17.5
-offset_top = 161.0
-offset_right = 144.5
-offset_bottom = 228.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("6_ubwkr")
-theme_override_font_sizes/font_size = 10
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="EnergyGain" type="Control" parent="CardContainer/Card3Container" unique_id=1386686064]
-modulate = Color(1, 1, 1, 0.38039216)
-anchors_preset = 0
-offset_left = 17.0
-offset_right = 57.0
-offset_bottom = 40.0
-
-[node name="EnergyText" type="Label" parent="CardContainer/Card3Container/EnergyGain" unique_id=358012762]
-texture_filter = 1
-layout_mode = 0
-offset_left = 18.0
-offset_top = 250.0
-offset_right = 145.0
-offset_bottom = 317.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("6_ubwkr")
-theme_override_font_sizes/font_size = 50
-text = "+10"
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="EnergyIcon" type="Sprite2D" parent="CardContainer/Card3Container/EnergyGain" unique_id=780469540]
-position = Vector2(99, 284)
-scale = Vector2(2.1833332, 2.6428566)
-texture = ExtResource("12_0ovh7")
+offset_top = 632.0
+offset_right = 729.0
+offset_bottom = 686.0
+theme_override_fonts/font = ExtResource("5_0ovh7")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_qa1qv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ubwkr")
+action_mode = 0
+text = "Exit"
+script = ExtResource("11_ubwkr")
 
 [node name="ToLeave" type="Label" parent="CardContainer" unique_id=1640507515]
 layout_mode = 0
-offset_left = 488.0
-offset_top = 424.0
-offset_right = 652.0
-offset_bottom = 478.0
+offset_left = 728.0
+offset_top = 640.0
+offset_right = 892.0
+offset_bottom = 694.0
 theme_override_colors/font_color = Color(1, 1, 1, 0.69803923)
 theme_override_fonts/font = ExtResource("5_0ovh7")
 theme_override_font_sizes/font_size = 14
