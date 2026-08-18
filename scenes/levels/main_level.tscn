@@ -431,7 +431,7 @@ prisoners_parent_node = NodePath("../../../Charcters/PrisonerParentNode")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 5)
 
 [node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=261005381 instance=ExtResource("16_w7r6u")]
-transform = Transform3D(-0.59446096, 0, -0.8041245, 0, 1, 0, 0.8041245, 0, -0.59446096, -16.181185, -0.012770176, -6.5799956)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.481184, -0.012770176, -11.879996)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
