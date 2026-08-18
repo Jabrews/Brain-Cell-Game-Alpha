@@ -54,6 +54,7 @@
 [ext_resource type="AudioStream" uid="uid://d316ed6lx2umo" path="res://sounds/prisoner_profiler/spare_symbol/spare_exit.mp3" id="50_jheh3"]
 [ext_resource type="PackedScene" uid="uid://cmrlygimkdq5j" path="res://scenes/hoverable_mesh_scenes/limit_quanity_lever_hover.tscn" id="51_jheh3"]
 [ext_resource type="Script" uid="uid://d3abljcarpoy3" path="res://scripts/stations/station_components/prisoner_profiler/limit_quanity/safe_mode_lever.gd" id="51_pf5p3"]
+[ext_resource type="Texture2D" uid="uid://cr1u5gyc11csm" path="res://models/energy_box/energy_cirlce.png" id="54_8n66l"]
 [ext_resource type="Script" uid="uid://8hgkketut0i1" path="res://scripts/stations/station_components/prisoner_profiler/limit_quanity/safe_mode_lights.gd" id="54_cpl65"]
 [ext_resource type="PackedScene" uid="uid://qq4225jhp0tc" path="res://scenes/stations/station_screens/prisoner_profiler_screens/screen_safe_mode.tscn" id="55_wm6wt"]
 [ext_resource type="PackedScene" uid="uid://n6qo1vnymopt" path="res://reusable/energy_box_progress_bar/screen_energy_box_progress_bar.tscn" id="57_vwyqi"]
@@ -95,6 +96,7 @@ viewport_path = NodePath("HiddenQuanityTV/TvFrontPannel/SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_l25tc")
 texture_filter = 0
+texture_repeat = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lbckn"]
 material = SubResource("StandardMaterial3D_7fjcn")
@@ -259,10 +261,12 @@ load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_53sf7"]
 albedo_color = Color(0.24, 0.24, 0.24, 1)
+metallic_specular = 0.0
+texture_filter = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_8n66l"]
 material = SubResource("StandardMaterial3D_53sf7")
-size = Vector3(0.01, 0.40993652, 1.0114014)
+size = Vector3(0.01, 0.46194762, 1.3888366)
 subdivide_width = 16
 
 [sub_resource type="BoxMesh" id="BoxMesh_vwyqi"]
@@ -270,14 +274,19 @@ material = SubResource("StandardMaterial3D_53sf7")
 size = Vector3(0.01, 0.3, 1.2)
 subdivide_width = 16
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rhey"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+texture_filter = 0
+
 [sub_resource type="BoxMesh" id="BoxMesh_53sf7"]
-material = SubResource("StandardMaterial3D_53sf7")
-size = Vector3(0.01, 0.4, 1.4260132)
+material = SubResource("StandardMaterial3D_0rhey")
+size = Vector3(0.01, 0.23172608, 1.4468353)
 subdivide_width = 16
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_53sf7"]
 material = SubResource("StandardMaterial3D_7fjcn")
-size = Vector2(1.4, 0.37)
+size = Vector2(1.4, 0.2)
 orientation = 0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ujpq"]
@@ -1027,7 +1036,7 @@ transform = Transform3D(0.9999994, 0, 0, 0, 0.9999993, 0, 0, 0, 0.9999996, -3.62
 mesh = SubResource("BoxMesh_ixuf4")
 
 [node name="Light1" type="SpotLight3D" parent="SafeMode/SafeModeLights" unique_id=1594031842]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.37134075, 0, -2.8279562)
+transform = Transform3D(-1.0000002, 0, 8.74228e-08, 0, 1.0000002, 0, -8.742278e-08, 0, -1, -3.6274805, 0, -2.494572)
 visible = false
 light_color = Color(0.4331062, 0.5997174, 0, 1)
 light_energy = 10.412
@@ -1036,7 +1045,7 @@ spot_attenuation = 1.4
 spot_angle = 164.33
 
 [node name="Light2" type="SpotLight3D" parent="SafeMode/SafeModeLights" unique_id=2022933429]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6274805, 0, -2.8256574)
+transform = Transform3D(-1.0000002, 0, 8.74228e-08, 0, 1.0000002, 0, -8.742278e-08, 0, -1, -0.37134087, 0, -2.4968703)
 visible = false
 light_color = Color(0.4331062, 0.5997174, 0, 1)
 light_energy = 10.412
@@ -1062,7 +1071,7 @@ render_target_update_mode = 4
 [node name="LimitQuanity" parent="SafeMode/SafeModeTV/TvFrontPannel/SubViewport" unique_id=508341564 instance=ExtResource("55_wm6wt")]
 
 [node name="EnergyBox" type="Node3D" parent="." unique_id=1738670449]
-transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 4.4293747, 0.88424337, 2.1794724)
+transform = Transform3D(0, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, 0, 5.370636, 0.88424337, 2.1794724)
 
 [node name="Box" type="StaticBody3D" parent="EnergyBox" unique_id=523268507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -1088,60 +1097,60 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62275386, 0)
 mesh = SubResource("CylinderMesh_qa1qv")
 
 [node name="EnergyPanel" type="Node3D" parent="EnergyBox" unique_id=1966632559]
-transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.35372782, 1.4533935, 1.4736469)
+transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.35372782, 1.3026482, 1.4736471)
 
 [node name="EnergyUsed" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1128461170]
-transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.20124102, 1.1943285, -1.3646526)
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.20124102, 1.1034586, -1.6378584)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "0"
+text = "100"
 font = ExtResource("3_bsoe0")
-font_size = 24
+font_size = 34
 outline_size = 0
 
 [node name="EnergyUsedText" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1381322148]
-transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.20124054, 1.2025917, -1.1471994)
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.20124054, 1.1117218, -1.3370085)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "Use :"
 font = ExtResource("3_bsoe0")
-font_size = 24
+font_size = 34
 outline_size = 0
 
 [node name="EnerfyLeft" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1069418868]
-transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19186187, 1.0420096, -1.7374852)
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19186187, 0.91453934, -1.8530335)
 texture_filter = 0
 modulate = Color(1, 1, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "0"
 font = ExtResource("3_bsoe0")
-font_size = 24
+font_size = 28
 outline_size = 0
 
 [node name="EnerfyLeftText" type="Label3D" parent="EnergyBox/EnergyPanel" unique_id=1754173674]
-transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19186187, 1.0420096, -1.3364174)
+transform = Transform3D(2.9802322e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 2.9802322e-08, -0.19186187, 0.93283963, -1.4087639)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "Left Energy :"
 font = ExtResource("3_bsoe0")
-font_size = 24
+font_size = 28
 outline_size = 0
 
 [node name="EnergyIcon2" type="Sprite3D" parent="EnergyBox/EnergyPanel" unique_id=522958205]
-transform = Transform3D(8.940697e-08, 0, 0.70000005, 0, 0.7, 0, -0.70000005, 0, 8.940697e-08, -0.19064426, 1.192774, -1.4729736)
+transform = Transform3D(1.07288365e-07, 0, 0.70000005, 0, 0.84000003, 0, -0.8400001, 0, 8.940697e-08, -0.19064426, 1.1019042, -1.7963233)
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_pl004")
 
 [node name="EnergyIcon3" type="Sprite3D" parent="EnergyBox/EnergyPanel" unique_id=947618727]
-transform = Transform3D(-5.9604645e-08, 0, 0.90000004, 0, 0.9, 0, -0.90000004, 0, -5.9604645e-08, -0.19064474, 1.0365283, -1.856571)
+transform = Transform3D(-5.9604645e-08, 0, 0.90000004, 0, 0.9, 0, -0.90000004, 0, -5.9604645e-08, -0.19064474, 0.91454816, -2.001401)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_pl004")
 
 [node name="PanelMesh" type="MeshInstance3D" parent="EnergyBox/EnergyPanel" unique_id=102272748]
-transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, -0.20725036, 1.1146121, -1.459632)
+transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, -0.20725036, 1.0209124, -1.5012183)
 mesh = SubResource("BoxMesh_8n66l")
 
 [node name="CurrentPanel" type="Node3D" parent="EnergyBox" unique_id=2108112438]
@@ -1178,27 +1187,31 @@ transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 
 mesh = SubResource("BoxMesh_vwyqi")
 
 [node name="CurrEnergyScreen" type="Node3D" parent="EnergyBox/CurrentPanel" unique_id=349382227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0502429, 0)
 
 [node name="TVBG" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1226799785]
-transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 2.6937723, 0.0007325299)
+transform = Transform3D(0.99999917, 0, 0, 0, 1, 0, 0, 0, 0.99999917, 0.1449771, 2.7169476, -0.0010056496)
 mesh = SubResource("BoxMesh_53sf7")
 
 [node name="TvFrontPannel" type="MeshInstance3D" parent="EnergyBox/CurrentPanel/CurrEnergyScreen" unique_id=1757250473]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16239882, 2.6956358, 0.0020778775)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16239882, 2.7208986, 0.0020780563)
 mesh = SubResource("PlaneMesh_53sf7")
 script = ExtResource("6_7qc6t")
 
 [node name="SubViewport" type="SubViewport" parent="EnergyBox/CurrentPanel/CurrEnergyScreen/TvFrontPannel" unique_id=598228643]
-scaling_3d_mode = 5
 canvas_item_default_texture_filter = 0
-size = Vector2i(244, 40)
-render_target_update_mode = 4
+size = Vector2i(245, 40)
 
 [node name="ScreenEnergyBox" parent="EnergyBox/CurrentPanel/CurrEnergyScreen/TvFrontPannel/SubViewport" unique_id=1979986246 instance=ExtResource("57_vwyqi")]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="EnergyBox/CurrentPanel" unique_id=259607023]
 transform = Transform3D(-4.371139e-08, -4.371139e-08, 1, -1, 1.9106855e-15, -4.371139e-08, 0, -1, -4.371139e-08, 3.0000002, 2.5000005, 0)
 spot_range = 3.849
+
+[node name="Sprite3D" type="Sprite3D" parent="EnergyBox/CurrentPanel" unique_id=1530420719]
+transform = Transform3D(-5.2453668e-08, 0, 1.2, 0, 1.2, 0, -1.2, 0, -5.2453668e-08, 0.13752031, 2.2719011, 0)
+texture_filter = 0
+texture = ExtResource("54_8n66l")
 
 [node name="EnergyKey" type="Node3D" parent="EnergyBox" unique_id=1850570514]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.22628236, 0, 1.2000003)

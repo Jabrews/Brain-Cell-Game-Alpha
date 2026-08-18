@@ -9,7 +9,7 @@ script = ExtResource("1_2ypv0")
 
 [node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=1834224372]
 texture_filter = 1
-offset_right = 4.0
-offset_bottom = 27.0
+offset_right = 245.0
+offset_bottom = 40.0
 texture_under = ExtResource("2_r47nq")
 texture_progress = ExtResource("3_cvo01")

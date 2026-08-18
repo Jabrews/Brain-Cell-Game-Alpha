@@ -73,7 +73,8 @@ script = ExtResource("4_0dwhk")
 [node name="BloodOverlay" type="Sprite2D" parent="." unique_id=505335901]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1
-position = Vector2(427, 240)
+position = Vector2(640, 360)
+scale = Vector2(1.498829, 1.5)
 texture = ExtResource("5_0dwhk")
 script = ExtResource("6_pfayw")
 

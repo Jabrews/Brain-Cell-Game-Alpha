@@ -40,8 +40,10 @@ func _process(_delta: float) -> void:
 			
 			if not get_parent().visible  :
 				return
+			
+			if up_down_tween : 
+				up_down_tween.kill()
 				
-			up_down_tween.kill()
 			# reset position. this is important for when card re-appears, getting it in the right pos
 			position = starting_pos
 			parent_shareholder_demand_provider._handle_card_picked(self)
