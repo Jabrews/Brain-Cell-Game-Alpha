@@ -7,8 +7,6 @@ func _ready() -> void:
 	
 func _handle_player_health_changed() :
 
-	print("player health : ", str(GLPlayerState.player_health))
-
 	match GLPlayerState.player_health:
 		0:
 			get_tree().current_scene.queue_free()

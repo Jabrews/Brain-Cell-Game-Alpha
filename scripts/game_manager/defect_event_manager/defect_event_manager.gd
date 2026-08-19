@@ -10,7 +10,7 @@ extends Node
 
 var curr_timer_timeout_time: float
 
-
+#
 #func _process(delta: float) -> void:
 	#if Input.is_action_just_pressed('debug1') :
 		#chance_for_defect_event()
@@ -62,9 +62,7 @@ func chance_for_defect_event() -> void:
 		+ jolt_hidden_stat_interpreter_chance
 		+ jolt_cell_container_chance
 	):
-		#jolt_cell_container._handle_jolt()
-		print('overide chance of cell jolt event')
-		jolt_hidden_stat_interpreter._handle_jolt()
+		jolt_cell_container._handle_jolt()
 
 
 func _reset_timer_timeout() -> void:

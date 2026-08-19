@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://c5qtndnhvffsn"]
+
+[ext_resource type="Script" uid="uid://cjrsq06johlej" path="res://scripts/doors/door_button/door_button.gd" id="1_3rml6"]
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_dvftx"]
+[ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_4qrbl"]
+[ext_resource type="Script" uid="uid://na1kfwg3xcpm" path="res://scripts/doors/door_button/button.gd" id="2_y5ju8"]
+[ext_resource type="PackedScene" uid="uid://chkwy8u22rvoj" path="res://scenes/hoverable_mesh_scenes/door_button_hover.tscn" id="3_4qrbl"]
+[ext_resource type="PackedScene" uid="uid://be3wn53r1vedr" path="res://scenes/door/screen_door_button.tscn" id="3_oid1m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ms0m2"]
+albedo_color = Color(0.25, 0.25, 0.25, 1)
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+material = SubResource("StandardMaterial3D_ms0m2")
+size = Vector3(0.6184082, 0.9001465, 0.048828125)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7nwrf"]
+size = Vector3(0.6055908, 0.9001465, 0.048828125)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_r52yi"]
+viewport_path = NodePath("InterpreterTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_r52yi")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_24n7g"]
+material = SubResource("StandardMaterial3D_0jyhj")
+size = Vector2(0.49, 0.305)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qrbl"]
+albedo_color = Color(1, 0.44, 0.44, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7nwrf"]
+material = SubResource("StandardMaterial3D_4qrbl")
+size = Vector3(0.3, 0.3, 0.023046881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u13vf"]
+size = Vector3(0.3, 0.3, 0.023046881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3rml6"]
+
+[node name="DoorButton" type="Node3D" unique_id=660448842]
+script = ExtResource("1_3rml6")
+
+[node name="ButtonBack" type="StaticBody3D" parent="." unique_id=283610472]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonBack" unique_id=1082744479]
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonBack" unique_id=985477069]
+shape = SubResource("BoxShape3D_7nwrf")
+
+[node name="ButtonScreen" type="MeshInstance3D" parent="." unique_id=1900233838]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.24248782, 0.028260946)
+mesh = SubResource("PlaneMesh_24n7g")
+script = ExtResource("1_dvftx")
+
+[node name="SubViewport" type="SubViewport" parent="ButtonScreen" unique_id=1377224824]
+disable_3d = true
+scaling_3d_mode = 5
+canvas_item_default_texture_filter = 0
+size = Vector2i(169, 101)
+render_target_update_mode = 4
+
+[node name="ScreenDoorButton" parent="ButtonScreen/SubViewport" unique_id=632197757 instance=ExtResource("3_oid1m")]
+
+[node name="Button" type="StaticBody3D" parent="." unique_id=705507456 groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19566113, 0.04256642)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("2_y5ju8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Button" unique_id=1439966325]
+mesh = SubResource("BoxMesh_7nwrf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button" unique_id=1803967316]
+shape = SubResource("BoxShape3D_u13vf")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="Button" unique_id=1648825558 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("2_4qrbl")
+hover_mesh_scene = ExtResource("3_4qrbl")
+hover_mesh_scale = 0.0
+hover_mesh_scale_x = 0.0
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Button/HoverableMesh" unique_id=2063058436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_3rml6")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1885188132]
+transform = Transform3D(1, 0, 0, 0, 0.24956715, 0.96835744, 0, -0.96835744, 0.24956715, 0, 1.0080094, 0.36087608)
+light_energy = 0.6
+spot_range = 1.756
+spot_attenuation = -0.51
+spot_angle = 25.0

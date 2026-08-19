@@ -92,7 +92,7 @@ script = ExtResource("3_lgqnw")
 script = ExtResource("6_e5wqa")
 
 [node name="DefectIncreaseDelayTimer" type="Timer" parent="StateMachine/Jolt" unique_id=1011068641]
-wait_time = 3.0
+wait_time = 2.0
 
 [node name="Froze" type="Node" parent="StateMachine" unique_id=722346919]
 script = ExtResource("8_pg0bo")

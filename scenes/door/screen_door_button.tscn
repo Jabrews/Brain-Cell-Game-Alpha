@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://be3wn53r1vedr"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_7rlxt"]
+[ext_resource type="Script" uid="uid://btcich1mdj337" path="res://scripts/doors/door_button/screen_door_button.gd" id="1_t4qr2"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_jokut"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="3_ce762"]
+[ext_resource type="Shader" uid="uid://b2s3ejqph1u54" path="res://scripts/characters/cell_container/mutations/mutation_event_nodes/sentient/mad_text.gdshader" id="3_yx31e"]
+[ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="5_x50wg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jokut"]
+shader = ExtResource("1_7rlxt")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yx31e"]
+shader = ExtResource("3_yx31e")
+shader_parameter/shake_enabled = true
+shader_parameter/horizontal_strength = 1.0
+shader_parameter/vertical_strength = 1.0
+shader_parameter/shake_speed = 35.0
+
+[node name="ScreenDoorButton" type="Node2D" unique_id=632197757]
+script = ExtResource("1_t4qr2")
+
+[node name="BG" type="ColorRect" parent="." unique_id=402286775]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -1.0
+offset_right = 169.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=126645478]
+material = SubResource("ShaderMaterial_jokut")
+offset_top = -1.0
+offset_right = 169.0
+offset_bottom = 102.0
+
+[node name="Closed" type="Control" parent="." unique_id=2054764342]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Closed" unique_id=322083115]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 169.0
+offset_bottom = 102.0
+theme_override_fonts/font = ExtResource("2_jokut")
+theme_override_font_sizes/font_size = 26
+text = "Closed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Open" type="Control" parent="." unique_id=124505746]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Warning" type="Label" parent="Open" unique_id=587925121]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 169.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_jokut")
+theme_override_font_sizes/font_size = 18
+text = "Warning"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="TextureRect" parent="Open" unique_id=802052582]
+texture_filter = 1
+material = SubResource("ShaderMaterial_yx31e")
+layout_mode = 0
+offset_left = 46.0
+offset_top = 27.0
+offset_right = 120.0
+offset_bottom = 91.0
+texture = ExtResource("3_ce762")
+
+[node name="Locked" type="Control" parent="." unique_id=1596587827]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Warning" type="Label" parent="Locked" unique_id=962171783]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 169.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("2_jokut")
+theme_override_font_sizes/font_size = 18
+text = "Locked"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="TextureRect" parent="Locked" unique_id=1262225815]
+texture_filter = 1
+layout_mode = 0
+offset_left = 49.0
+offset_top = 25.0
+offset_right = 115.0
+offset_bottom = 90.0
+texture = ExtResource("5_x50wg")
+expand_mode = 1

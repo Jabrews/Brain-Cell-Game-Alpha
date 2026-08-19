@@ -33,7 +33,7 @@
 [ext_resource type="AudioStream" uid="uid://ufxpxrhtk0lf" path="res://sounds/player_local_sounds/interactable/scissor_snip.mp3" id="30_r0hd7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
-height = 3.0
+height = 3.5
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
 height = 3.0127945
@@ -56,6 +56,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=119196132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("CapsuleMesh_u8vuu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1721746271]
@@ -64,7 +65,7 @@ shape = SubResource("CapsuleShape3D_3vyb7")
 debug_color = Color(0, 0.6, 0.69803923, 0)
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=77891920]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8983867, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2305813, -0.051456332)
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot" unique_id=1893995127]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.60649943, 0)
