@@ -39,7 +39,8 @@ func _ready() -> void:
 		_handle_energy_changed
 	)
 	
-	GLCinnamaticBus.connect('toggle_showing_cinnamatic', _handle_toggle_showing_cinnamatic)
+	#GLCinnamaticBus.connect('toggle_showing_cinnamatic', _handle_toggle_showing_cinnamatic)
+	GLCinnamaticBus.connect('toggle_energy_cinnamatic', _handle_toggle_energy_cinnamatic)
 
 	toggle_display_lock(false)
 	toggle_mouse_filter(false)
@@ -218,7 +219,7 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 	toggle_mouse_filter(false)
 	GLPlayerState.emit_signal('lock_player_position', false)
 
-func _handle_toggle_showing_cinnamatic(toggle_value : bool) : 
+func _handle_toggle_energy_cinnamatic(toggle_value : bool) : 
 	if toggle_value == false : 	
 		_handle_energy_turn_changed()
 

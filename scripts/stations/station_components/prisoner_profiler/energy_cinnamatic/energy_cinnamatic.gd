@@ -15,10 +15,6 @@ func _ready() -> void:
 
 func _handle_toggle_energy_cinnamatic(toggle_value : bool) : 
 	
-	GLCinnamaticBus.emit_signal('toggle_showing_cinnamatic', true)
-	
-	
-	
 	toggle_display_lock(toggle_value)
 	camera.global_position = start_point.global_position
 	camera.current = toggle_value	
@@ -40,8 +36,6 @@ func _handle_toggle_energy_cinnamatic(toggle_value : bool) :
 		s_circuits.stop()
 		
 		GLCinnamaticBus.emit_signal('toggle_energy_cinnamatic', false)
-		GLCinnamaticBus.emit_signal('toggle_showing_cinnamatic', false)
-		
 		
 
 func toggle_display_lock(toggle_value: bool) -> void:
