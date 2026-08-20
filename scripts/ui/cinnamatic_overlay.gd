@@ -1,10 +1,11 @@
 extends Sprite2D
 
 func _ready() -> void:
-	GLCinnamaticBus.connect('toggle_energy_cinnamatic', _handle_toggle_energy_cinnamatic)
+	GLCinnamaticBus.connect('toggle_energy_cinnamatic', _handle_toggle_cinnamatic)
+	GLCinnamaticBus.connect('toggle_extractor_cinnamatic', _handle_toggle_cinnamatic)
 
 
-func _handle_toggle_energy_cinnamatic(toggle_value : bool) : 
+func _handle_toggle_cinnamatic(toggle_value : bool) : 
 	
 	modulate.a = 0.0
 	

@@ -4,7 +4,7 @@ extends Node
 @onready var container_mesh : MeshInstance3D = $"../MeshInstance3D"
 @onready var defect_increase_sound : AudioStreamPlayer3D = $DefectIncreaseSound
 
-var last_defect_percent = -1.0
+var last_defect_percent = 0.25
 
 
 func update_defect_color_manager(designated_brain_cell : BrainCell) -> void:

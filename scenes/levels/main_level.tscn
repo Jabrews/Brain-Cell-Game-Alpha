@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://5aiid51oaqct" path="res://scenes/characters/player/player.tscn" id="1_h7hv4"]
 [ext_resource type="PackedScene" uid="uid://dmogk8sx2taw7" path="res://scenes/stations/station_components/prisoner_spawner/station_prisoner_spawner.tscn" id="2_k57ag"]
 [ext_resource type="Script" uid="uid://di3w151hrmfah" path="res://scripts/decals/exsplosion/exsplosion_decal_manager.gd" id="2_lp30k"]
-[ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="3_fon25"]
 [ext_resource type="PackedScene" uid="uid://w3i2xhy1jmad" path="res://scenes/stations/station_components/cell_observer/station_cell_observer.tscn" id="4_7xrfk"]
 [ext_resource type="PackedScene" uid="uid://chyrlawstjobv" path="res://scenes/stations/station_components/prisoner_profiler/profiler_key.tscn" id="6_m2qbd"]
+[ext_resource type="PackedScene" uid="uid://bmsxn20pdon0t" path="res://scenes/stations/station_components/prisoner_extractor/station_prisoner_extractor.tscn" id="7_l5rsp"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="9_kb5nk"]
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
 [ext_resource type="Script" uid="uid://btrk8thxj8lrw" path="res://scripts/game_manager/game_manager/game_manager.gd" id="10_erkku"]
@@ -452,6 +452,7 @@ debug_color = Color(0.7096456, 0.4859149, 0, 1)
 
 [node name="Ceiling" type="StaticBody3D" parent="Enviroment" unique_id=602902947 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5000005, 0)
+visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -511,14 +512,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.481184, -0.012770176, -11
 [node name="ProfilerKey" parent="Stations/PrisonerStations" unique_id=712150991 instance=ExtResource("6_m2qbd")]
 transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, -11, 0.62401414, -9.293873)
 
-[node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
-
-[node name="CellContainerSpawner" parent="Stations/ContainerStations" unique_id=1385341540 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("3_fon25")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0220265, 0, 15)
+[node name="PrisonerExtractor" parent="Stations/PrisonerStations" unique_id=604560631 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("7_l5rsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.9, 15.553123)
 cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 
+[node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
+
 [node name="CellTrashCan" parent="Stations/ContainerStations" unique_id=995289130 instance=ExtResource("9_kb5nk")]
-transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4999999, 8.637116, 0, 15.4705515)
+transform = Transform3D(-0.4999999, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, -0.4999999, 11.966578, 0, 12.370551)
 
 [node name="TargetCellComparison" parent="Stations/ContainerStations" unique_id=1263804446 instance=ExtResource("11_moggy")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.232382, 0, -1.4660921)
@@ -579,17 +580,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -7.9000006)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -16.1)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 2.623817, 6.553119)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 3.3025842, 4.9931126)
 
 [node name="MutationFileCabinet" parent="Stations" unique_id=103506904 node_paths=PackedStringArray("mutations_seen_manager") instance=ExtResource("17_j7s3e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 11.599999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 8.524612)
 mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 
 [node name="UnhideMutation" parent="Stations" unique_id=1284783246 instance=ExtResource("18_8muua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
 
 [node name="ShareholderDemandProvider" parent="Stations" unique_id=1678189998 instance=ExtResource("18_m2qbd")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 3, 17)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 10.545786, 3, 17)
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")
@@ -816,11 +817,11 @@ door_buttons = [NodePath("../../Buttons/DoorButton"), NodePath("../../Buttons/Do
 
 [node name="Door2" parent="Doors/Doors" unique_id=1015152428 node_paths=PackedStringArray("door_buttons") instance=ExtResource("57_ms0m2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.241419, 2.7386374, -0.12162745)
-door_buttons = [NodePath("../../Buttons/DoorButton"), NodePath("../../Buttons/DoorButton2")]
+door_buttons = [NodePath("../../Buttons/DoorButton3"), NodePath("../../Buttons/DoorButton4")]
 
 [node name="Door3" parent="Doors/Doors" unique_id=1843691775 node_paths=PackedStringArray("door_buttons") instance=ExtResource("57_ms0m2")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 15.758581, 2.7386374, 9.186586)
-door_buttons = [NodePath("../../Buttons/DoorButton"), NodePath("../../Buttons/DoorButton2")]
+door_buttons = [NodePath("../../Buttons/DoorButton5"), NodePath("../../Buttons/DoorButton6")]
 
 [node name="Buttons" type="Node" parent="Doors" unique_id=611846348]
 

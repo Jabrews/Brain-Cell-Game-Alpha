@@ -7,6 +7,7 @@ extends CharacterBody3D
 ## components
 @onready var camera_pivot : Node3D = $CameraPivot
 @onready var camera := $CameraPivot/Camera3D
+@onready var interact_ray : RayCast3D = $CameraPivot/Camera3D/RayCastController/InteractRay
 
 var speed : float = 20.0
 
@@ -76,11 +77,17 @@ func _handle_reset_player_position() :
 	
 func _handle_lock_player_position(toggle_value : bool) :
 	if toggle_value :
+		set_collision_layer_value(1, false)
 		is_paused = true
 		visible = false
+		interact_ray.collide_with_areas = false
+		interact_ray.collide_with_areas = false
 	else :
+		set_collision_layer_value(1, true)
 		is_paused = false
 		visible = true
+		interact_ray.collide_with_areas = true 
+		interact_ray.collide_with_areas = true 
 	
 func _handle_shake_player_cam_from_exsplode() -> void:
 	var original_position: Vector3 = camera_pivot.position

@@ -52,7 +52,7 @@ func _ready() -> void:
 	GLDefectEventMangerBus.connect("event_cell_container_jolt", _handle_cell_container_jolt)
 	
 	# update color and opacity
-	defect_color_manager.update_defect_color_manager(designated_brain_cell)
+	#defect_color_manager.update_defect_color_manager(designated_brain_cell)
 	
 	# update constant mutations
 	mutation_manager._mutations_refresh(designated_brain_cell.mutations)
