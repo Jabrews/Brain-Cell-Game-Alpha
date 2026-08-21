@@ -1,13 +1,19 @@
 [gd_scene format=4 uid="uid://bmsxn20pdon0t"]
 
 [ext_resource type="Script" uid="uid://jcjpmph5xsgv" path="res://scripts/stations/station_components/prisoner_extractor/station_prisoner_extractor.gd" id="1_ofgie"]
-[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_xbma7"]
-[ext_resource type="PackedScene" uid="uid://cpifpm3vvgbis" path="res://scenes/stations/station_screens/prisoner_extractor/screen_prisoner_extractor.tscn" id="2_0upth"]
+[ext_resource type="Texture2D" uid="uid://mi5px84lnqvt" path="res://models/prisoner_extractor/single_prisoner_room.png" id="3_f8bon"]
 [ext_resource type="Script" uid="uid://dmephibuoisk7" path="res://scripts/stations/station_components/prisoner_extractor/elevator_lights.gd" id="3_pfmeg"]
+[ext_resource type="Texture2D" uid="uid://c82obos541wms" path="res://models/prisoner_extractor/double_prisoner_room.png" id="4_0qj67"]
+[ext_resource type="Texture2D" uid="uid://d0ecfk1t0huxr" path="res://models/prisoner_extractor/empty_room.png" id="4_050ml"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_ofgie"]
+[ext_resource type="Texture2D" uid="uid://l47i6mu8s8or" path="res://models/prisoner_extractor/blood_overlay.png" id="4_y3sq4"]
 [ext_resource type="PackedScene" uid="uid://chkwy8u22rvoj" path="res://scenes/hoverable_mesh_scenes/door_button_hover.tscn" id="5_3cuyi"]
 [ext_resource type="Script" uid="uid://b5l7siwlsqg6j" path="res://scripts/stations/station_components/prisoner_extractor/extract_btn.gd" id="5_dwg3o"]
+[ext_resource type="Shader" uid="uid://dnxv5jd6lg3sg" path="res://scripts/stations/station_components/prisoner_extractor/blood_overlay.gdshader" id="5_mlwpr"]
+[ext_resource type="Texture2D" uid="uid://82i8ysqy5x4h" path="res://models/prisoner_extractor/glass_overlay.png" id="6_050ml"]
+[ext_resource type="Texture2D" uid="uid://oym3gcepqdml" path="res://models/prisoner_extractor/blood_noise_2.png" id="7_5tyo4"]
 [ext_resource type="AudioStream" uid="uid://p2ip2r533m8i" path="res://sounds/prisoner_extractor/blender.mp3" id="8_dwg3o"]
+[ext_resource type="Script" uid="uid://batk7hnq8fn0o" path="res://scripts/stations/station_components/prisoner_extractor/blood_overlay.gd" id="8_xgy8o"]
 [ext_resource type="AudioStream" uid="uid://b6jv6qbrhd0s7" path="res://sounds/prisoner_extractor/blender_end.mp3" id="9_phvxi"]
 [ext_resource type="AudioStream" uid="uid://b2q38427k3ay5" path="res://sounds/prisoner_extractor/door_shut.mp3" id="11_0qj67"]
 
@@ -81,6 +87,41 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_58p8v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mlwpr"]
+render_priority = 0
+shader = ExtResource("5_mlwpr")
+shader_parameter/base_texture = ExtResource("4_y3sq4")
+shader_parameter/noise_texture = ExtResource("7_5tyo4")
+shader_parameter/progress = 0.0
+shader_parameter/edge_softness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0upth"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_0upth")
+radius = 0.05
+height = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwg3o"]
+albedo_color = Color(0.54222, 0.63, 0.5103, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_phvxi"]
+material = SubResource("StandardMaterial3D_dwg3o")
+size = Vector3(0.3, 0.3, 0.023046881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f8bon"]
+size = Vector3(0.3, 0.3, 0.023046881)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0qj67"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixuf4"]
+albedo_color = Color(0.2664, 0.36136666, 0.37, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7nwrf"]
+material = SubResource("StandardMaterial3D_ixuf4")
+size = Vector3(0.61376953, 0.67163086, 0.001)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32aca"]
 albedo_color = Color(0.20793724, 0.21258423, 0.22187755, 1)
@@ -228,46 +269,6 @@ shadow_mesh = SubResource("ArrayMesh_qicg3")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_mlwpr"]
 data = PackedVector3Array(-0.61944556, 0, 0.016222656, -0.61944556, 1.2388912, -0.016222656, -0.61944556, 1.2388912, 0.016222656, -0.61944556, 0, 0.016222656, -0.61944556, 0, -0.016222656, -0.61944556, 1.2388912, -0.016222656, -0.61944556, 0, -0.016222656, 0.6194458, 1.2388912, -0.016222656, -0.61944556, 1.2388912, -0.016222656, -0.61944556, 0, -0.016222656, 0.6194458, 0, -0.016222656, 0.6194458, 1.2388912, -0.016222656, 0.6194458, 0, -0.016222656, 0.6194458, 1.2388912, 0.016222656, 0.6194458, 1.2388912, -0.016222656, 0.6194458, 0, -0.016222656, 0.6194458, 0, 0.016222656, 0.6194458, 1.2388912, 0.016222656, 0.6194458, 0, 0.016222656, -0.61944556, 1.2388912, 0.016222656, 0.6194458, 1.2388912, 0.016222656, 0.6194458, 0, 0.016222656, -0.61944556, 0, 0.016222656, -0.61944556, 1.2388912, 0.016222656, -0.61944556, 0, -0.016222656, 0.6194458, 0, 0.016222656, 0.6194458, 0, -0.016222656, -0.61944556, 0, -0.016222656, -0.61944556, 0, 0.016222656, 0.6194458, 0, 0.016222656, 0.6194458, 1.2388912, -0.016222656, -0.61944556, 1.2388912, 0.016222656, -0.61944556, 1.2388912, -0.016222656, 0.6194458, 1.2388912, -0.016222656, 0.6194458, 1.2388912, 0.016222656, -0.61944556, 1.2388912, 0.016222656)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f6gki"]
-viewport_path = NodePath("DefectDecreaseTv/TvFrontPannel/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0jyhj"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_f6gki")
-texture_filter = 0
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_7gajs"]
-material = SubResource("StandardMaterial3D_0jyhj")
-size = Vector2(1.77, 2.9)
-orientation = 0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0upth"]
-albedo_color = Color(1, 0, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_qa1qv"]
-material = SubResource("StandardMaterial3D_0upth")
-radius = 0.05
-height = 0.1
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwg3o"]
-albedo_color = Color(0.54222, 0.63, 0.5103, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_phvxi"]
-material = SubResource("StandardMaterial3D_dwg3o")
-size = Vector3(0.3, 0.3, 0.023046881)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_f8bon"]
-size = Vector3(0.3, 0.3, 0.023046881)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0qj67"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixuf4"]
-albedo_color = Color(0.2664, 0.36136666, 0.37, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_7nwrf"]
-material = SubResource("StandardMaterial3D_ixuf4")
-size = Vector3(0.61376953, 0.67163086, 0.001)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
 size = Vector3(1.4723778, 2.8684082, 1.3873949)
 
@@ -275,139 +276,92 @@ size = Vector3(1.4723778, 2.8684082, 1.3873949)
 process_mode = 3
 script = ExtResource("1_ofgie")
 
-[node name="Extractor" type="StaticBody3D" parent="." unique_id=1324775491]
+[node name="Extractor" type="Node3D" parent="." unique_id=88351909]
+
+[node name="Extractor" type="StaticBody3D" parent="Extractor" unique_id=1324775491]
 process_mode = 3
 transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 1.3000002, 0, 2.928663e-07)
 collision_layer = 2
 collision_mask = 0
 
-[node name="Extractor2" type="MeshInstance3D" parent="Extractor" unique_id=1521965069]
+[node name="Extractor2" type="MeshInstance3D" parent="Extractor/Extractor" unique_id=1521965069]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -1.5820705, -1.8494397, -0.48281306)
 mesh = SubResource("ArrayMesh_ip7et")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Extractor" unique_id=537711191]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Extractor/Extractor" unique_id=537711191]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -1.5820705, -1.8494397, -0.48281306)
 shape = SubResource("ConcavePolygonShape3D_pfmeg")
 
-[node name="ExtractorTop" type="MeshInstance3D" parent="Extractor" unique_id=531100810]
+[node name="ExtractorTop" type="MeshInstance3D" parent="Extractor/Extractor" unique_id=531100810]
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -0.608817, 2.1079214, -0.06056368)
 mesh = SubResource("ArrayMesh_ofgie")
 
-[node name="Table" type="StaticBody3D" parent="." unique_id=1205990185]
-process_mode = 3
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 3.3, -1, -2.928663e-07)
-collision_layer = 2
-collision_mask = 0
+[node name="PrisonerViewer" type="Node3D" parent="Extractor" unique_id=1611624513]
 
-[node name="ContainerTable" type="MeshInstance3D" parent="Table" unique_id=971109021]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1.1315453, -0.87832415, 0.19586807)
-mesh = SubResource("ArrayMesh_3cuyi")
+[node name="TwoPrisoners" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=2075440759]
+transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2541586, 0.8059494, -1.1531144)
+visible = false
+texture_filter = 0
+texture = ExtResource("4_0qj67")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Table" unique_id=1398295716]
-transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1.1315453, -0.87832415, 0.19586807)
-shape = SubResource("ConcavePolygonShape3D_dwg3o")
+[node name="OnePrisoner" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=1752456890]
+transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2541586, 0.8059494, -1.1531144)
+visible = false
+texture_filter = 0
+texture = ExtResource("3_f8bon")
 
-[node name="ElevatorLeft" type="StaticBody3D" parent="." unique_id=1385719040]
-process_mode = 3
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 2, 0)
-collision_layer = 2
-collision_mask = 0
+[node name="EmptyRoom" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=743905948]
+transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2541586, 0.8059494, -1.1531144)
+texture_filter = 0
+texture = ExtResource("4_050ml")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevatorLeft" unique_id=752059011]
-transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
-shape = SubResource("ConcavePolygonShape3D_f8bon")
+[node name="BloodOverlay" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=592286694]
+transform = Transform3D(-1.9, 0, 3.019916e-07, 0, 2.09, 0, -2.8689203e-07, 0, -2, -1.2541586, 0.8059494, -1.1543016)
+material_override = SubResource("ShaderMaterial_mlwpr")
+texture_filter = 0
+texture = ExtResource("4_y3sq4")
+script = ExtResource("8_xgy8o")
 
-[node name="ElevatorLeft2" type="MeshInstance3D" parent="ElevatorLeft" unique_id=951469440]
-transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
-mesh = SubResource("ArrayMesh_phvxi")
+[node name="OvertimeDissipate" type="Timer" parent="Extractor/PrisonerViewer/BloodOverlay" unique_id=1118932649]
+wait_time = 3.0
 
-[node name="ElevatorRight" type="StaticBody3D" parent="." unique_id=1941554788]
-process_mode = 3
-transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -1.786, 2, 0)
-collision_layer = 2
-collision_mask = 0
+[node name="GlassOverlay" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=1793694304]
+transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2602981, 0.7875307, -1.1631382)
+texture_filter = 0
+texture = ExtResource("6_050ml")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevatorRight" unique_id=491183100]
-transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
-shape = SubResource("ConcavePolygonShape3D_f8bon")
-
-[node name="ElevatorLeft2" type="MeshInstance3D" parent="ElevatorRight" unique_id=1705389109]
-transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
-mesh = SubResource("ArrayMesh_phvxi")
-
-[node name="ElevatorLidLeft" type="MeshInstance3D" parent="." unique_id=1393276836]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.306527, -0.113113165, 0.83038396)
-mesh = SubResource("ArrayMesh_0qj67")
-
-[node name="LidLeft" type="StaticBody3D" parent="ElevatorLidLeft" unique_id=1172089246]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.306527, 0.113113165, -0.83038396)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevatorLidLeft/LidLeft" unique_id=246609592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.306527, -0.113113165, 0.83038396)
-shape = SubResource("ConcavePolygonShape3D_y3sq4")
-
-[node name="ElevatorLidRight" type="MeshInstance3D" parent="." unique_id=787080989]
-process_mode = 3
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.4968295, -0.113113165, 0.83038396)
-mesh = SubResource("ArrayMesh_050ml")
-
-[node name="LidRight" type="StaticBody3D" parent="ElevatorLidRight" unique_id=580957076]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4968295, 0.113113165, -0.83038396)
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ElevatorLidRight/LidRight" unique_id=736452207]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4968295, -0.113113165, 0.83038396)
-shape = SubResource("ConcavePolygonShape3D_mlwpr")
-
-[node name="ExtractorTv" type="MeshInstance3D" parent="." unique_id=1130331]
-process_mode = 3
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -1.2541586, 0.7328333, -1.1281422)
-mesh = SubResource("PlaneMesh_7gajs")
-script = ExtResource("1_xbma7")
-
-[node name="SubViewport" type="SubViewport" parent="ExtractorTv" unique_id=535531459]
-disable_3d = true
-canvas_item_default_texture_filter = 0
-size = Vector2i(75, 100)
-
-[node name="PrisonerExtractor" parent="ExtractorTv/SubViewport" unique_id=20039844 instance=ExtResource("2_0upth")]
-
-[node name="ExtractorLight" type="Node3D" parent="." unique_id=661094870]
+[node name="ExtractorLight" type="Node3D" parent="Extractor" unique_id=661094870]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2021837, 0.97837746, -1.1648316)
 script = ExtResource("3_pfmeg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ExtractorLight" unique_id=1710091669]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Extractor/ExtractorLight" unique_id=1710091669]
 mesh = SubResource("SphereMesh_qa1qv")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="ExtractorLight" unique_id=324371751]
+[node name="SpotLight3D" type="SpotLight3D" parent="Extractor/ExtractorLight" unique_id=324371751]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, -0.79999995)
 light_color = Color(1, 0.24313726, 0.25882354, 1)
 spot_range = 1.674
 spot_attenuation = 4.8
 spot_angle = 18.95
 
-[node name="ExtractorBtn" type="Node3D" parent="." unique_id=816184158]
+[node name="ExtractorBtn" type="Node3D" parent="Extractor" unique_id=816184158]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.9, -1.2056614)
 
-[node name="Button" type="StaticBody3D" parent="ExtractorBtn" unique_id=1008746584 groups=["interactable"]]
+[node name="Button" type="StaticBody3D" parent="Extractor/ExtractorBtn" unique_id=1008746584 groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19566113, 0.04256642)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("5_dwg3o")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ExtractorBtn/Button" unique_id=1461914233]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Extractor/ExtractorBtn/Button" unique_id=1461914233]
 mesh = SubResource("BoxMesh_phvxi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExtractorBtn/Button" unique_id=477983625]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Extractor/ExtractorBtn/Button" unique_id=477983625]
 shape = SubResource("BoxShape3D_f8bon")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="ExtractorBtn/Button" unique_id=974812040 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="Extractor/ExtractorBtn/Button" unique_id=974812040 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_ofgie")
@@ -417,46 +371,118 @@ hover_mesh_scale_x = 0.0
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ExtractorBtn/Button/HoverableMesh" unique_id=569034135]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Extractor/ExtractorBtn/Button/HoverableMesh" unique_id=569034135]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
 shape = SubResource("BoxShape3D_0qj67")
 
-[node name="BtnPanel" type="MeshInstance3D" parent="ExtractorBtn" unique_id=1365588126]
+[node name="BtnPanel" type="MeshInstance3D" parent="Extractor/ExtractorBtn" unique_id=1365588126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0048339814, -0.17243648, 0.052817702)
 mesh = SubResource("BoxMesh_7nwrf")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2123377587]
-process_mode = 3
-transform = Transform3D(-0.86602545, 0.12940957, -0.4829629, 2.262668e-08, 0.9659259, 0.2588191, 0.5, 0.22414389, -0.8365163, 1.9657146, 2.1477573, -5.2825785)
-fov = 80.0
+[node name="Table" type="Node3D" parent="." unique_id=817896857]
 
-[node name="LeftSpawnPos" type="Node3D" parent="." unique_id=1080382334]
+[node name="Table" type="StaticBody3D" parent="Table" unique_id=1205990185]
+process_mode = 3
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 3.3, -1, -2.928663e-07)
+collision_layer = 2
+collision_mask = 0
+
+[node name="ContainerTable" type="MeshInstance3D" parent="Table/Table" unique_id=971109021]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1.1315453, -0.87832415, 0.19586807)
+mesh = SubResource("ArrayMesh_3cuyi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/Table" unique_id=1398295716]
+transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, 1.1315453, -0.87832415, 0.19586807)
+shape = SubResource("ConcavePolygonShape3D_dwg3o")
+
+[node name="ElevatorLeft" type="StaticBody3D" parent="Table" unique_id=1385719040]
+process_mode = 3
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/ElevatorLeft" unique_id=752059011]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
+shape = SubResource("ConcavePolygonShape3D_f8bon")
+
+[node name="ElevatorLeft2" type="MeshInstance3D" parent="Table/ElevatorLeft" unique_id=951469440]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
+mesh = SubResource("ArrayMesh_phvxi")
+
+[node name="ElevatorRight" type="StaticBody3D" parent="Table" unique_id=1941554788]
+process_mode = 3
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, -1.786, 2, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/ElevatorRight" unique_id=491183100]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
+shape = SubResource("ConcavePolygonShape3D_f8bon")
+
+[node name="ElevatorLeft2" type="MeshInstance3D" parent="Table/ElevatorRight" unique_id=1705389109]
+transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0, 1, -5.294012, 3.3129833, 0.24502254)
+mesh = SubResource("ArrayMesh_phvxi")
+
+[node name="ElevatorLidLeft" type="MeshInstance3D" parent="Table" unique_id=1393276836]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 5.306527, -0.113113165, 0.83038396)
+mesh = SubResource("ArrayMesh_0qj67")
+
+[node name="LidLeft" type="StaticBody3D" parent="Table/ElevatorLidLeft" unique_id=1172089246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.306527, 0.113113165, -0.83038396)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/ElevatorLidLeft/LidLeft" unique_id=246609592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.306527, -0.113113165, 0.83038396)
+shape = SubResource("ConcavePolygonShape3D_y3sq4")
+
+[node name="ElevatorLidRight" type="MeshInstance3D" parent="Table" unique_id=787080989]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 3.4968295, -0.113113165, 0.83038396)
+mesh = SubResource("ArrayMesh_050ml")
+
+[node name="LidRight" type="StaticBody3D" parent="Table/ElevatorLidRight" unique_id=580957076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4968295, 0.113113165, -0.83038396)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/ElevatorLidRight/LidRight" unique_id=736452207]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4968295, -0.113113165, 0.83038396)
+shape = SubResource("ConcavePolygonShape3D_mlwpr")
+
+[node name="LeftSpawnPos" type="Node3D" parent="Table" unique_id=1080382334]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3, -0.80199194, 0.3)
 
-[node name="RightSpawnPos" type="Node3D" parent="." unique_id=964744453]
+[node name="RightSpawnPos" type="Node3D" parent="Table" unique_id=964744453]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4948606, -0.80199194, 0.3)
 
-[node name="DetectCellLeft" type="Area3D" parent="." unique_id=1850664377]
+[node name="DetectCellLeft" type="Area3D" parent="Table" unique_id=1850664377]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2305956, 0, 0.1335032)
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectCellLeft" unique_id=1658771460]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/DetectCellLeft" unique_id=1658771460]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.098882675, -0.43737793, 0.08175516)
 shape = SubResource("BoxShape3D_qa1qv")
 
-[node name="DetectCellRight" type="Area3D" parent="." unique_id=998221414]
+[node name="DetectCellRight" type="Area3D" parent="Table" unique_id=998221414]
 process_mode = 3
 collision_layer = 0
 collision_mask = 4
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectCellRight" unique_id=1745379056]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table/DetectCellRight" unique_id=1745379056]
 process_mode = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4769697, -0.44695807, 0.21653926)
 shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2123377587]
+process_mode = 3
+transform = Transform3D(-0.86602545, 0.12940957, -0.4829629, 2.262668e-08, 0.9659259, 0.2588191, 0.5, 0.22414389, -0.8365163, 1.9657146, 2.1477573, -5.2825785)
+fov = 80.0
 
 [node name="Audio" type="Node3D" parent="." unique_id=569806481]
 

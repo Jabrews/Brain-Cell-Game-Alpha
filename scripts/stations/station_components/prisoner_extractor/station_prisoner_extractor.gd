@@ -5,14 +5,14 @@ extends Node
 @onready var camera: Camera3D = $Camera3D
 
 # elevator
-@onready var elevator_lid_left: MeshInstance3D = $ElevatorLidLeft
-@onready var elevator_lid_right: MeshInstance3D = $ElevatorLidRight
-@onready var elevator_left: StaticBody3D = $ElevatorLeft
-@onready var elevator_right: StaticBody3D = $ElevatorRight
+@onready var elevator_lid_left: MeshInstance3D = $Table/ElevatorLidLeft
+@onready var elevator_lid_right: MeshInstance3D = $Table/ElevatorLidRight
+@onready var elevator_left: StaticBody3D = $Table/ElevatorLeft
+@onready var elevator_right: StaticBody3D = $Table/ElevatorRight
 
 # spawn pos
-@onready var left_spawn_pos: Node3D = $LeftSpawnPos
-@onready var right_spawn_pos: Node3D = $RightSpawnPos
+@onready var left_spawn_pos: Node3D = $Table/LeftSpawnPos
+@onready var right_spawn_pos: Node3D = $Table/RightSpawnPos
 
 # container packed scene
 @onready var cell_container_p_s: PackedScene = preload(
@@ -20,11 +20,11 @@ extends Node
 )
 
 # light helper
-@onready var extractor_lights: Node3D = $ExtractorLight
+@onready var extractor_lights: Node3D =$Extractor/ExtractorLight
 
 # areas
-@onready var detect_cell_left: Area3D = $DetectCellLeft
-@onready var detect_cell_right: Area3D = $DetectCellRight
+@onready var detect_cell_left: Area3D = $Table/DetectCellLeft
+@onready var detect_cell_right: Area3D = $Table/DetectCellRight
 
 # sounds
 @onready var s_blender : AudioStreamPlayer3D = $Audio/Blender

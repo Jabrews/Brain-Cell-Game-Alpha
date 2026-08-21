@@ -1,7 +1,7 @@
 extends InteractableBtn
 
 # components
-@onready var parent_prisoner_extractor : Node3D = $"../.."
+@onready var parent_prisoner_extractor : Node3D =$"../../.."
 
 
 func _on_btn_interacted():
