@@ -3,7 +3,7 @@ extends  Node
 
 # components
 @onready var parent_cell_container := $".."
-@onready var age_lifespan_sound : AudioStreamPlayer3D = $"../AgeLifespan"
+@onready var age_lifespan_sound : AudioStreamPlayer3D = $"../Sounds/AgeLifespan"
 @onready var life_span_label : Label = $"../StatDisplay/StatMesh/SubViewport/BasicRecieverScreen/StatDisplay/CellLifeSpan"
 @onready var stat_display_mesh : MeshInstance3D = $"../StatDisplay/StatMesh"
 

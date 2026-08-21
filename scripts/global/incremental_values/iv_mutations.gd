@@ -42,6 +42,9 @@ var chance_for_all_hidden_event = 1
 
 var amount_of_best_cells_sorted = 2
 
+var chance_to_weight_hidden_stats_low : int = 0
+
+
 ## apply mutation default ##
 var chance_to_hide_mutation : int = 25
 var min_fake_mutations_per_batch : int = 1

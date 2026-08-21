@@ -1,7 +1,7 @@
 extends Node
 
 var designated_brain_cell : BrainCell
-var stat_interpreter_stat_type = null 
+var stat_interpreter_stat_type = null
 
 # components
 @onready var parent_container : CharacterBody3D = $"../.."
@@ -15,29 +15,28 @@ var base_scale : Vector3
 
 var jolt_movement_tween : Tween
 
-var scale_enabled : bool = false 
+var scale_enabled : bool = false
 @export var scale_amount : Vector3 = Vector3(0.15, 0.15, 0.15)
 @export var scale_speed : float = 0.12
 
 # shake settings
-var shake_enabled : bool = false 
-@export var shake_amount : Vector3 = Vector3(0.08, 0.08, 0.08)
-@export var shake_speed : float = 0.03
+var shake_enabled : bool = false
+@export var shake_amount : Vector3 = Vector3(0.05, 0.05, 0.05)
+@export var shake_speed : float = 0.02
 #################################
 
 func _ready() -> void:
 	defect_increase_delay_timer.connect('timeout', _handle_defect_increase_delay_timer_timeout)
 
-
-func state_start() : 
+func state_start() :
 	# get des. brain cell from parent
-	designated_brain_cell = parent_container.designated_brain_cell 
+	designated_brain_cell = parent_container.designated_brain_cell
 	# turn on shake and scale
 	shake_enabled = true
 	scale_enabled = true
 	# set base positoo and scale
 	base_positon = parent_container.global_position
-	base_scale = parent_container.scale 
+	base_scale = parent_container.scale
 	
 	defect_increase_delay_timer.wait_time = 3.0
 	
@@ -53,9 +52,9 @@ func state_start() :
 	
 	create_jolt_tween()
 	
-func create_jolt_tween() :	
+func create_jolt_tween() :
 	
-	jolt_movement_tween = create_tween()	
+	jolt_movement_tween = create_tween()
 	jolt_movement_tween.set_loops()
 	
 	
@@ -103,15 +102,15 @@ func create_jolt_tween() :
 func _handle_defect_increase_delay_timer_timeout() :
 	
 	# update designated cell refrence
-	designated_brain_cell = parent_container.designated_brain_cell 
+	designated_brain_cell = parent_container.designated_brain_cell
 	
 	# if this is from hidden station we define the specific type. else the manager picks
-	if stat_interpreter_stat_type != null : 
+	if stat_interpreter_stat_type != null :
 		GLCellManagerBus.emit_signal('interpreter_jolt_increase_cell_defect', designated_brain_cell, stat_interpreter_stat_type)
 	else :
 		GLCellManagerBus.emit_signal('cell_container_jolt_increase_cell_defect', designated_brain_cell)
 
-func state_end() : 
+func state_end() :
 	
 	GLEventNoticeManagerBus.emit_signal('delete_event_notice_defect_cell', designated_brain_cell.name)
 	
@@ -122,9 +121,9 @@ func state_end() :
 		jolt_movement_tween.kill()
 	# reset scale and position
 	parent_container.scale = base_scale
-	parent_container.position = base_positon 
+	parent_container.position = base_positon
 	# stop timer
-	defect_increase_delay_timer.stop()	
+	defect_increase_delay_timer.stop()
 	# end particles
 	jolt_particles.emitting = false
 	

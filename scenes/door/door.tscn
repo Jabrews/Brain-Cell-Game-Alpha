@@ -127,6 +127,8 @@ max_distance = 30.0
 
 [node name="DoorBleep" type="AudioStreamPlayer3D" parent="Audio" unique_id=1871120448]
 stream = ExtResource("5_5ht72")
+volume_db = -10.0
+pitch_scale = 0.9
 max_distance = 30.0
 
 [node name="DoorLight" type="Node3D" parent="." unique_id=1276615360]

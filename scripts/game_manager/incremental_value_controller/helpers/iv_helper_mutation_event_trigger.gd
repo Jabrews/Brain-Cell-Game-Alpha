@@ -40,47 +40,28 @@ func update_mutation_turn(round  : int, danger_level : int) :
 	if round == 1:
 		match danger_level:
 			0:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 40.0
-				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 95.0
-				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 60
-
-			1:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 40.0
-				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 80.0
-				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 50
-
-			2:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 40.0
-				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 50.0
-				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 40
-
-			3:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 35.0
+				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 25.0
 				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 45.0
 				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 35
 
-
-	elif round == 2:
-		match danger_level:
-			0:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 10.0
-				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 75.0
-				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 50
-
 			1:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 10.0
-				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 50.0
-				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 40
-
-			2:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 10.0
-				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 30.0
+				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 20.0
+				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 35.0
 				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 30
 
-			3:
-				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 10.0
+			2:
+				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 15.0
 				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 30.0
 				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 25
+
+			3:
+				IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time = 15.0
+				IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time = 20.0
+				IVRandomMutationEventTrigger.chance_to_skip_mutation_event = 25
+
+
+	elif round == 2:
+		pass
 
 
 	verify_mutation_and_fake_quanity_surpass()

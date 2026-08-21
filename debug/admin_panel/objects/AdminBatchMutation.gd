@@ -14,6 +14,7 @@ var skipped: bool #
 var why_skipped: String #
 var energy_phase: int #
 var mutations_picked_by_player: Array[String] #
+var weighed_hidden_stats_lower : bool
 
 
 @warning_ignore("shadowed_variable")
@@ -28,7 +29,8 @@ func _init(
 	skipped: bool = false,
 	why_skipped: String = "",
 	energy_phase: int = 0,
-	mutations_picked_by_player: Array[String] = []
+	mutations_picked_by_player: Array[String] = [],
+	weighed_hidden_stats_lower : bool = false
 ) -> void:
 	self.mutations_available = mutations_available
 	self.mutations_chosen = mutations_chosen
@@ -41,10 +43,11 @@ func _init(
 	self.why_skipped = why_skipped
 	self.energy_phase = energy_phase
 	self.mutations_picked_by_player = mutations_picked_by_player
+	self.weighed_hidden_stats_lower = weighed_hidden_stats_lower
 
 
 func _to_string() -> String:
-	return "[admin batch mutation] | available: %s | chosen: %s | min: %s | max: %s | fake mutations applied: %s | all hidden applied: %s | all hidden chance: %s | skipped: %s | why skipped: %s | energy phase: %s | player picks: %s" % [
+	return "[admin batch mutation] | available: %s | chosen: %s | min: %s | max: %s | fake mutations applied: %s | all hidden applied: %s | all hidden chance: %s | skipped: %s | why skipped: %s | energy phase: %s | player picks: %s | weighed hidden stat down %s" % [
 		mutations_available,
 		mutations_chosen,
 		min_mutations,
@@ -55,7 +58,8 @@ func _to_string() -> String:
 		skipped,
 		why_skipped,
 		energy_phase,
-		mutations_picked_by_player
+		mutations_picked_by_player,
+		weighed_hidden_stats_lower,
 	]
 
 
@@ -73,7 +77,8 @@ static func from_dictionary(data: Dictionary) -> AdminBatchMutation:
 		int(data.get("energy_phase", 0)),
 		_to_string_array(
 			data.get("mutations_picked_by_player", [])
-		)
+		),
+		bool(data.get("weighed_hidden_stats_lower", false))
 	)
 
 
@@ -89,7 +94,8 @@ func to_dictionary() -> Dictionary:
 		"skipped": skipped,
 		"why_skipped": why_skipped,
 		"energy_phase": energy_phase,
-		"mutations_picked_by_player": mutations_picked_by_player
+		"mutations_picked_by_player": mutations_picked_by_player,
+		"weighed_hidden_stats_lower" :  weighed_hidden_stats_lower,
 	}
 
 
@@ -115,4 +121,6 @@ func is_default() -> bool:
 		and why_skipped.is_empty()
 		and energy_phase == 0
 		and mutations_picked_by_player.is_empty()
+		and weighed_hidden_stats_lower == false
 	)
+	

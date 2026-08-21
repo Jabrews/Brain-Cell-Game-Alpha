@@ -54,6 +54,7 @@
 [ext_resource type="Script" uid="uid://conaqje0n7bu8" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/default_mutation_serving.gd" id="38_0ycs4"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
+[ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/sickness_jolt_container.gd" id="40_l5rsp"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="PackedScene" uid="uid://dmuet5mnk23qy" path="res://scenes/door/door.tscn" id="57_ms0m2"]
@@ -452,7 +453,6 @@ debug_color = Color(0.7096456, 0.4859149, 0, 1)
 
 [node name="Ceiling" type="StaticBody3D" parent="Enviroment" unique_id=602902947 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5000005, 0)
-visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -636,8 +636,9 @@ script = ExtResource("36_24n7g")
 [node name="AllHiddenEvent" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=1500737794]
 script = ExtResource("37_y36b7")
 
-[node name="DefaultMutationServing" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=447647096]
+[node name="DefaultMutationServing" type="Node" parent="GameManager/CellCreator/AssembleCells/HelperMutations" unique_id=447647096 node_paths=PackedStringArray("mutation_seen_manager")]
 script = ExtResource("38_0ycs4")
+mutation_seen_manager = NodePath("../../../../MutationSeenManager")
 
 [node name="AssembleTarget" type="Node" parent="GameManager/CellCreator" unique_id=670645036]
 script = ExtResource("22_dn28p")
@@ -658,6 +659,9 @@ script = ExtResource("32_62614")
 
 [node name="DefectEventManager" type="Node" parent="GameManager" unique_id=1995310140]
 script = ExtResource("18_58boi")
+
+[node name="SicknessCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=1831732341]
+script = ExtResource("40_l5rsp")
 
 [node name="JoltHiddenStatInterpreter" type="Node" parent="GameManager/DefectEventManager" unique_id=85726172]
 script = ExtResource("20_5xq6v")

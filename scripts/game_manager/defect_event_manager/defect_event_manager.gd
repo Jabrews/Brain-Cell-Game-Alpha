@@ -5,27 +5,27 @@ extends Node
 @onready var jolt_hidden_stat_interpreter: Node = $JoltHiddenStatInterpreter
 @onready var jolt_cell_container: Node = $JoltCellContainer
 
+@onready var sickness_cell_container : Node = $SicknessCellContainer
+
 @export var timer_decrease_per_trash_cell: float = 2.0
 @export var min_timer_timeout_time: float = 8.0
 
 var curr_timer_timeout_time: float
 
-#func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed('debug1') :
-		#chance_for_defect_event()
-
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') :
+		sickness_cell_container._handle_sickness()
 
 func _ready() -> void:
-	
-
 	
 	GLGameManagerBus.connect("process_next_round", _handle_next_round)
 	GLCellTrashcanBus.connect("cell_added_to_trashcan", _handle_cell_added_to_trash_can)
 
 	defect_event_update_timer.connect("timeout", _on_event_timer_timeout)
 
-	_reset_timer_timeout()
-	_restart_event_timer()
+	# TODO TURN BACK ON
+	#_reset_timer_timeout()
+	#_restart_event_timer()
 
 
 func _handle_next_round() -> void:

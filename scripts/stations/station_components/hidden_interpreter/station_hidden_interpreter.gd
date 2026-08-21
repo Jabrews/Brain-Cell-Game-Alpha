@@ -123,7 +123,9 @@ func _handle_defect_event_jolt(selected_interpreters : Array):
 			energy_decrease_spawner._start_spawning_decrease_particles(selected_interpreters)
 			
 			if loaded_cell_container:
-				loaded_cell_container.switch_cell_state('jolt')
+				print_debug('cell interpreter should evenutally initate defect event on the cell')
+				#loaded_cell_container.switch_cell_state('jolt')
+				return
 
 func _handle_defect_event_jolt_ended(lever_flipped : bool = false) :
 	jolt_particles.emitting = false 

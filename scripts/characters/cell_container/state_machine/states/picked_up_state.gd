@@ -6,8 +6,8 @@ extends Node
 @onready var stat_display : Node3D = $"../../StatDisplay"
 @onready var parent_cell_container : CharacterBody3D = $"../.."
 var player_ray_cast : RayCast3D
-@onready var picked_up_sound : AudioStreamPlayer3D = $"../../CellPickedUp"
-@onready var dropped_sound : AudioStreamPlayer3D =$"../../CellDropped"
+@onready var picked_up_sound : AudioStreamPlayer3D = $"../../Sounds/CellPickedUp"
+@onready var dropped_sound : AudioStreamPlayer3D =$"../../Sounds/CellDropped"
 
 func state_start() -> void :
 	# hide stat display

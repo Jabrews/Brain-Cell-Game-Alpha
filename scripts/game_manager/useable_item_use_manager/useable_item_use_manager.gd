@@ -16,6 +16,9 @@ func connect_signals() :
 
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) : 
+	
+	print('used defect shot. decrease : ', IVItemStats.defect_shot_decrease)
+	
 	match selected_stat : 
 		'strength' :
 			selected_brain_cell.strength.defect -= IVItemStats.defect_shot_decrease

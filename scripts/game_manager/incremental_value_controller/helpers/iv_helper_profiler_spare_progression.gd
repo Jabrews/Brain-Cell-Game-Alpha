@@ -44,24 +44,24 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 		match danger_level :
 			0 : 
 				IVPrisonerProfiler.spare_symbol_minimum_created = 0
-				IVPrisonerProfiler.spare_symbol_max_created = 1
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
+				IVPrisonerProfiler.spare_symbol_max_created = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 0
 			1 : 
 				IVPrisonerProfiler.spare_symbol_minimum_created = 0
-				IVPrisonerProfiler.spare_symbol_max_created = 2
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 3
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
+				IVPrisonerProfiler.spare_symbol_max_created = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 0
 			2 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 1
-				IVPrisonerProfiler.spare_symbol_max_created = 1
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 4
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 5
+				IVPrisonerProfiler.spare_symbol_minimum_created = 0
+				IVPrisonerProfiler.spare_symbol_max_created = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 0
 			3 : 
-				IVPrisonerProfiler.spare_symbol_minimum_created = 1
-				IVPrisonerProfiler.spare_symbol_max_created = 2
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 5
-				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 6
+				IVPrisonerProfiler.spare_symbol_minimum_created = 0
+				IVPrisonerProfiler.spare_symbol_max_created = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_min = 0
+				IVPrisonerProfiler.spare_symbol_inbewteen_gap_range_max = 0
 
 	elif round == 2 :
 		pass

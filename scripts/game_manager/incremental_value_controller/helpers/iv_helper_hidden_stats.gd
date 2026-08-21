@@ -5,12 +5,8 @@ func _update_hidden_stat_values(round : int , energy : int) :
 	
 	
 	if round == 1 :	
-		IVHiddenStats.stats_to_hide = []
 		IVHiddenStats.max_time_to_discover_hidden = 10
 	
-	elif round == 2 :
-		IVHiddenStats.stats_to_hide = ['strength']
-		IVHiddenStats.max_time_to_discover_hidden = 10
 	
 	var danger_level = get_energy_danger_level(energy)		
 	update_hidden_stat_nax(round, danger_level)
@@ -42,15 +38,18 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 			0 : 
 				IVHiddenStats.max_stats_to_hide = 3
 				IVHiddenStats.stats_to_hide = ['strength']
+				IVHiddenStats.total_possible_hidden_bombs = 1
 			1 : 
-				IVHiddenStats.max_stats_to_hide = 6
+				IVHiddenStats.max_stats_to_hide = 4
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence']
+				IVHiddenStats.total_possible_hidden_bombs = 2
 			2 : 
-				IVHiddenStats.max_stats_to_hide = 9
+				IVHiddenStats.max_stats_to_hide = 5
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
+				IVHiddenStats.total_possible_hidden_bombs = 3
 			3 : 
-				IVHiddenStats.max_stats_to_hide = 10
+				IVHiddenStats.max_stats_to_hide = 6
 				IVHiddenStats.stats_to_hide = ['strength', 'intelligence', 'community']
-	
+				IVHiddenStats.total_possible_hidden_bombs= 	4
 	elif round == 2 :
 		pass

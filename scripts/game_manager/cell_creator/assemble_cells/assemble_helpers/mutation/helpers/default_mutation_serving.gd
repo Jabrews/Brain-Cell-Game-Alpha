@@ -1,5 +1,7 @@
 extends Node
 
+@export var mutation_seen_manager : Node 
+
 
 func _apply_default_mutation_serving(prisoner_cells: Array[BrainCell], batch_mutations: Array[BrainCellMutation], energy_phase: int) -> Array[BrainCell]:
 
@@ -28,7 +30,13 @@ func _apply_default_mutation_serving(prisoner_cells: Array[BrainCell], batch_mut
 			random_mutation.hidden = true
 			hidden_mutation_was_served = true
 		else:
-			random_mutation.hidden = false
+			# make sure its been unlocked before serving unseen 
+			var mutation_seen : bool = mutation_seen_manager._find_mutation_seen(random_mutation.type)
+			if not mutation_seen : 
+				random_mutation.hidden = true
+				hidden_mutation_was_served = true
+			else : 
+				random_mutation.hidden = false
 
 		# Add the selected mutation.
 		cell.mutations.append(random_mutation)

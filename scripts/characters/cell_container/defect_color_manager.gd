@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var container_mesh : MeshInstance3D = $"../MeshInstance3D"
-@onready var defect_increase_sound : AudioStreamPlayer3D = $DefectIncreaseSound
+@onready var defect_increase_sound : AudioStreamPlayer3D =$"../Sounds/DefectIncreaseSound"
 
 var last_defect_percent = 0.25
 

@@ -4,16 +4,7 @@ extends Node
 func _update_cell_stat_creation(round : int , energy : int) :
 	
 	if round == 1 :
-		IVCellCreator.chance_of_bad_stats = 40
-		IVCellCreator.chance_of_no_defect = 50
-		IVCellCreator.chance_to_half_defect = 60
-		IVCellCreator.chance_to_half_clean = 30
-	
-	elif round == 2 :
-		IVCellCreator.chance_of_bad_stats = 55
-		IVCellCreator.chance_of_no_defect = 35
-		IVCellCreator.chance_to_half_defect = 40
-		IVCellCreator.chance_to_half_clean = 50
+		pass
 		
 	var danger_level = get_energy_danger_level(energy)
 	update_hidden_stat_nax(round, danger_level)
@@ -43,49 +34,61 @@ func update_hidden_stat_nax(round : int, danger_level : int) :
 	if round == 1 :
 		match danger_level :
 			0 :
-				IVCellCreator.clean_stat_addition_min = 0
-				IVCellCreator.clean_stat_addition_max = 6
-				IVCellCreator.defect_stat_addition_min = 1
-				IVCellCreator.defect_stat_addition_max = 5
-
-			1 :
-				IVCellCreator.clean_stat_addition_min = 0
-				IVCellCreator.clean_stat_addition_max = 8
-				IVCellCreator.defect_stat_addition_min = 2
-				IVCellCreator.defect_stat_addition_max = 7
-			2 :
-				IVCellCreator.clean_stat_addition_min = 1
-				IVCellCreator.clean_stat_addition_max = 10
-				IVCellCreator.defect_stat_addition_min = 3
-				IVCellCreator.defect_stat_addition_max = 7
-			3 :
-				IVCellCreator.clean_stat_addition_min = 0
-				IVCellCreator.clean_stat_addition_max = 11
-				IVCellCreator.defect_stat_addition_min = 4
-				IVCellCreator.defect_stat_addition_max = 7
-	
-	elif round == 2 :
-		match danger_level :
-			0 :
+				
+				IVCellCreator.chance_of_bad_stats = 20
+				IVCellCreator.chance_of_no_defect = 75
+				IVCellCreator.chance_to_half_defect = 1
+				IVCellCreator.chance_to_half_clean = 1
+				IVCellCreator.chance_of_extreme_defect = 10
+				
+				# additions min and max 
 				IVCellCreator.clean_stat_addition_min = 7
 				IVCellCreator.clean_stat_addition_max = 10
 				IVCellCreator.defect_stat_addition_min = 0
 				IVCellCreator.defect_stat_addition_max = 8
 			1 :
+				
+				IVCellCreator.chance_of_bad_stats = 35
+				IVCellCreator.chance_of_no_defect = 25
+				IVCellCreator.chance_to_half_defect = 25
+				IVCellCreator.chance_to_half_clean = 15
+				IVCellCreator.chance_of_extreme_defect = 20
+				
+				# additions min and max 
 				IVCellCreator.clean_stat_addition_min = 7
 				IVCellCreator.clean_stat_addition_max = 12
 				IVCellCreator.defect_stat_addition_min = 0
 				IVCellCreator.defect_stat_addition_max = 12
 			2 :
+				
+				IVCellCreator.chance_of_bad_stats = 55
+				IVCellCreator.chance_of_no_defect = 15
+				IVCellCreator.chance_to_half_defect = 15
+				IVCellCreator.chance_to_half_clean = 20
+				IVCellCreator.chance_of_extreme_defect = 25
+				
+				# additions min and max 
 				IVCellCreator.clean_stat_addition_min = 5
 				IVCellCreator.clean_stat_addition_max = 15
 				IVCellCreator.defect_stat_addition_min = 2
 				IVCellCreator.defect_stat_addition_max = 15
 			3 :
+				
+				IVCellCreator.chance_of_bad_stats = 60
+				IVCellCreator.chance_of_no_defect = 5
+				IVCellCreator.chance_to_half_defect = 10
+				IVCellCreator.chance_to_half_clean = 25
+				IVCellCreator.chance_of_extreme_defect = 30
+				
+				# additions min and max 
 				IVCellCreator.clean_stat_addition_min = 5
 				IVCellCreator.clean_stat_addition_max = 15
 				IVCellCreator.defect_stat_addition_min = 5
 				IVCellCreator.defect_stat_addition_max = 10
+	
+	elif round == 2 :
+		pass
+
 	
 	
 	

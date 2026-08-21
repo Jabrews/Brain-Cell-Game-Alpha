@@ -48,12 +48,6 @@ func _ready() -> void:
 	GLGameManagerBus.connect('process_next_round', _handle_next_round)
 	GLCellManagerBus.connect("cell_changed", _handle_cell_changed)
 	
-	# jolt cell container event (defect manager)
-	GLDefectEventMangerBus.connect("event_cell_container_jolt", _handle_cell_container_jolt)
-	
-	# update color and opacity
-	#defect_color_manager.update_defect_color_manager(designated_brain_cell)
-	
 	# update constant mutations
 	mutation_manager._mutations_refresh(designated_brain_cell.mutations)
 	
@@ -76,14 +70,10 @@ func switch_cell_state(
 		
 		"picked_up":
 			state_machine.switch_state(state_machine.State.PICKED_UP)
-		
 		"dying":
 			state_machine.switch_state(state_machine.State.DYING)
 		'froze' :
 			state_machine.switch_state(state_machine.State.FROZE)
-		'jolt' :
-			state_machine.switch_state(state_machine.State.JOLT)
-		
 		_:
 			push_error("invalid state: " + new_state)
 
@@ -141,24 +131,6 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) :
 	
 	check_for_cell_dead_on_update()
 	
-
-
-
-func _handle_cell_container_jolt(cell_name : String) :
-	
-	if cell_name != designated_brain_cell.name:
-		return
-	
-	# prevent indv. cell jolt from occuring
-	# we only want interpreter jolt to occur
-	# (which then reaches cell)
-	if on_stat_interpreter : 
-		return
-	
-		
-	state_machine.switch_state(state_machine.State.JOLT)
-
-
 func has_fatal_defect() -> bool:
 	
 	return (

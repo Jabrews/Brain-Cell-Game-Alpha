@@ -77,13 +77,13 @@ func _handle_reset_player_position() :
 	
 func _handle_lock_player_position(toggle_value : bool) :
 	if toggle_value :
-		set_collision_layer_value(1, false)
+		#set_collision_layer_value(1, false)
 		is_paused = true
 		visible = false
 		interact_ray.collide_with_areas = false
 		interact_ray.collide_with_areas = false
 	else :
-		set_collision_layer_value(1, true)
+		#set_collision_layer_value(1, true)
 		is_paused = false
 		visible = true
 		interact_ray.collide_with_areas = true 

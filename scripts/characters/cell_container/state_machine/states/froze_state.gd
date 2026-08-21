@@ -2,7 +2,7 @@ extends Node
 
 # componnets
 @onready var froze_mesh : MeshInstance3D = $"../../FrozenMesh"
-@onready var sound_froze_state_end : AudioStreamPlayer3D = $"../../FrozeStateEnd"
+@onready var sound_froze_state_end : AudioStreamPlayer3D = $"../../Sounds/FrozeStateEnd"
 
 func state_start() : 
 	froze_mesh.visible = true

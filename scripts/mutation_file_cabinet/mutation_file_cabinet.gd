@@ -18,10 +18,11 @@ var player_viewing_files : bool = false
 
 func _process(_delta: float) -> void:
 	
-	
 	if player_in_cabinet_area : 
 		
+		
 		if Input.is_action_just_pressed('interact') :
+			
 			
 			if file_being_viewed : 
 				return

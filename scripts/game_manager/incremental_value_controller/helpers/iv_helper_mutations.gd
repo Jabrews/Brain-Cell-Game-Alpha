@@ -55,44 +55,44 @@ func update_mutation_turn(round : int, danger_level : int) :
 			0 :
 				IVMutations.min_mutations_per_batch = 0
 				IVMutations.max_mutations_per_batch = 1
-				IVMutations.min_fake_mutations_per_batch = 0
-				IVMutations.max_fake_mutations_per_batch = 1
-				IVMutations.chance_for_all_hidden_event = 0
-				IVMutations.amount_of_best_cells_sorted = 1
-				#IVMutations.chance_to_exit_mutation_loop = 50
-				IVMutations.chance_to_exit_mutation_loop = 15
-				IVMutations.chance_to_hide_mutation = 25
-
-			1 :
-				IVMutations.min_mutations_per_batch = 1
-				IVMutations.max_mutations_per_batch = 1
 				IVMutations.min_fake_mutations_per_batch = 1
 				IVMutations.max_fake_mutations_per_batch = 1
-				IVMutations.chance_for_all_hidden_event = 10
+				IVMutations.chance_for_all_hidden_event = 15
 				IVMutations.amount_of_best_cells_sorted = 2
-				#IVMutations.chance_to_exit_mutation_loop = 30
-				IVMutations.chance_to_exit_mutation_loop = 15
+				IVMutations.chance_to_exit_mutation_loop = 50
 				IVMutations.chance_to_hide_mutation = 50
-			2 :
+				IVMutations.chance_to_weight_hidden_stats_low = 1
+
+			1 :
 				IVMutations.min_mutations_per_batch = 1
 				IVMutations.max_mutations_per_batch = 2
 				IVMutations.min_fake_mutations_per_batch = 1
 				IVMutations.max_fake_mutations_per_batch = 2
 				IVMutations.chance_for_all_hidden_event = 20
+				IVMutations.amount_of_best_cells_sorted = 2
+				IVMutations.chance_to_exit_mutation_loop = 20
+				IVMutations.chance_to_hide_mutation = 60
+				IVMutations.chance_to_weight_hidden_stats_low = 25
+			2 :
+				IVMutations.min_mutations_per_batch = 1
+				IVMutations.max_mutations_per_batch = 2
+				IVMutations.min_fake_mutations_per_batch = 1
+				IVMutations.max_fake_mutations_per_batch = 2
+				IVMutations.chance_for_all_hidden_event = 25
 				IVMutations.amount_of_best_cells_sorted = 3
-				#IVMutations.chance_to_exit_mutation_loop = 25
 				IVMutations.chance_to_exit_mutation_loop = 15
-				IVMutations.chance_to_hide_mutation = 50
+				IVMutations.chance_to_hide_mutation = 60
+				IVMutations.chance_to_weight_hidden_stats_low = 50
 			3 :
 				IVMutations.min_mutations_per_batch = 2
 				IVMutations.max_mutations_per_batch = 2
 				IVMutations.min_fake_mutations_per_batch = 1
 				IVMutations.max_fake_mutations_per_batch = 2
-				IVMutations.chance_for_all_hidden_event = 40
+				IVMutations.chance_for_all_hidden_event = 45
 				IVMutations.amount_of_best_cells_sorted = 4
-				#IVMutations.chance_to_exit_mutation_loop = 20
-				IVMutations.chance_to_exit_mutation_loop = 15
-				IVMutations.chance_to_hide_mutation = 50
+				IVMutations.chance_to_exit_mutation_loop = 10
+				IVMutations.chance_to_hide_mutation = 75
+				IVMutations.chance_to_weight_hidden_stats_low = 75
 
 	
 	if round == 2 :
