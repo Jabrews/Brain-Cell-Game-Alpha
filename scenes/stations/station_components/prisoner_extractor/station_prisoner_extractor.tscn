@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://bmsxn20pdon0t"]
 
 [ext_resource type="Script" uid="uid://jcjpmph5xsgv" path="res://scripts/stations/station_components/prisoner_extractor/station_prisoner_extractor.gd" id="1_ofgie"]
+[ext_resource type="Script" uid="uid://b44bq3r4qi02g" path="res://scripts/stations/station_components/prisoner_extractor/prisoner_viewer_manager.gd" id="2_r1knk"]
 [ext_resource type="Texture2D" uid="uid://mi5px84lnqvt" path="res://models/prisoner_extractor/single_prisoner_room.png" id="3_f8bon"]
 [ext_resource type="Script" uid="uid://dmephibuoisk7" path="res://scripts/stations/station_components/prisoner_extractor/elevator_lights.gd" id="3_pfmeg"]
 [ext_resource type="Texture2D" uid="uid://c82obos541wms" path="res://models/prisoner_extractor/double_prisoner_room.png" id="4_0qj67"]
@@ -296,37 +297,40 @@ shape = SubResource("ConcavePolygonShape3D_pfmeg")
 transform = Transform3D(1, 0, -1.7484555e-07, 0, 1, 0, 1.7484555e-07, 0, 1, -0.608817, 2.1079214, -0.06056368)
 mesh = SubResource("ArrayMesh_ofgie")
 
-[node name="PrisonerViewer" type="Node3D" parent="Extractor" unique_id=1611624513]
+[node name="PrisonerViewerManager" type="Node3D" parent="Extractor" unique_id=1611624513]
+script = ExtResource("2_r1knk")
 
-[node name="TwoPrisoners" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=2075440759]
+[node name="TwoPrisoners" type="Sprite3D" parent="Extractor/PrisonerViewerManager" unique_id=2075440759]
 transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2541586, 0.8059494, -1.1531144)
 visible = false
 texture_filter = 0
 texture = ExtResource("4_0qj67")
 
-[node name="OnePrisoner" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=1752456890]
+[node name="OnePrisoner" type="Sprite3D" parent="Extractor/PrisonerViewerManager" unique_id=1752456890]
 transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2541586, 0.8059494, -1.1531144)
 visible = false
 texture_filter = 0
 texture = ExtResource("3_f8bon")
 
-[node name="EmptyRoom" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=743905948]
+[node name="EmptyRoom" type="Sprite3D" parent="Extractor/PrisonerViewerManager" unique_id=743905948]
 transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2541586, 0.8059494, -1.1531144)
 texture_filter = 0
 texture = ExtResource("4_050ml")
 
-[node name="BloodOverlay" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=592286694]
+[node name="BloodOverlay" type="Sprite3D" parent="Extractor/PrisonerViewerManager" unique_id=592286694]
 transform = Transform3D(-1.9, 0, 3.019916e-07, 0, 2.09, 0, -2.8689203e-07, 0, -2, -1.2541586, 0.8059494, -1.1543016)
+visible = false
 material_override = SubResource("ShaderMaterial_mlwpr")
 texture_filter = 0
 texture = ExtResource("4_y3sq4")
 script = ExtResource("8_xgy8o")
 
-[node name="OvertimeDissipate" type="Timer" parent="Extractor/PrisonerViewer/BloodOverlay" unique_id=1118932649]
+[node name="OvertimeDissipate" type="Timer" parent="Extractor/PrisonerViewerManager/BloodOverlay" unique_id=1118932649]
 wait_time = 3.0
 
-[node name="GlassOverlay" type="Sprite3D" parent="Extractor/PrisonerViewer" unique_id=1793694304]
+[node name="GlassOverlay" type="Sprite3D" parent="Extractor/PrisonerViewerManager" unique_id=1793694304]
 transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2602981, 0.7875307, -1.1631382)
+modulate = Color(1, 1, 1, 0.39215687)
 texture_filter = 0
 texture = ExtResource("6_050ml")
 

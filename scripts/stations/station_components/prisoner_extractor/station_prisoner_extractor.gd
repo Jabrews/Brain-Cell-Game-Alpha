@@ -31,7 +31,11 @@ extends Node
 @onready var s_blender_end : AudioStreamPlayer3D = $Audio/BlenderEnd
 @onready var s_door_shut : AudioStreamPlayer3D = $Audio/DoorShut
 
+# helper prisoner viewer
+@onready var prisoner_viewer_manager : Node3D = $Extractor/PrisonerViewerManager
 
+
+# cell containr parent node
 @export var cell_container_parent_node: Node
 
 
@@ -104,6 +108,12 @@ func _handle_cell_added_to_collection(new_cell: BrainCell) -> void:
 		return
 
 	cells_to_create.append(new_cell)
+	
+	if len(cells_to_create) == 1 : 
+		prisoner_viewer_manager._switch_screen('1_prisoner')
+	elif len(cells_to_create) == 2 : 
+		prisoner_viewer_manager._switch_screen('2_prisoner')
+	
 
 	if not innactive:
 		extractor_lights._switch_light_state('cells_loaded')
@@ -112,6 +122,9 @@ func _handle_cell_added_to_collection(new_cell: BrainCell) -> void:
 func _handle_proceed_next_energy_turn() -> void:
 
 	cells_to_create.clear()
+	
+	prisoner_viewer_manager._switch_screen('empty')
+	prisoner_viewer_manager._toggle_blood(false)
 
 	if not innactive:
 		extractor_lights._switch_light_state('cells_unloaded')
@@ -143,6 +156,9 @@ func _handle_extract_btn_pressed() -> void:
 			[elevator_lid_left, elevator_lid_right],
 			[elevator_left, elevator_right]
 		)
+
+	prisoner_viewer_manager._switch_screen('empty')
+	prisoner_viewer_manager._toggle_blood(true)
 
 
 ### EXTRACTOR CINEMATIC ##############################################
