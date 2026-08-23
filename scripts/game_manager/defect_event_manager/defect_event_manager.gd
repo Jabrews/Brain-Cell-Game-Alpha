@@ -3,9 +3,9 @@ extends Node
 ## components
 @onready var defect_event_update_timer: Timer = $DefectEventUpdateTimer
 @onready var jolt_hidden_stat_interpreter: Node = $JoltHiddenStatInterpreter
-@onready var jolt_cell_container: Node = $JoltCellContainer
 
 @onready var sickness_cell_container : Node = $SicknessCellContainer
+@onready var bubble_cell_container : Node = $BubbleCellContainer
 
 @export var timer_decrease_per_trash_cell: float = 2.0
 @export var min_timer_timeout_time: float = 8.0
@@ -14,7 +14,8 @@ var curr_timer_timeout_time: float
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :
-		sickness_cell_container._handle_sickness()
+		bubble_cell_container._handle_bubble()
+		
 		#jolt_hidden_stat_interpreter._handle_jolt()
 
 func _ready() -> void:
@@ -23,10 +24,6 @@ func _ready() -> void:
 	GLCellTrashcanBus.connect("cell_added_to_trashcan", _handle_cell_added_to_trash_can)
 
 	defect_event_update_timer.connect("timeout", _on_event_timer_timeout)
-
-	# TODO TURN BACK ON
-	#_reset_timer_timeout()
-	#_restart_event_timer()
 
 
 func _handle_next_round() -> void:
@@ -62,7 +59,7 @@ func chance_for_defect_event() -> void:
 		+ jolt_hidden_stat_interpreter_chance
 		+ jolt_cell_container_chance
 	):
-		jolt_cell_container._handle_jolt()
+		pass
 
 
 func _reset_timer_timeout() -> void:

@@ -62,6 +62,19 @@ func create_event_notice() -> void:
 					}
 				)
 			)
+		'bubble' : 
+			GLEventNoticeManagerBus.emit_signal(
+				'create_event_notice',
+				EventNotice.new(
+					'defect_event',
+					cell_name.to_upper() + ' is experiencing a bubble. Must be shaked',
+					{
+						'cell_name': cell_name
+					}
+				)
+			)
+			
+		
 
 		_:
 			push_error(

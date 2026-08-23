@@ -28,7 +28,7 @@ func _handle_increment_defect_delay_timer() :
 	var designated_brain_cell : BrainCell = parent_brain_cell_container.designated_brain_cell
 	
 	# emit defect increase 
-	GLCellManagerBus.emit_signal('cell_container_jolt_increase_cell_defect', designated_brain_cell, 30)
+	GLCellManagerBus.emit_signal('cell_container_jolt_increase_cell_defect', designated_brain_cell, 45)
 	
 
 func _toggle_cell_picked_up(toggle_value: bool) -> void:

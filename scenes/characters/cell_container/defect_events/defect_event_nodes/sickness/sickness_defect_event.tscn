@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cauj6vasy7ssv"]
 
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="1_x37k2"]
-[ext_resource type="Script" uid="uid://4hpda8bpbgpj" path="res://scripts/characters/cell_container/defect_events/reusable/defect_shake.gd" id="2_fgrj2"]
+[ext_resource type="Script" uid="uid://4hpda8bpbgpj" path="res://scripts/characters/cell_container/defect_events/defect_event_nodes/sickness/defect_shake.gd" id="2_fgrj2"]
 [ext_resource type="Script" uid="uid://cjerslvxqchkq" path="res://scripts/characters/cell_container/defect_events/defect_event_nodes/sickness/sickness_defect_event.gd" id="2_x37k2"]
 [ext_resource type="Script" uid="uid://t0qlsetc1hby" path="res://scripts/characters/cell_container/defect_events/defect_event_nodes/sickness/detect_cell_area.gd" id="4_fgrj2"]
 

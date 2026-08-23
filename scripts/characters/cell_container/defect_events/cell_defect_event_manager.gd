@@ -5,15 +5,16 @@ extends Node
 @onready var parent_cell_container: CharacterBody3D = $".."
 @onready var defect_event_parent_node: Node3D = $DefectEventParentNode
 
-
 # defect event nodes
 @onready var sickness_defect_event_p_s: PackedScene = preload(
 	"res://scenes/characters/cell_container/defect_events/defect_event_nodes/sickness/sickness_defect_event.tscn"
 )
+@onready var bubble_defect_event_p_s : PackedScene = preload(
+	"res://scenes/characters/cell_container/defect_events/defect_event_nodes/bubble/bubble_defect_event.tscn"
+)
 
 
 func _ready() -> void:
-
 	GLDefectEventMangerBus.connect('initate_defect_event_cell_container', _handle_initate_defect_event_cell_container)
 
 
@@ -22,9 +23,8 @@ func _handle_initate_defect_event_cell_container(defect_event_type: String, cell
 	if parent_cell_container.designated_brain_cell.name != cell_name:
 		return
 	
-	# make sure not to create multiple of the same defect event node on the same cell.
-	for defect_event_node: DefectEventNode in defect_event_parent_node.get_children():
-		if defect_event_node.defect_event_type == defect_event_type:
+	# make sure theres no already a defect event active (ONLY ONE AT A TIME)
+	if len(defect_event_parent_node.get_children()) != 0 : 
 			return
 
 	var event_node: DefectEventNode = (
@@ -46,6 +46,8 @@ func get_defect_event_corrisponding_node(defect_event: String) -> DefectEventNod
 
 		'sickness':
 			return sickness_defect_event_p_s.instantiate() as DefectEventNode
+		'bubble' : 
+			return bubble_defect_event_p_s.instantiate() as DefectEventNode
 
 		_:
 			push_error(

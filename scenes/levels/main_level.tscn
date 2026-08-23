@@ -30,10 +30,9 @@
 [ext_resource type="PackedScene" uid="uid://b4pvxjq2gtg0x" path="res://scenes/shareholder_demand_provider/shareholder_demand_provider.tscn" id="18_m2qbd"]
 [ext_resource type="Script" uid="uid://cfkbsod3fqx61" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_defect.gd" id="18_v2xyd"]
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
-[ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/jolt_hidden_stat_interpreter.gd" id="20_5xq6v"]
+[ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/helpers/jolt_hidden_stat_interpreter.gd" id="20_5xq6v"]
 [ext_resource type="Script" uid="uid://hndem18jdi0y" path="res://scripts/game_manager/entitiy_room_management/entity_room_management.gd" id="20_ea07q"]
 [ext_resource type="Script" uid="uid://bxx34i2lndwh7" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/reduce_hidden_quanity.gd" id="20_wv5kd"]
-[ext_resource type="Script" uid="uid://md6nime7jqke" path="res://scripts/game_manager/defect_event_manager/jolt_cell_container.gd" id="21_eiw2m"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
@@ -54,7 +53,8 @@
 [ext_resource type="Script" uid="uid://conaqje0n7bu8" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/default_mutation_serving.gd" id="38_0ycs4"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
-[ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/sickness_jolt_container.gd" id="40_l5rsp"]
+[ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/helpers/sickness_cell_container.gd" id="40_l5rsp"]
+[ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_manager/helpers/bubble_cell_container.gd" id="41_l5rsp"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="PackedScene" uid="uid://dmuet5mnk23qy" path="res://scenes/door/door.tscn" id="57_ms0m2"]
@@ -663,12 +663,11 @@ script = ExtResource("18_58boi")
 [node name="SicknessCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=1831732341]
 script = ExtResource("40_l5rsp")
 
+[node name="BubbleCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=229277195]
+script = ExtResource("41_l5rsp")
+
 [node name="JoltHiddenStatInterpreter" type="Node" parent="GameManager/DefectEventManager" unique_id=85726172]
 script = ExtResource("20_5xq6v")
-
-[node name="JoltCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=2134717966 node_paths=PackedStringArray("cell_container_parent_node")]
-script = ExtResource("21_eiw2m")
-cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 
 [node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=1548402198]
 wait_time = 10.0
