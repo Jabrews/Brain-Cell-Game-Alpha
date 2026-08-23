@@ -1,13 +1,15 @@
 [gd_scene format=4 uid="uid://cauj6vasy7ssv"]
 
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="1_x37k2"]
-[ext_resource type="Script" uid="uid://bg7sca4e5rygf" path="res://scripts/characters/cell_container/state_machine/states/sickness_state.gd" id="2_4xnll"]
+[ext_resource type="Script" uid="uid://4hpda8bpbgpj" path="res://scripts/characters/cell_container/defect_events/reusable/defect_shake.gd" id="2_fgrj2"]
+[ext_resource type="Script" uid="uid://cjerslvxqchkq" path="res://scripts/characters/cell_container/defect_events/defect_event_nodes/sickness/sickness_defect_event.gd" id="2_x37k2"]
+[ext_resource type="Script" uid="uid://t0qlsetc1hby" path="res://scripts/characters/cell_container/defect_events/defect_event_nodes/sickness/detect_cell_area.gd" id="4_fgrj2"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7us0n"]
 radial_velocity_min = -2.2351742e-05
 radial_velocity_max = 5.9999776
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_anjkl"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgrj2"]
 transparency = 1
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 1)
@@ -16,7 +18,7 @@ texture_filter = 0
 billboard_mode = 1
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hb6co"]
-material = SubResource("StandardMaterial3D_anjkl")
+material = SubResource("StandardMaterial3D_fgrj2")
 size = Vector2(0.1, 0.1)
 orientation = 2
 
@@ -26,7 +28,15 @@ bar_beats = 2
 loop = true
 loop_offset = 0.385
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_keru6"]
+radius = 2.5
+
 [node name="SicknessDefectEvent" type="Node3D" unique_id=1284636948]
+script = ExtResource("2_x37k2")
+increment_defect_delay_wait_time = 3.0
+
+[node name="DefectShake" type="Node" parent="." unique_id=1684701515]
+script = ExtResource("2_fgrj2")
 
 [node name="JoltParticles" type="GPUParticles3D" parent="." unique_id=1398331787]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.43260992, 0)
@@ -39,5 +49,14 @@ draw_pass_1 = SubResource("PlaneMesh_hb6co")
 [node name="JoltSoundLoop" type="AudioStreamPlayer3D" parent="." unique_id=400018140]
 stream = SubResource("AudioStreamMP3_l63lk")
 
-[node name="DELETEME" type="Node" parent="." unique_id=1208991659]
-script = ExtResource("2_4xnll")
+[node name="IncrementDefectDelay" type="Timer" parent="." unique_id=710008417]
+
+[node name="DetectCellArea" type="Area3D" parent="." unique_id=486538083]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_fgrj2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectCellArea" unique_id=960062274]
+shape = SubResource("SphereShape3D_keru6")
+
+[node name="CheckDelay" type="Timer" parent="DetectCellArea" unique_id=361782075]

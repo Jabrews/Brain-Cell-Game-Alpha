@@ -12,9 +12,10 @@ extends Node
 
 var curr_timer_timeout_time: float
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :
 		sickness_cell_container._handle_sickness()
+		#jolt_hidden_stat_interpreter._handle_jolt()
 
 func _ready() -> void:
 	

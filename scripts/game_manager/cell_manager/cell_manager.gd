@@ -13,7 +13,6 @@ func _ready() -> void:
 	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded)
 	GLCellManagerBus.connect('delete_selected_collected_cell', _handle_delete_selected_collected_cell)
 	GLCellManagerBus.connect('hidden_stat_interpreted', _handle_hidden_stat_interpreted)
-	GLCellManagerBus.connect('interpreter_jolt_increase_cell_defect', _handle_interpreter_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
@@ -268,30 +267,15 @@ func _handle_hidden_stat_interpreted(selected_cell : BrainCell, selected_stat : 
 	update_collected_cells([selected_cell])
 		
 		
-func _handle_interpreter_jolt_increase_cell_defect(selected_cell : BrainCell, selected_stat : String) :
-			
-	var jolt_defect_increase_amount = IVDefectEventManager.interpreter_jolt_defect_increase
-	
-	match selected_stat :
-		'strength' :
-			selected_cell.strength.defect += jolt_defect_increase_amount
-		'intelligence' :
-			selected_cell.intelligence.defect += jolt_defect_increase_amount
-		'community' :
-			selected_cell.community.defect += jolt_defect_increase_amount
-	update_collected_cells([selected_cell])
-	
 
-func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell) :
+func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell, increase_amount : float) :
 	
-		var jolt_defect_increase_amount = IVDefectEventManager.cell_container_jolt_defect_increase
-		
 		if selected_cell.strength.enabled :
-			selected_cell.strength.defect += jolt_defect_increase_amount 
+			selected_cell.strength.defect += increase_amount 
 		if selected_cell.intelligence.enabled :
-			selected_cell.intelligence.defect += jolt_defect_increase_amount 
+			selected_cell.intelligence.defect += increase_amount 
 		if selected_cell.community.enabled :
-			selected_cell.community.defect += jolt_defect_increase_amount
+			selected_cell.community.defect += increase_amount 
 	
 		update_collected_cells([selected_cell])
 	

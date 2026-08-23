@@ -123,9 +123,13 @@ func _handle_defect_event_jolt(selected_interpreters : Array):
 			energy_decrease_spawner._start_spawning_decrease_particles(selected_interpreters)
 			
 			if loaded_cell_container:
-				print_debug('cell interpreter should evenutally initate defect event on the cell')
-				#loaded_cell_container.switch_cell_state('jolt')
-				return
+				GLDefectEventMangerBus.emit_signal(
+					'initate_defect_event_cell_container',
+					'sickness',
+					loaded_cell_container.designated_brain_cell.name,
+				 	true,
+					{'interpreter_stat_type' : stat_type} # data is used to stop when interpeter jolt is stopped
+				)
 
 func _handle_defect_event_jolt_ended(lever_flipped : bool = false) :
 	jolt_particles.emitting = false 

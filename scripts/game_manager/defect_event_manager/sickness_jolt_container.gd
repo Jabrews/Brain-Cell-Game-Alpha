@@ -73,20 +73,4 @@ func _handle_sickness() -> void:
 
 
 	# Trigger sickness event.
-	GLDefectEventMangerBus.emit_signal(
-		'sickness_cell_container',
-		cell_name
-	)
-
-
-	# Create event notice.
-	GLEventNoticeManagerBus.emit_signal(
-		'create_event_notice',
-		EventNotice.new(
-			'defect_event',
-			cell_name.to_upper() + ' is experiencing a sickness.',
-			{
-				'cell_name': cell_name
-			}
-		)
-	)
+	GLDefectEventMangerBus.emit_signal('initate_defect_event_cell_container', 'sickness', cell_name, false, {})

@@ -5,8 +5,8 @@ var designated_brain_cell : BrainCell
 # components
 @onready var stat_display : Node3D = $StatDisplay
 @onready var defect_color_manager : Node = $DefectColorManager
-@onready var offer_turn_into_flesh_bug_delay : Timer = $OfferTurnIntoFleshBugDelay
 @onready var mutation_manager : Node = $MutationManager
+@onready var cell_defect_event_manager : Node = $CellDefectEventManager
 @onready var container_mesh : MeshInstance3D = $MeshInstance3D
 
 # state machine
@@ -34,13 +34,6 @@ func _ready() -> void:
 	
 	await get_tree().process_frame
 	
-	# we start a timer to randomly turn into flesh bug
-	# this is from a shareholder offer
-	if designated_brain_cell.turn_into_flesh_bug:
-		var turn_delay_time = randi_range(5, 20)
-		offer_turn_into_flesh_bug_delay.wait_time = turn_delay_time
-		offer_turn_into_flesh_bug_delay.start()
-		
 	stat_display._handle_brain_cell_recieved(designated_brain_cell)
 	
 	# des. cell changing listeners
@@ -67,7 +60,6 @@ func switch_cell_state(
 		
 		"idle":
 			state_machine.switch_state(state_machine.State.IDLE)
-		
 		"picked_up":
 			state_machine.switch_state(state_machine.State.PICKED_UP)
 		"dying":

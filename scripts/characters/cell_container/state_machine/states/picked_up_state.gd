@@ -25,6 +25,7 @@ func state_process(_delta) -> void:
 		
 		# let mutation know its currenty being picked up 		
 		parent_cell_container.mutation_manager._handle_cell_picked_up()
+		parent_cell_container.cell_defect_event_manager._handle_cell_picked_up(true)
 		
 		var origin = player_ray_cast.global_transform.origin
 		var direction = -player_ray_cast.global_transform.basis.z.normalized()
@@ -54,4 +55,5 @@ func state_end() -> void :
 	# reset ray cast
 	player_ray_cast = null
 	
+	parent_cell_container.cell_defect_event_manager._handle_cell_picked_up(false)
 	stat_display.toggle_cell_picked_up(false)

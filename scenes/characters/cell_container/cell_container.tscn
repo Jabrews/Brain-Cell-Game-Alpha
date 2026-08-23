@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cemcpqv1son0t" path="res://scripts/characters/cell_container/mutations/mutation_manager/sync_active_mutations.gd" id="12_wr7hu"]
 [ext_resource type="Script" uid="uid://dtpqj0v6i3o3d" path="res://scripts/characters/cell_container/mutations/mutation_manager/create_event_listener.gd" id="13_f4kmu"]
 [ext_resource type="Script" uid="uid://coob1xx37u3a1" path="res://scripts/characters/cell_container/mutations/mutation_manager/verify/verify_active_and_paused_events.gd" id="14_f6f0d"]
+[ext_resource type="Script" uid="uid://c85acimbgp6dh" path="res://scripts/characters/cell_container/defect_events/cell_defect_event_manager.gd" id="14_rwqu2"]
 [ext_resource type="AudioStream" uid="uid://x5sdvjw3mat1" path="res://sounds/player_local_sounds/cell_container/water_splash.mp3" id="16_7580g"]
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
@@ -91,6 +92,11 @@ script = ExtResource("13_f4kmu")
 
 [node name="EventListenerParentNode" type="Node3D" parent="MutationManager" unique_id=1972135655]
 
+[node name="CellDefectEventManager" type="Node3D" parent="." unique_id=1479097411]
+script = ExtResource("14_rwqu2")
+
+[node name="DefectEventParentNode" type="Node3D" parent="CellDefectEventManager" unique_id=1988356075]
+
 [node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
@@ -118,9 +124,6 @@ script = ExtResource("9_gniwj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractablePickup" unique_id=1367502610]
 shape = SubResource("BoxShape3D_ay8s5")
-
-[node name="OfferTurnIntoFleshBugDelay" type="Timer" parent="." unique_id=297466627]
-wait_time = 5.0
 
 [node name="FrozenMesh" type="MeshInstance3D" parent="." unique_id=691967030]
 visible = false
@@ -151,5 +154,3 @@ pitch_scale = 0.81
 [node name="DefectIncreaseSound" type="AudioStreamPlayer3D" parent="Sounds" unique_id=550401705]
 stream = ExtResource("8_anjkl")
 pitch_scale = 0.65
-
-[connection signal="timeout" from="OfferTurnIntoFleshBugDelay" to="." method="_on_offer_turn_into_flesh_bug_delay_timeout"]

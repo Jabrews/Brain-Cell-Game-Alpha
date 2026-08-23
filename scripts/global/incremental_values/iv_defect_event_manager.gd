@@ -8,8 +8,6 @@ var chance_for_multiple_hidden_stat_interpreter_jolt: int = 0
 
 var max_defect_event_update_timer_duration = 10.0
 
-var interpreter_jolt_defect_increase: int = 20
-var cell_container_jolt_defect_increase: int = 20
 var interpreter_jolt_energy_decrease_multiple = 1
 var interpreter_jolt_energy_decrease_single = 2
 	
