@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://cvv46e3g7yww7"]
+
+[ext_resource type="Script" uid="uid://cb2idwqmavf4h" path="res://scripts/characters/cell_container/defect_events/defect_event_nodes/bubble/bubble.gd" id="1_ac6ur"]
+[ext_resource type="Texture2D" uid="uid://dojbiokx2oi6m" path="res://models/bubble_defect_event/bubble.png" id="1_l0s4e"]
+[ext_resource type="Texture2D" uid="uid://cl4waf1yffhe6" path="res://models/bubble_defect_event/bubble_pop_spriteframes.png" id="2_cv7c1"]
+[ext_resource type="AudioStream" uid="uid://hilfempc5aa0" path="res://sounds/cell_container/defect_events/bubble/pop_4.mp3" id="4_gm8r5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv7c1"]
+atlas = ExtResource("1_l0s4e")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac6ur"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm8r5"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(11, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43duk"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(22, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dklnu"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(33, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mxa2"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(44, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olwkt"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(55, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvl0w"]
+atlas = ExtResource("2_cv7c1")
+region = Rect2(66, 0, 11, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkchc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv7c1")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac6ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm8r5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43duk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dklnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mxa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olwkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvl0w")
+}],
+"loop": 0,
+"name": &"Pop",
+"speed": 10.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[node name="Bubble" type="StaticBody3D" unique_id=559606464]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_ac6ur")
+sprite_color = Color(1, 1, 1, 1)
+float_speed = 1.0
+
+[node name="BubbleSprite" type="AnimatedSprite3D" parent="." unique_id=1982818804]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+cast_shadow = 0
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_rkchc")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2134622267]
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="DetectCeilingRay" type="RayCast3D" parent="." unique_id=747746152]
+target_position = Vector3(0, 0.22, 0)
+collision_mask = 2
+
+[node name="Lifespan" type="Timer" parent="." unique_id=980778905]
+
+[node name="Pop" type="AudioStreamPlayer3D" parent="." unique_id=1777580763]
+stream = ExtResource("4_gm8r5")
+volume_db = 2.0

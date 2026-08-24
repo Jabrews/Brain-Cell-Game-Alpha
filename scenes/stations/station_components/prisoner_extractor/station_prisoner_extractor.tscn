@@ -330,6 +330,7 @@ wait_time = 3.0
 
 [node name="GlassOverlay" type="Sprite3D" parent="Extractor/PrisonerViewerManager" unique_id=1793694304]
 transform = Transform3D(-2.095, 0, 3.2464098e-07, 0, 2.28, 0, -3.163362e-07, 0, -2.15, -1.2602981, 0.7875307, -1.1631382)
+flip_v = true
 modulate = Color(1, 1, 1, 0.39215687)
 texture_filter = 0
 texture = ExtResource("6_050ml")

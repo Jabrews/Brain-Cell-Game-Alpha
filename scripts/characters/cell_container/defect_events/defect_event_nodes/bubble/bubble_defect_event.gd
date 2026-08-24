@@ -8,8 +8,8 @@ extends DefectEventNode
 # sound components
 @onready var s_bubble_idle : AudioStreamPlayer3D = $Sounds/BubbleIdle
 @onready var s_bubbles_popping : AudioStreamPlayer3D = $Sounds/BubblePopping
-@onready var finale_pop : AudioStreamPlayer3D = $Sounds/FinalePop
 @onready var s_shake_rattle : AudioStreamPlayer3D = $Sounds/ShakeRattle
+@onready var s_bubble_end : AudioStreamPlayer3D = $Sounds/BubbleEnd
 
 
 @export var increment_defect_delay_wait_time : float = 1.0
@@ -56,14 +56,11 @@ func _update_shake_progress(shake_percant : float) :
 
 	match shake_percant:
 		0.25:
-			#s_bubbles_popping.play()
 			s_bubbles_popping.play()
 		0.50:
-			#s_bubbles_popping.play()		
 			s_bubbles_popping.play()
 		0.75:
 			s_bubbles_popping.play()		
-			#s_bubbles_popping.play()
 		1.00:
 			_stop()
 	
@@ -71,13 +68,22 @@ func _update_shake_progress(shake_percant : float) :
 
 func _stop() -> void:
 	
-	parent_brain_cell_container.scale = Vector3(1, 1, 1)
+	s_bubble_end.play()	
+	helper_defect_shake._toggle_shake(false)
 	
 	increment_defect_delay_timer.stop()
 	ending = true
-	#s_bubbles_popping.play()
-	finale_pop.play()
-	await finale_pop.finished
+	
+	particle_manager.spawn_bubble_delay_timer.stop()
+		
+	for bubble : StaticBody3D in particle_manager.bubble_parent_node.get_children() :
+		bubble.kill_bubble()
+	
+	if s_bubble_end.playing :
+		await s_bubble_end.finished
+	
+	parent_brain_cell_container.scale = Vector3(1, 1, 1)
+	
 
 	delete_event_notice()
 	queue_free()
