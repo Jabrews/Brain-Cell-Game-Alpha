@@ -21,10 +21,7 @@ script = ExtResource("1_8m8aj")
 [node name="ShakeThresholdHelper" type="Node" parent="." unique_id=245523231]
 script = ExtResource("2_p4r3d")
 shake_completion_value = 50.0
-
-[node name="ShakeThresholdHelper2" type="Node" parent="." unique_id=1626845249]
-script = ExtResource("2_p4r3d")
-shake_completion_value = 50.0
+movement_threshold = 0.001
 
 [node name="DefectShake" type="Node" parent="." unique_id=1568443240]
 script = ExtResource("2_jg6vr")

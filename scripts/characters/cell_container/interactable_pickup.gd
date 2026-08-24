@@ -3,6 +3,9 @@ extends InteractablePickup
 # components
 @onready var cell_container_parent : CharacterBody3D = $".."
 
+func _ready() -> void:
+	is_cell_container = true
+
 func _on_pickup_interacted(player_ray_cast : RayCast3D):
 	
 	if cell_container_parent.state_machine.curr_state.name == 'Froze' : 

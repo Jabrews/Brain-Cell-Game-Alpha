@@ -2,6 +2,9 @@ extends StaticBody3D
 
 class_name InteractablePickup
 
+var is_cell_container : bool = false
+
+
 func _ready() -> void:
 	set_collision_layer_value(6, true)
 	set_collision_layer_value(1, false)

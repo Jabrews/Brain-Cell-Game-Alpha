@@ -96,7 +96,13 @@ func _check_shake_progress() -> void:
 			next_progress_threshold
 		)
 		
+		#next_progress_threshold += 0.25
 		next_progress_threshold += 0.25
+	
+		if next_progress_threshold == 1.0 : 	
+			s_bubble_idle.volume_db = -50.0
+			s_shake_rattle.volume_db = -50.0
+	
 
 
 func _stop_shake_rattle() -> void:

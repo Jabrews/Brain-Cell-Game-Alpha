@@ -25,15 +25,17 @@
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jnj3"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwqu2"]
 albedo_color = Color(0.90683234, 0.3491902, 0.3491902, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7es7g"]
-material = SubResource("StandardMaterial3D_2jnj3")
-size = Vector3(0.8, 0.8, 0.8)
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rwqu2"]
+material = SubResource("StandardMaterial3D_rwqu2")
+radius = 0.4
+height = 1.5124512
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_2jnj3"]
-size = Vector3(0.8, 0.8, 0.8)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rwqu2"]
+radius = 0.4
+height = 1.5307617
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ne0dv"]
 
@@ -45,7 +47,7 @@ albedo_color = Color(0.14999998, 1, 0.9008334, 0.3372549)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pg0bo"]
 material = SubResource("StandardMaterial3D_sm0qd")
-size = Vector3(1.05, 1.05, 1.05)
+size = Vector3(1.05, 1.5701172, 1.05)
 
 [node name="CellContainer" type="CharacterBody3D" unique_id=2054877919 groups=["brain_cell_container"]]
 collision_layer = 4
@@ -98,12 +100,15 @@ script = ExtResource("14_rwqu2")
 [node name="DefectEventParentNode" type="Node3D" parent="CellDefectEventManager" unique_id=1988356075]
 
 [node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37283653, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
-mesh = SubResource("BoxMesh_7es7g")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25769043, 0)
+mesh = SubResource("CapsuleMesh_rwqu2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1842558496]
-shape = SubResource("BoxShape3D_2jnj3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26538086, 0)
+shape = SubResource("CapsuleShape3D_rwqu2")
 
 [node name="HoverableMesh" type="StaticBody3D" parent="." unique_id=50429877 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
@@ -126,6 +131,7 @@ script = ExtResource("9_gniwj")
 shape = SubResource("BoxShape3D_ay8s5")
 
 [node name="FrozenMesh" type="MeshInstance3D" parent="." unique_id=691967030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26005864, 0)
 visible = false
 mesh = SubResource("BoxMesh_pg0bo")
 

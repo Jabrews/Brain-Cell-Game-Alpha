@@ -51,7 +51,8 @@ func _process(_delta: float) -> void:
 		player_holding_item = true
 		held_item = collider
 		
-		#target_position.z = -6.0
+		if collider.is_cell_container : 
+			target_position.z = -2.5
 
 		ray_cast_controller_parent.set_ray_mode("interact")
 		return
@@ -92,7 +93,7 @@ func _handle_drop_item_delay_timer_timeout() -> void:
 
 func drop_item() -> void:
 	
-	#target_position.z = -4.0
+	target_position.z = -4.0
 	
 	drop_item_delay_timer.stop()
 
