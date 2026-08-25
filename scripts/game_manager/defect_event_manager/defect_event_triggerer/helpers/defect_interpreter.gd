@@ -3,6 +3,13 @@ extends Node
 
 func _initate_defect_event(): 
 	
+	
+	if GameAdminPanel.enabled:
+		GLDefectEventMangerBus.emit_signal(
+			"finished_trigger_event",
+			"cell-sickness-chance"
+		)
+	
 	# dont jolt if no stats to hide (round 1)	
 	if len(IVHiddenStats.stats_to_hide) == 0 :
 		return
@@ -27,6 +34,14 @@ func _initate_defect_event():
 		GLEventNoticeManagerBus.emit_signal('create_event_notice', 
 			EventNotice.new('defect_event', 'ALL hidden stat interpreters jolting', {'interpreters' : IVHiddenStats.stats_to_hide.duplicate()} , 1.5)
 		)
+		
+		# admin stuff
+		if GameAdminPanel.enabled:
+			GLDefectEventMangerBus.emit_signal(
+				"finished_trigger_event",
+				'interpreter-all-' + str(all_jolt_chance)
+			)
+		
 	# SINGLE JOLT
 	else:
 		decide_single_stat_interpreter()
@@ -59,6 +74,13 @@ func decide_single_stat_interpreter() -> void:
 	GLEventNoticeManagerBus.emit_signal('create_event_notice', 
 		EventNotice.new('defect_event', chosen_single_interpreter.to_upper() + ' hidden stat interpreter jolting', {'interpreters' : [chosen_single_interpreter]}, 1.0)		
 	)
+	
+	# admin stuff
+	if GameAdminPanel.enabled:
+		GLDefectEventMangerBus.emit_signal(
+			"finished_trigger_event",
+			'interpreter-single'
+		)
 	
 	
 	

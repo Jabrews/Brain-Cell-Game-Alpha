@@ -13,17 +13,17 @@ func _ready() -> void:
 	
 
 func _handle_process_next_round() -> void:
-	current_defect_urgency_num = 0
+	IVDefectEventManager.current_defect_urgency_num = 0
 	update_defect_event_chance()
 
 
 func _handle_cell_added_to_trashcan() -> void:
-	current_defect_urgency_num += 1
+	IVDefectEventManager.current_defect_urgency_num += 1
 	update_defect_event_chance()
 
 
 func _handle_prisoners_extracted(quantity: int) -> void:
-	current_defect_urgency_num += quantity
+	IVDefectEventManager.current_defect_urgency_num += quantity
 	update_defect_event_chance()
 
 
@@ -45,7 +45,7 @@ func get_defect_urgency_phase(defect_urgency_num: int) -> int:
 func update_defect_event_chance() -> void:
 	
 	var urgency_phase: int = get_defect_urgency_phase(
-		current_defect_urgency_num
+		IVDefectEventManager.current_defect_urgency_num
 	)
 	
 	match GLGameManagerBus.current_round:

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://cdjd7heg8p4a5" path="res://debug/admin_panel/helpers/helper_save_admin_panel_root.gd" id="4_tclyb"]
 [ext_resource type="Script" uid="uid://vnubwo21s3ad" path="res://debug/admin_panel/updaters/update_admin_batch_mutation.gd" id="5_q0p7f"]
 [ext_resource type="Script" uid="uid://c558cs6y555ip" path="res://debug/admin_panel/updaters/update_random_mutation_event.gd" id="5_w2nx6"]
+[ext_resource type="Script" uid="uid://cr7inrck0eywf" path="res://debug/admin_panel/updaters/update_defect_event.gd" id="6_tclyb"]
 
 [node name="AdminPanel" type="Control" unique_id=1308868169]
 process_mode = 3
@@ -29,3 +30,6 @@ script = ExtResource("5_q0p7f")
 
 [node name="UpdateRandomMutationEvent" type="Node" parent="Updaters" unique_id=2037068277]
 script = ExtResource("5_w2nx6")
+
+[node name="UpdateDefectEvent" type="Node" parent="Updaters" unique_id=124686965]
+script = ExtResource("6_tclyb")

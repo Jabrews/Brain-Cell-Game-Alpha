@@ -1,5 +1,7 @@
 extends Node
 
+var current_defect_urgency_num: int = 0
+
 
 #### CHANCES ####
 

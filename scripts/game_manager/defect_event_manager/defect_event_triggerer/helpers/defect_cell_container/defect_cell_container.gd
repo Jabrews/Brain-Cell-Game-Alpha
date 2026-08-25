@@ -5,10 +5,13 @@ extends Node
 
 func _initate_defect_event(): 
 	
+	
+
+	
 # Events that can currently be rolled.
 	var events: Array = [
-		{"node": sickness_cell_container, "chance": IVDefectEventManager.container_sickness_chance},
-		{"node": bubble_cell_container, "chance": IVDefectEventManager.container_bubble_chance}
+		{'type' : 'sickness', "node": sickness_cell_container, "chance": IVDefectEventManager.container_sickness_chance},
+		{'type' : 'bubble', "node": bubble_cell_container, "chance": IVDefectEventManager.container_bubble_chance}
 	]
 	# Keep rolling until one event wins.
 	while events.size() > 0:
@@ -22,6 +25,15 @@ func _initate_defect_event():
 		
 		if roll < event["chance"]:
 			event["node"]._handle()
+			
+			# admin stuff
+			if GameAdminPanel.enabled:
+				GLDefectEventMangerBus.emit_signal(
+					"finished_trigger_event",
+					"cell-" + event['type'] + '-' + str(event['chance'])
+				)
+			
+			
 			return
 		
 		# It failed, so remove it from this round

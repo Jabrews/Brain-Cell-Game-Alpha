@@ -18,6 +18,8 @@ func _save(
 		admin_panel_root.admin_batch_mutation = {} 
 	if not GameAdminPanel.save_random_mutation_event : 
 		admin_panel_root.admin_random_mutation_event = []
+	if not GameAdminPanel.save_defect_event : 
+		admin_panel_root.admin_defect_event = []
 	
 	
 	# Create the folder if it does not exist.

@@ -10,3 +10,6 @@ signal initate_defect_event_cell_container(defect_event_type : String, cell_name
 # prisoner extracted
 signal prisoners_extracted(quanity : int)
 signal cell_added_to_trashcan() # cells discareded early count too
+
+# let admin panel know it finished
+signal finished_trigger_event(finale_choice : String)

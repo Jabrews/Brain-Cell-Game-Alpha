@@ -56,6 +56,7 @@
 [ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/sickness_cell_container.gd" id="40_l5rsp"]
 [ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/bubble_cell_container.gd" id="41_l5rsp"]
 [ext_resource type="Script" uid="uid://dm406ltyvyxkh" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/defect_cell_container.gd" id="41_lp30k"]
+[ext_resource type="Script" uid="uid://dertw3gxyvk66" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/update_admin_panel.gd" id="41_r52yi"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="PackedScene" uid="uid://dmuet5mnk23qy" path="res://scenes/door/door.tscn" id="57_ms0m2"]
@@ -663,6 +664,9 @@ script = ExtResource("39_lp30k")
 
 [node name="DefectEvenTriggerer" type="Node" parent="GameManager/DefectEventManager" unique_id=1995310140]
 script = ExtResource("18_58boi")
+
+[node name="UpdateAdminPanel" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=2079731943]
+script = ExtResource("41_r52yi")
 
 [node name="DefectCellContainer" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=912366905]
 script = ExtResource("41_lp30k")

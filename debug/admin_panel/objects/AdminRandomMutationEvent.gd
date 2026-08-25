@@ -2,7 +2,6 @@ extends Node
 
 class_name AdminRandomMutationEvent
 
-
 var turn: int #
 var danger_level: int #
 var wait_time: float  #
