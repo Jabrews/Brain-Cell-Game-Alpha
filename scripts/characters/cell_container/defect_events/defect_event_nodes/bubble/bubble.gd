@@ -71,14 +71,14 @@ func toggle_horziontal_movement(toggle_value : bool) :
 		horizontal_movement_tween.tween_property(
 			self,
 			'position:x',
-			position.x + 0.2,
+			position.x + 0.1,
 			0.5
 		)
 		
 		horizontal_movement_tween.parallel().tween_property(
 			self,
 			'position:z',
-			orginal_postion_z + 0.2,
+			orginal_postion_z + 0.1,
 			0.5
 		)
 		
@@ -99,14 +99,14 @@ func toggle_horziontal_movement(toggle_value : bool) :
 		horizontal_movement_tween.tween_property(
 			self,
 			'position:x',
-			position.x - 0.2,
+			position.x - 0.1,
 			0.5
 		)
 		
 		horizontal_movement_tween.parallel().tween_property(
 			self,
 			'position:z',
-			orginal_postion_z - 0.2,
+			orginal_postion_z - 0.1,
 			0.5
 		)
 

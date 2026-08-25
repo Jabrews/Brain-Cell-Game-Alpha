@@ -4,6 +4,10 @@ extends CharacterBody3D
 @export var mouse_sensitivity_x := 0.006
 @export var mouse_sensitivity_y := 0.004
 
+var saved_mouse_sensitivty_x : float
+var saved_mouse_sensitivty_y : float
+
+
 ## components
 @onready var camera_pivot : Node3D = $CameraPivot
 @onready var camera := $CameraPivot/Camera3D
@@ -27,6 +31,11 @@ func _ready():
 	GLPlayerState.connect('lock_player_position', _handle_lock_player_position)
 	GLGameManagerBus.connect('reset_player_position', _handle_reset_player_position)	
 	GLMutationExsplosiveState.connect('shake_player_cam_from_exsplode', _handle_shake_player_cam_from_exsplode)
+	GLPlayerState.connect('toggle_pickup_reduce_player_senstivty', _handle_toggle_pickup_reduce_player_senstivty)
+	
+	saved_mouse_sensitivty_x = mouse_sensitivity_x	
+	saved_mouse_sensitivty_y = mouse_sensitivity_y
+	
 	
 func _physics_process(delta: float) -> void:
 	
@@ -118,5 +127,16 @@ func _handle_shake_player_cam_from_exsplode() -> void:
 		original_position,
 		shake_step_time
 	)
+
+func _handle_toggle_pickup_reduce_player_senstivty(toggle_value : bool) :
+	if toggle_value : 	
+		mouse_sensitivity_x = mouse_sensitivity_x * 0.6
+		mouse_sensitivity_y = mouse_sensitivity_y * 0.6
+	else: 
+		mouse_sensitivity_x = saved_mouse_sensitivty_x
+		mouse_sensitivity_y = saved_mouse_sensitivty_y
+	
+	
+	
 	
 	

@@ -5,6 +5,7 @@ extends DefectEventNode
 @onready var helper_defect_shake : Node = $DefectShake
 @onready var shake_threshold_helper : Node = $ShakeThresholdHelper
 @onready var particle_manager : Node3D = $ParticleManager
+@onready var jolt_particles : GPUParticles3D = $JoltParticles
 # sound components
 @onready var s_bubble_idle : AudioStreamPlayer3D = $Sounds/BubbleIdle
 @onready var s_bubbles_popping : AudioStreamPlayer3D = $Sounds/BubblePopping
@@ -25,6 +26,7 @@ func _start() -> void:
 	increment_defect_delay_timer.start()
 	helper_defect_shake._toggle_shake(true)
 	s_bubble_idle.play()
+	jolt_particles.emitting = true	
 
 func _handle_increment_defect_delay_timer() :
 	
@@ -68,6 +70,8 @@ func _update_shake_progress(shake_percant : float) :
 
 func _stop() -> void:
 	
+	jolt_particles.emitting = false 
+	
 	s_bubble_end.play()	
 	helper_defect_shake._toggle_shake(false)
 	
@@ -83,6 +87,7 @@ func _stop() -> void:
 		await s_bubble_end.finished
 	
 	parent_brain_cell_container.scale = Vector3(1, 1, 1)
+	
 	
 
 	delete_event_notice()

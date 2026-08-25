@@ -53,6 +53,9 @@ func _process(_delta: float) -> void:
 		
 		if collider.is_cell_container : 
 			target_position.z = -2.5
+			GLPlayerState.emit_signal('toggle_pickup_reduce_player_senstivty', true)
+		
+		
 
 		ray_cast_controller_parent.set_ray_mode("interact")
 		return
@@ -94,6 +97,7 @@ func _handle_drop_item_delay_timer_timeout() -> void:
 func drop_item() -> void:
 	
 	target_position.z = -4.0
+	GLPlayerState.emit_signal('toggle_pickup_reduce_player_senstivty', false)
 	
 	drop_item_delay_timer.stop()
 

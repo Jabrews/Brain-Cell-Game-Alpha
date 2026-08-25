@@ -51,7 +51,7 @@ size = Vector3(1.05, 1.5701172, 1.05)
 
 [node name="CellContainer" type="CharacterBody3D" unique_id=2054877919 groups=["brain_cell_container"]]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_7es7g")
 
 [node name="StateMachine" type="Node" parent="." unique_id=2037224867]
@@ -100,7 +100,7 @@ script = ExtResource("14_rwqu2")
 [node name="DefectEventParentNode" type="Node3D" parent="CellDefectEventManager" unique_id=1988356075]
 
 [node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37283653, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46019834, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25769043, 0)

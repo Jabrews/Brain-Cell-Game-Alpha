@@ -14,6 +14,13 @@ var designated_brain_cell : BrainCell
 @onready var picked_up_state : Node = $StateMachine/PickedUp # for ray cast
 @onready var idle_state : Node = $StateMachine/Idle
 
+# falling / gravity
+var angular_velocity: Vector3 = Vector3.ZERO
+
+@export var fall_rotation_speed: float = 8.0
+@export var fall_rotation_damping: float = 2.0
+
+
 var on_stat_interpreter : bool = false
 
 # when they die from breeding prevent
@@ -78,10 +85,18 @@ func _physics_process(delta: float) -> void:
 		if state_machine.get_current_state_name() == "picked_up":
 			return
 		
-		velocity += get_gravity() * delta
+		velocity.y += get_gravity().y * delta
+		
+		# Rotate while falling.
+		rotation += angular_velocity * delta
+		
+		# Gradually reduce rotation.
+		angular_velocity = angular_velocity.lerp(
+			Vector3.ZERO,
+			1.0 - exp(-fall_rotation_damping * delta)
+		)
 		
 	move_and_slide()
-
 
 func _handle_cell_deleted(cell_name : String) :
 	
