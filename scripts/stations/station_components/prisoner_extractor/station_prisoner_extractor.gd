@@ -324,7 +324,9 @@ func _spawn_cells() -> void:
 			cells_to_create[1],
 			right_spawn_pos
 		)
-
+		
+	GLDefectEventMangerBus.emit_signal('prisoners_extracted', len(cells_to_create))		
+		
 	cells_to_create.clear()
 
 	# Extractor is now occupied.

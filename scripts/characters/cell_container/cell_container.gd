@@ -165,7 +165,6 @@ func check_for_cell_dead_on_start() :
 		# if they can die then kill em
 		if IVCellBreeding.newly_breeded_cell_can_die_from_defect:
 			
-			GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 			
 			kill_cell()
 		
@@ -184,7 +183,6 @@ func check_for_cell_dead_on_update() :
 	#### age death event ####
 	if designated_brain_cell.life_span <= 0:
 		
-		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 		
 		kill_cell()
 		
@@ -195,7 +193,6 @@ func check_for_cell_dead_on_update() :
 	#### defect death event ####
 	if has_fatal_defect():
 		
-		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')			
 		
 		kill_cell()
 		

@@ -11,9 +11,7 @@ var curr_trash_filled : int = 0
 
 func _ready() -> void:
 	GLGameManagerBus.connect('process_next_round', _handle_next_round)
-	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded)
-	GLCellTrashcanBus.connect('cell_deleted_from_shareholder_offer_station', _handle_cell_deleted_from_shareholder_offer_station)
-	GLCellTrashcanBus.connect('cell_killed_update_trashcan', _handle_cell_killed_update_trashcan)
+	GLDefectEventMangerBus.connect('prisoners_extracted', _handle_prisoners_extracted)
 
 func increment_trash_filled() :
 	
@@ -23,8 +21,6 @@ func increment_trash_filled() :
 		return
 	
 	curr_trash_filled += 1 
-	
-	GLCellTrashcanBus.emit_signal('cell_added_to_trashcan')
 	
 	capacity_label_manager._update_labels(curr_trash_filled, IVCellTrashcan.max_capaicty)
 	
@@ -46,20 +42,23 @@ func _handle_panel_cell_recieved(loaded_cell) :
 	# delete if loaded cell
 	if loaded_cell :
 		GLCellManagerBus.emit_signal('delete_selected_collected_cell', loaded_cell)
-		increment_trash_filled()
-
-func _handle_cell_breeded(_cell_1 : BrainCell, _cell_2 : BrainCell, _cell_3 : BrainCell,  _cell_4 : BrainCell, _cell_5 : BrainCell) :
-	increment_trash_filled()
+		GLDefectEventMangerBus.emit_signal('cell_added_to_trashcan')
 		
+		increment_trash_filled()
 
 func _handle_next_round() :
 	curr_trash_filled = 0
 	blood_plane_controller._reset()
 	capacity_label_manager._update_labels(curr_trash_filled, IVCellTrashcan.max_capaicty)
 	flood_blood_manager._reset()
-
-func _handle_cell_deleted_from_shareholder_offer_station() :
-	increment_trash_filled()
-
-func _handle_cell_killed_update_trashcan() :
-	increment_trash_filled()
+	
+func _handle_prisoners_extracted(quanity : int) :
+	var curr_quanitiy_index = 0
+	
+	while curr_quanitiy_index != quanity : 
+		increment_trash_filled()
+		await get_tree().create_timer(2.0).timeout
+		curr_quanitiy_index += 1
+		
+	
+	

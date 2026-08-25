@@ -82,14 +82,12 @@ func _handle_player_breeded_cells(
 			"delete_selected_collected_cell",
 			boost_left_cell
 		)
-		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')
 
 	if boost_right_cell and not updated_boost_right_cell:
 		GLCellManagerBus.emit_signal(
 			"delete_selected_collected_cell",
 			boost_right_cell
 		)
-		GLCellTrashcanBus.emit_signal('cell_killed_update_trashcan')
 
 	GLCellManagerBus.emit_signal(
 		"cell_breeded",
