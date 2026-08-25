@@ -1,7 +1,7 @@
 extends Node
 
 
-func _handle_sickness() -> void:
+func _handle() -> void:
 
 	# Find the room with the most cells in it.
 	var room_scores: Dictionary[String, int] = {

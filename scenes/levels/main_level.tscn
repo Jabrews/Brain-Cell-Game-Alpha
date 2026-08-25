@@ -26,18 +26,17 @@
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="PackedScene" uid="uid://b4cwkhm8fu843" path="res://debug/station_unhide_mutation/station_unhide_mutation.tscn" id="18_8muua"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
-[ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="18_58boi"]
+[ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/defect_event_triggerer.gd" id="18_58boi"]
 [ext_resource type="PackedScene" uid="uid://b4pvxjq2gtg0x" path="res://scenes/shareholder_demand_provider/shareholder_demand_provider.tscn" id="18_m2qbd"]
 [ext_resource type="Script" uid="uid://cfkbsod3fqx61" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_defect.gd" id="18_v2xyd"]
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
-[ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/helpers/jolt_hidden_stat_interpreter.gd" id="20_5xq6v"]
+[ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_interpreter.gd" id="20_5xq6v"]
 [ext_resource type="Script" uid="uid://hndem18jdi0y" path="res://scripts/game_manager/entitiy_room_management/entity_room_management.gd" id="20_ea07q"]
 [ext_resource type="Script" uid="uid://bxx34i2lndwh7" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/reduce_hidden_quanity.gd" id="20_wv5kd"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://cy8kcia20tw2y" path="res://scripts/game_manager/cell_creator/assemble_target/assemble_target.gd" id="22_dn28p"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
-[ext_resource type="Script" uid="uid://s4grsq8leedn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_events.gd" id="32_m5ih7"]
 [ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
 [ext_resource type="Script" uid="uid://dpxrm4asdg8ty" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/roll_to_exit_mutation_loop.gd" id="34_lp30k"]
 [ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/trigger_mutation_event.gd" id="35_lp30k"]
@@ -52,9 +51,11 @@
 [ext_resource type="Script" uid="uid://cwmjjbbbap4ly" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/all_hidden_event.gd" id="37_y36b7"]
 [ext_resource type="Script" uid="uid://conaqje0n7bu8" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/default_mutation_serving.gd" id="38_0ycs4"]
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
+[ext_resource type="Script" uid="uid://bphf1jk8k8jhq" path="res://scripts/game_manager/defect_event_manager/defect_event_manager.gd" id="39_lp30k"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
-[ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/helpers/sickness_cell_container.gd" id="40_l5rsp"]
-[ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_manager/helpers/bubble_cell_container.gd" id="41_l5rsp"]
+[ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/sickness_cell_container.gd" id="40_l5rsp"]
+[ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/bubble_cell_container.gd" id="41_l5rsp"]
+[ext_resource type="Script" uid="uid://dm406ltyvyxkh" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/defect_cell_container.gd" id="41_lp30k"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="PackedScene" uid="uid://dmuet5mnk23qy" path="res://scenes/door/door.tscn" id="57_ms0m2"]
@@ -657,27 +658,29 @@ script = ExtResource("36_r52yi")
 [node name="MutationSeenManager" type="Node" parent="GameManager" unique_id=1865371392]
 script = ExtResource("32_62614")
 
-[node name="DefectEventManager" type="Node" parent="GameManager" unique_id=1995310140]
+[node name="DefectEventManager" type="Node" parent="GameManager" unique_id=1406219683]
+script = ExtResource("39_lp30k")
+
+[node name="DefectEvenTriggerer" type="Node" parent="GameManager/DefectEventManager" unique_id=1995310140]
 script = ExtResource("18_58boi")
 
-[node name="SicknessCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=1831732341]
+[node name="DefectCellContainer" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=912366905]
+script = ExtResource("41_lp30k")
+
+[node name="SicknessCellContainer" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer/DefectCellContainer" unique_id=1831732341]
 script = ExtResource("40_l5rsp")
 
-[node name="BubbleCellContainer" type="Node" parent="GameManager/DefectEventManager" unique_id=229277195]
+[node name="BubbleCellContainer" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer/DefectCellContainer" unique_id=229277195]
 script = ExtResource("41_l5rsp")
 
-[node name="JoltHiddenStatInterpreter" type="Node" parent="GameManager/DefectEventManager" unique_id=85726172]
+[node name="DefectInterpreter" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=85726172]
 script = ExtResource("20_5xq6v")
 
-[node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager" unique_id=1548402198]
+[node name="DefectEventUpdateTimer" type="Timer" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=1548402198]
 wait_time = 10.0
-one_shot = true
 
 [node name="IncrementalValueController" type="Node" parent="GameManager" unique_id=823228964]
 script = ExtResource("31_alpj0")
-
-[node name="IVHelperDefectEvent" type="Node" parent="GameManager/IncrementalValueController" unique_id=2002699261]
-script = ExtResource("32_m5ih7")
 
 [node name="IVHelperHiddenStats" type="Node" parent="GameManager/IncrementalValueController" unique_id=235860088]
 script = ExtResource("35_wv5kd")

@@ -1,7 +1,7 @@
 extends Node
 
 
-func _handle_bubble() -> void:
+func _handle() -> void:
 	
 	# pick random cell 	
 	var ran_cell : BrainCell = GLCellManagerBus.collected_cells_refrence.pick_random()	

@@ -4,7 +4,6 @@ var round_incr_values_set = false
 var last_round : int = 0
 
 # components
-@onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
 @onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
 @onready var iv_helper_profiler_spare_progression : Node = $IVHelperProfilerSpareProgression
 @onready var iv_helper_cell_stat_creation : Node = $IVHelperCellStatCreation
@@ -90,7 +89,6 @@ func handle_round(round : int):
 @warning_ignore("shadowed_global_identifier")
 func handle_energy(round : int, energy: int) :
 	
-	iv_helper_defect_event._update_defect_event_values(round, energy)
 	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
 	iv_helper_profiler_spare_progression._update_spare_progression(round, energy)
 	iv_helper_cell_stat_creation._update_cell_stat_creation(round, energy)

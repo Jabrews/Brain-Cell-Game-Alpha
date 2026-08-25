@@ -24,6 +24,17 @@ func _ready() -> void:
 func _handle_panel_body_recieved(cell_container : CharacterBody3D) :
 	
 	loaded_cell_container = cell_container
+		
+	# DEALING WITH DEFECT EVENT WEIGHT
+	if cell_container:
+		if not IVDefectEventManager.weight_active_interpreters.has(stat_type):
+			IVDefectEventManager.weight_active_interpreters.append(stat_type)
+	else:
+		IVDefectEventManager.weight_active_interpreters.erase(stat_type)
+
+	IVDefectEventManager.weight_increase_interpreter_jolt_chance = (
+		not IVDefectEventManager.weight_active_interpreters.is_empty()
+)
 	
 	audio_manager.toggle_play_idle_drone(false)
 	

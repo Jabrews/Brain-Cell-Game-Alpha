@@ -1,71 +1,104 @@
 extends Node
 
-## components
-@onready var defect_event_update_timer: Timer = $DefectEventUpdateTimer
-@onready var jolt_hidden_stat_interpreter: Node = $JoltHiddenStatInterpreter
 
-@onready var sickness_cell_container : Node = $SicknessCellContainer
-@onready var bubble_cell_container : Node = $BubbleCellContainer
+var current_defect_urgency_num: int = 0
 
-@export var timer_decrease_per_trash_cell: float = 2.0
-@export var min_timer_timeout_time: float = 8.0
-
-var curr_timer_timeout_time: float
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') :
-		bubble_cell_container._handle_bubble()
-		
-		#jolt_hidden_stat_interpreter._handle_jolt()
 
 func _ready() -> void:
+	GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
+	GLDefectEventMangerBus.connect('cell_added_to_trashcan', _handle_cell_added_to_trashcan)
+	GLDefectEventMangerBus.connect('prisoners_extracted', _handle_prisoners_extracted)
 	
-	GLGameManagerBus.connect("process_next_round", _handle_next_round)
-	GLCellTrashcanBus.connect("cell_added_to_trashcan", _handle_cell_added_to_trash_can)
+	update_defect_event_chance()
+	
 
-	defect_event_update_timer.connect("timeout", _on_event_timer_timeout)
-
-
-func _handle_next_round() -> void:
-	_reset_timer_timeout()
-	_restart_event_timer()
+func _handle_process_next_round() -> void:
+	current_defect_urgency_num = 0
+	update_defect_event_chance()
 
 
-func _handle_cell_added_to_trash_can() -> void:
-	curr_timer_timeout_time -= timer_decrease_per_trash_cell
-	curr_timer_timeout_time = max(curr_timer_timeout_time, min_timer_timeout_time)
+func _handle_cell_added_to_trashcan() -> void:
+	current_defect_urgency_num += 1
+	update_defect_event_chance()
 
 
-func _on_event_timer_timeout() -> void:
-	chance_for_defect_event()
-	_restart_event_timer()
+func _handle_prisoners_extracted(quantity: int) -> void:
+	current_defect_urgency_num += quantity
+	update_defect_event_chance()
 
 
-func chance_for_defect_event() -> void:
-	var no_event_chance: int = IVDefectEventManager.no_event_chance
-	var jolt_cell_container_chance: int = IVDefectEventManager.jolt_cell_container_chance
-	var jolt_hidden_stat_interpreter_chance: int = IVDefectEventManager.jolt_hidden_stat_interpreter_chance
+func get_defect_urgency_phase(defect_urgency_num: int) -> int:
+	
+	var trashcan_max_capacity: int = IVCellTrashcan.max_capaicty
+	
+	var urgency_percent: float = (
+		float(defect_urgency_num) / float(trashcan_max_capacity)
+	)
+	
+	if urgency_percent >= 1.0:
+		return 3
+	elif urgency_percent >= 0.5:
+		return 2
+	else:
+		return 1
 
-	var ran_num: int = randi_range(1, 100)
-
-	if ran_num < no_event_chance:
-		return
-
-	elif ran_num <= no_event_chance + jolt_hidden_stat_interpreter_chance:
-		jolt_hidden_stat_interpreter._handle_jolt()
-
-	elif ran_num <= (
-		no_event_chance
-		+ jolt_hidden_stat_interpreter_chance
-		+ jolt_cell_container_chance
-	):
-		pass
-
-
-func _reset_timer_timeout() -> void:
-	curr_timer_timeout_time = IVDefectEventManager.max_defect_event_update_timer_duration
-
-
-func _restart_event_timer() -> void:
-	defect_event_update_timer.wait_time = curr_timer_timeout_time
-	defect_event_update_timer.start()
+func update_defect_event_chance() -> void:
+	
+	var urgency_phase: int = get_defect_urgency_phase(
+		current_defect_urgency_num
+	)
+	
+	match GLGameManagerBus.current_round:
+		1:
+			match urgency_phase:
+				1:
+					# CHANCES
+					IVDefectEventManager.no_event_chance = 50 # BASE
+					
+					IVDefectEventManager.cell_container_event_chance = 75 # BASE
+					IVDefectEventManager.container_bubble_chance = 0
+					IVDefectEventManager.container_sickness_chance = 100
+					
+					IVDefectEventManager.jolt_interpreter_chance = 25 # BASE
+					IVDefectEventManager.jolt_all_interpreter_chance = 0
+					# INTERPRETER ENERGY
+					IVDefectEventManager.interpreter_jolt_energy_decrease_single = 1
+					IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
+					
+					# WAIT TIME
+					IVDefectEventManager.defect_event_trigger_wait_time = 20.0
+				
+				2:
+					# CHANCES
+					IVDefectEventManager.no_event_chance = 30 # BASE
+					
+					IVDefectEventManager.cell_container_event_chance = 25 # BASE
+					IVDefectEventManager.container_bubble_chance = 75
+					IVDefectEventManager.container_sickness_chance = 25
+					
+					IVDefectEventManager.jolt_interpreter_chance = 75 # BASE
+					IVDefectEventManager.jolt_all_interpreter_chance = 20
+					# INTERPRETER ENERGY
+					IVDefectEventManager.interpreter_jolt_energy_decrease_single = 1
+					IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
+					
+					# WAIT TIME
+					IVDefectEventManager.defect_event_trigger_wait_time = 20.0
+				
+				3:
+					# CHANCES
+					IVDefectEventManager.no_event_chance = 25 # BASE
+					
+					IVDefectEventManager.cell_container_event_chance = 50 # BASE
+					IVDefectEventManager.container_bubble_chance = 50
+					IVDefectEventManager.container_sickness_chance = 50
+					
+					IVDefectEventManager.jolt_interpreter_chance = 50 # BASE
+					IVDefectEventManager.jolt_all_interpreter_chance = 35
+					# INTERPRETER ENERGY
+					IVDefectEventManager.interpreter_jolt_energy_decrease_single = 1
+					IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
+					
+					# WAIT TIME
+					IVDefectEventManager.defect_event_trigger_wait_time = 15.0
+				

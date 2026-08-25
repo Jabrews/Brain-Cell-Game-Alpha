@@ -1,8 +1,7 @@
 extends Node
 
 
-
-func _handle_jolt() :
+func _initate_defect_event(): 
 	
 	# dont jolt if no stats to hide (round 1)	
 	if len(IVHiddenStats.stats_to_hide) == 0 :
@@ -12,39 +11,41 @@ func _handle_jolt() :
 		decide_single_stat_interpreter()
 		return
 	
-	
 	# random num (1 - 100)
 	var ran_num = randi_range(1, 100)
-	var all_jolt_chance = IVDefectEventManager.chance_for_multiple_hidden_stat_interpreter_jolt
+	var all_jolt_chance = IVDefectEventManager.jolt_all_interpreter_chance
 	
-	# all interpreters jolt
-	if ran_num <= all_jolt_chance:
-		
-		
+	# ALL JOLT 
+	if ran_num <= all_jolt_chance : 
 		GLDefectEventMangerBus.emit_signal(
 			"event_hidden_stat_interpreter_jolt",
 			IVHiddenStats.stats_to_hide,
 		)
 		
+		GLPlayerLocalSoundsBus.emit_signal('sound_hidden_stat_interpreter_all_jolt')
+		
 		GLEventNoticeManagerBus.emit_signal('create_event_notice', 
 			EventNotice.new('defect_event', 'ALL hidden stat interpreters jolting', {'interpreters' : IVHiddenStats.stats_to_hide.duplicate()} , 1.5)
 		)
-		
-		# emit sound
-		GLPlayerLocalSoundsBus.emit_signal('sound_hidden_stat_interpreter_all_jolt')
-	
-	# single interpreter jolt
+	# SINGLE JOLT
 	else:
 		decide_single_stat_interpreter()
 	
 
 func decide_single_stat_interpreter() -> void:
 	
-	var stats_to_hide = IVHiddenStats.stats_to_hide	
 	
-	var random_stat = stats_to_hide.pick_random()
+	var chosen_single_interpreter : String	= ''
 	
-	match  random_stat :
+	if IVDefectEventManager.weight_active_interpreters :
+		var weight_interpreters : Array[String] = IVDefectEventManager.weight_active_interpreters
+		if len(weight_interpreters) > 0 : 
+			chosen_single_interpreter = weight_interpreters.pick_random()
+	else : 
+		var stats_to_hide = IVHiddenStats.stats_to_hide	
+		chosen_single_interpreter = stats_to_hide.pick_random()
+	
+	match  chosen_single_interpreter :
 		'strength' :
 			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['strength'])
 
@@ -53,10 +54,10 @@ func decide_single_stat_interpreter() -> void:
 		'community' :
 			GLDefectEventMangerBus.emit_signal('event_hidden_stat_interpreter_jolt', ['community'])
 		_ :
-			print('undable to find random stat : ', random_stat)
+			print('undable to find random stat : ', chosen_single_interpreter)
 	
 	GLEventNoticeManagerBus.emit_signal('create_event_notice', 
-		EventNotice.new('defect_event', random_stat.to_upper() + ' hidden stat interpreter jolting', {'interpreters' : [random_stat]}, 1.0)		
+		EventNotice.new('defect_event', chosen_single_interpreter.to_upper() + ' hidden stat interpreter jolting', {'interpreters' : [chosen_single_interpreter]}, 1.0)		
 	)
 	
 	
