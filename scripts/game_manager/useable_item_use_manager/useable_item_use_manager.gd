@@ -17,21 +17,47 @@ func connect_signals() :
 
 func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) : 
 	
-	print('used defect shot. decrease : ', IVItemStats.defect_shot_decrease)
 	
-	match selected_stat : 
-		'strength' :
-			selected_brain_cell.strength.defect -= IVItemStats.defect_shot_decrease
-		'intelligence' :
-			selected_brain_cell.intelligence.defect -= IVItemStats.defect_shot_decrease
-		'community' : 
-			selected_brain_cell.community.defect -= IVItemStats.defect_shot_decrease
-		_ : 
-			push_error('no stat found for defect shot decrease : ', selected_stat)
-		
-	GLMutationSentientState.emit_signal('item_used_on_cell', 'defect_shot', selected_brain_cell.name)	
-			
-	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
+	match selected_stat:
+		"strength":
+			if selected_brain_cell.strength.enabled:
+				selected_brain_cell.strength.defect = clamp(
+					selected_brain_cell.strength.defect - IVItemStats.defect_shot_decrease,
+					0,
+					IVCellCreator.max_stat_value
+				)
+
+		"intelligence":
+			selected_brain_cell.intelligence.defect = clamp(
+				selected_brain_cell.intelligence.defect - IVItemStats.defect_shot_decrease,
+				0,
+				IVCellCreator.max_stat_value
+			)
+
+		"community":
+			selected_brain_cell.community.defect = clamp(
+				selected_brain_cell.community.defect - IVItemStats.defect_shot_decrease,
+				0,
+				IVCellCreator.max_stat_value
+			)
+
+		_:
+			push_error(
+				"no stat found for defect shot decrease: ",
+				selected_stat
+			)
+
+	GLMutationSentientState.emit_signal(
+		"item_used_on_cell",
+		"defect_shot",
+		selected_brain_cell.name
+	)
+
+	GLCellManagerBus.emit_signal(
+		"collected_cell_changed",
+		selected_brain_cell
+	)
+
 	
 func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
 	selected_brain_cell.strength.hidden = false

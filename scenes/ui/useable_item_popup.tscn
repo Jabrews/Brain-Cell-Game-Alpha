@@ -166,7 +166,7 @@ offset_top = 152.0
 offset_right = 25.27
 offset_bottom = 192.0
 script = ExtResource("4_eww3u")
-stat_type = "strength"
+stat_type = "intelligence"
 
 [node name="Bar" type="TextureRect" parent="Intelligence" unique_id=1514770825]
 texture_filter = 1
@@ -227,7 +227,7 @@ offset_top = 296.0
 offset_right = 25.27
 offset_bottom = 336.0
 script = ExtResource("4_eww3u")
-stat_type = "strength"
+stat_type = "community"
 
 [node name="Bar" type="TextureRect" parent="Community" unique_id=1768643702]
 texture_filter = 1

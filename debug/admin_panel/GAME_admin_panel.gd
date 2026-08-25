@@ -1,6 +1,6 @@
 extends Node
 
-var enabled : bool = true 
+var enabled : bool = false 
 
 var admin_panel_root : AdminPanelRoot
 # per batch
@@ -12,4 +12,4 @@ var updater_defect_event : AdminDefectEvent
 # when save = false we dont save into json log
 var save_updater_admin_batch_mutation : bool = false 
 var save_random_mutation_event : bool = false
-var save_defect_event : bool = true 
+var save_defect_event : bool = false 

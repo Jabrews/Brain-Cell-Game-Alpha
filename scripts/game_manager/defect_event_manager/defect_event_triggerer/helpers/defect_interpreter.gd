@@ -1,5 +1,10 @@
 extends Node
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') : 
+		_initate_defect_event()
+		
+
 
 func _initate_defect_event(): 
 	
@@ -57,7 +62,7 @@ func decide_single_stat_interpreter() -> void:
 		if len(weight_interpreters) > 0 : 
 			chosen_single_interpreter = weight_interpreters.pick_random()
 	else : 
-		var stats_to_hide = IVHiddenStats.stats_to_hide	
+		var stats_to_hide = IVHiddenStats.stats_to_hide.duplicate()
 		chosen_single_interpreter = stats_to_hide.pick_random()
 	
 	match  chosen_single_interpreter :

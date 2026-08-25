@@ -13,7 +13,7 @@ var saved_mouse_sensitivty_y : float
 @onready var camera := $CameraPivot/Camera3D
 @onready var interact_ray : RayCast3D = $CameraPivot/Camera3D/RayCastController/InteractRay
 
-var speed : float = 20.0
+var speed : float = 15.0
 
 var is_paused : bool = false
 

@@ -40,7 +40,6 @@ func _toggle_cell_picked_up(toggle_value: bool) -> void:
 func _handle_stopped_jolt(interpreter_stat_type : String) :
 	
 	if data : 
-		print('stopped jolt data : ', data)
 		if data['interpreter_stat_type'] : 	
 			if data['interpreter_stat_type'] == interpreter_stat_type : 
 				_stop()

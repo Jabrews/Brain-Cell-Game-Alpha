@@ -7,7 +7,7 @@ extends Node
 
 func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCell]) :
 	
-	var stats_to_hide = IVHiddenStats.stats_to_hide
+	var stats_to_hide = IVHiddenStats.stats_to_hide.duplicate()
 	
 	# exit early if no stats to hide
 	if len(stats_to_hide) == 0 :
@@ -43,7 +43,7 @@ func _handle_hidden(constructor : CellConstructor, new_prisoners : Array[BrainCe
 	
 func randomly_apply_hidden_stats(new_prisoners : Array[BrainCell], max_stats_to_hide : int) -> Array[BrainCell]:
 
-	var stats_to_hide : Array = IVHiddenStats.stats_to_hide
+	var stats_to_hide : Array = IVHiddenStats.stats_to_hide.duplicate()
 	var valid_targets : Array = []
 
 	# exit early if no stats are allowed to be hidden
