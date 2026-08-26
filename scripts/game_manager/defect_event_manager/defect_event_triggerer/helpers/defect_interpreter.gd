@@ -1,10 +1,5 @@
 extends Node
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') : 
-		_initate_defect_event()
-		
-
 
 func _initate_defect_event(): 
 	

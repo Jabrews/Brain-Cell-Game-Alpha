@@ -120,7 +120,7 @@ radius = 1.2
 height = 0.001
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ixuf4"]
-radius = 3.0
+radius = 1.7
 
 [node name="CellTrashCan" type="Node3D" unique_id=995289130]
 script = ExtResource("1_sa7a1")

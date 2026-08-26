@@ -26,6 +26,7 @@ func _ready() -> void:
 
 func _handle_brain_cell_recieved(cell : BrainCell) -> void:
 	
+	
 	update_disruptable_recievers(cell.mutations)
 	
 	screen_stat_reciever_display._handle_brain_cell_recieved(cell)

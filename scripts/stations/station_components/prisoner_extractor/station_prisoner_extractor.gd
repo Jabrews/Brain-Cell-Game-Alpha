@@ -355,7 +355,6 @@ func _spawn_cell(
 
 ### CELL AREA ########################################################
 
-
 func _handle_body_enter_left(body: Node3D) -> void:
 
 	if not body.is_in_group('brain_cell_container'):

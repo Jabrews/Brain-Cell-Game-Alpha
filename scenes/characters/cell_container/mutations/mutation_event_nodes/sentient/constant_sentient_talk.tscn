@@ -35,7 +35,7 @@ material = SubResource("StandardMaterial3D_weyje")
 script = ExtResource("1_kuhs7")
 
 [node name="SpeechBubble" type="Node3D" parent="." unique_id=58424051]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44658852, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9137509, 0)
 script = ExtResource("2_05ffk")
 
 [node name="UpdateContainerBasis" type="Node" parent="SpeechBubble" unique_id=607081507]

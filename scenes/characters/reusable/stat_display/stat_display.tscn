@@ -45,6 +45,7 @@ script = ExtResource("3_fo6nq")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StatDisplayArea" unique_id=1722532323]
 shape = SubResource("BoxShape3D_8yf24")
+debug_color = Color(0.6305591, 0.53114045, 0, 0.41960785)
 
 [node name="MutationMeshParent" type="Node3D" parent="." unique_id=1312006427]
 
