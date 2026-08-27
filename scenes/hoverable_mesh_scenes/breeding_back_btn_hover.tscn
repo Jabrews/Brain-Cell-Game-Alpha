@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cnf6sr3qparor"]
+
+[ext_resource type="Material" uid="uid://chj4bj7fdfuss" path="res://reusable/hoverable/hover-outline_mat.tres" id="1_yos0o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_27jye"]
+material = ExtResource("1_yos0o")
+size = Vector3(0.11142579, 0.17329101, 0.70037234)
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=916103956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0010650754)
+mesh = SubResource("BoxMesh_27jye")

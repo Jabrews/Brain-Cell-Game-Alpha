@@ -37,14 +37,20 @@ func _attack_player() :
 	
 	rotate_to_face_player = false
 	
+	
 	for crystal : CharacterBody3D in parent_crystal_node.get_children() :
 		
-		s_shoot.play()
+		if not crystal : 		
+			return
 		
+		
+		s_shoot.play()
 		
 		crystal.state_machine.switch_state(crystal.state_machine.State.ATTACK)
 		
 		await get_tree().create_timer(shoot_delay).timeout		
+		
+		
 		
 	
 	

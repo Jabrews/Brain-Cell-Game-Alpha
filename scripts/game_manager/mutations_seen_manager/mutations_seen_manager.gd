@@ -4,13 +4,13 @@ func _ready() -> void:
 	GLMutationSeenManagerBus.connect('mutation_seen_by_player', _handle_mutation_seen_by_player)
 
 var mutations_seen: Dictionary = {
-	"airborne": false,
-	"sentient": false,
-	"lonley": false,
-	"disrupter": false,
-	"exsplosive": false,
-	"cognisance": false,
-	"telekinetic": false,
+	"airborne": true,
+	"sentient": true,
+	"lonley": true,
+	"disrupter": true,
+	"exsplosive": true,
+	"cognisance": true,
+	"telekinetic": true,
 }
 
 func _find_mutation_seen(mutation_type: String) -> bool:

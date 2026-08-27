@@ -66,7 +66,7 @@ func update_defect_event_chance() -> void:
 					IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
 					
 					# WAIT TIME
-					IVDefectEventManager.defect_event_trigger_wait_time = 20.0
+					IVDefectEventManager.defect_event_trigger_wait_time = 25.0
 				
 				2:
 					# CHANCES
@@ -83,7 +83,7 @@ func update_defect_event_chance() -> void:
 					IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
 					
 					# WAIT TIME
-					IVDefectEventManager.defect_event_trigger_wait_time = 20.0
+					IVDefectEventManager.defect_event_trigger_wait_time = 25.0
 				
 				3:
 					# CHANCES
@@ -100,5 +100,5 @@ func update_defect_event_chance() -> void:
 					IVDefectEventManager.interpreter_jolt_energy_decrease_multiple = 1
 					
 					# WAIT TIME
-					IVDefectEventManager.defect_event_trigger_wait_time = 15.0
+					IVDefectEventManager.defect_event_trigger_wait_time = 25.0
 				

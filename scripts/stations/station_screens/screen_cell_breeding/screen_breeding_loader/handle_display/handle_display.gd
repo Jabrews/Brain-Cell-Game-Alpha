@@ -61,7 +61,11 @@ func _handle_display(
 	
 	# dealing with waiting to see results
 	var has_both_cells = main_left_cell and main_right_cell
-	helper_handle_confirm_btn._cells_detcted(has_both_cells)
+	helper_handle_confirm_btn._cells_detcted(has_both_cells) # confirm btn
+	
+	
+	
+	
 	
 	# dealing with new cell display
 	if has_both_cells : 
@@ -95,10 +99,10 @@ func apply_charge_boost_to_copy(
 
 func update_symbols(main_left_cell : BrainCell, main_right_cell : BrainCell) -> void:
 	if main_left_cell:
-		symbol_manager.check_for_checkmarks("left", main_left_cell)
+		pass
 	
 	if main_right_cell:
-		symbol_manager.check_for_checkmarks("right", main_right_cell)
+		pass
 	
 	if main_left_cell and main_right_cell:
 		symbol_manager.check_for_symbols(main_left_cell, main_right_cell)
@@ -107,9 +111,9 @@ func update_symbols(main_left_cell : BrainCell, main_right_cell : BrainCell) -> 
 		symbol_manager.hide_symbols()
 		
 	if not main_left_cell : 
-		symbol_manager.hide_checkmarks('left', main_left_cell)
+		pass
 	
 	if not  main_right_cell: 
-		symbol_manager.hide_checkmarks('right', main_right_cell)
+		pass
 		
 		

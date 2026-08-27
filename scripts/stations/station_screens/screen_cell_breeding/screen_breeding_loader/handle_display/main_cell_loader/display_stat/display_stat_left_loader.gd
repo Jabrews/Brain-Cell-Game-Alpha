@@ -38,6 +38,8 @@ const STAT_TYPES: Array[String] = [
 	$"../../../SeatCellLoading/LeftLoader/LoadedCellDisplay/OffDisableLabels/CommunityOffLabel"
 ]
 
+@onready var left_life_span_label : Label = 	$"../../../SeatCellLoading/LeftLoader/LoadedCellDisplay/LifeSpan/LifeSpanLabel"
+
 
 func _ready() -> void:
 	for clean_bar: Sprite2D in left_clean_bars:
@@ -58,6 +60,8 @@ func display(
 	var max_value: float = float(IVCellCreator.max_stat_value)
 
 	left_cell_name_label.text = str(brain_cell.name)
+	
+	left_life_span_label.text = str(brain_cell.life_span)	
 
 	for i: int in STAT_TYPES.size():
 		var stat_type: String = STAT_TYPES[i]

@@ -4,6 +4,7 @@ extends Node
 @onready var press_to_see_result_label : Label = $"../SeatCellLoading/PressBtnToSeeResult"
 @onready var parent_seat_cell_loading : Node2D = $"../SeatCellLoading"
 @onready var parent_new_cell_preview : Node2D = $"../NewCellPreview"
+# disrupt stuff
 @onready var parent_disrupt_manager_loader : Control = $"../DisruptorManagerSeatLoading"
 @onready var parent_disrupt_new_cell : Control = $"../DisruptorManagerNewCell"
 

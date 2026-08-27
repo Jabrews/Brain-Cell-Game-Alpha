@@ -1,12 +1,8 @@
 extends Node
 
-@onready var handle_checkmarks : Node = $HandleCheckmarks
 @onready var handle_hidden : Node = $HandleHidden
 @onready var handle_arrow : Node = $HandleArrow
 
-
-func check_for_checkmarks(side : String, brain_cell : BrainCell) -> void:
-	handle_checkmarks._handle(side, brain_cell)
 
 func check_for_symbols(cell_1 : BrainCell, cell_2 : BrainCell) -> void:
 
@@ -48,7 +44,5 @@ func hide_symbols() -> void:
 			if child is CanvasItem:
 				child.visible = false
 
-func hide_checkmarks(side : String, brain_cell : BrainCell) :
-	handle_checkmarks._handle(side, brain_cell)
 	
 	
