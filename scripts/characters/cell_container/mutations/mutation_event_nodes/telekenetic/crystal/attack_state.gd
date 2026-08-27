@@ -4,6 +4,7 @@ extends Node
 
 # Components
 @onready var parent_crystal_body: CharacterBody3D = $"../.."
+@onready var detect_coll_area : Area3D = $"../../DetectCollisionArea"
 
 var player: CharacterBody3D
 var move_direction: Vector3 = Vector3.ZERO
@@ -44,6 +45,11 @@ func state_start() -> void:
 			player.global_position
 		)
 	)
+
+	detect_coll_area.set_collision_mask_value(1, true)
+	detect_coll_area.set_collision_mask_value(2, true)
+	detect_coll_area.set_collision_mask_value(3, true)
+	
 
 
 func state_process(delta: float) -> void:

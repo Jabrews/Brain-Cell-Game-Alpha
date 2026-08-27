@@ -38,9 +38,9 @@ func handle_float_vertical_tween():
 	#float_tween.set_trans(Tween.TRANS_QUAD)
 	#float_tween.set_ease(Tween.EASE_OUT)
 
-	float_tween.tween_property(parent_crystal_body, "position:y", org_pos.y + float_y_distance, 1.0)
-	float_tween.tween_property(parent_crystal_body, "position:y", org_pos.y, 0.5 )
-	float_tween.tween_property(parent_crystal_body, "position:y", org_pos.y - float_y_distance, 1.0)
+	float_tween.tween_property(parent_crystal_body, "global_position:y", org_pos.y + float_y_distance, 1.0)
+	float_tween.tween_property(parent_crystal_body, "global_position:y", org_pos.y, 0.5 )
+	float_tween.tween_property(parent_crystal_body, "global_position:y", org_pos.y - float_y_distance, 1.0)
 
 func handle_rotate_tween() -> void:
 	if rotate_tween:

@@ -9,17 +9,18 @@
 script = ExtResource("1_fa78k")
 
 [node name="CrystalManager" type="Node3D" parent="." unique_id=1599245314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3691579, 0)
 script = ExtResource("2_y566e")
 shoot_delay = 2.5
 
 [node name="Pos1" type="Node3D" parent="CrystalManager" unique_id=1628397985]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 1.3000001, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.64928234, 0)
 
 [node name="Pos2" type="Node3D" parent="CrystalManager" unique_id=1536701462]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 1.3000001, 2.9802322e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.6299008, 2.9802322e-08)
 
 [node name="Pos3" type="Node3D" parent="CrystalManager" unique_id=1271360766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 5.9604645e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9787687, 5.9604645e-08)
 
 [node name="ParentCrystalNode" type="Node3D" parent="CrystalManager" unique_id=1046529884]
 
