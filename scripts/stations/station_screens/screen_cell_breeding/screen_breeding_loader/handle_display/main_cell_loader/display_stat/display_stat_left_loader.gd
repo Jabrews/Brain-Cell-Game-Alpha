@@ -38,7 +38,7 @@ const STAT_TYPES: Array[String] = [
 	$"../../../SeatCellLoading/LeftLoader/LoadedCellDisplay/OffDisableLabels/CommunityOffLabel"
 ]
 
-@onready var left_life_span_label : Label = 	$"../../../SeatCellLoading/LeftLoader/LoadedCellDisplay/LifeSpan/LifeSpanLabel"
+@onready var left_life_span_label : Label = 	$"../../../SeatCellLoading/LeftLoader/LoadedCellDisplay/LifeSpan/HeaderLabel"
 
 
 func _ready() -> void:
@@ -61,7 +61,7 @@ func display(
 
 	left_cell_name_label.text = str(brain_cell.name)
 	
-	left_life_span_label.text = str(brain_cell.life_span)	
+	left_life_span_label.text = 'lifespan - ' + str(brain_cell.life_span)	
 
 	for i: int in STAT_TYPES.size():
 		var stat_type: String = STAT_TYPES[i]

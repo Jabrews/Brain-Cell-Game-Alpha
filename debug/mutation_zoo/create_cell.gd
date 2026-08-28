@@ -36,7 +36,7 @@ var mutation_two: String = "none"
 )
 var mutation_three: String = "none"
 
-@onready var brain_cell_container_p_s : PackedScene = preload("res://scenes/characters/cell_container/CellContainer.tscn")
+@onready var brain_cell_container_p_s : PackedScene = preload("res://scenes/characters/cell_container/cell_container.tscn")
 @onready var spawn_pos : Node3D = $SpawnPos
 
 

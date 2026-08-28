@@ -367,6 +367,7 @@ func _handle_collected_cell_changed(cell : BrainCell) :
 
 func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 
 	print('DEBUG : getting debug created cells')
+	print('got target cell : ', new_target_cell)
 	set_target_cell(new_target_cell)
 	set_collected_cells(new_collected_cells)
 ###################

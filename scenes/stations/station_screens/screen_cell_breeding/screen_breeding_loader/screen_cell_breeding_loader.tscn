@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="18_b1ii0"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="18_gs2dg"]
 [ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/screen_cell_breeding/label_press_to_see_result.gd" id="19_klfi8"]
+[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_breeding_loader/up_arrow_symbol.gd" id="25_m11cf"]
 [ext_resource type="Script" uid="uid://b3gfucopkv7ts" path="res://scripts/stations/station_screens/screen_cell_breeding/screen_breeding_loader/disrupt/breeding_loader_disrupt_warning.gd" id="27_ok6h4"]
 [ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="27_rc7kt"]
 [ext_resource type="Script" uid="uid://tp63bilvru4r" path="res://scripts/stations/station_screens/screen_cell_breeding/interupt/disruptor_arrow_blocker.gd" id="28_0av1a"]
@@ -180,214 +181,6 @@ shader_parameter/edge_padding = 2.6370001252575
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6hm17"]
 load_path = "res://.godot/imported/progress_bar_under.png-e57f123632c318b1d08ae788f52e6ada.ctex"
 
-[sub_resource type="Shader" id="Shader_2g57t"]
-code = "shader_type canvas_item;
-
-uniform float stat_defect_value : hint_range(0.0, 1.0);
-uniform float start_value : hint_range(0.0, 1.0);
-
-uniform vec4 defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
-
-uniform vec4 increase_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
-uniform vec4 decrease_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
-
-uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
-uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
-uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
-
-// Keeps shader from coloring the white/empty edge pixels.
-uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
-
-void fragment() {
-
-	vec4 tex = texture(TEXTURE, UV);
-
-	float tex_width = float(textureSize(TEXTURE, 0).x);
-	float pixel_x = UV.x * tex_width;
-
-	bool inside_edges =
-		pixel_x >= edge_padding &&
-		pixel_x <= (tex_width - edge_padding);
-
-	vec4 result = tex;
-
-	if (inside_edges && tex.a > 0.0) {
-
-		// Base defect bar
-		if (UV.x <= stat_defect_value) {
-			result = vec4(defect_color.rgb, tex.a);
-		}
-
-		// Change stripe
-		float left = min(start_value, stat_defect_value);
-		float right = max(start_value, stat_defect_value);
-
-		if (
-			right - left > 0.001 &&
-			UV.x >= left &&
-			UV.x <= right
-		) {
-
-			float region_uv = (UV.x - left) / (right - left);
-
-			vec4 overlay_color;
-			float stripe_pos;
-
-			if (stat_defect_value > start_value) {
-				// Defect increased -> red stripe moves right
-				overlay_color = increase_color;
-				stripe_pos = fract(TIME * stripe_speed);
-			}
-			else {
-				// Defect decreased -> blue stripe moves left
-				overlay_color = decrease_color;
-				stripe_pos = 1.0 - fract(TIME * stripe_speed);
-			}
-
-			float stripe =
-				smoothstep(
-					stripe_pos - stripe_width,
-					stripe_pos,
-					region_uv
-				)
-				*
-				(
-					1.0
-					-
-					smoothstep(
-						stripe_pos,
-						stripe_pos + stripe_width,
-						region_uv
-					)
-				);
-
-			result.rgb = mix(
-				result.rgb,
-				overlay_color.rgb,
-				stripe * overlay_opacity
-			);
-		}
-	}
-
-	COLOR = result;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kcfsm"]
-shader = SubResource("Shader_2g57t")
-shader_parameter/stat_defect_value = 0.0
-shader_parameter/start_value = 0.0
-shader_parameter/defect_color = Color(0.5, 0, 0, 1)
-shader_parameter/increase_color = Color(1, 0.2, 0.2, 1)
-shader_parameter/decrease_color = Color(0.2, 0.8, 1, 1)
-shader_parameter/overlay_opacity = 0.2490000118275
-shader_parameter/stripe_width = 0.10000000405148
-shader_parameter/stripe_speed = 1.00000004424012
-shader_parameter/edge_padding = 2.6370001252575
-
-[sub_resource type="Shader" id="Shader_v3c3g"]
-code = "shader_type canvas_item;
-
-uniform float stat_defect_value : hint_range(0.0, 1.0);
-uniform float start_value : hint_range(0.0, 1.0);
-
-uniform vec4 defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
-
-uniform vec4 increase_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
-uniform vec4 decrease_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
-
-uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
-uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
-uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
-
-// Keeps shader from coloring the white/empty edge pixels.
-uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
-
-void fragment() {
-
-	vec4 tex = texture(TEXTURE, UV);
-
-	float tex_width = float(textureSize(TEXTURE, 0).x);
-	float pixel_x = UV.x * tex_width;
-
-	bool inside_edges =
-		pixel_x >= edge_padding &&
-		pixel_x <= (tex_width - edge_padding);
-
-	vec4 result = tex;
-
-	if (inside_edges && tex.a > 0.0) {
-
-		// Base defect bar
-		if (UV.x <= stat_defect_value) {
-			result = vec4(defect_color.rgb, tex.a);
-		}
-
-		// Change stripe
-		float left = min(start_value, stat_defect_value);
-		float right = max(start_value, stat_defect_value);
-
-		if (
-			right - left > 0.001 &&
-			UV.x >= left &&
-			UV.x <= right
-		) {
-
-			float region_uv = (UV.x - left) / (right - left);
-
-			vec4 overlay_color;
-			float stripe_pos;
-
-			if (stat_defect_value > start_value) {
-				// Defect increased -> red stripe moves right
-				overlay_color = increase_color;
-				stripe_pos = fract(TIME * stripe_speed);
-			}
-			else {
-				// Defect decreased -> blue stripe moves left
-				overlay_color = decrease_color;
-				stripe_pos = 1.0 - fract(TIME * stripe_speed);
-			}
-
-			float stripe =
-				smoothstep(
-					stripe_pos - stripe_width,
-					stripe_pos,
-					region_uv
-				)
-				*
-				(
-					1.0
-					-
-					smoothstep(
-						stripe_pos,
-						stripe_pos + stripe_width,
-						region_uv
-					)
-				);
-
-			result.rgb = mix(
-				result.rgb,
-				overlay_color.rgb,
-				stripe * overlay_opacity
-			);
-		}
-	}
-
-	COLOR = result;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_in0xe"]
-shader = SubResource("Shader_v3c3g")
-shader_parameter/stat_defect_value = 0.0
-shader_parameter/start_value = 0.0
-shader_parameter/defect_color = Color(0.5, 0, 0, 1)
-shader_parameter/increase_color = Color(1, 0.2, 0.2, 1)
-shader_parameter/decrease_color = Color(0.2, 0.8, 1, 1)
-shader_parameter/overlay_opacity = 0.2490000118275
-shader_parameter/stripe_width = 0.10000000405148
-shader_parameter/stripe_speed = 1.00000004424012
-shader_parameter/edge_padding = 2.6370001252575
-
 [sub_resource type="Shader" id="Shader_3tyvt"]
 code = "shader_type canvas_item;
 
@@ -519,262 +312,6 @@ shader_parameter/edge_padding = 3.2970001566075
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h8cmu"]
 load_path = "res://.godot/imported/progress_bar_under.png-a4ddba47758af10b1c8dd6544faba67e.ctex"
 
-[sub_resource type="Shader" id="Shader_xq2ry"]
-code = "shader_type canvas_item;
-
-uniform float prisoner_value : hint_range(0.0, 1.0);
-uniform float target_value : hint_range(0.0, 1.0);
-uniform float start_value : hint_range(0.0, 1.0);
-
-uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
-uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
-
-uniform vec4 increase_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
-uniform vec4 decrease_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
-
-uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
-uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
-uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
-uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
-
-// Keeps shader from coloring the white/empty edge pixels.
-uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
-
-void fragment() {
-
-	vec4 tex = texture(TEXTURE, UV);
-
-	float tex_width = float(textureSize(TEXTURE, 0).x);
-	float pixel_x = UV.x * tex_width;
-
-	bool inside_edges =
-		pixel_x >= edge_padding &&
-		pixel_x <= (tex_width - edge_padding);
-
-	float in_yellow = step(UV.x, prisoner_value);
-	float in_red = step(UV.x, target_value);
-
-	vec4 result = tex;
-
-	if (inside_edges && tex.a > 0.0) {
-
-		// Prisoner bar
-		if (in_yellow > 0.5) {
-			result = vec4(yellow_color.rgb, tex.a);
-		}
-
-		// Target bar
-		if (in_red > 0.5) {
-
-			if (in_yellow > 0.5) {
-				result = mix(
-					result,
-					vec4(red_color.rgb, tex.a),
-					overlap_opacity
-				);
-			}
-			else {
-				result = vec4(red_color.rgb, tex.a);
-			}
-		}
-
-		// Change stripe
-		float left = min(start_value, prisoner_value);
-		float right = max(start_value, prisoner_value);
-
-		if (
-			right - left > 0.001 &&
-			UV.x >= left &&
-			UV.x <= right
-		) {
-
-			float region_uv = (UV.x - left) / (right - left);
-
-			vec4 overlay_color;
-			float stripe_pos;
-
-			if (prisoner_value > start_value) {
-				// Increase -> blue -> move right
-				overlay_color = increase_color;
-				stripe_pos = fract(TIME * stripe_speed);
-			}
-			else {
-				// Decrease -> red -> move left
-				overlay_color = decrease_color;
-				stripe_pos = 1.0 - fract(TIME * stripe_speed);
-			}
-
-			float stripe =
-				smoothstep(
-					stripe_pos - stripe_width,
-					stripe_pos,
-					region_uv
-				)
-				*
-				(
-					1.0
-					-
-					smoothstep(
-						stripe_pos,
-						stripe_pos + stripe_width,
-						region_uv
-					)
-				);
-
-			result.rgb = mix(
-				result.rgb,
-				overlay_color.rgb,
-				stripe * overlay_opacity
-			);
-		}
-	}
-
-	COLOR = result;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjavj"]
-shader = SubResource("Shader_xq2ry")
-shader_parameter/prisoner_value = 0.0
-shader_parameter/target_value = 0.0
-shader_parameter/start_value = 0.0
-shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
-shader_parameter/increase_color = Color(0.100000024, 0.69999987, 1, 0.9843137)
-shader_parameter/decrease_color = Color(1, 0.19999999, 0.19999999, 1)
-shader_parameter/overlap_opacity = 0.254000012065
-shader_parameter/overlay_opacity = 0.7790000370025
-shader_parameter/stripe_width = 0.10000000405148
-shader_parameter/stripe_speed = 1.00000004424012
-shader_parameter/edge_padding = 3.2970001566075
-
-[sub_resource type="Shader" id="Shader_io448"]
-code = "shader_type canvas_item;
-
-uniform float prisoner_value : hint_range(0.0, 1.0);
-uniform float target_value : hint_range(0.0, 1.0);
-uniform float start_value : hint_range(0.0, 1.0);
-
-uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
-uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
-
-uniform vec4 increase_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
-uniform vec4 decrease_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
-
-uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
-uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
-uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
-uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
-
-// Keeps shader from coloring the white/empty edge pixels.
-uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
-
-void fragment() {
-
-	vec4 tex = texture(TEXTURE, UV);
-
-	float tex_width = float(textureSize(TEXTURE, 0).x);
-	float pixel_x = UV.x * tex_width;
-
-	bool inside_edges =
-		pixel_x >= edge_padding &&
-		pixel_x <= (tex_width - edge_padding);
-
-	float in_yellow = step(UV.x, prisoner_value);
-	float in_red = step(UV.x, target_value);
-
-	vec4 result = tex;
-
-	if (inside_edges && tex.a > 0.0) {
-
-		// Prisoner bar
-		if (in_yellow > 0.5) {
-			result = vec4(yellow_color.rgb, tex.a);
-		}
-
-		// Target bar
-		if (in_red > 0.5) {
-
-			if (in_yellow > 0.5) {
-				result = mix(
-					result,
-					vec4(red_color.rgb, tex.a),
-					overlap_opacity
-				);
-			}
-			else {
-				result = vec4(red_color.rgb, tex.a);
-			}
-		}
-
-		// Change stripe
-		float left = min(start_value, prisoner_value);
-		float right = max(start_value, prisoner_value);
-
-		if (
-			right - left > 0.001 &&
-			UV.x >= left &&
-			UV.x <= right
-		) {
-
-			float region_uv = (UV.x - left) / (right - left);
-
-			vec4 overlay_color;
-			float stripe_pos;
-
-			if (prisoner_value > start_value) {
-				// Increase -> blue -> move right
-				overlay_color = increase_color;
-				stripe_pos = fract(TIME * stripe_speed);
-			}
-			else {
-				// Decrease -> red -> move left
-				overlay_color = decrease_color;
-				stripe_pos = 1.0 - fract(TIME * stripe_speed);
-			}
-
-			float stripe =
-				smoothstep(
-					stripe_pos - stripe_width,
-					stripe_pos,
-					region_uv
-				)
-				*
-				(
-					1.0
-					-
-					smoothstep(
-						stripe_pos,
-						stripe_pos + stripe_width,
-						region_uv
-					)
-				);
-
-			result.rgb = mix(
-				result.rgb,
-				overlay_color.rgb,
-				stripe * overlay_opacity
-			);
-		}
-	}
-
-	COLOR = result;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6rmf"]
-shader = SubResource("Shader_io448")
-shader_parameter/prisoner_value = 0.0
-shader_parameter/target_value = 0.0
-shader_parameter/start_value = 0.0
-shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
-shader_parameter/increase_color = Color(0.100000024, 0.69999987, 1, 0.9843137)
-shader_parameter/decrease_color = Color(1, 0.19999999, 0.19999999, 1)
-shader_parameter/overlap_opacity = 0.254000012065
-shader_parameter/overlay_opacity = 0.7790000370025
-shader_parameter/stripe_width = 0.10000000405148
-shader_parameter/stripe_speed = 1.00000004424012
-shader_parameter/edge_padding = 3.2970001566075
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mawr2"]
 shader = ExtResource("9_01ggj")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
@@ -841,26 +378,26 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_top = 2.0
-offset_right = 480.0
-offset_bottom = 272.0
+offset_right = 704.0
+offset_bottom = 512.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
 
 [node name="ScanLines" type="ColorRect" parent="." unique_id=1568216939]
 material = SubResource("ShaderMaterial_vw6ab")
-offset_right = 480.0
-offset_bottom = 270.0
+offset_right = 704.0
+offset_bottom = 512.0
 
 [node name="SeatCellLoading" type="Node2D" parent="." unique_id=2061988827]
 
 [node name="LeftLoader" type="Node2D" parent="SeatCellLoading" unique_id=435960639]
 
 [node name="Bg" type="ColorRect" parent="SeatCellLoading/LeftLoader" unique_id=871685980]
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 224.0
-offset_bottom = 256.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 329.0
+offset_bottom = 488.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
 [node name="LoadedCellDisplay" type="Control" parent="SeatCellLoading/LeftLoader" unique_id=1779114064]
@@ -874,60 +411,62 @@ offset_bottom = 40.0
 [node name="CellName" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=1194815590]
 texture_filter = 1
 layout_mode = 0
-offset_left = 25.0
-offset_top = 51.0
-offset_right = 199.0
-offset_bottom = 84.0
+offset_left = 5.0
+offset_top = 47.0
+offset_right = 325.0
+offset_bottom = 92.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "None
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="DefectBars" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=1938991440]
 anchors_preset = 0
+offset_top = 59.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 99.0
 
 [node name="DefectStrengthBar" type="TextureProgressBar" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/DefectBars" unique_id=1342990054]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
 anchor_bottom = 0.225
-offset_left = 21.0
-offset_top = 92.0
-offset_right = 385.30176
-offset_bottom = 102.0
+offset_left = 29.0
+offset_top = 108.00001
+offset_right = 578.57526
+offset_bottom = 142.97266
 scale = Vector2(0.48037094, 0.45749998)
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_mgjpr")
 texture_progress = ExtResource("6_dghyf")
 
-[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/DefectBars" unique_id=1155313752]
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/DefectBars" unique_id=112134389]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
 anchor_bottom = 0.225
-offset_left = 21.0
-offset_top = 138.99998
-offset_right = 387.38348
-offset_bottom = 148.99998
+offset_left = 29.0
+offset_top = 202.00002
+offset_right = 578.57526
+offset_bottom = 236.97267
 scale = Vector2(0.48037094, 0.45749998)
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_mgjpr")
 texture_progress = ExtResource("6_dghyf")
 
-[node name="DefectCommunityBar" type="TextureProgressBar" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/DefectBars" unique_id=1591869758]
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/DefectBars" unique_id=583393904]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
 anchor_bottom = 0.225
-offset_left = 21.0
-offset_top = 186.99998
-offset_right = 387.38348
-offset_bottom = 196.99998
+offset_left = 30.0
+offset_top = 292.0
+offset_right = 579.57526
+offset_bottom = 326.97266
 scale = Vector2(0.48037094, 0.45749998)
 value = 50.0
 nine_patch_stretch = true
@@ -936,61 +475,65 @@ texture_progress = ExtResource("6_dghyf")
 
 [node name="ProgressBars" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=1463732829]
 anchors_preset = 0
+offset_top = 59.0
+offset_bottom = 59.0
 
 [node name="StrengthBar" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=1822232598]
 texture_filter = 1
 material = SubResource("ShaderMaterial_jaqaj")
-position = Vector2(108.99999, 89.15)
-scale = Vector2(0.56774193, 0.45749998)
+position = Vector2(161, 96)
+scale = Vector2(0.851613, 0.7999999)
 texture = ExtResource("8_hpsuj")
 
-[node name="IntelligenceBar" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=924696785]
+[node name="IntelligenceBar" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=77102486]
 texture_filter = 1
 material = SubResource("ShaderMaterial_jaqaj")
-position = Vector2(109, 137.15)
-scale = Vector2(0.56774193, 0.45749998)
+position = Vector2(161, 190)
+scale = Vector2(0.85161287, 0.7999999)
 texture = ExtResource("8_hpsuj")
 
-[node name="CommunityBar" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=1866673584]
+[node name="CommunityBar" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=117849932]
 texture_filter = 1
 material = SubResource("ShaderMaterial_jaqaj")
-position = Vector2(108.99999, 185.15002)
-scale = Vector2(0.56774193, 0.45749998)
+position = Vector2(162, 281)
+scale = Vector2(0.85161287, 0.7999999)
 texture = ExtResource("8_hpsuj")
 
 [node name="StengthLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=1123722287]
 texture_filter = 1
 layout_mode = 0
-offset_left = 77.0
-offset_top = 72.0
-offset_right = 217.0
-offset_bottom = 95.0
+offset_left = 29.0
+offset_top = 65.0
+offset_right = 293.0
+offset_bottom = 78.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 13
 text = "Strength"
+horizontal_alignment = 1
 
-[node name="IntelligenceLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=1488177155]
+[node name="IntelligenceLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=307348121]
 texture_filter = 1
 layout_mode = 0
-offset_left = 69.0
-offset_top = 119.0
-offset_right = 237.0
-offset_bottom = 142.0
-scale = Vector2(1, 1.2399988)
+offset_left = 29.0
+offset_top = 160.0
+offset_right = 293.0
+offset_bottom = 173.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 13
 text = "Intelligence"
+horizontal_alignment = 1
 
-[node name="CommunityLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=686308192]
+[node name="CommunityLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/ProgressBars" unique_id=1814308740]
 texture_filter = 1
 layout_mode = 0
-offset_left = 75.0
-offset_top = 167.0
-offset_right = 215.0
-offset_bottom = 190.0
+offset_left = 30.0
+offset_top = 250.0
+offset_right = 294.0
+offset_bottom = 264.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 14
 text = "Community"
+horizontal_alignment = 1
 
 [node name="HideStats" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=1366831720]
 anchors_preset = 0
@@ -1002,8 +545,8 @@ visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_jqca7")
-position = Vector2(109, 93.00001)
-scale = Vector2(0.5587301, 0.6499997)
+position = Vector2(161, 165.5)
+scale = Vector2(0.8380952, 1.3249999)
 texture = SubResource("CompressedTexture2D_l8jiy")
 
 [node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/HideStats" unique_id=1185991290]
@@ -1011,8 +554,8 @@ visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_jqca7")
-position = Vector2(109, 141.25)
-scale = Vector2(0.5587302, 0.66249996)
+position = Vector2(161, 259)
+scale = Vector2(0.83809525, 1.2999997)
 texture = SubResource("CompressedTexture2D_l8jiy")
 
 [node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/HideStats" unique_id=906212074]
@@ -1020,8 +563,8 @@ visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_jqca7")
-position = Vector2(108.75, 188.25)
-scale = Vector2(0.5603174, 0.6374998)
+position = Vector2(162, 349.5)
+scale = Vector2(0.8380952, 1.2749997)
 texture = SubResource("CompressedTexture2D_l8jiy")
 
 [node name="OffDisableLabels" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=1367641998]
@@ -1033,14 +576,14 @@ offset_bottom = 40.0
 visible = false
 texture_filter = 1
 layout_mode = 0
-offset_left = 25.0
-offset_top = 77.00001
-offset_right = 193.0
-offset_bottom = 100.00001
+offset_left = 77.0
+offset_top = 143.0
+offset_right = 245.0
+offset_bottom = 166.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1049,14 +592,14 @@ vertical_alignment = 1
 visible = false
 texture_filter = 1
 layout_mode = 0
-offset_left = 27.0
-offset_top = 124.0
-offset_right = 195.0
-offset_bottom = 147.0
+offset_left = 80.0
+offset_top = 238.0
+offset_right = 248.0
+offset_bottom = 261.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1065,78 +608,75 @@ vertical_alignment = 1
 visible = false
 texture_filter = 1
 layout_mode = 0
-offset_left = 26.0
-offset_top = 173.00002
-offset_right = 194.0
-offset_bottom = 196.00002
+offset_left = 81.0
+offset_top = 328.0
+offset_right = 249.0
+offset_bottom = 351.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DividingLine" type="ColorRect" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=38460566]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 208.0
-offset_right = 113.0
-offset_bottom = 248.0
-color = Color(0.16470589, 0, 0, 1)
-
 [node name="BloodType" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=44328082]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 15.0
+offset_top = 51.0
+offset_right = 55.0
+offset_bottom = 91.0
 
 [node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType" unique_id=2106474828]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 208.0
-offset_right = 109.0
-offset_bottom = 248.0
+offset_left = 99.0
+offset_top = 370.0
+offset_right = 207.0
+offset_bottom = 422.0
 color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
 
 [node name="HeaderLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType" unique_id=978940776]
 texture_filter = 1
 layout_mode = 0
-offset_left = 33.0
-offset_top = 211.0
-offset_right = 105.0
-offset_bottom = 219.0
+offset_left = -10.0
+offset_top = 350.0
+offset_right = 310.0
+offset_bottom = 364.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 14
 text = "Blood Type"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FakeBloodType" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType" unique_id=937687434]
 anchors_preset = 0
-offset_top = 2.0
-offset_right = 40.0
-offset_bottom = 42.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 46.0
+offset_bottom = 45.0
 
 [node name="BloodTypeA" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1622052970]
 texture_filter = 1
 layout_mode = 0
-offset_left = 49.0
-offset_top = 219.0
-offset_right = 121.0
-offset_bottom = 240.0
+offset_left = 110.0
+offset_top = 367.0
+offset_right = 182.0
+offset_bottom = 413.0
 theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 40
 text = "A"
 
 [node name="BloodType+" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1003144450]
 texture_filter = 1
 layout_mode = 0
-offset_left = 58.0
-offset_top = 218.0
-offset_right = 66.0
-offset_bottom = 232.0
+offset_left = 127.0
+offset_top = 365.0
+offset_right = 145.0
+offset_bottom = 400.0
 theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 26
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1144,431 +684,423 @@ vertical_alignment = 1
 [node name="BloodTypeDash" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=997997821]
 texture_filter = 1
 layout_mode = 0
-offset_left = 66.0
-offset_top = 216.0
-offset_right = 138.0
-offset_bottom = 239.0
+offset_left = 145.0
+offset_top = 366.0
+offset_right = 161.0
+offset_bottom = 412.0
 theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 40
 text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BloodTypeA2" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=951319478]
 texture_filter = 1
 layout_mode = 0
-offset_left = 78.0
-offset_top = 219.0
-offset_right = 150.0
-offset_bottom = 240.0
+offset_left = 169.0
+offset_top = 367.0
+offset_right = 241.0
+offset_bottom = 413.0
 theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 40
 text = "O"
 
 [node name="LifeSpan" type="Control" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay" unique_id=1550684718]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = 58.0
+offset_bottom = 44.0
 
 [node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/LifeSpan" unique_id=1131602300]
 layout_mode = 0
-offset_left = 113.0
-offset_top = 208.0
-offset_right = 206.0
-offset_bottom = 248.0
+offset_left = 53.0
+offset_top = 76.0
+offset_right = 229.0
+offset_bottom = 108.0
 color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
 
 [node name="HeaderLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/LifeSpan" unique_id=1097572520]
 texture_filter = 1
 layout_mode = 0
-offset_left = 125.0
-offset_top = 211.0
-offset_right = 197.0
-offset_bottom = 219.0
+offset_left = 56.0
+offset_top = 81.0
+offset_right = 228.0
+offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
-text = "Life Span"
-
-[node name="LifeSpanLabel" type="Label" parent="SeatCellLoading/LeftLoader/LoadedCellDisplay/LifeSpan" unique_id=1954567204]
-texture_filter = 1
-layout_mode = 0
-offset_left = 125.0
-offset_top = 221.0
-offset_right = 189.0
-offset_bottom = 245.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 20
-text = "1"
+theme_override_font_sizes/font_size = 13
+text = "Life Span - 1"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NoCellLoaded" type="Label" parent="SeatCellLoading/LeftLoader" unique_id=1132654272]
 texture_filter = 1
 offset_left = 18.0
-offset_top = 103.0
-offset_right = 222.0
-offset_bottom = 146.0
+offset_top = 16.0
+offset_right = 312.0
+offset_bottom = 480.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 18
 text = "No Cell Loaded
 Place on panel"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RightLoader" type="Node2D" parent="SeatCellLoading" unique_id=293825500]
-position = Vector2(232, 0)
+[node name="RightLoader" type="Node2D" parent="SeatCellLoading" unique_id=389419079]
+position = Vector2(368, 0)
 
-[node name="Bg" type="ColorRect" parent="SeatCellLoading/RightLoader" unique_id=1153978827]
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 232.0
-offset_bottom = 256.0
+[node name="Bg" type="ColorRect" parent="SeatCellLoading/RightLoader" unique_id=641152840]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 329.0
+offset_bottom = 488.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
-[node name="LoadedCellDisplay" type="Control" parent="SeatCellLoading/RightLoader" unique_id=272041890]
+[node name="LoadedCellDisplay" type="Control" parent="SeatCellLoading/RightLoader" unique_id=873830010]
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 24.0
-offset_right = 64.0
+offset_left = 3.0
+offset_right = 43.0
 offset_bottom = 40.0
 
-[node name="CellName" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=986987707]
+[node name="CellName" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=1980127652]
 texture_filter = 1
 layout_mode = 0
-offset_left = 25.0
-offset_top = 51.0
-offset_right = 199.0
-offset_bottom = 84.0
+offset_left = 5.0
+offset_top = 47.0
+offset_right = 325.0
+offset_bottom = 92.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 22
 text = "None
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="DefectBars" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=1840310141]
+[node name="DefectBars" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=555433310]
+anchors_preset = 0
+offset_top = 59.0
+offset_right = 40.0
+offset_bottom = 99.0
+
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/DefectBars" unique_id=1088656315]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 29.0
+offset_top = 108.00001
+offset_right = 578.57526
+offset_bottom = 142.97266
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_mgjpr")
+texture_progress = ExtResource("6_dghyf")
+
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/DefectBars" unique_id=641356416]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 29.0
+offset_top = 202.00002
+offset_right = 578.57526
+offset_bottom = 236.97267
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_mgjpr")
+texture_progress = ExtResource("6_dghyf")
+
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/DefectBars" unique_id=145687190]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 30.0
+offset_top = 292.0
+offset_right = 579.57526
+offset_bottom = 326.97266
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_mgjpr")
+texture_progress = ExtResource("6_dghyf")
+
+[node name="ProgressBars" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=1981688776]
+anchors_preset = 0
+offset_top = 59.0
+offset_bottom = 59.0
+
+[node name="StrengthBar" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=711481660]
+texture_filter = 1
+material = SubResource("ShaderMaterial_jaqaj")
+position = Vector2(161, 96)
+scale = Vector2(0.851613, 0.7999999)
+texture = ExtResource("8_hpsuj")
+
+[node name="IntelligenceBar" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1947816717]
+texture_filter = 1
+material = SubResource("ShaderMaterial_jaqaj")
+position = Vector2(161, 190)
+scale = Vector2(0.85161287, 0.7999999)
+texture = ExtResource("8_hpsuj")
+
+[node name="CommunityBar" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=597010938]
+texture_filter = 1
+material = SubResource("ShaderMaterial_jaqaj")
+position = Vector2(162, 281)
+scale = Vector2(0.85161287, 0.7999999)
+texture = ExtResource("8_hpsuj")
+
+[node name="StengthLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1067697964]
+texture_filter = 1
+layout_mode = 0
+offset_left = 29.0
+offset_top = 65.0
+offset_right = 293.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("2_eshad")
+theme_override_font_sizes/font_size = 13
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="IntelligenceLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1245897574]
+texture_filter = 1
+layout_mode = 0
+offset_left = 29.0
+offset_top = 162.0
+offset_right = 293.0
+offset_bottom = 175.0
+theme_override_fonts/font = ExtResource("2_eshad")
+theme_override_font_sizes/font_size = 13
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1567315710]
+texture_filter = 1
+layout_mode = 0
+offset_left = 30.0
+offset_top = 250.0
+offset_right = 294.0
+offset_bottom = 264.0
+theme_override_fonts/font = ExtResource("2_eshad")
+theme_override_font_sizes/font_size = 14
+text = "Community"
+horizontal_alignment = 1
+
+[node name="HideStats" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=606858880]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DefectStrengthBar" type="TextureProgressBar" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/DefectBars" unique_id=1524123856]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 24.000002
-offset_top = 92.0
-offset_right = 388.30176
-offset_bottom = 102.0
-scale = Vector2(0.48037094, 0.45749998)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_mgjpr")
-texture_progress = ExtResource("6_dghyf")
+[node name="StrengthHide" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/HideStats" unique_id=1693106478]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_jqca7")
+position = Vector2(161, 165.5)
+scale = Vector2(0.8380952, 1.3249999)
+texture = SubResource("CompressedTexture2D_l8jiy")
 
-[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/DefectBars" unique_id=839652062]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 24.000002
-offset_top = 138.99998
-offset_right = 388.3018
-offset_bottom = 148.99998
-scale = Vector2(0.48037094, 0.45749998)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_mgjpr")
-texture_progress = ExtResource("6_dghyf")
+[node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/HideStats" unique_id=262494793]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_jqca7")
+position = Vector2(161, 259)
+scale = Vector2(0.83809525, 1.2999997)
+texture = SubResource("CompressedTexture2D_l8jiy")
 
-[node name="DefectCommunityBar" type="TextureProgressBar" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/DefectBars" unique_id=1318837987]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 24.000002
-offset_top = 186.99998
-offset_right = 388.30176
-offset_bottom = 196.99998
-scale = Vector2(0.48037094, 0.45749998)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_mgjpr")
-texture_progress = ExtResource("6_dghyf")
+[node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/HideStats" unique_id=595197386]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_jqca7")
+position = Vector2(162, 349.5)
+scale = Vector2(0.8380952, 1.2749997)
+texture = SubResource("CompressedTexture2D_l8jiy")
 
-[node name="ProgressBars" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=292460712]
+[node name="OffDisableLabels" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=382608293]
 anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="StrengthBar" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1772152247]
-texture_filter = 1
-material = SubResource("ShaderMaterial_jaqaj")
-position = Vector2(111.728745, 89.15)
-scale = Vector2(0.5659918, 0.45749998)
-texture = ExtResource("8_hpsuj")
-
-[node name="IntelligenceBar" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=185462758]
-texture_filter = 1
-material = SubResource("ShaderMaterial_jaqaj")
-position = Vector2(111.72874, 137.15)
-scale = Vector2(0.56599194, 0.45749998)
-texture = ExtResource("8_hpsuj")
-
-[node name="CommunityBar" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1930182911]
-texture_filter = 1
-material = SubResource("ShaderMaterial_jaqaj")
-position = Vector2(111.72873, 185.15002)
-scale = Vector2(0.56599194, 0.45749998)
-texture = ExtResource("8_hpsuj")
-
-[node name="StengthLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=2020974596]
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/OffDisableLabels" unique_id=1569109053]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 77.0
-offset_top = 72.0
-offset_right = 217.0
-offset_bottom = 95.0
-theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
-text = "Strength"
-
-[node name="IntelligenceLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=1013475285]
-texture_filter = 1
-layout_mode = 0
-offset_left = 69.0
-offset_top = 119.0
-offset_right = 237.0
-offset_bottom = 142.0
-scale = Vector2(1, 1.2399988)
-theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
-text = "Intelligence"
-
-[node name="CommunityLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/ProgressBars" unique_id=88029081]
-texture_filter = 1
-layout_mode = 0
-offset_left = 74.0
-offset_top = 167.0
-offset_right = 214.0
-offset_bottom = 190.0
-theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
-text = "Community"
-
-[node name="HideStats" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=875061576]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthHide" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/HideStats" unique_id=1275684515]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_jqca7")
-position = Vector2(112.00001, 92.99999)
-scale = Vector2(0.55873024, 0.65000004)
-texture = SubResource("CompressedTexture2D_l8jiy")
-
-[node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/HideStats" unique_id=1194556293]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_jqca7")
-position = Vector2(111.74999, 141.00002)
-scale = Vector2(0.5603174, 0.6749999)
-texture = SubResource("CompressedTexture2D_l8jiy")
-
-[node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/HideStats" unique_id=906823273]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_jqca7")
-position = Vector2(111.74999, 189)
-scale = Vector2(0.5603174, 0.6749999)
-texture = SubResource("CompressedTexture2D_l8jiy")
-
-[node name="OffDisableLabels" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=277514049]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/OffDisableLabels" unique_id=737244224]
-texture_filter = 1
-layout_mode = 0
-offset_left = 27.0
-offset_top = 77.00001
-offset_right = 195.0
-offset_bottom = 100.00001
+offset_top = 143.0
+offset_right = 245.0
+offset_bottom = 166.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IntelligenceOffLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/OffDisableLabels" unique_id=1068862500]
+[node name="IntelligenceOffLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/OffDisableLabels" unique_id=140066644]
+visible = false
 texture_filter = 1
 layout_mode = 0
-offset_left = 28.0
-offset_top = 124.0
-offset_right = 196.0
-offset_bottom = 147.0
+offset_left = 80.0
+offset_top = 238.0
+offset_right = 248.0
+offset_bottom = 261.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CommunityOffLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/OffDisableLabels" unique_id=1845277582]
+[node name="CommunityOffLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/OffDisableLabels" unique_id=471924664]
+visible = false
 texture_filter = 1
 layout_mode = 0
-offset_left = 28.0
-offset_top = 172.00002
-offset_right = 196.0
-offset_bottom = 195.00002
+offset_left = 81.0
+offset_top = 328.0
+offset_right = 249.0
+offset_bottom = 351.0
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 12
 text = "off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DividingLine" type="ColorRect" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=1608748817]
-layout_mode = 0
-offset_left = 109.0
-offset_top = 208.0
-offset_right = 113.0
-offset_bottom = 248.0
-color = Color(0.16470589, 0, 0, 1)
-
-[node name="BloodType" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=586279232]
+[node name="BloodType" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=1792440163]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 15.0
+offset_top = 51.0
+offset_right = 55.0
+offset_bottom = 91.0
 
-[node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType" unique_id=1853044830]
+[node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType" unique_id=1337102908]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 208.0
-offset_right = 109.0
-offset_bottom = 248.0
+offset_left = 99.0
+offset_top = 370.0
+offset_right = 207.0
+offset_bottom = 422.0
 color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
 
-[node name="HeaderLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType" unique_id=1899355341]
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType" unique_id=1938570992]
 texture_filter = 1
 layout_mode = 0
-offset_left = 33.0
-offset_top = 211.0
-offset_right = 105.0
-offset_bottom = 219.0
+offset_left = -10.0
+offset_top = 350.0
+offset_right = 310.0
+offset_bottom = 364.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 14
 text = "Blood Type"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="FakeBloodType" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType" unique_id=1606197129]
+[node name="FakeBloodType" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType" unique_id=602473867]
 anchors_preset = 0
-offset_top = 2.0
-offset_right = 40.0
-offset_bottom = 42.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 46.0
+offset_bottom = 45.0
 
-[node name="BloodTypeA" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=991329884]
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=126923389]
 texture_filter = 1
 layout_mode = 0
-offset_left = 49.0
-offset_top = 219.0
-offset_right = 121.0
-offset_bottom = 240.0
+offset_left = 110.0
+offset_top = 367.0
+offset_right = 182.0
+offset_bottom = 413.0
 theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 40
 text = "A"
 
-[node name="BloodType+" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1473855947]
+[node name="BloodType+" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1580220579]
 texture_filter = 1
 layout_mode = 0
-offset_left = 58.0
-offset_top = 218.0
-offset_right = 66.0
-offset_bottom = 232.0
+offset_left = 127.0
+offset_top = 365.0
+offset_right = 145.0
+offset_bottom = 400.0
 theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 26
 text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BloodTypeDash" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1501038231]
+[node name="BloodTypeDash" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1127509506]
 texture_filter = 1
 layout_mode = 0
-offset_left = 66.0
-offset_top = 216.0
-offset_right = 138.0
-offset_bottom = 239.0
+offset_left = 145.0
+offset_top = 366.0
+offset_right = 161.0
+offset_bottom = 412.0
 theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 40
 text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BloodTypeA2" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1589490087]
+[node name="BloodTypeA2" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/BloodType/FakeBloodType" unique_id=1600281229]
 texture_filter = 1
 layout_mode = 0
-offset_left = 78.0
-offset_top = 219.0
-offset_right = 150.0
-offset_bottom = 240.0
+offset_left = 169.0
+offset_top = 367.0
+offset_right = 241.0
+offset_bottom = 413.0
 theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 40
 text = "O"
 
-[node name="LifeSpan" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=844363410]
+[node name="LifeSpan" type="Control" parent="SeatCellLoading/RightLoader/LoadedCellDisplay" unique_id=1604205081]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 18.0
+offset_top = 4.0
+offset_right = 58.0
+offset_bottom = 44.0
 
-[node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/LifeSpan" unique_id=1926013302]
+[node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/LifeSpan" unique_id=336182373]
 layout_mode = 0
-offset_left = 113.0
-offset_top = 208.0
-offset_right = 201.0
-offset_bottom = 248.0
+offset_left = 53.0
+offset_top = 76.0
+offset_right = 229.0
+offset_bottom = 108.0
 color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
 
-[node name="HeaderLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/LifeSpan" unique_id=249006018]
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/LifeSpan" unique_id=1550448067]
 texture_filter = 1
 layout_mode = 0
-offset_left = 122.0
-offset_top = 211.0
-offset_right = 194.0
-offset_bottom = 219.0
+offset_left = 56.0
+offset_top = 81.0
+offset_right = 228.0
+offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
-text = "Life Span"
-
-[node name="LifeSpanLabel" type="Label" parent="SeatCellLoading/RightLoader/LoadedCellDisplay/LifeSpan" unique_id=306441941]
-texture_filter = 1
-layout_mode = 0
-offset_left = 122.0
-offset_top = 221.0
-offset_right = 186.0
-offset_bottom = 245.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 20
-text = "1"
+theme_override_font_sizes/font_size = 13
+text = "Life Span - 1"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="NoCellLoaded" type="Label" parent="SeatCellLoading/RightLoader" unique_id=525766762]
+[node name="NoCellLoaded" type="Label" parent="SeatCellLoading/RightLoader" unique_id=1940351934]
 texture_filter = 1
-offset_left = 25.0
-offset_top = 103.0
-offset_right = 231.0
-offset_bottom = 146.0
+offset_left = 18.0
+offset_top = 16.0
+offset_right = 312.0
+offset_bottom = 480.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 18
 text = "No Cell Loaded
 Place on panel"
 horizontal_alignment = 1
@@ -1595,22 +1127,22 @@ offset_bottom = 40.0
 [node name="QuestionStrength" type="Sprite2D" parent="SeatCellLoading/SymbolManager/QuestionMark" unique_id=1853502392]
 visible = false
 texture_filter = 1
-position = Vector2(240, 92.5)
-scale = Vector2(1, 1.1666667)
+position = Vector2(354.00003, 165.5)
+scale = Vector2(2.7, 2.8333337)
 texture = ExtResource("16_g8tuh")
 
 [node name="QuestionIntelligence" type="Sprite2D" parent="SeatCellLoading/SymbolManager/QuestionMark" unique_id=163304086]
 visible = false
 texture_filter = 1
-position = Vector2(240, 142)
-scale = Vector2(1, 1.1111114)
+position = Vector2(353.25, 260)
+scale = Vector2(2.7, 2.8333337)
 texture = ExtResource("16_g8tuh")
 
 [node name="QuestionCommunity" type="Sprite2D" parent="SeatCellLoading/SymbolManager/QuestionMark" unique_id=632236335]
 visible = false
 texture_filter = 1
-position = Vector2(240, 189)
-scale = Vector2(1, 1.2222222)
+position = Vector2(353.25, 352)
+scale = Vector2(2.7, 2.8333337)
 texture = ExtResource("16_g8tuh")
 
 [node name="ArrowUp" type="Control" parent="SeatCellLoading/SymbolManager" unique_id=446872679]
@@ -1621,23 +1153,29 @@ offset_bottom = 40.0
 [node name="UpStrength" type="Sprite2D" parent="SeatCellLoading/SymbolManager/ArrowUp" unique_id=1525822082]
 visible = false
 texture_filter = 1
-position = Vector2(240, 91)
+position = Vector2(354.00003, 165.5)
 rotation = -1.5707964
+scale = Vector2(2.092492, 2.134701)
 texture = ExtResource("17_6dnre")
+script = ExtResource("25_m11cf")
 
 [node name="UpIntelligence" type="Sprite2D" parent="SeatCellLoading/SymbolManager/ArrowUp" unique_id=1005360036]
 visible = false
 texture_filter = 1
-position = Vector2(240, 140)
+position = Vector2(353.25, 260)
 rotation = -1.5707964
+scale = Vector2(2.092492, 2.134701)
 texture = ExtResource("17_6dnre")
+script = ExtResource("25_m11cf")
 
 [node name="UpCommunity" type="Sprite2D" parent="SeatCellLoading/SymbolManager/ArrowUp" unique_id=1485154595]
 visible = false
 texture_filter = 1
-position = Vector2(240, 186)
+position = Vector2(352.5666, 352.00003)
 rotation = -1.5707964
+scale = Vector2(2.092492, 2.134701)
 texture = ExtResource("17_6dnre")
+script = ExtResource("25_m11cf")
 
 [node name="ArrowDown" type="Control" parent="SeatCellLoading/SymbolManager" unique_id=1117486818]
 anchors_preset = 0
@@ -1647,26 +1185,28 @@ offset_bottom = 40.0
 [node name="DownStrength" type="Sprite2D" parent="SeatCellLoading/SymbolManager/ArrowDown" unique_id=575327131]
 visible = false
 texture_filter = 1
-position = Vector2(240, 91)
+position = Vector2(354.00003, 165.5)
 rotation = -1.5707964
+scale = Vector2(2.092492, 2.134701)
 texture = ExtResource("18_b1ii0")
 
 [node name="DownIntelligence" type="Sprite2D" parent="SeatCellLoading/SymbolManager/ArrowDown" unique_id=867599594]
 visible = false
 texture_filter = 1
-position = Vector2(240, 140)
+position = Vector2(353.25, 260)
 rotation = -1.5707964
+scale = Vector2(2.092492, 2.134701)
 texture = ExtResource("18_b1ii0")
 
 [node name="DownCommunity" type="Sprite2D" parent="SeatCellLoading/SymbolManager/ArrowDown" unique_id=933802720]
 visible = false
 texture_filter = 1
-position = Vector2(240, 187)
+position = Vector2(352.5666, 352.00003)
 rotation = -1.5707964
+scale = Vector2(2.092492, 2.134701)
 texture = ExtResource("18_b1ii0")
 
 [node name="DeathRiskManager" type="Control" parent="SeatCellLoading" unique_id=345694637]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1678,318 +1218,418 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="DeathPercantTracker" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=1897196673]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathRiskManager/RiskLeft/DeathPercantTracker" unique_id=1675356866]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 128.0
-offset_bottom = 37.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 40.0
 color = Color(0.16470589, 0, 0, 1)
 
 [node name="HeaderLabel" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/DeathPercantTracker" unique_id=1695308256]
 texture_filter = 1
 layout_mode = 0
 offset_left = 40.0
-offset_top = 18.0
+offset_top = 11.0
 offset_right = 112.0
-offset_bottom = 35.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 12
 text = "Death 
 Risk"
 vertical_alignment = 1
 
 [node name="DeathRiskSymbol" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/DeathPercantTracker" unique_id=874523841]
 texture_filter = 1
-position = Vector2(29, 25.875002)
-scale = Vector2(0.45, 0.5530303)
+position = Vector2(23.6, 23.999998)
+scale = Vector2(0.63, 0.8484849)
 texture = ExtResource("12_m11cf")
 
 [node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/DeathPercantTracker" unique_id=683144361]
 texture_filter = 1
 layout_mode = 0
-offset_left = 75.0
-offset_top = 14.0
-offset_right = 139.0
-offset_bottom = 38.0
+offset_left = 113.0
+offset_top = 6.0
+offset_right = 177.0
+offset_bottom = 41.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 20
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="StrengthWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=2036867189]
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 3.0
-offset_right = 41.0
-offset_bottom = 43.0
-
-[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/StrengthWarning" unique_id=1744105902]
-texture_filter = 1
-position = Vector2(212, 84)
-scale = Vector2(0.34374952, 0.43939367)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/StrengthWarning" unique_id=1148512135]
-texture_filter = 1
-layout_mode = 0
-offset_left = 200.0
-offset_top = 89.0
-offset_right = 224.0
-offset_bottom = 103.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 11
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="IntelligenceWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=1197549685]
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 51.0
-offset_right = 41.0
-offset_bottom = 91.0
-
-[node name="IntelligenceDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/IntelligenceWarning" unique_id=1465823158]
-texture_filter = 1
-position = Vector2(212, 84)
-scale = Vector2(0.34374952, 0.43939367)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/IntelligenceWarning" unique_id=1183403745]
-texture_filter = 1
-layout_mode = 0
-offset_left = 200.0
-offset_top = 89.0
-offset_right = 224.0
-offset_bottom = 103.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 11
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="CommunityWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=596712449]
-anchors_preset = 0
-offset_left = 1.0
-offset_top = 100.0
-offset_right = 41.0
-offset_bottom = 140.0
-
-[node name="IntelligenceDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/CommunityWarning" unique_id=1795494928]
-texture_filter = 1
-position = Vector2(212, 84)
-scale = Vector2(0.34374952, 0.43939367)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/CommunityWarning" unique_id=602247680]
-texture_filter = 1
-layout_mode = 0
-offset_left = 200.0
-offset_top = 89.0
-offset_right = 224.0
-offset_bottom = 103.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 30
 text = "15 %"
 horizontal_alignment = 1
 
 [node name="LifespanWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=1495640803]
+visible = false
 anchors_preset = 0
-offset_left = -34.0
-offset_top = 148.0
-offset_right = 6.0
-offset_bottom = 188.0
+offset_left = -16.0
+offset_top = 159.0
+offset_right = 24.0
+offset_bottom = 199.0
 
 [node name="LifespanDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/LifespanWarning" unique_id=1168274705]
 texture_filter = 1
-position = Vector2(211.56248, 85.468765)
-scale = Vector2(0.42187417, 0.5170459)
+position = Vector2(280, -64)
+scale = Vector2(0.49999994, 0.6666665)
 texture = ExtResource("12_m11cf")
 
 [node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/LifespanWarning" unique_id=1261578754]
 texture_filter = 1
 layout_mode = 0
-offset_left = 220.00008
-offset_top = 77.0
-offset_right = 244.00008
-offset_bottom = 93.0
+offset_left = 293.0
+offset_top = -76.0
+offset_right = 323.0
+offset_bottom = -52.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 20
 text = "15%"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RiskRight" type="Control" parent="SeatCellLoading/DeathRiskManager" unique_id=2026356140]
+[node name="StrengthWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=667913321]
+visible = false
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -105.0
+offset_right = -65.0
 offset_bottom = 40.0
+scale = Vector2(2, 2)
 
-[node name="DeathPercantTracker" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=72756071]
-anchors_preset = 0
-offset_left = 336.0
-offset_right = 376.0
-offset_bottom = 40.0
+[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/StrengthWarning" unique_id=1772194515]
+texture_filter = 1
+position = Vector2(209.1875, 82.250015)
+scale = Vector2(0.24062501, 0.31818262)
+texture = ExtResource("12_m11cf")
 
-[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=178944074]
+[node name="DeathRiskNum" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/StrengthWarning" unique_id=1730659241]
+texture_filter = 1
 layout_mode = 0
-offset_left = 16.0
-offset_top = 16.0
-offset_right = 128.0
-offset_bottom = 37.0
+offset_left = 194.0
+offset_top = 84.5
+offset_right = 218.0
+offset_bottom = 98.5
+scale = Vector2(0.96, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 1
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/StrengthWarning" unique_id=2119275027]
+texture_filter = 1
+layout_mode = 0
+offset_left = 201.00002
+offset_top = 85.5
+offset_right = 225.00002
+offset_bottom = 99.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 9
+text = "%"
+horizontal_alignment = 1
+
+[node name="IntelligenceWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=194860492]
+visible = false
+anchors_preset = 0
+offset_left = -105.0
+offset_top = 90.0
+offset_right = -65.0
+offset_bottom = 130.0
+scale = Vector2(2, 2)
+
+[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/IntelligenceWarning" unique_id=1252292926]
+texture_filter = 1
+position = Vector2(209.1875, 84.250015)
+scale = Vector2(0.24062501, 0.31818262)
+texture = ExtResource("12_m11cf")
+
+[node name="DeathRiskNum" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/IntelligenceWarning" unique_id=1656813555]
+texture_filter = 1
+layout_mode = 0
+offset_left = 194.0
+offset_top = 87.0
+offset_right = 218.0
+offset_bottom = 101.0
+scale = Vector2(0.96, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 1
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/IntelligenceWarning" unique_id=382785556]
+texture_filter = 1
+layout_mode = 0
+offset_left = 201.00002
+offset_top = 87.5
+offset_right = 225.00002
+offset_bottom = 101.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 9
+text = "%"
+horizontal_alignment = 1
+
+[node name="CommunityWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskLeft" unique_id=1234362462]
+visible = false
+anchors_preset = 0
+offset_left = -105.0
+offset_top = 179.0
+offset_right = -65.0
+offset_bottom = 219.0
+scale = Vector2(2, 2)
+
+[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskLeft/CommunityWarning" unique_id=274797979]
+texture_filter = 1
+position = Vector2(209.1875, 85.750015)
+scale = Vector2(0.24062501, 0.31818262)
+texture = ExtResource("12_m11cf")
+
+[node name="DeathRiskNum" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/CommunityWarning" unique_id=371854936]
+texture_filter = 1
+layout_mode = 0
+offset_left = 194.5
+offset_top = 88.0
+offset_right = 218.5
+offset_bottom = 102.0
+scale = Vector2(0.96, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 1
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskLeft/CommunityWarning" unique_id=748308168]
+texture_filter = 1
+layout_mode = 0
+offset_left = 201.50002
+offset_top = 89.0
+offset_right = 225.50002
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 9
+text = "%"
+horizontal_alignment = 1
+
+[node name="RiskRight" type="Control" parent="SeatCellLoading/DeathRiskManager" unique_id=1748325439]
+anchors_preset = 0
+offset_left = 368.0
+offset_right = 408.0
+offset_bottom = 40.0
+
+[node name="DeathPercantTracker" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=473275235]
+visible = false
+anchors_preset = 0
+offset_left = 136.0
+offset_right = 176.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=585526452]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 40.0
 color = Color(0.16470589, 0, 0, 1)
 
-[node name="HeaderLabel" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=735030723]
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=1336260846]
 texture_filter = 1
 layout_mode = 0
 offset_left = 40.0
-offset_top = 18.0
+offset_top = 11.0
 offset_right = 112.0
-offset_bottom = 35.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 7
+theme_override_font_sizes/font_size = 12
 text = "Death 
 Risk"
 vertical_alignment = 1
 
-[node name="StrengthDeathAlert" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=622217947]
+[node name="DeathRiskSymbol" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=502636459]
 texture_filter = 1
-position = Vector2(29, 25.875002)
-scale = Vector2(0.45, 0.5530303)
+position = Vector2(23.6, 23.999998)
+scale = Vector2(0.63, 0.8484849)
 texture = ExtResource("12_m11cf")
 
-[node name="BloodTypeA" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=1412227927]
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/DeathPercantTracker" unique_id=623530366]
 texture_filter = 1
 layout_mode = 0
-offset_left = 75.0
-offset_top = 14.0
-offset_right = 139.0
-offset_bottom = 38.0
+offset_left = 113.0
+offset_top = 6.0
+offset_right = 177.0
+offset_bottom = 41.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 30
+text = "15 %"
+horizontal_alignment = 1
+
+[node name="LifespanWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=1279264351]
+visible = false
+anchors_preset = 0
+offset_left = -16.0
+offset_top = 159.0
+offset_right = 24.0
+offset_bottom = 199.0
+
+[node name="LifespanDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/LifespanWarning" unique_id=535443518]
+texture_filter = 1
+position = Vector2(280, -64)
+scale = Vector2(0.49999994, 0.6666665)
+texture = ExtResource("12_m11cf")
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/LifespanWarning" unique_id=1583343611]
+texture_filter = 1
+layout_mode = 0
+offset_left = 293.0
+offset_top = -76.0
+offset_right = 323.0
+offset_bottom = -52.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("18_gs2dg")
 theme_override_font_sizes/font_size = 20
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="StrengthWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=1398233914]
-anchors_preset = 0
-offset_left = 56.0
-offset_top = 3.0
-offset_right = 96.0
-offset_bottom = 43.0
-
-[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/StrengthWarning" unique_id=1830088166]
-texture_filter = 1
-position = Vector2(212, 84)
-scale = Vector2(0.34374952, 0.43939367)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/StrengthWarning" unique_id=1483891098]
-texture_filter = 1
-layout_mode = 0
-offset_left = 200.0
-offset_top = 89.0
-offset_right = 224.0
-offset_bottom = 103.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 11
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="IntelligenceWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=196113286]
-anchors_preset = 0
-offset_left = 56.0
-offset_top = 51.0
-offset_right = 96.0
-offset_bottom = 91.0
-
-[node name="IntelligenceDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/IntelligenceWarning" unique_id=1124014029]
-texture_filter = 1
-position = Vector2(212, 84)
-scale = Vector2(0.34374952, 0.43939367)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/IntelligenceWarning" unique_id=846380053]
-texture_filter = 1
-layout_mode = 0
-offset_left = 200.0
-offset_top = 89.0
-offset_right = 224.0
-offset_bottom = 103.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 11
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="CommunityWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=3331274]
-anchors_preset = 0
-offset_left = 56.0
-offset_top = 100.0
-offset_right = 96.0
-offset_bottom = 140.0
-
-[node name="IntelligenceDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/CommunityWarning" unique_id=790185199]
-texture_filter = 1
-position = Vector2(212, 84)
-scale = Vector2(0.34374952, 0.43939367)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/CommunityWarning" unique_id=482275222]
-texture_filter = 1
-layout_mode = 0
-offset_left = 200.0
-offset_top = 89.0
-offset_right = 224.0
-offset_bottom = 103.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 11
-text = "15 %"
-horizontal_alignment = 1
-
-[node name="LifespanWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=260643696]
-anchors_preset = 0
-offset_left = 214.0
-offset_top = 148.0
-offset_right = 254.0
-offset_bottom = 188.0
-
-[node name="LifespanDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/LifespanWarning" unique_id=2138358189]
-texture_filter = 1
-position = Vector2(211.56248, 85.468765)
-scale = Vector2(0.42187417, 0.5170459)
-texture = ExtResource("12_m11cf")
-
-[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/LifespanWarning" unique_id=2121799749]
-texture_filter = 1
-layout_mode = 0
-offset_left = 220.00008
-offset_top = 77.0
-offset_right = 244.00008
-offset_bottom = 93.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("18_gs2dg")
-theme_override_font_sizes/font_size = 14
 text = "15%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StrengthWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=1850476965]
+visible = false
+anchors_preset = 0
+offset_left = -105.0
+offset_right = -65.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/StrengthWarning" unique_id=558982852]
+texture_filter = 1
+position = Vector2(209.1875, 82.250015)
+scale = Vector2(0.24062501, 0.31818262)
+texture = ExtResource("12_m11cf")
+
+[node name="DeathRiskNum" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/StrengthWarning" unique_id=792987198]
+texture_filter = 1
+layout_mode = 0
+offset_left = 194.0
+offset_top = 84.5
+offset_right = 218.0
+offset_bottom = 98.5
+scale = Vector2(0.96, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 1
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/StrengthWarning" unique_id=229033349]
+texture_filter = 1
+layout_mode = 0
+offset_left = 201.00002
+offset_top = 85.5
+offset_right = 225.00002
+offset_bottom = 99.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 9
+text = "%"
+horizontal_alignment = 1
+
+[node name="IntelligenceWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=2049243172]
+visible = false
+anchors_preset = 0
+offset_left = -105.0
+offset_top = 90.0
+offset_right = -65.0
+offset_bottom = 130.0
+scale = Vector2(2, 2)
+
+[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/IntelligenceWarning" unique_id=1019763646]
+texture_filter = 1
+position = Vector2(209.1875, 84.250015)
+scale = Vector2(0.24062501, 0.31818262)
+texture = ExtResource("12_m11cf")
+
+[node name="DeathRiskNum" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/IntelligenceWarning" unique_id=760119286]
+texture_filter = 1
+layout_mode = 0
+offset_left = 194.0
+offset_top = 87.0
+offset_right = 218.0
+offset_bottom = 101.0
+scale = Vector2(0.96, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 1
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/IntelligenceWarning" unique_id=144025505]
+texture_filter = 1
+layout_mode = 0
+offset_left = 201.00002
+offset_top = 87.5
+offset_right = 225.00002
+offset_bottom = 101.5
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 9
+text = "%"
+horizontal_alignment = 1
+
+[node name="CommunityWarning" type="Control" parent="SeatCellLoading/DeathRiskManager/RiskRight" unique_id=1947307894]
+visible = false
+anchors_preset = 0
+offset_left = -105.0
+offset_top = 179.0
+offset_right = -65.0
+offset_bottom = 219.0
+scale = Vector2(2, 2)
+
+[node name="StrengthDeathWarningSprite" type="Sprite2D" parent="SeatCellLoading/DeathRiskManager/RiskRight/CommunityWarning" unique_id=1293421207]
+texture_filter = 1
+position = Vector2(209.1875, 85.750015)
+scale = Vector2(0.24062501, 0.31818262)
+texture = ExtResource("12_m11cf")
+
+[node name="DeathRiskNum" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/CommunityWarning" unique_id=1320199915]
+texture_filter = 1
+layout_mode = 0
+offset_left = 194.5
+offset_top = 88.0
+offset_right = 218.5
+offset_bottom = 102.0
+scale = Vector2(0.96, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 10
+text = "15"
+horizontal_alignment = 1
+
+[node name="DeathRiskPercant" type="Label" parent="SeatCellLoading/DeathRiskManager/RiskRight/CommunityWarning" unique_id=1696351096]
+texture_filter = 1
+layout_mode = 0
+offset_left = 201.50002
+offset_top = 89.0
+offset_right = 225.50002
+offset_bottom = 103.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 9
+text = "%"
 horizontal_alignment = 1
 
 [node name="PressBtnToSeeResult" type="Label" parent="SeatCellLoading" unique_id=716419460]
-visible = false
 texture_filter = 1
-offset_left = 52.0
-offset_top = 259.0
-offset_right = 436.0
-offset_bottom = 302.0
+offset_left = 144.0
+offset_top = 493.0
+offset_right = 550.0
+offset_bottom = 536.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 14
 text = "Press 'Confirm' to see result"
 horizontal_alignment = 1
 
@@ -1998,9 +1638,9 @@ visible = false
 
 [node name="Bg" type="ColorRect" parent="NewCellPreview" unique_id=171661350]
 offset_left = 10.0
-offset_top = 29.0
-offset_right = 471.72415
-offset_bottom = 268.0
+offset_top = 8.0
+offset_right = 696.0
+offset_bottom = 504.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
 [node name="StatDisplay" type="Control" parent="NewCellPreview" unique_id=269956689]
@@ -2020,23 +1660,23 @@ offset_bottom = 52.0
 [node name="StrengthDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=1569586290]
 texture_filter = 1
 material = SubResource("ShaderMaterial_86evj")
-position = Vector2(240, 81.00001)
-scale = Vector2(1, 0.45)
+position = Vector2(352, 108.00001)
+scale = Vector2(1.8580644, 0.6249999)
 texture = SubResource("CompressedTexture2D_6hm17")
 
-[node name="IntelligenceDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=359551671]
+[node name="IntelligenceDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=315446473]
 texture_filter = 1
-material = SubResource("ShaderMaterial_kcfsm")
-position = Vector2(240, 149.00002)
-scale = Vector2(1, 0.45)
-texture = ExtResource("5_mgjpr")
+material = SubResource("ShaderMaterial_86evj")
+position = Vector2(352, 228)
+scale = Vector2(1.8580644, 0.6249999)
+texture = SubResource("CompressedTexture2D_6hm17")
 
-[node name="CommunityDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=605432416]
+[node name="CommunityDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=860156187]
 texture_filter = 1
-material = SubResource("ShaderMaterial_in0xe")
-position = Vector2(240, 220)
-scale = Vector2(1, 0.45)
-texture = ExtResource("5_mgjpr")
+material = SubResource("ShaderMaterial_86evj")
+position = Vector2(352, 348)
+scale = Vector2(1.8580644, 0.6249999)
+texture = SubResource("CompressedTexture2D_6hm17")
 
 [node name="ProgressBars" type="Control" parent="NewCellPreview/StatDisplay" unique_id=1840092909]
 anchors_preset = 0
@@ -2046,57 +1686,57 @@ offset_bottom = 12.0
 [node name="StrengthBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1288849514]
 texture_filter = 1
 material = SubResource("ShaderMaterial_8evw8")
-position = Vector2(240, 58.90693)
-scale = Vector2(0.99824995, 0.69534653)
+position = Vector2(352, 68.5)
+scale = Vector2(1.8580643, 1.1750001)
 texture = SubResource("CompressedTexture2D_h8cmu")
 
 [node name="StengthLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1610442278]
 texture_filter = 1
 layout_mode = 0
-offset_left = 168.0
-offset_top = 28.0
-offset_right = 312.0
-offset_bottom = 51.0
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 696.0
+offset_bottom = 45.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 25
 text = "Strength"
 horizontal_alignment = 1
 
-[node name="IntelligenceBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=157230782]
+[node name="IntelligenceBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1442356734]
 texture_filter = 1
-material = SubResource("ShaderMaterial_fjavj")
-position = Vector2(239.99998, 126.90693)
-scale = Vector2(0.99824995, 0.69534653)
-texture = ExtResource("8_hpsuj")
+material = SubResource("ShaderMaterial_8evw8")
+position = Vector2(352, 188.5)
+scale = Vector2(1.8580643, 1.1750001)
+texture = SubResource("CompressedTexture2D_h8cmu")
 
-[node name="IntelligenceLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=625901662]
+[node name="IntelligenceLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1122929221]
 texture_filter = 1
 layout_mode = 0
-offset_left = 138.0
-offset_top = 97.0
-offset_right = 354.0
-offset_bottom = 120.0
+offset_left = 8.0
+offset_top = 140.0
+offset_right = 696.0
+offset_bottom = 165.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 25
 text = "Intelligence"
 horizontal_alignment = 1
 
-[node name="CommunityBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1542446327]
+[node name="CommunityBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=644356267]
 texture_filter = 1
-material = SubResource("ShaderMaterial_p6rmf")
-position = Vector2(240, 196.9069)
-scale = Vector2(0.99824995, 0.6953459)
-texture = ExtResource("8_hpsuj")
+material = SubResource("ShaderMaterial_8evw8")
+position = Vector2(352, 308.5)
+scale = Vector2(1.8580643, 1.1750001)
+texture = SubResource("CompressedTexture2D_h8cmu")
 
-[node name="CommunityLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1941726009]
+[node name="CommunityLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=2144292991]
 texture_filter = 1
 layout_mode = 0
-offset_left = 138.0
-offset_top = 168.0
-offset_right = 354.0
-offset_bottom = 191.0
+offset_left = 8.0
+offset_top = 260.0
+offset_right = 696.0
+offset_bottom = 285.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 25
 text = "Community"
 horizontal_alignment = 1
 
@@ -2109,44 +1749,44 @@ offset_bottom = 36.0
 [node name="StrengthOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=58486450]
 texture_filter = 1
 layout_mode = 0
-offset_left = 152.0
-offset_top = 63.0
-offset_right = 320.0
-offset_bottom = 86.0
+offset_left = 64.0
+offset_top = 68.0
+offset_right = 640.0
+offset_bottom = 93.80647
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 15
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IntelligenceOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=621425569]
+[node name="IntelligenceOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=580926308]
 texture_filter = 1
 layout_mode = 0
-offset_left = 152.0
-offset_top = 132.0
-offset_right = 320.0
-offset_bottom = 155.0
+offset_left = 64.0
+offset_top = 188.0
+offset_right = 640.0
+offset_bottom = 213.80647
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 15
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CommunityOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=1302086532]
+[node name="CommunityOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=402055913]
 texture_filter = 1
 layout_mode = 0
-offset_left = 152.0
-offset_top = 201.00002
-offset_right = 320.0
-offset_bottom = 224.00002
+offset_left = 64.0
+offset_top = 308.0
+offset_right = 640.0
+offset_bottom = 333.80646
 scale = Vector2(1, 1.2399988)
 theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 15
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2161,38 +1801,126 @@ visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_mawr2")
-position = Vector2(240, 78.5)
-scale = Vector2(1.015873, 1.075)
+position = Vector2(352, 96.5)
+scale = Vector2(1.8285716, 1.9750001)
 texture = SubResource("CompressedTexture2D_0uemu")
 
-[node name="IntelligenceHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=1395922873]
+[node name="IntelligenceHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=1169381422]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_mawr2")
-position = Vector2(240, 147)
-scale = Vector2(1.015873, 1.1000001)
+position = Vector2(352, 216.50002)
+scale = Vector2(1.8285716, 1.9750001)
 texture = SubResource("CompressedTexture2D_0uemu")
 
-[node name="CommunityHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=1082185477]
+[node name="CommunityHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=1866574877]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_mawr2")
-position = Vector2(240, 217.5)
-scale = Vector2(1.015873, 1.1249999)
+position = Vector2(352, 336.50003)
+scale = Vector2(1.8285716, 1.9750001)
 texture = SubResource("CompressedTexture2D_0uemu")
+
+[node name="BloodType" type="Control" parent="NewCellPreview/StatDisplay" unique_id=443638895]
+anchors_preset = 0
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 232.0
+offset_bottom = 72.0
+
+[node name="BloodTypeBG" type="ColorRect" parent="NewCellPreview/StatDisplay/BloodType" unique_id=1934579220]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 370.0
+offset_right = 224.0
+offset_bottom = 432.0
+color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="NewCellPreview/StatDisplay/BloodType" unique_id=956680038]
+texture_filter = 1
+layout_mode = 0
+offset_left = -10.0
+offset_top = 350.0
+offset_right = 310.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("2_eshad")
+theme_override_font_sizes/font_size = 14
+text = "Blood Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FakeBloodType" type="Control" parent="NewCellPreview/StatDisplay/BloodType" unique_id=269730586]
+anchors_preset = 0
+offset_left = 3.0
+offset_top = 5.0
+offset_right = 43.0
+offset_bottom = 45.0
+
+[node name="BloodTypeA" type="Label" parent="NewCellPreview/StatDisplay/BloodType/FakeBloodType" unique_id=1825168114]
+texture_filter = 1
+layout_mode = 0
+offset_left = 106.0
+offset_top = 367.0
+offset_right = 178.0
+offset_bottom = 413.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 44
+text = "A"
+
+[node name="BloodType+" type="Label" parent="NewCellPreview/StatDisplay/BloodType/FakeBloodType" unique_id=1366479254]
+texture_filter = 1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 365.0
+offset_right = 143.0
+offset_bottom = 400.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 28
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeDash" type="Label" parent="NewCellPreview/StatDisplay/BloodType/FakeBloodType" unique_id=1921425925]
+texture_filter = 1
+layout_mode = 0
+offset_left = 141.0
+offset_top = 366.0
+offset_right = 157.0
+offset_bottom = 412.0
+theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 44
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeA2" type="Label" parent="NewCellPreview/StatDisplay/BloodType/FakeBloodType" unique_id=1191989859]
+texture_filter = 1
+layout_mode = 0
+offset_left = 165.0
+offset_top = 367.0
+offset_right = 237.0
+offset_bottom = 413.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("18_gs2dg")
+theme_override_font_sizes/font_size = 44
+text = "O"
 
 [node name="PressBtnBreed" type="Label" parent="NewCellPreview" unique_id=949738463]
 texture_filter = 1
-offset_left = 52.0
-offset_top = 251.0
-offset_right = 436.0
-offset_bottom = 294.0
+offset_left = 16.0
+offset_top = 464.0
+offset_right = 696.0
+offset_bottom = 496.0
 theme_override_fonts/font = ExtResource("2_eshad")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 15
 text = "Press 'Confirm' To Breed"
 horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("19_klfi8")
 
 [node name="DisruptorWarning" type="Control" parent="." unique_id=277395640]
@@ -2240,6 +1968,7 @@ horizontal_alignment = 1
 wait_time = 0.5
 
 [node name="DisruptorManagerSeatLoading" type="Control" parent="." unique_id=2133508331]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

@@ -13,8 +13,6 @@ extends Node
 # event manager direction btn
 @onready var handle_direction_btn_pressed : Node = $"../../EnergyBoostEventManager/HandleDirectionBtnPressed"
 
-
-
 var energy_boost_left_cell: BrainCell
 var energy_boost_right_cell: BrainCell
 
@@ -25,6 +23,7 @@ var energy_boost_left_direction: String = "none"
 var energy_boost_right_direction: String = "none"
 
 func _handle_breeding_panel_cell_recieved(brain_cell: BrainCell, side: String) -> void:
+	
 	match side:
 		"left":
 			set_left_energy_boost_cell(brain_cell)

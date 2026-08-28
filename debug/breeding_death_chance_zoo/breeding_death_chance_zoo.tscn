@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://ddgixuam3k2wy"]
+
+[ext_resource type="PackedScene" uid="uid://5aiid51oaqct" path="res://scenes/characters/player/player.tscn" id="1_vxoys"]
+[ext_resource type="Script" uid="uid://bwi4qjt2xiqgb" path="res://debug/breeding_death_chance_zoo/create_cell.gd" id="2_8m0h8"]
+[ext_resource type="PackedScene" uid="uid://d3feijklrh11s" path="res://scenes/stations/station_components/cell_container_spawner/station_cell_container_spawner.tscn" id="3_ohegc"]
+[ext_resource type="Script" uid="uid://d3whksh20kw0j" path="res://debug/breeding_death_chance_zoo/cell_container_spawner.gd" id="4_l0jby"]
+[ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="4_ohegc"]
+[ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="6_f2a7e"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_egmft"]
+size = Vector3(50, 0.1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxoys"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="Environment" id="Environment_02wck"]
+background_mode = 1
+ambient_light_color = Color(0.20110431, 0.21357447, 0.074715756, 1)
+fog_enabled = true
+fog_light_color = Color(0.10628634, 0.11559991, 0.025737353, 1)
+fog_density = 0.05
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_8m0h8"]
+vertices = PackedVector3Array(-24.25, 0.40000007, -24.25, -24.25, 0.40000007, 24.25, 24.25, 0.40000007, 24.25, 24.25, 0.40000007, -24.25)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+geometry_source_geometry_mode = 1
+geometry_source_group_name = &"nav_mesh_coll"
+agent_radius = 0.7
+agent_max_slope = 20.0
+
+[node name="BreedingDeathChanceZoo" type="Node3D" unique_id=1333790366]
+
+[node name="Env" type="Node3D" parent="." unique_id=1540685345]
+
+[node name="Floor" type="StaticBody3D" parent="Env" unique_id=1790975673 groups=["nav_mesh_coll"]]
+collision_layer = 2
+collision_mask = 0
+
+[node name="FloorMesh" type="MeshInstance3D" parent="Env/Floor" unique_id=1158668594]
+mesh = SubResource("BoxMesh_egmft")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Env/Floor" unique_id=1586864669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.9604645e-08, 0)
+shape = SubResource("BoxShape3D_vxoys")
+debug_color = Color(0.7096456, 0.4859149, 0, 1)
+
+[node name="Lights" type="Node3D" parent="Env" unique_id=114430309]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Env/Lights" unique_id=1630347175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+omni_range = 89.985
+omni_attenuation = -0.091
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env" unique_id=821887116]
+environment = SubResource("Environment_02wck")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="Env" unique_id=1553072809]
+navigation_mesh = SubResource("NavigationMesh_8m0h8")
+
+[node name="Charcters" type="Node" parent="." unique_id=1501329929]
+
+[node name="Player" parent="Charcters" unique_id=1124472616 instance=ExtResource("1_vxoys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9335871, 2, -5)
+
+[node name="CellContainerParentNode" type="Node" parent="Charcters" unique_id=1365351665]
+
+[node name="CreateCell" type="Node3D" parent="." unique_id=256595740]
+script = ExtResource("2_8m0h8")
+
+[node name="SpawnPos" type="Node3D" parent="CreateCell" unique_id=393035631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="CellContainerSpawner" parent="." unique_id=1385341540 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("3_ohegc")]
+script = ExtResource("4_l0jby")
+cell_container_parent_node = NodePath("../Charcters/CellContainerParentNode")
+
+[node name="CellBreeding" parent="." unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("4_ohegc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+cell_container_parent_node = NodePath("../Charcters/CellContainerParentNode")
+
+[node name="CellManager" type="Node" parent="." unique_id=759967095]
+script = ExtResource("6_f2a7e")
