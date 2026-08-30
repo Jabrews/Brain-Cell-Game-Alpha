@@ -1,0 +1,4903 @@
+[gd_scene format=3 uid="uid://dl1bbjjmhxuri"]
+
+[ext_resource type="Script" uid="uid://dijgoq3awg7tf" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/btns/handle_back_btn.gd" id="1_j40pm"]
+[ext_resource type="Script" uid="uid://crc7fjb1heml0" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/btns/handle_confirm_btn.gd" id="2_s78u6"]
+[ext_resource type="Script" uid="uid://de14s1dnfncm7" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/handle_display.gd" id="3_3ekk0"]
+[ext_resource type="Script" uid="uid://bgxus3cjga3vq" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/main_cell_loader.gd" id="4_juc07"]
+[ext_resource type="Script" uid="uid://bu44w6e8f25oe" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/display_helpers/stat/display_stat_left.gd" id="5_q55pm"]
+[ext_resource type="Script" uid="uid://c8l2uf7nmjtec" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/display_helpers/stat/display_stat_right.gd" id="6_74pn4"]
+[ext_resource type="Script" uid="uid://bxdbl1kav4ijp" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/display_helpers/death_chance/display_death_chance_left.gd" id="7_g7qtc"]
+[ext_resource type="Script" uid="uid://f31sc0ovx22" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/display_helpers/death_chance/display_death_chance_right.gd" id="8_s78u6"]
+[ext_resource type="Script" uid="uid://r1m1mn8bff85" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/reset_helpers/stat/reset_stat_left.gd" id="8_sf1xh"]
+[ext_resource type="Script" uid="uid://d2gfchjs60iox" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/reset_helpers/stat/reset_stat_right.gd" id="9_a2e6m"]
+[ext_resource type="Script" uid="uid://cw26tb02egaew" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/display_helpers/display_death_chance_skull.gd" id="9_juc07"]
+[ext_resource type="Script" uid="uid://c6lurh3vy8i7q" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/reset_helpers/death_chance/reset_death_chance_left.gd" id="10_chgqe"]
+[ext_resource type="Script" uid="uid://qu2ipixmab22" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/handle_boost_charge_direction.gd" id="11_ueagp"]
+[ext_resource type="Script" uid="uid://brrtu70xlq8y5" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/reset_helpers/death_chance/reset_death_chance_right.gd" id="12_3ekk0"]
+[ext_resource type="Script" uid="uid://c28wtqub5sskk" path="res://scripts/stations/station_screens/cell_breeding/new_cell_screen/handle_display_new_cell.gd" id="12_ccp3m"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="13_bbt0r"]
+[ext_resource type="Script" uid="uid://d3hwmhb5tyk3x" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/reset_helpers/reset_death_chance_skull.gd" id="14_q55pm"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="14_vh0n0"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="15_mlx1w"]
+[ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="16_0855r"]
+[ext_resource type="Shader" uid="uid://bhfglemkyi0fr" path="res://scripts/shaders/cell_breeder/breeding_with_charge_progress_bar.gdshader" id="17_rmtrg"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="18_3ol1a"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="19_7nxlq"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="20_6v68c"]
+[ext_resource type="Script" uid="uid://ik08rwohsq4n" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/symbol_manager.gd" id="21_0kbkf"]
+[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_hidden.gd" id="22_bllym"]
+[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_arrow.gd" id="23_xicq0"]
+[ext_resource type="Texture2D" uid="uid://dvjrss36t8u0b" path="res://models/screens/breeding_symbols/question_mark.png" id="24_utl2c"]
+[ext_resource type="Texture2D" uid="uid://c5k5ibq6s2pn2" path="res://models/screens/breeding_symbols/arrow_UP.png" id="25_o0v6m"]
+[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/up_arrow_symbol.gd" id="26_nakc5"]
+[ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="27_umtiy"]
+[ext_resource type="Shader" uid="uid://cehnd5u738tts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/total_death_chance_frame.gdshader" id="28_vq4nr"]
+[ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="29_q1t35"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="30_qo8gh"]
+[ext_resource type="Shader" uid="uid://3crm1j3sldsg" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/pot_fill.gdshader" id="31_0a1eu"]
+[ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="32_wislp"]
+[ext_resource type="Script" uid="uid://cmjtv6eavlp4v" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/life_span_next_age_opacity_flash.gd" id="33_w3lgm"]
+[ext_resource type="Texture2D" uid="uid://cs8ct6nglwbs3" path="res://models/breeding_screen/lifespan_next_arrow.png" id="34_lipng"]
+[ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="35_wseue"]
+[ext_resource type="Texture2D" uid="uid://djxgrddvaiim5" path="res://models/breeding_screen/breeding_skull.png" id="36_lffps"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="37_3laa3"]
+[ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="38_vjg4y"]
+[ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="39_ahuxv"]
+[ext_resource type="Script" uid="uid://dlgat110o2ir0" path="res://scripts/stations/station_screens/cell_breeding/new_cell_screen/compound_blood_type_label.gd" id="40_fm84f"]
+[ext_resource type="Script" uid="uid://cdmr8tj2imba6" path="res://scripts/stations/station_screens/cell_breeding/label_press_to_see_result.gd" id="41_bbkcc"]
+[ext_resource type="Script" uid="uid://b3gfucopkv7ts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/disrupt/breeding_loader_disrupt_warning.gd" id="42_u357y"]
+[ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="43_og7cf"]
+[ext_resource type="Script" uid="uid://coiycsqa767cw" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_manager_seat_loading.gd" id="44_8flhd"]
+[ext_resource type="Script" uid="uid://tp63bilvru4r" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_arrow_blocker.gd" id="45_fnqjg"]
+[ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="46_bk166"]
+[ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="47_ak22q"]
+[ext_resource type="Script" uid="uid://vrgil8tm4o4l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull_manager.gd" id="48_nnmlu"]
+[ext_resource type="Script" uid="uid://d2ayejpb3dr5n" path="res://reusable/mutation_disrupt/disruptor_skull/detect_skull_area.gd" id="49_k7o1w"]
+[ext_resource type="Script" uid="uid://dqw7inj07cg6l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull.gd" id="50_77otj"]
+[ext_resource type="Texture2D" uid="uid://4df418kwwq1u" path="res://models/mutations/random_disruptor_disrupt/hack_skull.png" id="51_4mo0d"]
+[ext_resource type="Script" uid="uid://dyobg1msd3kw7" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_manager_new_cell.gd" id="52_lckpo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c3vun"]
+shader = ExtResource("13_bbt0r")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q2t8d"]
+shader = ExtResource("17_rmtrg")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/charge_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/charge_color_a = Color(1, 1, 0, 0.38431373)
+shader_parameter/charge_color_b = Color(0.47779226, 0.31845894, 0.07635339, 0.3254902)
+shader_parameter/overlap_opacity = 0.10000000475
+shader_parameter/charge_opacity = 0.85
+shader_parameter/stripe_amount = 28.0
+shader_parameter/stripe_slant = 0.8
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ck3ll"]
+shader = ExtResource("19_7nxlq")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("20_6v68c")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ho4h7"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bup5n"]
+shader = ExtResource("28_vq4nr")
+shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.05
+shader_parameter/progress = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_esjeo"]
+shader = ExtResource("31_0a1eu")
+shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+shader_parameter/tolerance = 0.05
+shader_parameter/current_value = 0.0
+shader_parameter/secondary_value = 0.0
+shader_parameter/current_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+shader_parameter/secondary_color = Color(0.58654827, 0.04177396, 0.12359213, 1)
+shader_parameter/pulse_speed = 1.72100007848762
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdtrj"]
+atlas = ExtResource("35_wseue")
+region = Rect2(0, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xnt4j"]
+atlas = ExtResource("35_wseue")
+region = Rect2(136, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k14w"]
+atlas = ExtResource("35_wseue")
+region = Rect2(272, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7klm7"]
+atlas = ExtResource("35_wseue")
+region = Rect2(408, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7bdd"]
+atlas = ExtResource("35_wseue")
+region = Rect2(544, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nknuw"]
+atlas = ExtResource("35_wseue")
+region = Rect2(680, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owwka"]
+atlas = ExtResource("35_wseue")
+region = Rect2(816, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1gv7"]
+atlas = ExtResource("35_wseue")
+region = Rect2(952, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmhka"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1088, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvfmv"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1224, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02a8g"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1360, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w77m4"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1496, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oepyr"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1632, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khfas"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1768, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui4rg"]
+atlas = ExtResource("35_wseue")
+region = Rect2(1904, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_63g8e"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2040, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4gt5"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2176, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7d0mg"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2312, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kthn1"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2448, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qptu8"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2584, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_83pli"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2720, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qugh8"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2856, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_piwhk"]
+atlas = ExtResource("35_wseue")
+region = Rect2(2992, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gq6o"]
+atlas = ExtResource("35_wseue")
+region = Rect2(3128, 0, 136, 136)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch6v2"]
+atlas = ExtResource("35_wseue")
+region = Rect2(3264, 0, 136, 136)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_faus5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdtrj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xnt4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k14w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7klm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7bdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nknuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owwka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1gv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmhka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvfmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02a8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w77m4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oepyr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khfas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui4rg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_63g8e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4gt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7d0mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kthn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qptu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_83pli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qugh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_piwhk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gq6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch6v2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7u4es"]
+shader = ExtResource("37_3laa3")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.84800004028
+shader_parameter/shimmer_strength = 0.594000028215
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(0.9343551, 0.97784275, 0.9999998, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u4es"]
+atlas = ExtResource("38_vjg4y")
+region = Rect2(0, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7v84"]
+atlas = ExtResource("38_vjg4y")
+region = Rect2(22, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2bi6"]
+atlas = ExtResource("38_vjg4y")
+region = Rect2(44, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkncc"]
+atlas = ExtResource("38_vjg4y")
+region = Rect2(66, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywryo"]
+atlas = ExtResource("38_vjg4y")
+region = Rect2(110, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2g5r"]
+atlas = ExtResource("38_vjg4y")
+region = Rect2(132, 0, 22, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qa1qv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u4es")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_r7v84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2bi6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_mkncc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywryo")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a2g5r")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.05
+}]
+
+[sub_resource type="Shader" id="Shader_3movu"]
+code = "shader_type canvas_item;
+
+uniform float stat_defect_value : hint_range(0.0, 1.0);
+uniform float start_value : hint_range(0.0, 1.0);
+
+uniform vec4 defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+
+uniform vec4 increase_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
+uniform vec4 decrease_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
+
+uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
+uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
+uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
+
+// Keeps shader from coloring the white/empty edge pixels.
+uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
+
+void fragment() {
+
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges =
+		pixel_x >= edge_padding &&
+		pixel_x <= (tex_width - edge_padding);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// Base defect bar
+		if (UV.x <= stat_defect_value) {
+			result = vec4(defect_color.rgb, tex.a);
+		}
+
+		// Change stripe
+		float left = min(start_value, stat_defect_value);
+		float right = max(start_value, stat_defect_value);
+
+		if (
+			right - left > 0.001 &&
+			UV.x >= left &&
+			UV.x <= right
+		) {
+
+			float region_uv = (UV.x - left) / (right - left);
+
+			vec4 overlay_color;
+			float stripe_pos;
+
+			if (stat_defect_value > start_value) {
+				// Defect increased -> red stripe moves right
+				overlay_color = increase_color;
+				stripe_pos = fract(TIME * stripe_speed);
+			}
+			else {
+				// Defect decreased -> blue stripe moves left
+				overlay_color = decrease_color;
+				stripe_pos = 1.0 - fract(TIME * stripe_speed);
+			}
+
+			float stripe =
+				smoothstep(
+					stripe_pos - stripe_width,
+					stripe_pos,
+					region_uv
+				)
+				*
+				(
+					1.0
+					-
+					smoothstep(
+						stripe_pos,
+						stripe_pos + stripe_width,
+						region_uv
+					)
+				);
+
+			result.rgb = mix(
+				result.rgb,
+				overlay_color.rgb,
+				stripe * overlay_opacity
+			);
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mres"]
+shader = SubResource("Shader_3movu")
+shader_parameter/stat_defect_value = 0.0
+shader_parameter/start_value = 0.0
+shader_parameter/defect_color = Color(0.5, 0, 0, 1)
+shader_parameter/increase_color = Color(1, 0.2, 0.2, 1)
+shader_parameter/decrease_color = Color(0.2, 0.8, 1, 1)
+shader_parameter/overlay_opacity = 0.2490000118275
+shader_parameter/stripe_width = 0.10000000405148
+shader_parameter/stripe_speed = 1.00000004424012
+shader_parameter/edge_padding = 2.6370001252575
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8udft"]
+load_path = "res://.godot/imported/progress_bar_under.png-e57f123632c318b1d08ae788f52e6ada.ctex"
+
+[sub_resource type="Shader" id="Shader_3tyvt"]
+code = "shader_type canvas_item;
+
+uniform float prisoner_value : hint_range(0.0, 1.0);
+uniform float target_value : hint_range(0.0, 1.0);
+uniform float start_value : hint_range(0.0, 1.0);
+
+uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+
+uniform vec4 increase_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
+uniform vec4 decrease_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
+
+uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
+uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
+uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
+uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
+
+// Keeps shader from coloring the white/empty edge pixels.
+uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
+
+void fragment() {
+
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges =
+		pixel_x >= edge_padding &&
+		pixel_x <= (tex_width - edge_padding);
+
+	float in_yellow = step(UV.x, prisoner_value);
+	float in_red = step(UV.x, target_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// Prisoner bar
+		if (in_yellow > 0.5) {
+			result = vec4(yellow_color.rgb, tex.a);
+		}
+
+		// Target bar
+		if (in_red > 0.5) {
+
+			if (in_yellow > 0.5) {
+				result = mix(
+					result,
+					vec4(red_color.rgb, tex.a),
+					overlap_opacity
+				);
+			}
+			else {
+				result = vec4(red_color.rgb, tex.a);
+			}
+		}
+
+		// Change stripe
+		float left = min(start_value, prisoner_value);
+		float right = max(start_value, prisoner_value);
+
+		if (
+			right - left > 0.001 &&
+			UV.x >= left &&
+			UV.x <= right
+		) {
+
+			float region_uv = (UV.x - left) / (right - left);
+
+			vec4 overlay_color;
+			float stripe_pos;
+
+			if (prisoner_value > start_value) {
+				// Increase -> blue -> move right
+				overlay_color = increase_color;
+				stripe_pos = fract(TIME * stripe_speed);
+			}
+			else {
+				// Decrease -> red -> move left
+				overlay_color = decrease_color;
+				stripe_pos = 1.0 - fract(TIME * stripe_speed);
+			}
+
+			float stripe =
+				smoothstep(
+					stripe_pos - stripe_width,
+					stripe_pos,
+					region_uv
+				)
+				*
+				(
+					1.0
+					-
+					smoothstep(
+						stripe_pos,
+						stripe_pos + stripe_width,
+						region_uv
+					)
+				);
+
+			result.rgb = mix(
+				result.rgb,
+				overlay_color.rgb,
+				stripe * overlay_opacity
+			);
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo7b4"]
+shader = SubResource("Shader_3tyvt")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/target_value = 0.0
+shader_parameter/start_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
+shader_parameter/increase_color = Color(0.100000024, 0.69999987, 1, 0.9843137)
+shader_parameter/decrease_color = Color(1, 0.19999999, 0.19999999, 1)
+shader_parameter/overlap_opacity = 0.254000012065
+shader_parameter/overlay_opacity = 0.7790000370025
+shader_parameter/stripe_width = 0.10000000405148
+shader_parameter/stripe_speed = 1.00000004424012
+shader_parameter/edge_padding = 3.2970001566075
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_aw5k2"]
+load_path = "res://.godot/imported/progress_bar_under.png-a4ddba47758af10b1c8dd6544faba67e.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3ny3"]
+shader = ExtResource("19_7nxlq")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("20_6v68c")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kbvtg"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_w3wvt"]
+load_path = "res://.godot/imported/random_blood.png-71253817ce11fe69d57c081f7df908ae.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hni84"]
+size = Vector2(480, 6.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nds1u"]
+size = Vector2(480, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fw8uv"]
+size = Vector2(6, 268)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65ihf"]
+size = Vector2(5, 268)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agcgh"]
+size = Vector2(40, 40)
+
+[node name="ScreenCellBreedingLoader" type="Node2D" unique_id=1159403996]
+
+[node name="HandleBackBtn" type="Node" parent="." unique_id=1855550375]
+script = ExtResource("1_j40pm")
+
+[node name="HandleConfirmBtn" type="Node" parent="." unique_id=213763450]
+script = ExtResource("2_s78u6")
+
+[node name="HandleDisplay" type="Node" parent="." unique_id=431944596]
+script = ExtResource("3_3ekk0")
+
+[node name="MainCellLoader" type="Node" parent="HandleDisplay" unique_id=470587200]
+script = ExtResource("4_juc07")
+
+[node name="Display" type="Node" parent="HandleDisplay/MainCellLoader" unique_id=1344845473]
+
+[node name="DisplayStatLeft" type="Node" parent="HandleDisplay/MainCellLoader/Display" unique_id=2031948276]
+script = ExtResource("5_q55pm")
+
+[node name="DisplayStatRight" type="Node" parent="HandleDisplay/MainCellLoader/Display" unique_id=1945226178]
+script = ExtResource("6_74pn4")
+
+[node name="DisplayDeathChanceLeft" type="Node" parent="HandleDisplay/MainCellLoader/Display" unique_id=1874333403]
+script = ExtResource("7_g7qtc")
+
+[node name="DisplayDeathChanceRight" type="Node" parent="HandleDisplay/MainCellLoader/Display" unique_id=458979009]
+script = ExtResource("8_s78u6")
+
+[node name="DisplayDeathChanceSkull" type="Node" parent="HandleDisplay/MainCellLoader/Display" unique_id=19620067]
+script = ExtResource("9_juc07")
+
+[node name="Reset" type="Node" parent="HandleDisplay/MainCellLoader" unique_id=146801273]
+
+[node name="ResetStatLeft" type="Node" parent="HandleDisplay/MainCellLoader/Reset" unique_id=1016319099]
+script = ExtResource("8_sf1xh")
+
+[node name="ResetStatRight" type="Node" parent="HandleDisplay/MainCellLoader/Reset" unique_id=1449332931]
+script = ExtResource("9_a2e6m")
+
+[node name="ResetDeathChanceLeft" type="Node" parent="HandleDisplay/MainCellLoader/Reset" unique_id=1922544441]
+script = ExtResource("10_chgqe")
+
+[node name="ResetDeathChanceRight" type="Node" parent="HandleDisplay/MainCellLoader/Reset" unique_id=37100932]
+script = ExtResource("12_3ekk0")
+
+[node name="ResetDeathChanceSkull" type="Node" parent="HandleDisplay/MainCellLoader/Reset" unique_id=151621627]
+script = ExtResource("14_q55pm")
+
+[node name="LoadingSpinnerTimers" type="Node" parent="HandleDisplay/MainCellLoader" unique_id=1014434992]
+
+[node name="LeftDeathDelay" type="Timer" parent="HandleDisplay/MainCellLoader/LoadingSpinnerTimers" unique_id=1908486129]
+wait_time = 0.5
+
+[node name="RighttDeathDelay" type="Timer" parent="HandleDisplay/MainCellLoader/LoadingSpinnerTimers" unique_id=387185206]
+wait_time = 0.5
+
+[node name="LeftBloodDelay" type="Timer" parent="HandleDisplay/MainCellLoader/LoadingSpinnerTimers" unique_id=1368716688]
+wait_time = 0.5
+
+[node name="RightBloodDelay" type="Timer" parent="HandleDisplay/MainCellLoader/LoadingSpinnerTimers" unique_id=1093057801]
+wait_time = 0.5
+
+[node name="DeathChanceSkullTimers" type="Node" parent="HandleDisplay/MainCellLoader" unique_id=1099808370]
+
+[node name="FlashDelayTimer" type="Timer" parent="HandleDisplay/MainCellLoader/DeathChanceSkullTimers" unique_id=177329979]
+wait_time = 0.5
+
+[node name="HandleBoostChargeDirection" type="Node" parent="HandleDisplay" unique_id=1160316340]
+script = ExtResource("11_ueagp")
+
+[node name="HandleDisplayNewCell" type="Node" parent="." unique_id=1110745491]
+script = ExtResource("12_ccp3m")
+
+[node name="BG" type="ColorRect" parent="." unique_id=783846782]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 704.0
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.44250143, 9.3854965e-07, 2.1658838e-07, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=390432392]
+material = SubResource("ShaderMaterial_c3vun")
+offset_right = 705.0
+offset_bottom = 543.0
+
+[node name="SeatCellLoading" type="Node2D" parent="." unique_id=1658830371]
+
+[node name="BackGrounds" type="Control" parent="SeatCellLoading" unique_id=873011951]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatBg" type="ColorRect" parent="SeatCellLoading/BackGrounds" unique_id=969238200]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 288.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="AgeBg" type="ColorRect" parent="SeatCellLoading/BackGrounds" unique_id=357366880]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 296.0
+offset_right = 320.0
+offset_bottom = 414.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="AgeBg2" type="ColorRect" parent="SeatCellLoading/BackGrounds" unique_id=47203717]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 297.0
+offset_right = 672.0
+offset_bottom = 414.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="BloodTypeBG" type="ColorRect" parent="SeatCellLoading/BackGrounds" unique_id=736513268]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 424.0
+offset_right = 264.0
+offset_bottom = 512.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="StatBg2" type="ColorRect" parent="SeatCellLoading/BackGrounds" unique_id=1717396846]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 32.0
+offset_right = 680.0
+offset_bottom = 288.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="BloodTypeBG2" type="ColorRect" parent="SeatCellLoading/BackGrounds" unique_id=632402997]
+layout_mode = 0
+offset_left = 440.0
+offset_top = 424.0
+offset_right = 608.0
+offset_bottom = 512.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="StatDisplay" type="Node2D" parent="SeatCellLoading" unique_id=2091774079]
+
+[node name="LeftStatDisplay" type="Node2D" parent="SeatCellLoading/StatDisplay" unique_id=180160083]
+
+[node name="StatDisplay" type="Control" parent="SeatCellLoading/StatDisplay/LeftStatDisplay" unique_id=597204067]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="CellName" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=1073724059]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 336.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 19
+text = "None
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectBars" type="Control" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=687983559]
+anchors_preset = 0
+offset_top = 53.0
+offset_right = 40.0
+offset_bottom = 93.0
+
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/DefectBars" unique_id=269187094]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 46.999996
+offset_right = 631.5366
+offset_bottom = 81.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("15_mlx1w")
+texture_progress = ExtResource("16_0855r")
+
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/DefectBars" unique_id=790542079]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 123.999985
+offset_right = 631.5366
+offset_bottom = 158.97263
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("15_mlx1w")
+texture_progress = ExtResource("16_0855r")
+
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/DefectBars" unique_id=2047560751]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 203.99997
+offset_right = 631.5366
+offset_bottom = 238.97261
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("15_mlx1w")
+texture_progress = ExtResource("16_0855r")
+
+[node name="ProgressBars" type="Control" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=511340839]
+anchors_preset = 0
+offset_top = 53.0
+offset_bottom = 53.0
+
+[node name="StrengthBar" type="Sprite2D" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/ProgressBars" unique_id=1126143374]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q2t8d")
+position = Vector2(176, 37)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("18_3ol1a")
+
+[node name="StengthLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/ProgressBars" unique_id=417971373]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 8.0
+offset_right = 307.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="IntelligenceBar" type="Sprite2D" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/ProgressBars" unique_id=60856914]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q2t8d")
+position = Vector2(175.99998, 113.99999)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("18_3ol1a")
+
+[node name="IntelligenceLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/ProgressBars" unique_id=1613577006]
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.999985
+offset_top = 85.0
+offset_right = 307.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityBar" type="Sprite2D" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/ProgressBars" unique_id=1790400516]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q2t8d")
+position = Vector2(175.99998, 193.99998)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("18_3ol1a")
+
+[node name="CommunityLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/ProgressBars" unique_id=1476765290]
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.999985
+offset_top = 165.0
+offset_right = 307.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Community"
+horizontal_alignment = 1
+
+[node name="HiddenStats" type="Control" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=80184655]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/HiddenStats" unique_id=731210340]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/HiddenStats" unique_id=624030933]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(176, 177)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/HiddenStats" unique_id=529927066]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(176, 257)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="OffDisableLabels" type="Control" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=246853096]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/OffDisableLabels" unique_id=30953224]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/OffDisableLabels" unique_id=756432750]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 93.0
+offset_top = 156.0
+offset_right = 261.0
+offset_bottom = 179.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay/StatDisplay/OffDisableLabels" unique_id=7214915]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 93.0
+offset_top = 234.0
+offset_right = 261.0
+offset_bottom = 257.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCellLoadedLabel" type="Label" parent="SeatCellLoading/StatDisplay/LeftStatDisplay" unique_id=1696372196]
+texture_filter = 1
+offset_left = 16.0
+offset_top = 132.0
+offset_right = 336.0
+offset_bottom = 205.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 18
+text = "Place Cell On 
+panell to begin
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightStatDisplay" type="Node2D" parent="SeatCellLoading/StatDisplay" unique_id=505047619]
+
+[node name="StatDisplay" type="Control" parent="SeatCellLoading/StatDisplay/RightStatDisplay" unique_id=2106863329]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 352.0
+offset_top = -8.0
+offset_right = 392.0
+offset_bottom = 32.0
+
+[node name="CellName" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1172395285]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 336.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 19
+text = "None
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectBars" type="Control" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay" unique_id=63163464]
+anchors_preset = 0
+offset_top = 53.0
+offset_right = 40.0
+offset_bottom = 93.0
+
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/DefectBars" unique_id=431441516]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 46.999996
+offset_right = 631.5366
+offset_bottom = 81.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("15_mlx1w")
+texture_progress = ExtResource("16_0855r")
+
+[node name="DefectIntelligenceBar" type="TextureProgressBar" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/DefectBars" unique_id=1652016563]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 123.999985
+offset_right = 631.5366
+offset_bottom = 158.97263
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("15_mlx1w")
+texture_progress = ExtResource("16_0855r")
+
+[node name="DefectCommunityBar" type="TextureProgressBar" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/DefectBars" unique_id=101004645]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 203.99997
+offset_right = 631.5366
+offset_bottom = 238.97261
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("15_mlx1w")
+texture_progress = ExtResource("16_0855r")
+
+[node name="ProgressBars" type="Control" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1002301731]
+anchors_preset = 0
+offset_top = 53.0
+offset_bottom = 53.0
+
+[node name="StrengthBar" type="Sprite2D" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/ProgressBars" unique_id=732899975]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q2t8d")
+position = Vector2(176, 37)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("18_3ol1a")
+
+[node name="StengthLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/ProgressBars" unique_id=1943759881]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 8.0
+offset_right = 307.0
+offset_bottom = 21.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="IntelligenceBar" type="Sprite2D" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/ProgressBars" unique_id=1606376234]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q2t8d")
+position = Vector2(175.99998, 113.99999)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("18_3ol1a")
+
+[node name="IntelligenceLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/ProgressBars" unique_id=1877974400]
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.999985
+offset_top = 85.0
+offset_right = 307.0
+offset_bottom = 98.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityBar" type="Sprite2D" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/ProgressBars" unique_id=1508320389]
+texture_filter = 1
+material = SubResource("ShaderMaterial_q2t8d")
+position = Vector2(175.99998, 193.99998)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("18_3ol1a")
+
+[node name="CommunityLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/ProgressBars" unique_id=1565821962]
+texture_filter = 1
+layout_mode = 0
+offset_left = 42.999985
+offset_top = 165.0
+offset_right = 307.0
+offset_bottom = 178.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Community"
+horizontal_alignment = 1
+
+[node name="HiddenStats" type="Control" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1067297715]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/HiddenStats" unique_id=1437374593]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/HiddenStats" unique_id=931815498]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(176, 177)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/HiddenStats" unique_id=940563441]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(176, 257)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="OffDisableLabels" type="Control" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay" unique_id=580845626]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/OffDisableLabels" unique_id=2026598142]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/OffDisableLabels" unique_id=1051832909]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 93.0
+offset_top = 156.0
+offset_right = 261.0
+offset_bottom = 179.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/OffDisableLabels" unique_id=1498348619]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 93.0
+offset_top = 234.0
+offset_right = 261.0
+offset_bottom = 257.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCellLoadedLabel" type="Label" parent="SeatCellLoading/StatDisplay/RightStatDisplay" unique_id=730267839]
+texture_filter = 1
+offset_left = 372.0
+offset_top = 132.0
+offset_right = 692.0
+offset_bottom = 205.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 18
+text = "Place Cell On 
+panell to begin
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SymbolManager" type="Control" parent="SeatCellLoading/StatDisplay" unique_id=907808876]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("21_0kbkf")
+
+[node name="HandleHidden" type="Node" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=2030038457]
+script = ExtResource("22_bllym")
+
+[node name="HandleArrow" type="Node" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=51175671]
+script = ExtResource("23_xicq0")
+
+[node name="QuestionMark" type="Control" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=201270423]
+anchors_preset = 0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -64.0
+
+[node name="QuestionStrength" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/QuestionMark" unique_id=1666051607]
+texture_filter = 1
+position = Vector2(353.25, 195.5)
+scale = Vector2(2.7, 2.1666665)
+texture = ExtResource("24_utl2c")
+
+[node name="QuestionIntelligence" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/QuestionMark" unique_id=1488474609]
+texture_filter = 1
+position = Vector2(352, 272)
+scale = Vector2(2.7, 2.1666665)
+texture = ExtResource("24_utl2c")
+
+[node name="QuestionCommunity" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/QuestionMark" unique_id=1726522312]
+texture_filter = 1
+position = Vector2(353.25, 352.422)
+scale = Vector2(2.7, 2.1666665)
+texture = ExtResource("24_utl2c")
+
+[node name="ArrowUp" type="Control" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=241459153]
+anchors_preset = 0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -64.0
+
+[node name="UpStrength" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowUp" unique_id=1442178746]
+texture_filter = 1
+position = Vector2(353.25, 195.65851)
+rotation = -1.5707964
+scale = Vector2(2.5896037, 2.134701)
+texture = ExtResource("25_o0v6m")
+script = ExtResource("26_nakc5")
+
+[node name="UpIntelligence" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowUp" unique_id=2087917406]
+texture_filter = 1
+position = Vector2(352, 272)
+rotation = -1.5707964
+scale = Vector2(2.5896037, 2.134701)
+texture = ExtResource("25_o0v6m")
+script = ExtResource("26_nakc5")
+
+[node name="UpCommunity" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowUp" unique_id=139178793]
+texture_filter = 1
+position = Vector2(352.25, 351.42203)
+rotation = -1.5707964
+scale = Vector2(2.5896037, 2.134701)
+texture = ExtResource("25_o0v6m")
+script = ExtResource("26_nakc5")
+
+[node name="ArrowDown" type="Control" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=1110765021]
+anchors_preset = 0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -64.0
+
+[node name="DownStrength" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowDown" unique_id=592013123]
+texture_filter = 1
+position = Vector2(353.25, 195.64217)
+rotation = -1.5707964
+scale = Vector2(2.582133, 2.134701)
+texture = ExtResource("27_umtiy")
+
+[node name="DownIntelligence" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowDown" unique_id=349121395]
+texture_filter = 1
+position = Vector2(352, 271.99997)
+rotation = -1.5707964
+scale = Vector2(2.582133, 2.134701)
+texture = ExtResource("27_umtiy")
+
+[node name="DownCommunity" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowDown" unique_id=1148622008]
+texture_filter = 1
+position = Vector2(352.25, 351.84402)
+rotation = -1.5707964
+scale = Vector2(2.582133, 2.134701)
+texture = ExtResource("27_umtiy")
+
+[node name="DeathChanceDisplay" type="Node2D" parent="SeatCellLoading" unique_id=953513884]
+
+[node name="LeftDeathChanceDisplay" type="Node2D" parent="SeatCellLoading/DeathChanceDisplay" unique_id=680575415]
+visible = false
+position = Vector2(0, -2)
+
+[node name="TotalDeathChance" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=515926385]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 44.0
+
+[node name="BG" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=1398286350]
+layout_mode = 0
+offset_left = -82.0
+offset_top = 294.0
+offset_right = 206.0
+offset_bottom = 328.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="Frame" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=195993382]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bup5n")
+layout_mode = 0
+offset_left = 110.0
+offset_top = 296.0
+offset_right = 180.0
+offset_bottom = 325.0
+texture = ExtResource("29_q1t35")
+expand_mode = 1
+
+[node name="DeathChancePercant" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=1703172162]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 296.0
+offset_right = 209.0
+offset_bottom = 325.0
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 25
+text = "50%"
+horizontal_alignment = 1
+
+[node name="Header" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=1941461514]
+layout_mode = 0
+offset_left = -50.0
+offset_top = 296.0
+offset_right = 102.0
+offset_bottom = 325.0
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 25
+text = "Death Chance -"
+horizontal_alignment = 1
+
+[node name="StatDanger" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=1668937802]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger" unique_id=1295595721]
+anchors_preset = 0
+offset_left = -68.0
+offset_right = -28.0
+offset_bottom = 40.0
+
+[node name="Pot" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Strength" unique_id=993453330]
+texture_filter = 1
+material = SubResource("ShaderMaterial_esjeo")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("32_wislp")
+
+[node name="Label" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Strength" unique_id=678094528]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 339.0
+offset_right = 240.0
+offset_bottom = 362.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Str."
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Strength" unique_id=572062984]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 332.0
+offset_right = 232.0
+offset_bottom = 356.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Intelligence" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger" unique_id=169870086]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 26.0
+offset_right = -28.0
+offset_bottom = 66.0
+
+[node name="Pot" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Intelligence" unique_id=738217736]
+texture_filter = 1
+material = SubResource("ShaderMaterial_esjeo")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("32_wislp")
+
+[node name="Label" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Intelligence" unique_id=2022531838]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 256.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Int."
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Intelligence" unique_id=52154173]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 333.0
+offset_right = 295.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Community" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger" unique_id=1518976317]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 52.0
+offset_right = -28.0
+offset_bottom = 92.0
+
+[node name="Pot" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Community" unique_id=1185940302]
+texture_filter = 1
+material = SubResource("ShaderMaterial_esjeo")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("32_wislp")
+
+[node name="Label" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Community" unique_id=473302101]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 240.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Com."
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/StatDanger/Community" unique_id=1380524131]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 333.0
+offset_right = 295.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="LifeSpanDanger" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=22730503]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/LifeSpanDanger" unique_id=1027969825]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 340.0
+offset_right = 309.0
+offset_bottom = 363.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 14
+text = "Lifespan"
+horizontal_alignment = 1
+
+[node name="LifeNum" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/LifeSpanDanger" unique_id=703102917]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 361.0
+offset_right = 247.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 1
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/LifeSpanDanger" unique_id=1185054043]
+texture_filter = 1
+layout_mode = 0
+offset_left = 183.0
+offset_top = 382.0
+offset_right = 311.0
+offset_bottom = 405.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 23
+text = "(+ 15% )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextAgeArrow" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/LifeSpanDanger" unique_id=2057546058]
+anchors_preset = 0
+offset_left = 6.0
+offset_top = -2.0
+offset_right = 46.0
+offset_bottom = 38.0
+script = ExtResource("33_w3lgm")
+
+[node name="ArrowRect" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/LifeSpanDanger/NextAgeArrow" unique_id=1925394755]
+modulate = Color(1, 1, 1, 0.8)
+texture_filter = 1
+layout_mode = 0
+offset_left = 241.0
+offset_top = 363.0
+offset_right = 249.0
+offset_bottom = 380.0
+texture = ExtResource("34_lipng")
+
+[node name="LifeNum" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/LifeSpanDanger/NextAgeArrow" unique_id=1546264067]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 0
+offset_left = 249.0
+offset_top = 364.0
+offset_right = 269.0
+offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+
+[node name="HiddenStats" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=1978326223]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/HiddenStats" unique_id=969918088]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(109.00001, 346.375)
+scale = Vector2(0.463492, 0.5312505)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/HiddenStats" unique_id=19142268]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(109.00001, 372.1875)
+scale = Vector2(0.463492, 0.54062533)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/HiddenStats" unique_id=1988819421]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(109.00001, 399)
+scale = Vector2(0.463492, 0.54062533)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="OffDisableLabels" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=1660289846]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels" unique_id=1722133152]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels/Strength" unique_id=2104533555]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 184.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels/Strength" unique_id=1304405490]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 333.0
+offset_right = 194.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels" unique_id=1362037507]
+visible = false
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1161401957]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 184.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1681291919]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 333.0
+offset_right = 194.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels" unique_id=8537462]
+visible = false
+anchors_preset = 0
+offset_top = 53.0
+offset_right = 40.0
+offset_bottom = 93.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels/Community" unique_id=856775013]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 184.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay/OffDisableLabels/Community" unique_id=1823810601]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 333.0
+offset_right = 194.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=1777544114]
+offset_left = 189.0
+offset_top = 336.0
+offset_right = 193.0
+offset_bottom = 409.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="RightDeathChanceDisplay" type="Node2D" parent="SeatCellLoading/DeathChanceDisplay" unique_id=116614722]
+visible = false
+position = Vector2(352, -2)
+
+[node name="TotalDeathChance" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=450540154]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 44.0
+
+[node name="BG" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=1321934453]
+layout_mode = 0
+offset_left = -82.0
+offset_top = 294.0
+offset_right = 206.0
+offset_bottom = 328.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="Frame" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=105175256]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bup5n")
+layout_mode = 0
+offset_left = 110.0
+offset_top = 296.0
+offset_right = 180.0
+offset_bottom = 325.0
+texture = ExtResource("29_q1t35")
+expand_mode = 1
+
+[node name="DeathChancePercant" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=1831058564]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 296.0
+offset_right = 209.0
+offset_bottom = 325.0
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 25
+text = "50%"
+horizontal_alignment = 1
+
+[node name="Header" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=1206008907]
+layout_mode = 0
+offset_left = -50.0
+offset_top = 296.0
+offset_right = 102.0
+offset_bottom = 325.0
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 25
+text = "Death Chance -"
+horizontal_alignment = 1
+
+[node name="StatDanger" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=548532936]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_right = 60.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger" unique_id=2092771476]
+anchors_preset = 0
+offset_left = -68.0
+offset_right = -28.0
+offset_bottom = 40.0
+
+[node name="Pot" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Strength" unique_id=1754652674]
+texture_filter = 1
+material = SubResource("ShaderMaterial_esjeo")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("32_wislp")
+
+[node name="Label" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Strength" unique_id=756526988]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 339.0
+offset_right = 240.0
+offset_bottom = 362.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Str."
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Strength" unique_id=225118820]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 332.0
+offset_right = 232.0
+offset_bottom = 356.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Intelligence" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger" unique_id=288841224]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 26.0
+offset_right = -28.0
+offset_bottom = 66.0
+
+[node name="Pot" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Intelligence" unique_id=109914574]
+texture_filter = 1
+material = SubResource("ShaderMaterial_esjeo")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("32_wislp")
+
+[node name="Label" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Intelligence" unique_id=90143741]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 256.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Int."
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Intelligence" unique_id=808289040]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 333.0
+offset_right = 295.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Community" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger" unique_id=772925461]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 52.0
+offset_right = -28.0
+offset_bottom = 92.0
+
+[node name="Pot" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Community" unique_id=1902380693]
+texture_filter = 1
+material = SubResource("ShaderMaterial_esjeo")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("32_wislp")
+
+[node name="Label" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Community" unique_id=2067558148]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 240.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Com."
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/StatDanger/Community" unique_id=1230454817]
+texture_filter = 1
+layout_mode = 0
+offset_left = 167.0
+offset_top = 333.0
+offset_right = 295.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="LifeSpanDanger" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=846569542]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/LifeSpanDanger" unique_id=54596494]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 340.0
+offset_right = 309.0
+offset_bottom = 363.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 14
+text = "Lifespan"
+horizontal_alignment = 1
+
+[node name="LifeNum" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/LifeSpanDanger" unique_id=1467272975]
+layout_mode = 0
+offset_left = 227.0
+offset_top = 361.0
+offset_right = 247.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 1
+
+[node name="DeathChance" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/LifeSpanDanger" unique_id=878237959]
+texture_filter = 1
+layout_mode = 0
+offset_left = 183.0
+offset_top = 382.0
+offset_right = 311.0
+offset_bottom = 405.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 23
+text = "(+ 15% )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextAgeArrow" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/LifeSpanDanger" unique_id=715437786]
+anchors_preset = 0
+offset_left = 10.0
+offset_top = -2.0
+offset_right = 50.0
+offset_bottom = 38.0
+script = ExtResource("33_w3lgm")
+
+[node name="ArrowRect" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/LifeSpanDanger/NextAgeArrow" unique_id=1665436012]
+modulate = Color(1, 1, 1, 0.8)
+texture_filter = 1
+layout_mode = 0
+offset_left = 241.0
+offset_top = 363.0
+offset_right = 249.0
+offset_bottom = 380.0
+texture = ExtResource("34_lipng")
+
+[node name="LifeNum" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/LifeSpanDanger/NextAgeArrow" unique_id=213823698]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 0
+offset_left = 250.0
+offset_top = 364.0
+offset_right = 270.0
+offset_bottom = 380.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 16
+text = "0"
+horizontal_alignment = 1
+
+[node name="HiddenStats" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=1228117093]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/HiddenStats" unique_id=1005247296]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(109.00001, 346.375)
+scale = Vector2(0.463492, 0.5312505)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/HiddenStats" unique_id=638016730]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(109.00001, 372.1875)
+scale = Vector2(0.463492, 0.54062533)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="CommunityHide" type="Sprite2D" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/HiddenStats" unique_id=1184497122]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_ck3ll")
+position = Vector2(109.00001, 399)
+scale = Vector2(0.463492, 0.54062533)
+texture = SubResource("CompressedTexture2D_ho4h7")
+
+[node name="OffDisableLabels" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=830335854]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels" unique_id=1668344920]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels/Strength" unique_id=319627499]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 184.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels/Strength" unique_id=1661107233]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 333.0
+offset_right = 194.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels" unique_id=143525924]
+visible = false
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1645611428]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 184.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1674938436]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 333.0
+offset_right = 194.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels" unique_id=51385386]
+visible = false
+anchors_preset = 0
+offset_top = 53.0
+offset_right = 40.0
+offset_bottom = 93.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels/Community" unique_id=402213838]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 184.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay/OffDisableLabels/Community" unique_id=442901971]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 333.0
+offset_right = 194.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="SeatCellLoading/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=2142230243]
+offset_left = 189.0
+offset_top = 336.0
+offset_right = 193.0
+offset_bottom = 409.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="LeftLoadingSpinner" type="AnimatedSprite2D" parent="SeatCellLoading/DeathChanceDisplay" unique_id=26433519]
+visible = false
+texture_filter = 1
+position = Vector2(176, 352)
+scale = Vector2(0.52941173, 0.4705881)
+sprite_frames = SubResource("SpriteFrames_faus5")
+autoplay = "default"
+frame_progress = 0.7518108
+speed_scale = 2.0
+
+[node name="RightLoadingSpinner" type="AnimatedSprite2D" parent="SeatCellLoading/DeathChanceDisplay" unique_id=628972976]
+visible = false
+texture_filter = 1
+position = Vector2(528, 352)
+scale = Vector2(0.52941173, 0.4705881)
+sprite_frames = SubResource("SpriteFrames_faus5")
+autoplay = "default"
+frame_progress = 0.9884192
+speed_scale = 2.0
+
+[node name="Skull" type="TextureRect" parent="SeatCellLoading/DeathChanceDisplay" unique_id=1856040515]
+texture_filter = 1
+offset_left = 328.0
+offset_top = 334.0
+offset_right = 376.0
+offset_bottom = 390.0
+pivot_offset = Vector2(24, 28)
+texture = ExtResource("36_lffps")
+
+[node name="BloodType" type="Node2D" parent="SeatCellLoading" unique_id=1807363561]
+
+[node name="LeftBloodTypeDisplay" type="Node2D" parent="SeatCellLoading/BloodType" unique_id=44517351]
+visible = false
+
+[node name="CompoundBloodType" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay" unique_id=726837959]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="FakeBloodType" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType" unique_id=641908470]
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 88.0
+offset_right = 78.0
+offset_bottom = 128.0
+
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1433876252]
+texture_filter = 1
+layout_mode = 0
+offset_left = 101.0
+offset_top = 352.0
+offset_right = 173.0
+offset_bottom = 424.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "A"
+
+[node name="BloodType+" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=765945541]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7u4es")
+layout_mode = 0
+offset_left = 114.0
+offset_top = 342.0
+offset_right = 134.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 26
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeDash" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=477896710]
+texture_filter = 1
+layout_mode = 0
+offset_left = 130.0
+offset_top = 354.0
+offset_right = 153.0
+offset_bottom = 403.0
+theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeA2" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1565380369]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 353.0
+offset_right = 232.0
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "O"
+
+[node name="UnderLine" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType" unique_id=753971985]
+anchors_preset = 0
+offset_left = 5.0
+offset_right = 45.0
+offset_bottom = 40.0
+
+[node name="Underline" type="ColorRect" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=744582770]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 481.0
+offset_right = 151.0
+offset_bottom = 483.0
+
+[node name="Underline2" type="ColorRect" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=2019993715]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 481.0
+offset_right = 210.0
+offset_bottom = 483.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/CompoundBloodType" unique_id=1322115113]
+texture_filter = 1
+position = Vector2(240.00002, 465)
+scale = Vector2(1.3068168, 1.4249984)
+sprite_frames = SubResource("SpriteFrames_qa1qv")
+autoplay = "default"
+frame_progress = 0.27457306
+
+[node name="SingleBloodType" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay" unique_id=468748389]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FakeBloodType" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/SingleBloodType" unique_id=1736138209]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=2072773213]
+texture_filter = 1
+layout_mode = 0
+offset_left = 168.0
+offset_top = 442.0
+offset_right = 240.0
+offset_bottom = 514.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 51
+text = "A"
+
+[node name="BloodType+" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=1152936590]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7u4es")
+layout_mode = 0
+offset_left = 187.0
+offset_top = 436.0
+offset_right = 207.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 32
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Underline" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/SingleBloodType" unique_id=505315801]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Underline" type="ColorRect" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/SingleBloodType/Underline" unique_id=932041720]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 491.0
+offset_right = 191.0
+offset_bottom = 493.0
+
+[node name="NoBloodType" type="Control" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay" unique_id=1950061750]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay/NoBloodType" unique_id=886352039]
+texture_filter = 1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 452.0
+offset_right = 245.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 30
+text = "None"
+
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/BloodType/LeftBloodTypeDisplay" unique_id=1573940892]
+offset_left = 103.0
+offset_top = 423.0
+offset_right = 255.0
+offset_bottom = 446.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Blood Type"
+horizontal_alignment = 1
+
+[node name="RightBloodTypeDisplay" type="Node2D" parent="SeatCellLoading/BloodType" unique_id=1178744513]
+visible = false
+position = Vector2(346, 0)
+
+[node name="CompoundBloodType" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay" unique_id=1819640461]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="FakeBloodType" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType" unique_id=775480705]
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 88.0
+offset_right = 78.0
+offset_bottom = 128.0
+
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1489831096]
+texture_filter = 1
+layout_mode = 0
+offset_left = 101.0
+offset_top = 352.0
+offset_right = 173.0
+offset_bottom = 424.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "A"
+
+[node name="BloodType+" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=237954323]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7u4es")
+layout_mode = 0
+offset_left = 114.0
+offset_top = 342.0
+offset_right = 134.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 26
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeDash" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=744428939]
+texture_filter = 1
+layout_mode = 0
+offset_left = 130.0
+offset_top = 354.0
+offset_right = 153.0
+offset_bottom = 403.0
+theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeA2" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=599892698]
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 353.0
+offset_right = 232.0
+offset_bottom = 425.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "O"
+
+[node name="UnderLine" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType" unique_id=1334473807]
+anchors_preset = 0
+offset_left = 5.0
+offset_right = 45.0
+offset_bottom = 40.0
+
+[node name="Underline" type="ColorRect" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=817394482]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 481.0
+offset_right = 151.0
+offset_bottom = 483.0
+
+[node name="Underline2" type="ColorRect" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=1823107948]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 481.0
+offset_right = 210.0
+offset_bottom = 483.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/CompoundBloodType" unique_id=272114097]
+texture_filter = 1
+position = Vector2(240.00002, 465)
+scale = Vector2(1.3068168, 1.4249984)
+sprite_frames = SubResource("SpriteFrames_qa1qv")
+autoplay = "default"
+frame_progress = 0.98004156
+
+[node name="SingleBloodType" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay" unique_id=788312324]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FakeBloodType" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/SingleBloodType" unique_id=851083705]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=254843407]
+texture_filter = 1
+layout_mode = 0
+offset_left = 168.0
+offset_top = 442.0
+offset_right = 240.0
+offset_bottom = 514.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 51
+text = "A"
+
+[node name="BloodType+" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=585832023]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7u4es")
+layout_mode = 0
+offset_left = 187.0
+offset_top = 436.0
+offset_right = 207.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 32
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Underline" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/SingleBloodType" unique_id=93362358]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Underline" type="ColorRect" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/SingleBloodType/Underline" unique_id=1446492871]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 491.0
+offset_right = 191.0
+offset_bottom = 493.0
+
+[node name="NoBloodType" type="Control" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay" unique_id=792801883]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BloodTypeA" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay/NoBloodType" unique_id=1611983368]
+texture_filter = 1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 452.0
+offset_right = 245.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 30
+text = "None"
+
+[node name="HeaderLabel" type="Label" parent="SeatCellLoading/BloodType/RightBloodTypeDisplay" unique_id=1217624797]
+offset_left = 103.0
+offset_top = 423.0
+offset_right = 255.0
+offset_bottom = 446.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Blood Type"
+horizontal_alignment = 1
+
+[node name="LeftLoadingSpinner" type="AnimatedSprite2D" parent="SeatCellLoading/BloodType" unique_id=1179709475]
+visible = false
+texture_filter = 1
+position = Vector2(181, 466.00003)
+scale = Vector2(0.52941173, 0.4705881)
+sprite_frames = SubResource("SpriteFrames_faus5")
+autoplay = "default"
+frame_progress = 0.76081043
+speed_scale = 2.0
+
+[node name="RightLoadingSpinner" type="AnimatedSprite2D" parent="SeatCellLoading/BloodType" unique_id=1966262938]
+visible = false
+texture_filter = 1
+position = Vector2(527, 466.00003)
+scale = Vector2(0.52941173, 0.4705881)
+sprite_frames = SubResource("SpriteFrames_faus5")
+autoplay = "default"
+frame_progress = 0.5142888
+speed_scale = 2.0
+
+[node name="BloodDrop" type="TextureRect" parent="SeatCellLoading/BloodType" unique_id=93477337]
+modulate = Color(0.95, 0.5225, 0.5225, 1)
+texture_filter = 1
+offset_left = 328.0
+offset_top = 440.0
+offset_right = 376.0
+offset_bottom = 496.0
+texture = ExtResource("39_ahuxv")
+
+[node name="PressBtnToSeeResult" type="Label" parent="SeatCellLoading" unique_id=1985763039]
+texture_filter = 1
+offset_left = 144.0
+offset_top = 523.0
+offset_right = 550.0
+offset_bottom = 566.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 14
+text = "Press 'Confirm' to see result"
+horizontal_alignment = 1
+
+[node name="Header" type="Label" parent="SeatCellLoading" unique_id=2016934558]
+texture_filter = 1
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 550.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 10
+text = "Breeding Loader"
+horizontal_alignment = 1
+
+[node name="NewCellPreview" type="Node2D" parent="." unique_id=1365053954]
+visible = false
+
+[node name="Bg" type="ColorRect" parent="NewCellPreview" unique_id=207538924]
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 696.0
+offset_bottom = 537.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="Header" type="Label" parent="NewCellPreview" unique_id=1000364304]
+texture_filter = 1
+offset_left = 144.0
+offset_top = 16.0
+offset_right = 550.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 14
+text = "New Cell Preview"
+horizontal_alignment = 1
+
+[node name="StatDisplay" type="Control" parent="NewCellPreview" unique_id=1961801899]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 64.0
+metadata/_edit_use_anchors_ = true
+
+[node name="DefectBars" type="Control" parent="NewCellPreview/StatDisplay" unique_id=389392505]
+anchors_preset = 0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 52.0
+
+[node name="StrengthDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=174889670]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4mres")
+position = Vector2(352, 108.00001)
+scale = Vector2(1.8580644, 0.6249999)
+texture = SubResource("CompressedTexture2D_8udft")
+
+[node name="IntelligenceDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=765158489]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4mres")
+position = Vector2(352, 228)
+scale = Vector2(1.8580644, 0.6249999)
+texture = SubResource("CompressedTexture2D_8udft")
+
+[node name="CommunityDefect" type="Sprite2D" parent="NewCellPreview/StatDisplay/DefectBars" unique_id=54774122]
+texture_filter = 1
+material = SubResource("ShaderMaterial_4mres")
+position = Vector2(352, 348)
+scale = Vector2(1.8580644, 0.6249999)
+texture = SubResource("CompressedTexture2D_8udft")
+
+[node name="ProgressBars" type="Control" parent="NewCellPreview/StatDisplay" unique_id=681411408]
+anchors_preset = 0
+offset_top = 12.0
+offset_bottom = 12.0
+
+[node name="StrengthBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=216911742]
+texture_filter = 1
+material = SubResource("ShaderMaterial_wo7b4")
+position = Vector2(352, 68.5)
+scale = Vector2(1.8580643, 1.1750001)
+texture = SubResource("CompressedTexture2D_aw5k2")
+
+[node name="StengthLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=59476119]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 696.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 25
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="IntelligenceBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=600717446]
+texture_filter = 1
+material = SubResource("ShaderMaterial_wo7b4")
+position = Vector2(352, 188.5)
+scale = Vector2(1.8580643, 1.1750001)
+texture = SubResource("CompressedTexture2D_aw5k2")
+
+[node name="IntelligenceLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=249760537]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 140.0
+offset_right = 696.0
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 25
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityBar" type="Sprite2D" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=440562636]
+texture_filter = 1
+material = SubResource("ShaderMaterial_wo7b4")
+position = Vector2(352, 308.5)
+scale = Vector2(1.8580643, 1.1750001)
+texture = SubResource("CompressedTexture2D_aw5k2")
+
+[node name="CommunityLabel" type="Label" parent="NewCellPreview/StatDisplay/ProgressBars" unique_id=1439250282]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 260.0
+offset_right = 696.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 25
+text = "Community"
+horizontal_alignment = 1
+
+[node name="OffDisableLabels" type="Control" parent="NewCellPreview/StatDisplay" unique_id=571687282]
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="StrengthOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=2007640941]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 68.0
+offset_right = 640.0
+offset_bottom = 93.80647
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=1593268552]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 188.0
+offset_right = 640.0
+offset_bottom = 213.80647
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="NewCellPreview/StatDisplay/OffDisableLabels" unique_id=595989156]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 308.0
+offset_right = 640.0
+offset_bottom = 333.80646
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideStats" type="Control" parent="NewCellPreview/StatDisplay" unique_id=569461704]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=1345590656]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_g3ny3")
+position = Vector2(352, 96.5)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_kbvtg")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=389286079]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_g3ny3")
+position = Vector2(352, 216.50002)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_kbvtg")
+
+[node name="CommunityHide" type="Sprite2D" parent="NewCellPreview/StatDisplay/HideStats" unique_id=47906535]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_g3ny3")
+position = Vector2(352, 336.50003)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_kbvtg")
+
+[node name="BloodType" type="Control" parent="NewCellPreview/StatDisplay" unique_id=816933403]
+anchors_preset = 0
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 232.0
+offset_bottom = 72.0
+
+[node name="BloodTypeBG" type="ColorRect" parent="NewCellPreview/StatDisplay/BloodType" unique_id=113073690]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 376.0
+offset_right = 224.0
+offset_bottom = 446.0
+color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="NewCellPreview/StatDisplay/BloodType" unique_id=974622675]
+texture_filter = 1
+layout_mode = 0
+offset_left = -10.0
+offset_top = 350.0
+offset_right = 310.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 22
+text = "Blood Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SingleBloodType" type="Control" parent="NewCellPreview/StatDisplay/BloodType" unique_id=2046100463]
+visible = false
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="FakeBloodType" type="Control" parent="NewCellPreview/StatDisplay/BloodType/SingleBloodType" unique_id=510255632]
+anchors_preset = 0
+offset_left = -33.0
+offset_top = -71.0
+offset_right = 7.0
+offset_bottom = -31.0
+
+[node name="BloodTypeA" type="Label" parent="NewCellPreview/StatDisplay/BloodType/SingleBloodType/FakeBloodType" unique_id=288829254]
+texture_filter = 1
+layout_mode = 0
+offset_left = 107.0
+offset_top = 442.0
+offset_right = 255.0
+offset_bottom = 514.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 51
+text = "A"
+horizontal_alignment = 1
+
+[node name="BloodType+" type="Label" parent="NewCellPreview/StatDisplay/BloodType/SingleBloodType/FakeBloodType" unique_id=1124520183]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7u4es")
+layout_mode = 0
+offset_left = 187.0
+offset_top = 436.0
+offset_right = 207.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 32
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompoundBloodType" type="Control" parent="NewCellPreview/StatDisplay/BloodType" unique_id=1962906225]
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="FakeBloodType" type="Control" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType" unique_id=1747362220]
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 88.0
+offset_right = 78.0
+offset_bottom = 128.0
+
+[node name="BloodTypeA" type="Label" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType/FakeBloodType" unique_id=432929086]
+texture_filter = 1
+layout_mode = 0
+offset_left = 74.0
+offset_top = 288.0
+offset_right = 146.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "A"
+script = ExtResource("40_fm84f")
+
+[node name="NewLetterDelay" type="Timer" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType/FakeBloodType/BloodTypeA" unique_id=2073363415]
+wait_time = 0.5
+
+[node name="BloodTypeDash" type="Label" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType/FakeBloodType" unique_id=1484883948]
+texture_filter = 1
+layout_mode = 0
+offset_left = 103.0
+offset_top = 290.0
+offset_right = 126.0
+offset_bottom = 339.0
+theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeA2" type="Label" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType/FakeBloodType" unique_id=475748700]
+texture_filter = 1
+layout_mode = 0
+offset_left = 133.0
+offset_top = 289.0
+offset_right = 205.0
+offset_bottom = 361.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 43
+text = "O"
+script = ExtResource("40_fm84f")
+
+[node name="NewLetterDelay" type="Timer" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType/FakeBloodType/BloodTypeA2" unique_id=821532963]
+wait_time = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="NewCellPreview/StatDisplay/BloodType/CompoundBloodType" unique_id=1110672111]
+texture_filter = 1
+position = Vector2(247.99997, 400)
+scale = Vector2(2.107955, 2.3624976)
+sprite_frames = SubResource("SpriteFrames_qa1qv")
+autoplay = "default"
+frame_progress = 0.27504054
+
+[node name="NoneBloodType" type="Control" parent="NewCellPreview/StatDisplay/BloodType" unique_id=373704768]
+visible = false
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="BloodTypeA" type="Label" parent="NewCellPreview/StatDisplay/BloodType/NoneBloodType" unique_id=716027004]
+texture_filter = 1
+layout_mode = 0
+offset_left = 74.0
+offset_top = 371.0
+offset_right = 222.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("30_qo8gh")
+theme_override_font_sizes/font_size = 51
+text = "None"
+horizontal_alignment = 1
+
+[node name="BloodDrop" type="TextureRect" parent="NewCellPreview/StatDisplay/BloodType" unique_id=474799627]
+modulate = Color(0.95, 0.5225, 0.5225, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 261.0
+offset_top = 347.0
+offset_right = 287.0
+offset_bottom = 372.0
+texture = SubResource("CompressedTexture2D_w3wvt")
+expand_mode = 1
+
+[node name="BloodDrop2" type="TextureRect" parent="NewCellPreview/StatDisplay/BloodType" unique_id=484918695]
+modulate = Color(0.95, 0.5225, 0.5225, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 347.0
+offset_right = 38.0
+offset_bottom = 372.0
+texture = SubResource("CompressedTexture2D_w3wvt")
+expand_mode = 1
+
+[node name="PressBtnBreed" type="Label" parent="NewCellPreview" unique_id=457323038]
+texture_filter = 1
+offset_left = 16.0
+offset_top = 509.0
+offset_right = 696.0
+offset_bottom = 541.0
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "Press 'Confirm' To Breed"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("41_bbkcc")
+
+[node name="DisruptorWarning" type="Control" parent="." unique_id=1450090965]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("42_u357y")
+active_room_name = "main_room"
+
+[node name="Sprite2D" type="Sprite2D" parent="DisruptorWarning" unique_id=1465526366]
+texture_filter = 1
+position = Vector2(240, 136.5)
+scale = Vector2(1, 0.9962963)
+texture = ExtResource("43_og7cf")
+
+[node name="Label" type="Label" parent="DisruptorWarning" unique_id=970964423]
+texture_filter = 1
+layout_mode = 0
+offset_left = -60.0
+offset_top = 96.0
+offset_right = 538.0
+offset_bottom = 159.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 47
+text = "Error"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="DisruptorWarning" unique_id=1197421372]
+texture_filter = 1
+layout_mode = 0
+offset_left = -60.0
+offset_top = 161.0
+offset_right = 538.0
+offset_bottom = 224.0
+theme_override_colors/font_color = Color(1, 0.9666667, 0, 0.44705883)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 15
+text = "technical difficulties"
+horizontal_alignment = 1
+
+[node name="FlashDelayTimer" type="Timer" parent="DisruptorWarning" unique_id=434779435]
+wait_time = 0.5
+
+[node name="DisruptorManagerSeatLoading" type="Control" parent="." unique_id=1135155438]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("44_8flhd")
+
+[node name="ArrowBlockers" type="Control" parent="DisruptorManagerSeatLoading" unique_id=333821440]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ArrowBlocker" type="Control" parent="DisruptorManagerSeatLoading/ArrowBlockers" unique_id=2028609932]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("45_fnqjg")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker" unique_id=1608427500]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 95.0
+offset_right = 249.0
+offset_bottom = 113.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker" unique_id=26051422]
+texture_filter = 1
+layout_mode = 0
+offset_left = 232.0
+offset_top = 96.0
+offset_right = 250.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 18
+text = "0"
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker" unique_id=1034245585]
+wait_time = 0.5
+
+[node name="ArrowBlocker2" type="Control" parent="DisruptorManagerSeatLoading/ArrowBlockers" unique_id=1132602466]
+visible = false
+anchors_preset = 0
+offset_top = 47.0
+offset_right = 40.0
+offset_bottom = 87.0
+script = ExtResource("45_fnqjg")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker2" unique_id=1599567295]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 95.0
+offset_right = 249.0
+offset_bottom = 113.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker2" unique_id=220213885]
+texture_filter = 1
+layout_mode = 0
+offset_left = 232.0
+offset_top = 96.0
+offset_right = 250.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 18
+text = "0"
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker2" unique_id=855617051]
+wait_time = 0.5
+
+[node name="ArrowBlocker3" type="Control" parent="DisruptorManagerSeatLoading/ArrowBlockers" unique_id=335195283]
+visible = false
+anchors_preset = 0
+offset_top = 97.0
+offset_right = 40.0
+offset_bottom = 137.0
+script = ExtResource("45_fnqjg")
+
+[node name="BG" type="ColorRect" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker3" unique_id=921893588]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 95.0
+offset_right = 249.0
+offset_bottom = 113.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextLabel" type="Label" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker3" unique_id=1408875713]
+texture_filter = 1
+layout_mode = 0
+offset_left = 232.0
+offset_top = 96.0
+offset_right = 250.0
+offset_bottom = 114.0
+theme_override_colors/font_color = Color(0.28750002, 1, 0.25, 1)
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 18
+text = "0"
+
+[node name="SwitchTextDelayTimer" type="Timer" parent="DisruptorManagerSeatLoading/ArrowBlockers/ArrowBlocker3" unique_id=681376405]
+wait_time = 0.5
+
+[node name="HackTextManager" type="Control" parent="DisruptorManagerSeatLoading" unique_id=354617136]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("46_bk166")
+active_text_amount = 10
+
+[node name="HackTextParentNode" type="Control" parent="DisruptorManagerSeatLoading/HackTextManager" unique_id=2125275308]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HackText" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=848987525 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 31.0
+offset_top = 31.0
+offset_right = 31.0
+offset_bottom = 31.0
+
+[node name="HackText2" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=33188463 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 348.0
+offset_top = 51.0
+offset_right = 348.0
+offset_bottom = 51.0
+
+[node name="HackText3" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=829783500 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 82.0
+offset_top = 144.0
+offset_right = 82.0
+offset_bottom = 144.0
+
+[node name="HackText4" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=712480834 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 124.0
+offset_top = 64.0
+offset_right = 124.0
+offset_bottom = 64.0
+
+[node name="HackText5" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1271957186 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 441.0
+offset_top = 84.0
+offset_right = 441.0
+offset_bottom = 84.0
+
+[node name="HackText6" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=447435897 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 175.0
+offset_top = 177.0
+offset_right = 175.0
+offset_bottom = 177.0
+
+[node name="HackText7" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1886782463 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 157.0
+offset_right = 7.0
+offset_bottom = 157.0
+
+[node name="HackText8" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=2837636 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 311.0
+offset_top = 121.0
+offset_right = 311.0
+offset_bottom = 121.0
+
+[node name="HackText9" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=9680660 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 45.0
+offset_top = 214.0
+offset_right = 45.0
+offset_bottom = 214.0
+
+[node name="HackText10" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=814409617 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 25.0
+
+[node name="HackText11" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1850199629 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 260.0
+offset_top = 186.0
+offset_right = 260.0
+offset_bottom = 186.0
+
+[node name="HackText12" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1121677168 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 79.0
+offset_top = 110.0
+offset_right = 79.0
+offset_bottom = 110.0
+
+[node name="HackText13" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1175766702 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 396.0
+offset_top = 130.0
+offset_right = 396.0
+offset_bottom = 130.0
+
+[node name="HackText14" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=360926634 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 130.0
+offset_top = 223.0
+offset_right = 130.0
+offset_bottom = 223.0
+
+[node name="HackText15" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=669031022 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 355.0
+offset_top = 34.0
+offset_right = 355.0
+offset_bottom = 34.0
+
+[node name="HackText16" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1291223851 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 202.0
+offset_top = 181.0
+offset_right = 202.0
+offset_bottom = 181.0
+
+[node name="HackText17" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=639192913 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 105.0
+offset_right = 21.0
+offset_bottom = 105.0
+
+[node name="HackText18" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1400690937 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 338.0
+offset_top = 125.0
+offset_right = 338.0
+offset_bottom = 125.0
+
+[node name="HackText19" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1534648608 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 72.0
+offset_top = 218.0
+offset_right = 72.0
+offset_bottom = 218.0
+
+[node name="HackText20" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1185464218 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 297.0
+offset_top = 29.0
+offset_right = 297.0
+offset_bottom = 29.0
+
+[node name="HackText21" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1971092363 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 280.0
+offset_top = 59.0
+offset_right = 280.0
+offset_bottom = 59.0
+
+[node name="HackText22" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=880450336 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 220.0
+offset_right = 270.0
+offset_bottom = 220.0
+
+[node name="HackText23" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1466383460 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 89.0
+offset_top = 144.0
+offset_right = 89.0
+offset_bottom = 144.0
+
+[node name="HackText24" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1493155663 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 406.0
+offset_top = 164.0
+offset_right = 406.0
+offset_bottom = 164.0
+
+[node name="HackText25" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=1135267300 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 105.0
+offset_top = 183.0
+offset_right = 105.0
+offset_bottom = 183.0
+
+[node name="HackText26" parent="DisruptorManagerSeatLoading/HackTextManager/HackTextParentNode" unique_id=393435945 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 422.0
+offset_top = 203.0
+offset_right = 422.0
+offset_bottom = 203.0
+
+[node name="SwitchHackTextTimer" type="Timer" parent="DisruptorManagerSeatLoading/HackTextManager" unique_id=511084186]
+wait_time = 3.0
+
+[node name="HackSkullManager" type="Control" parent="DisruptorManagerSeatLoading" unique_id=1617026069]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("48_nnmlu")
+
+[node name="DetectSkullAreas" type="Node2D" parent="DisruptorManagerSeatLoading/HackSkullManager" unique_id=1241435793]
+
+[node name="Top" type="Area2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas" unique_id=1465534202]
+position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("49_k7o1w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Top" unique_id=205644328]
+position = Vector2(240, 7.75)
+shape = SubResource("RectangleShape2D_hni84")
+
+[node name="Bottom" type="Area2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas" unique_id=721841143]
+position = Vector2(0, 264)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("49_k7o1w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Bottom" unique_id=377094935]
+position = Vector2(240, 4)
+shape = SubResource("RectangleShape2D_nds1u")
+
+[node name="Left" type="Area2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas" unique_id=650530772]
+position = Vector2(0, -2)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("49_k7o1w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Left" unique_id=401438508]
+position = Vector2(3, 139)
+shape = SubResource("RectangleShape2D_fw8uv")
+
+[node name="Right" type="Area2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas" unique_id=1119545494]
+position = Vector2(479, -2)
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+script = ExtResource("49_k7o1w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/DetectSkullAreas/Right" unique_id=1611333706]
+position = Vector2(-2.5, 139)
+shape = SubResource("RectangleShape2D_65ihf")
+
+[node name="HackSkull" type="CharacterBody2D" parent="DisruptorManagerSeatLoading/HackSkullManager" unique_id=1606977295 groups=["hack_skull"]]
+visible = false
+position = Vector2(252, 145)
+scale = Vector2(2, 2)
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("50_77otj")
+
+[node name="HackSkull" type="Sprite2D" parent="DisruptorManagerSeatLoading/HackSkullManager/HackSkull" unique_id=1701304347]
+texture_filter = 1
+texture = ExtResource("51_4mo0d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisruptorManagerSeatLoading/HackSkullManager/HackSkull" unique_id=269937183]
+shape = SubResource("RectangleShape2D_agcgh")
+
+[node name="DisruptorManagerNewCell" type="Control" parent="." unique_id=623584940]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("52_lckpo")
+
+[node name="HackTextManager" type="Control" parent="DisruptorManagerNewCell" unique_id=897169216]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("46_bk166")
+active_text_amount = 100
+
+[node name="HackTextParentNode" type="Control" parent="DisruptorManagerNewCell/HackTextManager" unique_id=1239261064]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HackText" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1582542835 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 31.0
+offset_top = 31.0
+offset_right = 31.0
+offset_bottom = 31.0
+
+[node name="HackText2" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=707701615 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 348.0
+offset_top = 51.0
+offset_right = 348.0
+offset_bottom = 51.0
+
+[node name="HackText3" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1442296196 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 82.0
+offset_top = 144.0
+offset_right = 82.0
+offset_bottom = 144.0
+
+[node name="HackText4" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1783395819 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 124.0
+offset_top = 64.0
+offset_right = 124.0
+offset_bottom = 64.0
+
+[node name="HackText5" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1716814892 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 441.0
+offset_top = 84.0
+offset_right = 441.0
+offset_bottom = 84.0
+
+[node name="HackText6" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2113506801 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 175.0
+offset_top = 177.0
+offset_right = 175.0
+offset_bottom = 177.0
+
+[node name="HackText7" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1555752056 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 157.0
+offset_right = 7.0
+offset_bottom = 157.0
+
+[node name="HackText8" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=412728529 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 311.0
+offset_top = 121.0
+offset_right = 311.0
+offset_bottom = 121.0
+
+[node name="HackText9" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1536356953 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 45.0
+offset_top = 214.0
+offset_right = 45.0
+offset_bottom = 214.0
+
+[node name="HackText10" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1082883435 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 25.0
+offset_right = 270.0
+offset_bottom = 25.0
+
+[node name="HackText11" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1659123361 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 260.0
+offset_top = 186.0
+offset_right = 260.0
+offset_bottom = 186.0
+
+[node name="HackText12" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1933556951 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 79.0
+offset_top = 110.0
+offset_right = 79.0
+offset_bottom = 110.0
+
+[node name="HackText14" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=127410071 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 130.0
+offset_top = 223.0
+offset_right = 130.0
+offset_bottom = 223.0
+
+[node name="HackText15" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1868480532 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 355.0
+offset_top = 34.0
+offset_right = 355.0
+offset_bottom = 34.0
+
+[node name="HackText16" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1794891558 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 189.0
+offset_top = 127.0
+offset_right = 189.0
+offset_bottom = 127.0
+
+[node name="HackText17" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=663823959 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 105.0
+offset_right = 21.0
+offset_bottom = 105.0
+
+[node name="HackText18" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=734650730 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 338.0
+offset_top = 125.0
+offset_right = 338.0
+offset_bottom = 125.0
+
+[node name="HackText19" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1537981333 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 72.0
+offset_top = 218.0
+offset_right = 72.0
+offset_bottom = 218.0
+
+[node name="HackText20" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1253422862 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 297.0
+offset_top = 29.0
+offset_right = 297.0
+offset_bottom = 29.0
+
+[node name="HackText13" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1822399739 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 406.0
+offset_top = 37.0
+offset_right = 406.0
+offset_bottom = 37.0
+
+[node name="HackText21" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=21195657 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 144.0
+offset_top = 169.0
+offset_right = 144.0
+offset_bottom = 169.0
+
+[node name="HackText22" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=689530311 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 186.0
+offset_top = 89.0
+offset_right = 186.0
+offset_bottom = 89.0
+
+[node name="HackText23" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1478454584 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 466.0
+offset_top = 93.0
+offset_right = 466.0
+offset_bottom = 93.0
+
+[node name="HackText24" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=836882342 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 200.0
+offset_top = 186.0
+offset_right = 200.0
+offset_bottom = 186.0
+
+[node name="HackText25" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=871916431 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 242.0
+offset_top = 106.0
+offset_right = 242.0
+offset_bottom = 106.0
+
+[node name="HackText26" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1433078963 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 402.0
+offset_top = 162.0
+offset_right = 402.0
+offset_bottom = 162.0
+
+[node name="HackText27" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1911411078 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 293.0
+offset_top = 219.0
+offset_right = 293.0
+offset_bottom = 219.0
+
+[node name="HackText28" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=190668808 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 125.0
+offset_top = 199.0
+offset_right = 125.0
+offset_bottom = 199.0
+
+[node name="HackText29" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1695003984 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 132.0
+offset_top = 83.0
+offset_right = 132.0
+offset_bottom = 83.0
+
+[node name="HackText30" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=784663131 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 449.0
+offset_top = 103.0
+offset_right = 449.0
+offset_bottom = 103.0
+
+[node name="HackText31" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1714428690 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 183.0
+offset_top = 196.0
+offset_right = 183.0
+offset_bottom = 196.0
+
+[node name="HackText32" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1995343835 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 225.0
+offset_top = 116.0
+offset_right = 225.0
+offset_bottom = 116.0
+
+[node name="HackText33" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1898706209 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 241.0
+offset_top = 153.0
+offset_right = 241.0
+offset_bottom = 153.0
+
+[node name="HackText34" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1778027472 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 276.0
+offset_top = 229.0
+offset_right = 276.0
+offset_bottom = 229.0
+
+[node name="HackText35" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1451027816 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 108.0
+offset_top = 209.0
+offset_right = 108.0
+offset_bottom = 209.0
+
+[node name="HackText36" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=877891853 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 412.0
+offset_top = 173.0
+offset_right = 412.0
+offset_bottom = 173.0
+
+[node name="HackText37" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=382707512 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 178.0
+offset_top = 219.0
+offset_right = 178.0
+offset_bottom = 219.0
+
+[node name="HackText38" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=527608374 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 371.0
+offset_top = 77.0
+offset_right = 371.0
+offset_bottom = 77.0
+
+[node name="HackText39" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1697402789 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 361.0
+offset_top = 238.0
+offset_right = 361.0
+offset_bottom = 238.0
+
+[node name="HackText40" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1931048712 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 158.0
+offset_top = 107.0
+offset_right = 158.0
+offset_bottom = 107.0
+
+[node name="HackText41" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1586379476 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 244.0
+offset_top = 195.0
+offset_right = 244.0
+offset_bottom = 195.0
+
+[node name="HackText42" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1683061883 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 382.0
+offset_top = 128.0
+offset_right = 382.0
+offset_bottom = 128.0
+
+[node name="HackText43" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=71592791 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 303.0
+offset_top = 233.0
+offset_right = 303.0
+offset_bottom = 233.0
+
+[node name="HackText44" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=370057271 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 197.0
+offset_top = 18.0
+offset_right = 197.0
+offset_bottom = 18.0
+
+[node name="HackText45" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1478882519 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 187.0
+offset_top = 179.0
+offset_right = 187.0
+offset_bottom = 179.0
+
+[node name="HackText46" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1060999931 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 6.0
+offset_top = 103.0
+offset_right = 6.0
+offset_bottom = 103.0
+
+[node name="HackText47" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1311391605 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 57.0
+offset_top = 216.0
+offset_right = 57.0
+offset_bottom = 216.0
+
+[node name="HackText48" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=493207516 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 282.0
+offset_top = 27.0
+offset_right = 282.0
+offset_bottom = 27.0
+
+[node name="HackText49" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1828331840 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 317.0
+offset_top = 40.0
+offset_right = 317.0
+offset_bottom = 40.0
+
+[node name="HackText50" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=408929821 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 307.0
+offset_top = 201.0
+offset_right = 307.0
+offset_bottom = 201.0
+
+[node name="HackText51" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1915076736 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 126.0
+offset_top = 125.0
+offset_right = 126.0
+offset_bottom = 125.0
+
+[node name="HackText52" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2122470911 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 177.0
+offset_top = 238.0
+offset_right = 177.0
+offset_bottom = 238.0
+
+[node name="HackText53" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1458893473 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 402.0
+offset_top = 49.0
+offset_right = 402.0
+offset_bottom = 49.0
+
+[node name="HackText54" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1036896260 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 111.0
+offset_top = 178.0
+offset_right = 111.0
+offset_bottom = 178.0
+
+[node name="HackText55" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=752227240 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 304.0
+offset_top = 36.0
+offset_right = 304.0
+offset_bottom = 36.0
+
+[node name="HackText56" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=222952224 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 294.0
+offset_top = 197.0
+offset_right = 294.0
+offset_bottom = 197.0
+
+[node name="HackText57" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1378014399 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 91.0
+offset_top = 66.0
+offset_right = 91.0
+offset_bottom = 66.0
+
+[node name="HackText58" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=727516586 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 177.0
+offset_top = 154.0
+offset_right = 177.0
+offset_bottom = 154.0
+
+[node name="HackText59" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=151718123 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 156.0
+offset_top = 110.0
+offset_right = 156.0
+offset_bottom = 110.0
+
+[node name="HackText60" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1664526538 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 207.0
+offset_top = 223.0
+offset_right = 207.0
+offset_bottom = 223.0
+
+[node name="HackText61" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=227302965 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 432.0
+offset_top = 34.0
+offset_right = 432.0
+offset_bottom = 34.0
+
+[node name="HackText62" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1620250108 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 467.0
+offset_top = 47.0
+offset_right = 467.0
+offset_bottom = 47.0
+
+[node name="HackText63" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=142327567 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 457.0
+offset_top = 208.0
+offset_right = 457.0
+offset_bottom = 208.0
+
+[node name="HackText64" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2126932166 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 276.0
+offset_top = 132.0
+offset_right = 276.0
+offset_bottom = 132.0
+
+[node name="HackText65" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1535734070 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 327.0
+offset_top = 245.0
+offset_right = 327.0
+offset_bottom = 245.0
+
+[node name="HackText66" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1137156884 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 231.0
+offset_top = 29.0
+offset_right = 231.0
+offset_bottom = 29.0
+
+[node name="HackText67" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=695314869 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 266.0
+offset_top = 42.0
+offset_right = 266.0
+offset_bottom = 42.0
+
+[node name="HackText68" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1095085554 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 256.0
+offset_top = 203.0
+offset_right = 256.0
+offset_bottom = 203.0
+
+[node name="HackText69" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2084872113 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 75.0
+offset_top = 127.0
+offset_right = 75.0
+offset_bottom = 127.0
+
+[node name="HackText70" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1638179297 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 126.0
+offset_top = 240.0
+offset_right = 126.0
+offset_bottom = 240.0
+
+[node name="HackText71" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1264757692 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 351.0
+offset_top = 51.0
+offset_right = 351.0
+offset_bottom = 51.0
+
+[node name="HackText72" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=236410 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 60.0
+offset_bottom = 180.0
+
+[node name="HackText73" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2062490910 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 340.0
+offset_top = 5.0
+offset_right = 340.0
+offset_bottom = 5.0
+
+[node name="HackText74" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1176626441 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 375.0
+offset_top = 18.0
+offset_right = 375.0
+offset_bottom = 18.0
+
+[node name="HackText75" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=90569133 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 365.0
+offset_top = 179.0
+offset_right = 365.0
+offset_bottom = 179.0
+
+[node name="HackText76" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1242022821 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 184.0
+offset_top = 103.0
+offset_right = 184.0
+offset_bottom = 103.0
+
+[node name="HackText77" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=604583866 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 235.0
+offset_top = 216.0
+offset_right = 235.0
+offset_bottom = 216.0
+
+[node name="HackText78" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=947205249 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 460.0
+offset_top = 27.0
+offset_right = 460.0
+offset_bottom = 27.0
+
+[node name="HackText79" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1817342698 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 169.0
+offset_top = 156.0
+offset_right = 169.0
+offset_bottom = 156.0
+
+[node name="HackText80" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=879916690 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 206.0
+offset_top = 22.0
+offset_right = 206.0
+offset_bottom = 22.0
+
+[node name="HackText81" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=932408985 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 241.0
+offset_top = 35.0
+offset_right = 241.0
+offset_bottom = 35.0
+
+[node name="HackText82" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=226879126 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 231.0
+offset_top = 196.0
+offset_right = 231.0
+offset_bottom = 196.0
+
+[node name="HackText83" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1459315553 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 50.0
+offset_top = 120.0
+offset_right = 50.0
+offset_bottom = 120.0
+
+[node name="HackText84" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=356905821 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 101.0
+offset_top = 233.0
+offset_right = 101.0
+offset_bottom = 233.0
+
+[node name="HackText85" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1098645066 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 326.0
+offset_top = 44.0
+offset_right = 326.0
+offset_bottom = 44.0
+
+[node name="HackText86" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1743283462 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 35.0
+offset_top = 173.0
+offset_right = 35.0
+offset_bottom = 173.0
+
+[node name="HackText87" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=214309268 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 91.0
+offset_top = 60.0
+offset_right = 91.0
+offset_bottom = 60.0
+
+[node name="HackText88" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1862649238 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 408.0
+offset_top = 80.0
+offset_right = 408.0
+offset_bottom = 80.0
+
+[node name="HackText89" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1547318283 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 142.0
+offset_top = 173.0
+offset_right = 142.0
+offset_bottom = 173.0
+
+[node name="HackText90" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1790147268 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 30.0
+offset_top = 49.0
+offset_right = 30.0
+offset_bottom = 49.0
+
+[node name="HackText91" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=631406214 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 347.0
+offset_top = 69.0
+offset_right = 347.0
+offset_bottom = 69.0
+
+[node name="HackText92" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1420313867 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 81.0
+offset_top = 162.0
+offset_right = 81.0
+offset_bottom = 162.0
+
+[node name="HackText93" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=608154915 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 7.0
+offset_top = 50.0
+offset_right = 7.0
+offset_bottom = 50.0
+
+[node name="HackText94" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=658565319 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 324.0
+offset_top = 70.0
+offset_right = 324.0
+offset_bottom = 70.0
+
+[node name="HackText95" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1334249732 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 58.0
+offset_top = 163.0
+offset_right = 58.0
+offset_bottom = 163.0
+
+[node name="HackText96" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2081831585 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 100.0
+offset_top = 83.0
+offset_right = 100.0
+offset_bottom = 83.0
+
+[node name="HackText97" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=858132999 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 417.0
+offset_top = 103.0
+offset_right = 417.0
+offset_bottom = 103.0
+
+[node name="HackText98" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1180048642 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 151.0
+offset_top = 196.0
+offset_right = 151.0
+offset_bottom = 196.0
+
+[node name="HackText99" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1372199201 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 115.0
+offset_top = 31.0
+offset_right = 115.0
+offset_bottom = 31.0
+
+[node name="HackText100" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=744379334 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 287.0
+offset_top = 140.0
+offset_right = 287.0
+offset_bottom = 140.0
+
+[node name="HackText101" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=493203898 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 21.0
+offset_top = 233.0
+offset_right = 21.0
+offset_bottom = 233.0
+
+[node name="HackText102" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=158271293 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 246.0
+offset_top = 44.0
+offset_right = 246.0
+offset_bottom = 44.0
+
+[node name="HackText103" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=524837325 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 236.0
+offset_top = 205.0
+offset_right = 236.0
+offset_bottom = 205.0
+
+[node name="HackText104" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=508227522 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 55.0
+offset_top = 129.0
+offset_right = 55.0
+offset_bottom = 129.0
+
+[node name="HackText105" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1935833628 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 106.0
+offset_top = 242.0
+offset_right = 106.0
+offset_bottom = 242.0
+
+[node name="HackText106" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1936393591 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 331.0
+offset_top = 53.0
+offset_right = 331.0
+offset_bottom = 53.0
+
+[node name="HackText107" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1065858231 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 165.0
+offset_top = 146.0
+offset_right = 165.0
+offset_bottom = 146.0
+
+[node name="HackText108" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1493953141 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 74.0
+offset_top = 45.0
+offset_right = 74.0
+offset_bottom = 45.0
+
+[node name="HackText109" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1013699554 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 314.0
+offset_top = 144.0
+offset_right = 314.0
+offset_bottom = 144.0
+
+[node name="HackText110" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=974874764 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 48.0
+offset_top = 237.0
+offset_right = 48.0
+offset_bottom = 237.0
+
+[node name="HackText111" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=903241783 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 273.0
+offset_top = 48.0
+offset_right = 273.0
+offset_bottom = 48.0
+
+[node name="HackText112" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=131094854 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 382.0
+offset_top = 56.0
+offset_right = 382.0
+offset_bottom = 56.0
+
+[node name="HackText113" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=32868852 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 120.0
+offset_top = 188.0
+offset_right = 120.0
+offset_bottom = 188.0
+
+[node name="HackText114" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1325780949 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 162.0
+offset_top = 108.0
+offset_right = 162.0
+offset_bottom = 108.0
+
+[node name="HackText115" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1888329268 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 442.0
+offset_top = 112.0
+offset_right = 442.0
+offset_bottom = 112.0
+
+[node name="HackText116" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=354911824 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 176.0
+offset_top = 205.0
+offset_right = 176.0
+offset_bottom = 205.0
+
+[node name="HackText117" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2144048065 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 218.0
+offset_top = 125.0
+offset_right = 218.0
+offset_bottom = 125.0
+
+[node name="HackText118" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1282311148 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 378.0
+offset_top = 181.0
+offset_right = 378.0
+offset_bottom = 181.0
+
+[node name="HackText119" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1462072816 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 269.0
+offset_top = 238.0
+offset_right = 269.0
+offset_bottom = 238.0
+
+[node name="HackText120" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=8865305 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 101.0
+offset_top = 218.0
+offset_right = 101.0
+offset_bottom = 218.0
+
+[node name="HackText121" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2021136333 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 108.0
+offset_top = 102.0
+offset_right = 108.0
+offset_bottom = 102.0
+
+[node name="HackText122" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1315393932 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 425.0
+offset_top = 122.0
+offset_right = 425.0
+offset_bottom = 122.0
+
+[node name="HackText123" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=255288113 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 159.0
+offset_top = 215.0
+offset_right = 159.0
+offset_bottom = 215.0
+
+[node name="HackText124" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2054359721 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 201.0
+offset_top = 135.0
+offset_right = 201.0
+offset_bottom = 135.0
+
+[node name="HackText125" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=485177527 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 217.0
+offset_top = 172.0
+offset_right = 217.0
+offset_bottom = 172.0
+
+[node name="HackText126" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=768759832 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 252.0
+offset_top = 248.0
+offset_right = 252.0
+offset_bottom = 248.0
+
+[node name="HackText127" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=931731650 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 84.0
+offset_top = 228.0
+offset_right = 84.0
+offset_bottom = 228.0
+
+[node name="HackText128" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=693908066 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 388.0
+offset_top = 192.0
+offset_right = 388.0
+offset_bottom = 192.0
+
+[node name="HackText129" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1432597513 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 154.0
+offset_top = 238.0
+offset_right = 154.0
+offset_bottom = 238.0
+
+[node name="HackText130" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=453647559 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 347.0
+offset_top = 96.0
+offset_right = 347.0
+offset_bottom = 96.0
+
+[node name="HackText131" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1517762791 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 432.0
+offset_top = 167.0
+offset_right = 432.0
+offset_bottom = 167.0
+
+[node name="HackText132" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1437764962 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 134.0
+offset_top = 126.0
+offset_right = 134.0
+offset_bottom = 126.0
+
+[node name="HackText133" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1177201140 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 220.0
+offset_top = 214.0
+offset_right = 220.0
+offset_bottom = 214.0
+
+[node name="HackText134" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=590978509 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 358.0
+offset_top = 147.0
+offset_right = 358.0
+offset_bottom = 147.0
+
+[node name="HackText135" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=805290678 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 279.0
+offset_top = 252.0
+offset_right = 279.0
+offset_bottom = 252.0
+
+[node name="HackText136" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1966363553 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 173.0
+offset_top = 37.0
+offset_right = 173.0
+offset_bottom = 37.0
+
+[node name="HackText137" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1692764225 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 163.0
+offset_top = 198.0
+offset_right = 163.0
+offset_bottom = 198.0
+
+[node name="HackText138" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1059221379 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 100.0
+offset_top = 16.0
+offset_right = 100.0
+offset_bottom = 16.0
+
+[node name="HackText139" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1373992177 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 33.0
+offset_top = 235.0
+offset_right = 33.0
+offset_bottom = 235.0
+
+[node name="HackText140" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=608541771 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 258.0
+offset_top = 46.0
+offset_right = 258.0
+offset_bottom = 46.0
+
+[node name="HackText141" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2034193595 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 293.0
+offset_top = 59.0
+offset_right = 293.0
+offset_bottom = 59.0
+
+[node name="HackText142" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=166775689 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 283.0
+offset_top = 220.0
+offset_right = 283.0
+offset_bottom = 220.0
+
+[node name="HackText143" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=763153026 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 102.0
+offset_top = 144.0
+offset_right = 102.0
+offset_bottom = 144.0
+
+[node name="HackText144" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2071326825 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 336.0
+offset_top = 164.0
+offset_right = 336.0
+offset_bottom = 164.0
+
+[node name="HackText145" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=444011311 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 378.0
+offset_top = 68.0
+offset_right = 378.0
+offset_bottom = 68.0
+
+[node name="HackText146" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1027103086 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 87.0
+offset_top = 197.0
+offset_right = 87.0
+offset_bottom = 197.0
+
+[node name="HackText147" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2071070475 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 280.0
+offset_top = 55.0
+offset_right = 280.0
+offset_bottom = 55.0
+
+[node name="HackText148" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=15637398 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 270.0
+offset_top = 216.0
+offset_right = 270.0
+offset_bottom = 216.0
+
+[node name="HackText149" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1710958575 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 67.0
+offset_top = 85.0
+offset_right = 67.0
+offset_bottom = 85.0
+
+[node name="HackText150" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=372582626 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 153.0
+offset_top = 173.0
+offset_right = 153.0
+offset_bottom = 173.0
+
+[node name="HackText151" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1465072344 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 132.0
+offset_top = 129.0
+offset_right = 132.0
+offset_bottom = 129.0
+
+[node name="HackText152" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=969097628 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 183.0
+offset_top = 242.0
+offset_right = 183.0
+offset_bottom = 242.0
+
+[node name="HackText153" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1107854925 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 408.0
+offset_top = 53.0
+offset_right = 408.0
+offset_bottom = 53.0
+
+[node name="HackText154" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=398578289 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 108.0
+offset_top = 121.0
+offset_right = 108.0
+offset_bottom = 121.0
+
+[node name="HackText155" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2124575265 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 433.0
+offset_top = 227.0
+offset_right = 433.0
+offset_bottom = 227.0
+
+[node name="HackText156" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1957590871 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 252.0
+offset_top = 151.0
+offset_right = 252.0
+offset_bottom = 151.0
+
+[node name="HackText157" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2007977213 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 383.0
+offset_top = 217.0
+offset_right = 383.0
+offset_bottom = 217.0
+
+[node name="HackText158" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=883255240 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 207.0
+offset_top = 48.0
+offset_right = 207.0
+offset_bottom = 48.0
+
+[node name="HackText159" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1055783707 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 242.0
+offset_top = 61.0
+offset_right = 242.0
+offset_bottom = 61.0
+
+[node name="HackText160" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1168249454 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 232.0
+offset_top = 222.0
+offset_right = 232.0
+offset_bottom = 222.0
+
+[node name="HackText161" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=97489623 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 51.0
+offset_top = 146.0
+offset_right = 51.0
+offset_bottom = 146.0
+
+[node name="HackText162" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=798088098 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 72.0
+offset_top = 245.0
+offset_right = 72.0
+offset_bottom = 245.0
+
+[node name="HackText163" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1922888099 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 327.0
+offset_top = 70.0
+offset_right = 327.0
+offset_bottom = 70.0
+
+[node name="HackText164" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=64347489 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 36.0
+offset_top = 199.0
+offset_right = 36.0
+offset_bottom = 199.0
+
+[node name="HackText165" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=790173636 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 316.0
+offset_top = 24.0
+offset_right = 316.0
+offset_bottom = 24.0
+
+[node name="HackText166" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=925894096 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 351.0
+offset_top = 37.0
+offset_right = 351.0
+offset_bottom = 37.0
+
+[node name="HackText167" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2107232389 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 341.0
+offset_top = 198.0
+offset_right = 341.0
+offset_bottom = 198.0
+
+[node name="HackText168" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1335388412 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 232.0
+offset_top = 83.0
+offset_right = 232.0
+offset_bottom = 83.0
+
+[node name="HackText169" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=935899238 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 211.0
+offset_top = 235.0
+offset_right = 211.0
+offset_bottom = 235.0
+
+[node name="HackText170" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=682693610 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 436.0
+offset_top = 46.0
+offset_right = 436.0
+offset_bottom = 46.0
+
+[node name="HackText171" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=53627608 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 145.0
+offset_top = 175.0
+offset_right = 145.0
+offset_bottom = 175.0
+
+[node name="HackText172" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=2020560973 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 182.0
+offset_top = 41.0
+offset_right = 182.0
+offset_bottom = 41.0
+
+[node name="HackText173" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1662799955 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 217.0
+offset_top = 54.0
+offset_right = 217.0
+offset_bottom = 54.0
+
+[node name="HackText174" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1646171696 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 207.0
+offset_top = 215.0
+offset_right = 207.0
+offset_bottom = 215.0
+
+[node name="HackText175" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=73284080 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 26.0
+offset_top = 139.0
+offset_right = 26.0
+offset_bottom = 139.0
+
+[node name="HackText176" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=402439081 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 294.0
+offset_top = 165.0
+offset_right = 294.0
+offset_bottom = 165.0
+
+[node name="HackText177" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=172367688 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 302.0
+offset_top = 63.0
+offset_right = 302.0
+offset_bottom = 63.0
+
+[node name="HackText178" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1935104926 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 11.0
+offset_top = 192.0
+offset_right = 11.0
+offset_bottom = 192.0
+
+[node name="HackText179" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=912608710 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 67.0
+offset_top = 79.0
+offset_right = 67.0
+offset_bottom = 79.0
+
+[node name="HackText180" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1950468232 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 384.0
+offset_top = 99.0
+offset_right = 384.0
+offset_bottom = 99.0
+
+[node name="HackText181" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1822019085 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 118.0
+offset_top = 192.0
+offset_right = 118.0
+offset_bottom = 192.0
+
+[node name="HackText182" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=99949450 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 6.0
+offset_top = 68.0
+offset_right = 6.0
+offset_bottom = 68.0
+
+[node name="HackText183" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=17293575 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 323.0
+offset_top = 88.0
+offset_right = 323.0
+offset_bottom = 88.0
+
+[node name="HackText184" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1632874145 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 57.0
+offset_top = 181.0
+offset_right = 57.0
+offset_bottom = 181.0
+
+[node name="HackText185" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=458365221 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 174.0
+offset_top = 98.0
+offset_right = 174.0
+offset_bottom = 98.0
+
+[node name="HackText186" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1564834484 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 182.0
+offset_top = 117.0
+offset_right = 182.0
+offset_bottom = 117.0
+
+[node name="HackText187" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=371644006 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 200.0
+offset_top = 61.0
+offset_right = 200.0
+offset_bottom = 61.0
+
+[node name="HackText188" parent="DisruptorManagerNewCell/HackTextManager/HackTextParentNode" unique_id=1654680543 instance=ExtResource("47_ak22q")]
+visible = false
+layout_mode = 1
+offset_left = 29.0
+offset_top = 71.0
+offset_right = 29.0
+offset_bottom = 71.0
+
+[node name="SwitchHackTextTimer" type="Timer" parent="DisruptorManagerNewCell/HackTextManager" unique_id=1442907328]
+wait_time = 3.0

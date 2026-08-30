@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://d3whksh20kw0j" path="res://debug/breeding_death_chance_zoo/cell_container_spawner.gd" id="4_l0jby"]
 [ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="4_ohegc"]
 [ext_resource type="Script" uid="uid://nk2lf7d5nvix" path="res://scripts/game_manager/cell_manager/cell_manager.gd" id="6_f2a7e"]
+[ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="7_tsmni"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_egmft"]
 size = Vector3(50, 0.1, 50)
@@ -64,6 +65,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9335871, 2, -5)
 
 [node name="CellContainerParentNode" type="Node" parent="Charcters" unique_id=1365351665]
 
+[node name="FleshBugParentNode" type="Node" parent="Charcters" unique_id=1401664801]
+
 [node name="CreateCell" type="Node3D" parent="." unique_id=256595740]
 script = ExtResource("2_8m0h8")
 
@@ -80,3 +83,6 @@ cell_container_parent_node = NodePath("../Charcters/CellContainerParentNode")
 
 [node name="CellManager" type="Node" parent="." unique_id=759967095]
 script = ExtResource("6_f2a7e")
+
+[node name="DEBUG" type="Node" parent="." unique_id=684796838]
+script = ExtResource("7_tsmni")

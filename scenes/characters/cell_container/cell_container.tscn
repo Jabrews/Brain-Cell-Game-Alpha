@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://b6ipb8ftq8ehr" path="res://scripts/characters/cell_container/state_machine/states/idle_state.gd" id="3_ay8s5"]
 [ext_resource type="Script" uid="uid://dtuy3l3go3b0p" path="res://scripts/characters/cell_container/state_machine/states/dying_state.gd" id="3_lgqnw"]
 [ext_resource type="PackedScene" uid="uid://q5i8mv06vwpr" path="res://scenes/characters/reusable/stat_display/stat_display.tscn" id="4_0dogw"]
-[ext_resource type="AudioStream" uid="uid://btj3egm2qxxse" path="res://sounds/cell_container/age_life_span_sound.mp3" id="4_0rbwi"]
 [ext_resource type="Script" uid="uid://bnuq0c6f8wub" path="res://scripts/characters/cell_container/state_machine/states/picked_up_state.gd" id="4_gniwj"]
 [ext_resource type="AudioStream" uid="uid://btw7txl21eg5m" path="res://sounds/cell_container/cell_death.mp3" id="6_sm0qd"]
 [ext_resource type="Script" uid="uid://bordwo36uc145" path="res://scripts/characters/cell_container/defect_color_manager.gd" id="7_dly6q"]
@@ -152,10 +151,6 @@ stream = ExtResource("17_khadm")
 
 [node name="CellDropped" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1724742406]
 stream = ExtResource("18_0rbwi")
-
-[node name="AgeLifespan" type="AudioStreamPlayer3D" parent="Sounds" unique_id=218843773]
-stream = ExtResource("4_0rbwi")
-pitch_scale = 0.81
 
 [node name="DefectIncreaseSound" type="AudioStreamPlayer3D" parent="Sounds" unique_id=550401705]
 stream = ExtResource("8_anjkl")

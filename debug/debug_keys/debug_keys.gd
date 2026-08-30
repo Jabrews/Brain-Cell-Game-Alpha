@@ -3,9 +3,7 @@ extends Node
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
-		pass
-		#GLGameManagerBus.emit_signal('proceed_next_round')
-	
+		print(len(GLCellManagerBus.collected_cells_refrence))
 			
 	if Input.is_action_just_pressed('debug2') :	
 		pass

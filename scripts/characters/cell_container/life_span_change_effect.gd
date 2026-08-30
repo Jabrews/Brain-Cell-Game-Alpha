@@ -3,7 +3,6 @@ extends  Node
 
 # components
 @onready var parent_cell_container := $".."
-@onready var age_lifespan_sound : AudioStreamPlayer3D = $"../Sounds/AgeLifespan"
 @onready var life_span_label : Label = $"../StatDisplay/StatMesh/SubViewport/BasicRecieverScreen/StatDisplay/CellLifeSpan"
 @onready var stat_display_mesh : MeshInstance3D = $"../StatDisplay/StatMesh"
 
@@ -38,7 +37,6 @@ func play_life_span_changed_effect() -> void:
 
 	var original_scale = parent_cell_container.scale
 
-	age_lifespan_sound.play()
 
 	var scale_tween : Tween = create_tween()
 

@@ -24,15 +24,15 @@
 [ext_resource type="AudioStream" uid="uid://dfrps3sdbx6" path="res://sounds/station_cell_breeder/skull_warning.mp3" id="16_27jye"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="16_sqxto"]
 [ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="17_lvnx6"]
-[ext_resource type="PackedScene" uid="uid://d7qf8wir2u1m" path="res://scenes/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat/screen_charge_boost_seat.tscn" id="17_u6e0a"]
+[ext_resource type="PackedScene" uid="uid://d7qf8wir2u1m" path="res://scenes/stations/station_screens/screen_cell_breeding/screen_charge_boost_seat.tscn" id="17_u6e0a"]
 [ext_resource type="PackedScene" uid="uid://brwwlf4yy2jm2" path="res://scenes/hoverable_mesh_scenes/breeding_confirm_btn_hover.tscn" id="19_c0lhn"]
 [ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="20_t6hjf"]
 [ext_resource type="PackedScene" uid="uid://cnf6sr3qparor" path="res://scenes/hoverable_mesh_scenes/breeding_back_btn_hover.tscn" id="21_c0lhn"]
 [ext_resource type="Script" uid="uid://babyybtfvr4sf" path="res://scripts/stations/station_components/cell_breeding/back_btn/back_btn.gd" id="22_r3akg"]
-[ext_resource type="PackedScene" uid="uid://bthr7i6oqj4f3" path="res://scenes/stations/station_screens/screen_cell_breeding/screen_breeding_loader/screen_cell_breeding_loader.tscn" id="22_u6e0a"]
 [ext_resource type="Script" uid="uid://d4ikttr12drm8" path="res://scripts/stations/station_components/cell_breeding/energy_boost_event/cycle_btn/btn_cycle_stat.gd" id="23_uq6ph"]
 [ext_resource type="Script" uid="uid://ds5pbcufv5c0j" path="res://scripts/stations/station_components/cell_breeding/energy_boost_event/direction_btn/direction_btn.gd" id="24_y45wp"]
 [ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="31_c0lhn"]
+[ext_resource type="PackedScene" uid="uid://dl1bbjjmhxuri" path="res://scenes/stations/station_screens/screen_cell_breeding/screen_cell_breeding_loader.tscn" id="32_0xdbb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xl8xh"]
 albedo_color = Color(0.8867241, 0.8878624, 0.20849493, 1)
@@ -153,7 +153,7 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_fnbnh"]
 material = SubResource("StandardMaterial3D_8fhk0")
-size = Vector3(0.1, 3.586, 6.7)
+size = Vector3(0.1, 4.2455444, 6.8996706)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_fxynw"]
 viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
@@ -166,7 +166,7 @@ texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_8m8aq"]
 material = SubResource("StandardMaterial3D_d5kxe")
-size = Vector2(6.6, 3.4)
+size = Vector2(6.8, 4.1)
 orientation = 0
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_um02t"]
@@ -955,23 +955,23 @@ shape = SubResource("BoxShape3D_lligg")
 mesh = SubResource("BoxMesh_pc1ns")
 
 [node name="BreedPreviewTv" type="Node3D" parent="." unique_id=1149444207]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5011473, 1.1727974, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.5011473, 1.3969302, 0)
 
 [node name="TvBackPannel" type="MeshInstance3D" parent="BreedPreviewTv" unique_id=931739863]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5181713, 4.0458, -0.04307842)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5181713, 4.164459, -0.053338524)
 mesh = SubResource("BoxMesh_fnbnh")
 
 [node name="TvFrontPannel" type="MeshInstance3D" parent="BreedPreviewTv" unique_id=686396579]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4666843, 4.0664654, -0.04984951)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4666843, 4.1679325, -0.04984951)
 mesh = SubResource("PlaneMesh_8m8aq")
 script = ExtResource("14_khkcf")
 
 [node name="SubViewport" type="SubViewport" parent="BreedPreviewTv/TvFrontPannel" unique_id=1499906092]
 disable_3d = true
 canvas_item_default_texture_filter = 0
-size = Vector2i(704, 510)
+size = Vector2i(704, 542)
 
-[node name="ScreenCellBreedingLoader" parent="BreedPreviewTv/TvFrontPannel/SubViewport" unique_id=699431977 instance=ExtResource("22_u6e0a")]
+[node name="ScreenCellBreedingLoader" parent="BreedPreviewTv/TvFrontPannel/SubViewport" unique_id=1159403996 instance=ExtResource("32_0xdbb")]
 
 [node name="BredCellSpawner" type="Node3D" parent="." unique_id=1317833079]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.043589592, 2)
@@ -1001,9 +1001,8 @@ parent_disruptable_screen = NodePath("../../ChargeSeats/ChargeSeatLeft/TV/TvFron
 [node name="RightBoostSeatReciever" parent="DisruptableRecievers" unique_id=553747885 instance=ExtResource("31_c0lhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4.6)
 
-[node name="BreedingScreenReciever" parent="DisruptableRecievers" unique_id=641940292 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("31_c0lhn")]
+[node name="BreedingScreenReciever" parent="DisruptableRecievers" unique_id=641940292 instance=ExtResource("31_c0lhn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, -0.10000008)
-parent_disruptable_screen = NodePath("../../BreedPreviewTv/TvFrontPannel/SubViewport/ScreenCellBreedingLoader")
 
 [node name="Table" type="StaticBody3D" parent="." unique_id=331621299]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.43753123, 0, 1.3202677)

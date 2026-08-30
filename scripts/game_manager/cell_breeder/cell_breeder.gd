@@ -7,6 +7,7 @@ extends Node
 @onready var reduced_cell_charge_helper : Node = $ReducedCellChargeHelper
 @onready var increase_cell_charge_helper : Node = $IncreaseCellChargeHelper
 @onready var mutation_helper : Node = $MutationHelper
+@onready var death_chance_helper : Node = $DeathChanceHelper
 
 func _ready() -> void:
 	connect_signals()
@@ -88,14 +89,40 @@ func _handle_player_breeded_cells(
 			"delete_selected_collected_cell",
 			boost_right_cell
 		)
-
+	
+		
+	
+	# check death chance of cell 1 & 2
+	var cell_1_death_chance : float = death_chance_helper._get_total_death_chance(main_left_cell, true)
+	var cell_2_death_chance : float = death_chance_helper._get_total_death_chance(main_right_cell, true)
+	
+	var kill_old_1 : bool = false
+	var kill_old_2 : bool = false
+	
+	# roll to kill old cells
+	var ran_num_1 : int = randi_range(0, 100)
+	if cell_1_death_chance >= ran_num_1 :
+		kill_old_1 = true
+		
+	var ran_num_2 : int = randi_range(0, 100)
+	if cell_2_death_chance >= ran_num_2 :
+		kill_old_2 = true
+	
+	# if we dont kill old cell, apply decrease
+	if not kill_old_1 :
+		main_left_cell = death_chance_helper.decrease_old_cell._decrease(main_left_cell)
+	if not kill_old_2 : 
+		main_right_cell = death_chance_helper.decrease_old_cell._decrease(main_right_cell)
+	
 	GLCellManagerBus.emit_signal(
 		"cell_breeded",
 		main_left_cell,
 		main_right_cell,
 		new_cell,
 		updated_boost_left_cell,
-		updated_boost_right_cell
+		updated_boost_right_cell,
+		kill_old_1,
+		kill_old_2,
 	)
 
 

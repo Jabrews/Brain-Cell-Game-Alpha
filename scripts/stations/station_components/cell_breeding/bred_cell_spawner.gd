@@ -14,7 +14,9 @@ func _handle_cell_breeded(
 		_main_right_cell,
 		new_cell : BrainCell,
 		_boost_left_cell, 
-		_boost_right_cel
+		_boost_right_cell,
+		_kill_cell_1,
+		_kill_cell_2,
 	) : 
 		
 	create_cell_container_instance(new_cell)

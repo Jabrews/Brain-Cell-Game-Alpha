@@ -216,12 +216,25 @@ func _handle_cell_breeded(
 	new_cell : BrainCell,
 	boost_cell_1 : BrainCell,
 	boost_cell_2 : BrainCell,
+	kill_old_1: bool, 
+	kill_old_2: bool, 
 ) -> void:
 	
 	var new_cell_collection = collected_cells.duplicate()
 	
+	
 	# delete old cells FIRST
-	delete_collected_cells([old_cell_1, old_cell_2])
+	if kill_old_1 : 	
+		delete_collected_cells([old_cell_1])
+		GLCellManagerBus.emit_signal("cell_deleted", old_cell_1.name)
+	else : 
+		update_collected_cells([old_cell_1])
+	if kill_old_2 : 
+		delete_collected_cells([old_cell_2])
+		GLCellManagerBus.emit_signal("cell_deleted", old_cell_2.name)
+	else : 
+		update_collected_cells([old_cell_2])
+		
 	
 	# re-sync after delete
 	new_cell_collection = collected_cells.duplicate()
@@ -243,10 +256,6 @@ func _handle_cell_breeded(
 	
 	if boost_cells_to_update.size() > 0:
 		update_collected_cells(boost_cells_to_update)
-	
-	# update containers
-	GLCellManagerBus.emit_signal("cell_deleted", old_cell_1.name)
-	GLCellManagerBus.emit_signal("cell_deleted", old_cell_2.name)
 
 
 func _handle_delete_selected_collected_cell(collected_cell : BrainCell) :
