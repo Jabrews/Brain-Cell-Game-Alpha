@@ -16,6 +16,8 @@ var can_breed : bool = false
 var can_look_at_new_cell_display : bool = false
 var new_cell_display_shown : bool = false
 
+var prevent_already_breeded_confirm : bool = false
+
 
 func _ready() -> void:
 	show_loader_display(false)
@@ -24,6 +26,9 @@ func _ready() -> void:
 func _handle_btn_pressed() -> void:
 	
 	if not can_look_at_new_cell_display:
+		return
+	
+	if prevent_already_breeded_confirm : 	
 		return
 	
 	# First press: loader -> new cell preview
@@ -49,6 +54,7 @@ func _cells_detcted(has_both: bool) -> void:
 	# show loader + label.
 	if not new_cell_display_shown:
 		show_loader_display(true)
+
 
 
 func show_loader_display(show_label: bool) -> void:

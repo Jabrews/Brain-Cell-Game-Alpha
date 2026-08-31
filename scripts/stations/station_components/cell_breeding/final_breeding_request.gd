@@ -3,6 +3,12 @@ extends Node
 # cell manager
 @onready var main_cell_manager : Node = $"../MainCellManager"
 @onready var energy_boost_cell_manager : Node =$"../MainCellManager/EnergyBoostCellManager"
+@onready var reset_load_panel : Node = $"../ResetLoadPanel"
+
+
+func _ready() -> void:
+	GLGameManagerBus.connect('proceed_next_energy_turn', proceed_next_energy_turn)
+	
 
 
 # finale breeding function called from screen_cell_breeding_loader
@@ -26,4 +32,13 @@ func _handle_final_breeding_request() :
 	boost_left_direction ,
 	boost_right_direction ,
 	)
+	
+	GLBreedingComponetsBus.cell_names_bred_this_turn.append(main_left_cell.name)	
+	GLBreedingComponetsBus.cell_names_bred_this_turn.append(main_right_cell.name)	
+	
+	reset_load_panel._reset()
+	
+	
+func proceed_next_energy_turn() :
+	GLBreedingComponetsBus.cell_names_bred_this_turn.clear()
 	

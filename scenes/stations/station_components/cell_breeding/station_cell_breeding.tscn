@@ -17,6 +17,7 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="10_7nnq0"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="12_u6e0a"]
 [ext_resource type="Script" uid="uid://dp7dilryet0sv" path="res://scripts/stations/station_components/cell_breeding/back_btn/handle_back_btn_pressed.gd" id="12_xl8xh"]
+[ext_resource type="Script" uid="uid://cadipp70s81ww" path="res://scripts/stations/station_components/cell_breeding/reset_load_panel.gd" id="13_0xdbb"]
 [ext_resource type="Script" uid="uid://ddhdnu3kwry8r" path="res://scripts/stations/station_components/cell_breeding/audio_manager.gd" id="14_bhvbn"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="14_khkcf"]
 [ext_resource type="Script" uid="uid://34mhw6h1bv2e" path="res://scripts/stations/station_components/cell_breeding/confirm_btn/confirm_btn.gd" id="15_8fhk0"]
@@ -298,6 +299,9 @@ script = ExtResource("9_lvnx6")
 
 [node name="HandleBackBtnPressed" type="Node" parent="." unique_id=1607340441]
 script = ExtResource("12_xl8xh")
+
+[node name="ResetLoadPanel" type="Node" parent="." unique_id=646179333]
+script = ExtResource("13_0xdbb")
 
 [node name="Audio" type="Node3D" parent="." unique_id=1500441529]
 

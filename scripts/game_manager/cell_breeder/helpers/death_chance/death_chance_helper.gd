@@ -6,9 +6,9 @@ extends Node
 @export var life_span_increase: Dictionary[int, float] = {
 	4 : 0,
 	3 : 0,
-	2 : 15.0,
-	1 : 25.0,
-	0 : 25.0,
+	2 : 5.0,
+	1 : 15.0,
+	0 : 20.0,
 }
 
 @export var defect_percant_increase : Dictionary[int, float] = {

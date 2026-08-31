@@ -111,8 +111,10 @@ func _handle_player_breeded_cells(
 	# if we dont kill old cell, apply decrease
 	if not kill_old_1 :
 		main_left_cell = death_chance_helper.decrease_old_cell._decrease(main_left_cell)
+		main_left_cell.mutations = []
 	if not kill_old_2 : 
 		main_right_cell = death_chance_helper.decrease_old_cell._decrease(main_right_cell)
+		main_right_cell.mutations = []
 	
 	GLCellManagerBus.emit_signal(
 		"cell_breeded",

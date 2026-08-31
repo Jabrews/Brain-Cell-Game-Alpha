@@ -48,7 +48,9 @@
 [ext_resource type="Script" uid="uid://b3gfucopkv7ts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/disrupt/breeding_loader_disrupt_warning.gd" id="42_u357y"]
 [ext_resource type="Texture2D" uid="uid://do4bagyfw7h2" path="res://models/mutations/random_disruptor_disrupt/interupt_large_screen.png" id="43_og7cf"]
 [ext_resource type="Script" uid="uid://coiycsqa767cw" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_manager_seat_loading.gd" id="44_8flhd"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="44_74pn4"]
 [ext_resource type="Script" uid="uid://tp63bilvru4r" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_arrow_blocker.gd" id="45_fnqjg"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="45_g7qtc"]
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="46_bk166"]
 [ext_resource type="PackedScene" uid="uid://ru543voa3egh" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text.tscn" id="47_ak22q"]
 [ext_resource type="Script" uid="uid://vrgil8tm4o4l" path="res://reusable/mutation_disrupt/disruptor_skull/hack_skull_manager.gd" id="48_nnmlu"]
@@ -349,6 +351,12 @@ animations = [{
 "name": &"default",
 "speed": 3.05
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q55pm"]
+shader = ExtResource("44_74pn4")
+shader_parameter/blur_amount = 1.5000000712500001
+shader_parameter/tint_strength = 0.0
+shader_parameter/tint_color = Color(0, 0, 0, 0)
 
 [sub_resource type="Shader" id="Shader_3movu"]
 code = "shader_type canvas_item;
@@ -1260,18 +1268,21 @@ offset_right = 40.0
 offset_bottom = -64.0
 
 [node name="QuestionStrength" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/QuestionMark" unique_id=1666051607]
+visible = false
 texture_filter = 1
 position = Vector2(353.25, 195.5)
 scale = Vector2(2.7, 2.1666665)
 texture = ExtResource("24_utl2c")
 
 [node name="QuestionIntelligence" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/QuestionMark" unique_id=1488474609]
+visible = false
 texture_filter = 1
 position = Vector2(352, 272)
 scale = Vector2(2.7, 2.1666665)
 texture = ExtResource("24_utl2c")
 
 [node name="QuestionCommunity" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/QuestionMark" unique_id=1726522312]
+visible = false
 texture_filter = 1
 position = Vector2(353.25, 352.422)
 scale = Vector2(2.7, 2.1666665)
@@ -1284,6 +1295,7 @@ offset_right = 40.0
 offset_bottom = -64.0
 
 [node name="UpStrength" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowUp" unique_id=1442178746]
+visible = false
 texture_filter = 1
 position = Vector2(353.25, 195.65851)
 rotation = -1.5707964
@@ -1292,6 +1304,7 @@ texture = ExtResource("25_o0v6m")
 script = ExtResource("26_nakc5")
 
 [node name="UpIntelligence" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowUp" unique_id=2087917406]
+visible = false
 texture_filter = 1
 position = Vector2(352, 272)
 rotation = -1.5707964
@@ -1300,6 +1313,7 @@ texture = ExtResource("25_o0v6m")
 script = ExtResource("26_nakc5")
 
 [node name="UpCommunity" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowUp" unique_id=139178793]
+visible = false
 texture_filter = 1
 position = Vector2(352.25, 351.42203)
 rotation = -1.5707964
@@ -1314,6 +1328,7 @@ offset_right = 40.0
 offset_bottom = -64.0
 
 [node name="DownStrength" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowDown" unique_id=592013123]
+visible = false
 texture_filter = 1
 position = Vector2(353.25, 195.64217)
 rotation = -1.5707964
@@ -1321,6 +1336,7 @@ scale = Vector2(2.582133, 2.134701)
 texture = ExtResource("27_umtiy")
 
 [node name="DownIntelligence" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowDown" unique_id=349121395]
+visible = false
 texture_filter = 1
 position = Vector2(352, 271.99997)
 rotation = -1.5707964
@@ -1328,6 +1344,7 @@ scale = Vector2(2.582133, 2.134701)
 texture = ExtResource("27_umtiy")
 
 [node name="DownCommunity" type="Sprite2D" parent="SeatCellLoading/StatDisplay/SymbolManager/ArrowDown" unique_id=1148622008]
+visible = false
 texture_filter = 1
 position = Vector2(352.25, 351.84402)
 rotation = -1.5707964
@@ -2520,6 +2537,117 @@ offset_top = 440.0
 offset_right = 376.0
 offset_bottom = 496.0
 texture = ExtResource("39_ahuxv")
+
+[node name="AlreadyBreeded" type="Node2D" parent="SeatCellLoading" unique_id=1714237494]
+
+[node name="AlreadyBreededLeft" type="Node2D" parent="SeatCellLoading/AlreadyBreeded" unique_id=1965421996]
+visible = false
+
+[node name="Blur" type="ColorRect" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededLeft" unique_id=1934175976]
+material = SubResource("ShaderMaterial_q55pm")
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 512.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededLeft" unique_id=924755578]
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 512.0
+color = Color(0.15, 0.15, 0.15, 0.39215687)
+
+[node name="Header" type="Label" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededLeft" unique_id=2053285702]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 153.99998
+offset_right = 328.0
+offset_bottom = 233.99998
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 19
+text = "
+Cell Already
+Bred This turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Header2" type="Label" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededLeft" unique_id=1794489691]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 217.99998
+offset_right = 328.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(1, 0.6821189, 0.63192105, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Extract New prisoners
+to breed again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededLeft" unique_id=274677147]
+texture_filter = 1
+position = Vector2(176, 122)
+scale = Vector2(1.8378378, 1.5625001)
+texture = ExtResource("45_g7qtc")
+
+[node name="AlreadyBreededRight" type="Node2D" parent="SeatCellLoading/AlreadyBreeded" unique_id=778369610]
+visible = false
+position = Vector2(352, 0)
+
+[node name="Blur" type="ColorRect" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededRight" unique_id=862300829]
+material = SubResource("ShaderMaterial_q55pm")
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 512.0
+
+[node name="ColorRect" type="ColorRect" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededRight" unique_id=2041122591]
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 328.0
+offset_bottom = 512.0
+color = Color(0.15, 0.15, 0.15, 0.39215687)
+
+[node name="Header" type="Label" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededRight" unique_id=1309971121]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 153.99998
+offset_right = 328.0
+offset_bottom = 233.99998
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 19
+text = "
+Cell Already
+Bred This turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Header2" type="Label" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededRight" unique_id=279648607]
+texture_filter = 1
+offset_left = 24.0
+offset_top = 217.99998
+offset_right = 328.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(1, 0.6821189, 0.63192105, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("14_vh0n0")
+theme_override_font_sizes/font_size = 13
+text = "Extract New prisoners
+to breed again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="SeatCellLoading/AlreadyBreeded/AlreadyBreededRight" unique_id=606448290]
+texture_filter = 1
+position = Vector2(176, 122)
+scale = Vector2(1.8378378, 1.5625001)
+texture = ExtResource("45_g7qtc")
 
 [node name="PressBtnToSeeResult" type="Label" parent="SeatCellLoading" unique_id=1985763039]
 texture_filter = 1

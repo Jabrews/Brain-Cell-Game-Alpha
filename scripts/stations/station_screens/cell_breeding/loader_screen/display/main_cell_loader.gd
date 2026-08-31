@@ -22,11 +22,20 @@ extends Node
 @onready var right_death_chance_loading_spinner: AnimatedSprite2D = $"../../SeatCellLoading/DeathChanceDisplay/RightLoadingSpinner"
 @onready var right_blood_type_loading_spinner: AnimatedSprite2D = $"../../SeatCellLoading/BloodType/RightLoadingSpinner"
 
+# already breeded 
+@onready var already_breeded_left : Node2D = $"../../SeatCellLoading/AlreadyBreeded/AlreadyBreededLeft"
+@onready var already_breeded_right : Node2D = $"../../SeatCellLoading/AlreadyBreeded/AlreadyBreededRight"
+
+# confirm btm helper
+@onready var handle_confirm_btn : Node = $"../../HandleConfirmBtn"
+
 # loading timer
 @onready var left_death_delay_timer : Timer = $LoadingSpinnerTimers/LeftDeathDelay
 @onready var right_death_delay_timer : Timer = $LoadingSpinnerTimers/RighttDeathDelay
 @onready var left_blood_delay_timer : Timer = $LoadingSpinnerTimers/LeftBloodDelay
 @onready var right_blood_delay_timer : Timer = $LoadingSpinnerTimers/RightBloodDelay
+
+
 
 
 
@@ -51,9 +60,6 @@ extends Node
 @onready var display_death_chance_skull : Node = $Display/DisplayDeathChanceSkull 
 
 
-
-
-
 var last_left_cell: BrainCell
 var last_right_cell: BrainCell
 
@@ -61,6 +67,7 @@ func _handle_recieve_main_cells(
 	main_left_cell: BrainCell,
 	main_right_cell: BrainCell
 ) -> void:
+
 
 	# Check whether either side actually changed
 	var left_changed: bool = main_left_cell != last_left_cell
@@ -76,7 +83,6 @@ func _handle_recieve_main_cells(
 
 
 	# Reset active loading timers
-
 	left_death_delay_timer.stop()
 	left_blood_delay_timer.stop()
 	right_death_delay_timer.stop()
@@ -89,7 +95,6 @@ func _handle_recieve_main_cells(
 
 
 	# Basic visibility
-
 	left_cell_stat_diplay.visible = has_left_cell
 	left_no_cell_label.visible = !has_left_cell
 
@@ -106,6 +111,27 @@ func _handle_recieve_main_cells(
 	reset_death_chance_right._reset()
 
 	reset_death_chance_skull._reset()
+	
+	# already breeded visual reset
+	# also confirm btn
+	already_breeded_left.visible = false
+	already_breeded_right.visible = false
+	handle_confirm_btn.prevent_already_breeded_confirm = false 
+	
+	
+	# already breeded event detect
+	if main_left_cell :
+		var cell_already_breeded : bool = verify_cell_not_already_breeded(main_left_cell.name)
+		if cell_already_breeded : 
+			already_breeded_left.visible = true
+			handle_confirm_btn.prevent_already_breeded_confirm = true
+	
+	if main_right_cell : 
+		var cell_already_breeded : bool = verify_cell_not_already_breeded(main_right_cell.name)
+		if cell_already_breeded : 
+			already_breeded_right.visible = true
+			handle_confirm_btn.prevent_already_breeded_confirm = true
+	
 
 
 	# Display cells
@@ -193,3 +219,14 @@ func _load_right(cell: BrainCell) -> void:
 
 	right_blood_type_loading_spinner.visible = false
 	right_blood_type_display.visible = true
+
+func verify_cell_not_already_breeded(selected_cell_name : String) -> bool : 
+	
+	var cell_already_used : bool = false
+	
+	for cell_name in GLBreedingComponetsBus.cell_names_bred_this_turn :
+		if selected_cell_name == cell_name : 
+			cell_already_used = true
+	
+	
+	return cell_already_used

@@ -9,8 +9,6 @@ extends Node
 @onready var helper_handle_confirm_btn : Node = $"../HandleConfirmBtn"
 @onready var helper_handle_display_new_cell : Node = $"../HandleDisplayNewCell"
 
-
-
 func _handle_display(
 	main_left_cell : BrainCell,
 	main_right_cell : BrainCell,
@@ -74,6 +72,18 @@ func _handle_display(
 		helper_handle_display_new_cell._reset()
 
 
+func verifty_cell_not_used_this_turn(cell_name : String) -> bool : 
+	var cell_used : bool = false	
+	
+	for name_of_cell : String in GLBreedingComponetsBus.cell_names_bred_this_turn :
+		if cell_name == name_of_cell:
+			cell_used = true
+
+	return cell_used
+		
+	
+
+
 func copy_cell(cell : BrainCell) -> BrainCell:
 	if not cell:
 		return null
@@ -98,11 +108,6 @@ func apply_charge_boost_to_copy(
 
 
 func update_symbols(main_left_cell : BrainCell, main_right_cell : BrainCell) -> void:
-	if main_left_cell:
-		pass
-	
-	if main_right_cell:
-		pass
 	
 	if main_left_cell and main_right_cell:
 		symbol_manager.check_for_symbols(main_left_cell, main_right_cell)
@@ -110,10 +115,7 @@ func update_symbols(main_left_cell : BrainCell, main_right_cell : BrainCell) -> 
 	if not main_left_cell or not main_right_cell:
 		symbol_manager.hide_symbols()
 		
-	if not main_left_cell : 
-		pass
-	
-	if not  main_right_cell: 
-		pass
-		
+
+
+
 		

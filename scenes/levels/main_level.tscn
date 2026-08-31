@@ -454,7 +454,7 @@ shape = SubResource("BoxShape3D_fon25")
 debug_color = Color(0.7096456, 0.4859149, 0, 1)
 
 [node name="Ceiling" type="StaticBody3D" parent="Enviroment" unique_id=602902947 groups=["nav_mesh_coll"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.607329, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.489979, 0)
 collision_layer = 2
 collision_mask = 0
 
