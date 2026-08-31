@@ -41,7 +41,6 @@ func remove_cell_disabled_stat(
 			"strength" :
 				progress_bar_sprites[0].modulate.a = 0.1
 				progress_bar_sprites[0].material.set_shader_parameter("prisoner_value", 0)
-				progress_bar_sprites[0].material.set_shader_parameter("target_value", 0)
 				progress_bar_stat_labels[0].modulate.a = 0.1
 				curr_value_labels[0].visible = false
 				off_disable_labels[0].visible = true
@@ -50,7 +49,6 @@ func remove_cell_disabled_stat(
 			"intelligence" :
 				progress_bar_sprites[1].modulate.a = 0.1
 				progress_bar_sprites[1].material.set_shader_parameter("prisoner_value", 0)
-				progress_bar_sprites[1].material.set_shader_parameter("target_value", 0)			
 				progress_bar_stat_labels[1].modulate.a = 0.1
 				curr_value_labels[1].visible = false 
 				off_disable_labels[1].visible = true
@@ -59,7 +57,6 @@ func remove_cell_disabled_stat(
 			"community" :
 				progress_bar_sprites[2].modulate.a = 0.1
 				progress_bar_sprites[2].material.set_shader_parameter("prisoner_value", 0)
-				progress_bar_sprites[2].material.set_shader_parameter("target_value", 0)			
 				progress_bar_stat_labels[2].modulate.a = 0.1
 				curr_value_labels[2].visible = false 
 				off_disable_labels[2].visible = true

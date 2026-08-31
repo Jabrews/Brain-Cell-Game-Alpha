@@ -37,19 +37,12 @@ func update_bar() :
 	if selected_stat_type == '' :	
 		return
 	
-	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
-	
-	if target_cell :
+	var prisoner_value = selected_stat_value	
+	var total_max_value = IVCellCreator.total_stat_value
 		
-		var target_value = target_cell.get_stat(selected_stat_type).value
-		var prisoner_value = selected_stat_value	
-		var total_max_value = IVCellCreator.total_stat_value
+	prisoner_value = prisoner_value / total_max_value
 		
-		target_value = target_value / total_max_value
-		prisoner_value = prisoner_value / total_max_value
-		
-		bar.material.set_shader_parameter('target_value', target_value)
-		bar.material.set_shader_parameter('prisoner_value', prisoner_value)
+	bar.material.set_shader_parameter('prisoner_value', prisoner_value)
 
 func update_symbols() :
 	handle_lock_small_stat_display.small_stat_display_get_lock(selected_stat_type)

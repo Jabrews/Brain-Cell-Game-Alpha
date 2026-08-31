@@ -3,7 +3,6 @@ extends Node
 # components
 @onready var cell_manager : Node = $"../CellManager"
 @onready var assemble_cells : Node = $AssembleCells
-@onready var assemble_target : Node = $AssembleTarget
 @onready var incrmental_value_controller : Node = $"../IncrementalValueController"
 
 var current_cell_constructor : CellConstructor
@@ -19,20 +18,10 @@ func connect_signals() -> void:
 		handle_create_prisoners
 	)
 
-	GLCellCreatorBus.connect(
-		"create_target_cell",
-		handle_create_target
-	)
-
 	GLShareholderOfferState.connect(
 		"create_prisoner_cells_user_chose_shareholder_offer",
 		_handle_create_prisoner_cells_user_chose_shareholder_offer
 	)
-
-
-func handle_create_target() -> void:
-	var target_cell = assemble_target.assemble()
-	cell_manager.set_target_cell(target_cell)
 
 
 # signal create_prisoner_cells(cell_constructor : CellConstructor)

@@ -1,6 +1,5 @@
 extends Node
 
-var target_cell_refrence : BrainCell 
 var prisoner_cells_refrence : Array[BrainCell]
 var collected_cells_refrence : Array[BrainCell]
 
@@ -26,8 +25,6 @@ signal cell_deleted(cell_name : String)
 signal cell_changed(new_cell : BrainCell)
 signal cell_added_to_collection(new_collected_cell : BrainCell)
 signal cells_updated()
-signal target_cell_created(target_cell : BrainCell)
 
 ### DEBUG ###
-signal debug_collected_cells_and_target_create(collected_cells : Array[BrainCell], target_cell : BrainCell)
 signal debug_unhide_collected_cell_mutation(selected_cell : BrainCell)

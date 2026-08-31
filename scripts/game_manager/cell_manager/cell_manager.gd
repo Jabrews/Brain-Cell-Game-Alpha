@@ -1,7 +1,6 @@
 extends Node
 
 # main vars
-var target_cell : BrainCell
 var prisoner_cells : Array[BrainCell] = []
 var collected_cells : Array[BrainCell] = []
 
@@ -28,12 +27,10 @@ func _ready() -> void:
 	
 	
 	## OTHER ZOOS
-	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
+	#GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
 	
 	## CREATION ZOO
 	#print('DEBUG : cell manager is connecting signals for cell creation zoo')
-	#GLCreationZooBus.connect('admin_create_target_cell', _handle_admin_create_target_cell)
-	#GLCreationZooBus.connect('admin_create_collected_cell', _handle_create_collected_cell)	
 
 #### setters ####
 func set_collected_cells(new_cells : Array[BrainCell]) -> void :
@@ -47,11 +44,6 @@ func set_prisoner_cells(new_cells : Array[BrainCell]) -> void :
 	GLCellManagerBus.prisoner_cells_refrence = new_cells
 	GLCellManagerBus.emit_signal("cells_updated")
 
-func set_target_cell(new_cell : BrainCell) -> void :
-	target_cell = new_cell
-	GLCellManagerBus.target_cell_refrence = target_cell
-	GLCellManagerBus.emit_signal('cells_updated')
-	GLCellManagerBus.emit_signal('target_cell_created', target_cell )
 	
 #################
 
@@ -374,10 +366,8 @@ func _handle_collected_cell_changed(cell : BrainCell) :
 
 ### OTHER ZOOS ###
 
-func _handle_debug(new_collected_cells : Array[BrainCell], new_target_cell : BrainCell) : 
+func _handle_debug(new_collected_cells : Array[BrainCell]) : 
 	print('DEBUG : getting debug created cells')
-	print('got target cell : ', new_target_cell)
-	set_target_cell(new_target_cell)
 	set_collected_cells(new_collected_cells)
 ###################
 

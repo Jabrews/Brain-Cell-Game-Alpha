@@ -42,7 +42,6 @@ func _reset() -> void:
 	for clean_bar: Sprite2D in left_clean_bars:
 		if clean_bar.material:
 			clean_bar.material.set_shader_parameter("prisoner_value", 0.0)
-			clean_bar.material.set_shader_parameter("target_value", 0.0)
 			clean_bar.material.set_shader_parameter("charge_value", 0.0)
 
 	for stat_label: Label in left_labels:

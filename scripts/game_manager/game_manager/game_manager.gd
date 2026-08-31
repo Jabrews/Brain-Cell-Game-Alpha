@@ -11,7 +11,6 @@ func _ready() :
 	
 	GLGameManagerBus.current_round = 1
 	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
-	GLCellCreatorBus.emit_signal('create_target_cell')
 	
 ##### INIT HELPERS ######
 
@@ -33,8 +32,6 @@ func initate_next_round() :
 	
 	# delete all prior cells
 	GLCellManagerBus.emit_signal('delete_cells_for_next_round')
-	# create new cells
-	GLCellCreatorBus.emit_signal('create_target_cell')
 	
 
 

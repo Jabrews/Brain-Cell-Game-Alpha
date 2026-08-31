@@ -38,6 +38,8 @@ const STAT_TYPES: Array[String] = [
 	$"../../../../SeatCellLoading/StatDisplay/RightStatDisplay/StatDisplay/OffDisableLabels/CommunityOffLabel"
 ]
 
+
+
 func _ready() -> void:
 	for clean_bar: Sprite2D in right_clean_bars:
 		clean_bar.material = clean_bar.material.duplicate()
@@ -50,18 +52,17 @@ func _display_cell(brain_cell: BrainCell) -> void:
 	display(brain_cell)
 
 
-func display(brain_cell: BrainCell) -> void:
-	var target_cell: BrainCell = GLCellManagerBus.target_cell_refrence
+func display(
+	brain_cell: BrainCell,
+) -> void:
 	var max_value: float = float(IVCellCreator.max_stat_value)
 
 	right_cell_name_label.text = str(brain_cell.name)
-	
 
-	for i: int in range(STAT_TYPES.size()):
+	for i: int in STAT_TYPES.size():
 		var stat_type: String = STAT_TYPES[i]
 
 		var cell_stat: BrainCellStat = brain_cell.get(stat_type)
-		var target_stat: BrainCellStat = target_cell.get(stat_type)
 
 		if not cell_stat.enabled:
 			_display_disabled_stat(i)
@@ -69,10 +70,12 @@ func display(brain_cell: BrainCell) -> void:
 
 		_display_hidden_stat(i, cell_stat)
 		_display_defect_stat(i, cell_stat)
-		_display_clean_stat(i, cell_stat, target_stat, max_value)
+		_display_clean_stat(i, cell_stat, max_value)
 
 
-func _display_disabled_stat(index: int) -> void:
+func _display_disabled_stat(
+	index: int,
+) -> void:
 	right_off_labels[index].visible = true
 	right_labels[index].modulate.a = 0.4
 
@@ -94,7 +97,6 @@ func _display_defect_stat(
 func _display_clean_stat(
 	index: int,
 	cell_stat: BrainCellStat,
-	target_stat: BrainCellStat,
 	max_value: float
 ) -> void:
 	right_clean_bars[index].material.set_shader_parameter(
@@ -102,11 +104,6 @@ func _display_clean_stat(
 		cell_stat.value / max_value
 	)
 
-	right_clean_bars[index].material.set_shader_parameter(
-		"target_value",
-		target_stat.value / max_value
-	)
-	
 	right_clean_bars[index].material.set_shader_parameter(
 		"charge_value",
 		cell_stat.value / max_value

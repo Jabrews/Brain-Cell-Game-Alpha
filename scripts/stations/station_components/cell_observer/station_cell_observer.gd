@@ -53,13 +53,6 @@ func update_observed_list() :
 	# get collected cells
 	var new_observed_list : Array[BrainCell] = GLCellManagerBus.collected_cells_refrence.duplicate()
 	
-	# get target cell
-	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
-	
-	# add target cell if valid
-	if target_cell :
-		new_observed_list.append(target_cell)
-	
 	# update observed list
 	observed_list = new_observed_list
 	

@@ -21,14 +21,9 @@ code = "shader_type canvas_item;
 
 // values (0 → 1)
 uniform float prisoner_value : hint_range(0.0, 1.0); // yellow
-uniform float target_value : hint_range(0.0, 1.0);   // red
 
 // colors
 uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
-uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
-
-// overlap opacity (red over yellow)
-uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
 
 // edge padding
 uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
@@ -42,7 +37,6 @@ void fragment() {
 	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
 
 	float in_yellow = step(UV.x, prisoner_value);
-	float in_red = step(UV.x, target_value);
 
 	vec4 result = tex;
 
@@ -52,19 +46,6 @@ void fragment() {
 		if (in_yellow > 0.5) {
 			result = vec4(yellow_color.rgb, tex.a);
 		}
-
-		// 2. draw red on top
-		if (in_red > 0.5) {
-
-			// overlap → transparent red
-			if (in_yellow > 0.5) {
-				result = mix(result, vec4(red_color.rgb, tex.a), overlap_opacity);
-			}
-			// red over empty → full red
-			else {
-				result = vec4(red_color.rgb, tex.a);
-			}
-		}
 	}
 
 	COLOR = result;
@@ -73,10 +54,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q81ek"]
 shader = SubResource("Shader_myrkw")
 shader_parameter/prisoner_value = 0.0
-shader_parameter/target_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
-shader_parameter/overlap_opacity = 0.10000000475
 shader_parameter/edge_padding = 5.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0my48"]

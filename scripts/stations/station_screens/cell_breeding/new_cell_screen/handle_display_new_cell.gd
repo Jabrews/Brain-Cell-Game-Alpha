@@ -192,11 +192,6 @@ func is_stat_hidden(stat_type : String) -> bool:
 
 
 func display_clean(stat_type : String) -> void:
-	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
-	
-	if not target_cell:
-		push_error("No target cell found for new cell preview.")
-		return
 	
 	var index : int = get_stat_index(stat_type)
 	
@@ -211,7 +206,6 @@ func display_clean(stat_type : String) -> void:
 		return
 	
 	var cell_value : float = get_active_clean_value(stat_type)
-	var target_value : float = get_target_clean_value(stat_type, target_cell)
 	var start_value : float = get_parent_start_clean_value(stat_type)
 	
 	var max_val : float = float(IVCellCreator.max_stat_value)
@@ -225,11 +219,6 @@ func display_clean(stat_type : String) -> void:
 	selected_bar.material.set_shader_parameter(
 		"prisoner_value",
 		clampf(cell_value / max_val, 0.0, 1.0)
-	)
-	
-	selected_bar.material.set_shader_parameter(
-		"target_value",
-		clampf(target_value / max_val, 0.0, 1.0)
 	)
 	
 	selected_bar.material.set_shader_parameter(
@@ -399,26 +388,6 @@ func get_active_defect_value(stat_type : String) -> float:
 			return 0.0
 
 
-func get_target_clean_value(
-	stat_type : String,
-	target_cell : BrainCell
-) -> float:
-	
-	match stat_type:
-		"strength":
-			return target_cell.strength.value
-		
-		"intelligence":
-			return target_cell.intelligence.value
-		
-		"community":
-			return target_cell.community.value
-		
-		_:
-			push_error("Cannot get target clean value for type: " + stat_type)
-			return 0.0
-
-
 func clear_stat_bars(stat_type : String) -> void:
 	var index : int = get_stat_index(stat_type)
 	
@@ -438,11 +407,6 @@ func _clear_clean_bar(index : int) -> void:
 	
 	selected_bar.material.set_shader_parameter(
 		"prisoner_value",
-		0.0
-	)
-	
-	selected_bar.material.set_shader_parameter(
-		"target_value",
 		0.0
 	)
 	

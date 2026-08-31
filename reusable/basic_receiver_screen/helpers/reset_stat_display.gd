@@ -63,7 +63,6 @@ func _reset(disable_progress_labels : bool) :
 		bar.value = 0
 	for bar : Sprite2D in progress_bar_sprites :
 		bar.material.set_shader_parameter("prisoner_value", 0)
-		bar.material.set_shader_parameter("target_value", 0)
 	#################
 	
 	
@@ -79,7 +78,7 @@ func _reset(disable_progress_labels : bool) :
 		for label : Label in curr_value_labels :
 			label.visible = true
 		
-	# reset target stuff
+	# reset stuff
 	for bar : TextureProgressBar in defect_bars :
 		bar.visible = true
 	

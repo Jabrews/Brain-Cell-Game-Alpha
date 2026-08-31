@@ -48,19 +48,14 @@ func get_clean_bar(side : String, selected_stat : String) :
 func display_charge_preview(clean_bar : Sprite2D, main_cell : BrainCell, selected_stat : String, selected_direction : String ) :
 	
 	var selected_stat_value	 : float
-	var target_stat_value : float
-	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
 	
 	match selected_stat : 
 		'strength' :
 			selected_stat_value = main_cell.strength.value
-			target_stat_value = target_cell.strength.value
 		'intelligence' :		
 			selected_stat_value = main_cell.intelligence.value
-			target_stat_value = target_cell.intelligence.value
 		'community' :
 			selected_stat_value = main_cell.community.value
-			target_stat_value = target_cell.community.value
 			
 	var max_stat_value : float = IVCellCreator.max_stat_value
 	
@@ -71,10 +66,6 @@ func display_charge_preview(clean_bar : Sprite2D, main_cell : BrainCell, selecte
 		selected_stat_value / max_stat_value
 	)
 
-	clean_bar.material.set_shader_parameter(
-		"target_value",
-		target_stat_value / max_stat_value
-	)
 	###############################################
 	
 	

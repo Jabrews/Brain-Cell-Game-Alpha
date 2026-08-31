@@ -73,13 +73,6 @@ var prisoner_names = [
 	"Jaden"
 ]
 
-var target_names = [
-	'Torso',
-	'Head',
-	'Arms',
-	'Legs',
-]
-
 func pick_prisoner_names() -> String:
 	if prisoner_names.is_empty():
 		push_error("no prisoner names left")
@@ -92,16 +85,4 @@ func pick_prisoner_names() -> String:
 	
 	return prisoner_name
 
-func pick_target_names() -> String  :
-	
-	if target_names.is_empty():
-		push_error("no target names left")
-		return ""
-	
-	var index = randi_range(0, target_names.size() - 1)
-	var target_name = target_names[index]
-	
-	target_names.remove_at(index)
-	
-	return target_name 
 	

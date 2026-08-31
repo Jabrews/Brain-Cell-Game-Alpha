@@ -50,7 +50,6 @@ func _display_cell(brain_cell: BrainCell) -> void:
 
 
 func display(brain_cell: BrainCell) -> void:
-	var target_cell: BrainCell = GLCellManagerBus.target_cell_refrence
 	var max_value: float = float(IVCellCreator.max_stat_value)
 
 	cell_name_label.text = str(brain_cell.name)
@@ -59,7 +58,6 @@ func display(brain_cell: BrainCell) -> void:
 		var stat_type: String = STAT_TYPES[i]
 
 		var cell_stat: BrainCellStat = brain_cell.get(stat_type)
-		var target_stat: BrainCellStat = target_cell.get(stat_type)
 
 		if not cell_stat.enabled:
 			_display_disabled_stat(i)
@@ -67,7 +65,7 @@ func display(brain_cell: BrainCell) -> void:
 
 		_display_hidden_stat(i, cell_stat)
 		_display_defect_stat(i, cell_stat)
-		_display_clean_stat(i, cell_stat, target_stat, max_value)
+		_display_clean_stat(i, cell_stat, max_value)
 
 
 
@@ -101,10 +99,8 @@ func _display_defect_stat(
 func _display_clean_stat(
 	index: int,
 	cell_stat: BrainCellStat,
-	target_stat: BrainCellStat,
 	max_value: float
 ) -> void:
 	
 	clean_bars[index].material.set_shader_parameter("old_prisoner_value", 0.0)
 	clean_bars[index].material.set_shader_parameter("new_prisoner_value", cell_stat.value / max_value)
-	clean_bars[index].material.set_shader_parameter("target_value", target_stat.value / max_value)

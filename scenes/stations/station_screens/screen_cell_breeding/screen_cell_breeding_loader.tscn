@@ -69,13 +69,10 @@ shader_parameter/scroll_speed = 0.2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q2t8d"]
 shader = ExtResource("17_rmtrg")
 shader_parameter/prisoner_value = 0.0
-shader_parameter/target_value = 0.0
 shader_parameter/charge_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
 shader_parameter/charge_color_a = Color(1, 1, 0, 0.38431373)
 shader_parameter/charge_color_b = Color(0.47779226, 0.31845894, 0.07635339, 0.3254902)
-shader_parameter/overlap_opacity = 0.10000000475
 shader_parameter/charge_opacity = 0.85
 shader_parameter/stripe_amount = 28.0
 shader_parameter/stripe_slant = 0.8
@@ -354,7 +351,7 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q55pm"]
 shader = ExtResource("44_74pn4")
-shader_parameter/blur_amount = 1.5000000712500001
+shader_parameter/blur_amount = 1.50000007125
 shader_parameter/tint_strength = 0.0
 shader_parameter/tint_color = Color(0, 0, 0, 0)
 
@@ -469,21 +466,18 @@ load_path = "res://.godot/imported/progress_bar_under.png-e57f123632c318b1d08ae7
 code = "shader_type canvas_item;
 
 uniform float prisoner_value : hint_range(0.0, 1.0);
-uniform float target_value : hint_range(0.0, 1.0);
 uniform float start_value : hint_range(0.0, 1.0);
 
 uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
-uniform vec4 red_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
 
 uniform vec4 increase_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
 uniform vec4 decrease_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
 
-uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
 uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
 uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
 uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
 
-// Keeps shader from coloring the white/empty edge pixels.
+// keeps shader from coloring the white/empty edge pixels.
 uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
 
 void fragment() {
@@ -498,33 +492,17 @@ void fragment() {
 		pixel_x <= (tex_width - edge_padding);
 
 	float in_yellow = step(UV.x, prisoner_value);
-	float in_red = step(UV.x, target_value);
 
 	vec4 result = tex;
 
 	if (inside_edges && tex.a > 0.0) {
 
-		// Prisoner bar
+		// prisoner bar
 		if (in_yellow > 0.5) {
 			result = vec4(yellow_color.rgb, tex.a);
 		}
 
-		// Target bar
-		if (in_red > 0.5) {
-
-			if (in_yellow > 0.5) {
-				result = mix(
-					result,
-					vec4(red_color.rgb, tex.a),
-					overlap_opacity
-				);
-			}
-			else {
-				result = vec4(red_color.rgb, tex.a);
-			}
-		}
-
-		// Change stripe
+		// change stripe
 		float left = min(start_value, prisoner_value);
 		float right = max(start_value, prisoner_value);
 
@@ -540,12 +518,12 @@ void fragment() {
 			float stripe_pos;
 
 			if (prisoner_value > start_value) {
-				// Increase -> blue -> move right
+				// increase -> blue -> move right
 				overlay_color = increase_color;
 				stripe_pos = fract(TIME * stripe_speed);
 			}
 			else {
-				// Decrease -> red -> move left
+				// decrease -> red -> move left
 				overlay_color = decrease_color;
 				stripe_pos = 1.0 - fract(TIME * stripe_speed);
 			}
@@ -581,13 +559,10 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo7b4"]
 shader = SubResource("Shader_3tyvt")
 shader_parameter/prisoner_value = 0.0
-shader_parameter/target_value = 0.0
 shader_parameter/start_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/red_color = Color(0.29803923, 0.02745098, 0.06666667, 1)
 shader_parameter/increase_color = Color(0.100000024, 0.69999987, 1, 0.9843137)
 shader_parameter/decrease_color = Color(1, 0.19999999, 0.19999999, 1)
-shader_parameter/overlap_opacity = 0.254000012065
 shader_parameter/overlay_opacity = 0.7790000370025
 shader_parameter/stripe_width = 0.10000000405148
 shader_parameter/stripe_speed = 1.00000004424012

@@ -1,3 +1,4 @@
+
 extends Node
 
 @onready var cell_name_label : Label = $"../StatDisplay/CellName"
@@ -39,6 +40,8 @@ var stat_order : Array[String] = [
 
 
 func _display_cell(cell : BrainCell, cell_stats_dic : Dictionary) -> void:
+	
+	
 	cell_name_label.text = cell.name
 	cell_lifespan_label.text = "lifespan - " + str(cell.life_span)
 	
@@ -57,28 +60,17 @@ func update_stat_bars(cell_stats_dic : Dictionary) -> void:
 		community_bar
 	]
 	
-	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
-	
 	for i in range(stat_order.size()):
 		var stat_name : String = stat_order[i]
 		var bar : Sprite2D = bars[i]
-#		
+		
 		var prisoner_value : float = 0.0
-		var target_value : float = 0.0
 		
 		if cell_stats_dic.has(stat_name):
 			var stat : BrainCellStat = cell_stats_dic[stat_name]
 			prisoner_value = stat.value / max_value
 		
-			if target_cell != null:
-				var target_stat : BrainCellStat = target_cell.get(stat_name)
-				if target_stat != null:
-					target_value = target_stat.value / max_value
-					
-					
-		
 		bar.material.set_shader_parameter("prisoner_value", prisoner_value)
-		bar.material.set_shader_parameter("target_value", target_value)
 
 
 func update_display_labels(cell_stats_dic : Dictionary) -> void:

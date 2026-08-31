@@ -17,7 +17,6 @@ var placeholder_screen_instance : Node
 # helper components
 @onready var reset_stat_display : Node = $ResetStatDisplay
 @onready var handle_disabled_stats : Node = $HandleDisabledStats
-@onready var display_target_cell : Node = $DisplayTargetCell
 @onready var display_cell : Node = $DisplayCell
 
 # display components
@@ -55,10 +54,7 @@ func _handle_brain_cell_recieved(cell : BrainCell) -> void:
 
 	cell_stats_dic = handle_disabled_stats._handle(cell_stats_dic)
 
-	if cell.is_target_cell:
-		display_target_cell._display_target(cell)
-	else:
-		display_cell._display_cell(cell, cell_stats_dic)
+	display_cell._display_cell(cell, cell_stats_dic)
 
 func toggle_placeholder_screen(show : bool) -> void:
 	if show:

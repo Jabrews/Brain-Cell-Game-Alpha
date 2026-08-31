@@ -11,7 +11,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug_collected_cells_and_target_create)
 	
 	
-func _handle_debug_collected_cells_and_target_create(collected_cells : Array, _target_cell : BrainCell) :
+func _handle_debug_collected_cells_and_target_create(collected_cells : Array) :
 	for cell : BrainCell in collected_cells : 
 		create_cell_container_instance(cell)
 
