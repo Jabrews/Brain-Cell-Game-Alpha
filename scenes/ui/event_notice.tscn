@@ -56,9 +56,11 @@ script = ExtResource("2_4qbvk")
 
 [node name="Default" type="AudioStreamPlayer2D" parent="PopupSoundManager" unique_id=275702337]
 stream = ExtResource("2_rfx8t")
+volume_db = 5.0
 
 [node name="Emergency" type="AudioStreamPlayer2D" parent="PopupSoundManager" unique_id=814953005]
 stream = ExtResource("3_4qbvk")
+volume_db = 5.0
 
 [node name="LoadStyle" type="Node" parent="." unique_id=480655066]
 script = ExtResource("2_c7w4r")
@@ -120,4 +122,4 @@ wait_time = 0.5
 
 [node name="WhooshSound" type="AudioStreamPlayer2D" parent="." unique_id=186721262]
 stream = ExtResource("14_65ai2")
-volume_db = 10.0
+volume_db = -5.0

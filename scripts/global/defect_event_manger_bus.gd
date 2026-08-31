@@ -13,3 +13,9 @@ signal cell_added_to_trashcan() # cells discareded early count too
 
 # let admin panel know it finished
 signal finished_trigger_event(finale_choice : String)
+
+var interpreters_plugged_in : Dictionary[String, bool]  = {
+	'strength' : true,
+	'intelligence' : true,
+	'community' : true,	
+}

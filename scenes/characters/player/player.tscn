@@ -92,6 +92,7 @@ debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("3_qhqgy")
 
 [node name="DropItemDelayTimer" type="Timer" parent="CameraPivot/Camera3D/RayCastController/InteractRay" unique_id=675034111]
+wait_time = 3.0
 one_shot = true
 
 [node name="StatDisplayRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1939760921 groups=["usable_item"]]

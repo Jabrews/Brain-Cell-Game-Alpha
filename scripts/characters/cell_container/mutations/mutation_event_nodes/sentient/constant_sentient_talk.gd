@@ -217,4 +217,3 @@ func _stop() :
 	waiting_to_play_dialouge = false
 	saved_dialouge = null
 	
-	print('sentient stop')

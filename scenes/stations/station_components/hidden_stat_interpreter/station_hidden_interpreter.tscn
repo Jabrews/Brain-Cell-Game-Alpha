@@ -187,7 +187,7 @@ max_distance = 30.0
 [node name="InterpreterFinished" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1996394371]
 stream = ExtResource("12_jgci0")
 pitch_scale = 1.1
-max_distance = 30.0
+max_distance = 40.0
 
 [node name="StatAccepted" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=671194295]
 stream = ExtResource("13_8kmrx")
@@ -198,7 +198,7 @@ max_distance = 30.0
 [node name="IdleDrone" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=398125214]
 stream = SubResource("AudioStreamMP3_rca54")
 volume_db = -15.0
-max_distance = 25.0
+max_distance = 35.0
 
 [node name="JoltStart" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=444035136]
 stream = ExtResource("14_k67sj")

@@ -100,10 +100,12 @@ func _handle_plug(plug_status : String) :
 		'in' :
 			plugged_in = true
 			_handle_panel_body_recieved(loaded_cell_container)
+			GLDefectEventMangerBus.interpreters_plugged_in[stat_type] = true
 		'out' : 
 			plugged_in = false
 			screen_hidden_interpreter._switch_screen('off')
 			_handle_defect_event_jolt_ended(false)
+			GLDefectEventMangerBus.interpreters_plugged_in[stat_type] = false
 
 				
 			
