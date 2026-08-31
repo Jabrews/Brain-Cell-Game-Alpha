@@ -4,6 +4,7 @@ extends Node
 @onready var decrease_old_cell : Node = $DecreaseOldCell
 
 @export var life_span_increase: Dictionary[int, float] = {
+	5 : 0,
 	4 : 0,
 	3 : 0,
 	2 : 5.0,
