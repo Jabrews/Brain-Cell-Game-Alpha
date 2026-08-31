@@ -97,10 +97,10 @@ one_shot = true
 
 [node name="StatDisplayRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1939760921 groups=["usable_item"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
-target_position = Vector3(0, 0, -3)
+target_position = Vector3(0, 0, -4)
 collision_mask = 66
 collide_with_areas = true
-debug_shape_custom_color = Color(0, 0, 0, 0.5294118)
+debug_shape_custom_color = Color(0.8980392, 0.67058825, 0, 0.5294118)
 script = ExtResource("4_hss88")
 
 [node name="UseableItemRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=1178014007]
@@ -108,7 +108,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
 target_position = Vector3(0, 0, -4)
 collision_mask = 390
 collide_with_areas = true
-debug_shape_custom_color = Color(0, 0, 0, 0.4)
+debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("6_mk55u")
 
 [node name="UseSteroid" type="Node" parent="CameraPivot/Camera3D/RayCastController/UseableItemRay" unique_id=1192498463]
