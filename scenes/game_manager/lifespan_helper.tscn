@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b5l56ptytwumi"]
+
+[ext_resource type="Script" uid="uid://by5s6xgcb7du8" path="res://scripts/game_manager/lifespan_helper/lifespan_helper.gd" id="1_vda1u"]
+
+[node name="LifespanHelper" type="Node" unique_id=1590793381]
+script = ExtResource("1_vda1u")

@@ -171,7 +171,7 @@ func _create_breeded_cell(
 			clean_stat_array[2],
 			defect_stat_array[2]
 		),
-		3
+		GAMELifespanHelper._get_lifespan('breeding')
 	)
 
 	_apply_disabled_stats(new_cell)

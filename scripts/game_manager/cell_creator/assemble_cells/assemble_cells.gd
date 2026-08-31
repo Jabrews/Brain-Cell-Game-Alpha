@@ -28,7 +28,8 @@ func assemble(cell_constructor : CellConstructor) -> Array[BrainCell]:
 
 		### ESC ###
 		var new_name = GAMENameManager.pick_prisoner_names()
-		var life_span = randi_range(2, 4)
+		var life_span : int = GAMELifespanHelper._get_lifespan('prisoner')
+				
 		###########
 
 		var new_prisoner_cell = BrainCell.new(
