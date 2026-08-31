@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://x5sdvjw3mat1" path="res://sounds/player_local_sounds/cell_container/water_splash.mp3" id="16_7580g"]
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
+[ext_resource type="AudioStream" uid="uid://bv4r160ubvy1g" path="res://sounds/cell_container/age_lifespan.mp3" id="24_rwqu2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwqu2"]
 albedo_color = Color(0.90683234, 0.3491902, 0.3491902, 1)
@@ -154,3 +155,7 @@ stream = ExtResource("18_0rbwi")
 [node name="DefectIncreaseSound" type="AudioStreamPlayer3D" parent="Sounds" unique_id=550401705]
 stream = ExtResource("8_anjkl")
 pitch_scale = 0.65
+
+[node name="LifespanAge" type="AudioStreamPlayer3D" parent="Sounds" unique_id=1171802822]
+stream = ExtResource("24_rwqu2")
+pitch_scale = 1.1

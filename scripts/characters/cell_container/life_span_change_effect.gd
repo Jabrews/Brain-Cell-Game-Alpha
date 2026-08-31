@@ -5,6 +5,7 @@ extends  Node
 @onready var parent_cell_container := $".."
 @onready var life_span_label : Label = $"../StatDisplay/StatMesh/SubViewport/BasicRecieverScreen/StatDisplay/CellLifeSpan"
 @onready var stat_display_mesh : MeshInstance3D = $"../StatDisplay/StatMesh"
+@onready var lifespan_change_sound : AudioStreamPlayer3D = $"../Sounds/LifespanAge"
 
 var last_lifespan : int = 0
 var designated_brain_cell : BrainCell
@@ -32,6 +33,7 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) -> void:
 			if changed_brain_cell.life_span > 0:
 				play_life_span_changed_effect()
 				shake_life_span_label()
+				lifespan_change_sound.play()
 
 func play_life_span_changed_effect() -> void:
 
@@ -40,20 +42,20 @@ func play_life_span_changed_effect() -> void:
 
 	var scale_tween : Tween = create_tween()
 
-	for i in 6:
+	for i in 2:
 
 		scale_tween.tween_property(
 			parent_cell_container,
 			"scale",
 			original_scale + Vector3(0.2, 0.2, 0.2),
-			0.1
+			0.5
 		)
 
 		scale_tween.tween_property(
 			parent_cell_container,
 			"scale",
 			original_scale,
-			0.1
+			0.5
 		)
 
 
