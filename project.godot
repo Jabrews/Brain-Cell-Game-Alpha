@@ -68,6 +68,7 @@ GLEventNoticeManagerBus="*uid://2h6oq3e8sbgh"
 GLShareholderDemandState="*uid://d2gg46l0hgft4"
 GLCinnamaticBus="*uid://bto12mhl4ube3"
 GAMELifespanHelper="*uid://b5l56ptytwumi"
+GLGoalThresholdBus="*uid://bs1hi3l23ehcj"
 
 [debug]
 

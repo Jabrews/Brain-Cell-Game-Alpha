@@ -3,6 +3,7 @@ extends Node
 # components
 @onready var cell_creator : Node = $CellCreator
 @onready var cell_manager : Node = $CellManager
+@onready var goal_threshold_manager : Node = $GoalThresholdManager
 @onready var incremental_value_controller : Node = $IncrementalValueController
 
 
@@ -11,6 +12,7 @@ func _ready() :
 	
 	GLGameManagerBus.current_round = 1
 	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
+	goal_threshold_manager._create_goal()
 	
 ##### INIT HELPERS ######
 

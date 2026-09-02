@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cbkhifesyls7u"]
+
+[ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_8qh2a"]
+[ext_resource type="Script" uid="uid://bd2jhljo1vut4" path="res://scripts/stations/station_components/goal_threshold/station_goal_threshold.gd" id="1_yrnsf"]
+[ext_resource type="PackedScene" uid="uid://c3e4ulrrufob7" path="res://scenes/stations/station_screens/goal_threshold/screen_goal_threshold.tscn" id="2_yrnsf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ewaq"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+material = SubResource("StandardMaterial3D_5ewaq")
+size = Vector3(7, 4.6347656, 0.036132813)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7qiga"]
+viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5kxe"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_7qiga")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pqj0v"]
+material = SubResource("StandardMaterial3D_d5kxe")
+size = Vector2(6.7, 4.3)
+orientation = 0
+
+[node name="GoalTreshold" type="Node3D" unique_id=606315026]
+script = ExtResource("1_yrnsf")
+
+[node name="GoalScreenTV" type="Node3D" parent="." unique_id=782315824]
+
+[node name="TVBack" type="MeshInstance3D" parent="GoalScreenTV" unique_id=1055254949]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.50183105, 2.1826172, 0)
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="TvFrontPannel" type="MeshInstance3D" parent="GoalScreenTV" unique_id=1247202499]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.54003525, 2.1776853, -0.04984951)
+mesh = SubResource("PlaneMesh_pqj0v")
+script = ExtResource("1_8qh2a")
+
+[node name="SubViewport" type="SubViewport" parent="GoalScreenTV/TvFrontPannel" unique_id=1104133700]
+disable_3d = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(694, 384)
+
+[node name="GoalThreshold" parent="GoalScreenTV/TvFrontPannel/SubViewport" unique_id=960493777 instance=ExtResource("2_yrnsf")]

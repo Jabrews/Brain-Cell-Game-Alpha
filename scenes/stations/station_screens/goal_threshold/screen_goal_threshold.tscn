@@ -1,0 +1,484 @@
+[gd_scene format=3 uid="uid://c3e4ulrrufob7"]
+
+[ext_resource type="Script" uid="uid://brtogxf2ayyqc" path="res://scripts/stations/station_screens/goal_threshold/screen_goal_threshold.gd" id="1_x64iw"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ym46u"]
+[ext_resource type="Script" uid="uid://b3m5ut3bjbvql" path="res://scripts/stations/station_screens/goal_threshold/initiate_stat_style.gd" id="2_sc56a"]
+[ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="3_5ykx4"]
+[ext_resource type="Script" uid="uid://o3rheyr0mncj" path="res://scripts/stations/station_screens/goal_threshold/test_math_2.gd" id="3_tqhvd"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_cn8cc"]
+[ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="4_dak4g"]
+[ext_resource type="Texture2D" uid="uid://cjx483tj54mw7" path="res://models/goal_threshold/BarMedium.png" id="7_yq0aj"]
+[ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="8_tqhvd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ka0vu"]
+shader = ExtResource("1_ym46u")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="Shader" id="Shader_dak4g"]
+code = "shader_type canvas_item;
+
+uniform float red_value : hint_range(0.0, 1.0) = 0.8;
+uniform float yellow_value : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
+uniform vec4 yellow_color : source_color = vec4(1.0, 0.9, 0.0, 1.0);
+uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
+
+// color on the sprite that this effect is allowed to replace
+uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// how close a pixel has to be to mask_color
+uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+uniform float flash_speed : hint_range(0.0, 10.0) = 3.0;
+uniform float yellow_low_opacity : hint_range(0.0, 1.0) = 0.2;
+uniform float yellow_high_opacity : hint_range(0.0, 1.0) = 0.8;
+
+uniform float blip_width : hint_range(0.001, 0.05) = 0.01;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 result = tex;
+
+	// distance between current pixel color and chosen mask color
+	float color_distance = distance(tex.rgb, mask_color.rgb);
+
+	bool inside_mask =
+		tex.a > 0.0 &&
+		color_distance <= mask_tolerance;
+
+	if (inside_mask) {
+
+		// -------------------------
+		// RED BAR
+		// -------------------------
+
+		if (UV.x <= red_value) {
+			result = vec4(red_color.rgb, tex.a);
+		}
+
+
+		// -------------------------
+		// YELLOW BAR
+		// starts at red_value
+		// and extends left
+		// -------------------------
+
+		float yellow_start = max(
+			red_value - yellow_value,
+			0.0
+		);
+
+		bool in_yellow =
+			UV.x >= yellow_start &&
+			UV.x <= red_value;
+
+		if (in_yellow) {
+			float flash =
+				sin(TIME * flash_speed) * 0.5 + 0.5;
+
+			float opacity = mix(
+				yellow_low_opacity,
+				yellow_high_opacity,
+				flash
+			);
+
+			result.rgb = mix(
+				result.rgb,
+				yellow_color.rgb,
+				opacity
+			);
+		}
+
+
+		// -------------------------
+		// RED VALUE BLIP
+		// -------------------------
+
+		float dist_to_blip =
+			abs(UV.x - red_value);
+
+		if (dist_to_blip <= blip_width) {
+			result.rgb = blip_color.rgb;
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dak4g"]
+shader = SubResource("Shader_dak4g")
+shader_parameter/red_value = 1.0
+shader_parameter/yellow_value = 0.0
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 2.000000095
+shader_parameter/yellow_low_opacity = 0.10000000475
+shader_parameter/yellow_high_opacity = 0.50000002375
+shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="Shader" id="Shader_yq0aj"]
+code = "shader_type canvas_item;
+
+uniform float red_value : hint_range(0.0, 1.0) = 0.8;
+uniform float yellow_value : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
+uniform vec4 yellow_color : source_color = vec4(1.0, 0.9, 0.0, 1.0);
+uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
+
+// color on the sprite that this effect is allowed to replace
+uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// how close a pixel has to be to mask_color
+uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+uniform float flash_speed : hint_range(0.0, 10.0) = 3.0;
+uniform float yellow_low_opacity : hint_range(0.0, 1.0) = 0.2;
+uniform float yellow_high_opacity : hint_range(0.0, 1.0) = 0.8;
+
+uniform float blip_width : hint_range(0.001, 0.05) = 0.01;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 result = tex;
+
+	// distance between current pixel color and chosen mask color
+	float color_distance = distance(tex.rgb, mask_color.rgb);
+
+	bool inside_mask =
+		tex.a > 0.0 &&
+		color_distance <= mask_tolerance;
+
+	if (inside_mask) {
+
+		// -------------------------
+		// RED BAR
+		// -------------------------
+
+		if (UV.x <= red_value) {
+			result = vec4(red_color.rgb, tex.a);
+		}
+
+
+		// -------------------------
+		// YELLOW BAR
+		// starts at red_value
+		// and extends left
+		// -------------------------
+
+		float yellow_start = max(
+			red_value - yellow_value,
+			0.0
+		);
+
+		bool in_yellow =
+			UV.x >= yellow_start &&
+			UV.x <= red_value;
+
+		if (in_yellow) {
+			float flash =
+				sin(TIME * flash_speed) * 0.5 + 0.5;
+
+			float opacity = mix(
+				yellow_low_opacity,
+				yellow_high_opacity,
+				flash
+			);
+
+			result.rgb = mix(
+				result.rgb,
+				yellow_color.rgb,
+				opacity
+			);
+		}
+
+
+		// -------------------------
+		// RED VALUE BLIP
+		// -------------------------
+
+		float dist_to_blip =
+			abs(UV.x - red_value);
+
+		if (dist_to_blip <= blip_width) {
+			result.rgb = blip_color.rgb;
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tqhvd"]
+shader = SubResource("Shader_yq0aj")
+shader_parameter/red_value = 1.0
+shader_parameter/yellow_value = 0.0
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 2.000000095
+shader_parameter/yellow_low_opacity = 0.10000000475
+shader_parameter/yellow_high_opacity = 0.50000002375
+shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="Shader" id="Shader_krpxb"]
+code = "shader_type canvas_item;
+
+uniform float red_value : hint_range(0.0, 1.0) = 0.8;
+uniform float yellow_value : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
+uniform vec4 yellow_color : source_color = vec4(1.0, 0.9, 0.0, 1.0);
+uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
+
+// color on the sprite that this effect is allowed to replace
+uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// how close a pixel has to be to mask_color
+uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+uniform float flash_speed : hint_range(0.0, 10.0) = 3.0;
+uniform float yellow_low_opacity : hint_range(0.0, 1.0) = 0.2;
+uniform float yellow_high_opacity : hint_range(0.0, 1.0) = 0.8;
+
+uniform float blip_width : hint_range(0.001, 0.05) = 0.01;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 result = tex;
+
+	// distance between current pixel color and chosen mask color
+	float color_distance = distance(tex.rgb, mask_color.rgb);
+
+	bool inside_mask =
+		tex.a > 0.0 &&
+		color_distance <= mask_tolerance;
+
+	if (inside_mask) {
+
+		// -------------------------
+		// RED BAR
+		// -------------------------
+
+		if (UV.x <= red_value) {
+			result = vec4(red_color.rgb, tex.a);
+		}
+
+
+		// -------------------------
+		// YELLOW BAR
+		// starts at red_value
+		// and extends left
+		// -------------------------
+
+		float yellow_start = max(
+			red_value - yellow_value,
+			0.0
+		);
+
+		bool in_yellow =
+			UV.x >= yellow_start &&
+			UV.x <= red_value;
+
+		if (in_yellow) {
+			float flash =
+				sin(TIME * flash_speed) * 0.5 + 0.5;
+
+			float opacity = mix(
+				yellow_low_opacity,
+				yellow_high_opacity,
+				flash
+			);
+
+			result.rgb = mix(
+				result.rgb,
+				yellow_color.rgb,
+				opacity
+			);
+		}
+
+
+		// -------------------------
+		// RED VALUE BLIP
+		// -------------------------
+
+		float dist_to_blip =
+			abs(UV.x - red_value);
+
+		if (dist_to_blip <= blip_width) {
+			result.rgb = blip_color.rgb;
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trmvt"]
+shader = SubResource("Shader_krpxb")
+shader_parameter/red_value = 1.0
+shader_parameter/yellow_value = 0.0
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 2.000000095
+shader_parameter/yellow_low_opacity = 0.10000000475
+shader_parameter/yellow_high_opacity = 0.50000002375
+shader_parameter/blip_width = 0.002000000095
+
+[node name="GoalThreshold" type="Node2D" unique_id=960493777]
+script = ExtResource("1_x64iw")
+
+[node name="InitiateStatStyle" type="Node" parent="." unique_id=1224250139]
+script = ExtResource("2_sc56a")
+
+[node name="TestMath2" type="Node" parent="." unique_id=60514586]
+script = ExtResource("3_tqhvd")
+
+[node name="IncrementDownTimer" type="Timer" parent="TestMath2" unique_id=634736551]
+
+[node name="Bg" type="ColorRect" parent="." unique_id=271631995]
+offset_right = 694.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1047342094]
+material = SubResource("ShaderMaterial_ka0vu")
+offset_right = 696.0
+offset_bottom = 384.0
+
+[node name="Stats" type="Control" parent="." unique_id=207095219]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Strength" type="Control" parent="Stats" unique_id=874182013]
+layout_mode = 1
+anchor_left = -0.2
+anchor_top = -0.4
+anchor_right = -0.2
+anchor_bottom = -0.4
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StrengthBar" type="Sprite2D" parent="Stats/Strength" unique_id=706587834]
+texture_filter = 1
+material = SubResource("ShaderMaterial_dak4g")
+position = Vector2(353, 104)
+scale = Vector2(1.4193549, 1)
+texture = ExtResource("4_dak4g")
+
+[node name="ProgressCircle" type="TextureRect" parent="Stats/Strength" unique_id=193189104]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 72.0
+offset_right = 176.00002
+offset_bottom = 136.0
+texture = ExtResource("3_5ykx4")
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Strength" unique_id=684966202]
+texture_filter = 1
+custom_minimum_size = Vector2(144, 23)
+custom_maximum_size = Vector2(144, 23)
+layout_mode = 0
+offset_left = 71.0
+offset_top = 59.0
+offset_right = 215.0
+offset_bottom = 82.0
+theme_override_fonts/font = ExtResource("4_cn8cc")
+theme_override_font_sizes/font_size = 12
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="Intelligence" type="Control" parent="Stats" unique_id=1327377887]
+layout_mode = 1
+anchor_left = -0.2
+anchor_top = -0.4
+anchor_right = -0.2
+anchor_bottom = -0.4
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="IntelligenceBar" type="Sprite2D" parent="Stats/Intelligence" unique_id=311602476]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tqhvd")
+position = Vector2(315, 208)
+scale = Vector2(1.4451613, 1)
+texture = ExtResource("7_yq0aj")
+
+[node name="ProgressCircle" type="TextureRect" parent="Stats/Intelligence" unique_id=446397476]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 176.0
+offset_right = 176.0
+offset_bottom = 240.0
+texture = ExtResource("3_5ykx4")
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Intelligence" unique_id=2030437727]
+texture_filter = 1
+custom_minimum_size = Vector2(144, 23)
+custom_maximum_size = Vector2(144, 23)
+layout_mode = 0
+offset_left = 71.0
+offset_top = 162.0
+offset_right = 215.0
+offset_bottom = 185.0
+theme_override_fonts/font = ExtResource("4_cn8cc")
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="Community" type="Control" parent="Stats" unique_id=1158174619]
+layout_mode = 1
+anchor_left = -0.2
+anchor_top = -0.4
+anchor_right = -0.2
+anchor_bottom = -0.4
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="CommunityBar" type="Sprite2D" parent="Stats/Community" unique_id=793427552]
+texture_filter = 1
+material = SubResource("ShaderMaterial_trmvt")
+position = Vector2(266, 312)
+scale = Vector2(1.4451613, 1)
+texture = ExtResource("8_tqhvd")
+
+[node name="ProgressCircle" type="TextureRect" parent="Stats/Community" unique_id=1667538081]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 280.0
+offset_right = 176.00006
+offset_bottom = 344.0
+texture = ExtResource("3_5ykx4")
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Community" unique_id=648551272]
+texture_filter = 1
+custom_minimum_size = Vector2(144, 23)
+custom_maximum_size = Vector2(144, 23)
+layout_mode = 0
+offset_left = 71.0
+offset_top = 268.0
+offset_right = 215.0
+offset_bottom = 291.0
+theme_override_fonts/font = ExtResource("4_cn8cc")
+theme_override_font_sizes/font_size = 12
+text = "Community"
+horizontal_alignment = 1
