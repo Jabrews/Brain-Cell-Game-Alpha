@@ -1,17 +1,21 @@
 [gd_scene format=3 uid="uid://c3e4ulrrufob7"]
 
-[ext_resource type="Script" uid="uid://brtogxf2ayyqc" path="res://scripts/stations/station_screens/goal_threshold/screen_goal_threshold.gd" id="1_x64iw"]
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ym46u"]
-[ext_resource type="Script" uid="uid://b3m5ut3bjbvql" path="res://scripts/stations/station_screens/goal_threshold/initiate_stat_style.gd" id="2_sc56a"]
-[ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="3_5ykx4"]
-[ext_resource type="Script" uid="uid://o3rheyr0mncj" path="res://scripts/stations/station_screens/goal_threshold/test_math_2.gd" id="3_tqhvd"]
-[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_cn8cc"]
-[ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="4_dak4g"]
-[ext_resource type="Texture2D" uid="uid://cjx483tj54mw7" path="res://models/goal_threshold/BarMedium.png" id="7_yq0aj"]
-[ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="8_tqhvd"]
+[ext_resource type="Script" uid="uid://brtogxf2ayyqc" path="res://scripts/stations/station_screens/goal_threshold_interface/screen_goal_threshold_interface.gd" id="1_swvbd"]
+[ext_resource type="Script" uid="uid://b3m5ut3bjbvql" path="res://scripts/stations/station_screens/goal_threshold_interface/initiate_stat_style.gd" id="2_jhai3"]
+[ext_resource type="Script" uid="uid://o3rheyr0mncj" path="res://scripts/stations/station_screens/goal_threshold_interface/test_math_2.gd" id="3_trq54"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="4_oqo88"]
+[ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="5_34q18"]
+[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="6_g3eu6"]
+[ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="7_7fjsm"]
+[ext_resource type="Script" uid="uid://jjvtq2ttvqqr" path="res://scripts/stations/station_screens/goal_threshold_interface/progress_circle.gd" id="8_vqu4o"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_25vk6"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="10_1kg7t"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_8g107"]
+[ext_resource type="Texture2D" uid="uid://cjx483tj54mw7" path="res://models/goal_threshold/BarMedium.png" id="12_e5wxa"]
+[ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="13_el0gk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ka0vu"]
-shader = ExtResource("1_ym46u")
+shader = ExtResource("4_oqo88")
 shader_parameter/line_opacity = 0.12
 shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
@@ -111,7 +115,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dak4g"]
 shader = SubResource("Shader_dak4g")
-shader_parameter/red_value = 1.0
+shader_parameter/red_value = 0.50000002375
 shader_parameter/yellow_value = 0.0
 shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
 shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
@@ -122,6 +126,14 @@ shader_parameter/flash_speed = 2.000000095
 shader_parameter/yellow_low_opacity = 0.10000000475
 shader_parameter/yellow_high_opacity = 0.50000002375
 shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_krpxb"]
+shader = ExtResource("6_g3eu6")
+shader_parameter/progress = 0.0
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/progress_color = Color(0.86546135, 0.72076094, 0, 1)
+shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+shader_parameter/mask_tolerance = 0.1
 
 [sub_resource type="Shader" id="Shader_yq0aj"]
 code = "shader_type canvas_item;
@@ -217,7 +229,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tqhvd"]
 shader = SubResource("Shader_yq0aj")
-shader_parameter/red_value = 1.0
+shader_parameter/red_value = 0.50000002375
 shader_parameter/yellow_value = 0.0
 shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
 shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
@@ -229,6 +241,14 @@ shader_parameter/yellow_low_opacity = 0.10000000475
 shader_parameter/yellow_high_opacity = 0.50000002375
 shader_parameter/blip_width = 0.002000000095
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iq0qk"]
+shader = ExtResource("6_g3eu6")
+shader_parameter/progress = 0.0
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/progress_color = Color(0.86546135, 0.72076094, 0, 1)
+shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+shader_parameter/mask_tolerance = 0.1
+
 [sub_resource type="Shader" id="Shader_krpxb"]
 code = "shader_type canvas_item;
 
@@ -239,11 +259,18 @@ uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
 uniform vec4 yellow_color : source_color = vec4(1.0, 0.9, 0.0, 1.0);
 uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
 
-// color on the sprite that this effect is allowed to replace
+// color on sprite that effect can replace
 uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-
-// how close a pixel has to be to mask_color
 uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+
+// -------------------------
+// ACTUAL BAR REGION
+// -------------------------
+
+uniform float bar_start : hint_range(0.0, 1.0) = 0.0;
+uniform float bar_end : hint_range(0.0, 1.0) = 1.0;
+
 
 uniform float flash_speed : hint_range(0.0, 10.0) = 3.0;
 uniform float yellow_low_opacity : hint_range(0.0, 1.0) = 0.2;
@@ -251,25 +278,42 @@ uniform float yellow_high_opacity : hint_range(0.0, 1.0) = 0.8;
 
 uniform float blip_width : hint_range(0.001, 0.05) = 0.01;
 
+
 void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
 	vec4 result = tex;
 
-	// distance between current pixel color and chosen mask color
 	float color_distance = distance(tex.rgb, mask_color.rgb);
 
 	bool inside_mask =
 		tex.a > 0.0 &&
 		color_distance <= mask_tolerance;
 
-	if (inside_mask) {
+
+	// convert actual texture UV into
+	// normalized 0 → 1 bar space
+	float bar_uv = (
+		UV.x - bar_start
+	) / (
+		bar_end - bar_start
+	);
+
+	bool inside_bar =
+		UV.x >= bar_start &&
+		UV.x <= bar_end;
+
+
+	if (inside_mask && inside_bar) {
 
 		// -------------------------
 		// RED BAR
 		// -------------------------
 
-		if (UV.x <= red_value) {
-			result = vec4(red_color.rgb, tex.a);
+		if (bar_uv <= red_value) {
+			result = vec4(
+				red_color.rgb,
+				tex.a
+			);
 		}
 
 
@@ -285,8 +329,9 @@ void fragment() {
 		);
 
 		bool in_yellow =
-			UV.x >= yellow_start &&
-			UV.x <= red_value;
+			bar_uv >= yellow_start &&
+			bar_uv <= red_value;
+
 
 		if (in_yellow) {
 			float flash =
@@ -311,7 +356,7 @@ void fragment() {
 		// -------------------------
 
 		float dist_to_blip =
-			abs(UV.x - red_value);
+			abs(bar_uv - red_value);
 
 		if (dist_to_blip <= blip_width) {
 			result.rgb = blip_color.rgb;
@@ -323,26 +368,28 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_trmvt"]
 shader = SubResource("Shader_krpxb")
-shader_parameter/red_value = 1.0
+shader_parameter/red_value = 0.50000002375
 shader_parameter/yellow_value = 0.0
 shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
 shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
 shader_parameter/blip_color = Color(0, 0, 0, 1)
 shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
 shader_parameter/mask_tolerance = 0.1
+shader_parameter/bar_start = 0.0
+shader_parameter/bar_end = 1.0
 shader_parameter/flash_speed = 2.000000095
 shader_parameter/yellow_low_opacity = 0.10000000475
 shader_parameter/yellow_high_opacity = 0.50000002375
 shader_parameter/blip_width = 0.002000000095
 
-[node name="GoalThreshold" type="Node2D" unique_id=960493777]
-script = ExtResource("1_x64iw")
+[node name="GoalThresholdInterface" type="Node2D" unique_id=960493777]
+script = ExtResource("1_swvbd")
 
 [node name="InitiateStatStyle" type="Node" parent="." unique_id=1224250139]
-script = ExtResource("2_sc56a")
+script = ExtResource("2_jhai3")
 
 [node name="TestMath2" type="Node" parent="." unique_id=60514586]
-script = ExtResource("3_tqhvd")
+script = ExtResource("3_trq54")
 
 [node name="IncrementDownTimer" type="Timer" parent="TestMath2" unique_id=634736551]
 
@@ -359,7 +406,8 @@ offset_bottom = 384.0
 [node name="Stats" type="Control" parent="." unique_id=207095219]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
+offset_left = 72.0
+offset_right = 112.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
@@ -376,18 +424,41 @@ metadata/_edit_use_anchors_ = true
 [node name="StrengthBar" type="Sprite2D" parent="Stats/Strength" unique_id=706587834]
 texture_filter = 1
 material = SubResource("ShaderMaterial_dak4g")
-position = Vector2(353, 104)
-scale = Vector2(1.4193549, 1)
-texture = ExtResource("4_dak4g")
+position = Vector2(330, 104)
+texture = ExtResource("5_34q18")
 
 [node name="ProgressCircle" type="TextureRect" parent="Stats/Strength" unique_id=193189104]
 texture_filter = 1
+material = SubResource("ShaderMaterial_krpxb")
 layout_mode = 0
 offset_left = 112.0
 offset_top = 72.0
 offset_right = 176.00002
 offset_bottom = 136.0
-texture = ExtResource("3_5ykx4")
+texture = ExtResource("7_7fjsm")
+script = ExtResource("8_vqu4o")
+
+[node name="PercantLabel" type="Label" parent="Stats/Strength/ProgressCircle" unique_id=765233421]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_left = 9.0
+offset_top = 13.0
+offset_right = 39.031998
+offset_bottom = 36.48
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("9_25vk6")
+theme_override_font_sizes/font_size = 30
+text = "50%"
+
+[node name="Emergency" type="Sprite2D" parent="Stats/Strength/ProgressCircle" unique_id=465814845]
+visible = false
+position = Vector2(32.000004, 29.999996)
+scale = Vector2(0.6891893, 0.62499994)
+texture = ExtResource("10_1kg7t")
+
+[node name="DisabledBlinkInterval" type="Timer" parent="Stats/Strength/ProgressCircle" unique_id=584013362]
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Strength" unique_id=684966202]
 texture_filter = 1
@@ -398,7 +469,7 @@ offset_left = 71.0
 offset_top = 59.0
 offset_right = 215.0
 offset_bottom = 82.0
-theme_override_fonts/font = ExtResource("4_cn8cc")
+theme_override_fonts/font = ExtResource("11_8g107")
 theme_override_font_sizes/font_size = 12
 text = "Strength"
 horizontal_alignment = 1
@@ -416,18 +487,41 @@ metadata/_edit_use_anchors_ = true
 [node name="IntelligenceBar" type="Sprite2D" parent="Stats/Intelligence" unique_id=311602476]
 texture_filter = 1
 material = SubResource("ShaderMaterial_tqhvd")
-position = Vector2(315, 208)
-scale = Vector2(1.4451613, 1)
-texture = ExtResource("7_yq0aj")
+position = Vector2(316, 208)
+texture = ExtResource("12_e5wxa")
 
 [node name="ProgressCircle" type="TextureRect" parent="Stats/Intelligence" unique_id=446397476]
 texture_filter = 1
+material = SubResource("ShaderMaterial_iq0qk")
 layout_mode = 0
 offset_left = 112.0
 offset_top = 176.0
 offset_right = 176.0
 offset_bottom = 240.0
-texture = ExtResource("3_5ykx4")
+texture = ExtResource("7_7fjsm")
+script = ExtResource("8_vqu4o")
+
+[node name="PercantLabel" type="Label" parent="Stats/Intelligence/ProgressCircle" unique_id=196729929]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_left = 9.0
+offset_top = 13.0
+offset_right = 39.031998
+offset_bottom = 36.48
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("9_25vk6")
+theme_override_font_sizes/font_size = 30
+text = "50%"
+
+[node name="Emergency" type="Sprite2D" parent="Stats/Intelligence/ProgressCircle" unique_id=1707846299]
+visible = false
+position = Vector2(32.000004, 29.999996)
+scale = Vector2(0.6891893, 0.62499994)
+texture = ExtResource("10_1kg7t")
+
+[node name="DisabledBlinkInterval" type="Timer" parent="Stats/Intelligence/ProgressCircle" unique_id=1573416787]
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Intelligence" unique_id=2030437727]
 texture_filter = 1
@@ -438,7 +532,7 @@ offset_left = 71.0
 offset_top = 162.0
 offset_right = 215.0
 offset_bottom = 185.0
-theme_override_fonts/font = ExtResource("4_cn8cc")
+theme_override_fonts/font = ExtResource("11_8g107")
 theme_override_font_sizes/font_size = 12
 text = "Intelligence"
 horizontal_alignment = 1
@@ -456,18 +550,41 @@ metadata/_edit_use_anchors_ = true
 [node name="CommunityBar" type="Sprite2D" parent="Stats/Community" unique_id=793427552]
 texture_filter = 1
 material = SubResource("ShaderMaterial_trmvt")
-position = Vector2(266, 312)
-scale = Vector2(1.4451613, 1)
-texture = ExtResource("8_tqhvd")
+position = Vector2(299, 312)
+texture = ExtResource("13_el0gk")
 
 [node name="ProgressCircle" type="TextureRect" parent="Stats/Community" unique_id=1667538081]
 texture_filter = 1
+material = SubResource("ShaderMaterial_krpxb")
 layout_mode = 0
 offset_left = 112.0
 offset_top = 280.0
 offset_right = 176.00006
 offset_bottom = 344.0
-texture = ExtResource("3_5ykx4")
+texture = ExtResource("7_7fjsm")
+script = ExtResource("8_vqu4o")
+
+[node name="PercantLabel" type="Label" parent="Stats/Community/ProgressCircle" unique_id=862994133]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_left = 9.0
+offset_top = 13.0
+offset_right = 39.031998
+offset_bottom = 36.48
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("9_25vk6")
+theme_override_font_sizes/font_size = 30
+text = "50%"
+
+[node name="Emergency" type="Sprite2D" parent="Stats/Community/ProgressCircle" unique_id=1308447584]
+visible = false
+position = Vector2(32.000004, 29.999996)
+scale = Vector2(0.6891893, 0.62499994)
+texture = ExtResource("10_1kg7t")
+
+[node name="DisabledBlinkInterval" type="Timer" parent="Stats/Community/ProgressCircle" unique_id=484530395]
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Community" unique_id=648551272]
 texture_filter = 1
@@ -478,7 +595,7 @@ offset_left = 71.0
 offset_top = 268.0
 offset_right = 215.0
 offset_bottom = 291.0
-theme_override_fonts/font = ExtResource("4_cn8cc")
+theme_override_fonts/font = ExtResource("11_8g107")
 theme_override_font_sizes/font_size = 12
 text = "Community"
 horizontal_alignment = 1

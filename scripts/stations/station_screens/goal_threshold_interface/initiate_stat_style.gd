@@ -18,30 +18,36 @@ extends Node
 @onready var large_bar_texture : Texture = preload("res://models/goal_threshold/BarLarge.png")
 
 # stat bar postion
-var small_bar_pos_x : float = 266.0
-var medium_bar_pos_x : float = 315.0
-var large_bar_pos_x : float = 352.0
-
-
+var small_bar_pos_x : float = 299.0
+var medium_bar_pos_x : float = 316.0
+var large_bar_pos_x : float = 330.0
 
 
 func _ready() -> void:
+	
+	small_bar_pos_x = stat_bars[2].position.x
+	medium_bar_pos_x = stat_bars[1].position.x
+	large_bar_pos_x = stat_bars[0].position.x
+	
 	for stat_bar : Sprite2D in stat_bars : 
 		stat_bar.material = stat_bar.material.duplicate()
 		stat_bar.material.set_shader_parameter("red_value", 1.0)
 		stat_bar.material.set_shader_parameter("yellow_value", 0.0)
+	for progress_circle : TextureRect in progress_circles : 
+		progress_circle.material = progress_circle.material.duplicate()
+		progress_circle.material.set_shader_parameter("progress", 0.0)
 	
 
 
-func _initiate(goal_threshold : GoalThreshold): 
+func _initiate(goal_threshold : ThresholdGoal): 
 	
 	# get an array of stat goals
-	var threshold_stats : Array[ThresholdStat] = []
+	var threshold_stats : Array[StatThreshold] = []
 	threshold_stats.append(goal_threshold.strength)
 	threshold_stats.append(goal_threshold.intelligence)
 	threshold_stats.append(goal_threshold.community)
 	
-	for threshold_stat : ThresholdStat in threshold_stats :
+	for threshold_stat : StatThreshold in threshold_stats :
 		
 		var selected_stat_bar : Sprite2D
 		
@@ -56,7 +62,7 @@ func _initiate(goal_threshold : GoalThreshold):
 				push_error('bad stat found : ', threshold_stat.stat_type)
 				selected_stat_bar = stat_bars[0]
 		
-		match threshold_stat.stat_size : 		
+		match threshold_stat.bar_size: 		
 			'small' :
 				selected_stat_bar.texture = small_bar_texture
 				selected_stat_bar.position.x = small_bar_pos_x

@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://vgie5w5m3275" path="res://scenes/stations/station_components/hidden_stat_interpreter/emergency_light.tscn" id="13_3ujpq"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
-[ext_resource type="PackedScene" uid="uid://cbkhifesyls7u" path="res://scenes/stations/station_components/goal_threshold/station_goal_threshold.tscn" id="14_r52yi"]
+[ext_resource type="PackedScene" uid="uid://cbkhifesyls7u" path="res://scenes/stations/station_components/goal_threshold_interface/station_goal_threshold_interface.tscn" id="14_r52yi"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
@@ -65,6 +65,7 @@
 [ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
 [ext_resource type="PackedScene" uid="uid://dmms6n7t5qxwv" path="res://scenes/cell_transfer_box/cell_transfer_box.tscn" id="60_lp30k"]
 [ext_resource type="PackedScene" uid="uid://b3rgeck31iwbg" path="res://debug/admin_panel/admin_panel.tscn" id="62_l5rsp"]
+[ext_resource type="Script" uid="uid://nb3vghviy4u6" path="res://debug/debug_cell_spawner/debug_cell_spawner.gd" id="66_y36b7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_umov7"]
 size = Vector3(1, 5, 15)
@@ -820,3 +821,9 @@ script = ExtResource("18_44ape")
 
 [node name="AdminPanel" parent="." unique_id=1308868169 instance=ExtResource("62_l5rsp")]
 visible = false
+
+[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998]
+script = ExtResource("66_y36b7")
+
+[node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)

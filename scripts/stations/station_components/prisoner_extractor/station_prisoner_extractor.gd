@@ -120,6 +120,10 @@ func _handle_cell_added_to_collection(new_cell: BrainCell) -> void:
 
 
 func _handle_proceed_next_energy_turn() -> void:
+	
+	if len(cells_to_create) != 0 : 
+		for cell : BrainCell in cells_to_create : 
+			GLCellManagerBus.emit_signal('delete_selected_collected_cell', cell)	
 
 	cells_to_create.clear()
 	
