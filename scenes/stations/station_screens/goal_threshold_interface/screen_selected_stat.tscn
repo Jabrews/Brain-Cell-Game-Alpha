@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://cxmrm8jiilv0x"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_1qpc5"]
+[ext_resource type="Script" uid="uid://ca7ctsr5r4i3b" path="res://scripts/stations/station_screens/goal_threshold_interface/screen_selected_stat/screen_selected_stat.gd" id="1_ki441"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_kfwmd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kfwmd"]
+shader = ExtResource("1_1qpc5")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenSelectedStat" type="Node2D" unique_id=178567952]
+script = ExtResource("1_ki441")
+
+[node name="Bg" type="ColorRect" parent="." unique_id=449715417]
+offset_right = 128.0
+offset_bottom = 64.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1293459603]
+material = SubResource("ShaderMaterial_kfwmd")
+offset_right = 128.0
+offset_bottom = 64.0
+
+[node name="Displays" type="Control" parent="." unique_id=654372511]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Off" type="Control" parent="Displays" unique_id=501484675]
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="Bg" type="ColorRect" parent="Displays/Off" unique_id=1055703971]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 68.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="Displays/Off" unique_id=1658264354]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kfwmd")
+theme_override_font_sizes/font_size = 14
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Strength" type="Control" parent="Displays" unique_id=390582013]
+visible = false
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="Bg" type="ColorRect" parent="Displays/Strength" unique_id=908366751]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 68.0
+
+[node name="StrengthLabel" type="Label" parent="Displays/Strength" unique_id=274922724]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kfwmd")
+theme_override_font_sizes/font_size = 14
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="Displays" unique_id=1320382005]
+visible = false
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="Bg" type="ColorRect" parent="Displays/Intelligence" unique_id=1364012736]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 68.0
+
+[node name="IntelligenceLabel" type="Label" parent="Displays/Intelligence" unique_id=322564184]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kfwmd")
+theme_override_font_sizes/font_size = 10
+text = "Intelligence"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="Displays" unique_id=1042147098]
+visible = false
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="Bg" type="ColorRect" parent="Displays/Community" unique_id=1432425693]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 68.0
+
+[node name="CommunityLabel" type="Label" parent="Displays/Community" unique_id=411279005]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kfwmd")
+theme_override_font_sizes/font_size = 12
+text = "Community"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="All" type="Control" parent="Displays" unique_id=2020888633]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="Displays/All" unique_id=1450524656]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 68.0
+
+[node name="AllLabel" type="Label" parent="Displays/All" unique_id=509744122]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kfwmd")
+theme_override_font_sizes/font_size = 16
+text = "All"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="None" type="Control" parent="Displays" unique_id=608247315]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="Displays/None" unique_id=1191952017]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 68.0
+
+[node name="NoneLabel" type="Label" parent="Displays/None" unique_id=1116255848]
+texture_filter = 1
+layout_mode = 0
+offset_top = 21.0
+offset_right = 128.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_kfwmd")
+theme_override_font_sizes/font_size = 16
+text = "None"
+horizontal_alignment = 1
+vertical_alignment = 1

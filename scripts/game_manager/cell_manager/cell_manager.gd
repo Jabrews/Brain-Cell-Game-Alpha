@@ -23,8 +23,7 @@ func _ready() -> void:
 	
 	# DEBUG
 	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
-	
-	
+	GLCellManagerBus.connect('debug_create_collected_cells', _handle_debug_create_collected_cells)
 	
 	## OTHER ZOOS
 	#GLCellManagerBus.connect('debug_collected_cells_and_target_create', _handle_debug)
@@ -366,8 +365,7 @@ func _handle_collected_cell_changed(cell : BrainCell) :
 
 ### OTHER ZOOS ###
 
-func _handle_debug(new_collected_cells : Array[BrainCell]) : 
-	print('DEBUG : getting debug created cells')
+func _handle_debug_create_collected_cells(new_collected_cells : Array[BrainCell]) : 
 	set_collected_cells(new_collected_cells)
 ###################
 

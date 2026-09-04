@@ -28,3 +28,4 @@ signal cells_updated()
 
 ### DEBUG ###
 signal debug_unhide_collected_cell_mutation(selected_cell : BrainCell)
+signal debug_create_collected_cells(cells : Array[BrainCell])

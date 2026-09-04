@@ -563,7 +563,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -7.9000006)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -16.1)
 
 [node name="GoalTreshold" parent="Stations/ContainerStations" unique_id=606315026 instance=ExtResource("14_r52yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3.1953754, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.922908, 3.1953754, 17)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 3.3025842, 4.9931126)
@@ -822,8 +822,9 @@ script = ExtResource("18_44ape")
 [node name="AdminPanel" parent="." unique_id=1308868169 instance=ExtResource("62_l5rsp")]
 visible = false
 
-[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998]
+[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998 node_paths=PackedStringArray("cell_container_parent_node")]
 script = ExtResource("66_y36b7")
+cell_container_parent_node = NodePath("../Charcters/ContainerParentNode")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)
