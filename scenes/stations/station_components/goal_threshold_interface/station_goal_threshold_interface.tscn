@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_8qh2a"]
 [ext_resource type="Script" uid="uid://bd2jhljo1vut4" path="res://scripts/stations/station_components/goal_threshold_interface/station_goal_threshold_interface.gd" id="1_yrnsf"]
-[ext_resource type="Script" uid="uid://c77fl1o8hwc6q" path="res://scripts/stations/station_components/goal_threshold_interface/helpers/helper_cell_seats.gd" id="2_u8c0o"]
+[ext_resource type="Script" uid="uid://p17218dsm6vv" path="res://scripts/stations/station_components/goal_threshold_interface/helpers/helper_seat_lights.gd" id="2_gkb6r"]
+[ext_resource type="Script" uid="uid://c77fl1o8hwc6q" path="res://scripts/stations/station_components/goal_threshold_interface/handlers/handle_cell_seats.gd" id="2_u8c0o"]
 [ext_resource type="PackedScene" uid="uid://c3e4ulrrufob7" path="res://scenes/stations/station_screens/goal_threshold_interface/screen_goal_threshold_interface.tscn" id="2_yrnsf"]
-[ext_resource type="Script" uid="uid://beke2njjtp0fg" path="res://scripts/stations/station_components/goal_threshold_interface/helpers/handle_cycle_stat_btn.gd" id="3_rjgdw"]
+[ext_resource type="Script" uid="uid://beke2njjtp0fg" path="res://scripts/stations/station_components/goal_threshold_interface/handlers/handle_cycle_stat_btn.gd" id="3_rjgdw"]
 [ext_resource type="Script" uid="uid://di1ynyqfn07pq" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/cell_light.gd" id="3_wytt1"]
 [ext_resource type="Script" uid="uid://cv0cpcu1fdg06" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/btn_cycle_stat.gd" id="4_otmio"]
 [ext_resource type="Script" uid="uid://dsl32hlbsmoij" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/detect_cell_seat.gd" id="4_wytt1"]
@@ -106,7 +107,10 @@ orientation = 0
 [node name="GoalTresholdInterface" type="Node3D" unique_id=606315026]
 script = ExtResource("1_yrnsf")
 
-[node name="HelperCellSeats" type="Node" parent="." unique_id=632478758]
+[node name="HelperSeatLights" type="Node" parent="." unique_id=1699434842]
+script = ExtResource("2_gkb6r")
+
+[node name="HandleCellSeats" type="Node" parent="." unique_id=632478758]
 script = ExtResource("2_u8c0o")
 
 [node name="HandleCycleStatBtn" type="Node" parent="." unique_id=1247820506]
@@ -142,6 +146,9 @@ light_color = Color(1, 0.24313726, 0.25882354, 1)
 spot_range = 1.674
 spot_attenuation = 4.8
 spot_angle = 18.95
+
+[node name="BlinkInterval" type="Timer" parent="CellSeats/Seats/CellSeat1/CellLight" unique_id=394880556]
+wait_time = 0.3
 
 [node name="DetectCellArea" type="Area3D" parent="CellSeats/Seats/CellSeat1" unique_id=1897239047]
 collision_layer = 0
@@ -189,6 +196,9 @@ light_color = Color(1, 0.24313726, 0.25882354, 1)
 spot_range = 1.674
 spot_attenuation = 4.8
 spot_angle = 18.95
+
+[node name="BlinkInterval" type="Timer" parent="CellSeats/Seats/CellSeat2/CellLight" unique_id=287981060]
+wait_time = 0.3
 
 [node name="DetectCellArea" type="Area3D" parent="CellSeats/Seats/CellSeat2" unique_id=502956671]
 collision_layer = 0
@@ -238,6 +248,9 @@ spot_range = 1.674
 spot_attenuation = 4.8
 spot_angle = 18.95
 
+[node name="BlinkInterval" type="Timer" parent="CellSeats/Seats/CellSeat3/CellLight" unique_id=1833004054]
+wait_time = 0.3
+
 [node name="DetectCellArea" type="Area3D" parent="CellSeats/Seats/CellSeat3" unique_id=1189949224]
 collision_layer = 0
 collision_mask = 4
@@ -285,6 +298,9 @@ light_color = Color(1, 0.24313726, 0.25882354, 1)
 spot_range = 1.674
 spot_attenuation = 4.8
 spot_angle = 18.95
+
+[node name="BlinkInterval" type="Timer" parent="CellSeats/Seats/CellSeat4/CellLight" unique_id=615918227]
+wait_time = 0.3
 
 [node name="DetectCellArea" type="Area3D" parent="CellSeats/Seats/CellSeat4" unique_id=2107247265]
 collision_layer = 0

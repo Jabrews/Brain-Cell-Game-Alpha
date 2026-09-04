@@ -70,25 +70,7 @@ func handle_display_stat_info(stat : BrainCellStat) -> void:
 	var prisoner_value : float = stat.value / max_val
 	
 	
-	# target stat value
-	var target_cell : BrainCell = GLCellManagerBus.target_cell_refrence
-	
-	var target_stat_value : float = 0.0
-		
-	match stat_type:
-		"strength":
-			target_stat_value = target_cell.strength.value
-		"intelligence":
-			target_stat_value = target_cell.intelligence.value
-		"community":
-			target_stat_value = target_cell.community.value
-		_:
-			push_error("Invalid stat_type: " + stat_type)
-		
-	var target_value = target_stat_value / max_val
-	
 	bar.material.set_shader_parameter("prisoner_value", prisoner_value)
-	bar.material.set_shader_parameter("target_value", target_value)
 
 
 func reset_stat() -> void:
@@ -97,7 +79,6 @@ func reset_stat() -> void:
 	defect_bar.value = 0
 	
 	bar.material.set_shader_parameter("prisoner_value", 0.0)
-	bar.material.set_shader_parameter("target_value", 0.0)
 	
 	stat_disabled = false
 	stat_hovered_over = false

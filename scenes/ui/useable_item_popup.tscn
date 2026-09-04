@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://dln0wjb2ik51x" path="res://scripts/ui/useable_item_popup/scissors/popup_mutation_manager.gd" id="14_oiwfp"]
 [ext_resource type="Script" uid="uid://da773r2u25dto" path="res://scripts/ui/useable_item_popup/scissors/mutation_card.gd" id="16_jw7ry"]
 [ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="16_l3a33"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="17_fr6x8"]
 [ext_resource type="Texture2D" uid="uid://cjnkhlkl7scb" path="res://models/scissors_popup/mutations_highlight.png" id="19_lmn1t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfvet"]
@@ -47,6 +48,12 @@ shader_parameter/noise_scale = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y6twq"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6o3yp"]
+shader = ExtResource("17_fr6x8")
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_color = Color(0, 0, 0, 1)
 
 [node name="UseableItemPopup" type="Control" unique_id=1755211546]
 process_mode = 3
@@ -334,6 +341,44 @@ script = ExtResource("14_oiwfp")
 
 [node name="GetMutationSymbol" type="Node" parent="Scissors/PopupMutationManager" unique_id=1784778114]
 script = ExtResource("16_l3a33")
+
+[node name="NoMutationsFound" type="Control" parent="Scissors/PopupMutationManager" unique_id=554823047]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlurBg" type="ColorRect" parent="Scissors/PopupMutationManager/NoMutationsFound" unique_id=1964705778]
+material = SubResource("ShaderMaterial_6o3yp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 856.0
+offset_bottom = 536.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ChargestLeft" type="Label" parent="Scissors/PopupMutationManager/NoMutationsFound" unique_id=1704623808]
+texture_filter = 1
+layout_mode = 0
+offset_left = 718.0
+offset_top = 244.0
+offset_right = 908.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 19
+text = "No 
+
+Mutations 
+
+Found"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MutationCard1" type="Control" parent="Scissors/PopupMutationManager" unique_id=405342848]
 anchors_preset = 0

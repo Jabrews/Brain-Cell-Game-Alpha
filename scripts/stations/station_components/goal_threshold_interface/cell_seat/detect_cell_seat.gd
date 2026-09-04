@@ -1,6 +1,6 @@
 extends Area3D
 
-@onready var helper_cell_seats : Node = $"../../../../HelperCellSeats"
+@onready var handle_cell_seats : Node = $"../../../../HandleCellSeats"
 
 @export var cell_seat_num : int = 1
 
@@ -14,7 +14,7 @@ func _handle_body_entered(body : CharacterBody3D) -> void:
 	if body.is_in_group("brain_cell_container"):
 		
 		# get corresponding cell seat
-		var corresponding_cell : BrainCell = helper_cell_seats.cell_seats[cell_seat_num]
+		var corresponding_cell : BrainCell = handle_cell_seats.cell_seats[cell_seat_num]
 		
 		# if cell already exists, ignore
 		if corresponding_cell:
@@ -22,7 +22,7 @@ func _handle_body_entered(body : CharacterBody3D) -> void:
 		
 		var body_cell : BrainCell = body.designated_brain_cell
 		
-		helper_cell_seats._handle_cell_seat_changed(
+		handle_cell_seats._handle_cell_seat_changed(
 			cell_seat_num,
 			body_cell
 		)
@@ -32,7 +32,7 @@ func _handle_body_exited(body : CharacterBody3D) -> void:
 	if body.is_in_group("brain_cell_container"):
 		
 		# get corresponding cell seat
-		var corresponding_cell : BrainCell = helper_cell_seats.cell_seats[cell_seat_num]
+		var corresponding_cell : BrainCell = handle_cell_seats.cell_seats[cell_seat_num]
 		
 		# make sure the cell that left is the one previously on seat
 		var body_cell : BrainCell = body.designated_brain_cell
@@ -41,7 +41,7 @@ func _handle_body_exited(body : CharacterBody3D) -> void:
 			if body_cell.name != corresponding_cell.name:
 				return
 		
-		helper_cell_seats._handle_cell_seat_changed(
+		handle_cell_seats._handle_cell_seat_changed(
 			cell_seat_num,
 			null
 		)

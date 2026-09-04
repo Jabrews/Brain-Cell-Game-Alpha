@@ -7,6 +7,8 @@ extends Node
 	$"../CellSeats/SelectedStatTvs/SelectedStatTV3/TvFrontPannel/SubViewport/ScreenSelectedStat",
 	$"../CellSeats/SelectedStatTvs/SelectedStatTV4/TvFrontPannel/SubViewport/ScreenSelectedStat",
 ]
+# parent station
+@onready var parent_station_threshold_interface : Node3D = $".."
 
 var cell_selected_stats : Dictionary[int, String] = {
 	1 : "off",
@@ -73,3 +75,7 @@ func _handle(direction : String, cell_seat_num : int) -> void:
 	
 	# toggle screen
 	selected_stat_screens[cell_seat_num - 1]._toggle_display(next_selected_stat)
+	
+	# REFRESH let parent station know
+	parent_station_threshold_interface._handle_cell_seats_changed()
+	
