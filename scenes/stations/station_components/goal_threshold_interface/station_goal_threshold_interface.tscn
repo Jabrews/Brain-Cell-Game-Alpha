@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://di1ynyqfn07pq" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/cell_light.gd" id="3_wytt1"]
 [ext_resource type="Script" uid="uid://cv0cpcu1fdg06" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/btn_cycle_stat.gd" id="4_otmio"]
 [ext_resource type="Script" uid="uid://dsl32hlbsmoij" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/detect_cell_seat.gd" id="4_wytt1"]
+[ext_resource type="Script" uid="uid://cw0g1q8yn7pet" path="res://scripts/stations/station_components/goal_threshold_interface/handlers/handle_dissolve.gd" id="5_73yts"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="5_rjgdw"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_7cmnq"]
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="7_5ky03"]
@@ -110,6 +111,12 @@ script = ExtResource("1_yrnsf")
 [node name="HelperSeatLights" type="Node" parent="." unique_id=1699434842]
 script = ExtResource("2_gkb6r")
 
+[node name="HandleDissolve" type="Node" parent="." unique_id=822130940]
+script = ExtResource("5_73yts")
+STAT_DECREASE = 20
+
+[node name="DissolveIncrementTimer" type="Timer" parent="HandleDissolve" unique_id=1680176650]
+
 [node name="HandleCellSeats" type="Node" parent="." unique_id=632478758]
 script = ExtResource("2_u8c0o")
 
@@ -154,6 +161,7 @@ wait_time = 0.3
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_wytt1")
+cell_seat_num = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CellSeats/Seats/CellSeat1/DetectCellArea" unique_id=687620228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207031, 0.8430786, 0)

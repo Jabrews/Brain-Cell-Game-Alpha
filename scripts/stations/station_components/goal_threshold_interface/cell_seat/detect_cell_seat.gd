@@ -22,6 +22,9 @@ func _handle_body_entered(body : CharacterBody3D) -> void:
 		
 		var body_cell : BrainCell = body.designated_brain_cell
 		
+		body.spawn_flesh_bug_on_death = false
+		
+		
 		handle_cell_seats._handle_cell_seat_changed(
 			cell_seat_num,
 			body_cell
@@ -40,6 +43,16 @@ func _handle_body_exited(body : CharacterBody3D) -> void:
 		if corresponding_cell:
 			if body_cell.name != corresponding_cell.name:
 				return
+			
+			
+		# hacky. only remove abilty to spawn flesh bug 
+		# if its not being removed due to complety dissolving
+		if (
+			corresponding_cell.strength.enabled or
+			corresponding_cell.intelligence.enabled or
+			corresponding_cell.community.enabled 
+		) :
+			body.spawn_flesh_bug_on_death = false
 		
 		handle_cell_seats._handle_cell_seat_changed(
 			cell_seat_num,

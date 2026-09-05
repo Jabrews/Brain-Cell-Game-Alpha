@@ -3,6 +3,7 @@ extends Node
 # component handlers 
 @onready var handle_cell_seats : Node = $HandleCellSeats
 @onready var handle_cycle_stat_btn : Node = $HandleCycleStatBtn
+@onready var handle_dissolve : Node = $HandleDissolve
 # component helpers
 @onready var helper_seat_lights : Node = $HelperSeatLights
 
@@ -15,13 +16,6 @@ var community_amount_to_decrease : int = 0
 var strength_dissolve_cell : BrainCell
 var intelligence_dissolve_cell : BrainCell
 var community_dissolve_cell : BrainCell
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') :
-		print('str dissolve cell : ', strength_dissolve_cell)
-		print('int dissolve cell : ', intelligence_amount_to_decrease)
-		print('comm dissolve cell : ', community_amount_to_decrease)
-
 
 
 # responsible for populating amount to decrease with all cells on queue
@@ -89,6 +83,8 @@ func _handle_cell_seats_changed() -> void:
 	)
 	
 	helper_seat_lights._refresh(cell_seats, cell_selected_stats)
+	handle_dissolve._dissolve_cells_changed()
+	
 
 
 # gets one cell that we can apply to a given stat

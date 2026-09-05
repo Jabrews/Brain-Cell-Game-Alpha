@@ -354,7 +354,14 @@ func _handle_cell_hiy_by_crystals(cell : BrainCell) :
 
 func _handle_collected_cell_changed(cell : BrainCell) :
 	
-	update_collected_cells([cell])
+	if (
+		cell.strength.enabled == false and
+		cell.intelligence.enabled == false and
+		cell.community.enabled == false
+	) :
+		delete_collected_cells([cell])
+	else :
+		update_collected_cells([cell])
 	
 	
 	
