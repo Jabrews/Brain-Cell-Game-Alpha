@@ -30,7 +30,6 @@ func _display(toggle_value : bool) -> void:
 	emergency_overlay.visible = toggle_value
 	
 	if toggle_value:
-		game_end_wait_time = max_game_end_wait_timer
 		emergency_label.text = str(game_end_wait_time)
 		
 		game_end_increment_timer.start()
@@ -38,7 +37,6 @@ func _display(toggle_value : bool) -> void:
 	
 	else:
 		game_end_increment_timer.stop()
-		game_end_wait_time = max_game_end_wait_timer
 		
 		_toggle_float_tween(false)
 
@@ -52,8 +50,8 @@ func _handle_game_end_increment_timer_timeout() -> void:
 	if game_end_wait_time <= 0:
 		game_end_increment_timer.stop()
 		
-		# TODO:
-		# trigger game end here
+		GLPlayerState.player_refrence.queue_free()
+		GLGameEndBus.emit_signal('game_ended')
 
 
 func _toggle_float_tween(toggle_value : bool) -> void:

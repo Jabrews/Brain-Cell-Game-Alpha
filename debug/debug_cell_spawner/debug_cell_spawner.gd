@@ -6,7 +6,7 @@ extends Node
 
 
 func _ready() -> void:
-	pass
+	return
 	
 	# Cell 1
 	var cell_one: BrainCell = BrainCell.new(

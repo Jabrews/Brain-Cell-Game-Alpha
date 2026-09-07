@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="13_el0gk"]
 [ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="14_trq54"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="16_oqo88"]
-[ext_resource type="Texture2D" uid="uid://cbq23ufu3enq5" path="res://models/goal_threshold/background.png" id="18_g3eu6"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="20_vqu4o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ka0vu"]
 shader = ExtResource("4_oqo88")
@@ -401,6 +401,15 @@ shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fjsm"]
+shader = ExtResource("20_vqu4o")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 1.2
+shader_parameter/shimmer_strength = 0.15
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(0.7, 0.9, 1, 1)
+
 [node name="GoalThresholdInterface" type="Node2D" unique_id=960493777]
 script = ExtResource("1_swvbd")
 
@@ -414,12 +423,13 @@ script = ExtResource("2_jhai3")
 
 [node name="DisplayEmergency" type="Node" parent="." unique_id=1789996691]
 script = ExtResource("6_7fjsm")
-game_end_wait_time = 30
+game_end_wait_time = 60
 
 [node name="GameEndIncrement" type="Timer" parent="DisplayEmergency" unique_id=761359806]
 
 [node name="DisplayStart" type="Node" parent="." unique_id=1692434897]
 script = ExtResource("5_vqu4o")
+start_end_wait_time = 25
 
 [node name="StartEndIncrement" type="Timer" parent="DisplayStart" unique_id=176205533]
 
@@ -793,29 +803,18 @@ offset_left = -8.0
 offset_top = -24.0
 offset_right = 704.0
 offset_bottom = 408.0
-color = Color(0.05490196, 0, 0, 0.98039216)
+color = Color(0.05, 0, 0, 0.6862745)
 
 [node name="EmergencyParent" type="Control" parent="EmergencyOverlay" unique_id=1408073173]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BG" type="TextureRect" parent="EmergencyOverlay/EmergencyParent" unique_id=1965273673]
-modulate = Color(0.84, 0.84, 0.84, 0.61960787)
-self_modulate = Color(1, 0.55, 0.55, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 160.0
-offset_top = 24.0
-offset_right = 544.0
-offset_bottom = 319.0
-texture = ExtResource("18_g3eu6")
-
 [node name="EmergencySprite" type="Sprite2D" parent="EmergencyOverlay/EmergencyParent" unique_id=857793846]
 modulate = Color(1, 0.19607843, 0.19607843, 1)
 texture_filter = 1
-position = Vector2(356, 124.5)
-scale = Vector2(2.27027, 2.140625)
+position = Vector2(345.99997, 120)
+scale = Vector2(2.3243246, 2.140625)
 texture = ExtResource("10_1kg7t")
 
 [node name="Label" type="Label" parent="EmergencyOverlay/EmergencyParent" unique_id=146094795]
@@ -831,6 +830,21 @@ theme_override_font_sizes/font_size = 60
 text = "1-00"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="EmergencyOverlay/EmergencyParent" unique_id=2096567449]
+material = SubResource("ShaderMaterial_7fjsm")
+layout_mode = 0
+offset_left = 224.0
+offset_top = 272.0
+offset_right = 472.0
+offset_bottom = 392.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 27
+text = "till Game
+Ends"
+horizontal_alignment = 1
 
 [node name="CompletedOverlay" type="Control" parent="." unique_id=299690122]
 visible = false

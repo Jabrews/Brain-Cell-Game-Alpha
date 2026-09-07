@@ -12,9 +12,9 @@ extends Node
 var last_picked_choice: PossibleMutationEventChoice
 
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') : 
-		trigger_mutation_event()
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed('debug1') : 
+		#trigger_mutation_event()
 
 
 func _ready() -> void:

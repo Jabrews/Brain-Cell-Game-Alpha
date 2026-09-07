@@ -8,7 +8,7 @@ func _handle():
 	
 	if GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value <= 0 :	
 		parent_station_interface.strength_finished = true
-	
+		
 	if GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value <= 0 :	
 		parent_station_interface.intelligence_finished = true
 	

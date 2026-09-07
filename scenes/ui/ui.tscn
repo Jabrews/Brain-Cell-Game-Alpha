@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
 [ext_resource type="Script" uid="uid://cw31gxlbj441f" path="res://scripts/ui/view_demands.gd" id="20_ygedu"]
 [ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
+[ext_resource type="Script" uid="uid://dulxe11r8rej1" path="res://scripts/ui/game_end/game_end.gd" id="22_qmss2"]
+[ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/game_end/retry_btn.gd" id="23_26a3v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
@@ -264,3 +266,60 @@ position = Vector2(640, 360)
 scale = Vector2(1.498829, 1.5)
 texture = SubResource("CompressedTexture2D_ygedu")
 script = ExtResource("21_oopc8")
+
+[node name="GameEnd" type="Control" parent="." unique_id=1799871232]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("22_qmss2")
+
+[node name="ColorRect" type="ColorRect" parent="GameEnd" unique_id=693574493]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0, 0, 0, 1)
+
+[node name="GameOverLabel" type="Label" parent="GameEnd" unique_id=611182574]
+texture_filter = 1
+layout_mode = 0
+offset_top = 176.0
+offset_right = 1280.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 80
+text = "Game End"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RetryBtn" type="Control" parent="GameEnd" unique_id=1814678033]
+anchors_preset = 0
+offset_left = -16.0
+offset_right = 24.0
+offset_bottom = 40.0
+script = ExtResource("23_26a3v")
+
+[node name="ColorRect2" type="ColorRect" parent="GameEnd/RetryBtn" unique_id=735348399]
+layout_mode = 0
+offset_left = 536.0
+offset_top = 352.0
+offset_right = 800.0
+offset_bottom = 448.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="RetryLabel" type="Label" parent="GameEnd/RetryBtn" unique_id=1810361107]
+texture_filter = 1
+layout_mode = 0
+offset_left = 536.0
+offset_top = 352.0
+offset_right = 800.0
+offset_bottom = 448.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 40
+text = "Retry"
+horizontal_alignment = 1
+vertical_alignment = 1

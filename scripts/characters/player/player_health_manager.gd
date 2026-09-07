@@ -30,7 +30,8 @@ func _handle_increment_player_health(damange_amount : int) :
 	
 
 	if GLPlayerState.player_health <= 0:
-		parent_node.queue_free()
+		GLPlayerState.player_refrence.queue_free()
+		GLGameEndBus.emit_signal('game_ended')
 		
 func _handle_regain_health_timer_timeout() :
 	if GLPlayerState.player_health < 4 :

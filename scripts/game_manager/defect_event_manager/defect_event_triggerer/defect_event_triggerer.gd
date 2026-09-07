@@ -12,7 +12,8 @@ extends Node
 
 #func _process(delta: float) -> void:
 	#if Input.is_action_just_pressed('debug1') : 
-		#_handle_defect_event_update_timer_timeout()
+		#defect_cell_container.sickness_cell_container._handle()
+		
 
 func _ready() -> void:
 	defect_event_update_timer.wait_time = IVDefectEventManager.defect_event_trigger_wait_time

@@ -114,7 +114,6 @@ script = ExtResource("2_gkb6r")
 
 [node name="HandleDissolve" type="Node" parent="." unique_id=822130940]
 script = ExtResource("5_73yts")
-STAT_DECREASE = 10
 
 [node name="DissolveIncrementTimer" type="Timer" parent="HandleDissolve" unique_id=1680176650]
 

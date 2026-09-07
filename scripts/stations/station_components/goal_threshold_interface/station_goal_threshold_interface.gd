@@ -67,38 +67,61 @@ func _handle_cell_seats_changed() -> void:
 		
 		match selected_stat:
 			"strength":
-				
-				# only increae amount to decrease if left stat value
-				if not GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value <= 0 :
+				if GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value > 0:
 					if cell.strength.enabled:
-						strength_amount_to_decrease += int(cell.strength.value)
-				
+						strength_amount_to_decrease += clamp(
+							int(cell.strength.value),
+							0,
+							GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value - strength_amount_to_decrease
+						)
+
 			"intelligence":
-				
-				if not GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value <= 0 :
+				if GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value > 0:
 					if cell.intelligence.enabled:
-						intelligence_amount_to_decrease += int(cell.intelligence.value)
-				
+						intelligence_amount_to_decrease += clamp(
+							int(cell.intelligence.value),
+							0,
+							GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value - intelligence_amount_to_decrease
+						)
+
 			"community":
-				
-				if not GLGoalThresholdBus.active_goal_threshold.community.left_stat_value <= 0 :
+				if GLGoalThresholdBus.active_goal_threshold.community.left_stat_value > 0:
 					if cell.community.enabled:
-						community_amount_to_decrease += int(cell.community.value)
-				
+						community_amount_to_decrease += clamp(
+							int(cell.community.value),
+							0,
+							GLGoalThresholdBus.active_goal_threshold.community.left_stat_value - community_amount_to_decrease
+						)
+
 			"all":
-				if cell.strength.enabled:
-					strength_amount_to_decrease += int(cell.strength.value)
-				
-				if cell.intelligence.enabled:
-					intelligence_amount_to_decrease += int(cell.intelligence.value)
-				
-				if cell.community.enabled:
-					community_amount_to_decrease += int(cell.community.value)
+				if GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value > 0:
+					if cell.strength.enabled:
+						strength_amount_to_decrease += clamp(
+							int(cell.strength.value),
+							0,
+							GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value - strength_amount_to_decrease
+						)
+
+				if GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value > 0:
+					if cell.intelligence.enabled:
+						intelligence_amount_to_decrease += clamp(
+							int(cell.intelligence.value),
+							0,
+							GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value - intelligence_amount_to_decrease
+						)
+
+				if GLGoalThresholdBus.active_goal_threshold.community.left_stat_value > 0:
+					if cell.community.enabled:
+						community_amount_to_decrease += clamp(
+							int(cell.community.value),
+							0,
+							GLGoalThresholdBus.active_goal_threshold.community.left_stat_value - community_amount_to_decrease
+						)
 		
 		curr_seat_index += 1
 	
 	# finally generate dissolve cells
-	generate_dissolved_cells(
+		generate_dissolved_cells(
 		cell_seats,
 		cell_selected_stats
 	)
@@ -127,6 +150,9 @@ func generate_dissolved_cells(
 			cell_seats,
 			cell_selected_stats
 		):
+			
+			GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.erase(strength_dissolve_cell.name)			
+			
 			strength_dissolve_cell = null
 	
 	if intelligence_dissolve_cell:
@@ -136,6 +162,9 @@ func generate_dissolved_cells(
 			cell_seats,
 			cell_selected_stats
 		):
+			
+			GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.erase(intelligence_dissolve_cell.name)			
+			
 			intelligence_dissolve_cell = null
 	
 	if community_dissolve_cell:
@@ -145,6 +174,9 @@ func generate_dissolved_cells(
 			cell_seats,
 			cell_selected_stats
 		):
+			
+			GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.erase(community_dissolve_cell.name)			
+			
 			community_dissolve_cell = null
 	
 	
@@ -172,6 +204,9 @@ func generate_dissolved_cells(
 		)
 		
 		if strength_dissolve_cell:
+			
+			GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.append(strength_dissolve_cell.name)
+			
 			used_cells.append(strength_dissolve_cell)
 	
 	
@@ -185,6 +220,9 @@ func generate_dissolved_cells(
 		)
 		
 		if intelligence_dissolve_cell:
+			
+			GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.append(intelligence_dissolve_cell.name)
+			
 			used_cells.append(intelligence_dissolve_cell)
 	
 	# FIND COMMUNITY CELL
@@ -197,6 +235,9 @@ func generate_dissolved_cells(
 		)
 		
 		if community_dissolve_cell:
+			
+			GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.append(community_dissolve_cell.name)		
+			
 			used_cells.append(community_dissolve_cell)
 
 
@@ -207,6 +248,19 @@ func _find_dissolve_cell(
 	cell_selected_stats : Dictionary[int, String],
 	used_cells : Array[BrainCell]
 ) -> BrainCell:
+	
+	var stat_goal_finished :  bool = false 
+	match stat : 
+		'strength' :
+			stat_goal_finished = strength_finished
+		'intelligence' :
+			stat_goal_finished = intelligence_finished
+		'community' :
+			stat_goal_finished = community_finished
+	
+	if stat_goal_finished  :
+		return null
+	
 	
 	var curr_seat_index : int = 1
 	

@@ -59,6 +59,12 @@ func _handle() -> void:
 
 		if entity_profile.room_name != chosen_room:
 			continue
+		
+		# make sure its not on goal threshold interface
+		# if -1 then its fine
+		var cell_on_threshold_interface : int = GLGoalThresholdBus.dissolving_cells_on_goal_threshold_panel.find(entity_profile.entity_name)
+		if not cell_on_threshold_interface == -1 : 
+			continue
 
 		cells_in_room.append(entity_profile.entity_name)
 

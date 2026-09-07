@@ -47,12 +47,14 @@ func _handle_body_exited(body : CharacterBody3D) -> void:
 			
 		# hacky. only remove abilty to spawn flesh bug 
 		# if its not being removed due to complety dissolving
-		if (
-			corresponding_cell.strength.enabled or
-			corresponding_cell.intelligence.enabled or
-			corresponding_cell.community.enabled 
-		) :
-			body.spawn_flesh_bug_on_death = false
+		
+		if corresponding_cell : 		
+			if (
+				corresponding_cell.strength.enabled or
+				corresponding_cell.intelligence.enabled or
+				corresponding_cell.community.enabled 
+			) :
+				body.spawn_flesh_bug_on_death = false
 		
 		handle_cell_seats._handle_cell_seat_changed(
 			cell_seat_num,
