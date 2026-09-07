@@ -48,21 +48,27 @@ func _handle_dissolve_increment_timer_timeout() -> void:
 			parent_station_interface.community_dissolve_cell,
 			"community"
 		)
+	
+	parent_station_interface.screen_goal_threshold_interface._refresh()
 
 
 func _dissolve_stat(cell : BrainCell, stat : String) -> void:
 	
 	var cell_stat : BrainCellStat
+	var left_stat_value : int
 	
 	match stat:
 		"strength":
 			cell_stat = cell.strength
+			left_stat_value = GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value
 			
 		"intelligence":
 			cell_stat = cell.intelligence
+			left_stat_value = GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value
 			
 		"community":
 			cell_stat = cell.community
+			left_stat_value = GLGoalThresholdBus.active_goal_threshold.community.left_stat_value
 			
 		_:
 			push_error("bad stat: ", stat)
@@ -82,6 +88,24 @@ func _dissolve_stat(cell : BrainCell, stat : String) -> void:
 			0.0
 		)
 	
+	# can still decrease defect if left over. 
+	if left_stat_value <= 0 : 
+		
+		# hacky but works
+		# if clean and defect 0.0. disable stat
+		if cell_stat.value <= 0.0 and cell_stat.defect <= 0.0 : 
+			cell_stat.enabled = false
+			parent_station_interface._handle_cell_seats_changed()
+		
+		GLCellManagerBus.emit_signal(
+			"collected_cell_changed",
+			cell
+		)
+		
+		return
+	
+	
+	
 	# decrease station + goal values
 	match stat:
 		"strength":
@@ -90,7 +114,10 @@ func _dissolve_stat(cell : BrainCell, stat : String) -> void:
 				0
 			)
 			
-			GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value -= STAT_DECREASE
+			GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value = maxi(
+				GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value - STAT_DECREASE,
+				0,
+			)
 		
 		"intelligence":
 			parent_station_interface.intelligence_amount_to_decrease = maxi(
@@ -98,15 +125,21 @@ func _dissolve_stat(cell : BrainCell, stat : String) -> void:
 				0
 			)
 			
-			GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value -= STAT_DECREASE
-		
+			GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value = maxi(
+				GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value - STAT_DECREASE,
+				0,
+			)
+
 		"community":
 			parent_station_interface.community_amount_to_decrease = maxi(
 				parent_station_interface.community_amount_to_decrease - STAT_DECREASE,
 				0
 			)
 			
-			GLGoalThresholdBus.active_goal_threshold.community.left_stat_value -= STAT_DECREASE
+			GLGoalThresholdBus.active_goal_threshold.community.left_stat_value = maxi(
+				GLGoalThresholdBus.active_goal_threshold.community.left_stat_value - STAT_DECREASE,
+				0,
+			)
 	
 	# if clean and defect 0.0. disable stat
 	if cell_stat.value <= 0.0 and cell_stat.defect <= 0.0 : 

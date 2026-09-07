@@ -12,45 +12,47 @@ func _ready() -> void:
 	var cell_one: BrainCell = BrainCell.new(
 		"cell_one",
 		[],
-		BrainCellStat.new("strength", true, 100, 0, false),
-		BrainCellStat.new("intelligence", true, 100, 0, false),
-		BrainCellStat.new("community", true, 100, 0, false),
+		BrainCellStat.new("strength", true, 300, 200, false),
+		BrainCellStat.new("intelligence", true, 200, 250, false),
+		BrainCellStat.new("community", true, 300, 100, false),
 		3,
 		false,
 		false,
 		false
 	)
+	
 	
 	# Cell 2
-	var cell_two: BrainCell = BrainCell.new(
+	var cell_two : BrainCell = BrainCell.new(
 		"cell_two",
 		[],
-		BrainCellStat.new("strength", true, 100, 0, false),
-		BrainCellStat.new("intelligence", true, 100, 0, false),
-		BrainCellStat.new("community", true, 100, 0, false),
+		BrainCellStat.new("strength", true, 200, 200, false),
+		BrainCellStat.new("intelligence", true, 150, 250, false),
+		BrainCellStat.new("community", true, 50, 100, false),
 		3,
 		false,
 		false,
 		false
 	)
 	
-	var cell_three : BrainCell = BrainCell.new(
-		'cell_three',
-		[],
-		BrainCellStat.new("strength", true, 100, 0, false),
-		BrainCellStat.new("intelligence", true, 100, 0, false),
-		BrainCellStat.new("community", true, 100, 0, false),
-		3,
-		false,
-		false,
-		false
-	)
+	
+	#var cell_three : BrainCell = BrainCell.new(
+		#'cell_three',
+		#[],
+		#BrainCellStat.new("strength", true, 300, 0, false),
+		#BrainCellStat.new("intelligence", true, 300, 0, false),
+		#BrainCellStat.new("community", true, 300, 0, false),
+		#3,
+		#false,
+		#false,
+		#false
+	#)
 	
 	var cells : Array[BrainCell] = []	
 	
 	cells.append(cell_one)
 	cells.append(cell_two)
-	cells.append(cell_three)
+	#cells.append(cell_three)
 	
 	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
 	

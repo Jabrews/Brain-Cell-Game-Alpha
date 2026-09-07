@@ -3,15 +3,15 @@ extends Node
 @export var cell_container_parent_node: Node
 
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("debug1"):
-		trigger_respected_mutation_event(0)
-
-	elif Input.is_action_just_pressed("debug2"):
-		trigger_respected_mutation_event(1)
-
-	elif Input.is_action_just_pressed("debug3"):
-		trigger_respected_mutation_event(2)
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed("debug1"):
+		#trigger_respected_mutation_event(0)
+#
+	#elif Input.is_action_just_pressed("debug2"):
+		#trigger_respected_mutation_event(1)
+#
+	#elif Input.is_action_just_pressed("debug3"):
+		#trigger_respected_mutation_event(2)
 
 
 func trigger_respected_mutation_event(number: int) -> void:

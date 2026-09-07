@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://brtogxf2ayyqc" path="res://scripts/stations/station_screens/goal_threshold_interface/screen_goal_threshold_interface.gd" id="1_swvbd"]
 [ext_resource type="Script" uid="uid://b3m5ut3bjbvql" path="res://scripts/stations/station_screens/goal_threshold_interface/initiate_stat_style.gd" id="2_jhai3"]
-[ext_resource type="Script" uid="uid://o3rheyr0mncj" path="res://scripts/stations/station_screens/goal_threshold_interface/test_math_2.gd" id="3_trq54"]
+[ext_resource type="Script" uid="uid://b3nd76w1cl211" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_progress_circle_caution.gd" id="2_oqo88"]
+[ext_resource type="Script" uid="uid://cwj1ju2oalx50" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_bars.gd" id="2_trq54"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="4_oqo88"]
 [ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="5_34q18"]
+[ext_resource type="Script" uid="uid://1kitv362gqvl" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_estimated_time_left.gd" id="5_g3eu6"]
+[ext_resource type="Script" uid="uid://c4krboqibo4nh" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_start.gd" id="5_vqu4o"]
+[ext_resource type="Script" uid="uid://dks84608hwqnr" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_emergency.gd" id="6_7fjsm"]
 [ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="6_g3eu6"]
 [ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="7_7fjsm"]
 [ext_resource type="Script" uid="uid://jjvtq2ttvqqr" path="res://scripts/stations/station_screens/goal_threshold_interface/progress_circle.gd" id="8_vqu4o"]
@@ -13,6 +17,9 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="11_8g107"]
 [ext_resource type="Texture2D" uid="uid://cjx483tj54mw7" path="res://models/goal_threshold/BarMedium.png" id="12_e5wxa"]
 [ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="13_el0gk"]
+[ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="14_trq54"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="16_oqo88"]
+[ext_resource type="Texture2D" uid="uid://cbq23ufu3enq5" path="res://models/goal_threshold/background.png" id="18_g3eu6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ka0vu"]
 shader = ExtResource("4_oqo88")
@@ -382,16 +389,45 @@ shader_parameter/yellow_low_opacity = 0.10000000475
 shader_parameter/yellow_high_opacity = 0.50000002375
 shader_parameter/blip_width = 0.002000000095
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mvdwn"]
+shader = ExtResource("16_oqo88")
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vqu4o"]
+shader = ExtResource("16_oqo88")
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_color = Color(0, 0, 0, 1)
+
 [node name="GoalThresholdInterface" type="Node2D" unique_id=960493777]
 script = ExtResource("1_swvbd")
+
+[node name="DisplayProgressCircleCaution" type="Node" parent="." unique_id=1957999486]
+script = ExtResource("2_oqo88")
+
+[node name="BlinkIntervalTimer" type="Timer" parent="DisplayProgressCircleCaution" unique_id=1664112293]
 
 [node name="InitiateStatStyle" type="Node" parent="." unique_id=1224250139]
 script = ExtResource("2_jhai3")
 
-[node name="TestMath2" type="Node" parent="." unique_id=60514586]
-script = ExtResource("3_trq54")
+[node name="DisplayEmergency" type="Node" parent="." unique_id=1789996691]
+script = ExtResource("6_7fjsm")
+game_end_wait_time = 30
 
-[node name="IncrementDownTimer" type="Timer" parent="TestMath2" unique_id=634736551]
+[node name="GameEndIncrement" type="Timer" parent="DisplayEmergency" unique_id=761359806]
+
+[node name="DisplayStart" type="Node" parent="." unique_id=1692434897]
+script = ExtResource("5_vqu4o")
+
+[node name="StartEndIncrement" type="Timer" parent="DisplayStart" unique_id=176205533]
+
+[node name="DisplayBars" type="Node" parent="." unique_id=436123738]
+script = ExtResource("2_trq54")
+
+[node name="DisplayEstimatedTimeLeft" type="Node" parent="." unique_id=1506913624]
+script = ExtResource("5_g3eu6")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=271631995]
 offset_right = 694.0
@@ -458,7 +494,12 @@ position = Vector2(32.000004, 29.999996)
 scale = Vector2(0.6891893, 0.62499994)
 texture = ExtResource("10_1kg7t")
 
-[node name="DisabledBlinkInterval" type="Timer" parent="Stats/Strength/ProgressCircle" unique_id=584013362]
+[node name="CheckMark" type="Sprite2D" parent="Stats/Strength/ProgressCircle" unique_id=2032024377]
+visible = false
+texture_filter = 1
+position = Vector2(32, 32.999985)
+scale = Vector2(2.735294, 2.6666667)
+texture = ExtResource("14_trq54")
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Strength" unique_id=684966202]
 texture_filter = 1
@@ -473,6 +514,20 @@ theme_override_fonts/font = ExtResource("11_8g107")
 theme_override_font_sizes/font_size = 12
 text = "Strength"
 horizontal_alignment = 1
+
+[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Strength" unique_id=914140486]
+texture_filter = 1
+layout_mode = 0
+offset_left = 174.0
+offset_top = 92.0
+offset_right = 484.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 20
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Intelligence" type="Control" parent="Stats" unique_id=1327377887]
 layout_mode = 1
@@ -521,7 +576,12 @@ position = Vector2(32.000004, 29.999996)
 scale = Vector2(0.6891893, 0.62499994)
 texture = ExtResource("10_1kg7t")
 
-[node name="DisabledBlinkInterval" type="Timer" parent="Stats/Intelligence/ProgressCircle" unique_id=1573416787]
+[node name="CheckMark" type="Sprite2D" parent="Stats/Intelligence/ProgressCircle" unique_id=678443960]
+visible = false
+texture_filter = 1
+position = Vector2(32, 32.999985)
+scale = Vector2(2.735294, 2.6666667)
+texture = ExtResource("14_trq54")
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Intelligence" unique_id=2030437727]
 texture_filter = 1
@@ -536,6 +596,20 @@ theme_override_fonts/font = ExtResource("11_8g107")
 theme_override_font_sizes/font_size = 12
 text = "Intelligence"
 horizontal_alignment = 1
+
+[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Intelligence" unique_id=2054105000]
+texture_filter = 1
+layout_mode = 0
+offset_left = 162.0
+offset_top = 196.0
+offset_right = 472.0
+offset_bottom = 222.0
+theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 20
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Community" type="Control" parent="Stats" unique_id=1158174619]
 layout_mode = 1
@@ -584,7 +658,12 @@ position = Vector2(32.000004, 29.999996)
 scale = Vector2(0.6891893, 0.62499994)
 texture = ExtResource("10_1kg7t")
 
-[node name="DisabledBlinkInterval" type="Timer" parent="Stats/Community/ProgressCircle" unique_id=484530395]
+[node name="CheckMark" type="Sprite2D" parent="Stats/Community/ProgressCircle" unique_id=1478993980]
+visible = false
+texture_filter = 1
+position = Vector2(32, 34.999992)
+scale = Vector2(2.735294, 2.6666667)
+texture = ExtResource("14_trq54")
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Community" unique_id=648551272]
 texture_filter = 1
@@ -599,3 +678,185 @@ theme_override_fonts/font = ExtResource("11_8g107")
 theme_override_font_sizes/font_size = 12
 text = "Community"
 horizontal_alignment = 1
+
+[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Community" unique_id=793080094]
+texture_filter = 1
+layout_mode = 0
+offset_left = 145.0
+offset_top = 300.0
+offset_right = 455.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 20
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EstimatedTime" type="Control" parent="." unique_id=125445664]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1.0
+offset_top = -75.0
+offset_right = 41.0
+offset_bottom = -35.0
+
+[node name="ColorRect" type="ColorRect" parent="EstimatedTime" unique_id=381312640]
+material = SubResource("ShaderMaterial_mvdwn")
+layout_mode = 0
+offset_left = 10.0
+offset_top = 153.0
+offset_right = 121.0
+offset_bottom = 273.0
+
+[node name="Header" type="Label" parent="EstimatedTime" unique_id=1321971316]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 160.0
+offset_right = 123.0
+offset_bottom = 221.0
+theme_override_fonts/font = ExtResource("9_25vk6")
+theme_override_font_sizes/font_size = 20
+text = "Estimated
+Time left :"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="EstimatedTime" unique_id=1112587006]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 235.0
+offset_right = 121.0
+offset_bottom = 258.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 19
+text = "1-00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartOverlay" type="Control" parent="." unique_id=664551404]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="StartOverlay" unique_id=1361624561]
+material = SubResource("ShaderMaterial_vqu4o")
+layout_mode = 0
+offset_left = 1.0
+offset_right = 694.0
+offset_bottom = 382.0
+color = Color(0.05490196, 0, 0, 0.90588236)
+
+[node name="CompletedLabel" type="Label" parent="StartOverlay" unique_id=463180419]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_left = 9.0
+offset_right = 681.52
+offset_bottom = 248.8
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("9_25vk6")
+theme_override_font_sizes/font_size = 60
+text = "Time Till 
+cell sacrifice starts"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="StartOverlay" unique_id=977650166]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 224.0
+offset_right = 472.0
+offset_bottom = 284.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.97, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 60
+text = "1-00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmergencyOverlay" type="Control" parent="." unique_id=2043370443]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="EmergencyOverlay" unique_id=842235351]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -24.0
+offset_right = 704.0
+offset_bottom = 408.0
+color = Color(0.05490196, 0, 0, 0.98039216)
+
+[node name="EmergencyParent" type="Control" parent="EmergencyOverlay" unique_id=1408073173]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="TextureRect" parent="EmergencyOverlay/EmergencyParent" unique_id=1965273673]
+modulate = Color(0.84, 0.84, 0.84, 0.61960787)
+self_modulate = Color(1, 0.55, 0.55, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 160.0
+offset_top = 24.0
+offset_right = 544.0
+offset_bottom = 319.0
+texture = ExtResource("18_g3eu6")
+
+[node name="EmergencySprite" type="Sprite2D" parent="EmergencyOverlay/EmergencyParent" unique_id=857793846]
+modulate = Color(1, 0.19607843, 0.19607843, 1)
+texture_filter = 1
+position = Vector2(356, 124.5)
+scale = Vector2(2.27027, 2.140625)
+texture = ExtResource("10_1kg7t")
+
+[node name="Label" type="Label" parent="EmergencyOverlay/EmergencyParent" unique_id=146094795]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 201.0
+offset_right = 536.0
+offset_bottom = 251.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9997534, 0.16853106, 0.17763072, 1)
+theme_override_fonts/font = ExtResource("11_8g107")
+theme_override_font_sizes/font_size = 60
+text = "1-00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompletedOverlay" type="Control" parent="." unique_id=299690122]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="CompletedOverlay" unique_id=460897159]
+layout_mode = 0
+offset_right = 694.0
+offset_bottom = 384.0
+color = Color(0.05490196, 0, 0, 0.90588236)
+
+[node name="CompletedLabel" type="Label" parent="CompletedOverlay" unique_id=571421132]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 681.52
+offset_bottom = 374.8
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("9_25vk6")
+theme_override_font_sizes/font_size = 100
+text = "Completed"
+horizontal_alignment = 1
+vertical_alignment = 1

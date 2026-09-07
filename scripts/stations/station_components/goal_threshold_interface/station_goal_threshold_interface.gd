@@ -4,8 +4,12 @@ extends Node
 @onready var handle_cell_seats : Node = $HandleCellSeats
 @onready var handle_cycle_stat_btn : Node = $HandleCycleStatBtn
 @onready var handle_dissolve : Node = $HandleDissolve
+@onready var handle_game_ended : Node = $HandleGameEnded
 # component helpers
 @onready var helper_seat_lights : Node = $HelperSeatLights
+
+# screen component
+@onready var screen_goal_threshold_interface : Node2D = $GoalScreenTV/TvFrontPannel/SubViewport/GoalThreshold
 
 # amount to decrease
 var strength_amount_to_decrease : int = 0
@@ -16,6 +20,16 @@ var community_amount_to_decrease : int = 0
 var strength_dissolve_cell : BrainCell
 var intelligence_dissolve_cell : BrainCell
 var community_dissolve_cell : BrainCell
+
+var strength_finished : bool = false 
+var intelligence_finished : bool = false
+var community_finished : bool = false
+
+
+# NOTE / TODO
+# when it comes to a stat being finished, most of it is just simple return statements on continuing loops
+# could greatly benifit state by acutally closing it all off somehow.
+# the most i can do now those is force amount to decrease to be 0 and keep track of state_finished vars
 
 
 # responsible for populating amount to decrease with all cells on queue
@@ -53,16 +67,23 @@ func _handle_cell_seats_changed() -> void:
 		
 		match selected_stat:
 			"strength":
-				if cell.strength.enabled:
-					strength_amount_to_decrease += int(cell.strength.value)
+				
+				# only increae amount to decrease if left stat value
+				if not GLGoalThresholdBus.active_goal_threshold.strength.left_stat_value <= 0 :
+					if cell.strength.enabled:
+						strength_amount_to_decrease += int(cell.strength.value)
 				
 			"intelligence":
-				if cell.intelligence.enabled:
-					intelligence_amount_to_decrease += int(cell.intelligence.value)
+				
+				if not GLGoalThresholdBus.active_goal_threshold.intelligence.left_stat_value <= 0 :
+					if cell.intelligence.enabled:
+						intelligence_amount_to_decrease += int(cell.intelligence.value)
 				
 			"community":
-				if cell.community.enabled:
-					community_amount_to_decrease += int(cell.community.value)
+				
+				if not GLGoalThresholdBus.active_goal_threshold.community.left_stat_value <= 0 :
+					if cell.community.enabled:
+						community_amount_to_decrease += int(cell.community.value)
 				
 			"all":
 				if cell.strength.enabled:
@@ -84,6 +105,8 @@ func _handle_cell_seats_changed() -> void:
 	
 	helper_seat_lights._refresh(cell_seats, cell_selected_stats)
 	handle_dissolve._dissolve_cells_changed()
+	screen_goal_threshold_interface._refresh()
+	handle_game_ended._handle()
 	
 
 

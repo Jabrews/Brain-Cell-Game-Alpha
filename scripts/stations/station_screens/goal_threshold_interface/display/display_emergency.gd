@@ -1,0 +1,97 @@
+extends Node
+
+# components
+@onready var emergency_overlay : Control = $"../EmergencyOverlay"
+@onready var emergency_label : Label = $"../EmergencyOverlay/EmergencyParent/Label"
+@onready var game_end_increment_timer : Timer = $GameEndIncrement
+
+@export var game_end_wait_time : int = 15
+
+var max_game_end_wait_timer : int
+
+var float_tween : Tween
+var is_floating : bool = false
+
+var org_emergency_overlay_pos : Vector2
+
+
+func _ready() -> void:
+	game_end_increment_timer.connect(
+		"timeout",
+		_handle_game_end_increment_timer_timeout
+	)
+	
+	max_game_end_wait_timer = game_end_wait_time
+	org_emergency_overlay_pos = emergency_overlay.global_position
+
+
+func _display(toggle_value : bool) -> void:
+	
+	emergency_overlay.visible = toggle_value
+	
+	if toggle_value:
+		game_end_wait_time = max_game_end_wait_timer
+		emergency_label.text = str(game_end_wait_time)
+		
+		game_end_increment_timer.start()
+		_toggle_float_tween(true)
+	
+	else:
+		game_end_increment_timer.stop()
+		game_end_wait_time = max_game_end_wait_timer
+		
+		_toggle_float_tween(false)
+
+
+func _handle_game_end_increment_timer_timeout() -> void:
+	
+	game_end_wait_time -= 1
+	
+	emergency_label.text = str(game_end_wait_time)
+	
+	if game_end_wait_time <= 0:
+		game_end_increment_timer.stop()
+		
+		# TODO:
+		# trigger game end here
+
+
+func _toggle_float_tween(toggle_value : bool) -> void:
+	
+	if toggle_value == is_floating:
+		return
+	
+	is_floating = toggle_value
+	
+	if float_tween:
+		float_tween.kill()
+		float_tween = null
+	
+	
+	if toggle_value:
+		float_tween = create_tween()
+		float_tween.set_loops()
+		
+		float_tween.tween_property(
+			emergency_overlay,
+			"global_position:y",
+			org_emergency_overlay_pos.y + 5.0,
+			0.5
+		)
+		
+		float_tween.tween_property(
+			emergency_overlay,
+			"global_position:y",
+			org_emergency_overlay_pos.y - 5.0,
+			1.0
+		)
+		
+		float_tween.tween_property(
+			emergency_overlay,
+			"global_position:y",
+			org_emergency_overlay_pos.y,
+			0.5
+		)
+	
+	else:
+		emergency_overlay.global_position = org_emergency_overlay_pos

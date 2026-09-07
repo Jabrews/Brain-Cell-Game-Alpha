@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://cw0g1q8yn7pet" path="res://scripts/stations/station_components/goal_threshold_interface/handlers/handle_dissolve.gd" id="5_73yts"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="5_rjgdw"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="6_7cmnq"]
+[ext_resource type="Script" uid="uid://bu3d0ln84yb8g" path="res://scripts/stations/station_components/goal_threshold_interface/handlers/handle_game_ended.gd" id="6_jke3x"]
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="7_5ky03"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_gkb6r"]
 [ext_resource type="PackedScene" uid="uid://cxmrm8jiilv0x" path="res://scenes/stations/station_screens/goal_threshold_interface/screen_selected_stat.tscn" id="11_7cmnq"]
@@ -98,11 +99,11 @@ orientation = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
 material = SubResource("StandardMaterial3D_5ewaq")
-size = Vector3(8.358887, 4.058052, 0.036132813)
+size = Vector3(7.3013306, 4.058052, 0.036132813)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pqj0v"]
 material = SubResource("StandardMaterial3D_d5kxe")
-size = Vector2(8, 3.8)
+size = Vector2(7, 3.8)
 orientation = 0
 
 [node name="GoalTresholdInterface" type="Node3D" unique_id=606315026]
@@ -113,7 +114,7 @@ script = ExtResource("2_gkb6r")
 
 [node name="HandleDissolve" type="Node" parent="." unique_id=822130940]
 script = ExtResource("5_73yts")
-STAT_DECREASE = 20
+STAT_DECREASE = 10
 
 [node name="DissolveIncrementTimer" type="Timer" parent="HandleDissolve" unique_id=1680176650]
 
@@ -123,7 +124,13 @@ script = ExtResource("2_u8c0o")
 [node name="HandleCycleStatBtn" type="Node" parent="." unique_id=1247820506]
 script = ExtResource("3_rjgdw")
 
+[node name="HandleGameEnded" type="Node" parent="." unique_id=13040083]
+script = ExtResource("6_jke3x")
+
+[node name="HandleFinish" type="Node" parent="." unique_id=725231723]
+
 [node name="CellSeats" type="Node3D" parent="." unique_id=1542385413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85410976, 0, 0)
 
 [node name="Seats" type="Node3D" parent="CellSeats" unique_id=69647466]
 
@@ -161,7 +168,6 @@ wait_time = 0.3
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("4_wytt1")
-cell_seat_num = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CellSeats/Seats/CellSeat1/DetectCellArea" unique_id=687620228]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00012207031, 0.8430786, 0)
@@ -825,10 +831,10 @@ size = Vector2i(128, 64)
 [node name="ScreenSelectedStat" parent="CellSeats/SelectedStatTvs/SelectedStatTV4/TvFrontPannel/SubViewport" unique_id=1486707729 instance=ExtResource("11_7cmnq")]
 
 [node name="GoalScreenTV" type="Node3D" parent="." unique_id=782315824]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27656364, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04518509, 0.7640114, 0)
 
 [node name="TVBack" type="MeshInstance3D" parent="GoalScreenTV" unique_id=1055254949]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54504395, 2.1682243, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54104614, 2.1682243, 0)
 mesh = SubResource("BoxMesh_qa1qv")
 
 [node name="TvFrontPannel" type="MeshInstance3D" parent="GoalScreenTV" unique_id=1247202499]
