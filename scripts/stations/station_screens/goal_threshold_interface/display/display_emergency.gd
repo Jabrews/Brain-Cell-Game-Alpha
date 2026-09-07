@@ -30,12 +30,18 @@ func _display(toggle_value : bool) -> void:
 	emergency_overlay.visible = toggle_value
 	
 	if toggle_value:
+		
+		GLGoalThresholdBus.emit_signal('toggle_threshold_emergent_countdown', true, game_end_wait_time)
+		
 		emergency_label.text = str(game_end_wait_time)
 		
 		game_end_increment_timer.start()
 		_toggle_float_tween(true)
 	
 	else:
+		
+		GLGoalThresholdBus.emit_signal('toggle_threshold_emergent_countdown', false, game_end_wait_time)
+		
 		game_end_increment_timer.stop()
 		
 		_toggle_float_tween(false)
@@ -46,6 +52,8 @@ func _handle_game_end_increment_timer_timeout() -> void:
 	game_end_wait_time -= 1
 	
 	emergency_label.text = str(game_end_wait_time)
+	
+	GLGoalThresholdBus.emit_signal('toggle_threshold_emergent_countdown', true, game_end_wait_time)
 	
 	if game_end_wait_time <= 0:
 		game_end_increment_timer.stop()

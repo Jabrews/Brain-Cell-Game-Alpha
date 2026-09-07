@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
 [ext_resource type="Script" uid="uid://cw31gxlbj441f" path="res://scripts/ui/view_demands.gd" id="20_ygedu"]
 [ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="22_fv78h"]
+[ext_resource type="Script" uid="uid://ww357ejx8on1" path="res://scripts/ui/threshold_emergency_time_left.gd" id="22_o71gb"]
 [ext_resource type="Script" uid="uid://dulxe11r8rej1" path="res://scripts/ui/game_end/game_end.gd" id="22_qmss2"]
 [ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/game_end/retry_btn.gd" id="23_26a3v"]
 
@@ -72,7 +74,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 12
 text = "FPS COUNTER : "
 script = ExtResource("4_0dwhk")
 
@@ -266,6 +268,48 @@ position = Vector2(640, 360)
 scale = Vector2(1.498829, 1.5)
 texture = SubResource("CompressedTexture2D_ygedu")
 script = ExtResource("21_oopc8")
+
+[node name="ThresholdEmergencyTimeLeft" type="Control" parent="." unique_id=919333310]
+visible = false
+layout_mode = 1
+anchors_preset = 0
+offset_left = 568.0
+offset_right = 608.0
+offset_bottom = 40.0
+script = ExtResource("22_o71gb")
+
+[node name="BG" type="ColorRect" parent="ThresholdEmergencyTimeLeft" unique_id=1941743789]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 136.0
+offset_bottom = 80.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0, 0, 0, 0.54901963)
+
+[node name="EmergencySprite" type="Sprite2D" parent="ThresholdEmergencyTimeLeft" unique_id=289798333]
+modulate = Color(1, 0.19607843, 0.19607843, 1)
+texture_filter = 1
+position = Vector2(44.000004, 51.000004)
+scale = Vector2(0.6621622, 0.671875)
+texture = ExtResource("22_fv78h")
+
+[node name="TimeLeftLabel" type="Label" parent="ThresholdEmergencyTimeLeft" unique_id=1243909657]
+texture_filter = 1
+layout_mode = 0
+offset_left = 71.0
+offset_top = 29.0
+offset_right = 131.0
+offset_bottom = 75.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.6745098, 0.039215688, 0.039215688, 1)
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = "1:05"
+horizontal_alignment = 1
+
+[node name="FlashIntervalTimer" type="Timer" parent="ThresholdEmergencyTimeLeft" unique_id=396730593]
+wait_time = 0.5
 
 [node name="GameEnd" type="Control" parent="." unique_id=1799871232]
 process_mode = 3
