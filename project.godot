@@ -70,6 +70,7 @@ GLCinnamaticBus="*uid://bto12mhl4ube3"
 GAMELifespanHelper="*uid://b5l56ptytwumi"
 GLGoalThresholdBus="*uid://bs1hi3l23ehcj"
 GLGameEndBus="*uid://b87t1lnb4xp6c"
+GLHideUiBus="*uid://dw707277cabio"
 
 [debug]
 

@@ -142,10 +142,12 @@ func toggle_display_lock(toggle_value: bool) -> void:
 	if toggle_value:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
+		GLHideUiBus.emit_signal('toggle_hide_ui', true)
 
 	else:
 		header_label.visible = false
 		blur_bg.visible = false
+		GLHideUiBus.emit_signal('toggle_hide_ui', false)
 
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false

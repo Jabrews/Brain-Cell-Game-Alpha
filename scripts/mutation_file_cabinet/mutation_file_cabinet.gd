@@ -43,10 +43,12 @@ func set_player_viewing_file_cabinet(toggle_value : bool) :
 	if toggle_value :	
 		audio_manager.play_cabinet_open()
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GLHideUiBus.emit_signal('toggle_hide_ui', true)
 	else :
 		audio_manager.play_cabinet_close()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		click_to_view_label.visible = false
+		GLHideUiBus.emit_signal('toggle_hide_ui', false)
 
 func _display_file_view(file_info : FileInfo) :
 	audio_manager.play_page_chose()

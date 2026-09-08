@@ -175,6 +175,9 @@ func initate_extractor(
 
 	camera.current = true
 	camera.fov = STARTING_FOV
+	
+	GLHideUiBus.emit_signal('toggle_hide_ui', true)	
+	
 
 	GLPlayerState.emit_signal(
 		"lock_player_position",
@@ -238,6 +241,8 @@ func initate_extractor(
 		"lock_player_position",
 		false
 	)
+
+	GLHideUiBus.emit_signal('toggle_hide_ui', false)	
 
 	camera.current = false
 
