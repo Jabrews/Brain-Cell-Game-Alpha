@@ -47,13 +47,11 @@ func toggle_display_lock(toggle_value: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
 		GLHideUiBus.emit_signal('toggle_hide_ui', true)
-		GLPausedUiBus.emit_signal('toggle_game_paused', true)
 
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false
 		GLHideUiBus.emit_signal('toggle_hide_ui', false)
-		GLPausedUiBus.emit_signal('toggle_game_paused', false)
 		
 	
 	

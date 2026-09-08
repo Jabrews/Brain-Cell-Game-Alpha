@@ -109,6 +109,7 @@ hack_skull=""
 disruptable_reciever=""
 detect_cognisance_area=""
 interpreter_plug=""
+hologram_interact_area=""
 
 [input]
 
@@ -203,6 +204,7 @@ debug4={
 3d_physics/layer_15="detect_cognisance_area"
 3d_physics/layer_16="decal"
 3d_physics/layer_17="interpreter_plug"
+3d_physics/layer_18="hologram_interact_area"
 
 [physics]
 

@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="PackedScene" uid="uid://cbkhifesyls7u" path="res://scenes/stations/station_components/goal_threshold_interface/station_goal_threshold_interface.tscn" id="14_r52yi"]
+[ext_resource type="PackedScene" uid="uid://coetu5aaafg85" path="res://scenes/stations/cell_breeding/component/station_cell_breeding.tscn" id="15_0ycs4"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
@@ -98,10 +99,10 @@ size = Vector3(1, 5, 10.776978)
 size = Vector3(1, 6.3917236, 11)
 
 [sub_resource type="BoxMesh" id="BoxMesh_r52yi"]
-size = Vector3(1, 5, 26)
+size = Vector3(1, 5, 29.26709)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24n7g"]
-size = Vector3(1, 5, 26)
+size = Vector3(1, 5, 29.33606)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ycs4"]
 size = Vector3(1, 5, 14.400001)
@@ -114,12 +115,6 @@ size = Vector3(1, 5, 14.400001)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7xrfk"]
 size = Vector3(0.42871094, 6.0039063, 15.482984)
-
-[sub_resource type="BoxMesh" id="BoxMesh_6ixvf"]
-size = Vector3(1, 5, 9)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pq8fj"]
-size = Vector3(1, 5, 8.7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_dixnm"]
 size = Vector3(1, 5, 26)
@@ -248,11 +243,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Walls/Wall3" unique_id=903573612]
-transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 4.8954134)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 3.0791368, 0.16293788, 4.8954134)
 mesh = SubResource("BoxMesh_l5rsp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Walls/Wall3" unique_id=815923405]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.536743e-07, 0, 4.8947234)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2077303, 0, 4.8947234)
 shape = SubResource("BoxShape3D_ms0m2")
 
 [node name="Wall4" type="StaticBody3D" parent="Enviroment/Walls" unique_id=348325151 groups=["nav_mesh_coll"]]
@@ -261,11 +256,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Walls/Wall4" unique_id=1686241323]
-transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, -0.88848877)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 3.0791368, 0.16293788, -0.88848877)
 mesh = SubResource("BoxMesh_lp30k")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Walls/Wall4" unique_id=1160025713]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6958618, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1312914, 0.6958618, -1)
 shape = SubResource("BoxShape3D_otmbb")
 
 [node name="Wall6" type="StaticBody3D" parent="Enviroment/Walls" unique_id=1385973863 groups=["nav_mesh_coll"]]
@@ -274,11 +269,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Walls/Wall6" unique_id=1232231636]
-transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 5.5)
+transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 7.133545)
 mesh = SubResource("BoxMesh_r52yi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Walls/Wall6" unique_id=85352472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.16803)
 shape = SubResource("BoxShape3D_24n7g")
 
 [node name="Wall7" type="StaticBody3D" parent="Enviroment/Walls" unique_id=42458932 groups=["nav_mesh_coll"]]
@@ -306,19 +301,6 @@ mesh = SubResource("BoxMesh_y36b7")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Walls/Wall8" unique_id=434017859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.35000038)
 shape = SubResource("BoxShape3D_7xrfk")
-
-[node name="Wall9" type="StaticBody3D" parent="Enviroment/Walls" unique_id=1321450585 groups=["nav_mesh_coll"]]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 20.844296, 2.495707, 11.747911)
-collision_layer = 2
-collision_mask = 0
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment/Walls/Wall9" unique_id=1155413417]
-transform = Transform3D(1, 0, 0, 0, 1.9000001, 0, 0, 0, 1, 0, 0.16293788, 0.29999924)
-mesh = SubResource("BoxMesh_6ixvf")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Walls/Wall9" unique_id=1133893258]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.15000153)
-shape = SubResource("BoxShape3D_pq8fj")
 
 [node name="Wall10" type="StaticBody3D" parent="Enviroment/Walls" unique_id=1975840140 groups=["nav_mesh_coll"]]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.6557045, 2.495707, -17.252089)
@@ -508,7 +490,7 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, 1.1959085, 0, 15.370551)
 
 [node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -0.00906235, -0.28001475)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.008186, -0.00906235, -0.28001475)
 cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
@@ -565,6 +547,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -16.1)
 [node name="GoalTreshold" parent="Stations/ContainerStations" unique_id=606315026 instance=ExtResource("14_r52yi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.922908, 3.1953754, 17)
 
+[node name="CellBreeding2" parent="Stations/ContainerStations" unique_id=1160068214 instance=ExtResource("15_0ycs4")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 15.497986, 0.0082941055, 11.173466)
+
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 3.3025842, 4.9931126)
 
@@ -576,7 +561,7 @@ mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
 
 [node name="ShareholderDemandProvider" parent="Stations" unique_id=1678189998 instance=ExtResource("18_m2qbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 15.135363, 3, 11)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.994104, 3, -13)
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")

@@ -16,11 +16,9 @@ func _ready() -> void:
 	energy_left_label.text = str(GLGameManagerBus.max_energy)
 
 func _handle_energy_changed() : 
-	print('handle energy changed : ', GLGameManagerBus.curr_energy)
 	energy_left_label.text = str(GLGameManagerBus.curr_energy)
 	
 func _handle_energy_turn():
-	print('handle energy turn : ', GLGameManagerBus.curr_energy)
 	energy_left_label.text = str(GLGameManagerBus.curr_energy)
 
 func _handle_toggle_hide_ui(toggle_value : bool) :

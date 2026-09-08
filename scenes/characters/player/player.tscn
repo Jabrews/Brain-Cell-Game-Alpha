@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://bku4lmuuwtp6k" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_ice_cube.gd" id="11_nt8su"]
 [ext_resource type="Script" uid="uid://c2mfspepurjj2" path="res://scripts/characters/player/ray_casts/useable_item_ray/use_helpers/use_scissors.gd" id="12_gpigg"]
 [ext_resource type="AudioStream" uid="uid://dbc0sn4gcabov" path="res://sounds/player_local_sounds/interactable/panel_cell_loaded.mp3" id="12_ykrpk"]
+[ext_resource type="Script" uid="uid://dd5p06d26kgtw" path="res://scripts/characters/player/ray_casts/hologram_interact_ray.gd" id="14_es5sa"]
 [ext_resource type="AudioStream" uid="uid://bsbyb7sk1wftk" path="res://sounds/player_local_sounds/interactable/shot_used.mp3" id="14_hv5x3"]
 [ext_resource type="AudioStream" uid="uid://d3aj42ig37u6p" path="res://sounds/player_local_sounds/interactable/btn_press_success.mp3" id="15_ykrpk"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="16_4kqyw"]
@@ -136,6 +137,14 @@ collision_mask = 1024
 collide_with_areas = true
 debug_shape_custom_color = Color(0, 0, 0, 0)
 script = ExtResource("8_6nfx3")
+
+[node name="HologramInteractRay" type="RayCast3D" parent="CameraPivot/Camera3D/RayCastController" unique_id=611962564]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09756696, 0)
+target_position = Vector3(0, 0, -3)
+collision_mask = 131078
+collide_with_areas = true
+debug_shape_custom_color = Color(0.8980392, 0.67058825, 0, 0.5294118)
+script = ExtResource("14_es5sa")
 
 [node name="UseableItemHandPreview" type="Node3D" parent="CameraPivot/Camera3D" unique_id=1495413384]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, -0.5556661, -1.0407479)

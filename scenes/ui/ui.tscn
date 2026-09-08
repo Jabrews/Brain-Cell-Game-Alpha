@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/game_end/retry_btn.gd" id="23_26a3v"]
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="24_fqqne"]
 [ext_resource type="Script" uid="uid://d3qhqd2o4aav1" path="res://scripts/ui/energy_left_display.gd" id="24_qhbcy"]
+[ext_resource type="Script" uid="uid://ydot0phojew" path="res://scripts/ui/view_breeder_label.gd" id="28_khplb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
@@ -401,3 +402,17 @@ theme_override_font_sizes/font_size = 40
 text = "Retry"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ViewBreeder" type="Label" parent="." unique_id=82300313]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 664.0
+offset_right = 1272.0
+offset_bottom = 714.0
+theme_override_fonts/font = ExtResource("1_u7n8c")
+theme_override_font_sizes/font_size = 40
+text = "View Breeder"
+horizontal_alignment = 1
+script = ExtResource("28_khplb")

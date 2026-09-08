@@ -429,7 +429,7 @@ game_end_wait_time = 60
 
 [node name="DisplayStart" type="Node" parent="." unique_id=1692434897]
 script = ExtResource("5_vqu4o")
-start_end_wait_time = 5
+start_end_wait_time = 5000
 
 [node name="StartEndIncrement" type="Timer" parent="DisplayStart" unique_id=176205533]
 
