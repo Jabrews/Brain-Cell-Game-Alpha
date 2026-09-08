@@ -13,6 +13,10 @@ extends Node
 @onready var s_axe_swing : AudioStreamPlayer3D = $AxeSwing
 @onready var s_ice_cube_used : AudioStreamPlayer3D = $IceCubeUsed
 @onready var s_scissor_snip : AudioStreamPlayer3D = $ScissorSnip
+@onready var s_emergency_start : AudioStreamPlayer3D = $EmergencyStart
+@onready var s_emergency_end : AudioStreamPlayer3D = $EmergencyEnd
+@onready var s_tick_sound : AudioStreamPlayer3D = $TickSound
+
 
 
 func _ready() -> void:
@@ -40,6 +44,9 @@ func _ready() -> void:
 	GLPlayerLocalSoundsBus.connect('sound_axe_swing', _handle_axe_swing)
 	GLPlayerLocalSoundsBus.connect('ice_cube_used', _handle_ice_cube_used)
 	GLPlayerLocalSoundsBus.connect('scissors_used', _handle_scissors_used)
+	GLPlayerLocalSoundsBus.connect('emergency_start' , _handle_emergency_start)
+	GLPlayerLocalSoundsBus.connect('emergency_end', _handle_emergency_end)
+	GLPlayerLocalSoundsBus.connect('tick_sound', _handle_tick_sound)
 
 
 func _handle_sound_btn_press_failed() -> void:
@@ -80,6 +87,16 @@ func _handle_ice_cube_used() :
 
 func _handle_scissors_used() :
 	play_sound(s_scissor_snip)
+
+
+func _handle_emergency_start() : 
+	play_sound(s_emergency_start)
+
+func _handle_emergency_end() :
+	play_sound(s_emergency_end)
+
+func _handle_tick_sound() :
+	play_sound(s_tick_sound)
 
 func play_sound(sound_player : AudioStreamPlayer3D) -> void:
 	

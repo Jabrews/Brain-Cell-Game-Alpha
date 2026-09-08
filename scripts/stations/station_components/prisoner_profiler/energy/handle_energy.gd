@@ -32,7 +32,6 @@ func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
 	GLGameManagerBus.connect('energy_changed', _handle_energy_changed)
 
-
 func _handle_next_round() -> void:
 
 	current_energy = GLGameManagerBus.curr_energy
@@ -60,6 +59,7 @@ func _handle_next_turn() -> void:
 	# Commit the new energy.
 	GLGameManagerBus.curr_energy = new_current_energy
 	current_energy = new_current_energy
+	GLGameManagerBus.emit_signal('energy_changed')
 
 	# Reset all preview costs.
 	# IMPORTANT: Don't update UI here.
