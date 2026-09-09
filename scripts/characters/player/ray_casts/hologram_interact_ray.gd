@@ -15,6 +15,11 @@ func _process(_delta: float) -> void:
 
 	# --- SAME HOLOGRAM ---
 	if collider == hologram_interact_area:
+		
+		if Input.is_action_just_pressed('interact') : 		
+			hologram_interact_area.	_handle_hologram_interacted()
+		
+		
 		return
 
 	# --- TURN OFF PREVIOUS HOLOGRAM ---
@@ -23,6 +28,8 @@ func _process(_delta: float) -> void:
 	# --- SET NEW HOLOGRAM ---
 	hologram_interact_area = collider as Area3D
 	hologram_interact_area._toggle_hologram_hint(true)
+	
+	
 
 
 func _clear_hologram() -> void:

@@ -9,6 +9,7 @@ var usable_item_ray_active : bool = false
 @onready var stat_display_ray : RayCast3D = $StatDisplayRay
 @onready var hover_effect_ray : RayCast3D = $HoverEffectRay
 @onready var axe_interact_ray : RayCast3D = $AxeInteractRay
+@onready var hologram_interact_ray : RayCast3D = $HologramInteractRay
 
 func _ready() -> void: 
 	GLPlayerState.connect('toggle_player_picked_up_axe_mount', _handle_toggle_player_picked_up_axe_mount)
@@ -20,14 +21,23 @@ func set_ray_mode(mode: String) -> void:
 		"interact":
 			interact_ray_active = true
 			usable_item_ray_active = false
+			
+			# enabled
+			hologram_interact_ray.enabled = false
 		
 		"useable":
 			interact_ray_active = false
 			usable_item_ray_active = true
+			
+			# enabled
+			hologram_interact_ray.enabled = false
 		
 		"none":
 			interact_ray_active = true 
 			usable_item_ray_active = true 
+			
+			# enabled
+			hologram_interact_ray.enabled = true
 		
 		_:
 			push_error("invalid ray mode: " + mode)

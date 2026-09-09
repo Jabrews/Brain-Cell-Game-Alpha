@@ -1,7 +1,11 @@
 [gd_scene format=4 uid="uid://coetu5aaafg85"]
 
 [ext_resource type="Script" uid="uid://7x522ncryoiq" path="res://scripts/stations/cell_breeding/component/station_cell_breeding.gd" id="1_dmors"]
+[ext_resource type="Script" uid="uid://dtckfqq1m8fkv" path="res://scripts/stations/cell_breeding/component/handlers/handle_display_ui.gd" id="2_awyxg"]
 [ext_resource type="Script" uid="uid://b8lokfw7kv86s" path="res://scripts/stations/cell_breeding/component/hologram/hologram_interact_area.gd" id="2_dmors"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_41g38"]
+[ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -89,8 +93,17 @@ size = Vector3(0.046875, 1.8056641, 2.3426514)
 [sub_resource type="BoxShape3D" id="BoxShape3D_wnhlu"]
 size = Vector3(0.046875, 1.8056641, 2.34581)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_awyxg"]
+shader = ExtResource("3_41g38")
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_color = Color(0, 0, 0, 1)
+
 [node name="StationCellBreeding" type="Node3D" unique_id=1160068214]
 script = ExtResource("1_dmors")
+
+[node name="HandleDisplayUi" type="Node" parent="." unique_id=1530602053]
+script = ExtResource("2_awyxg")
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
@@ -238,3 +251,112 @@ script = ExtResource("2_dmors")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hologram/HologramInteractArea" unique_id=93517607]
 transform = Transform3D(1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0, 1, 0, 0, -0.051116943)
 shape = SubResource("BoxShape3D_wnhlu")
+
+[node name="BreedingUI" type="Control" parent="." unique_id=633291662]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlurBg" type="ColorRect" parent="BreedingUI" unique_id=1307360620]
+material = SubResource("ShaderMaterial_awyxg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ExitHeader" type="Control" parent="BreedingUI" unique_id=910873983]
+anchors_preset = 0
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=984012214]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 104.0
+offset_right = 1120.0
+offset_bottom = 160.0
+color = Color(1, 0.050000012, 0.050000012, 1)
+
+[node name="ExitBtn" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=2107038211]
+layout_mode = 0
+offset_left = 1011.0
+offset_top = 112.0
+offset_right = 1104.0
+offset_bottom = 152.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("5_1yw4i")
+
+[node name="ExitLabel" type="Label" parent="BreedingUI/ExitHeader/ExitBtn" unique_id=207789195]
+texture_filter = 1
+layout_mode = 0
+offset_top = 3.0
+offset_right = 92.0
+offset_bottom = 39.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 30
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CellLoader" type="Control" parent="BreedingUI" unique_id=908120563]
+anchors_preset = 0
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="BreedingView" type="Control" parent="BreedingUI/CellLoader" unique_id=333480]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView" unique_id=489023309]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 160.0
+offset_right = 1120.0
+offset_bottom = 392.0
+color = Color(0.83, 0.18093994, 0.066399984, 1)
+
+[node name="SelectedView" type="Control" parent="BreedingUI/CellLoader" unique_id=1247261752]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1899304568]
+layout_mode = 0
+offset_left = 384.0
+offset_top = 392.0
+offset_right = 1120.0
+offset_bottom = 640.0
+color = Color(0.77, 0.16632001, 0.123200014, 1)
+
+[node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/CellCatalog" unique_id=1413725970]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 160.0
+offset_right = 384.0
+offset_bottom = 640.0
+color = Color(0.58, 0.08932003, 0.0348, 1)
+
+[node name="NewCellDisplay" type="Control" parent="BreedingUI" unique_id=726775436]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
