@@ -255,6 +255,7 @@ shape = SubResource("BoxShape3D_wnhlu")
 
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
+visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -369,34 +370,57 @@ offset_right = 352.0
 offset_bottom = 672.0
 color = Color(0.3, 0.06539998, 0.023999996, 0.7058824)
 
-[node name="CellEntries" type="Control" parent="BreedingUI/CellLoader/CellCatalog" unique_id=366760543]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SpawnPos" type="Control" parent="BreedingUI/CellLoader/CellCatalog/CellEntries" unique_id=1017779646]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ParentNode" type="Control" parent="BreedingUI/CellLoader/CellCatalog/CellEntries" unique_id=53080575]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CellEntry" parent="BreedingUI/CellLoader/CellCatalog/CellEntries/ParentNode" unique_id=6030190 instance=ExtResource("7_0o7p1")]
+[node name="CenterContainer" type="CenterContainer" parent="BreedingUI/CellLoader/CellCatalog" unique_id=816157319]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 128.0
-offset_right = 56.0
-offset_bottom = 128.0
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 352.0
+offset_bottom = 672.0
+layout_direction = 2
 
-[node name="CellEntry2" parent="BreedingUI/CellLoader/CellCatalog/CellEntries/ParentNode" unique_id=1834610559 instance=ExtResource("7_0o7p1")]
-layout_mode = 0
-offset_left = 208.0
-offset_top = 128.0
-offset_right = 208.0
-offset_bottom = 128.0
+[node name="ScrollContainer" type="ScrollContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer" unique_id=263262927]
+custom_minimum_size = Vector2(320, 552)
+layout_mode = 2
+layout_direction = 3
+
+[node name="GridContainerLeft" type="GridContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer" unique_id=1495238694]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(16.195, 17.395)
+layout_direction = 2
+theme_override_constants/h_separation = 165
+theme_override_constants/v_separation = 194
+columns = 2
+
+[node name="CellEntry" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=6030190 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry2" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1834610559 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry3" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=53874038 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry4" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=789754789 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry5" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=814212995 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry6" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1922908901 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry7" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=978711215 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry8" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=395554607 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry9" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=638179014 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
+
+[node name="CellEntry10" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=884143870 instance=ExtResource("7_0o7p1")]
+layout_mode = 2
 
 [node name="NewCellDisplay" type="Control" parent="BreedingUI" unique_id=726775436]
 visible = false

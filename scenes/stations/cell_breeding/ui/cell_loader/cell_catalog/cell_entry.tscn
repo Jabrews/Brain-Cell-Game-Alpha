@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://ckmloda0goqql" path="res://models/cell_breeder/ui/status_symbols/lifespan_status_symbol.png" id="6_ftifm"]
 [ext_resource type="Texture2D" uid="uid://b54uvaji3smgg" path="res://models/cell_breeder/ui/status_symbols/unavaible_status_symbol.png" id="7_hlemt"]
 [ext_resource type="Texture2D" uid="uid://bej6d2s3gsr24" path="res://models/cell_breeder/ui/status_symbols/on_goal_status_symbol.png" id="8_qenhj"]
+[ext_resource type="Texture2D" uid="uid://dh360tqdcq4cs" path="res://models/cell_breeder/ui/selected_border.png" id="11_5ic05"]
+[ext_resource type="Texture2D" uid="uid://t1jvwphtxy88" path="res://models/cell_breeder/ui/selected_border_dragging.png" id="12_gbaeh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6ef2"]
 shader = ExtResource("4_hsfwe")
@@ -260,13 +262,13 @@ offset_right = 31.0
 offset_bottom = 23.0
 
 [node name="OnBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1128240956]
-visible = false
 modulate = Color(1, 0, 0, 1)
 texture_filter = 1
 layout_mode = 0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 144.0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 141.0
+offset_bottom = 149.0
 texture = ExtResource("3_asdwg")
 
 [node name="OnBoost" type="TextureRect" parent="InsideBorderEffects" unique_id=2036710750]
@@ -274,9 +276,10 @@ visible = false
 modulate = Color(1, 1, 0, 1)
 texture_filter = 1
 layout_mode = 0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 144.0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 141.0
+offset_bottom = 149.0
 texture = SubResource("CompressedTexture2D_asdwg")
 
 [node name="WantedBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1518712769]
@@ -284,9 +287,10 @@ visible = false
 modulate = Color(1, 0, 0, 0.49019608)
 texture_filter = 1
 layout_mode = 0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 144.0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 141.0
+offset_bottom = 149.0
 texture = ExtResource("3_asdwg")
 
 [node name="WantedBoost" type="TextureRect" parent="InsideBorderEffects" unique_id=1075029111]
@@ -294,9 +298,10 @@ visible = false
 modulate = Color(1, 1, 0, 0.49019608)
 texture_filter = 1
 layout_mode = 0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 144.0
+offset_left = -5.0
+offset_top = 3.0
+offset_right = 141.0
+offset_bottom = 149.0
 texture = SubResource("CompressedTexture2D_asdwg")
 
 [node name="OutsideBorderEffects" type="Control" parent="." unique_id=1059161179]
@@ -306,11 +311,31 @@ offset_top = -17.0
 offset_right = 31.0
 offset_bottom = 23.0
 
+[node name="SelectedBorder" type="TextureRect" parent="OutsideBorderEffects" unique_id=786991937]
+visible = false
+modulate = Color(1, 1, 1, 0.6862745)
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = 5.0
+offset_right = 139.0
+offset_bottom = 162.0
+texture = ExtResource("11_5ic05")
+
+[node name="DraggingBorder" type="TextureRect" parent="OutsideBorderEffects" unique_id=1285168868]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = 5.0
+offset_right = 139.0
+offset_bottom = 162.0
+texture = ExtResource("12_gbaeh")
+
 [node name="StatusSymbols" type="Control" parent="." unique_id=673482015]
 anchors_preset = 0
-offset_top = 41.0
-offset_right = 40.0
-offset_bottom = 81.0
+offset_top = 45.0
+offset_bottom = 45.0
 
 [node name="StatusBG" type="TextureRect" parent="StatusSymbols" unique_id=268085270]
 texture_filter = 1
