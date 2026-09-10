@@ -1,0 +1,368 @@
+[gd_scene format=3 uid="uid://dx0t5p3hom465"]
+
+[ext_resource type="Texture2D" uid="uid://bst0ab3yulj6m" path="res://models/cell_breeder/ui/cell_entry_bg_2.png" id="1_7it5b"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_q8fwo"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/clean_bar_bg.png" id="3_0f5c7"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_4o2rb"]
+[ext_resource type="Texture2D" uid="uid://b2wldd2pms7ag" path="res://models/cell_breeder/ui/cell_entry_inside_border.png" id="3_asdwg"]
+[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/clean_bar_bg_progress.png" id="4_7it5b"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="4_hsfwe"]
+[ext_resource type="Texture2D" uid="uid://b5htv4adbc3if" path="res://models/cell_breeder/ui/cell_entry_symbol_bg.png" id="4_knlae"]
+[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/defect_bar.png" id="4_m6ef2"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="5_0f5c7"]
+[ext_resource type="Texture2D" uid="uid://blc6k40bxax8w" path="res://models/cell_breeder/ui/status_symbols/death_chance_status_symbol.png" id="5_tvcro"]
+[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/cell_breeder/ui/defect_bar_progress.png" id="6_5ic05"]
+[ext_resource type="Texture2D" uid="uid://ckmloda0goqql" path="res://models/cell_breeder/ui/status_symbols/lifespan_status_symbol.png" id="6_ftifm"]
+[ext_resource type="Texture2D" uid="uid://b54uvaji3smgg" path="res://models/cell_breeder/ui/status_symbols/unavaible_status_symbol.png" id="7_hlemt"]
+[ext_resource type="Texture2D" uid="uid://bej6d2s3gsr24" path="res://models/cell_breeder/ui/status_symbols/on_goal_status_symbol.png" id="8_qenhj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6ef2"]
+shader = ExtResource("4_hsfwe")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("5_0f5c7")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k4c0k"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asdwg"]
+load_path = "res://.godot/imported/cell_entry_inside_border.png-71ccfcd3b5922cb00d6ce458b1b2a12b.ctex"
+
+[node name="CellEntry" type="Control" unique_id=6030190]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="EntryTexture" type="TextureRect" parent="." unique_id=992434087]
+texture_filter = 1
+layout_mode = 0
+offset_left = -9.0
+offset_top = -9.0
+offset_right = 127.0
+offset_bottom = 127.0
+texture = ExtResource("1_7it5b")
+
+[node name="CellName" type="Label" parent="." unique_id=1258845842]
+texture_filter = 1
+layout_mode = 0
+offset_left = -9.0
+offset_top = 1.0
+offset_right = 127.0
+offset_bottom = 26.0
+theme_override_fonts/font = ExtResource("1_q8fwo")
+theme_override_font_sizes/font_size = 16
+text = "Billy Bob Jr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatDisplay" type="Control" parent="." unique_id=821853428]
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -33.0
+offset_right = 31.0
+offset_bottom = 7.0
+
+[node name="Strength" type="Control" parent="StatDisplay" unique_id=417070485]
+anchors_preset = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 39.0
+
+[node name="CleanBar" type="TextureProgressBar" parent="StatDisplay/Strength" unique_id=2016968076]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 62.0
+offset_right = 117.0
+offset_bottom = 102.0
+value = 75.0
+texture_under = ExtResource("3_0f5c7")
+texture_progress = ExtResource("4_7it5b")
+
+[node name="DefectBar" type="TextureProgressBar" parent="StatDisplay/Strength" unique_id=248274551]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 76.0
+offset_right = 117.0
+offset_bottom = 80.0
+scale = Vector2(1, 1.4)
+value = 50.0
+texture_under = ExtResource("4_m6ef2")
+texture_progress = ExtResource("6_5ic05")
+
+[node name="Off" type="Control" parent="StatDisplay/Strength" unique_id=1885602294]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StatDisplay/Strength/Off" unique_id=32970578]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 62.0
+offset_right = 117.0
+offset_bottom = 80.0
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="Label" type="Label" parent="StatDisplay/Strength/Off" unique_id=175961331]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 66.0
+offset_right = 91.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4o2rb")
+theme_override_font_sizes/font_size = 10
+text = "Off"
+
+[node name="Hide" type="Sprite2D" parent="StatDisplay/Strength" unique_id=1558580453]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_m6ef2")
+position = Vector2(67, 71)
+scale = Vector2(0.31746036, 0.44999987)
+texture = SubResource("CompressedTexture2D_k4c0k")
+
+[node name="Intelligence" type="Control" parent="StatDisplay" unique_id=1183640569]
+anchors_preset = 0
+offset_top = 28.0
+offset_right = 40.0
+offset_bottom = 68.0
+
+[node name="CleanBar" type="TextureProgressBar" parent="StatDisplay/Intelligence" unique_id=1228413478]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 62.0
+offset_right = 117.0
+offset_bottom = 102.0
+value = 75.0
+texture_under = ExtResource("3_0f5c7")
+texture_progress = ExtResource("4_7it5b")
+
+[node name="DefectBar" type="TextureProgressBar" parent="StatDisplay/Intelligence" unique_id=1186563586]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 76.0
+offset_right = 117.0
+offset_bottom = 80.0
+scale = Vector2(1, 1.4)
+value = 50.0
+texture_under = ExtResource("4_m6ef2")
+texture_progress = ExtResource("6_5ic05")
+
+[node name="Off" type="Control" parent="StatDisplay/Intelligence" unique_id=1011964834]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StatDisplay/Intelligence/Off" unique_id=100720146]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 62.0
+offset_right = 117.0
+offset_bottom = 80.0
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="Label" type="Label" parent="StatDisplay/Intelligence/Off" unique_id=1105423812]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 66.0
+offset_right = 91.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4o2rb")
+theme_override_font_sizes/font_size = 10
+text = "Off"
+
+[node name="Hide" type="Sprite2D" parent="StatDisplay/Intelligence" unique_id=1023219002]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_m6ef2")
+position = Vector2(67, 71)
+scale = Vector2(0.31746036, 0.44999987)
+texture = SubResource("CompressedTexture2D_k4c0k")
+
+[node name="Community" type="Control" parent="StatDisplay" unique_id=858082594]
+anchors_preset = 0
+offset_top = 57.0
+offset_right = 40.0
+offset_bottom = 97.0
+
+[node name="CleanBar" type="TextureProgressBar" parent="StatDisplay/Community" unique_id=1735636913]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 62.0
+offset_right = 117.0
+offset_bottom = 102.0
+value = 75.0
+texture_under = ExtResource("3_0f5c7")
+texture_progress = ExtResource("4_7it5b")
+
+[node name="DefectBar" type="TextureProgressBar" parent="StatDisplay/Community" unique_id=460943485]
+texture_filter = 1
+layout_mode = 0
+offset_left = 17.0
+offset_top = 76.0
+offset_right = 117.0
+offset_bottom = 80.0
+value = 50.0
+texture_under = ExtResource("4_m6ef2")
+texture_progress = ExtResource("6_5ic05")
+
+[node name="Off" type="Control" parent="StatDisplay/Community" unique_id=1300230191]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StatDisplay/Community/Off" unique_id=1098938957]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 62.0
+offset_right = 117.0
+offset_bottom = 80.0
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="Label" type="Label" parent="StatDisplay/Community/Off" unique_id=1879928252]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 66.0
+offset_right = 91.0
+offset_bottom = 89.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_4o2rb")
+theme_override_font_sizes/font_size = 10
+text = "Off"
+
+[node name="Hide" type="Sprite2D" parent="StatDisplay/Community" unique_id=1745288641]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_m6ef2")
+position = Vector2(67, 71)
+scale = Vector2(0.31746036, 0.44999987)
+texture = SubResource("CompressedTexture2D_k4c0k")
+
+[node name="InsideBorderEffects" type="Control" parent="." unique_id=1340580287]
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -17.0
+offset_right = 31.0
+offset_bottom = 23.0
+
+[node name="OnBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1128240956]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 144.0
+texture = ExtResource("3_asdwg")
+
+[node name="OnBoost" type="TextureRect" parent="InsideBorderEffects" unique_id=2036710750]
+visible = false
+modulate = Color(1, 1, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 144.0
+texture = SubResource("CompressedTexture2D_asdwg")
+
+[node name="WantedBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1518712769]
+visible = false
+modulate = Color(1, 0, 0, 0.49019608)
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 144.0
+texture = ExtResource("3_asdwg")
+
+[node name="WantedBoost" type="TextureRect" parent="InsideBorderEffects" unique_id=1075029111]
+visible = false
+modulate = Color(1, 1, 0, 0.49019608)
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 144.0
+texture = SubResource("CompressedTexture2D_asdwg")
+
+[node name="OutsideBorderEffects" type="Control" parent="." unique_id=1059161179]
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -17.0
+offset_right = 31.0
+offset_bottom = 23.0
+
+[node name="StatusSymbols" type="Control" parent="." unique_id=673482015]
+anchors_preset = 0
+offset_top = 41.0
+offset_right = 40.0
+offset_bottom = 81.0
+
+[node name="StatusBG" type="TextureRect" parent="StatusSymbols" unique_id=268085270]
+texture_filter = 1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 77.0
+offset_right = 111.0
+offset_bottom = 103.0
+texture = ExtResource("4_knlae")
+
+[node name="SpawnPos" type="Control" parent="StatusSymbols" unique_id=508864646]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ParentNode" type="Control" parent="StatusSymbols" unique_id=1552810961]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeathChanceStatus" type="TextureRect" parent="StatusSymbols/ParentNode" unique_id=1184257509]
+texture_filter = 1
+layout_mode = 0
+offset_left = 35.0
+offset_top = 79.0
+offset_right = 57.0
+offset_bottom = 101.0
+texture = ExtResource("5_tvcro")
+
+[node name="LifeSpanStatus" type="TextureRect" parent="StatusSymbols/ParentNode" unique_id=770588652]
+texture_filter = 1
+layout_mode = 0
+offset_left = 60.0
+offset_top = 79.0
+offset_right = 82.0
+offset_bottom = 101.0
+texture = ExtResource("6_ftifm")
+
+[node name="UnavaibleStatus" type="TextureRect" parent="StatusSymbols/ParentNode" unique_id=2086340374]
+texture_filter = 1
+layout_mode = 0
+offset_left = 11.0
+offset_top = 79.0
+offset_right = 33.0
+offset_bottom = 101.0
+texture = ExtResource("7_hlemt")
+
+[node name="OnGoalPanelStatus" type="TextureRect" parent="StatusSymbols/ParentNode" unique_id=2016658363]
+texture_filter = 1
+layout_mode = 0
+offset_left = 86.0
+offset_top = 79.0
+offset_right = 108.0
+offset_bottom = 101.0
+texture = ExtResource("8_qenhj")

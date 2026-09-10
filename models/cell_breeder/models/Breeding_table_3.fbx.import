@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://babtr1ssib0i5"
-path="res://.godot/imported/Breeding_table_3.fbx-dd7c06d8c0ac3d05d2d00f98273cadde.scn"
+path="res://.godot/imported/Breeding_table_3.fbx-f0286fb88a2252a55f5d25c4e22848b2.scn"
 
 [deps]
 
-source_file="res://models/cell_breeding_table/Breeding_table_3.fbx"
-dest_files=["res://.godot/imported/Breeding_table_3.fbx-dd7c06d8c0ac3d05d2d00f98273cadde.scn"]
+source_file="res://models/cell_breeder/models/Breeding_table_3.fbx"
+dest_files=["res://.godot/imported/Breeding_table_3.fbx-f0286fb88a2252a55f5d25c4e22848b2.scn"]
 
 [params]
 
