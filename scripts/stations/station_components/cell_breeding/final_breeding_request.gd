@@ -6,11 +6,6 @@ extends Node
 @onready var reset_load_panel : Node = $"../ResetLoadPanel"
 
 
-func _ready() -> void:
-	GLGameManagerBus.connect('proceed_next_energy_turn', proceed_next_energy_turn)
-	
-
-
 # finale breeding function called from screen_cell_breeding_loader
 func _handle_final_breeding_request() :
 	var main_left_cell : BrainCell = main_cell_manager.main_left_cell
@@ -33,12 +28,6 @@ func _handle_final_breeding_request() :
 	boost_right_direction ,
 	)
 	
-	GLBreedingComponetsBus.cell_names_bred_this_turn.append(main_left_cell.name)	
-	GLBreedingComponetsBus.cell_names_bred_this_turn.append(main_right_cell.name)	
-	
 	reset_load_panel._reset()
 	
-	
-func proceed_next_energy_turn() :
-	GLBreedingComponetsBus.cell_names_bred_this_turn.clear()
 	

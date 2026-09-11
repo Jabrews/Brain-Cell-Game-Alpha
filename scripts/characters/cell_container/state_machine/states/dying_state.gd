@@ -65,7 +65,7 @@ func state_start() :
 	await tween.finished
 
 	create_flesh_slug()
-
+	
 	cell_container_parent.queue_free()
 
 

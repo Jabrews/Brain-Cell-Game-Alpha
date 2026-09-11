@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5v26q3qb3med"
-path="res://.godot/imported/clean_bar_bg.png-f187a0b9f1c1828eac908c1339709cc2.ctex"
+uid="uid://cmnpi6142auru"
+path="res://.godot/imported/entry_status_symbol_bg.png-14ad1219568c9fee2f567ce2c53ec101.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/clean_bar_bg.png"
-dest_files=["res://.godot/imported/clean_bar_bg.png-f187a0b9f1c1828eac908c1339709cc2.ctex"]
+source_file="res://models/cell_breeder/ui/cell_entry/entry_status_symbol_bg.png"
+dest_files=["res://.godot/imported/entry_status_symbol_bg.png-14ad1219568c9fee2f567ce2c53ec101.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

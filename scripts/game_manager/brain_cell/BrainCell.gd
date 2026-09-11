@@ -14,6 +14,8 @@ var is_target_cell: bool
 var turn_into_flesh_bug: bool
 var cell_is_frozen: bool
 
+var breeder_unavaible : bool
+
 
 @warning_ignore("shadowed_variable")
 func _init(
@@ -23,9 +25,8 @@ func _init(
 	intelligence: BrainCellStat,
 	community: BrainCellStat,
 	life_span: int,
-	is_target_cell: bool = false,
-	turn_into_flesh_bug: bool = false,
 	cell_is_frozen: bool = false,
+	breeder_unavaible : bool = false
 ) -> void:
 	self.name = name
 	self.mutations = mutations
@@ -35,9 +36,9 @@ func _init(
 	self.community = community
 
 	self.life_span = life_span
-	self.is_target_cell = is_target_cell
-	self.turn_into_flesh_bug = turn_into_flesh_bug
 	self.cell_is_frozen = cell_is_frozen
+	
+	self.breeder_unavaible = breeder_unavaible
 
 
 func get_stat(stat_type: String) -> BrainCellStat:
@@ -74,8 +75,6 @@ func copy() -> BrainCell:
 		_copy_stat(intelligence),
 		_copy_stat(community),
 		life_span,
-		is_target_cell,
-		turn_into_flesh_bug,
 		cell_is_frozen,
 	)
 
@@ -96,31 +95,7 @@ func _copy_stat(stat: BrainCellStat) -> BrainCellStat:
 
 
 func _to_string() -> String:
-	@warning_ignore("incompatible_ternary")
-	return (
-		"[BrainCell] %s | mutations: %s"
-		+ " | STR: %s enabled: %s defect: %s hidden: %s"
-		+ " | INT: %s enabled: %s defect: %s hidden: %s"
-		+ " | COM: %s enabled: %s defect: %s hidden: %s"
-		+ " | lifespan: %s"
-	) % [
+	return "%s | can breed: %s" % [
 		name,
-		mutations,
-
-		strength.value if strength else "NULL",
-		strength.enabled if strength else "NULL",
-		strength.defect if strength else "NULL",
-		strength.hidden if strength else "NULL",
-
-		intelligence.value if intelligence else "NULL",
-		intelligence.enabled if intelligence else "NULL",
-		intelligence.defect if intelligence else "NULL",
-		intelligence.hidden if intelligence else "NULL",
-
-		community.value if community else "NULL",
-		community.enabled if community else "NULL",
-		community.defect if community else "NULL",
-		community.hidden if community else "NULL",
-
-		life_span,
+		not breeder_unavaible
 	]

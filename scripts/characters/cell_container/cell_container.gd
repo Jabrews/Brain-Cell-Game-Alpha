@@ -102,7 +102,7 @@ func _handle_cell_deleted(cell_name : String) :
 	
 	if cell_name != designated_brain_cell.name:
 		return
-		
+	
 	state_machine.switch_state(state_machine.State.DYING)
 
 
@@ -182,6 +182,7 @@ func check_for_cell_dead_on_update() :
 	
 	#### age death event ####
 	if designated_brain_cell.life_span <= 0:
+		
 		
 		
 		kill_cell()

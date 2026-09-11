@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5htv4adbc3if"
-path="res://.godot/imported/cell_entry_symbol_bg.png-1ef4ebcaee49d2a2a91095e8d4172695.ctex"
+uid="uid://bj24wcym1ke2"
+path="res://.godot/imported/cell_entry_bg_2-export.png-33b80affb791a0e026e540aafc2b9d0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/cell_entry_symbol_bg.png"
-dest_files=["res://.godot/imported/cell_entry_symbol_bg.png-1ef4ebcaee49d2a2a91095e8d4172695.ctex"]
+source_file="res://models/cell_breeder/ui/cell_entry/cell_entry_bg_2-export.png"
+dest_files=["res://.godot/imported/cell_entry_bg_2-export.png-33b80affb791a0e026e540aafc2b9d0d.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

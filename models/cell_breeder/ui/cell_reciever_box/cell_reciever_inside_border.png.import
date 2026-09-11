@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bffxxxjm5fop3"
-path="res://.godot/imported/defect_bar_progress.png-9bfe868840baf8f6ef0f59fb28e6f32f.ctex"
+uid="uid://djnps8v8tsxbm"
+path="res://.godot/imported/cell_reciever_inside_border.png-6920e60381abe439bf443a9e52d4644c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/defect_bar_progress.png"
-dest_files=["res://.godot/imported/defect_bar_progress.png-9bfe868840baf8f6ef0f59fb28e6f32f.ctex"]
+source_file="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png"
+dest_files=["res://.godot/imported/cell_reciever_inside_border.png-6920e60381abe439bf443a9e52d4644c.ctex"]
 
 [params]
 

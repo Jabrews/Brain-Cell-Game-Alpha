@@ -978,11 +978,11 @@ size = Vector2i(704, 542)
 [node name="ScreenCellBreedingLoader" parent="BreedPreviewTv/TvFrontPannel/SubViewport" unique_id=1159403996 instance=ExtResource("32_0xdbb")]
 
 [node name="BredCellSpawner" type="Node3D" parent="." unique_id=1317833079]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.043589592, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.043589592, 0)
 script = ExtResource("20_t6hjf")
 
 [node name="SpawnPos" type="Node3D" parent="BredCellSpawner" unique_id=1992195621]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="MeshBottom" type="MeshInstance3D" parent="BredCellSpawner" unique_id=775738868]
 mesh = SubResource("SphereMesh_ddgdj")

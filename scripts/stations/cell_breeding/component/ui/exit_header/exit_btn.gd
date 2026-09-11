@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _handle_mouse_entered() :
 	hovered = true
-	scale = Vector2(1.2, 1.2)
+	scale = Vector2(1.05, 1.05)
 
 func _handle_mouse_exited() :
 	hovered = false

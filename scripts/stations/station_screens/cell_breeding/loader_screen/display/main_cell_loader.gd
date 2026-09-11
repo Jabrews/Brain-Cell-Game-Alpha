@@ -57,7 +57,7 @@ extends Node
 @onready var display_death_chance_right : Node = $Display/DisplayDeathChanceRight
 
 # both side loaders
-@onready var display_death_chance_skull : Node = $Display/DisplayDeathChanceSkull 
+@onready var display_death_chance_skull : Node = $Display/DisplayDeathChanceSkull
 
 
 var last_left_cell: BrainCell
@@ -116,19 +116,17 @@ func _handle_recieve_main_cells(
 	# also confirm btn
 	already_breeded_left.visible = false
 	already_breeded_right.visible = false
-	handle_confirm_btn.prevent_already_breeded_confirm = false 
+	handle_confirm_btn.prevent_already_breeded_confirm = false
 	
 	
 	# already breeded event detect
 	if main_left_cell :
-		var cell_already_breeded : bool = verify_cell_not_already_breeded(main_left_cell.name)
-		if cell_already_breeded : 
+		if main_left_cell.breeder_unavaible:
 			already_breeded_left.visible = true
 			handle_confirm_btn.prevent_already_breeded_confirm = true
 	
-	if main_right_cell : 
-		var cell_already_breeded : bool = verify_cell_not_already_breeded(main_right_cell.name)
-		if cell_already_breeded : 
+	if main_right_cell :
+		if main_right_cell.breeder_unavaible :
 			already_breeded_right.visible = true
 			handle_confirm_btn.prevent_already_breeded_confirm = true
 	
@@ -219,14 +217,3 @@ func _load_right(cell: BrainCell) -> void:
 
 	right_blood_type_loading_spinner.visible = false
 	right_blood_type_display.visible = true
-
-func verify_cell_not_already_breeded(selected_cell_name : String) -> bool : 
-	
-	var cell_already_used : bool = false
-	
-	for cell_name in GLBreedingComponetsBus.cell_names_bred_this_turn :
-		if selected_cell_name == cell_name : 
-			cell_already_used = true
-	
-	
-	return cell_already_used

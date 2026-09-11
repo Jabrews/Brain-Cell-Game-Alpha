@@ -1,20 +1,23 @@
 [gd_scene format=3 uid="uid://dx0t5p3hom465"]
 
-[ext_resource type="Script" uid="uid://d0ue3qn3bhen" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry.gd" id="1_5ic05"]
-[ext_resource type="Texture2D" uid="uid://bst0ab3yulj6m" path="res://models/cell_breeder/ui/cell_entry_bg_2.png" id="1_7it5b"]
+[ext_resource type="Script" uid="uid://d0ue3qn3bhen" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/cell_entry.gd" id="1_5ic05"]
+[ext_resource type="Texture2D" uid="uid://bst0ab3yulj6m" path="res://models/cell_breeder/ui/cell_entry/cell_entry_bg_2.png" id="1_7it5b"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_q8fwo"]
-[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/clean_bar_bg.png" id="3_0f5c7"]
+[ext_resource type="Script" uid="uid://cbys0nr33jhn5" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/display_cell_entry.gd" id="2_5ic05"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="3_0f5c7"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_4o2rb"]
-[ext_resource type="Texture2D" uid="uid://b2wldd2pms7ag" path="res://models/cell_breeder/ui/cell_entry_inside_border.png" id="3_asdwg"]
-[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/clean_bar_bg_progress.png" id="4_7it5b"]
+[ext_resource type="Texture2D" uid="uid://b2wldd2pms7ag" path="res://models/cell_breeder/ui/cell_entry/borders/inside/cell_entry_inside_border.png" id="3_asdwg"]
+[ext_resource type="Script" uid="uid://csrwajcw7iwp8" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/handle_status_symbols.gd" id="3_gbaeh"]
+[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="4_7it5b"]
+[ext_resource type="Script" uid="uid://cdwdm4qibx2jg" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/detect_status_symbol.gd" id="4_gbaeh"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="4_hsfwe"]
-[ext_resource type="Texture2D" uid="uid://b5htv4adbc3if" path="res://models/cell_breeder/ui/cell_entry_symbol_bg.png" id="4_knlae"]
-[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/defect_bar.png" id="4_m6ef2"]
+[ext_resource type="Texture2D" uid="uid://b5htv4adbc3if" path="res://models/cell_breeder/ui/cell_entry/cell_entry_symbol_bg.png" id="4_knlae"]
+[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/cell_entry/defect_bar.png" id="4_m6ef2"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="5_0f5c7"]
-[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/cell_breeder/ui/defect_bar_progress.png" id="6_5ic05"]
-[ext_resource type="Texture2D" uid="uid://dh360tqdcq4cs" path="res://models/cell_breeder/ui/selected_border.png" id="11_5ic05"]
-[ext_resource type="Texture2D" uid="uid://t1jvwphtxy88" path="res://models/cell_breeder/ui/selected_border_dragging.png" id="12_gbaeh"]
-[ext_resource type="PackedScene" uid="uid://utsf0pnnx7de" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_catalog/status_symbol.tscn" id="18_o54oq"]
+[ext_resource type="Script" uid="uid://c86v4s4fdx6x1" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/handle_input.gd" id="5_o54oq"]
+[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="6_5ic05"]
+[ext_resource type="Texture2D" uid="uid://dh360tqdcq4cs" path="res://models/cell_breeder/ui/cell_entry/borders/outside/selected_border.png" id="11_5ic05"]
+[ext_resource type="Texture2D" uid="uid://t1jvwphtxy88" path="res://models/cell_breeder/ui/cell_entry/borders/outside/selected_border_dragging.png" id="12_gbaeh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6ef2"]
 shader = ExtResource("4_hsfwe")
@@ -35,6 +38,20 @@ load_path = "res://.godot/imported/cell_entry_inside_border.png-71ccfcd3b5922cb0
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5ic05")
+
+[node name="DisplayCellEntry" type="Node" parent="." unique_id=416736739]
+script = ExtResource("2_5ic05")
+
+[node name="HandleStatusSymbols" type="Node" parent="." unique_id=1309998390]
+script = ExtResource("3_gbaeh")
+
+[node name="DetectStatusSymbol" type="Node" parent="HandleStatusSymbols" unique_id=1720550182]
+script = ExtResource("4_gbaeh")
+
+[node name="HandleInput" type="Node" parent="." unique_id=814980792]
+script = ExtResource("5_o54oq")
+
+[node name="HoldingDetectTimer" type="Timer" parent="HandleInput" unique_id=1888028724]
 
 [node name="EntryTexture" type="TextureRect" parent="." unique_id=992434087]
 texture_filter = 1
@@ -64,6 +81,7 @@ offset_left = -9.0
 offset_top = -33.0
 offset_right = 31.0
 offset_bottom = 7.0
+mouse_filter = 2
 
 [node name="Strength" type="Control" parent="StatDisplay" unique_id=417070485]
 anchors_preset = 0
@@ -78,6 +96,7 @@ offset_left = 17.0
 offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 102.0
+mouse_filter = 2
 value = 75.0
 texture_under = ExtResource("3_0f5c7")
 texture_progress = ExtResource("4_7it5b")
@@ -90,6 +109,7 @@ offset_top = 76.0
 offset_right = 117.0
 offset_bottom = 80.0
 scale = Vector2(1, 1.4)
+mouse_filter = 2
 value = 50.0
 texture_under = ExtResource("4_m6ef2")
 texture_progress = ExtResource("6_5ic05")
@@ -99,6 +119,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/Strength/Off" unique_id=32970578]
 layout_mode = 0
@@ -106,6 +127,7 @@ offset_left = 17.0
 offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 82.0
+mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Strength/Off" unique_id=175961331]
@@ -141,6 +163,7 @@ offset_left = 17.0
 offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 102.0
+mouse_filter = 2
 value = 75.0
 texture_under = ExtResource("3_0f5c7")
 texture_progress = ExtResource("4_7it5b")
@@ -153,6 +176,7 @@ offset_top = 76.0
 offset_right = 117.0
 offset_bottom = 80.0
 scale = Vector2(1, 1.4)
+mouse_filter = 2
 value = 50.0
 texture_under = ExtResource("4_m6ef2")
 texture_progress = ExtResource("6_5ic05")
@@ -162,6 +186,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/Intelligence/Off" unique_id=100720146]
 layout_mode = 0
@@ -169,6 +194,7 @@ offset_left = 17.0
 offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 82.0
+mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Intelligence/Off" unique_id=1105423812]
@@ -204,6 +230,7 @@ offset_left = 17.0
 offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 102.0
+mouse_filter = 2
 value = 75.0
 texture_under = ExtResource("3_0f5c7")
 texture_progress = ExtResource("4_7it5b")
@@ -216,6 +243,7 @@ offset_top = 76.0
 offset_right = 117.0
 offset_bottom = 81.0
 scale = Vector2(1, 1.215)
+mouse_filter = 2
 value = 50.0
 texture_under = ExtResource("4_m6ef2")
 texture_progress = ExtResource("6_5ic05")
@@ -225,6 +253,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/Community/Off" unique_id=1098938957]
 layout_mode = 0
@@ -232,6 +261,7 @@ offset_left = 17.0
 offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 81.0
+mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Community/Off" unique_id=1879928252]
@@ -260,6 +290,7 @@ offset_left = -9.0
 offset_top = -17.0
 offset_right = 31.0
 offset_bottom = 23.0
+mouse_filter = 2
 
 [node name="OnBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1128240956]
 visible = false
@@ -311,6 +342,7 @@ offset_left = -9.0
 offset_top = -17.0
 offset_right = 31.0
 offset_bottom = 23.0
+mouse_filter = 2
 
 [node name="SelectedBorder" type="TextureRect" parent="OutsideBorderEffects" unique_id=786991937]
 visible = false
@@ -321,6 +353,7 @@ offset_left = -4.0
 offset_top = 5.0
 offset_right = 139.0
 offset_bottom = 162.0
+mouse_filter = 2
 texture = ExtResource("11_5ic05")
 
 [node name="DraggingBorder" type="TextureRect" parent="OutsideBorderEffects" unique_id=1285168868]
@@ -331,6 +364,7 @@ offset_left = -4.0
 offset_top = 5.0
 offset_right = 139.0
 offset_bottom = 162.0
+mouse_filter = 2
 texture = ExtResource("12_gbaeh")
 
 [node name="StatusSymbols" type="Control" parent="." unique_id=673482015]
@@ -352,38 +386,35 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Pos1" type="Control" parent="StatusSymbols/SpawnPos" unique_id=1252082931]
+anchors_preset = 0
+offset_left = 11.0
+offset_top = 79.0
+offset_right = 51.0
+offset_bottom = 119.0
+
+[node name="Pos2" type="Control" parent="StatusSymbols/SpawnPos" unique_id=1602663179]
+anchors_preset = 0
+offset_left = 36.0
+offset_top = 79.0
+offset_right = 76.0
+offset_bottom = 119.0
+
+[node name="Pos3" type="Control" parent="StatusSymbols/SpawnPos" unique_id=314733805]
+anchors_preset = 0
+offset_left = 61.0
+offset_top = 79.0
+offset_right = 101.0
+offset_bottom = 119.0
+
+[node name="Pos4" type="Control" parent="StatusSymbols/SpawnPos" unique_id=1761305550]
+anchors_preset = 0
+offset_left = 86.0
+offset_top = 79.0
+offset_right = 126.0
+offset_bottom = 119.0
+
 [node name="ParentNode" type="Control" parent="StatusSymbols" unique_id=1552810961]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="StatusSymbol" parent="StatusSymbols/ParentNode" unique_id=1029018857 instance=ExtResource("18_o54oq")]
-layout_mode = 1
-offset_left = 35.0
-offset_top = 79.0
-offset_right = 35.0
-offset_bottom = 79.0
-
-[node name="StatusSymbol2" parent="StatusSymbols/ParentNode" unique_id=498308357 instance=ExtResource("18_o54oq")]
-layout_mode = 1
-offset_left = 60.0
-offset_top = 79.0
-offset_right = 60.0
-offset_bottom = 79.0
-status = 1
-
-[node name="StatusSymbol3" parent="StatusSymbols/ParentNode" unique_id=220537668 instance=ExtResource("18_o54oq")]
-layout_mode = 1
-offset_left = 86.0
-offset_top = 79.0
-offset_right = 86.0
-offset_bottom = 79.0
-status = 2
-
-[node name="StatusSymbol4" parent="StatusSymbols/ParentNode" unique_id=913414126 instance=ExtResource("18_o54oq")]
-layout_mode = 1
-offset_left = 10.0
-offset_top = 79.0
-offset_right = 10.0
-offset_bottom = 79.0
-status = 3

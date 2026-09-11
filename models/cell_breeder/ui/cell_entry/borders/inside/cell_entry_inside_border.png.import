@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6obenlue6niy"
-path="res://.godot/imported/cell_entry_bg.png-935ef01b3da578127e8f13840b6688f2.ctex"
+uid="uid://b2wldd2pms7ag"
+path="res://.godot/imported/cell_entry_inside_border.png-7cfefc63f16adf42d97b66d3e4427256.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/cell_entry_bg.png"
-dest_files=["res://.godot/imported/cell_entry_bg.png-935ef01b3da578127e8f13840b6688f2.ctex"]
+source_file="res://models/cell_breeder/ui/cell_entry/borders/inside/cell_entry_inside_border.png"
+dest_files=["res://.godot/imported/cell_entry_inside_border.png-7cfefc63f16adf42d97b66d3e4427256.ctex"]
 
 [params]
 

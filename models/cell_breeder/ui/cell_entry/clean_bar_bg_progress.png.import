@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t1jvwphtxy88"
-path="res://.godot/imported/selected_border_dragging.png-74d8949aa0162f24cec255c98dedd62c.ctex"
+uid="uid://dvdj533q14klp"
+path="res://.godot/imported/clean_bar_bg_progress.png-75eea1610665e88b1080fd9b472077b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/selected_border_dragging.png"
-dest_files=["res://.godot/imported/selected_border_dragging.png-74d8949aa0162f24cec255c98dedd62c.ctex"]
+source_file="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png"
+dest_files=["res://.godot/imported/clean_bar_bg_progress.png-75eea1610665e88b1080fd9b472077b2.ctex"]
 
 [params]
 

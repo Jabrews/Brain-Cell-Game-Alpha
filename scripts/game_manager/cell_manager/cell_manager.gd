@@ -5,6 +5,11 @@ var prisoner_cells : Array[BrainCell] = []
 var collected_cells : Array[BrainCell] = []
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') : 
+		for cell : BrainCell in collected_cells : 
+			print(cell)
+
 
 func _ready() -> void:
 	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
@@ -20,6 +25,10 @@ func _ready() -> void:
 	GLCellManagerBus.connect('unhide_cell_mutation', _handle_unhide_cell_mutation)
 	GLCellManagerBus.connect('cell_hit_by_crystal', _handle_cell_hiy_by_crystals)
 	GLCellManagerBus.connect('collected_cell_changed', _handle_collected_cell_changed)	
+	
+	# unsetting breeder unavaible
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_proceed_next_energy_turn)
+	
 	
 	# DEBUG
 	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
@@ -362,6 +371,15 @@ func _handle_collected_cell_changed(cell : BrainCell) :
 		delete_collected_cells([cell])
 	else :
 		update_collected_cells([cell])
+	
+func _handle_proceed_next_energy_turn() :
+	
+	# turn off breeder unavaible
+	for cell : BrainCell in collected_cells : 	
+		cell.breeder_unavaible = false
+		
+		update_collected_cells([cell])
+	
 	
 	
 	

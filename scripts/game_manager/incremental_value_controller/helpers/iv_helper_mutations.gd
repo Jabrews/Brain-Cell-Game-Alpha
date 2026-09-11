@@ -6,19 +6,19 @@ func _update_mutations(round : int , energy : int) :
 	if round == 1 :
 		IVMutations.mutations = [
 			# airborne
-			#IVMutations.all_mutations[0],
+			IVMutations.all_mutations[0],
 			# sentient
-			#IVMutations.all_mutations[1],
+			IVMutations.all_mutations[1],
 			# lonley
-			#IVMutations.all_mutations[2],
+			IVMutations.all_mutations[2],
 			# disrupter 
 			IVMutations.all_mutations[3],
 			# exsplosive 
-			#IVMutations.all_mutations[4],
+			IVMutations.all_mutations[4],
 			# cognisance
-			#IVMutations.all_mutations[5],
+			IVMutations.all_mutations[5],
 			# telekentic 
-			#IVMutations.all_mutations[6],
+			IVMutations.all_mutations[6],
 	]
 
 

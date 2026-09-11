@@ -35,7 +35,7 @@ func _process(delta):
 
 
 func switch_state(new_state : State):
-
+	
 	# exit previous state
 	if curr_state and curr_state.has_method("state_end"):
 		curr_state.state_end()

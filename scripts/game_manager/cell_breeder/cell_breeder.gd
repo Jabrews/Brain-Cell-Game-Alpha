@@ -90,6 +90,9 @@ func _handle_player_breeded_cells(
 			boost_right_cell
 		)
 	
+	# mark bred cells unavaible
+	main_left_cell.breeder_unavaible = true
+	main_right_cell.breeder_unavaible = true
 		
 	
 	# check death chance of cell 1 & 2
@@ -115,7 +118,7 @@ func _handle_player_breeded_cells(
 	if not kill_old_2 : 
 		main_right_cell = death_chance_helper.decrease_old_cell._decrease(main_right_cell)
 		main_right_cell.mutations = []
-	
+		
 	GLCellManagerBus.emit_signal(
 		"cell_breeded",
 		main_left_cell,
@@ -175,7 +178,7 @@ func _create_breeded_cell(
 	)
 
 	_apply_disabled_stats(new_cell)
-
+	
 	return new_cell
 
 

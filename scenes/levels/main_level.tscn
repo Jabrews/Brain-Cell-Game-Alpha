@@ -450,7 +450,7 @@ navigation_mesh = SubResource("NavigationMesh_v2xyd")
 [node name="Charcters" type="Node" parent="." unique_id=1683906565]
 
 [node name="Player" parent="Charcters" unique_id=1124472616 instance=ExtResource("1_h7hv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.933587, 2, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.066413, 2, 12)
 
 [node name="ContainerParentNode" type="Node" parent="Charcters" unique_id=1909441806]
 
@@ -748,15 +748,15 @@ script = ExtResource("14_5ru7i")
 script = ExtResource("59_ms0m2")
 
 [node name="CeilingFan" parent="CelingFanManager" unique_id=829669894 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 5.2999997, 9.200001)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 7.2999997, 9.200001)
 room = "main_room"
 
 [node name="CeilingFan2" parent="CelingFanManager" unique_id=1454637000 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.4000006, 5.2999997, 0.10000038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.400001, 7.2999997, -0.8999996)
 room = "main_room"
 
 [node name="CeilingFan3" parent="CelingFanManager" unique_id=199999115 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 5.2999997, -11.499999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 7.2999997, -11.499999)
 room = "interpreter_room"
 
 [node name="Doors" type="Node" parent="." unique_id=1761693126]

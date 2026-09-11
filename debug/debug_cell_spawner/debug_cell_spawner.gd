@@ -11,13 +11,12 @@ func _ready() -> void:
 	var cell_one: BrainCell = BrainCell.new(
 		"cell_one",
 		[],
-		BrainCellStat.new("strength", true, 300, 200, true),
-		BrainCellStat.new("intelligence", true, 200, 250, false),
-		BrainCellStat.new("community", true, 300, 100, false),
+		BrainCellStat.new("strength", true, 50, 0, true),
+		BrainCellStat.new("intelligence", true, 100, 10, false),
+		BrainCellStat.new("community", true, 125, 50, false),
 		3,
 		false,
 		false,
-		false
 	)
 	
 	
@@ -25,13 +24,12 @@ func _ready() -> void:
 	var cell_two : BrainCell = BrainCell.new(
 		"cell_two",
 		[],
-		BrainCellStat.new("strength", false, 0, 0, false),
-		BrainCellStat.new("intelligence", true, 150, 250, false),
-		BrainCellStat.new("community", true, 50, 100, false),
+		BrainCellStat.new("strength", true, 200, 100, true),
+		BrainCellStat.new("intelligence", true, 50, 10, false),
+		BrainCellStat.new("community", true, 75, 0, false),
 		3,
 		false,
 		false,
-		false
 	)
 	
 	

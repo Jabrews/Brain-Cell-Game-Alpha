@@ -21,8 +21,8 @@ func _handle_cell_breeded(
 		
 	create_cell_container_instance(new_cell)
 
-
 func create_cell_container_instance(cell : BrainCell) :
+	
 	var cell_container = cell_container_instance.instantiate()
 	cell_container.name = cell.name
 	cell_container.designated_brain_cell = cell
@@ -30,4 +30,6 @@ func create_cell_container_instance(cell : BrainCell) :
 	var cell_container_parent_node : Node = parent_cell_breeding_station.cell_container_parent_node 
 	
 	cell_container_parent_node.add_child(cell_container)
+	
 	cell_container.global_position = spawn_position.global_position
+	

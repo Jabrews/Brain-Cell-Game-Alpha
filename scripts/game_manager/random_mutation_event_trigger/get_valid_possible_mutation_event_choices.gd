@@ -119,10 +119,11 @@ func verify_cell_room_valid(cell_name: String) -> bool:
 		or player_room_profile == null
 	):
 		push_error(
-			"Unable to find cell or player room profile: %s, %s"
+			"Unable to find cell or player room profile: %s %s %s"
 			% [
 				cell_room_profile,
-				player_room_profile
+				player_room_profile,
+				cell_name
 			]
 		)
 

@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://06w84xu08m2m" path="res://scripts/stations/cell_breeding/component/display/display_cell_catalog.gd" id="3_a0emy"]
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
+[ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_reciever_box/cell_reciever_box.tscn" id="8_a0emy"]
+[ext_resource type="PackedScene" uid="uid://c3mi5msr4xa1t" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_catalog/drag_cell_entry.tscn" id="9_nopnw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -267,6 +269,8 @@ offset_bottom = 40.0
 
 [node name="HintParentNode" type="Node" parent="BreedingUI" unique_id=1896250678]
 
+[node name="DragCellEntryParentNode" type="Node" parent="BreedingUI" unique_id=1210465014]
+
 [node name="BlurBg" type="ColorRect" parent="BreedingUI" unique_id=1307360620]
 material = SubResource("ShaderMaterial_awyxg")
 layout_mode = 1
@@ -289,30 +293,29 @@ offset_bottom = -24.0
 [node name="BG" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=984012214]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 104.0
+offset_top = 72.0
 offset_right = 1248.0
-offset_bottom = 160.0
+offset_bottom = 112.0
 color = Color(0.53, 0.026500005, 0.026500005, 1)
 
 [node name="ExitBtn" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=2107038211]
 layout_mode = 0
-offset_left = 1128.0
-offset_top = 112.0
-offset_right = 1221.0
-offset_bottom = 152.0
+offset_left = 1148.0
+offset_top = 76.0
+offset_right = 1220.0
+offset_bottom = 108.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("5_1yw4i")
 
 [node name="ExitLabel" type="Label" parent="BreedingUI/ExitHeader/ExitBtn" unique_id=207789195]
 texture_filter = 1
 layout_mode = 0
-offset_top = 3.0
-offset_right = 92.0
-offset_bottom = 39.0
+offset_right = 72.0
+offset_bottom = 32.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.9, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -325,9 +328,9 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter" unique_id=1314323368]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 648.0
+offset_top = 672.0
 offset_right = 1248.0
-offset_bottom = 688.0
+offset_bottom = 712.0
 color = Color(0.53, 0.026500005, 0.026500005, 1)
 
 [node name="CellLoader" type="Control" parent="BreedingUI" unique_id=908120563]
@@ -344,9 +347,9 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView" unique_id=489023309]
 layout_mode = 0
 offset_left = 352.0
-offset_top = 120.0
+offset_top = 72.0
 offset_right = 1248.0
-offset_bottom = 416.0
+offset_bottom = 392.0
 color = Color(0.5, 0.10899997, 0.03999999, 0.7058824)
 
 [node name="SelectedView" type="Control" parent="BreedingUI/CellLoader" unique_id=1247261752]
@@ -357,10 +360,24 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1899304568]
 layout_mode = 0
 offset_left = 352.0
-offset_top = 416.0
+offset_top = 392.0
 offset_right = 1248.0
-offset_bottom = 672.0
+offset_bottom = 696.0
 color = Color(0.4, 0.08719998, 0.031999994, 0.7058824)
+
+[node name="CellBox" parent="BreedingUI/CellLoader/SelectedView" unique_id=617651389 instance=ExtResource("8_a0emy")]
+layout_mode = 1
+offset_left = 752.0
+offset_top = 596.0
+offset_right = 752.0
+offset_bottom = 596.0
+
+[node name="DragCellEntry" parent="BreedingUI/CellLoader/SelectedView" unique_id=1264155086 instance=ExtResource("9_nopnw")]
+layout_mode = 1
+offset_left = 756.0
+offset_top = 600.0
+offset_right = 756.0
+offset_bottom = 600.0
 
 [node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]
 anchors_preset = 0
@@ -370,22 +387,23 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/CellCatalog" unique_id=1413725970]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 120.0
+offset_top = 72.0
 offset_right = 352.0
-offset_bottom = 672.0
+offset_bottom = 696.0
 mouse_filter = 1
 color = Color(0.3, 0.06539998, 0.023999996, 0.7058824)
 
 [node name="CenterContainer" type="CenterContainer" parent="BreedingUI/CellLoader/CellCatalog" unique_id=816157319]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 120.0
+offset_top = 72.0
 offset_right = 352.0
-offset_bottom = 672.0
+offset_bottom = 696.0
 layout_direction = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer" unique_id=263262927]
-custom_minimum_size = Vector2(320, 552)
+custom_minimum_size = Vector2(320, 624)
+custom_maximum_size = Vector2(320, 624)
 layout_mode = 2
 layout_direction = 3
 
@@ -403,3 +421,5 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Node" type="Node" parent="BreedingUI" unique_id=794556508]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://utsf0pnnx7de"]
 
 [ext_resource type="Texture2D" uid="uid://blc6k40bxax8w" path="res://models/cell_breeder/ui/status_symbols/death_chance_status_symbol.png" id="1_0ipv1"]
-[ext_resource type="Script" uid="uid://bjy34ty1kx3xb" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/status_symbol.gd" id="1_u8ldp"]
+[ext_resource type="Script" uid="uid://bjy34ty1kx3xb" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/status_symbol/status_symbol.gd" id="1_u8ldp"]
 
 [node name="StatusSymbol" type="Control" unique_id=498308357]
 layout_mode = 3

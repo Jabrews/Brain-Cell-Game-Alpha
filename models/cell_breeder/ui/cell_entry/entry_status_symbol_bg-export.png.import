@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvdj533q14klp"
-path="res://.godot/imported/clean_bar_bg_progress.png-5d82f4a732a6ae464e92346befe9b9e4.ctex"
+uid="uid://ckawfv2f72pue"
+path="res://.godot/imported/entry_status_symbol_bg-export.png-c28b57c58143d8e6087420a4e842fbc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/clean_bar_bg_progress.png"
-dest_files=["res://.godot/imported/clean_bar_bg_progress.png-5d82f4a732a6ae464e92346befe9b9e4.ctex"]
+source_file="res://models/cell_breeder/ui/cell_entry/entry_status_symbol_bg-export.png"
+dest_files=["res://.godot/imported/entry_status_symbol_bg-export.png-c28b57c58143d8e6087420a4e842fbc9.ctex"]
 
 [params]
 

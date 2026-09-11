@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b8p8hyip242ut"]
 
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_opguv"]
-[ext_resource type="Script" uid="uid://dpdjet4uuqrb6" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/status_symbol_hint.gd" id="1_p715d"]
+[ext_resource type="Script" uid="uid://dpdjet4uuqrb6" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/status_symbol/status_symbol_hint.gd" id="1_p715d"]
 
 [node name="StatusSymbolHint" type="Control" unique_id=147365024]
 layout_mode = 3
