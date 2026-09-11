@@ -3,16 +3,26 @@ extends Node
 # components
 @onready var breeding_ui : Control = $"../BreedingUI"
 
+# display helpers
+@onready var display_cell_catalog : Node = $"../DisplayCellCatalog"
+
 
 func _toggle_display(toggle_value : bool) :
 	
 	breeding_ui.visible = toggle_value
 	toggle_display_lock(toggle_value)	
 	
-	if not toggle_value : 
+	if toggle_value : 
 		
+		# display 
+		display_cell_catalog._display()
+	
+	if not toggle_value : 
 		# user will always get out breeder in area
 		GLBreedingComponetsBus.emit_signal('toggle_show_view_breeder_label', true)
+		
+		# reset
+		display_cell_catalog._reset()
 	
 	
 	

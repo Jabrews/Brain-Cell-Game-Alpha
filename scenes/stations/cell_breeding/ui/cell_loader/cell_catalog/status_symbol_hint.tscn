@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b8p8hyip242ut"]
+
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_opguv"]
+[ext_resource type="Script" uid="uid://dpdjet4uuqrb6" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/status_symbol_hint.gd" id="1_p715d"]
+
+[node name="StatusSymbolHint" type="Control" unique_id=147365024]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p715d")
+
+[node name="BG" type="ColorRect" parent="." unique_id=587614490]
+layout_mode = 0
+offset_right = 368.0
+offset_bottom = 72.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="." unique_id=1329296941]
+texture_filter = 1
+custom_minimum_size = Vector2(352, 53)
+custom_maximum_size = Vector2(352, 53)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 360.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("1_opguv")
+theme_override_font_sizes/font_size = 22
+text = "I will not rap in class. I will not rap in class. I will not rap in class. I will not."
+autowrap_mode = 2
