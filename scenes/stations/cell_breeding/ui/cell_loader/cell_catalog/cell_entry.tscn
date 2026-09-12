@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="5_0f5c7"]
 [ext_resource type="Script" uid="uid://c86v4s4fdx6x1" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/handle_input.gd" id="5_o54oq"]
 [ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="6_5ic05"]
+[ext_resource type="Script" uid="uid://c53qoii0x8rgj" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/create_drag_cell_entry.gd" id="6_jm0lo"]
 [ext_resource type="Texture2D" uid="uid://dh360tqdcq4cs" path="res://models/cell_breeder/ui/cell_entry/borders/outside/selected_border.png" id="11_5ic05"]
 [ext_resource type="Texture2D" uid="uid://t1jvwphtxy88" path="res://models/cell_breeder/ui/cell_entry/borders/outside/selected_border_dragging.png" id="12_gbaeh"]
 
@@ -51,7 +52,11 @@ script = ExtResource("4_gbaeh")
 [node name="HandleInput" type="Node" parent="." unique_id=814980792]
 script = ExtResource("5_o54oq")
 
+[node name="CreateDragCellEntry" type="Node" parent="HandleInput" unique_id=1167615130]
+script = ExtResource("6_jm0lo")
+
 [node name="HoldingDetectTimer" type="Timer" parent="HandleInput" unique_id=1888028724]
+wait_time = 0.2
 
 [node name="EntryTexture" type="TextureRect" parent="." unique_id=992434087]
 texture_filter = 1

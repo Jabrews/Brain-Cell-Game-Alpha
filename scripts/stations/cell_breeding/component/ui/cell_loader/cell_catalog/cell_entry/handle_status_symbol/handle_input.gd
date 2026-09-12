@@ -1,9 +1,11 @@
 extends Node
 
 # display components
+@onready var parent_cell_entry: Control = $".."
 @onready var entry_texture: TextureRect = $"../EntryTexture"
 @onready var selected_border_texture: TextureRect = $"../OutsideBorderEffects/SelectedBorder"
 @onready var dragging_border_texture: TextureRect = $"../OutsideBorderEffects/DraggingBorder"
+@onready var create_drag_cell_entry: Node =$CreateDragCellEntry
 
 # components
 @onready var holding_detect_timer: Timer = $HoldingDetectTimer
@@ -11,7 +13,6 @@ extends Node
 var hovered: bool = false
 var holding: bool = false
 var dragging: bool = false
-
 
 func _ready() -> void:
 	entry_texture.mouse_entered.connect(_handle_mouse_enter)
@@ -21,15 +22,13 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if not hovered:
+	if not hovered and not dragging:
 		return
 
-	# start checking for hold
 	if Input.is_action_just_pressed("attack"):
 		holding = true
 		holding_detect_timer.start()
 
-	# released before timer finished = normal click
 	if Input.is_action_just_released("attack"):
 		
 		if holding and not dragging:
@@ -42,12 +41,12 @@ func _handle_holding_detect_timeout() -> void:
 	if not holding:
 		return
 
-	# mouse has been held long enough
 	dragging = true
 
 	selected_border_texture.visible = false
 	dragging_border_texture.visible = true
 
+	create_drag_cell_entry._create(parent_cell_entry.loaded_cell)
 
 
 func _handle_mouse_enter() -> void:
@@ -59,6 +58,11 @@ func _handle_mouse_enter() -> void:
 
 func _handle_mouse_exit() -> void:
 	hovered = false
+
+	# don't reset here if currently dragging
+	if dragging:
+		return
+
 	_reset_hold()
 
 	selected_border_texture.visible = false
@@ -70,8 +74,12 @@ func _reset_hold() -> void:
 	dragging = false
 
 	holding_detect_timer.stop()
+	
+	create_drag_cell_entry._delete()
 
 	dragging_border_texture.visible = false
 
 	if hovered:
 		selected_border_texture.visible = true
+	else:
+		selected_border_texture.visible = false

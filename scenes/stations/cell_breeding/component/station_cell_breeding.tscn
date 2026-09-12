@@ -7,8 +7,7 @@
 [ext_resource type="Script" uid="uid://06w84xu08m2m" path="res://scripts/stations/cell_breeding/component/display/display_cell_catalog.gd" id="3_a0emy"]
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
-[ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_reciever_box/cell_reciever_box.tscn" id="8_a0emy"]
-[ext_resource type="PackedScene" uid="uid://c3mi5msr4xa1t" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_catalog/drag_cell_entry.tscn" id="9_nopnw"]
+[ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/selected_view_box.tscn" id="8_a0emy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -365,19 +364,13 @@ offset_right = 1248.0
 offset_bottom = 696.0
 color = Color(0.4, 0.08719998, 0.031999994, 0.7058824)
 
-[node name="CellBox" parent="BreedingUI/CellLoader/SelectedView" unique_id=617651389 instance=ExtResource("8_a0emy")]
-layout_mode = 1
-offset_left = 752.0
-offset_top = 596.0
-offset_right = 752.0
-offset_bottom = 596.0
-
-[node name="DragCellEntry" parent="BreedingUI/CellLoader/SelectedView" unique_id=1264155086 instance=ExtResource("9_nopnw")]
-layout_mode = 1
-offset_left = 756.0
-offset_top = 600.0
-offset_right = 756.0
-offset_bottom = 600.0
+[node name="SelectedViewBox" parent="BreedingUI/CellLoader/SelectedView" unique_id=617651389 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_a0emy")]
+layout_mode = 0
+offset_left = 728.0
+offset_top = 592.0
+offset_right = 728.0
+offset_bottom = 592.0
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
 
 [node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]
 anchors_preset = 0
@@ -421,5 +414,3 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Node" type="Node" parent="BreedingUI" unique_id=794556508]

@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c3mi5msr4xa1t"]
 
+[ext_resource type="Script" uid="uid://y57dusej7xqo" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/drag_cell_entry/drag_cell_entry.gd" id="1_7bpug"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_ofjlq"]
+[ext_resource type="Script" uid="uid://b17btg0244tua" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/drag_cell_entry/display_drag_cell_entry.gd" id="2_27qp8"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_rvu3e"]
 [ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_3sy3o"]
 [ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/cell_entry/defect_bar.png" id="4_7bpug"]
@@ -8,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_6dlfl"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_p8y7c"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_i8t24"]
+[ext_resource type="Texture2D" uid="uid://y3v57euout2g" path="res://models/cell_breeder/ui/drag_cell_entry/drag_border.png" id="9_3sy3o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pr2rx"]
 shader = ExtResource("7_p8y7c")
@@ -21,15 +24,15 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4kpci"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[node name="DragCellEntry" type="Control" unique_id=1264155086]
+[node name="DragCellEntry" type="Control" unique_id=424012992]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+script = ExtResource("1_7bpug")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1254315577]
+[node name="DisplayDragCellEntry" type="Node" parent="." unique_id=300995727]
+script = ExtResource("2_27qp8")
+
+[node name="DisplayBackground" type="ColorRect" parent="." unique_id=1254315577]
 layout_mode = 0
 offset_right = 82.0
 offset_bottom = 82.0
@@ -267,3 +270,15 @@ material = SubResource("ShaderMaterial_pr2rx")
 position = Vector2(50, 61)
 scale = Vector2(0.24126984, 0.3)
 texture = SubResource("CompressedTexture2D_4kpci")
+
+[node name="DraggingBorder" type="TextureRect" parent="." unique_id=874194865]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 85.0
+offset_bottom = 85.0
+mouse_filter = 2
+texture = ExtResource("9_3sy3o")
+expand_mode = 1
