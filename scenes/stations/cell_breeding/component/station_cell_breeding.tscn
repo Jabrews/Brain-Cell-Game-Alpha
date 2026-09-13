@@ -8,6 +8,11 @@
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
 [ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/selected_view_box.tscn" id="8_a0emy"]
+[ext_resource type="Script" uid="uid://bvhhsl2qa1xkh" path="res://scripts/stations/cell_breeding/component/audio_manager.gd" id="9_nopnw"]
+[ext_resource type="AudioStream" uid="uid://dn6burwhyv76o" path="res://sounds/station_cell_breeder/drag_dropped.mp3" id="10_ymgeo"]
+[ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
+[ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="12_q5y6d"]
+[ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -414,3 +419,23 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=1426721986]
+process_mode = 3
+script = ExtResource("9_nopnw")
+
+[node name="DragDropped" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=67687174]
+stream = ExtResource("10_ymgeo")
+volume_db = -10.0
+
+[node name="BoxAccepted" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1301848753]
+stream = ExtResource("11_1bnce")
+volume_db = -10.0
+
+[node name="Error" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1886521579]
+stream = ExtResource("12_q5y6d")
+volume_db = -10.0
+
+[node name="RemoveFromBox" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=2119466838]
+stream = ExtResource("13_0xebg")
+volume_db = -10.0

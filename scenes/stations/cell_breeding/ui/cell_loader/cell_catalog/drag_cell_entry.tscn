@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b17btg0244tua" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/drag_cell_entry/display_drag_cell_entry.gd" id="2_27qp8"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_rvu3e"]
 [ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_3sy3o"]
+[ext_resource type="Script" uid="uid://daivqevgmy7ax" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/drag_cell_entry/handle_drop.gd" id="3_6dlfl"]
 [ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/cell_entry/defect_bar.png" id="4_7bpug"]
 [ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="5_27qp8"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_6dlfl"]
@@ -31,6 +32,9 @@ script = ExtResource("1_7bpug")
 
 [node name="DisplayDragCellEntry" type="Node" parent="." unique_id=300995727]
 script = ExtResource("2_27qp8")
+
+[node name="HandleDrop" type="Node" parent="." unique_id=36035916]
+script = ExtResource("3_6dlfl")
 
 [node name="DisplayBackground" type="ColorRect" parent="." unique_id=1254315577]
 layout_mode = 0
