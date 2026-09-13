@@ -6,16 +6,43 @@ extends Node
 
 # component boxes
 @onready var selected_view_box : Control = $"../../../CellLoader/SelectedView/SelectedViewBox"
+@onready var left_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/LeftBreedingViewMainBox"
+@onready var right_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/RightBreedingViewMainBox"
+@onready var left_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/LeftBreedingViewBoostBox"
+@onready var right_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/RightBreedingViewBoostBox"
 
 func _handle() :
 	var loaded_cell : BrainCell = parent_drag_cell_entry.loaded_cell 
 	
-	# dropped on selected view box
+	# selected view box
 	if display_background.get_global_rect().intersects(
 		selected_view_box.display_background.get_global_rect()
 	) :
 		selected_view_box._handle_entry_dropped(loaded_cell)
 	
+	# left main box
+	elif display_background.get_global_rect().intersects(
+		left_breeding_view_main_box.display_background.get_global_rect()
+	) :
+		left_breeding_view_main_box._handle_entry_dropped(loaded_cell)
+		
+	# right main box
+	elif display_background.get_global_rect().intersects(
+		right_breeding_view_main_box.display_background.get_global_rect()
+	) :
+		right_breeding_view_main_box._handle_entry_dropped(loaded_cell)
+	
+	# left boost box
+	elif display_background.get_global_rect().intersects(
+		left_breeding_view_boost_box.display_background.get_global_rect()
+	) :
+		left_breeding_view_boost_box._handle_entry_dropped(loaded_cell)
+	
+	# right boost box
+	elif display_background.get_global_rect().intersects(
+		right_breeding_view_boost_box.display_background.get_global_rect()
+	) :
+		right_breeding_view_boost_box._handle_entry_dropped(loaded_cell)
 	
 	# default drop sound insues
 	else : 

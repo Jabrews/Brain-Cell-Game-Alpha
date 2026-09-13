@@ -5,10 +5,10 @@ var prisoner_cells : Array[BrainCell] = []
 var collected_cells : Array[BrainCell] = []
 
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') : 
-		for cell : BrainCell in collected_cells : 
-			print(cell)
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed('debug1') : 
+		#for cell : BrainCell in collected_cells : 
+			#print(cell)
 
 
 func _ready() -> void:

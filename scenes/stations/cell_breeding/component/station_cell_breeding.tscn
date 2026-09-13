@@ -5,9 +5,12 @@
 [ext_resource type="Script" uid="uid://b8lokfw7kv86s" path="res://scripts/stations/cell_breeding/component/hologram/hologram_interact_area.gd" id="2_dmors"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_41g38"]
 [ext_resource type="Script" uid="uid://06w84xu08m2m" path="res://scripts/stations/cell_breeding/component/display/display_cell_catalog.gd" id="3_a0emy"]
+[ext_resource type="Script" uid="uid://dhpblxaa3i444" path="res://scripts/stations/cell_breeding/component/handlers/handle_breeding_box_startup.gd" id="3_jleg6"]
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
 [ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/selected_view_box.tscn" id="8_a0emy"]
+[ext_resource type="PackedScene" uid="uid://4qqonvgbegek" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_main_box.tscn" id="8_uhd45"]
+[ext_resource type="PackedScene" uid="uid://3eja24fj48er" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_boost_box.tscn" id="9_gu3tj"]
 [ext_resource type="Script" uid="uid://bvhhsl2qa1xkh" path="res://scripts/stations/cell_breeding/component/audio_manager.gd" id="9_nopnw"]
 [ext_resource type="AudioStream" uid="uid://dn6burwhyv76o" path="res://sounds/station_cell_breeder/drag_dropped.mp3" id="10_ymgeo"]
 [ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
@@ -111,6 +114,9 @@ script = ExtResource("1_dmors")
 
 [node name="HandleDisplayUi" type="Node" parent="." unique_id=1530602053]
 script = ExtResource("2_awyxg")
+
+[node name="HandleBreedingBoxStartup" type="Node" parent="." unique_id=2127259538]
+script = ExtResource("3_jleg6")
 
 [node name="DisplayCellCatalog" type="Node" parent="." unique_id=1438846030]
 script = ExtResource("3_a0emy")
@@ -356,6 +362,40 @@ offset_right = 1248.0
 offset_bottom = 392.0
 color = Color(0.5, 0.10899997, 0.03999999, 0.7058824)
 
+[node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
+layout_mode = 1
+offset_left = 696.0
+offset_top = 296.0
+offset_right = 696.0
+offset_bottom = 296.0
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
+layout_mode = 1
+offset_left = 808.0
+offset_top = 296.0
+offset_right = 808.0
+offset_bottom = 296.0
+side = "right"
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="LeftBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=641033110 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
+layout_mode = 1
+offset_left = 368.0
+offset_top = 176.0
+offset_right = 368.0
+offset_bottom = 176.0
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="RightBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=1252660582 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
+layout_mode = 1
+offset_left = 1157.0
+offset_top = 176.0
+offset_right = 1157.0
+offset_bottom = 176.0
+side = "right"
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
 [node name="SelectedView" type="Control" parent="BreedingUI/CellLoader" unique_id=1247261752]
 anchors_preset = 0
 offset_right = 40.0
@@ -371,10 +411,10 @@ color = Color(0.4, 0.08719998, 0.031999994, 0.7058824)
 
 [node name="SelectedViewBox" parent="BreedingUI/CellLoader/SelectedView" unique_id=617651389 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_a0emy")]
 layout_mode = 0
-offset_left = 728.0
-offset_top = 592.0
-offset_right = 728.0
-offset_bottom = 592.0
+offset_left = 752.0
+offset_top = 600.0
+offset_right = 752.0
+offset_bottom = 600.0
 drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
 
 [node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]

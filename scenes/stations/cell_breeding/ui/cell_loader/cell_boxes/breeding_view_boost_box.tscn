@@ -1,0 +1,472 @@
+[gd_scene format=3 uid="uid://3eja24fj48er"]
+
+[ext_resource type="Texture2D" uid="uid://dnv5m0cdht5q6" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_default.png" id="1_dyhft"]
+[ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="1_miwuh"]
+[ext_resource type="Script" uid="uid://b6dinrv02wf3n" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_boost_box/breeding_view_boost_box.gd" id="1_o2lr4"]
+[ext_resource type="Texture2D" uid="uid://bug3b3fwygm5j" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_inactive.png" id="2_av1m0"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_dyhft"]
+[ext_resource type="Script" uid="uid://dyltphmqknt1b" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/selected_view_box/handle_mouse_hover.gd" id="2_hfdni"]
+[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_av1m0"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="3_etegk"]
+[ext_resource type="Script" uid="uid://dhptcb5igp6g2" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/selected_view_box/handle_drag_hover.gd" id="3_xkuvg"]
+[ext_resource type="Script" uid="uid://b4cfl0n3vhymw" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/selected_view_box/display_mock_cell_entry.gd" id="4_b5xv8"]
+[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/cell_entry/defect_bar.png" id="4_etegk"]
+[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="5_o2lr4"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_ia33s"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_nt5yn"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_hfdni"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_xkuvg"]
+[ext_resource type="Texture2D" uid="uid://b0japhu6uvgga" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_outside_border.png" id="10_b5xv8"]
+[ext_resource type="Texture2D" uid="uid://djnps8v8tsxbm" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png" id="11_t4l4e"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_av1m0"]
+shader = ExtResource("3_etegk")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.7770000369075
+shader_parameter/shimmer_strength = 0.0650000030875
+shader_parameter/scanline_strength = 0.0
+shader_parameter/scanline_density = 3.8390001348525
+shader_parameter/hologram_tint = Color(0.89166665, 1, 0.75, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qm7oy"]
+shader = ExtResource("7_nt5yn")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("8_hfdni")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_slhok"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[node name="BreedingViewBoostBox" type="Control" unique_id=641033110]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o2lr4")
+
+[node name="HandleMouseHover" type="Node" parent="." unique_id=428991126]
+script = ExtResource("2_hfdni")
+
+[node name="HandleDragHover" type="Node" parent="." unique_id=1702835753]
+script = ExtResource("3_xkuvg")
+
+[node name="BlinkSelectedBorder" type="Timer" parent="HandleDragHover" unique_id=313912476]
+wait_time = 0.1
+
+[node name="DisplayMockCellEntry" type="Node" parent="." unique_id=942479666]
+script = ExtResource("4_b5xv8")
+
+[node name="BoostBtn1" type="Control" parent="." unique_id=157253912]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Default" type="TextureRect" parent="BoostBtn1" unique_id=2042209743]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_top = -80.0
+offset_right = 72.0
+offset_bottom = -8.0
+texture = ExtResource("1_dyhft")
+
+[node name="Inactive" type="TextureRect" parent="BoostBtn1" unique_id=927815431]
+modulate = Color(0.71, 0.71, 0.71, 0.6117647)
+texture_filter = 1
+layout_mode = 0
+offset_top = -80.0
+offset_right = 72.0
+offset_bottom = -8.0
+texture = ExtResource("2_av1m0")
+
+[node name="Boosted" type="TextureRect" parent="BoostBtn1" unique_id=1888624986]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_av1m0")
+layout_mode = 0
+offset_top = -80.0
+offset_right = 72.0
+offset_bottom = -8.0
+texture = ExtResource("1_dyhft")
+
+[node name="DisplayBackground" type="TextureRect" parent="." unique_id=177675813]
+texture_filter = 1
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("1_miwuh")
+expand_mode = 1
+
+[node name="MockCellEntry" type="Control" parent="." unique_id=1191830699]
+visible = false
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+mouse_filter = 2
+
+[node name="StatDisplay" type="Control" parent="MockCellEntry" unique_id=2057775120]
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -33.0
+offset_right = 31.0
+offset_bottom = 7.0
+mouse_filter = 2
+
+[node name="Strength" type="Control" parent="MockCellEntry/StatDisplay" unique_id=148853223]
+anchors_preset = 0
+offset_left = 5.0
+offset_right = 45.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Strength" unique_id=799841167]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 61.0
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_dyhft")
+texture_progress = ExtResource("3_av1m0")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Strength" unique_id=948622945]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = 69.0
+offset_bottom = 64.85715
+scale = Vector2(1, 1.4)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_etegk")
+texture_progress = ExtResource("5_o2lr4")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Strength" unique_id=272316471]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Strength/Off" unique_id=1584446187]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Strength/Off" unique_id=142083270]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 57.0
+offset_right = 69.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ia33s")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Strength" unique_id=795168507]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_qm7oy")
+position = Vector2(40.5, 61)
+scale = Vector2(0.18095239, 0.3)
+texture = SubResource("CompressedTexture2D_slhok")
+
+[node name="Intelligence" type="Control" parent="MockCellEntry/StatDisplay" unique_id=72467660]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 15.0
+offset_right = 45.0
+offset_bottom = 55.0
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=131790652]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 61.0
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_dyhft")
+texture_progress = ExtResource("3_av1m0")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=10449844]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = 69.0
+offset_bottom = 64.85715
+scale = Vector2(1, 1.4)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_etegk")
+texture_progress = ExtResource("5_o2lr4")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1119274545]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=1164425636]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=1232560493]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 57.0
+offset_right = 69.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ia33s")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1864331789]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_qm7oy")
+position = Vector2(40.5, 61)
+scale = Vector2(0.18095239, 0.3)
+texture = SubResource("CompressedTexture2D_slhok")
+
+[node name="Community" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1164758517]
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 30.0
+offset_right = 45.0
+offset_bottom = 70.0
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1387474201]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 61.0
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_dyhft")
+texture_progress = ExtResource("3_av1m0")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=597122498]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = 69.0
+offset_bottom = 64.85715
+scale = Vector2(1, 1.4)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_etegk")
+texture_progress = ExtResource("5_o2lr4")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Community" unique_id=1891138706]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=228705498]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 69.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.09, 0.09, 0.09, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1513954983]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 57.0
+offset_right = 69.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_ia33s")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Community" unique_id=1721185831]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_qm7oy")
+position = Vector2(40.5, 61)
+scale = Vector2(0.18095239, 0.3)
+texture = SubResource("CompressedTexture2D_slhok")
+
+[node name="CellName" type="Label" parent="MockCellEntry" unique_id=2129342395]
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 69.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("9_xkuvg")
+theme_override_font_sizes/font_size = 14
+text = "Billy Bob Jr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SelectedBorder" type="TextureRect" parent="." unique_id=459782773]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 74.0
+offset_bottom = 74.0
+mouse_filter = 2
+texture = ExtResource("10_b5xv8")
+expand_mode = 1
+
+[node name="RemoveBorder" type="TextureRect" parent="." unique_id=86827067]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 74.0
+offset_bottom = 74.0
+mouse_filter = 2
+texture = ExtResource("10_b5xv8")
+expand_mode = 1
+
+[node name="InsideBorderEffects" type="Control" parent="." unique_id=1645229762]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="OnBoost" type="TextureRect" parent="InsideBorderEffects" unique_id=1905881305]
+visible = false
+modulate = Color(0.98333335, 1, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 69.0
+offset_bottom = 69.0
+mouse_filter = 2
+texture = ExtResource("11_t4l4e")
+expand_mode = 1
+
+[node name="WantedBoost" type="TextureRect" parent="InsideBorderEffects" unique_id=1240933860]
+visible = false
+modulate = Color(0.98333335, 1, 0, 0.3529412)
+texture_filter = 1
+layout_mode = 0
+offset_left = 3.0
+offset_top = 2.0
+offset_right = 69.0
+offset_bottom = 69.0
+mouse_filter = 2
+texture = ExtResource("11_t4l4e")
+expand_mode = 1
+
+[node name="AlreadyOccupiedHint" type="Control" parent="." unique_id=691384641]
+visible = false
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 18.0
+offset_right = 52.0
+offset_bottom = 58.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AlreadyOccupiedHint" unique_id=857630056]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -78.0
+offset_right = 226.0
+offset_bottom = -19.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="AlreadyOccupiedHint" unique_id=923184139]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = 64.0
+offset_top = -70.0
+offset_right = 278.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_xkuvg")
+theme_override_font_sizes/font_size = 16
+text = "Box is already occupied.
+Empty by clicking first."
+autowrap_mode = 2
+
+[node name="AddACellHint" type="Control" parent="." unique_id=1905811806]
+visible = false
+anchors_preset = 0
+offset_left = 12.0
+offset_top = 24.0
+offset_right = 52.0
+offset_bottom = 64.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AddACellHint" unique_id=1536008760]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -78.0
+offset_right = 261.0
+offset_bottom = -24.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="AddACellHint" unique_id=849239852]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = 64.0
+offset_top = -73.0
+offset_right = 278.0
+offset_bottom = -20.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_xkuvg")
+theme_override_font_sizes/font_size = 16
+text = "Add A Cell by dragging it onto the box. "
+autowrap_mode = 2

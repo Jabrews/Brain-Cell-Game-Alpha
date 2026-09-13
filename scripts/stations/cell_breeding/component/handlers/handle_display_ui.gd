@@ -2,9 +2,14 @@ extends Node
 
 # components
 @onready var breeding_ui : Control = $"../BreedingUI"
+@onready var selected_view_box : Control = $"../BreedingUI/CellLoader/SelectedView/SelectedViewBox"
 
 # display helpers
 @onready var display_cell_catalog : Node = $"../DisplayCellCatalog"
+
+# handler helpers
+@onready var handle_breeding_box_startup : Node = $"../HandleBreedingBoxStartup"
+
 
 
 func _toggle_display(toggle_value : bool) :
@@ -16,6 +21,7 @@ func _toggle_display(toggle_value : bool) :
 		
 		# display 
 		display_cell_catalog._display()
+		handle_breeding_box_startup._handle()
 	
 	if not toggle_value : 
 		# user will always get out breeder in area
@@ -23,6 +29,8 @@ func _toggle_display(toggle_value : bool) :
 		
 		# reset
 		display_cell_catalog._reset()
+		selected_view_box._handle_box_empty()
+		
 	
 	
 	

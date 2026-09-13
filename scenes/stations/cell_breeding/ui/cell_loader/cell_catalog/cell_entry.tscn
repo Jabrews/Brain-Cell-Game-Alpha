@@ -311,7 +311,7 @@ offset_right = 141.0
 offset_bottom = 149.0
 texture = ExtResource("3_asdwg")
 
-[node name="OnBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1128240956]
+[node name="OnMain" type="TextureRect" parent="InsideBorderEffects" unique_id=1128240956]
 visible = false
 modulate = Color(1, 0, 0, 1)
 texture_filter = 1
@@ -333,7 +333,7 @@ offset_right = 141.0
 offset_bottom = 149.0
 texture = SubResource("CompressedTexture2D_asdwg")
 
-[node name="WantedBreeder" type="TextureRect" parent="InsideBorderEffects" unique_id=1518712769]
+[node name="WantedMain" type="TextureRect" parent="InsideBorderEffects" unique_id=1518712769]
 visible = false
 modulate = Color(1, 0, 0, 0.49019608)
 texture_filter = 1
