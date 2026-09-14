@@ -15,7 +15,7 @@ extends Control
 
 var loaded_cell : BrainCell 
 
-func _handle_entry_dropped(cell : BrainCell) :
+func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh : bool = false) :
 	
 	if loaded_cell or not cell : 	
 		return
@@ -34,23 +34,32 @@ func _handle_entry_dropped(cell : BrainCell) :
 	GLBreedingComponetsBus.emit_signal('toggle_cell_entry_border', loaded_cell.name, 'wanted_main', true)
 	
 	# play accept sound
-	GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_accepted')
+	if play_sound : 
+		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_accepted')
 	
 	_update_breeding_ui_state()
 	
+	if refresh : 
+		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')
 	
-func _handle_box_empty() :
+	
+func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	
 	# clear border
 	if loaded_cell  :
 		GLBreedingComponetsBus.emit_signal('toggle_cell_entry_border', loaded_cell.name, 'wanted_main', false)
-		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_removed')
+		
+		if play_sound  :
+			GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_removed')
 	
 	loaded_cell = null
 	mock_cell_entry.visible = false 
 	wanted_main_border.visible = false
 	
 	_update_breeding_ui_state()
+	
+	if refresh : 
+		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')
 
 
 func _update_breeding_ui_state() : 

@@ -24,25 +24,25 @@ func _handle() :
 	elif display_background.get_global_rect().intersects(
 		left_breeding_view_main_box.display_background.get_global_rect()
 	) :
-		left_breeding_view_main_box._handle_entry_dropped(loaded_cell)
+		left_breeding_view_main_box._handle_entry_dropped(loaded_cell, true, true)
 		
 	# right main box
 	elif display_background.get_global_rect().intersects(
 		right_breeding_view_main_box.display_background.get_global_rect()
 	) :
-		right_breeding_view_main_box._handle_entry_dropped(loaded_cell)
+		right_breeding_view_main_box._handle_entry_dropped(loaded_cell, true, true)
 	
 	# left boost box
 	elif display_background.get_global_rect().intersects(
 		left_breeding_view_boost_box.display_background.get_global_rect()
 	) :
-		left_breeding_view_boost_box._handle_entry_dropped(loaded_cell)
+		left_breeding_view_boost_box._handle_entry_dropped(loaded_cell, true, true)
 	
 	# right boost box
 	elif display_background.get_global_rect().intersects(
 		right_breeding_view_boost_box.display_background.get_global_rect()
 	) :
-		right_breeding_view_boost_box._handle_entry_dropped(loaded_cell)
+		right_breeding_view_boost_box._handle_entry_dropped(loaded_cell, true, true)
 	
 	# default drop sound insues
 	else : 

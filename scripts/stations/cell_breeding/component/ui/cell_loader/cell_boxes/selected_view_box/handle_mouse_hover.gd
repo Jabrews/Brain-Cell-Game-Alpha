@@ -1,5 +1,8 @@
 extends Node
 
+
+@export var is_selected_view_box : bool = false
+
 # components
 @onready var parent_box : Control = $".."
 @onready var display_background: TextureRect = $"../DisplayBackground"
@@ -17,7 +20,11 @@ func _process(_delta: float) -> void:
 	if hovered :
 		if parent_box.loaded_cell : 
 			if Input.is_action_just_pressed('attack') : 
-				parent_box._handle_box_empty()
+				
+				if not is_selected_view_box : 
+					parent_box._handle_box_empty(true, true)
+				else : 
+					parent_box._handle_box_empty(true)
 				remove_border.visible = false
 				
 				

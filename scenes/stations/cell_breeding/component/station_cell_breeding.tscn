@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_41g38"]
 [ext_resource type="Script" uid="uid://06w84xu08m2m" path="res://scripts/stations/cell_breeding/component/display/display_cell_catalog.gd" id="3_a0emy"]
 [ext_resource type="Script" uid="uid://dhpblxaa3i444" path="res://scripts/stations/cell_breeding/component/handlers/handle_breeding_box_startup.gd" id="3_jleg6"]
+[ext_resource type="Script" uid="uid://20bc73jo874e" path="res://scripts/stations/cell_breeding/component/handlers/handle_refresh_breeder_view.gd" id="4_0xvgh"]
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
 [ext_resource type="Script" uid="uid://cjx6pyrx7fsnw" path="res://scripts/stations/cell_breeding/component/load_panels/main_load_panel_area.gd" id="5_c7sjo"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
@@ -20,6 +21,9 @@
 [ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="12_q5y6d"]
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
+[ext_resource type="Script" uid="uid://catmrc862ogfl" path="res://scripts/stations/cell_breeding/component/ui/exit_header/reset_btn.gd" id="16_svls5"]
+[ext_resource type="AudioStream" uid="uid://blyvvd4y36iqr" path="res://sounds/station_cell_breeder/reset_btn_appear.mp3" id="23_vsr2l"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -162,6 +166,9 @@ script = ExtResource("2_awyxg")
 
 [node name="HandleBreedingBoxStartup" type="Node" parent="." unique_id=2127259538]
 script = ExtResource("3_jleg6")
+
+[node name="HandleRefreshBreederView" type="Node" parent="." unique_id=297528434]
+script = ExtResource("4_0xvgh")
 
 [node name="DisplayCellCatalog" type="Node" parent="." unique_id=1438846030]
 script = ExtResource("3_a0emy")
@@ -453,42 +460,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="ExitHeader" type="Control" parent="BreedingUI" unique_id=910873983]
-anchors_preset = 0
-offset_top = -64.0
-offset_right = 40.0
-offset_bottom = -24.0
-
-[node name="BG" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=984012214]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 72.0
-offset_right = 1248.0
-offset_bottom = 112.0
-color = Color(0.53, 0.026500005, 0.026500005, 1)
-
-[node name="ExitBtn" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=2107038211]
-layout_mode = 0
-offset_left = 1148.0
-offset_top = 76.0
-offset_right = 1220.0
-offset_bottom = 108.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-script = ExtResource("5_1yw4i")
-
-[node name="ExitLabel" type="Label" parent="BreedingUI/ExitHeader/ExitBtn" unique_id=207789195]
-texture_filter = 1
-layout_mode = 0
-offset_right = 72.0
-offset_bottom = 32.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_colors/font_color = Color(0.9, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 24
-text = "x"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="InteractFooter" type="Control" parent="BreedingUI" unique_id=1674396304]
 anchors_preset = 0
 offset_right = 40.0
@@ -518,23 +489,23 @@ layout_mode = 0
 offset_left = 352.0
 offset_top = 72.0
 offset_right = 1248.0
-offset_bottom = 392.0
+offset_bottom = 408.0
 color = Color(0.5, 0.10899997, 0.03999999, 0.7058824)
 
 [node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
 layout_mode = 1
 offset_left = 696.0
-offset_top = 296.0
+offset_top = 312.0
 offset_right = 696.0
-offset_bottom = 296.0
+offset_bottom = 312.0
 drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
 
 [node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
 layout_mode = 1
 offset_left = 808.0
-offset_top = 296.0
+offset_top = 312.0
 offset_right = 808.0
-offset_bottom = 296.0
+offset_bottom = 312.0
 side = "right"
 drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
 
@@ -555,6 +526,19 @@ offset_bottom = 176.0
 side = "right"
 drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
 
+[node name="PlusLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView" unique_id=521413019]
+texture_filter = 1
+layout_mode = 0
+offset_left = 788.0
+offset_top = 323.0
+offset_right = 811.0
+offset_bottom = 393.0
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 30
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SelectedView" type="Control" parent="BreedingUI/CellLoader" unique_id=1247261752]
 anchors_preset = 0
 offset_right = 40.0
@@ -563,7 +547,7 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1899304568]
 layout_mode = 0
 offset_left = 352.0
-offset_top = 392.0
+offset_top = 408.0
 offset_right = 1248.0
 offset_bottom = 696.0
 color = Color(0.4, 0.08719998, 0.031999994, 0.7058824)
@@ -619,6 +603,103 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ExitHeader" type="Control" parent="BreedingUI" unique_id=910873983]
+anchors_preset = 0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = -24.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=984012214]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 72.0
+offset_right = 1248.0
+offset_bottom = 112.0
+color = Color(0.53, 0.026500005, 0.026500005, 1)
+
+[node name="ExitBtn" type="ColorRect" parent="BreedingUI/ExitHeader" unique_id=2107038211]
+layout_mode = 0
+offset_left = 1148.0
+offset_top = 76.0
+offset_right = 1220.0
+offset_bottom = 108.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("5_1yw4i")
+
+[node name="ExitLabel" type="Label" parent="BreedingUI/ExitHeader/ExitBtn" unique_id=207789195]
+texture_filter = 1
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 32.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 24
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResetBtn" type="Control" parent="BreedingUI/ExitHeader" unique_id=178271941]
+visible = false
+anchors_preset = 0
+offset_left = 77.0
+offset_top = -290.0
+offset_right = 117.0
+offset_bottom = -250.0
+script = ExtResource("16_svls5")
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/ExitHeader/ResetBtn" unique_id=788992810]
+layout_mode = 0
+offset_left = 983.0
+offset_top = 366.0
+offset_right = 1055.0
+offset_bottom = 398.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0.7662574, 0.24503002, 0.26917765, 1)
+
+[node name="ResetLabel" type="Label" parent="BreedingUI/ExitHeader/ResetBtn" unique_id=948554526]
+texture_filter = 1
+layout_mode = 0
+offset_left = 984.0
+offset_top = 367.0
+offset_right = 1054.0
+offset_bottom = 398.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 25
+text = "RESET"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Control" parent="BreedingUI/ExitHeader/ResetBtn" unique_id=588834997]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/ExitHeader/ResetBtn/Hint" unique_id=1187448038]
+layout_mode = 0
+offset_left = 929.0
+offset_top = 402.0
+offset_right = 1106.0
+offset_bottom = 460.0
+color = Color(0, 0, 0, 1)
+
+[node name="HintLabel" type="Label" parent="BreedingUI/ExitHeader/ResetBtn/Hint" unique_id=1622097927]
+texture_filter = 1
+layout_mode = 0
+offset_left = 917.0
+offset_top = 402.0
+offset_right = 1128.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 20
+text = "Diffrence 
+With Panels Detected."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AudioManager" type="Node3D" parent="." unique_id=1426721986]
 process_mode = 3
 script = ExtResource("9_nopnw")
@@ -638,3 +719,6 @@ volume_db = -10.0
 [node name="RemoveFromBox" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=2119466838]
 stream = ExtResource("13_0xebg")
 volume_db = -10.0
+
+[node name="ResetBtnEnter" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1793259107]
+stream = ExtResource("23_vsr2l")

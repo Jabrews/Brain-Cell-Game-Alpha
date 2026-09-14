@@ -35,6 +35,7 @@ script = ExtResource("1_8j0u0")
 
 [node name="HandleMouseHover" type="Node" parent="." unique_id=2046805528]
 script = ExtResource("2_xxsdd")
+is_selected_view_box = true
 
 [node name="HandleDragHover" type="Node" parent="." unique_id=616256879]
 script = ExtResource("2_sqo7l")
