@@ -1,8 +1,13 @@
 extends Control
 
+# display components
 @onready var btn_bg: ColorRect = $ColorRect
 @onready var reset_label: Label = $ResetLabel
 @onready var hint: Control = $Hint
+
+# components
+@onready var handle_reset_btn : Node  = $"../../../HandleResetBtn"
+
 
 var hovered: bool = false
 var active: bool = false
@@ -19,6 +24,16 @@ func _ready() -> void:
 
 	hint.visible = false
 	visible = false
+
+
+func _process(_delta: float) -> void:
+	if hovered : 
+		if Input.is_action_just_pressed('attack') : 
+			handle_reset_btn._handle()
+
+func reset(): 
+	pass
+
 
 func _toggle_active(toggle_value: bool) -> void:
 	

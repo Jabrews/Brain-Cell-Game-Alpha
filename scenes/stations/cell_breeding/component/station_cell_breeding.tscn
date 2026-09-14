@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dhpblxaa3i444" path="res://scripts/stations/cell_breeding/component/handlers/handle_breeding_box_startup.gd" id="3_jleg6"]
 [ext_resource type="Script" uid="uid://20bc73jo874e" path="res://scripts/stations/cell_breeding/component/handlers/handle_refresh_breeder_view.gd" id="4_0xvgh"]
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
+[ext_resource type="Script" uid="uid://cmkgqbjmnv24h" path="res://scripts/stations/cell_breeding/component/handlers/handle_reset_btn.gd" id="5_ac4jf"]
 [ext_resource type="Script" uid="uid://cjx6pyrx7fsnw" path="res://scripts/stations/cell_breeding/component/load_panels/main_load_panel_area.gd" id="5_c7sjo"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
 [ext_resource type="Script" uid="uid://b1vuubrptyhph" path="res://scripts/stations/cell_breeding/component/load_panels/main_light_manager.gd" id="6_5un1r"]
@@ -169,6 +170,9 @@ script = ExtResource("3_jleg6")
 
 [node name="HandleRefreshBreederView" type="Node" parent="." unique_id=297528434]
 script = ExtResource("4_0xvgh")
+
+[node name="HandleResetBtn" type="Node" parent="." unique_id=932431619]
+script = ExtResource("5_ac4jf")
 
 [node name="DisplayCellCatalog" type="Node" parent="." unique_id=1438846030]
 script = ExtResource("3_a0emy")
