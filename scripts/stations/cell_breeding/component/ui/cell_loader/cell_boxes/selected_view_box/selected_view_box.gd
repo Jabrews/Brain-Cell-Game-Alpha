@@ -15,13 +15,13 @@ func _handle_entry_dropped(cell : BrainCell) :
 	if loaded_cell or not cell : 	
 		return
 	
+	
 	loaded_cell = cell
 	on_selected_border.visible = true
 	mock_cell_entry.visible = true
 	display_mock_cell_entry._display(loaded_cell)
 	add_a_cell_hint.visible = false
 	
-	# set border
 	GLBreedingComponetsBus.emit_signal('toggle_cell_entry_border', loaded_cell.name, 'on_selected', true)
 	
 	# play accept sound
@@ -30,10 +30,10 @@ func _handle_entry_dropped(cell : BrainCell) :
 	
 func _handle_box_empty(play_sound : bool = false) :
 	
-	# clear border
-	if loaded_cell  :
+	if loaded_cell : 	
 		GLBreedingComponetsBus.emit_signal('toggle_cell_entry_border', loaded_cell.name, 'on_selected', false)
-		
+	
+		# clear border
 		if play_sound : 
 			GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_removed')
 	

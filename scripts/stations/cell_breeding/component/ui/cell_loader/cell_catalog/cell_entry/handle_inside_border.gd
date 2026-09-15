@@ -22,6 +22,12 @@ func _handle_toggle_cell_entry_border(cell_name : String, border_type : String, 
 	if loaded_cell_name != cell_name : 
 		return
 	
+	reset()
+	
+	# no reason to continue just turn all off
+	if toggle_value == false :
+		return
+	
 	var border : TextureRect 	
 	
 	match border_type  :
@@ -37,10 +43,14 @@ func _handle_toggle_cell_entry_border(cell_name : String, border_type : String, 
 			border = on_boost_border
 		
 		
-	
 	border.visible = toggle_value
 	
-	
+func reset() :	
+	on_boost_border.visible = false
+	on_main_border.visible = false
+	wanted_boost_border.visible = false
+	wanted_main_border.visible = false
+	on_selected_border.visible = false
 	
 	
 	
