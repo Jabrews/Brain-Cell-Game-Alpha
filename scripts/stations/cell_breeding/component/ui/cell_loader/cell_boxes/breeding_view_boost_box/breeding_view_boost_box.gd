@@ -1,6 +1,7 @@
 extends Node
 
 @export var side : String = 'left'
+var box_type : String = 'boost'
 
 # components
 @export var drag_cell_entry_parent_node: Node
@@ -8,9 +9,6 @@ extends Node
 @onready var display_mock_cell_entry : Node = $DisplayMockCellEntry
 @onready var mock_cell_entry : Control = $MockCellEntry
 @onready var add_a_cell_hint : Control = $AddACellHint
-
-@onready var on_bost_border : TextureRect = $InsideBorderEffects/OnBoost
-@onready var wanted_boost_border : TextureRect = $InsideBorderEffects/WantedBoost
 
 var loaded_cell : BrainCell 
 
@@ -20,10 +18,6 @@ func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh 
 		return
 	
 	loaded_cell = cell
-	
-	# TODO
-	# look if it is on panel
-	wanted_boost_border.visible = true
 	
 	mock_cell_entry.visible = true
 	display_mock_cell_entry._display(loaded_cell)
@@ -47,7 +41,6 @@ func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	
 	loaded_cell = null
 	mock_cell_entry.visible = false 
-	wanted_boost_border.visible = false
 	
 	_update_breeding_ui_state()
 	

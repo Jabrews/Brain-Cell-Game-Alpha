@@ -14,8 +14,12 @@ extends Node
 
 func _ready() -> void:
 	GLBreedingComponetsBus.connect('toggle_cell_entry_border', _handle_toggle_cell_entry_border)
+	GLBreedingComponetsBus.connect('reset_borders', _handle_reset_borders)
 
-func _handle_toggle_cell_entry_border(cell_name : String, border_type : String, toggle_value : bool) :
+func _handle_reset_borders() :
+	reset()
+
+func _handle_toggle_cell_entry_border(cell_name : String, border_type : String, is_wanted : bool) :
 	
 	var loaded_cell_name = parent_cell_entry.loaded_cell.name
 	
@@ -24,26 +28,26 @@ func _handle_toggle_cell_entry_border(cell_name : String, border_type : String, 
 	
 	reset()
 	
-	# no reason to continue just turn all off
-	if toggle_value == false :
-		return
-	
 	var border : TextureRect 	
 	
 	match border_type  :
-		'on_selected':  
+		'boost' : 
+			if is_wanted : 
+				border = wanted_boost_border
+			else : 
+				border = on_boost_border
+		'main' :
+			if is_wanted : 
+				border = wanted_main_border
+			else : 
+				border = on_main_border
+		'selected':  
 			border = on_selected_border
-		'wanted_main' : 
-			border = wanted_main_border
-		'on_main' :
-			border = on_main_border
-		'wanted_boost': 
-			border = wanted_boost_border
-		'on_boost' : 
-			border = on_boost_border
-		
-		
-	border.visible = toggle_value
+		_ : 
+			push_error('couldnt find border type  : ', border_type)
+			border = on_selected_border
+	
+	border.visible = true
 	
 func reset() :	
 	on_boost_border.visible = false
