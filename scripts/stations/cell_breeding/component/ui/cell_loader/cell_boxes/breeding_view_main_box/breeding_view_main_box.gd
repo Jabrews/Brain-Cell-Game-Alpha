@@ -6,9 +6,10 @@ var box_type : String = 'main'
 # components
 @export var drag_cell_entry_parent_node: Node
 @onready var display_background : TextureRect = $DisplayBackground
-@onready var display_mock_cell_entry : Node = $DisplayMockCellEntry
+@onready var display_mock_cell_entry : Node = $MainBoxDisplayMockCellEntry #is diffrent from other display cell entries
 @onready var mock_cell_entry : Control = $MockCellEntry
 @onready var add_a_cell_hint : Control = $AddACellHint
+@onready var unavaible_lock : Control = $MockCellEntry/UnavaibleLock
 
 var loaded_cell : BrainCell 
 
@@ -20,11 +21,10 @@ func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh 
 	loaded_cell = cell
 	
 	# TODO
-	# look if it is on panel
 	
 	mock_cell_entry.visible = true
-	display_mock_cell_entry._display(loaded_cell)
 	add_a_cell_hint.visible = false
+	display_mock_cell_entry._display(loaded_cell)
 	
 	# play accept sound
 	if play_sound : 
@@ -43,6 +43,7 @@ func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	
 	loaded_cell = null
 	mock_cell_entry.visible = false 
+	unavaible_lock._toggle_lock(false)
 	
 	_update_breeding_ui_state()
 	

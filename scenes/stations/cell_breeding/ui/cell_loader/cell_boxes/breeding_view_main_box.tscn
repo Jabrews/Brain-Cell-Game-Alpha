@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dyltphmqknt1b" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/handle_mouse_hover.gd" id="2_b483c"]
 [ext_resource type="Script" uid="uid://dhptcb5igp6g2" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/handle_drag_hover.gd" id="3_hbruv"]
 [ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="4_dxc4k"]
-[ext_resource type="Script" uid="uid://b4cfl0n3vhymw" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/display_mock_cell_entry.gd" id="4_yiebt"]
+[ext_resource type="Script" uid="uid://bxjkjivaakct7" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_main_box/main_box_display_mock_cell_entry.gd" id="4_yiebt"]
 [ext_resource type="Script" uid="uid://ge73sb63ik6e" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_catalog/cell_entry/handle_box_inside_border.gd" id="5_hbruv"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="5_yiebt"]
 [ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="6_4fvhw"]
@@ -49,7 +49,7 @@ script = ExtResource("3_hbruv")
 [node name="BlinkSelectedBorder" type="Timer" parent="HandleDragHover" unique_id=1943728897]
 wait_time = 0.1
 
-[node name="DisplayMockCellEntry" type="Node" parent="." unique_id=1779754217]
+[node name="MainBoxDisplayMockCellEntry" type="Node" parent="." unique_id=1779754217]
 script = ExtResource("4_yiebt")
 
 [node name="HandleBoxInsideBorder" type="Node" parent="." unique_id=2038806933]
@@ -310,6 +310,64 @@ text = "Billy Bob Jr"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="UnavaibleLock" type="Control" parent="MockCellEntry" unique_id=1558280080]
+visible = false
+anchors_preset = 0
+offset_top = -3.0
+offset_right = 40.0
+offset_bottom = 37.0
+script = ExtResource("17_yiebt")
+
+[node name="BG" type="ColorRect" parent="MockCellEntry/UnavaibleLock" unique_id=573441148]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 86.0
+offset_bottom = 88.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6156863)
+
+[node name="Hint" type="Control" parent="MockCellEntry/UnavaibleLock" unique_id=638243787]
+visible = false
+anchors_preset = 0
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 41.0
+
+[node name="BG" type="ColorRect" parent="MockCellEntry/UnavaibleLock/Hint" unique_id=922616493]
+layout_mode = 0
+offset_left = -54.0
+offset_top = -78.0
+offset_right = 117.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="MockCellEntry/UnavaibleLock/Hint" unique_id=1794026035]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = -48.0
+offset_top = -70.0
+offset_right = 166.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("12_j5l5c")
+theme_override_font_sizes/font_size = 20
+text = "Cell cannot breed anymore this turn"
+autowrap_mode = 2
+
+[node name="LockRect" type="TextureRect" parent="MockCellEntry/UnavaibleLock" unique_id=1030119818]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 30.0
+offset_right = 66.0
+offset_bottom = 62.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("6_dxc4k")
+
 [node name="SelectedBorder" type="TextureRect" parent="." unique_id=1043335456]
 visible = false
 texture_filter = 1
@@ -419,49 +477,3 @@ theme_override_fonts/font = ExtResource("12_j5l5c")
 theme_override_font_sizes/font_size = 20
 text = "Add A Cell by dragging it onto the box. "
 autowrap_mode = 2
-
-[node name="UnavaibleLock" type="Control" parent="." unique_id=1558280080]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("17_yiebt")
-
-[node name="Hint" type="Control" parent="UnavaibleLock" unique_id=638243787]
-visible = false
-anchors_preset = 0
-offset_left = 18.0
-offset_right = 58.0
-offset_bottom = 40.0
-
-[node name="BG" type="ColorRect" parent="UnavaibleLock/Hint" unique_id=922616493]
-layout_mode = 0
-offset_left = -54.0
-offset_top = -78.0
-offset_right = 117.0
-offset_bottom = -6.0
-color = Color(0, 0, 0, 0.80784315)
-
-[node name="HintText" type="Label" parent="UnavaibleLock/Hint" unique_id=1794026035]
-texture_filter = 1
-custom_minimum_size = Vector2(214, 53)
-custom_maximum_size = Vector2(214, 53)
-layout_mode = 0
-offset_left = -48.0
-offset_top = -70.0
-offset_right = 166.0
-offset_bottom = -17.0
-theme_override_constants/line_spacing = 4
-theme_override_fonts/font = ExtResource("12_j5l5c")
-theme_override_font_sizes/font_size = 20
-text = "Cell cannot breed anymore this turn"
-autowrap_mode = 2
-
-[node name="LockRect" type="TextureRect" parent="UnavaibleLock" unique_id=1030119818]
-texture_filter = 1
-layout_mode = 0
-offset_left = 18.0
-offset_top = 17.0
-offset_right = 74.0
-offset_bottom = 72.0
-texture = ExtResource("6_dxc4k")

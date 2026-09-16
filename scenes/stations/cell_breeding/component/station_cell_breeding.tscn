@@ -444,7 +444,6 @@ shape = SubResource("BoxShape3D_wnhlu")
 
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
-visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -476,10 +475,38 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter" unique_id=1314323368]
 layout_mode = 0
 offset_left = 32.0
-offset_top = 672.0
+offset_top = 656.0
 offset_right = 1248.0
 offset_bottom = 712.0
 color = Color(0.53, 0.026500005, 0.026500005, 1)
+
+[node name="ConfirmBtn" type="Control" parent="BreedingUI/InteractFooter" unique_id=2049235082]
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 664.0
+offset_right = 552.0
+offset_bottom = 704.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1902126170]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 279.0
+offset_bottom = 40.0
+
+[node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1940816088]
+texture_filter = 1
+layout_mode = 0
+offset_left = 22.0
+offset_right = 278.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 24
+text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CellLoader" type="Control" parent="BreedingUI" unique_id=908120563]
 anchors_preset = 0
@@ -497,7 +524,7 @@ layout_mode = 0
 offset_left = 352.0
 offset_top = 72.0
 offset_right = 1248.0
-offset_bottom = 408.0
+offset_bottom = 409.0
 color = Color(0.5, 0.10899997, 0.03999999, 0.7058824)
 
 [node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
@@ -555,17 +582,17 @@ offset_bottom = 40.0
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1899304568]
 layout_mode = 0
 offset_left = 352.0
-offset_top = 408.0
-offset_right = 1248.0
-offset_bottom = 696.0
+offset_top = 409.0
+offset_right = 1255.0
+offset_bottom = 681.0
 color = Color(0.4, 0.08719998, 0.031999994, 0.7058824)
 
 [node name="SelectedViewBox" parent="BreedingUI/CellLoader/SelectedView" unique_id=617651389 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_a0emy")]
 layout_mode = 0
 offset_left = 752.0
-offset_top = 600.0
+offset_top = 584.0
 offset_right = 752.0
-offset_bottom = 600.0
+offset_bottom = 584.0
 drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
 
 [node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]
@@ -578,7 +605,7 @@ layout_mode = 0
 offset_left = 32.0
 offset_top = 72.0
 offset_right = 352.0
-offset_bottom = 696.0
+offset_bottom = 680.0
 mouse_filter = 1
 color = Color(0.3, 0.06539998, 0.023999996, 0.7058824)
 
@@ -587,13 +614,13 @@ layout_mode = 0
 offset_left = 32.0
 offset_top = 72.0
 offset_right = 352.0
-offset_bottom = 696.0
+offset_bottom = 677.0
 layout_direction = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer" unique_id=263262927]
-custom_minimum_size = Vector2(320, 624)
-custom_maximum_size = Vector2(320, 624)
+custom_minimum_size = Vector2(320, 605)
 layout_mode = 2
+offset_transform_position = Vector2(0, 500)
 layout_direction = 3
 
 [node name="GridContainerLeft" type="GridContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer" unique_id=1495238694]
