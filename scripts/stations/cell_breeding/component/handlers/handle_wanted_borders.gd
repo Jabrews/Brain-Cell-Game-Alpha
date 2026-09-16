@@ -2,13 +2,13 @@ extends Node
 
 
 # parent entry component
-@onready var cell_entry_parent: GridContainer = $"../BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
+@onready var cell_entry_parent: GridContainer = $"../../BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
 
 # box components
-@onready var left_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/LeftBreedingViewMainBox"
-@onready var right_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/RightBreedingViewMainBox"
-@onready var left_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/LeftBreedingViewBoostBox"
-@onready var right_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/RightBreedingViewBoostBox"
+@onready var left_main_box: Control = $"../../BreedingUI/CellLoader/BreedingView/LeftBreedingViewMainBox"
+@onready var right_main_box: Control =$"../../BreedingUI/CellLoader/BreedingView/RightBreedingViewMainBox"
+@onready var left_boost_box: Control = $"../../BreedingUI/CellLoader/BreedingView/LeftBreedingViewBoostBox"
+@onready var right_boost_box: Control =$"../../BreedingUI/CellLoader/BreedingView/RightBreedingViewBoostBox"
 
 
 # this happens every refresh or on inital open of breeder ui just

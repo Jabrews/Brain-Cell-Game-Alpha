@@ -14,6 +14,9 @@ signal reset_borders() # both entry and box
 signal breeder_play_sound(sound_type : String)
 signal initate_breeder_refresh()
 
+signal toggle_wanted_highlight(toggle_value : bool, cell_name : String, highlight_type : String)
+
+
 var breeding_ui_state: Dictionary[String, BrainCell] = {
 	'left_main' : null,
 	'right_main' : null,
@@ -27,3 +30,5 @@ var breeding_panel_state : Dictionary[String, BrainCell] = {
 	'left_boost' : null,
 	'right_boost' : null,
 }
+
+var reasons_confirm_invalid : Array[String] = []

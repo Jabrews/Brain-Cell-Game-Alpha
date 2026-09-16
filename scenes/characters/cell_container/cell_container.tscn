@@ -21,9 +21,69 @@
 [ext_resource type="Script" uid="uid://coob1xx37u3a1" path="res://scripts/characters/cell_container/mutations/mutation_manager/verify/verify_active_and_paused_events.gd" id="14_f6f0d"]
 [ext_resource type="Script" uid="uid://c85acimbgp6dh" path="res://scripts/characters/cell_container/defect_events/cell_defect_event_manager.gd" id="14_rwqu2"]
 [ext_resource type="AudioStream" uid="uid://x5sdvjw3mat1" path="res://sounds/player_local_sounds/cell_container/water_splash.mp3" id="16_7580g"]
+[ext_resource type="Script" uid="uid://v5lqktkipp6q" path="res://scripts/characters/cell_container/wanted_highlight.gd" id="16_vaacc"]
 [ext_resource type="AudioStream" uid="uid://cknpbebnp5q51" path="res://sounds/cell_container/cell_pickup.mp3" id="17_khadm"]
 [ext_resource type="AudioStream" uid="uid://c3mxhttrv603h" path="res://sounds/cell_container/cell_dropped.mp3" id="18_0rbwi"]
 [ext_resource type="AudioStream" uid="uid://bv4r160ubvy1g" path="res://sounds/cell_container/age_lifespan.mp3" id="24_rwqu2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3668h"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.35000002, 0.35000002, 0.47058824)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_knc53"]
+next_pass = SubResource("StandardMaterial3D_3668h")
+transparency = 1
+no_depth_test = true
+albedo_color = Color(1, 0.35000002, 0.35000002, 0.29411766)
+metallic_specular = 0.0
+texture_filter = 0
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(1, 0.35000002, 0.35000002, 0.47058824)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gl6c0"]
+material = SubResource("StandardMaterial3D_knc53")
+radius = 0.48
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gl6c0"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.9566667, 0.35000002, 0.47058824)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+stencil_reference = 3
+stencil_color = Color(1, 0, 0, 0.34509805)
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaacc"]
+next_pass = SubResource("StandardMaterial3D_gl6c0")
+transparency = 1
+no_depth_test = true
+albedo_color = Color(1, 0.935, 0.35000002, 0.19607843)
+metallic_specular = 0.0
+texture_filter = 0
+stencil_mode = 1
+stencil_flags = 2
+stencil_reference = 3
+stencil_color = Color(1, 0.35000002, 0.35000002, 0.47058824)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3668h"]
+material = SubResource("StandardMaterial3D_vaacc")
+radius = 0.48
+height = 1.6
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwqu2"]
 albedo_color = Color(0.90683234, 0.3491902, 0.3491902, 1)
@@ -99,6 +159,19 @@ script = ExtResource("14_rwqu2")
 
 [node name="StatDisplay" parent="." unique_id=1313515711 instance=ExtResource("4_0dogw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46019834, 0)
+
+[node name="WantedHighlight" type="Node3D" parent="." unique_id=1358094420]
+script = ExtResource("16_vaacc")
+
+[node name="MainWanted" type="MeshInstance3D" parent="WantedHighlight" unique_id=424256464]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25769043, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_gl6c0")
+
+[node name="BoostWanted" type="MeshInstance3D" parent="WantedHighlight" unique_id=1948590016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25769043, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_3668h")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1293978698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25769043, 0)

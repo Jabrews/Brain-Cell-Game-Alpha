@@ -10,12 +10,14 @@
 [ext_resource type="Script" uid="uid://b1fddiksnywk3" path="res://scripts/stations/cell_breeding/component/ui/exit_header/exit_btn.gd" id="5_1yw4i"]
 [ext_resource type="Script" uid="uid://cmkgqbjmnv24h" path="res://scripts/stations/cell_breeding/component/handlers/handle_reset_btn.gd" id="5_ac4jf"]
 [ext_resource type="Script" uid="uid://cjx6pyrx7fsnw" path="res://scripts/stations/cell_breeding/component/load_panels/main_load_panel_area.gd" id="5_c7sjo"]
+[ext_resource type="Script" uid="uid://cq035uued2vw" path="res://scripts/stations/cell_breeding/component/handlers/handle_wanted_highlight.gd" id="5_k4bql"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
 [ext_resource type="Script" uid="uid://b1vuubrptyhph" path="res://scripts/stations/cell_breeding/component/load_panels/main_light_manager.gd" id="6_5un1r"]
 [ext_resource type="Script" uid="uid://b5473243lbuu8" path="res://scripts/stations/cell_breeding/component/load_panels/boost_load_panel_area.gd" id="6_mblg6"]
 [ext_resource type="Script" uid="uid://tbpm68kedhpk" path="res://scripts/stations/cell_breeding/component/handlers/handle_wanted_borders.gd" id="7_2e72x"]
 [ext_resource type="Script" uid="uid://dehr6ov61xdgs" path="res://scripts/stations/cell_breeding/component/load_panels/boost_light_manager.gd" id="7_47xdj"]
 [ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/selected_view_box.tscn" id="8_a0emy"]
+[ext_resource type="Script" uid="uid://bdqn5tn0c751k" path="res://scripts/stations/cell_breeding/component/handlers/handle_confirm_btn.gd" id="8_iv7m4"]
 [ext_resource type="PackedScene" uid="uid://4qqonvgbegek" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_main_box.tscn" id="8_uhd45"]
 [ext_resource type="PackedScene" uid="uid://3eja24fj48er" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_boost_box.tscn" id="9_gu3tj"]
 [ext_resource type="Script" uid="uid://bvhhsl2qa1xkh" path="res://scripts/stations/cell_breeding/component/audio_manager.gd" id="9_nopnw"]
@@ -23,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="12_q5y6d"]
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
+[ext_resource type="Script" uid="uid://bqbquxrpdwf7q" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/confirm_btn.gd" id="14_a775l"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
 [ext_resource type="Script" uid="uid://catmrc862ogfl" path="res://scripts/stations/cell_breeding/component/ui/exit_header/reset_btn.gd" id="16_svls5"]
 [ext_resource type="AudioStream" uid="uid://blyvvd4y36iqr" path="res://sounds/station_cell_breeder/reset_btn_appear.mp3" id="23_vsr2l"]
@@ -172,14 +175,20 @@ script = ExtResource("3_jleg6")
 [node name="HandleRefreshBreederView" type="Node" parent="." unique_id=297528434]
 script = ExtResource("4_0xvgh")
 
+[node name="HandleWantedHighlight" type="Node" parent="HandleRefreshBreederView" unique_id=81302980]
+script = ExtResource("5_k4bql")
+
+[node name="HandleWantedBorders" type="Node" parent="HandleRefreshBreederView" unique_id=282418460]
+script = ExtResource("7_2e72x")
+
+[node name="HandleConfirmBtn" type="Node" parent="HandleRefreshBreederView" unique_id=1568510378]
+script = ExtResource("8_iv7m4")
+
 [node name="HandleResetBtn" type="Node" parent="." unique_id=932431619]
 script = ExtResource("5_ac4jf")
 
 [node name="DisplayCellCatalog" type="Node" parent="." unique_id=1438846030]
 script = ExtResource("3_a0emy")
-
-[node name="HandleWantedBorders" type="Node" parent="." unique_id=282418460]
-script = ExtResource("7_2e72x")
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
@@ -444,6 +453,7 @@ shape = SubResource("BoxShape3D_wnhlu")
 
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
+visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -466,47 +476,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
-
-[node name="InteractFooter" type="Control" parent="BreedingUI" unique_id=1674396304]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter" unique_id=1314323368]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 656.0
-offset_right = 1248.0
-offset_bottom = 712.0
-color = Color(0.53, 0.026500005, 0.026500005, 1)
-
-[node name="ConfirmBtn" type="Control" parent="BreedingUI/InteractFooter" unique_id=2049235082]
-anchors_preset = 0
-offset_left = 512.0
-offset_top = 664.0
-offset_right = 552.0
-offset_bottom = 704.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1902126170]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 1.0
-offset_right = 279.0
-offset_bottom = 40.0
-
-[node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1940816088]
-texture_filter = 1
-layout_mode = 0
-offset_left = 22.0
-offset_right = 278.0
-offset_bottom = 40.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_colors/font_color = Color(0.9, 0, 0, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 24
-text = "Confirm"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CellLoader" type="Control" parent="BreedingUI" unique_id=908120563]
 anchors_preset = 0
@@ -637,6 +606,81 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="InteractFooter" type="Control" parent="BreedingUI" unique_id=1674396304]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter" unique_id=1314323368]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 656.0
+offset_right = 1248.0
+offset_bottom = 712.0
+color = Color(0.53, 0.026500005, 0.026500005, 1)
+
+[node name="ConfirmBtn" type="Control" parent="BreedingUI/InteractFooter" unique_id=2049235082]
+anchors_preset = 0
+offset_left = 512.0
+offset_top = 664.0
+offset_right = 552.0
+offset_bottom = 704.0
+script = ExtResource("14_a775l")
+
+[node name="BtnBg" type="ColorRect" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1902126170]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 279.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1940816088]
+texture_filter = 1
+layout_mode = 0
+offset_left = 22.0
+offset_right = 278.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 24
+text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Control" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=286433862]
+visible = false
+anchors_preset = 0
+offset_left = -4.0
+offset_top = 1.0
+offset_right = 36.0
+offset_bottom = 41.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter/ConfirmBtn/Hint" unique_id=282712396]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -78.0
+offset_right = 261.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="BreedingUI/InteractFooter/ConfirmBtn/Hint" unique_id=1049927798]
+texture_filter = 1
+custom_minimum_size = Vector2(197, 53)
+custom_maximum_size = Vector2(197, 53)
+layout_mode = 0
+offset_left = 64.0
+offset_top = -70.0
+offset_right = 261.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 20
+text = "Missing main breeding cells in panel"
+autowrap_mode = 2
 
 [node name="ExitHeader" type="Control" parent="BreedingUI" unique_id=910873983]
 anchors_preset = 0
