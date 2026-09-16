@@ -1,4 +1,3 @@
-
 extends Node
 
 
@@ -36,19 +35,34 @@ func _handle() -> void:
 			continue
 		
 		
-		# get corresponding panel key
-		# example: left + main = left_main
-		var panel_key: String = box.side + "_" + box.box_type
+		# check if this cell already exists on either side
+		# of the same box type
+		var is_on_panel: bool = false
 		
-		var panel_cell: BrainCell = panel_state.get(panel_key)
+		if box.box_type == "main":
+			
+			var left_cell: BrainCell = panel_state.get("left_main")
+			var right_cell: BrainCell = panel_state.get("right_main")
+			
+			if left_cell and left_cell.name == loaded_cell.name:
+				is_on_panel = true
+			
+			if right_cell and right_cell.name == loaded_cell.name:
+				is_on_panel = true
+		
+		elif box.box_type == "boost":
+			
+			var left_cell: BrainCell = panel_state.get("left_boost")
+			var right_cell: BrainCell = panel_state.get("right_boost")
+			
+			if left_cell and left_cell.name == loaded_cell.name:
+				is_on_panel = true
+			
+			if right_cell and right_cell.name == loaded_cell.name:
+				is_on_panel = true
 		
 		
-		# assume the cell is wanted unless it already matches physical panel
-		var is_wanted: bool = true
-		
-		if panel_cell:
-			if panel_cell.name == loaded_cell.name:
-				is_wanted = false
+		var is_wanted: bool = not is_on_panel
 		
 		
 		# cell entry border
@@ -67,4 +81,3 @@ func _handle() -> void:
 			box.side,
 			is_wanted
 		)
-		

@@ -43,6 +43,13 @@ func _handle_toggle_cell_entry_border(cell_name : String, border_type : String, 
 				border = on_main_border
 		'selected':  
 			border = on_selected_border
+			if is_wanted : 
+				border.visible = true
+			else : 
+				border.visible = false
+			
+			return
+				
 		_ : 
 			push_error('couldnt find border type  : ', border_type)
 			border = on_selected_border
