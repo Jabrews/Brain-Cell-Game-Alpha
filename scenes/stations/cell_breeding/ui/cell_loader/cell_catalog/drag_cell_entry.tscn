@@ -26,6 +26,7 @@ shader_parameter/noise_scale = 1.0
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [node name="DragCellEntry" type="Control" unique_id=424012992]
+z_index = 2
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_7bpug")
