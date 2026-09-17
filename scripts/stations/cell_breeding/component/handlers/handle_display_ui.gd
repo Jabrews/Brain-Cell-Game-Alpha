@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var breeding_ui : Control = $"../BreedingUI"
-@onready var selected_view_box : Control = $"../BreedingUI/CellLoader/SelectedView/SelectedViewBox"
+@onready var selected_view_box : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/SelectedViewBox"
 
 # display helpers
 @onready var display_cell_catalog : Node = $"../DisplayCellCatalog"

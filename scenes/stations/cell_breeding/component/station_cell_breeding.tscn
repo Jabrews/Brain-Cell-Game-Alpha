@@ -27,10 +27,12 @@
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
 [ext_resource type="Script" uid="uid://bqbquxrpdwf7q" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/confirm_btn.gd" id="14_a775l"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
+[ext_resource type="Script" uid="uid://bj350l0xbj47e" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/slide_handle.gd" id="16_bxgwh"]
 [ext_resource type="Script" uid="uid://catmrc862ogfl" path="res://scripts/stations/cell_breeding/component/ui/exit_header/reset_btn.gd" id="16_svls5"]
 [ext_resource type="Shader" uid="uid://cehnd5u738tts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/total_death_chance_frame.gdshader" id="20_nedwh"]
 [ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="21_x5req"]
 [ext_resource type="Shader" uid="uid://3crm1j3sldsg" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/pot_fill.gdshader" id="22_1ufwy"]
+[ext_resource type="Script" uid="uid://bhyq24r20raoi" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/selected_view_slider.gd" id="22_h6dfq"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="23_q2fkw"]
 [ext_resource type="AudioStream" uid="uid://blyvvd4y36iqr" path="res://sounds/station_cell_breeder/reset_btn_appear.mp3" id="23_vsr2l"]
 [ext_resource type="Texture2D" uid="uid://djxgrddvaiim5" path="res://models/breeding_screen/breeding_skull.png" id="27_gcvv8"]
@@ -605,6 +607,29 @@ script = ExtResource("2_dmors")
 transform = Transform3D(1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0, 1, 0, 0, -0.051116943)
 shape = SubResource("BoxShape3D_wnhlu")
 
+[node name="AudioManager" type="Node3D" parent="." unique_id=1426721986]
+process_mode = 3
+script = ExtResource("9_nopnw")
+
+[node name="DragDropped" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=67687174]
+stream = ExtResource("10_ymgeo")
+volume_db = -10.0
+
+[node name="BoxAccepted" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1301848753]
+stream = ExtResource("11_1bnce")
+volume_db = -10.0
+
+[node name="Error" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1886521579]
+stream = ExtResource("12_q5y6d")
+volume_db = -10.0
+
+[node name="RemoveFromBox" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=2119466838]
+stream = ExtResource("13_0xebg")
+volume_db = -10.0
+
+[node name="ResetBtnEnter" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1793259107]
+stream = ExtResource("23_vsr2l")
+
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
 texture_filter = 1
@@ -633,98 +658,93 @@ color = Color(1, 1, 1, 0)
 [node name="CellLoader" type="Control" parent="BreedingUI" unique_id=908120563]
 anchors_preset = 0
 offset_top = -24.0
-offset_right = 40.0
-offset_bottom = 16.0
+offset_right = 88.0
+offset_bottom = 56.0
 
-[node name="BreedingView" type="Control" parent="BreedingUI/CellLoader" unique_id=333480]
+[node name="SelectedViewSlider" type="Control" parent="BreedingUI/CellLoader" unique_id=1247261752]
+z_index = 1
+clip_contents = true
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView" unique_id=489023309]
-layout_mode = 0
 offset_left = 352.0
-offset_top = 72.0
-offset_right = 1248.0
-offset_bottom = 424.0
-color = Color(0.5, 0.10899997, 0.03999999, 0.7058824)
-
-[node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
-layout_mode = 1
-offset_left = 696.0
-offset_top = 312.0
-offset_right = 696.0
-offset_bottom = 312.0
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
-
-[node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
-layout_mode = 1
-offset_left = 808.0
-offset_top = 312.0
-offset_right = 808.0
-offset_bottom = 312.0
-side = "right"
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
-
-[node name="LeftBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=641033110 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
-layout_mode = 1
-offset_left = 368.0
-offset_top = 176.0
-offset_right = 368.0
-offset_bottom = 176.0
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
-
-[node name="RightBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=1252660582 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
-layout_mode = 1
-offset_left = 1157.0
-offset_top = 176.0
-offset_right = 1157.0
-offset_bottom = 176.0
-side = "right"
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
-
-[node name="PlusLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView" unique_id=521413019]
-texture_filter = 1
-layout_mode = 0
-offset_left = 788.0
-offset_top = 323.0
-offset_right = 811.0
-offset_bottom = 393.0
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 30
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SelectedView" type="Control" parent="BreedingUI/CellLoader" unique_id=1247261752]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1899304568]
-layout_mode = 0
-offset_left = 352.0
-offset_top = 424.0
+offset_top = 400.0
 offset_right = 1248.0
 offset_bottom = 688.0
-color = Color(0.4, 0.08719998, 0.031999994, 0.7058824)
+script = ExtResource("22_h6dfq")
 
-[node name="SelectedViewBox" parent="BreedingUI/CellLoader/SelectedView" unique_id=617651389 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_a0emy")]
+[node name="SlideHandle" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1409566521]
+anchors_preset = 0
+offset_left = 432.0
+offset_top = -16.0
+offset_right = 472.0
+offset_bottom = 24.0
+script = ExtResource("16_bxgwh")
+
+[node name="SlideHover" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideHandle" unique_id=1089181671]
+visible = false
 layout_mode = 0
-offset_left = 772.0
-offset_top = 604.0
-offset_right = 772.0
-offset_bottom = 604.0
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+offset_left = -43.0
+offset_top = 16.0
+offset_right = 75.0
+offset_bottom = 40.0
+mouse_filter = 2
 
-[node name="DeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedView" unique_id=1588407482]
+[node name="SlideBg" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideHandle" unique_id=973350578]
+layout_mode = 0
+offset_left = -40.0
+offset_top = 18.0
+offset_right = 72.0
+offset_bottom = 40.0
+color = Color(0.654902, 0.16862746, 0.08235294, 1)
+
+[node name="Arrow" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideHandle" unique_id=1242505675]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 19.0
+offset_right = 80.0
+offset_bottom = 65.0
+rotation = 1.5707964
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 40
+text = "<"
+
+[node name="SlideContent" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=2120854872]
+anchors_preset = 0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 64.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1899304568]
+layout_mode = 0
+offset_right = 896.0
+offset_bottom = 264.0
+mouse_filter = 2
+color = Color(0.6568259, 0.16709837, 0.080702044, 1)
+
+[node name="SelectedViewBox" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=617651389 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_a0emy")]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 186.0
+offset_right = 415.0
+offset_bottom = 186.0
+drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
+
+[node name="ARCHIVESelectedView" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1266301360]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="DeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1588407482]
 anchors_preset = 0
 offset_left = 344.0
 offset_top = 174.0
 offset_right = 344.0
 offset_bottom = 174.0
+metadata/_edit_lock_ = true
 
-[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=1784686331]
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1784686331]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 266.0
@@ -732,21 +752,21 @@ offset_right = 304.0
 offset_bottom = 514.0
 color = Color(0.3240299, 0.12314523, 0.086100526, 1)
 
-[node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=828690785]
+[node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=828690785]
 anchors_preset = 0
 offset_left = 99.0
 offset_top = -24.0
 offset_right = 139.0
 offset_bottom = 16.0
 
-[node name="BloodTypeBG" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=1386361138]
+[node name="BloodTypeBG" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=1386361138]
 anchors_preset = 0
 offset_left = -1052.0
 offset_top = -142.0
 offset_right = -1012.0
 offset_bottom = -102.0
 
-[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=1995122620]
+[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=1995122620]
 layout_mode = 0
 offset_left = 981.0
 offset_top = 433.0
@@ -754,7 +774,7 @@ offset_right = 1243.0
 offset_bottom = 525.0
 color = Color(0, 0, 0, 1)
 
-[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=32927299]
+[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=32927299]
 layout_mode = 0
 offset_left = 984.0
 offset_top = 436.0
@@ -762,7 +782,7 @@ offset_right = 1240.0
 offset_bottom = 521.0
 color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
 
-[node name="BG3" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=640716212]
+[node name="BG3" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=640716212]
 layout_mode = 0
 offset_left = 984.0
 offset_top = 436.0
@@ -770,7 +790,7 @@ offset_right = 1240.0
 offset_bottom = 475.0
 color = Color(0.12038336, 5.790731e-08, 3.008172e-08, 1)
 
-[node name="Frame" type="TextureRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=2030043629]
+[node name="Frame" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=2030043629]
 texture_filter = 1
 material = SubResource("ShaderMaterial_h6dfq")
 layout_mode = 0
@@ -781,7 +801,7 @@ offset_bottom = 374.0
 texture = ExtResource("21_x5req")
 expand_mode = 1
 
-[node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=753540306]
+[node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=753540306]
 layout_mode = 0
 offset_left = -5.0
 offset_top = 339.0
@@ -792,7 +812,7 @@ theme_override_font_sizes/font_size = 30
 text = "50%"
 horizontal_alignment = 1
 
-[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=486510463]
+[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=486510463]
 layout_mode = 0
 offset_left = -72.0
 offset_top = 294.0
@@ -804,19 +824,19 @@ text = "Death Chance -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatDanger" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=2124903233]
+[node name="StatDanger" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=2124903233]
 anchors_preset = 0
 offset_top = 32.0
 offset_right = 40.0
 offset_bottom = 72.0
 
-[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger" unique_id=624274621]
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger" unique_id=624274621]
 anchors_preset = 0
 offset_left = -68.0
 offset_right = -28.0
 offset_bottom = 40.0
 
-[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=699803900]
+[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=699803900]
 texture_filter = 1
 material = SubResource("ShaderMaterial_jh1bc")
 layout_mode = 0
@@ -826,7 +846,7 @@ offset_right = 108.0
 offset_bottom = 357.0
 texture = ExtResource("23_q2fkw")
 
-[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=229273070]
+[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=229273070]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 339.0
@@ -836,7 +856,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 15
 text = "Str."
 
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=2053928636]
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=2053928636]
 texture_filter = 1
 layout_mode = 0
 offset_left = 167.0
@@ -848,14 +868,14 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 20
 text = "(+ 15% )"
 
-[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger" unique_id=468622044]
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger" unique_id=468622044]
 anchors_preset = 0
 offset_left = -68.0
 offset_top = 26.0
 offset_right = -28.0
 offset_bottom = 66.0
 
-[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=781698012]
+[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=781698012]
 texture_filter = 1
 material = SubResource("ShaderMaterial_jh1bc")
 layout_mode = 0
@@ -865,7 +885,7 @@ offset_right = 108.0
 offset_bottom = 357.0
 texture = ExtResource("23_q2fkw")
 
-[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=1700086199]
+[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=1700086199]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 341.0
@@ -875,7 +895,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 15
 text = "Int."
 
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=856401431]
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=856401431]
 texture_filter = 1
 layout_mode = 0
 offset_left = 167.0
@@ -887,14 +907,14 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 20
 text = "(+ 15% )"
 
-[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger" unique_id=1634110333]
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger" unique_id=1634110333]
 anchors_preset = 0
 offset_left = -68.0
 offset_top = 52.0
 offset_right = -28.0
 offset_bottom = 92.0
 
-[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=869874456]
+[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=869874456]
 texture_filter = 1
 material = SubResource("ShaderMaterial_jh1bc")
 layout_mode = 0
@@ -904,7 +924,7 @@ offset_right = 108.0
 offset_bottom = 357.0
 texture = ExtResource("23_q2fkw")
 
-[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=1925918248]
+[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=1925918248]
 layout_mode = 0
 offset_left = 112.0
 offset_top = 341.0
@@ -914,7 +934,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 15
 text = "Com."
 
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=628484875]
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=628484875]
 texture_filter = 1
 layout_mode = 0
 offset_left = 167.0
@@ -926,14 +946,14 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 20
 text = "(+ 15% )"
 
-[node name="LifeSpanDanger" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=1552208601]
+[node name="LifeSpanDanger" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1552208601]
 anchors_preset = 0
 offset_left = -10.0
 offset_top = 31.0
 offset_right = 30.0
 offset_bottom = 71.0
 
-[node name="HeaderLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=9629604]
+[node name="HeaderLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=9629604]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 340.0
@@ -944,7 +964,7 @@ theme_override_font_sizes/font_size = 14
 text = "Lifespan"
 horizontal_alignment = 1
 
-[node name="LifeNum" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=300886133]
+[node name="LifeNum" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=300886133]
 layout_mode = 0
 offset_left = 196.0
 offset_top = 361.0
@@ -955,7 +975,7 @@ theme_override_font_sizes/font_size = 20
 text = "1"
 horizontal_alignment = 1
 
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=1428550224]
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=1428550224]
 texture_filter = 1
 layout_mode = 0
 offset_left = 183.0
@@ -969,14 +989,14 @@ text = "(+ 15% )"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HiddenStats" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=1206807468]
+[node name="HiddenStats" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1206807468]
 anchors_preset = 0
 offset_left = -19.0
 offset_top = 31.0
 offset_right = 21.0
 offset_bottom = 71.0
 
-[node name="StrengthHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/HiddenStats" unique_id=1655590903]
+[node name="StrengthHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/HiddenStats" unique_id=1655590903]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -985,7 +1005,7 @@ position = Vector2(109.00001, 346.375)
 scale = Vector2(0.463492, 0.5312505)
 texture = SubResource("CompressedTexture2D_k7gp0")
 
-[node name="IntelligenceHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/HiddenStats" unique_id=70388904]
+[node name="IntelligenceHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/HiddenStats" unique_id=70388904]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -994,7 +1014,7 @@ position = Vector2(109.00001, 372.1875)
 scale = Vector2(0.463492, 0.54062533)
 texture = SubResource("CompressedTexture2D_k7gp0")
 
-[node name="CommunityHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/HiddenStats" unique_id=1156123369]
+[node name="CommunityHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/HiddenStats" unique_id=1156123369]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1003,20 +1023,20 @@ position = Vector2(109.00001, 399)
 scale = Vector2(0.463492, 0.54062533)
 texture = SubResource("CompressedTexture2D_k7gp0")
 
-[node name="OffDisableLabels" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=921343182]
+[node name="OffDisableLabels" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=921343182]
 anchors_preset = 0
 offset_left = -20.0
 offset_top = 32.0
 offset_right = 20.0
 offset_bottom = 72.0
 
-[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=699581571]
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=699581571]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels/Strength" unique_id=206100851]
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Strength" unique_id=206100851]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 334.0
@@ -1024,7 +1044,7 @@ offset_right = 184.0
 offset_bottom = 359.0
 color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
 
-[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels/Strength" unique_id=2079173225]
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Strength" unique_id=2079173225]
 texture_filter = 1
 layout_mode = 0
 offset_left = 26.0
@@ -1039,14 +1059,14 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=409907760]
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=409907760]
 visible = false
 anchors_preset = 0
 offset_top = 26.0
 offset_right = 40.0
 offset_bottom = 66.0
 
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1867895283]
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1867895283]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 334.0
@@ -1054,7 +1074,7 @@ offset_right = 184.0
 offset_bottom = 359.0
 color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
 
-[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=653073823]
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=653073823]
 texture_filter = 1
 layout_mode = 0
 offset_left = 26.0
@@ -1069,14 +1089,14 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=1484782364]
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=1484782364]
 visible = false
 anchors_preset = 0
 offset_top = 53.0
 offset_right = 40.0
 offset_bottom = 93.0
 
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels/Community" unique_id=1316872573]
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Community" unique_id=1316872573]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 334.0
@@ -1084,7 +1104,7 @@ offset_right = 184.0
 offset_bottom = 359.0
 color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
 
-[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay/OffDisableLabels/Community" unique_id=436037103]
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Community" unique_id=436037103]
 texture_filter = 1
 layout_mode = 0
 offset_left = 26.0
@@ -1099,7 +1119,7 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Divider" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=1045109831]
+[node name="Divider" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1045109831]
 layout_mode = 0
 offset_left = 168.0
 offset_top = 367.0
@@ -1107,7 +1127,7 @@ offset_right = 172.0
 offset_bottom = 440.0
 color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
 
-[node name="Skull" type="TextureRect" parent="BreedingUI/CellLoader/SelectedView/DeathChanceDisplay" unique_id=682612005]
+[node name="Skull" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=682612005]
 texture_filter = 1
 layout_mode = 0
 offset_left = 144.0
@@ -1117,14 +1137,15 @@ offset_bottom = 506.0
 pivot_offset = Vector2(24, 28)
 texture = ExtResource("27_gcvv8")
 
-[node name="StatDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedView" unique_id=1724486340]
+[node name="StatDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1724486340]
 anchors_preset = 0
 offset_left = 640.0
 offset_top = 304.0
 offset_right = 680.0
 offset_bottom = 344.0
+metadata/_edit_lock_ = true
 
-[node name="CellName" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay" unique_id=1112055323]
+[node name="CellName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1112055323]
 texture_filter = 1
 layout_mode = 0
 offset_top = 128.0
@@ -1138,13 +1159,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedView/StatDisplay" unique_id=1472069207]
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1472069207]
 anchors_preset = 0
 offset_left = -10.0
 offset_right = 30.0
 offset_bottom = 40.0
 
-[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Strength" unique_id=1112187799]
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=1112187799]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
@@ -1159,14 +1180,14 @@ nine_patch_stretch = true
 texture_under = ExtResource("28_q2fkw")
 texture_progress = ExtResource("29_xdl70")
 
-[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Strength" unique_id=575127215]
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=575127215]
 texture_filter = 1
 material = SubResource("ShaderMaterial_bxgwh")
 position = Vector2(173.99998, 190.00002)
 scale = Vector2(0.7999999, 0.37500033)
 texture = ExtResource("31_gwke6")
 
-[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Strength" unique_id=673567453]
+[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=673567453]
 texture_filter = 1
 layout_mode = 0
 offset_left = 50.0
@@ -1177,7 +1198,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 12
 text = "Strength"
 
-[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Strength" unique_id=267070161]
+[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=267070161]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1186,7 +1207,7 @@ position = Vector2(174, 193)
 scale = Vector2(0.7873015, 0.59999985)
 texture = SubResource("CompressedTexture2D_l8wio")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Strength" unique_id=1247070338]
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=1247070338]
 visible = false
 texture_filter = 1
 layout_mode = 0
@@ -1202,14 +1223,14 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedView/StatDisplay" unique_id=1719484698]
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1719484698]
 anchors_preset = 0
 offset_left = -10.0
 offset_top = 45.0
 offset_right = 30.0
 offset_bottom = 85.0
 
-[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Intelligence" unique_id=362047249]
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=362047249]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
@@ -1224,14 +1245,14 @@ nine_patch_stretch = true
 texture_under = ExtResource("28_q2fkw")
 texture_progress = ExtResource("29_xdl70")
 
-[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Intelligence" unique_id=1420652957]
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=1420652957]
 texture_filter = 1
 material = SubResource("ShaderMaterial_bxgwh")
 position = Vector2(173.99998, 190.00002)
 scale = Vector2(0.7999999, 0.37500033)
 texture = ExtResource("31_gwke6")
 
-[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Intelligence" unique_id=2026522492]
+[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=2026522492]
 texture_filter = 1
 layout_mode = 0
 offset_left = 50.0
@@ -1242,7 +1263,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 12
 text = "Intelligence"
 
-[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Intelligence" unique_id=1476533261]
+[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=1476533261]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1251,7 +1272,7 @@ position = Vector2(174, 193)
 scale = Vector2(0.7873015, 0.59999985)
 texture = SubResource("CompressedTexture2D_l8wio")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Intelligence" unique_id=653810845]
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=653810845]
 visible = false
 texture_filter = 1
 layout_mode = 0
@@ -1267,14 +1288,14 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedView/StatDisplay" unique_id=1034382399]
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1034382399]
 anchors_preset = 0
 offset_left = -10.0
 offset_top = 87.0
 offset_right = 30.0
 offset_bottom = 127.0
 
-[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Community" unique_id=579859261]
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=579859261]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
@@ -1289,14 +1310,14 @@ nine_patch_stretch = true
 texture_under = ExtResource("28_q2fkw")
 texture_progress = ExtResource("29_xdl70")
 
-[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Community" unique_id=352554894]
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=352554894]
 texture_filter = 1
 material = SubResource("ShaderMaterial_bxgwh")
 position = Vector2(173.99998, 190.00002)
 scale = Vector2(0.7999999, 0.37500033)
 texture = ExtResource("31_gwke6")
 
-[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Community" unique_id=1528405440]
+[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=1528405440]
 texture_filter = 1
 layout_mode = 0
 offset_left = 50.0
@@ -1307,7 +1328,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 12
 text = "Community"
 
-[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Community" unique_id=1467470765]
+[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=1467470765]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1316,7 +1337,7 @@ position = Vector2(174, 193)
 scale = Vector2(0.7873015, 0.59999985)
 texture = SubResource("CompressedTexture2D_l8wio")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedView/StatDisplay/Community" unique_id=691314380]
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=691314380]
 visible = false
 texture_filter = 1
 layout_mode = 0
@@ -1332,12 +1353,13 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedView" unique_id=300925437]
+[node name="BloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=300925437]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_lock_ = true
 
-[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=84033239]
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=84033239]
 layout_mode = 0
 offset_left = 952.0
 offset_top = 440.0
@@ -1345,14 +1367,14 @@ offset_right = 1248.0
 offset_bottom = 688.0
 color = Color(0.3240299, 0.12314523, 0.086100526, 1)
 
-[node name="BloodTypeBG" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=1775116892]
+[node name="BloodTypeBG" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1775116892]
 anchors_preset = 0
 offset_left = -12.0
 offset_top = 8.0
 offset_right = 28.0
 offset_bottom = 48.0
 
-[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=34239525]
+[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=34239525]
 layout_mode = 0
 offset_left = 981.0
 offset_top = 433.0
@@ -1360,7 +1382,7 @@ offset_right = 1243.0
 offset_bottom = 535.16986
 color = Color(0, 0, 0, 1)
 
-[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=1774442474]
+[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=1774442474]
 layout_mode = 0
 offset_left = 984.0
 offset_top = 436.0
@@ -1368,7 +1390,7 @@ offset_right = 1240.0
 offset_bottom = 532.0
 color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
 
-[node name="BG3" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=70528949]
+[node name="BG3" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=70528949]
 layout_mode = 0
 offset_left = 984.0
 offset_top = 436.0
@@ -1376,7 +1398,7 @@ offset_right = 1240.0
 offset_bottom = 475.0
 color = Color(0.12038336, 5.790731e-08, 3.008172e-08, 1)
 
-[node name="CompoundBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=717272323]
+[node name="CompoundBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=717272323]
 visible = false
 anchors_preset = 0
 offset_left = 926.0
@@ -1384,14 +1406,14 @@ offset_top = 41.0
 offset_right = 966.0
 offset_bottom = 81.0
 
-[node name="FakeBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=1287903140]
+[node name="FakeBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=1287903140]
 anchors_preset = 0
 offset_left = 38.0
 offset_top = 88.0
 offset_right = 78.0
 offset_bottom = 128.0
 
-[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=742648132]
+[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=742648132]
 texture_filter = 1
 layout_mode = 0
 offset_left = 101.0
@@ -1403,7 +1425,7 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 43
 text = "A"
 
-[node name="BloodType+" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1178069783]
+[node name="BloodType+" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1178069783]
 texture_filter = 1
 material = SubResource("ShaderMaterial_l8wio")
 layout_mode = 0
@@ -1418,7 +1440,7 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BloodTypeDash" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1980871433]
+[node name="BloodTypeDash" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1980871433]
 texture_filter = 1
 layout_mode = 0
 offset_left = 130.0
@@ -1432,7 +1454,7 @@ text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BloodTypeA2" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1853105104]
+[node name="BloodTypeA2" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1853105104]
 texture_filter = 1
 layout_mode = 0
 offset_left = 160.0
@@ -1444,34 +1466,34 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 43
 text = "O"
 
-[node name="UnderLine" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=345057416]
+[node name="UnderLine" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=345057416]
 anchors_preset = 0
 offset_left = 5.0
 offset_right = 45.0
 offset_bottom = 40.0
 
-[node name="Underline" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=570183448]
+[node name="Underline" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=570183448]
 layout_mode = 0
 offset_left = 134.0
 offset_top = 481.0
 offset_right = 151.0
 offset_bottom = 483.0
 
-[node name="Underline2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=663940208]
+[node name="Underline2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=663940208]
 layout_mode = 0
 offset_left = 193.0
 offset_top = 481.0
 offset_right = 210.0
 offset_bottom = 483.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=1255320800]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=1255320800]
 texture_filter = 1
 position = Vector2(240.00002, 465)
 scale = Vector2(1.3068168, 1.4249984)
 sprite_frames = SubResource("SpriteFrames_2fsyu")
 autoplay = "default"
 
-[node name="SingleBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=954122782]
+[node name="SingleBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=954122782]
 visible = false
 anchors_preset = 0
 offset_left = 926.0
@@ -1479,12 +1501,12 @@ offset_top = 41.0
 offset_right = 966.0
 offset_bottom = 81.0
 
-[node name="FakeBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/SingleBloodType" unique_id=568161279]
+[node name="FakeBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType" unique_id=568161279]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=159975142]
+[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=159975142]
 texture_filter = 1
 layout_mode = 0
 offset_left = 168.0
@@ -1496,7 +1518,7 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 51
 text = "A"
 
-[node name="BloodType+" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=1613950672]
+[node name="BloodType+" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=1613950672]
 texture_filter = 1
 material = SubResource("ShaderMaterial_l8wio")
 layout_mode = 0
@@ -1511,26 +1533,26 @@ text = "+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Underline" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/SingleBloodType" unique_id=2042796286]
+[node name="Underline" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType" unique_id=2042796286]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Underline" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/SingleBloodType/Underline" unique_id=1556418589]
+[node name="Underline" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType/Underline" unique_id=1556418589]
 layout_mode = 0
 offset_left = 166.0
 offset_top = 491.0
 offset_right = 191.0
 offset_bottom = 493.0
 
-[node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=1558486107]
+[node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1558486107]
 anchors_preset = 0
 offset_left = 919.0
 offset_top = 49.0
 offset_right = 959.0
 offset_bottom = 89.0
 
-[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay/NoBloodType" unique_id=209248468]
+[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/NoBloodType" unique_id=209248468]
 texture_filter = 1
 layout_mode = 0
 offset_left = 125.0
@@ -1542,7 +1564,7 @@ theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 30
 text = "None"
 
-[node name="BloodDrop" type="TextureRect" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=1205608114]
+[node name="BloodDrop" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1205608114]
 modulate = Color(0.95, 0.5225, 0.5225, 1)
 texture_filter = 1
 layout_mode = 0
@@ -1553,7 +1575,7 @@ offset_bottom = 675.0
 texture = ExtResource("34_gwke6")
 expand_mode = 1
 
-[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedView/BloodTypeDisplay" unique_id=1919460484]
+[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1919460484]
 layout_mode = 0
 offset_left = 971.0
 offset_top = 444.0
@@ -1565,53 +1587,119 @@ text = "Blood Type -"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DEBUGSECTION4" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1627156670]
+[node name="DEBUGSECTION4" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1627156670]
 layout_mode = 0
 offset_left = 352.0
 offset_top = 424.0
 offset_right = 1248.0
 offset_bottom = 432.0
 color = Color(0.20164412, 0.093715034, 0.019167818, 1)
+metadata/_edit_lock_ = true
 
-[node name="DEBUGSECTION5" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1887439899]
+[node name="DEBUGSECTION5" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1887439899]
 layout_mode = 0
 offset_left = 648.0
 offset_top = 432.0
 offset_right = 656.0
 offset_bottom = 688.0
 color = Color(0.20164412, 0.093715034, 0.019167818, 1)
+metadata/_edit_lock_ = true
 
-[node name="DEBUGSECTION6" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=2118698246]
+[node name="DEBUGSECTION6" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=2118698246]
 layout_mode = 0
 offset_left = 944.0
 offset_top = 432.0
 offset_right = 952.0
 offset_bottom = 688.0
 color = Color(0.20164412, 0.093715034, 0.019167818, 1)
+metadata/_edit_lock_ = true
 
-[node name="DEBUGSECTION7" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=2057597137]
+[node name="DEBUGSECTION7" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=2057597137]
 layout_mode = 0
 offset_left = 352.0
 offset_top = 432.0
 offset_right = 360.0
 offset_bottom = 688.0
 color = Color(0.20164412, 0.093715034, 0.019167818, 1)
+metadata/_edit_lock_ = true
 
-[node name="DEBUGSECTION8" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=1793802586]
+[node name="DEBUGSECTION8" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1793802586]
 layout_mode = 0
 offset_left = 1240.0
 offset_top = 432.0
 offset_right = 1248.0
 offset_bottom = 688.0
 color = Color(0.20164412, 0.093715034, 0.019167818, 1)
+metadata/_edit_lock_ = true
 
-[node name="DEBUGSECTION9" type="ColorRect" parent="BreedingUI/CellLoader/SelectedView" unique_id=657986282]
+[node name="DEBUGSECTION9" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=657986282]
 layout_mode = 0
 offset_left = 352.0
 offset_top = 680.0
 offset_right = 1248.0
 offset_bottom = 688.0
 color = Color(0.20164412, 0.093715034, 0.019167818, 1)
+metadata/_edit_lock_ = true
+
+[node name="BreedingView" type="Control" parent="BreedingUI/CellLoader" unique_id=333480]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView" unique_id=489023309]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 72.0
+offset_right = 1248.0
+offset_bottom = 688.0
+color = Color(0.5, 0.10899997, 0.03999999, 0.7058824)
+
+[node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
+layout_mode = 1
+offset_left = 688.0
+offset_top = 584.0
+offset_right = 688.0
+offset_bottom = 584.0
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
+layout_mode = 1
+offset_left = 800.0
+offset_top = 584.0
+offset_right = 800.0
+offset_bottom = 584.0
+side = "right"
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="LeftBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=641033110 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
+layout_mode = 1
+offset_left = 368.0
+offset_top = 192.0
+offset_right = 368.0
+offset_bottom = 192.0
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="RightBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=1252660582 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
+layout_mode = 1
+offset_left = 1157.0
+offset_top = 192.0
+offset_right = 1157.0
+offset_bottom = 192.0
+side = "right"
+drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+
+[node name="PlusLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView" unique_id=521413019]
+texture_filter = 1
+layout_mode = 0
+offset_left = 780.0
+offset_top = 595.0
+offset_right = 803.0
+offset_bottom = 665.0
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 30
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]
 anchors_preset = 0
@@ -1837,26 +1925,3 @@ offset_right = 1248.0
 offset_bottom = 712.0
 mouse_filter = 2
 metadata/_edit_lock_ = true
-
-[node name="AudioManager" type="Node3D" parent="." unique_id=1426721986]
-process_mode = 3
-script = ExtResource("9_nopnw")
-
-[node name="DragDropped" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=67687174]
-stream = ExtResource("10_ymgeo")
-volume_db = -10.0
-
-[node name="BoxAccepted" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1301848753]
-stream = ExtResource("11_1bnce")
-volume_db = -10.0
-
-[node name="Error" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1886521579]
-stream = ExtResource("12_q5y6d")
-volume_db = -10.0
-
-[node name="RemoveFromBox" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=2119466838]
-stream = ExtResource("13_0xebg")
-volume_db = -10.0
-
-[node name="ResetBtnEnter" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1793259107]
-stream = ExtResource("23_vsr2l")

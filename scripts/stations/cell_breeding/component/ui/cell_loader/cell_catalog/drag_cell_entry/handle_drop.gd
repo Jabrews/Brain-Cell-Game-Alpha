@@ -5,7 +5,7 @@ extends Node
 @onready var display_background : ColorRect = $"../DisplayBackground"
 
 # component boxes
-@onready var selected_view_box : Control = $"../../../CellLoader/SelectedView/SelectedViewBox"
+@onready var selected_view_box : Control = $"../../../CellLoader/SelectedViewSlider/SlideContent/SelectedViewBox"
 @onready var left_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/LeftBreedingViewMainBox"
 @onready var right_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/RightBreedingViewMainBox"
 @onready var left_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/LeftBreedingViewBoostBox"
