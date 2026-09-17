@@ -1,5 +1,8 @@
 extends Node
 
+# component handlers
+@onready var handle_refresh_breeding_view : Node = $HandleRefreshBreederView
+
 # panel cells
 var left_main_cell: BrainCell
 var right_main_cell: BrainCell
@@ -24,8 +27,10 @@ func set_panel_cell(seat_type: String, cell: BrainCell) -> void:
 		_:
 			push_error("Invalid seat type: ", seat_type)
 			return
-
+			
 	GLBreedingComponetsBus.breeding_panel_state[seat_type] = cell
+	
+	handle_refresh_breeding_view._handle_refresh()
 
 
 func get_panel_cell(seat_type: String) -> BrainCell:
