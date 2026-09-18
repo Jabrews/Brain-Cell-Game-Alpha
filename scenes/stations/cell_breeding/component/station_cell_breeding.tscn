@@ -850,6 +850,87 @@ text = "None"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Information" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection" unique_id=1614450739]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stats" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=1757976135]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats" unique_id=123066118]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 38.0
+offset_right = 880.0
+offset_bottom = 248.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 40
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=894765449]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType" unique_id=1431087695]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 38.0
+offset_right = 880.0
+offset_bottom = 248.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 40
+text = "BloodType"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=1703284075]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=682921398]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 38.0
+offset_right = 880.0
+offset_bottom = 248.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 40
+text = "DeathChance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mutations" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=106144331]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=1440613661]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 38.0
+offset_right = 880.0
+offset_bottom = 248.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 40
+text = "Mutations"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="InformationUnloadedHint" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=333033916]
 visible = false
 anchors_preset = 0
