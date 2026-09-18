@@ -10,6 +10,7 @@ extends Node
 
 # handle components
 @onready var handle_btn_section : Node = $HandleBtnSection
+@onready var handle_information_section : Node = $HandleInformationSection
 
 const SLIDE_CONTENT_CLOSE_POS : Vector2 = Vector2(0.0, 280.0)
 const SLIDE_HANDLE_CLOSE_POS : Vector2 = Vector2(432.0, 240.0)
@@ -22,6 +23,7 @@ func _ready() -> void:
 	GLBreedingComponetsBus.connect('cell_removed_from_selected_view', _cell_removed_from_selected_view)
 	
 	handle_btn_section._toggle_active(false)
+	handle_information_section._toggle_active(false)
 
 
 # called by slider when opened / closed
@@ -43,8 +45,10 @@ func _handle(toggle_value : bool) :
 	
 func _handle_cell_loaded_on_selected_view(cell : BrainCell) :
 	handle_btn_section._toggle_active(true)
+	handle_information_section._toggle_active(true)
 	
 	
 func _cell_removed_from_selected_view() :
 	handle_btn_section._toggle_active(false)
+	handle_information_section._toggle_active(false)
 	

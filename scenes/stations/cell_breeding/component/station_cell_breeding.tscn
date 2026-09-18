@@ -25,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://dn6burwhyv76o" path="res://sounds/station_cell_breeder/drag_dropped.mp3" id="10_ymgeo"]
 [ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
 [ext_resource type="Script" uid="uid://cg2sd4r2hly8j" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/handle_btn_section.gd" id="11_yqqxt"]
+[ext_resource type="Script" uid="uid://bu0bba4q2dt2l" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/handle_information_section.gd" id="12_l8wio"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="12_q5y6d"]
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
 [ext_resource type="Script" uid="uid://bqbquxrpdwf7q" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/confirm_btn.gd" id="14_a775l"]
@@ -354,6 +355,9 @@ script = ExtResource("10_jh1bc")
 
 [node name="HandleBtnSection" type="Node" parent="HandleSelectedViewSlider" unique_id=567767176]
 script = ExtResource("11_yqqxt")
+
+[node name="HandleInformationSection" type="Node" parent="HandleSelectedViewSlider" unique_id=799527138]
+script = ExtResource("12_l8wio")
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
@@ -793,15 +797,87 @@ offset_bottom = 264.0
 mouse_filter = 2
 color = Color(0.34117648, 0, 0, 1)
 
-[node name="LoadedSection" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1815448993]
+[node name="InformationSection" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1815448993]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="UnloadedSection" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=333033916]
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection" unique_id=2042462398]
+layout_mode = 0
+offset_left = 394.0
+offset_top = 4.0
+offset_right = 894.0
+offset_bottom = 260.0
+mouse_filter = 2
+color = Color(0.41568628, 0, 0, 1)
+
+[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection" unique_id=341211658]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 8.0
+offset_right = 888.0
+offset_bottom = 256.0
+mouse_filter = 2
+color = Color(0.13333334, 0, 0, 1)
+
+[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection" unique_id=1609980191]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 40.0
+offset_right = 880.0
+offset_bottom = 248.0
+mouse_filter = 2
+color = Color(0.21, 0, 0, 1)
+
+[node name="LabelBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection" unique_id=976501549]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 12.0
+offset_right = 712.0
+offset_bottom = 37.0
+color = Color(0.15006915, 0.049115345, 0.049127147, 1)
+
+[node name="InformationTypeLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection" unique_id=619525618]
+layout_mode = 0
+offset_left = 568.0
+offset_top = 8.0
+offset_right = 712.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 25
+text = "None"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InformationUnloadedHint" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=333033916]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationUnloadedHint" unique_id=1981707472]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 8.0
+offset_right = 880.0
+offset_bottom = 256.0
+color = Color(0, 0, 0, 0.5294118)
+
+[node name="BtnLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationUnloadedHint" unique_id=688783721]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 16.0
+offset_right = 880.0
+offset_bottom = 248.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 30
+text = "Load Cell 
+To 
+View Properties"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BoxSection" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1218014024]
 anchors_preset = 0
@@ -884,42 +960,47 @@ offset_bottom = 256.0
 mouse_filter = 2
 color = Color(0.11, 0, 0, 1)
 
-[node name="StatsViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection" unique_id=2005525320 instance=ExtResource("30_k7gp0")]
+[node name="BtnParent" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection" unique_id=86385014]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatsViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=2005525320 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
 offset_top = -3.0
 offset_bottom = -3.0
 info_section_type = "stats"
 label_text = "Stats"
 
-[node name="DeathChangeViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection" unique_id=1497145258 instance=ExtResource("30_k7gp0")]
+[node name="DeathChangeViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=1497145258 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
 offset_top = 56.0
 offset_bottom = 56.0
 info_section_type = "death_chance"
 label_text = "Death Chance"
 
-[node name="BloodTypeViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection" unique_id=1334943118 instance=ExtResource("30_k7gp0")]
+[node name="BloodTypeViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=1334943118 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
 offset_top = 115.0
 offset_bottom = 115.0
 info_section_type = "blood_type"
 label_text = "Blood Type"
 
-[node name="MutationsViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection" unique_id=108224177 instance=ExtResource("30_k7gp0")]
+[node name="MutationsViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=108224177 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
 offset_top = 175.0
 offset_bottom = 175.0
 info_section_type = "mutations"
 label_text = "Mutations"
 
-[node name="UnloadedHint" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=41881637]
+[node name="BtnUnloadedHint" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=41881637]
 visible = false
 anchors_preset = 0
 offset_left = 13.0
 offset_right = 53.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/UnloadedHint" unique_id=1063353221]
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BtnUnloadedHint" unique_id=1063353221]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 15.0
@@ -927,7 +1008,7 @@ offset_right = 352.0
 offset_bottom = 252.34857
 color = Color(0, 0, 0, 0.5294118)
 
-[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/UnloadedHint" unique_id=419179368]
+[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BtnUnloadedHint" unique_id=419179368]
 layout_mode = 0
 offset_left = 176.0
 offset_top = 17.0
