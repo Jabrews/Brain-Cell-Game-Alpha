@@ -2,12 +2,15 @@ extends Node
 
 
 @export var is_selected_view_box : bool = false
+@export var is_main_box : bool = false
 
 # components
 @onready var parent_box : Control = $".."
 @onready var display_background: TextureRect = $"../DisplayBackground"
 @onready var remove_border : TextureRect = $"../RemoveBorder"
 @onready var add_a_cell_hint : Control = $"../AddACellHint"
+
+
 
 var hovered: bool = false
 
@@ -31,6 +34,14 @@ func _process(_delta: float) -> void:
 
 
 func _handle_mouse_entered() -> void:
+	
+	if is_main_box : 
+		if parent_box.prevent_interact 	 :
+			return
+		
+		
+		
+	
 	
 	if hovered:
 		return

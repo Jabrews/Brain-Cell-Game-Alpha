@@ -3,6 +3,8 @@ extends Control
 @export var side : String = 'left'
 var box_type : String = 'main'
 
+var prevent_interact : bool = false
+
 # components
 @export var drag_cell_entry_parent_node: Node
 @onready var display_background : TextureRect = $DisplayBackground
@@ -16,6 +18,9 @@ var loaded_cell : BrainCell
 func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh : bool = false) :
 	
 	if loaded_cell or not cell : 	
+		return
+	
+	if prevent_interact :
 		return
 	
 	loaded_cell = cell
@@ -38,6 +43,9 @@ func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh 
 	
 func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	
+	if prevent_interact == true : 	
+		return
+	
 	if play_sound  :
 		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_removed')
 	
@@ -59,7 +67,7 @@ func _update_breeding_ui_state() :
 	
 	
 	
-		
+	
 		
 	
 	

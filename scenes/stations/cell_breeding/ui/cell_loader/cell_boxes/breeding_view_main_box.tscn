@@ -42,6 +42,7 @@ script = ExtResource("1_t5uhp")
 
 [node name="HandleMouseHover" type="Node" parent="." unique_id=134206900]
 script = ExtResource("2_b483c")
+is_main_box = true
 
 [node name="HandleDragHover" type="Node" parent="." unique_id=1585308057]
 script = ExtResource("3_hbruv")
@@ -419,6 +420,7 @@ texture = ExtResource("14_brrht")
 
 [node name="AlreadyOccupiedHint" type="Control" parent="." unique_id=1961316415]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -450,6 +452,7 @@ autowrap_mode = 2
 
 [node name="AddACellHint" type="Control" parent="." unique_id=791251670]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

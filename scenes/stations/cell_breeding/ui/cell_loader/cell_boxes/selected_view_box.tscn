@@ -50,10 +50,9 @@ script = ExtResource("3_ycyxs")
 [node name="DisplayBackground" type="TextureRect" parent="." unique_id=1287551043]
 texture_filter = 1
 layout_mode = 0
-offset_right = 72.0
-offset_bottom = 74.0
+offset_right = 104.0
+offset_bottom = 104.0
 texture = ExtResource("1_ch84l")
-expand_mode = 1
 
 [node name="MockCellEntry" type="Control" parent="." unique_id=168524614]
 visible = false
@@ -83,9 +82,9 @@ mouse_filter = 2
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
-offset_top = 49.0
-offset_right = 70.0
-offset_bottom = 55.0
+offset_top = 51.0
+offset_right = 101.0
+offset_bottom = 62.0
 mouse_filter = 2
 value = 75.0
 nine_patch_stretch = true
@@ -96,9 +95,9 @@ texture_progress = ExtResource("4_ycyxs")
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
-offset_top = 56.0
-offset_right = 70.0
-offset_bottom = 58.857147
+offset_top = 62.999996
+offset_right = 100.0
+offset_bottom = 67.28571
 scale = Vector2(1, 1.4)
 mouse_filter = 2
 value = 50.0
@@ -118,8 +117,8 @@ mouse_filter = 2
 layout_mode = 0
 offset_left = 12.0
 offset_top = 55.0
-offset_right = 70.0
-offset_bottom = 66.0
+offset_right = 101.0
+offset_bottom = 75.0
 mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
@@ -127,11 +126,11 @@ color = Color(0.09, 0.09, 0.09, 1)
 layout_mode = 0
 offset_left = 13.0
 offset_top = 57.0
-offset_right = 70.0
-offset_bottom = 64.0
+offset_right = 99.0
+offset_bottom = 73.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_ctkhe")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 10
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -141,38 +140,38 @@ visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_piy7c")
-position = Vector2(41, 55)
-scale = Vector2(0.18412699, 0.29999995)
+position = Vector2(56.5, 59)
+scale = Vector2(0.2825397, 0.49999997)
 texture = SubResource("CompressedTexture2D_agsde")
 
-[node name="Intelligence" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1186568094]
+[node name="Intelligence" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1049971060]
 anchors_preset = 0
 offset_left = 4.0
-offset_top = 25.0
+offset_top = 32.0
 offset_right = 44.0
-offset_bottom = 65.0
+offset_bottom = 72.0
 mouse_filter = 2
 
-[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1142929884]
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=556072117]
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
-offset_top = 49.0
-offset_right = 70.0
-offset_bottom = 55.0
+offset_top = 51.0
+offset_right = 101.0
+offset_bottom = 62.0
 mouse_filter = 2
 value = 75.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_v8yds")
 texture_progress = ExtResource("4_ycyxs")
 
-[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=610066905]
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1580265418]
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
-offset_top = 56.0
-offset_right = 70.0
-offset_bottom = 58.857147
+offset_top = 62.999996
+offset_right = 100.0
+offset_bottom = 67.28571
 scale = Vector2(1, 1.4)
 mouse_filter = 2
 value = 50.0
@@ -180,7 +179,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("5_xxsdd")
 texture_progress = ExtResource("6_pf4mr")
 
-[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1144327540]
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1945163010]
 visible = false
 anchors_preset = 0
 offset_top = -6.0
@@ -188,65 +187,65 @@ offset_right = 40.0
 offset_bottom = 34.0
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=1846102597]
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=1571215293]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 55.0
-offset_right = 70.0
-offset_bottom = 66.0
+offset_right = 101.0
+offset_bottom = 75.0
 mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
-[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=3897025]
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=263685071]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 57.0
-offset_right = 70.0
-offset_bottom = 64.0
+offset_right = 99.0
+offset_bottom = 73.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_ctkhe")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 10
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=350464729]
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1433651655]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_piy7c")
-position = Vector2(41, 55)
-scale = Vector2(0.18412699, 0.29999995)
+position = Vector2(56.5, 59)
+scale = Vector2(0.2825397, 0.49999997)
 texture = SubResource("CompressedTexture2D_agsde")
 
-[node name="Community" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1279278491]
+[node name="Community" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1139227897]
 anchors_preset = 0
 offset_left = 4.0
-offset_top = 39.0
+offset_top = 55.0
 offset_right = 44.0
-offset_bottom = 79.0
+offset_bottom = 95.0
 mouse_filter = 2
 
-[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1191806330]
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1517894297]
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
-offset_top = 49.0
-offset_right = 70.0
-offset_bottom = 55.0
+offset_top = 51.0
+offset_right = 101.0
+offset_bottom = 62.0
 mouse_filter = 2
 value = 75.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_v8yds")
 texture_progress = ExtResource("4_ycyxs")
 
-[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1175541394]
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1834244401]
 texture_filter = 1
 layout_mode = 0
 offset_left = 13.0
-offset_top = 56.0
-offset_right = 70.0
-offset_bottom = 58.857147
+offset_top = 62.999996
+offset_right = 100.0
+offset_bottom = 67.28571
 scale = Vector2(1, 1.4)
 mouse_filter = 2
 value = 50.0
@@ -254,7 +253,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("5_xxsdd")
 texture_progress = ExtResource("6_pf4mr")
 
-[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Community" unique_id=1602981611]
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Community" unique_id=1997453604]
 visible = false
 anchors_preset = 0
 offset_top = -6.0
@@ -262,35 +261,35 @@ offset_right = 40.0
 offset_bottom = 34.0
 mouse_filter = 2
 
-[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1956960617]
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1804830793]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 55.0
-offset_right = 70.0
-offset_bottom = 66.0
+offset_right = 101.0
+offset_bottom = 75.0
 mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
-[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1488655020]
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1643654796]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 57.0
-offset_right = 70.0
-offset_bottom = 64.0
+offset_right = 99.0
+offset_bottom = 73.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_ctkhe")
-theme_override_font_sizes/font_size = 6
+theme_override_font_sizes/font_size = 10
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Community" unique_id=1217516331]
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Community" unique_id=1016593845]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_piy7c")
-position = Vector2(41, 55)
-scale = Vector2(0.18412699, 0.29999995)
+position = Vector2(56.5, 59)
+scale = Vector2(0.2825397, 0.49999997)
 texture = SubResource("CompressedTexture2D_agsde")
 
 [node name="CellName" type="Label" parent="MockCellEntry" unique_id=947574466]
@@ -298,10 +297,10 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 4.0
 offset_top = 1.0
-offset_right = 69.0
+offset_right = 100.0
 offset_bottom = 26.0
 theme_override_fonts/font = ExtResource("6_e7l5b")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 17
 text = "Billy Bob Jr"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -312,11 +311,10 @@ texture_filter = 1
 layout_mode = 0
 offset_left = -4.0
 offset_top = -4.0
-offset_right = 75.0
-offset_bottom = 77.0
+offset_right = 108.0
+offset_bottom = 107.0
 mouse_filter = 2
 texture = ExtResource("3_sqo7l")
-expand_mode = 1
 
 [node name="RemoveBorder" type="TextureRect" parent="." unique_id=775429325]
 visible = false
@@ -325,8 +323,8 @@ texture_filter = 1
 layout_mode = 0
 offset_left = -4.0
 offset_top = -4.0
-offset_right = 75.0
-offset_bottom = 77.0
+offset_right = 108.0
+offset_bottom = 107.0
 mouse_filter = 2
 texture = ExtResource("3_sqo7l")
 expand_mode = 1
@@ -343,14 +341,14 @@ texture_filter = 1
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = 70.0
-offset_bottom = 72.0
+offset_right = 102.0
+offset_bottom = 102.0
 mouse_filter = 2
 texture = ExtResource("2_8j0u0")
-expand_mode = 1
 
 [node name="AlreadyOccupiedHint" type="Control" parent="." unique_id=264739308]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -382,6 +380,7 @@ autowrap_mode = 2
 
 [node name="AddACellHint" type="Control" parent="." unique_id=323758307]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

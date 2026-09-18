@@ -2,14 +2,17 @@ extends Node
 
 # components
 @onready var breeding_ui : Control = $"../BreedingUI"
-@onready var selected_view_box : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/SelectedViewBox"
+@onready var selected_view_box : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
 
 # display helpers
 @onready var display_cell_catalog : Node = $"../DisplayCellCatalog"
 
 # handler helpers
 @onready var handle_breeding_box_startup : Node = $"../HandleBreedingBoxStartup"
+@onready var handle_toggle_selected_view_slider : Node = $"../HandleSelectedViewSlider"
 
+func _ready() -> void:
+	breeding_ui.visible = false
 
 
 func _toggle_display(toggle_value : bool) :
@@ -22,6 +25,9 @@ func _toggle_display(toggle_value : bool) :
 		# display 
 		display_cell_catalog._display()
 		handle_breeding_box_startup._handle()
+		
+		# close slider
+		handle_toggle_selected_view_slider._handle(false)
 	
 	if not toggle_value : 
 		# user will always get out breeder in area

@@ -27,6 +27,8 @@ func _handle_entry_dropped(cell : BrainCell) :
 	# play accept sound
 	GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'box_accepted')
 	
+	GLBreedingComponetsBus.emit_signal('cell_loaded_on_selected_view', loaded_cell)
+	
 	
 func _handle_box_empty(play_sound : bool = false) :
 	
@@ -40,3 +42,5 @@ func _handle_box_empty(play_sound : bool = false) :
 	loaded_cell = null
 	mock_cell_entry.visible = false 
 	on_selected_border.visible = false
+	
+	GLBreedingComponetsBus.emit_signal('cell_removed_from_selected_view')

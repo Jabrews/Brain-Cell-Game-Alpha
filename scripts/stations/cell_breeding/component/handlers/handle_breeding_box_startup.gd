@@ -39,10 +39,16 @@ func _handle() -> void:
 	GLBreedingComponetsBus.emit_signal("initate_breeder_refresh")
 
 func _empty_all_boxes() -> void:
+	
+	left_main_box.prevent_interact = false
+	right_main_box.prevent_interact = false
+	
 	left_main_box._handle_box_empty(false) # false just means dont play sound
 	right_main_box._handle_box_empty(false)
 	left_boost_box._handle_box_empty(false)
 	right_boost_box._handle_box_empty(false)
+	
+
 
 
 func get_box(box_type: String) -> Control:

@@ -16,6 +16,10 @@ signal initate_breeder_refresh()
 
 signal toggle_wanted_highlight(toggle_value : bool, cell_name : String, highlight_type : String)
 
+signal cell_loaded_on_selected_view(cell : BrainCell)
+signal cell_removed_from_selected_view()
+
+
 
 var breeding_ui_state: Dictionary[String, BrainCell] = {
 	'left_main' : null,

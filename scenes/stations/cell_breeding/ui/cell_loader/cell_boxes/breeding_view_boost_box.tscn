@@ -412,6 +412,7 @@ expand_mode = 1
 
 [node name="AlreadyOccupiedHint" type="Control" parent="." unique_id=691384641]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_left = 12.0
 offset_top = 18.0
@@ -445,6 +446,7 @@ autowrap_mode = 2
 
 [node name="AddACellHint" type="Control" parent="." unique_id=1905811806]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_left = 12.0
 offset_top = 24.0
