@@ -36,6 +36,9 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
 [ext_resource type="Script" uid="uid://bj350l0xbj47e" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/slide_handle.gd" id="16_bxgwh"]
 [ext_resource type="Script" uid="uid://catmrc862ogfl" path="res://scripts/stations/cell_breeding/component/ui/exit_header/reset_btn.gd" id="16_svls5"]
+[ext_resource type="Script" uid="uid://d1yn23f0m4svu" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/handle_breeding_view.gd" id="17_2tp68"]
+[ext_resource type="Script" uid="uid://bg6px0pnfcift" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/get_side_components.gd" id="18_pjaa2"]
+[ext_resource type="Script" uid="uid://dotvi2i3phx0q" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_stats.gd" id="19_y63pt"]
 [ext_resource type="Shader" uid="uid://cehnd5u738tts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/total_death_chance_frame.gdshader" id="20_nedwh"]
 [ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="21_x5req"]
 [ext_resource type="Shader" uid="uid://3crm1j3sldsg" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/pot_fill.gdshader" id="22_1ufwy"]
@@ -439,6 +442,15 @@ script = ExtResource("14_275he")
 script = ExtResource("15_2j5xm")
 
 [node name="HandleBreedingView" type="Node" parent="." unique_id=1867401397]
+script = ExtResource("17_2tp68")
+
+[node name="GetSideComponents" type="Node" parent="HandleBreedingView" unique_id=2102076043]
+script = ExtResource("18_pjaa2")
+
+[node name="Display" type="Node" parent="HandleBreedingView" unique_id=1732178056]
+
+[node name="DisplayStats" type="Node" parent="HandleBreedingView/Display" unique_id=786577542]
+script = ExtResource("19_y63pt")
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
