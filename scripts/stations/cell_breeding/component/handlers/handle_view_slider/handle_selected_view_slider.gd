@@ -12,6 +12,10 @@ extends Node
 @onready var handle_btn_section : Node = $HandleBtnSection
 @onready var handle_information_section : Node = $HandleInformationSection
 
+# displays component
+@onready var display_stats : Node = $DisplayStats
+
+
 const SLIDE_CONTENT_CLOSE_POS : Vector2 = Vector2(0.0, 280.0)
 const SLIDE_HANDLE_CLOSE_POS : Vector2 = Vector2(432.0, 240.0)
 const SLIDE_CONTENT_OPEN_POS : Vector2 = Vector2(0.0, 24.0)
@@ -46,6 +50,8 @@ func _handle(toggle_value : bool) :
 func _handle_cell_loaded_on_selected_view(cell : BrainCell) :
 	handle_btn_section._toggle_active(true)
 	handle_information_section._toggle_active(true)
+	handle_information_section._display_information_section(cell)
+	
 	
 	
 func _cell_removed_from_selected_view() :

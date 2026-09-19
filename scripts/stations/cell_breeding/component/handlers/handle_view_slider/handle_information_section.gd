@@ -11,6 +11,10 @@ extends Node
 @onready var info_death_chance : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance"
 @onready var info_mutations : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations"
 
+# display components
+@onready var display_stats : Node = $"../DisplayStats"
+@onready var display_death_chance : Node = $"../DisplayDeathChance"
+
 
 func _toggle_active(toggle_value : bool) :
 	
@@ -44,6 +48,10 @@ func reset_info():
 	info_blood_type.visible = false
 	info_death_chance.visible = false
 	info_mutations.visible = false
+
+func _display_information_section(cell : BrainCell) : 
+	display_stats._display(cell)
+	display_death_chance._display(cell)
 	
 	
 	

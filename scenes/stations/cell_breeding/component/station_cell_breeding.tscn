@@ -28,6 +28,8 @@
 [ext_resource type="Script" uid="uid://bu0bba4q2dt2l" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/handle_information_section.gd" id="12_l8wio"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="12_q5y6d"]
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
+[ext_resource type="Script" uid="uid://b5jstsc6yxecj" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/display/display_stats.gd" id="13_2fsyu"]
+[ext_resource type="Script" uid="uid://ymgorwad2s7i" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/display/display_death_chance.gd" id="14_275he"]
 [ext_resource type="Script" uid="uid://bqbquxrpdwf7q" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/confirm_btn.gd" id="14_a775l"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
 [ext_resource type="Script" uid="uid://bj350l0xbj47e" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/slide_handle.gd" id="16_bxgwh"]
@@ -46,9 +48,9 @@
 [ext_resource type="Shader" uid="uid://bhfglemkyi0fr" path="res://scripts/shaders/cell_breeder/breeding_with_charge_progress_bar.gdshader" id="30_eebfg"]
 [ext_resource type="PackedScene" uid="uid://dydn51vl306li" path="res://scenes/stations/cell_breeding/ui/cell_loader/selected_view_slider/ViewBtn.tscn" id="30_k7gp0"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="31_gwke6"]
-[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="32_eebfg"]
-[ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="33_gwke6"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="34_gwke6"]
+[ext_resource type="Texture2D" uid="uid://cjnkhlkl7scb" path="res://models/scissors_popup/mutations_highlight.png" id="43_k7gp0"]
+[ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="44_l8wio"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -183,38 +185,9 @@ shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h6dfq"]
-shader = ExtResource("20_nedwh")
-shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
-shader_parameter/fill_color = Color(1, 1, 1, 1)
-shader_parameter/tolerance = 0.05
-shader_parameter/progress = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jh1bc"]
-shader = ExtResource("22_1ufwy")
-shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
-shader_parameter/tolerance = 0.05
-shader_parameter/current_value = 0.0
-shader_parameter/secondary_value = 0.0
-shader_parameter/current_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
-shader_parameter/secondary_color = Color(0.58654827, 0.04177396, 0.12359213, 1)
-shader_parameter/pulse_speed = 1.72100007848762
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqqxt"]
-shader = ExtResource("27_gwke6")
-shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
-shader_parameter/duration = 2.0
-shader_parameter/distortion_strength = 0.02
-shader_parameter/distortion_speed = 2.0
-shader_parameter/noise_texture = ExtResource("28_bxgwh")
-shader_parameter/noise_scale = 1.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k7gp0"]
-load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bxgwh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fsyu"]
 shader = ExtResource("30_eebfg")
-shader_parameter/prisoner_value = 0.0
+shader_parameter/prisoner_value = 0.366000017385
 shader_parameter/charge_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
 shader_parameter/charge_color_a = Color(1, 1, 0, 0.38431373)
@@ -224,7 +197,7 @@ shader_parameter/stripe_amount = 28.0
 shader_parameter/stripe_slant = 0.8
 shader_parameter/edge_padding = 5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7gp0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_275he"]
 shader = ExtResource("27_gwke6")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
 shader_parameter/duration = 2.0
@@ -233,67 +206,123 @@ shader_parameter/distortion_speed = 2.0
 shader_parameter/noise_texture = ExtResource("28_bxgwh")
 shader_parameter/noise_scale = 1.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l8wio"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2j5xm"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
+[sub_resource type="Shader" id="Shader_2fsyu"]
+code = "shader_type canvas_item;
+
+// values (0.0 → 1.0)
+uniform float prisoner_value : hint_range(0.0, 1.0); // yellow
+uniform float charge_value : hint_range(0.0, 1.0);   // striped preview
+
+// colors
+uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+
+uniform vec4 charge_color_a : source_color = vec4(1.0, 1.0, 1.0, 1.0); // white
+uniform vec4 charge_color_b : source_color = vec4(0.75, 0.75, 0.75, 1.0); // light gray
+
+// opacity controls
+uniform float charge_opacity : hint_range(0.0, 1.0) = 0.9;
+
+// stripe styling
+uniform float stripe_amount : hint_range(2.0, 80.0) = 28.0;
+uniform float stripe_slant : hint_range(-2.0, 2.0) = 0.8;
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	float usable_width = tex_width - edge_padding * 2.0;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= tex_width - edge_padding;
+
+	// remaps the bar so 0.0 starts after the left padding
+	// and 1.0 ends before the right padding.
+	float bar_x = clamp((pixel_x - edge_padding) / usable_width, 0.0, 1.0);
+
+	float in_yellow = step(bar_x, prisoner_value);
+
+	// charge goes between prisoner_value and charge_value.
+	float charge_start = min(prisoner_value, charge_value);
+	float charge_end = max(prisoner_value, charge_value);
+
+	bool in_charge = bar_x >= charge_start && bar_x <= charge_end;
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// draw yellow base
+		if (in_yellow > 0.5) {
+			result = vec4(yellow_color.rgb, tex.a);
+		}
+
+		// draw striped charge preview
+		if (in_charge) {
+			float stripe_pattern = mod((UV.x + UV.y * stripe_slant) * stripe_amount, 1.0);
+
+			vec4 striped_charge_color;
+
+			if (stripe_pattern < 0.5) {
+				striped_charge_color = charge_color_a;
+			}
+			else {
+				striped_charge_color = charge_color_b;
+			}
+
+			result = mix(result, vec4(striped_charge_color.rgb, tex.a), charge_opacity);
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2j5xm"]
+shader = SubResource("Shader_2fsyu")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/charge_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/charge_color_a = Color(1, 1, 0, 0)
+shader_parameter/charge_color_b = Color(0.47843137, 0.31764707, 0.07450981, 0)
+shader_parameter/charge_opacity = 0.85
+shader_parameter/stripe_amount = 28.0
+shader_parameter/stripe_slant = 0.8
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yqqxt"]
+shader = ExtResource("20_nedwh")
+shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.05
+shader_parameter/progress = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k7gp0"]
+shader = ExtResource("22_1ufwy")
+shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+shader_parameter/tolerance = 0.05
+shader_parameter/current_value = 0.0
+shader_parameter/secondary_value = 0.0
+shader_parameter/current_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+shader_parameter/secondary_color = Color(0.58654827, 0.04177396, 0.12359213, 1)
+shader_parameter/pulse_speed = 1.72100007848762
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l8wio"]
-shader = ExtResource("32_eebfg")
-shader_parameter/hologram_enabled = true
-shader_parameter/shimmer_speed = 0.84800004028
-shader_parameter/shimmer_strength = 0.594000028215
-shader_parameter/scanline_strength = 0.08
-shader_parameter/scanline_density = 90.0
-shader_parameter/hologram_tint = Color(0.9343551, 0.97784275, 0.9999998, 1)
+shader = ExtResource("27_gwke6")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("28_bxgwh")
+shader_parameter/noise_scale = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7u4es"]
-atlas = ExtResource("33_gwke6")
-region = Rect2(0, 0, 22, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r7v84"]
-atlas = ExtResource("33_gwke6")
-region = Rect2(22, 0, 22, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_r2bi6"]
-atlas = ExtResource("33_gwke6")
-region = Rect2(44, 0, 22, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mkncc"]
-atlas = ExtResource("33_gwke6")
-region = Rect2(66, 0, 22, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ywryo"]
-atlas = ExtResource("33_gwke6")
-region = Rect2(110, 0, 22, 20)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a2g5r"]
-atlas = ExtResource("33_gwke6")
-region = Rect2(132, 0, 22, 20)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2fsyu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7u4es")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_r7v84")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_r2bi6")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_mkncc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ywryo")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_a2g5r")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 3.05
-}]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fsyu"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [sub_resource type="Shader" id="Shader_k4bql"]
 code = "shader_type canvas_item;
@@ -358,6 +387,12 @@ script = ExtResource("11_yqqxt")
 
 [node name="HandleInformationSection" type="Node" parent="HandleSelectedViewSlider" unique_id=799527138]
 script = ExtResource("12_l8wio")
+
+[node name="DisplayStats" type="Node" parent="HandleSelectedViewSlider" unique_id=2089383280]
+script = ExtResource("13_2fsyu")
+
+[node name="DisplayDeathChance" type="Node" parent="HandleSelectedViewSlider" unique_id=167743775]
+script = ExtResource("14_275he")
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
@@ -861,16 +896,192 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats" unique_id=123066118]
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats" unique_id=1955726591]
+anchors_preset = 0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength" unique_id=2010413180]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 432.0
+offset_top = 71.0
+offset_right = 1314.6512
+offset_bottom = 97.22949
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength" unique_id=716635608]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2fsyu")
+position = Vector2(644, 69)
+scale = Vector2(1.367742, 0.54999995)
+texture = ExtResource("31_gwke6")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength" unique_id=655469177]
+texture_filter = 1
 layout_mode = 0
-offset_left = 408.0
-offset_top = 38.0
-offset_right = 880.0
-offset_bottom = 248.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 40
-text = "Stats"
+offset_left = 432.0
+offset_top = 46.0
+offset_right = 696.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Strength"
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength" unique_id=508811098]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_275he")
+position = Vector2(644.5, 75.49999)
+scale = Vector2(1.3492063, 0.87499964)
+texture = SubResource("CompressedTexture2D_2j5xm")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength" unique_id=1073389518]
+texture_filter = 1
+layout_mode = 0
+offset_left = 431.0
+offset_top = 61.999992
+offset_right = 857.0
+offset_bottom = 74.096794
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 10
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats" unique_id=1004139109]
+anchors_preset = 0
+offset_top = 72.0
+offset_right = 40.0
+offset_bottom = 112.0
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence" unique_id=1613667077]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 432.0
+offset_top = 71.0
+offset_right = 1314.6512
+offset_bottom = 97.22949
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence" unique_id=1816119172]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2j5xm")
+position = Vector2(644, 69)
+scale = Vector2(1.367742, 0.54999995)
+texture = ExtResource("31_gwke6")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence" unique_id=1010023753]
+texture_filter = 1
+layout_mode = 0
+offset_left = 432.0
+offset_top = 46.0
+offset_right = 696.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence" unique_id=1773374725]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_275he")
+position = Vector2(644.5, 75.49999)
+scale = Vector2(1.3492063, 0.87499964)
+texture = SubResource("CompressedTexture2D_2j5xm")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence" unique_id=701549959]
+texture_filter = 1
+layout_mode = 0
+offset_left = 431.0
+offset_top = 61.999992
+offset_right = 857.0
+offset_bottom = 74.096794
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 10
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats" unique_id=1720390340]
+anchors_preset = 0
+offset_top = 132.0
+offset_right = 40.0
+offset_bottom = 172.0
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community" unique_id=1236971546]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 432.0
+offset_top = 71.0
+offset_right = 1314.6512
+offset_bottom = 97.22949
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community" unique_id=1908378958]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2fsyu")
+position = Vector2(644, 69)
+scale = Vector2(1.367742, 0.54999995)
+texture = ExtResource("31_gwke6")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community" unique_id=2065886842]
+texture_filter = 1
+layout_mode = 0
+offset_left = 432.0
+offset_top = 46.0
+offset_right = 696.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Community"
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community" unique_id=1881926754]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_275he")
+position = Vector2(644.5, 75.49999)
+scale = Vector2(1.3492063, 0.87499964)
+texture = SubResource("CompressedTexture2D_2j5xm")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community" unique_id=1263967787]
+texture_filter = 1
+layout_mode = 0
+offset_left = 431.0
+offset_top = 61.999992
+offset_right = 857.0
+offset_bottom = 74.096794
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 10
+text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -880,6 +1091,14 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType" unique_id=734680484]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 120.0
+offset_right = 816.0
+offset_bottom = 168.0
+color = Color(0.13333334, 0, 0, 1)
+
 [node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType" unique_id=1431087695]
 layout_mode = 0
 offset_left = 408.0
@@ -887,30 +1106,400 @@ offset_top = 38.0
 offset_right = 880.0
 offset_bottom = 248.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 40
-text = "BloodType"
+theme_override_font_sizes/font_size = 35
+text = "No Blood Type Detected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BloodDrop" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType" unique_id=74888364]
+texture_filter = 1
+layout_mode = 0
+offset_left = 623.00006
+offset_top = 211.0
+offset_right = 659.00006
+offset_bottom = 244.0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(24, 28)
+texture = ExtResource("34_gwke6")
+expand_mode = 1
+
 [node name="DeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=1703284075]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=682921398]
+[node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=2048660659]
+anchors_preset = 0
+offset_left = 576.0
+offset_top = -254.0
+offset_right = 616.0
+offset_bottom = -214.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance" unique_id=1064629786]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 38.0
-offset_right = 880.0
-offset_bottom = 248.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_left = -24.0
+offset_top = 298.0
+offset_right = 152.0
+offset_bottom = 371.0
+color = Color(0.13333334, 0, 0, 1)
+
+[node name="Frame" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance" unique_id=1965376292]
+texture_filter = 1
+material = SubResource("ShaderMaterial_yqqxt")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 332.0
+offset_right = 95.0
+offset_bottom = 367.0
+texture = ExtResource("21_x5req")
+expand_mode = 1
+
+[node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance" unique_id=1779806293]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 332.0
+offset_right = 95.0
+offset_bottom = 367.0
 theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 40
-text = "DeathChance"
+theme_override_font_sizes/font_size = 30
+text = "50%"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance" unique_id=281649288]
+layout_mode = 0
+offset_left = -23.0
+offset_top = 296.0
+offset_right = 153.0
+offset_bottom = 336.0
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 25
+text = "Total Chance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatDanger" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=1842884594]
+anchors_preset = 0
+offset_left = 462.0
+offset_top = -210.0
+offset_right = 502.0
+offset_bottom = -170.0
+
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger" unique_id=882456784]
+anchors_preset = 0
+offset_left = -68.0
+offset_right = -28.0
+offset_bottom = 40.0
+
+[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength" unique_id=1897720959]
+texture_filter = 1
+material = SubResource("ShaderMaterial_k7gp0")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("23_q2fkw")
+
+[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength" unique_id=1819010892]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 339.0
+offset_right = 240.0
+offset_bottom = 362.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Str."
+
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength" unique_id=990078291]
+texture_filter = 1
+layout_mode = 0
+offset_left = 171.0
+offset_top = 332.0
+offset_right = 236.0
+offset_bottom = 356.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger" unique_id=1019017147]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 26.0
+offset_right = -28.0
+offset_bottom = 66.0
+
+[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence" unique_id=1678207111]
+texture_filter = 1
+material = SubResource("ShaderMaterial_k7gp0")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("23_q2fkw")
+
+[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence" unique_id=1288353185]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 256.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Int."
+
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence" unique_id=1906766592]
+texture_filter = 1
+layout_mode = 0
+offset_left = 171.0
+offset_top = 333.0
+offset_right = 299.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger" unique_id=175120829]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 52.0
+offset_right = -28.0
+offset_bottom = 92.0
+
+[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community" unique_id=1172583397]
+texture_filter = 1
+material = SubResource("ShaderMaterial_k7gp0")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("23_q2fkw")
+
+[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community" unique_id=1122764630]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 240.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Com."
+
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community" unique_id=886708472]
+texture_filter = 1
+layout_mode = 0
+offset_left = 171.0
+offset_top = 333.0
+offset_right = 299.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="LifeSpanDanger" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=1929491878]
+anchors_preset = 0
+offset_left = 462.0
+offset_top = -210.0
+offset_right = 502.0
+offset_bottom = -170.0
+
+[node name="HeaderLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger" unique_id=504429292]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 340.0
+offset_right = 309.0
+offset_bottom = 363.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 14
+text = "Lifespan"
+horizontal_alignment = 1
+
+[node name="LifeNum" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger" unique_id=1019648018]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 352.0
+offset_right = 304.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger" unique_id=82502125]
+texture_filter = 1
+layout_mode = 0
+offset_left = 183.0
+offset_top = 382.0
+offset_right = 311.0
+offset_bottom = 405.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 23
+text = "(+ 15% )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HiddenStats" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=2141320099]
+anchors_preset = 0
+offset_left = 470.0
+offset_top = -234.0
+offset_right = 510.0
+offset_bottom = -194.0
+
+[node name="StrengthHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats" unique_id=851654666]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l8wio")
+position = Vector2(83.000046, 370.18747)
+scale = Vector2(0.47619042, 0.5406245)
+texture = SubResource("CompressedTexture2D_2fsyu")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats" unique_id=1647189480]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l8wio")
+position = Vector2(83.00001, 396.09375)
+scale = Vector2(0.47619033, 0.5453126)
+texture = SubResource("CompressedTexture2D_2fsyu")
+
+[node name="CommunityHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats" unique_id=874293309]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l8wio")
+position = Vector2(82.99998, 422.09375)
+scale = Vector2(0.4761902, 0.5453126)
+texture = SubResource("CompressedTexture2D_2fsyu")
+
+[node name="OffDisableLabels" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=1373337082]
+anchors_preset = 0
+offset_left = 470.0
+offset_top = -234.0
+offset_right = 510.0
+offset_bottom = -194.0
+
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels" unique_id=807456562]
+visible = false
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 24.0
+offset_right = 10.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Strength" unique_id=2125181348]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 188.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Strength" unique_id=1062678094]
+texture_filter = 1
+layout_mode = 0
+offset_left = 35.0
+offset_top = 333.0
+offset_right = 188.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels" unique_id=859607734]
+visible = false
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 51.0
+offset_right = 10.0
+offset_bottom = 91.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Intelligence" unique_id=1567253573]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 189.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Intelligence" unique_id=1987358723]
+texture_filter = 1
+layout_mode = 0
+offset_left = 36.0
+offset_top = 333.0
+offset_right = 188.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels" unique_id=1882711995]
+visible = false
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 78.0
+offset_right = 10.0
+offset_bottom = 118.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Community" unique_id=835902094]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 189.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Community" unique_id=217597132]
+texture_filter = 1
+layout_mode = 0
+offset_left = 39.0
+offset_top = 333.0
+offset_right = 188.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=146325230]
+layout_mode = 0
+offset_left = 638.0
+offset_top = 126.0
+offset_right = 642.0
+offset_bottom = 199.0
+color = Color(1, 0.1254902, 0, 1)
+
+[node name="Skull" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance" unique_id=46036822]
+texture_filter = 1
+layout_mode = 0
+offset_left = 623.00006
+offset_top = 211.0
+offset_right = 659.00006
+offset_bottom = 244.0
+scale = Vector2(1.2, 1.2)
+pivot_offset = Vector2(24, 28)
+texture = ExtResource("27_gcvv8")
+expand_mode = 1
 
 [node name="Mutations" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=106144331]
 visible = false
@@ -918,16 +1507,310 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TestLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=1440613661]
+[node name="Mutation1" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=1812628333]
+anchors_preset = 0
+offset_top = 40.0
+offset_right = 40.0
+offset_bottom = 80.0
+
+[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1985282823]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 38.0
-offset_right = 880.0
-offset_bottom = 248.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 40
-text = "Mutations"
+offset_left = 416.0
+offset_top = 48.0
+offset_right = 512.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=226145775]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1438761428]
+texture_filter = 1
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+mouse_filter = 2
+
+[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1773673863]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 46.0
+offset_right = 514.0
+offset_bottom = 145.0
+mouse_filter = 2
+texture = ExtResource("43_k7gp0")
+expand_mode = 1
+
+[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=473515033]
+visible = false
+anchors_preset = 0
+offset_left = 412.0
+offset_top = 65.0
+offset_right = 452.0
+offset_bottom = 105.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1/Hidden" unique_id=1292703210]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -9.0
+offset_right = 92.0
+offset_bottom = 71.0
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1/Hidden" unique_id=253338808]
+texture_filter = 1
+position = Vector2(52, 31)
+scale = Vector2(0.5263158, 0.5882353)
+texture = ExtResource("44_l8wio")
+
+[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1892931945]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 151.0
+offset_right = 514.0
+offset_bottom = 197.605
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Hidden
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mutation2" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=1236715862]
+anchors_preset = 0
+offset_left = 120.0
+offset_top = 40.0
+offset_right = 160.0
+offset_bottom = 80.0
+
+[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1812425315]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 48.0
+offset_right = 512.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1309228719]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=273969981]
+texture_filter = 1
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+mouse_filter = 2
+
+[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1689406635]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 46.0
+offset_right = 514.0
+offset_bottom = 145.0
+mouse_filter = 2
+texture = ExtResource("43_k7gp0")
+expand_mode = 1
+
+[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=760267366]
+visible = false
+anchors_preset = 0
+offset_left = 412.0
+offset_top = 65.0
+offset_right = 452.0
+offset_bottom = 105.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2/Hidden" unique_id=511680985]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -9.0
+offset_right = 92.0
+offset_bottom = 71.0
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2/Hidden" unique_id=679112372]
+texture_filter = 1
+position = Vector2(52, 31)
+scale = Vector2(0.5263158, 0.5882353)
+texture = ExtResource("44_l8wio")
+
+[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1767306478]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 151.0
+offset_right = 514.0
+offset_bottom = 197.605
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Hidden
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mutation3" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=539167721]
+anchors_preset = 0
+offset_left = 240.0
+offset_top = 40.0
+offset_right = 280.0
+offset_bottom = 80.0
+
+[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=1570275749]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 48.0
+offset_right = 512.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=560478581]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=1095681450]
+texture_filter = 1
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+mouse_filter = 2
+
+[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=1828134592]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 46.0
+offset_right = 514.0
+offset_bottom = 145.0
+mouse_filter = 2
+texture = ExtResource("43_k7gp0")
+expand_mode = 1
+
+[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=735679105]
+visible = false
+anchors_preset = 0
+offset_left = 412.0
+offset_top = 65.0
+offset_right = 452.0
+offset_bottom = 105.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3/Hidden" unique_id=2124655384]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -9.0
+offset_right = 92.0
+offset_bottom = 71.0
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3/Hidden" unique_id=33014728]
+texture_filter = 1
+position = Vector2(52, 31)
+scale = Vector2(0.5263158, 0.5882353)
+texture = ExtResource("44_l8wio")
+
+[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=73305269]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 151.0
+offset_right = 514.0
+offset_bottom = 197.605
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Hidden
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mutation4" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=170668565]
+anchors_preset = 0
+offset_left = 360.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 80.0
+
+[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=541025386]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 48.0
+offset_right = 512.0
+offset_bottom = 144.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=1986742451]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=6647037]
+texture_filter = 1
+layout_mode = 0
+offset_left = 424.0
+offset_top = 56.0
+offset_right = 504.0
+offset_bottom = 136.0
+mouse_filter = 2
+
+[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=1154946864]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 46.0
+offset_right = 514.0
+offset_bottom = 145.0
+mouse_filter = 2
+texture = ExtResource("43_k7gp0")
+expand_mode = 1
+
+[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=883716937]
+visible = false
+anchors_preset = 0
+offset_left = 412.0
+offset_top = 65.0
+offset_right = 452.0
+offset_bottom = 105.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4/Hidden" unique_id=1921275026]
+layout_mode = 0
+offset_left = 12.0
+offset_top = -9.0
+offset_right = 92.0
+offset_bottom = 71.0
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4/Hidden" unique_id=1732898066]
+texture_filter = 1
+position = Vector2(52, 31)
+scale = Vector2(0.5263158, 0.5882353)
+texture = ExtResource("44_l8wio")
+
+[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=72657355]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 151.0
+offset_right = 514.0
+offset_bottom = 197.605
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Hidden
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1103,918 +1986,6 @@ To
 View Properties"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ARCHIVESelectedView" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1266301360]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1588407482]
-anchors_preset = 0
-offset_left = 344.0
-offset_top = 174.0
-offset_right = 344.0
-offset_bottom = 174.0
-metadata/_edit_lock_ = true
-
-[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1784686331]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 266.0
-offset_right = 304.0
-offset_bottom = 514.0
-color = Color(0.3240299, 0.12314523, 0.086100526, 1)
-
-[node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=828690785]
-anchors_preset = 0
-offset_left = 99.0
-offset_top = -24.0
-offset_right = 139.0
-offset_bottom = 16.0
-metadata/_edit_lock_ = true
-
-[node name="BloodTypeBG" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=1386361138]
-anchors_preset = 0
-offset_left = -1052.0
-offset_top = -142.0
-offset_right = -1012.0
-offset_bottom = -102.0
-
-[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=1995122620]
-layout_mode = 0
-offset_left = 981.0
-offset_top = 433.0
-offset_right = 1243.0
-offset_bottom = 525.0
-color = Color(0, 0, 0, 1)
-
-[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=32927299]
-layout_mode = 0
-offset_left = 984.0
-offset_top = 436.0
-offset_right = 1240.0
-offset_bottom = 521.0
-color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
-
-[node name="BG3" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance/BloodTypeBG" unique_id=640716212]
-layout_mode = 0
-offset_left = 984.0
-offset_top = 436.0
-offset_right = 1240.0
-offset_bottom = 475.0
-color = Color(0.12038336, 5.790731e-08, 3.008172e-08, 1)
-
-[node name="Frame" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=2030043629]
-texture_filter = 1
-material = SubResource("ShaderMaterial_h6dfq")
-layout_mode = 0
-offset_left = 19.0
-offset_top = 339.0
-offset_right = 89.0
-offset_bottom = 374.0
-texture = ExtResource("21_x5req")
-expand_mode = 1
-
-[node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=753540306]
-layout_mode = 0
-offset_left = -5.0
-offset_top = 339.0
-offset_right = 118.0
-offset_bottom = 374.0
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 30
-text = "50%"
-horizontal_alignment = 1
-
-[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/TotalDeathChance" unique_id=486510463]
-layout_mode = 0
-offset_left = -72.0
-offset_top = 294.0
-offset_right = 191.0
-offset_bottom = 333.0
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 25
-text = "Death Chance -"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="StatDanger" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=2124903233]
-anchors_preset = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 72.0
-
-[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger" unique_id=624274621]
-anchors_preset = 0
-offset_left = -68.0
-offset_right = -28.0
-offset_bottom = 40.0
-
-[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=699803900]
-texture_filter = 1
-material = SubResource("ShaderMaterial_jh1bc")
-layout_mode = 0
-offset_left = 84.0
-offset_top = 336.0
-offset_right = 108.0
-offset_bottom = 357.0
-texture = ExtResource("23_q2fkw")
-
-[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=229273070]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 339.0
-offset_right = 240.0
-offset_bottom = 362.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 15
-text = "Str."
-
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Strength" unique_id=2053928636]
-texture_filter = 1
-layout_mode = 0
-offset_left = 167.0
-offset_top = 332.0
-offset_right = 232.0
-offset_bottom = 356.0
-theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 20
-text = "(+ 15% )"
-
-[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger" unique_id=468622044]
-anchors_preset = 0
-offset_left = -68.0
-offset_top = 26.0
-offset_right = -28.0
-offset_bottom = 66.0
-
-[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=781698012]
-texture_filter = 1
-material = SubResource("ShaderMaterial_jh1bc")
-layout_mode = 0
-offset_left = 84.0
-offset_top = 336.0
-offset_right = 108.0
-offset_bottom = 357.0
-texture = ExtResource("23_q2fkw")
-
-[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=1700086199]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 341.0
-offset_right = 256.0
-offset_bottom = 364.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 15
-text = "Int."
-
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Intelligence" unique_id=856401431]
-texture_filter = 1
-layout_mode = 0
-offset_left = 167.0
-offset_top = 333.0
-offset_right = 295.0
-offset_bottom = 357.0
-theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 20
-text = "(+ 15% )"
-
-[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger" unique_id=1634110333]
-anchors_preset = 0
-offset_left = -68.0
-offset_top = 52.0
-offset_right = -28.0
-offset_bottom = 92.0
-
-[node name="Pot" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=869874456]
-texture_filter = 1
-material = SubResource("ShaderMaterial_jh1bc")
-layout_mode = 0
-offset_left = 84.0
-offset_top = 336.0
-offset_right = 108.0
-offset_bottom = 357.0
-texture = ExtResource("23_q2fkw")
-
-[node name="Label" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=1925918248]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 341.0
-offset_right = 240.0
-offset_bottom = 364.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 15
-text = "Com."
-
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/StatDanger/Community" unique_id=628484875]
-texture_filter = 1
-layout_mode = 0
-offset_left = 167.0
-offset_top = 333.0
-offset_right = 295.0
-offset_bottom = 357.0
-theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 20
-text = "(+ 15% )"
-
-[node name="LifeSpanDanger" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1552208601]
-anchors_preset = 0
-offset_left = -10.0
-offset_top = 31.0
-offset_right = 30.0
-offset_bottom = 71.0
-
-[node name="HeaderLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=9629604]
-layout_mode = 0
-offset_left = 186.0
-offset_top = 340.0
-offset_right = 309.0
-offset_bottom = 363.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 14
-text = "Lifespan"
-horizontal_alignment = 1
-
-[node name="LifeNum" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=300886133]
-layout_mode = 0
-offset_left = 196.0
-offset_top = 361.0
-offset_right = 296.0
-offset_bottom = 384.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 20
-text = "1"
-horizontal_alignment = 1
-
-[node name="DeathChance" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/LifeSpanDanger" unique_id=1428550224]
-texture_filter = 1
-layout_mode = 0
-offset_left = 183.0
-offset_top = 382.0
-offset_right = 305.0
-offset_bottom = 408.0
-theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 23
-text = "(+ 15% )"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HiddenStats" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1206807468]
-anchors_preset = 0
-offset_left = -19.0
-offset_top = 31.0
-offset_right = 21.0
-offset_bottom = 71.0
-
-[node name="StrengthHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/HiddenStats" unique_id=1655590903]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_yqqxt")
-position = Vector2(109.00001, 346.375)
-scale = Vector2(0.463492, 0.5312505)
-texture = SubResource("CompressedTexture2D_k7gp0")
-
-[node name="IntelligenceHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/HiddenStats" unique_id=70388904]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_yqqxt")
-position = Vector2(109.00001, 372.1875)
-scale = Vector2(0.463492, 0.54062533)
-texture = SubResource("CompressedTexture2D_k7gp0")
-
-[node name="CommunityHide" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/HiddenStats" unique_id=1156123369]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_yqqxt")
-position = Vector2(109.00001, 399)
-scale = Vector2(0.463492, 0.54062533)
-texture = SubResource("CompressedTexture2D_k7gp0")
-
-[node name="OffDisableLabels" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=921343182]
-anchors_preset = 0
-offset_left = -20.0
-offset_top = 32.0
-offset_right = 20.0
-offset_bottom = 72.0
-
-[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=699581571]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Strength" unique_id=206100851]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 334.0
-offset_right = 184.0
-offset_bottom = 359.0
-color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
-
-[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Strength" unique_id=2079173225]
-texture_filter = 1
-layout_mode = 0
-offset_left = 26.0
-offset_top = 333.0
-offset_right = 194.0
-offset_bottom = 356.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=409907760]
-visible = false
-anchors_preset = 0
-offset_top = 26.0
-offset_right = 40.0
-offset_bottom = 66.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=1867895283]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 334.0
-offset_right = 184.0
-offset_bottom = 359.0
-color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
-
-[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Intelligence" unique_id=653073823]
-texture_filter = 1
-layout_mode = 0
-offset_left = 26.0
-offset_top = 333.0
-offset_right = 194.0
-offset_bottom = 356.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels" unique_id=1484782364]
-visible = false
-anchors_preset = 0
-offset_top = 53.0
-offset_right = 40.0
-offset_bottom = 93.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Community" unique_id=1316872573]
-layout_mode = 0
-offset_left = 36.0
-offset_top = 334.0
-offset_right = 184.0
-offset_bottom = 359.0
-color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
-
-[node name="StrengthOffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay/OffDisableLabels/Community" unique_id=436037103]
-texture_filter = 1
-layout_mode = 0
-offset_left = 26.0
-offset_top = 333.0
-offset_right = 194.0
-offset_bottom = 356.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Divider" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=1045109831]
-layout_mode = 0
-offset_left = 168.0
-offset_top = 367.0
-offset_right = 172.0
-offset_bottom = 440.0
-color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
-
-[node name="Skull" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/DeathChanceDisplay" unique_id=682612005]
-texture_filter = 1
-layout_mode = 0
-offset_left = 144.0
-offset_top = 465.0
-offset_right = 190.0
-offset_bottom = 506.0
-pivot_offset = Vector2(24, 28)
-texture = ExtResource("27_gcvv8")
-
-[node name="StatDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1724486340]
-anchors_preset = 0
-offset_left = 640.0
-offset_top = 304.0
-offset_right = 680.0
-offset_bottom = 344.0
-metadata/_edit_lock_ = true
-
-[node name="CellName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1112055323]
-texture_filter = 1
-layout_mode = 0
-offset_top = 128.0
-offset_right = 320.0
-offset_bottom = 201.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 24
-text = "None
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Strength" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1472069207]
-anchors_preset = 0
-offset_left = -10.0
-offset_right = 30.0
-offset_bottom = 40.0
-
-[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=1112187799]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 50.000015
-offset_top = 190.0
-offset_right = 566.2676
-offset_bottom = 203.11475
-scale = Vector2(0.48037094, 0.45749998)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("28_q2fkw")
-texture_progress = ExtResource("29_xdl70")
-
-[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=575127215]
-texture_filter = 1
-material = SubResource("ShaderMaterial_bxgwh")
-position = Vector2(173.99998, 190.00002)
-scale = Vector2(0.7999999, 0.37500033)
-texture = ExtResource("31_gwke6")
-
-[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=673567453]
-texture_filter = 1
-layout_mode = 0
-offset_left = 50.0
-offset_top = 170.0
-offset_right = 230.0
-offset_bottom = 183.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
-text = "Strength"
-
-[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=267070161]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_k7gp0")
-position = Vector2(174, 193)
-scale = Vector2(0.7873015, 0.59999985)
-texture = SubResource("CompressedTexture2D_l8wio")
-
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Strength" unique_id=1247070338]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 84.0
-offset_top = 186.0
-offset_right = 252.0
-offset_bottom = 194.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 8
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1719484698]
-anchors_preset = 0
-offset_left = -10.0
-offset_top = 45.0
-offset_right = 30.0
-offset_bottom = 85.0
-
-[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=362047249]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 50.000015
-offset_top = 190.0
-offset_right = 566.2676
-offset_bottom = 203.11475
-scale = Vector2(0.48037094, 0.45749998)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("28_q2fkw")
-texture_progress = ExtResource("29_xdl70")
-
-[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=1420652957]
-texture_filter = 1
-material = SubResource("ShaderMaterial_bxgwh")
-position = Vector2(173.99998, 190.00002)
-scale = Vector2(0.7999999, 0.37500033)
-texture = ExtResource("31_gwke6")
-
-[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=2026522492]
-texture_filter = 1
-layout_mode = 0
-offset_left = 50.0
-offset_top = 170.0
-offset_right = 230.0
-offset_bottom = 183.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
-text = "Intelligence"
-
-[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=1476533261]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_k7gp0")
-position = Vector2(174, 193)
-scale = Vector2(0.7873015, 0.59999985)
-texture = SubResource("CompressedTexture2D_l8wio")
-
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Intelligence" unique_id=653810845]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 84.0
-offset_top = 186.0
-offset_right = 252.0
-offset_bottom = 194.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 8
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Community" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay" unique_id=1034382399]
-anchors_preset = 0
-offset_left = -10.0
-offset_top = 87.0
-offset_right = 30.0
-offset_bottom = 127.0
-
-[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=579859261]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 50.000015
-offset_top = 190.0
-offset_right = 566.2676
-offset_bottom = 203.11475
-scale = Vector2(0.48037094, 0.45749998)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("28_q2fkw")
-texture_progress = ExtResource("29_xdl70")
-
-[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=352554894]
-texture_filter = 1
-material = SubResource("ShaderMaterial_bxgwh")
-position = Vector2(173.99998, 190.00002)
-scale = Vector2(0.7999999, 0.37500033)
-texture = ExtResource("31_gwke6")
-
-[node name="StatLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=1528405440]
-texture_filter = 1
-layout_mode = 0
-offset_left = 50.0
-offset_top = 170.0
-offset_right = 230.0
-offset_bottom = 183.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
-text = "Community"
-
-[node name="HideSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=1467470765]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_k7gp0")
-position = Vector2(174, 193)
-scale = Vector2(0.7873015, 0.59999985)
-texture = SubResource("CompressedTexture2D_l8wio")
-
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/StatDisplay/Community" unique_id=691314380]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 84.0
-offset_top = 186.0
-offset_right = 252.0
-offset_bottom = 194.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 8
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=300925437]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_lock_ = true
-
-[node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=84033239]
-layout_mode = 0
-offset_left = 952.0
-offset_top = 440.0
-offset_right = 1248.0
-offset_bottom = 688.0
-color = Color(0.3240299, 0.12314523, 0.086100526, 1)
-
-[node name="BloodTypeBG" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1775116892]
-anchors_preset = 0
-offset_left = -12.0
-offset_top = 8.0
-offset_right = 28.0
-offset_bottom = 48.0
-
-[node name="BG2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=34239525]
-layout_mode = 0
-offset_left = 981.0
-offset_top = 433.0
-offset_right = 1243.0
-offset_bottom = 535.16986
-color = Color(0, 0, 0, 1)
-
-[node name="BG1" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=1774442474]
-layout_mode = 0
-offset_left = 984.0
-offset_top = 436.0
-offset_right = 1240.0
-offset_bottom = 532.0
-color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
-
-[node name="BG3" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/BloodTypeBG" unique_id=70528949]
-layout_mode = 0
-offset_left = 984.0
-offset_top = 436.0
-offset_right = 1240.0
-offset_bottom = 475.0
-color = Color(0.12038336, 5.790731e-08, 3.008172e-08, 1)
-
-[node name="CompoundBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=717272323]
-visible = false
-anchors_preset = 0
-offset_left = 926.0
-offset_top = 41.0
-offset_right = 966.0
-offset_bottom = 81.0
-
-[node name="FakeBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=1287903140]
-anchors_preset = 0
-offset_left = 38.0
-offset_top = 88.0
-offset_right = 78.0
-offset_bottom = 128.0
-
-[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=742648132]
-texture_filter = 1
-layout_mode = 0
-offset_left = 101.0
-offset_top = 352.0
-offset_right = 173.0
-offset_bottom = 424.0
-theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 43
-text = "A"
-
-[node name="BloodType+" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1178069783]
-texture_filter = 1
-material = SubResource("ShaderMaterial_l8wio")
-layout_mode = 0
-offset_left = 114.0
-offset_top = 342.0
-offset_right = 134.0
-offset_bottom = 381.0
-theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 26
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BloodTypeDash" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1980871433]
-texture_filter = 1
-layout_mode = 0
-offset_left = 130.0
-offset_top = 354.0
-offset_right = 153.0
-offset_bottom = 403.0
-theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 43
-text = "-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BloodTypeA2" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/FakeBloodType" unique_id=1853105104]
-texture_filter = 1
-layout_mode = 0
-offset_left = 160.0
-offset_top = 353.0
-offset_right = 232.0
-offset_bottom = 425.0
-theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 43
-text = "O"
-
-[node name="UnderLine" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=345057416]
-anchors_preset = 0
-offset_left = 5.0
-offset_right = 45.0
-offset_bottom = 40.0
-
-[node name="Underline" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=570183448]
-layout_mode = 0
-offset_left = 134.0
-offset_top = 481.0
-offset_right = 151.0
-offset_bottom = 483.0
-
-[node name="Underline2" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType/UnderLine" unique_id=663940208]
-layout_mode = 0
-offset_left = 193.0
-offset_top = 481.0
-offset_right = 210.0
-offset_bottom = 483.0
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/CompoundBloodType" unique_id=1255320800]
-texture_filter = 1
-position = Vector2(240.00002, 465)
-scale = Vector2(1.3068168, 1.4249984)
-sprite_frames = SubResource("SpriteFrames_2fsyu")
-autoplay = "default"
-
-[node name="SingleBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=954122782]
-visible = false
-anchors_preset = 0
-offset_left = 926.0
-offset_top = 41.0
-offset_right = 966.0
-offset_bottom = 81.0
-
-[node name="FakeBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType" unique_id=568161279]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=159975142]
-texture_filter = 1
-layout_mode = 0
-offset_left = 168.0
-offset_top = 442.0
-offset_right = 240.0
-offset_bottom = 514.0
-theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 51
-text = "A"
-
-[node name="BloodType+" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType/FakeBloodType" unique_id=1613950672]
-texture_filter = 1
-material = SubResource("ShaderMaterial_l8wio")
-layout_mode = 0
-offset_left = 187.0
-offset_top = 436.0
-offset_right = 207.0
-offset_bottom = 475.0
-theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 32
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Underline" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType" unique_id=2042796286]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Underline" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/SingleBloodType/Underline" unique_id=1556418589]
-layout_mode = 0
-offset_left = 166.0
-offset_top = 491.0
-offset_right = 191.0
-offset_bottom = 493.0
-
-[node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1558486107]
-anchors_preset = 0
-offset_left = 919.0
-offset_top = 49.0
-offset_right = 959.0
-offset_bottom = 89.0
-
-[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay/NoBloodType" unique_id=209248468]
-texture_filter = 1
-layout_mode = 0
-offset_left = 125.0
-offset_top = 452.0
-offset_right = 245.0
-offset_bottom = 490.0
-theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 30
-text = "None"
-
-[node name="BloodDrop" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1205608114]
-modulate = Color(0.95, 0.5225, 0.5225, 1)
-texture_filter = 1
-layout_mode = 0
-offset_left = 1082.0
-offset_top = 634.0
-offset_right = 1128.0
-offset_bottom = 675.0
-texture = ExtResource("34_gwke6")
-expand_mode = 1
-
-[node name="Header" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView/BloodTypeDisplay" unique_id=1919460484]
-layout_mode = 0
-offset_left = 971.0
-offset_top = 444.0
-offset_right = 1229.0
-offset_bottom = 483.0
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 25
-text = "Blood Type -"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DEBUGSECTION4" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1627156670]
-layout_mode = 0
-offset_left = 352.0
-offset_top = 424.0
-offset_right = 1248.0
-offset_bottom = 432.0
-color = Color(0.20164412, 0.093715034, 0.019167818, 1)
-metadata/_edit_lock_ = true
-
-[node name="DEBUGSECTION5" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1887439899]
-layout_mode = 0
-offset_left = 648.0
-offset_top = 432.0
-offset_right = 656.0
-offset_bottom = 688.0
-color = Color(0.20164412, 0.093715034, 0.019167818, 1)
-metadata/_edit_lock_ = true
-
-[node name="DEBUGSECTION6" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=2118698246]
-layout_mode = 0
-offset_left = 944.0
-offset_top = 432.0
-offset_right = 952.0
-offset_bottom = 688.0
-color = Color(0.20164412, 0.093715034, 0.019167818, 1)
-metadata/_edit_lock_ = true
-
-[node name="DEBUGSECTION7" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=2057597137]
-layout_mode = 0
-offset_left = 352.0
-offset_top = 432.0
-offset_right = 360.0
-offset_bottom = 688.0
-color = Color(0.20164412, 0.093715034, 0.019167818, 1)
-metadata/_edit_lock_ = true
-
-[node name="DEBUGSECTION8" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=1793802586]
-layout_mode = 0
-offset_left = 1240.0
-offset_top = 432.0
-offset_right = 1248.0
-offset_bottom = 688.0
-color = Color(0.20164412, 0.093715034, 0.019167818, 1)
-metadata/_edit_lock_ = true
-
-[node name="DEBUGSECTION9" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/ARCHIVESelectedView" unique_id=657986282]
-layout_mode = 0
-offset_left = 352.0
-offset_top = 680.0
-offset_right = 1248.0
-offset_bottom = 688.0
-color = Color(0.20164412, 0.093715034, 0.019167818, 1)
-metadata/_edit_lock_ = true
 
 [node name="CellCatalog" type="Control" parent="BreedingUI/CellLoader" unique_id=1596535741]
 anchors_preset = 0
