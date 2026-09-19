@@ -1,8 +1,8 @@
 extends Node
 
 # box components
-@onready var left_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/LeftBreedingViewMainBox"
-@onready var right_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/RightBreedingViewMainBox"
+@onready var left_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox"
+@onready var right_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox"
 
 # visual components
 @onready var slide_content : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideContent"
@@ -20,6 +20,7 @@ const SLIDE_HANDLE_OPEN_POS : Vector2 = Vector2(432.0, -16.0)
 
 
 func _ready() -> void:
+	# we use signals as opposed to refresh seen in breeding view
 	GLBreedingComponetsBus.connect('cell_loaded_on_selected_view', _handle_cell_loaded_on_selected_view)
 	GLBreedingComponetsBus.connect('cell_removed_from_selected_view', _cell_removed_from_selected_view)
 	

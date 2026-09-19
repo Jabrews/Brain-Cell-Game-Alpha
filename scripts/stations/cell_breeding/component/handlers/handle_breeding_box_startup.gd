@@ -7,10 +7,10 @@ extends Node
 @onready var reset_btn : Control = $"../BreedingUI/ExitHeader/ResetBtn"
 
 # box components
-@onready var left_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/LeftBreedingViewMainBox"
-@onready var right_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/RightBreedingViewMainBox"
-@onready var left_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/LeftBreedingViewBoostBox"
-@onready var right_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/RightBreedingViewBoostBox"
+@onready var left_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox"
+@onready var right_main_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox"
+@onready var left_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox"
+@onready var right_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox"
 
 
 func _handle() -> void:

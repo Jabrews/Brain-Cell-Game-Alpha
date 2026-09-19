@@ -5,6 +5,7 @@ extends Control
 @onready var confirm_label : Label = $ConfirmLabel
 @onready var hint : Control = $Hint
 @onready var hint_label : Label = $Hint/HintText
+@onready var handle_confirm_btn : Node = $"../../../HandleConfirmBtn"
 
 var confirm_available : bool = false
 
@@ -16,6 +17,12 @@ func _ready() -> void:
 	background.connect('mouse_exited', _handle_mouse_exited)
 	
 	_toggle_confirm_available(false)
+
+func _process(_delta: float) -> void: 
+	if hovered : 
+		if confirm_available : 
+			if Input.is_action_just_pressed('attack') :
+				handle_confirm_btn._handle()
 
 
 func _toggle_confirm_available(toggle_value : bool) :

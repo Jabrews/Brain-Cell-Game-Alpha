@@ -6,10 +6,10 @@ extends Node
 
 # component boxes
 @onready var selected_view_box : Control = $"../../../CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
-@onready var left_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/LeftBreedingViewMainBox"
-@onready var right_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/RightBreedingViewMainBox"
-@onready var left_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/LeftBreedingViewBoostBox"
-@onready var right_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/RightBreedingViewBoostBox"
+@onready var left_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox"
+@onready var right_breeding_view_main_box : Control = $"../../../CellLoader/BreedingView/Boxes/RightBreedingViewMainBox"
+@onready var left_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox"
+@onready var right_breeding_view_boost_box : Control = $"../../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox"
 
 func _handle() :
 	var loaded_cell : BrainCell = parent_drag_cell_entry.loaded_cell 

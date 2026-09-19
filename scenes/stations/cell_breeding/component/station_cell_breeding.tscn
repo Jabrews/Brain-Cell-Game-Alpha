@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://4qqonvgbegek" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_main_box.tscn" id="8_uhd45"]
 [ext_resource type="PackedScene" uid="uid://3eja24fj48er" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_boost_box.tscn" id="9_gu3tj"]
 [ext_resource type="Script" uid="uid://bvhhsl2qa1xkh" path="res://scripts/stations/cell_breeding/component/audio_manager.gd" id="9_nopnw"]
+[ext_resource type="Script" uid="uid://c30h7tttmfes3" path="res://scripts/stations/cell_breeding/component/handlers/handle_confirm_btn.gd" id="10_275he"]
 [ext_resource type="Script" uid="uid://bri3ajv5a4bx3" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/handle_selected_view_slider.gd" id="10_jh1bc"]
 [ext_resource type="AudioStream" uid="uid://dn6burwhyv76o" path="res://sounds/station_cell_breeder/drag_dropped.mp3" id="10_ymgeo"]
 [ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
@@ -50,6 +51,13 @@
 [ext_resource type="PackedScene" uid="uid://dydn51vl306li" path="res://scenes/stations/cell_breeding/ui/cell_loader/selected_view_slider/view_btn.tscn" id="30_k7gp0"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="31_gwke6"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="34_gwke6"]
+[ext_resource type="Script" uid="uid://ik08rwohsq4n" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/symbol_manager.gd" id="39_tvpn4"]
+[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_hidden.gd" id="40_odqr3"]
+[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_arrow.gd" id="41_e38bu"]
+[ext_resource type="Texture2D" uid="uid://dvjrss36t8u0b" path="res://models/screens/breeding_symbols/question_mark.png" id="42_k6uk6"]
+[ext_resource type="Texture2D" uid="uid://c5k5ibq6s2pn2" path="res://models/screens/breeding_symbols/arrow_UP.png" id="43_ibnnx"]
+[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/up_arrow_symbol.gd" id="44_le1xe"]
+[ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="45_kn2w5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -183,6 +191,37 @@ shader = ExtResource("3_41g38")
 shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idfuw"]
+shader = ExtResource("30_eebfg")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/charge_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/charge_color_a = Color(1, 1, 0, 0.38431373)
+shader_parameter/charge_color_b = Color(0.47779226, 0.31845894, 0.07635339, 0.3254902)
+shader_parameter/charge_opacity = 0.85
+shader_parameter/stripe_amount = 28.0
+shader_parameter/stripe_slant = 0.8
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00uyy"]
+shader = ExtResource("27_gwke6")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("28_bxgwh")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enf6v"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmm5s"]
+shader = ExtResource("20_nedwh")
+shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
+shader_parameter/fill_color = Color(1, 1, 1, 1)
+shader_parameter/tolerance = 0.05
+shader_parameter/progress = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fsyu"]
 shader = ExtResource("30_eebfg")
@@ -378,6 +417,9 @@ script = ExtResource("8_iv7m4")
 [node name="HandleResetBtn" type="Node" parent="." unique_id=932431619]
 script = ExtResource("5_ac4jf")
 
+[node name="HandleConfirmBtn" type="Node" parent="." unique_id=1735938697]
+script = ExtResource("10_275he")
+
 [node name="HandleSelectedViewSlider" type="Node" parent="." unique_id=2031448372]
 script = ExtResource("10_jh1bc")
 
@@ -395,6 +437,8 @@ script = ExtResource("14_275he")
 
 [node name="DisplayMutations" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=650868651]
 script = ExtResource("15_2j5xm")
+
+[node name="HandleBreedingView" type="Node" parent="." unique_id=1867401397]
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
@@ -682,6 +726,7 @@ stream = ExtResource("23_vsr2l")
 
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
+visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -724,41 +769,46 @@ offset_right = 1248.0
 offset_bottom = 688.0
 color = Color(0.3, 0, 0, 1)
 
-[node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
+[node name="Boxes" type="Control" parent="BreedingUI/CellLoader/BreedingView" unique_id=1800569172]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LeftBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView/Boxes" unique_id=232418977 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
 layout_mode = 1
 offset_left = 702.0
-offset_top = 548.0
+offset_top = 552.0
 offset_right = 702.0
-offset_bottom = 548.0
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+offset_bottom = 552.0
+drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
 
-[node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
+[node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView/Boxes" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
 layout_mode = 1
 offset_left = 814.0
-offset_top = 548.0
+offset_top = 552.0
 offset_right = 814.0
-offset_bottom = 548.0
+offset_bottom = 552.0
 side = "right"
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
 
-[node name="LeftBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=641033110 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
+[node name="LeftBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView/Boxes" unique_id=641033110 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
 layout_mode = 1
 offset_left = 368.0
 offset_top = 192.0
 offset_right = 368.0
 offset_bottom = 192.0
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
 
-[node name="RightBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView" unique_id=1252660582 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
+[node name="RightBreedingViewBoostBox" parent="BreedingUI/CellLoader/BreedingView/Boxes" unique_id=1252660582 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("9_gu3tj")]
 layout_mode = 1
 offset_left = 1157.0
 offset_top = 192.0
 offset_right = 1157.0
 offset_bottom = 192.0
 side = "right"
-drag_cell_entry_parent_node = NodePath("../../../DragCellEntryParentNode")
+drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
 
-[node name="PlusLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView" unique_id=521413019]
+[node name="PlusLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/Boxes" unique_id=521413019]
 texture_filter = 1
 layout_mode = 0
 offset_left = 794.0
@@ -768,6 +818,838 @@ offset_bottom = 629.0
 theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 30
 text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Backgrounds" type="Control" parent="BreedingUI/CellLoader/BreedingView" unique_id=1518375682]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatBg" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=44537485]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 768.0
+offset_bottom = 360.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="StatBg2" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=1556479189]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 80.0
+offset_right = 1152.0
+offset_bottom = 360.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="DeathChanceBgMain" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=1898658601]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 368.0
+offset_right = 1152.0
+offset_bottom = 456.0
+color = Color(0.24313726, 0, 0, 1)
+
+[node name="DeathChanceBg" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=1196892195]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 383.0
+offset_right = 672.0
+offset_bottom = 440.0
+color = Color(0.31400967, 2.4065375e-07, 9.62615e-08, 1)
+
+[node name="DeathChanceBg2" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=946520055]
+layout_mode = 0
+offset_left = 928.0
+offset_top = 383.0
+offset_right = 1056.0
+offset_bottom = 440.0
+color = Color(0.31400967, 2.4065375e-07, 9.62615e-08, 1)
+
+[node name="BloodTypeBgMain" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=1827216411]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 464.0
+offset_right = 1152.0
+offset_bottom = 544.0
+color = Color(0.24313726, 0, 0, 1)
+
+[node name="BloodTypeBg" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=499055615]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 474.0
+offset_right = 672.0
+offset_bottom = 523.0
+color = Color(0.3137255, 0, 0, 1)
+
+[node name="BloodTypeBg2" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/Backgrounds" unique_id=1499579990]
+layout_mode = 0
+offset_left = 931.0
+offset_top = 476.0
+offset_right = 1059.0
+offset_bottom = 522.0
+color = Color(0.3137255, 0, 0, 1)
+
+[node name="StatDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView" unique_id=1002338841]
+anchors_preset = 0
+offset_top = 8.0
+offset_bottom = 8.0
+
+[node name="LeftStatDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=1975883327]
+anchors_preset = 0
+offset_left = 432.0
+offset_top = 72.0
+offset_right = 432.0
+offset_bottom = 72.0
+
+[node name="StatDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay" unique_id=1427481474]
+visible = false
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="CellName" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=1996517045]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 336.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 19
+text = "None
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=472389808]
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=1225397954]
+texture_filter = 1
+material = SubResource("ShaderMaterial_idfuw")
+position = Vector2(176, 90)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("31_gwke6")
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=1544926404]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 631.5366
+offset_bottom = 134.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=1354367196]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 61.0
+offset_right = 307.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=362084746]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_00uyy")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_enf6v")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=1745622019]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=1760726985]
+anchors_preset = 0
+offset_top = 72.0
+offset_right = 40.0
+offset_bottom = 112.0
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=1814143676]
+texture_filter = 1
+material = SubResource("ShaderMaterial_idfuw")
+position = Vector2(176, 90)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("31_gwke6")
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=1402246251]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 631.5366
+offset_bottom = 134.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=2096953706]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 61.0
+offset_right = 307.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=788815450]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_00uyy")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_enf6v")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=419902876]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=867549158]
+anchors_preset = 0
+offset_top = 152.0
+offset_right = 40.0
+offset_bottom = 192.0
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=250005768]
+texture_filter = 1
+material = SubResource("ShaderMaterial_idfuw")
+position = Vector2(176, 90)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("31_gwke6")
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=1849996179]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 631.5366
+offset_bottom = 134.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=1516836154]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 61.0
+offset_right = 307.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Community"
+horizontal_alignment = 1
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=539804522]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_00uyy")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_enf6v")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=33203398]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCellLoadedLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay" unique_id=913135661]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 336.0
+offset_bottom = 288.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 18
+text = "Drag Cell Entry
+on box to begin
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightStatDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=1064863992]
+anchors_preset = 0
+offset_left = 816.0
+offset_top = 72.0
+offset_right = 816.0
+offset_bottom = 72.0
+
+[node name="StatDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay" unique_id=1293760888]
+visible = false
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="CellName" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1114197558]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 6.0
+offset_right = 336.0
+offset_bottom = 79.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 19
+text = "None
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Strength" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay" unique_id=717779976]
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1821056881]
+texture_filter = 1
+material = SubResource("ShaderMaterial_idfuw")
+position = Vector2(176, 90)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("31_gwke6")
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1947490978]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 631.5366
+offset_bottom = 134.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1258688926]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 61.0
+offset_right = 307.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1906554733]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_00uyy")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_enf6v")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1304295398]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1103438507]
+anchors_preset = 0
+offset_top = 72.0
+offset_right = 40.0
+offset_bottom = 112.0
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=1525703014]
+texture_filter = 1
+material = SubResource("ShaderMaterial_idfuw")
+position = Vector2(176, 90)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("31_gwke6")
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=2137969037]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 631.5366
+offset_bottom = 134.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=638880181]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 61.0
+offset_right = 307.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=1272198547]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_00uyy")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_enf6v")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=1850857029]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1720365552]
+anchors_preset = 0
+offset_top = 152.0
+offset_right = 40.0
+offset_bottom = 192.0
+
+[node name="CleanBar" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=843036352]
+texture_filter = 1
+material = SubResource("ShaderMaterial_idfuw")
+position = Vector2(176, 90)
+scale = Vector2(0.92903215, 0.7999999)
+texture = ExtResource("31_gwke6")
+
+[node name="DefectBar" type="TextureProgressBar" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=1293313187]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 631.5366
+offset_bottom = 134.97264
+scale = Vector2(0.48037094, 0.45749998)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("28_q2fkw")
+texture_progress = ExtResource("29_xdl70")
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=1768074931]
+texture_filter = 1
+layout_mode = 0
+offset_left = 43.0
+offset_top = 61.0
+offset_right = 307.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Community"
+horizontal_alignment = 1
+
+[node name="HiddenSprite" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=1145025358]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_00uyy")
+position = Vector2(176, 100.25)
+scale = Vector2(0.91428566, 1.3125)
+texture = SubResource("CompressedTexture2D_enf6v")
+
+[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=1805231218]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 92.0
+offset_top = 80.0
+offset_right = 260.0
+offset_bottom = 103.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCellLoadedLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay" unique_id=84378882]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 336.0
+offset_bottom = 288.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 18
+text = "Drag Cell Entry
+on box to begin
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SymbolManager" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=1172269335]
+anchors_preset = 0
+offset_left = 408.0
+offset_top = 56.0
+offset_right = 448.0
+offset_bottom = 96.0
+script = ExtResource("39_tvpn4")
+
+[node name="HandleHidden" type="Node" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1584510701]
+script = ExtResource("40_odqr3")
+
+[node name="HandleArrow" type="Node" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1238610391]
+script = ExtResource("41_e38bu")
+
+[node name="QuestionMark" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1550317668]
+anchors_preset = 0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -64.0
+
+[node name="QuestionStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/QuestionMark" unique_id=871977575]
+visible = false
+texture_filter = 1
+position = Vector2(392.5, 195.5)
+scale = Vector2(2.7, 2.1666665)
+texture = ExtResource("42_k6uk6")
+
+[node name="QuestionIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/QuestionMark" unique_id=1184159776]
+visible = false
+texture_filter = 1
+position = Vector2(391.25, 272)
+scale = Vector2(2.7, 2.1666665)
+texture = ExtResource("42_k6uk6")
+
+[node name="QuestionCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/QuestionMark" unique_id=689642882]
+visible = false
+texture_filter = 1
+position = Vector2(392.5, 352.422)
+scale = Vector2(2.7, 2.1666665)
+texture = ExtResource("42_k6uk6")
+
+[node name="ArrowUp" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1517758417]
+anchors_preset = 0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -64.0
+
+[node name="UpStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowUp" unique_id=1794093658]
+visible = false
+texture_filter = 1
+position = Vector2(392.5, 195.65851)
+rotation = -1.5707964
+scale = Vector2(2.5896037, 2.134701)
+texture = ExtResource("43_ibnnx")
+script = ExtResource("44_le1xe")
+
+[node name="UpIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowUp" unique_id=200901037]
+visible = false
+texture_filter = 1
+position = Vector2(391.25, 272)
+rotation = -1.5707964
+scale = Vector2(2.5896037, 2.134701)
+texture = ExtResource("43_ibnnx")
+script = ExtResource("44_le1xe")
+
+[node name="UpCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowUp" unique_id=2071581761]
+visible = false
+texture_filter = 1
+position = Vector2(391.5, 351.42203)
+rotation = -1.5707964
+scale = Vector2(2.5896037, 2.134701)
+texture = ExtResource("43_ibnnx")
+script = ExtResource("44_le1xe")
+
+[node name="ArrowDown" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1105789553]
+anchors_preset = 0
+offset_top = -104.0
+offset_right = 40.0
+offset_bottom = -64.0
+
+[node name="DownStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowDown" unique_id=1269722255]
+visible = false
+texture_filter = 1
+position = Vector2(392.5, 195.64217)
+rotation = -1.5707964
+scale = Vector2(2.582133, 2.134701)
+texture = ExtResource("45_kn2w5")
+
+[node name="DownIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowDown" unique_id=1165487534]
+visible = false
+texture_filter = 1
+position = Vector2(391.25, 271.99997)
+rotation = -1.5707964
+scale = Vector2(2.582133, 2.134701)
+texture = ExtResource("45_kn2w5")
+
+[node name="DownCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowDown" unique_id=1771077011]
+visible = false
+texture_filter = 1
+position = Vector2(391.5, 351.84402)
+rotation = -1.5707964
+scale = Vector2(2.582133, 2.134701)
+texture = ExtResource("45_kn2w5")
+
+[node name="DeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView" unique_id=1025561240]
+anchors_preset = 0
+offset_left = 461.0
+offset_top = 32.0
+offset_right = 461.0
+offset_bottom = 32.0
+
+[node name="LeftDeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=780565827]
+anchors_preset = 0
+offset_top = -8.0
+offset_bottom = -8.0
+
+[node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=1057477853]
+visible = false
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 44.0
+
+[node name="Frame" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=422616936]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bmm5s")
+layout_mode = 0
+offset_left = -23.0
+offset_top = 359.0
+offset_right = 89.0
+offset_bottom = 407.0
+texture = ExtResource("21_x5req")
+expand_mode = 1
+
+[node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=377385808]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 364.0
+offset_right = 88.0
+offset_bottom = 403.0
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 34
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightDeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=1560619292]
+anchors_preset = 0
+offset_left = 384.0
+offset_top = -8.0
+offset_right = 384.0
+offset_bottom = -8.0
+
+[node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=194000156]
+visible = false
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 44.0
+
+[node name="Frame" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=2067987957]
+texture_filter = 1
+material = SubResource("ShaderMaterial_bmm5s")
+layout_mode = 0
+offset_left = -23.0
+offset_top = 359.0
+offset_right = 89.0
+offset_bottom = 407.0
+texture = ExtResource("21_x5req")
+expand_mode = 1
+
+[node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=62236857]
+layout_mode = 0
+offset_left = -18.0
+offset_top = 364.0
+offset_right = 88.0
+offset_bottom = 403.0
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 34
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Skull" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=1953868673]
+texture_filter = 1
+layout_mode = 0
+offset_left = 315.0
+offset_top = 361.0
+offset_right = 363.0
+offset_bottom = 417.0
+pivot_offset = Vector2(24, 28)
+texture = ExtResource("27_gcvv8")
+
+[node name="DeathChanceHeader" type="Label" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=909189991]
+texture_filter = 1
+layout_mode = 0
+offset_left = 251.0
+offset_top = 342.0
+offset_right = 431.0
+offset_bottom = 366.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Death Chance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodType" type="Control" parent="BreedingUI/CellLoader/BreedingView" unique_id=1192391657]
+anchors_preset = 0
+offset_left = 448.0
+offset_top = 32.0
+offset_right = 448.0
+offset_bottom = 32.0
+
+[node name="LeftBloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType" unique_id=1922601429]
+anchors_preset = 0
+
+[node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay" unique_id=1279955600]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay/NoBloodType" unique_id=1683694094]
+texture_filter = 1
+layout_mode = 0
+offset_left = 101.0
+offset_top = 453.0
+offset_right = 221.0
+offset_bottom = 491.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 30
+text = "None"
+
+[node name="RightBloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType" unique_id=37355440]
+anchors_preset = 0
+offset_left = 387.0
+offset_right = 387.0
+
+[node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay" unique_id=2027430248]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BloodTypeA" type="Label" parent="BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay/NoBloodType" unique_id=202812119]
+texture_filter = 1
+layout_mode = 0
+offset_left = 101.0
+offset_top = 453.0
+offset_right = 221.0
+offset_bottom = 491.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 30
+text = "None"
+
+[node name="BloodDrop" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/BloodType" unique_id=934080166]
+modulate = Color(0.95, 0.5225, 0.5225, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 328.0
+offset_top = 452.0
+offset_right = 376.0
+offset_bottom = 508.0
+texture = ExtResource("34_gwke6")
+
+[node name="BloodTypeHeader" type="Label" parent="BreedingUI/CellLoader/BreedingView/BloodType" unique_id=746051582]
+texture_filter = 1
+layout_mode = 0
+offset_left = 258.0
+offset_top = 436.0
+offset_right = 438.0
+offset_bottom = 460.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 13
+text = "Blood Type"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -784,9 +1666,9 @@ script = ExtResource("22_h6dfq")
 [node name="SlideHandle" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1409566521]
 anchors_preset = 0
 offset_left = 432.0
-offset_top = -16.0
+offset_top = 242.0
 offset_right = 472.0
-offset_bottom = 24.0
+offset_bottom = 282.0
 script = ExtResource("16_bxgwh")
 
 [node name="SlideHover" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideHandle" unique_id=1089181671]
@@ -823,9 +1705,9 @@ vertical_alignment = 1
 
 [node name="SlideContent" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=2120854872]
 anchors_preset = 0
-offset_top = 24.0
+offset_top = 282.0
 offset_right = 40.0
-offset_bottom = 64.0
+offset_bottom = 322.0
 
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1899304568]
 layout_mode = 0
