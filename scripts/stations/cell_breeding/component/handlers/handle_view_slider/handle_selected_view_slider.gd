@@ -12,9 +12,6 @@ extends Node
 @onready var handle_btn_section : Node = $HandleBtnSection
 @onready var handle_information_section : Node = $HandleInformationSection
 
-# displays component
-@onready var display_stats : Node = $DisplayStats
-
 
 const SLIDE_CONTENT_CLOSE_POS : Vector2 = Vector2(0.0, 280.0)
 const SLIDE_HANDLE_CLOSE_POS : Vector2 = Vector2(432.0, 240.0)

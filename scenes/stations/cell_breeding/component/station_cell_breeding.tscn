@@ -25,12 +25,13 @@
 [ext_resource type="AudioStream" uid="uid://dn6burwhyv76o" path="res://sounds/station_cell_breeder/drag_dropped.mp3" id="10_ymgeo"]
 [ext_resource type="AudioStream" uid="uid://yt0d5gaxq81s" path="res://sounds/station_cell_breeder/box_accepted.mp3" id="11_1bnce"]
 [ext_resource type="Script" uid="uid://cg2sd4r2hly8j" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/handle_btn_section.gd" id="11_yqqxt"]
-[ext_resource type="Script" uid="uid://bu0bba4q2dt2l" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/handle_information_section.gd" id="12_l8wio"]
+[ext_resource type="Script" uid="uid://bu0bba4q2dt2l" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/handle_information_section.gd" id="12_l8wio"]
 [ext_resource type="AudioStream" uid="uid://dhn3gepmftp53" path="res://sounds/station_cell_breeder/error_sound.mp3" id="12_q5y6d"]
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
-[ext_resource type="Script" uid="uid://b5jstsc6yxecj" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/display/display_stats.gd" id="13_2fsyu"]
-[ext_resource type="Script" uid="uid://ymgorwad2s7i" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/display/display_death_chance.gd" id="14_275he"]
+[ext_resource type="Script" uid="uid://b5jstsc6yxecj" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/display/display_stats.gd" id="13_2fsyu"]
+[ext_resource type="Script" uid="uid://ymgorwad2s7i" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/display/display_death_chance.gd" id="14_275he"]
 [ext_resource type="Script" uid="uid://bqbquxrpdwf7q" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/confirm_btn.gd" id="14_a775l"]
+[ext_resource type="Script" uid="uid://uockcigitbmr" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/display/display_mutations.gd" id="15_2j5xm"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
 [ext_resource type="Script" uid="uid://bj350l0xbj47e" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/slide_handle.gd" id="16_bxgwh"]
 [ext_resource type="Script" uid="uid://catmrc862ogfl" path="res://scripts/stations/cell_breeding/component/ui/exit_header/reset_btn.gd" id="16_svls5"]
@@ -46,11 +47,9 @@
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="28_q2fkw"]
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="29_xdl70"]
 [ext_resource type="Shader" uid="uid://bhfglemkyi0fr" path="res://scripts/shaders/cell_breeder/breeding_with_charge_progress_bar.gdshader" id="30_eebfg"]
-[ext_resource type="PackedScene" uid="uid://dydn51vl306li" path="res://scenes/stations/cell_breeding/ui/cell_loader/selected_view_slider/ViewBtn.tscn" id="30_k7gp0"]
+[ext_resource type="PackedScene" uid="uid://dydn51vl306li" path="res://scenes/stations/cell_breeding/ui/cell_loader/selected_view_slider/view_btn.tscn" id="30_k7gp0"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="31_gwke6"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="34_gwke6"]
-[ext_resource type="Texture2D" uid="uid://cjnkhlkl7scb" path="res://models/scissors_popup/mutations_highlight.png" id="43_k7gp0"]
-[ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="44_l8wio"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -388,11 +387,14 @@ script = ExtResource("11_yqqxt")
 [node name="HandleInformationSection" type="Node" parent="HandleSelectedViewSlider" unique_id=799527138]
 script = ExtResource("12_l8wio")
 
-[node name="DisplayStats" type="Node" parent="HandleSelectedViewSlider" unique_id=2089383280]
+[node name="DisplayStats" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=2089383280]
 script = ExtResource("13_2fsyu")
 
-[node name="DisplayDeathChance" type="Node" parent="HandleSelectedViewSlider" unique_id=167743775]
+[node name="DisplayDeathChance" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=167743775]
 script = ExtResource("14_275he")
+
+[node name="DisplayMutations" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=650868651]
+script = ExtResource("15_2j5xm")
 
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
@@ -1126,6 +1128,7 @@ texture = ExtResource("34_gwke6")
 expand_mode = 1
 
 [node name="DeathChance" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=1703284075]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -1501,318 +1504,45 @@ pivot_offset = Vector2(24, 28)
 texture = ExtResource("27_gcvv8")
 expand_mode = 1
 
-[node name="Mutations" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=106144331]
-visible = false
+[node name="InformationMutations" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information" unique_id=106144331]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Mutation1" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=1812628333]
+[node name="SpawnPos" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations" unique_id=1603410800]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pos1" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations/SpawnPos" unique_id=1008870814]
 anchors_preset = 0
 offset_top = 40.0
 offset_right = 40.0
 offset_bottom = 80.0
 
-[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1985282823]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 48.0
-offset_right = 512.0
-offset_bottom = 144.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=226145775]
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1438761428]
-texture_filter = 1
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-mouse_filter = 2
-
-[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1773673863]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 46.0
-offset_right = 514.0
-offset_bottom = 145.0
-mouse_filter = 2
-texture = ExtResource("43_k7gp0")
-expand_mode = 1
-
-[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=473515033]
-visible = false
-anchors_preset = 0
-offset_left = 412.0
-offset_top = 65.0
-offset_right = 452.0
-offset_bottom = 105.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1/Hidden" unique_id=1292703210]
-layout_mode = 0
-offset_left = 12.0
-offset_top = -9.0
-offset_right = 92.0
-offset_bottom = 71.0
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1/Hidden" unique_id=253338808]
-texture_filter = 1
-position = Vector2(52, 31)
-scale = Vector2(0.5263158, 0.5882353)
-texture = ExtResource("44_l8wio")
-
-[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation1" unique_id=1892931945]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 151.0
-offset_right = 514.0
-offset_bottom = 197.605
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 13
-text = "Hidden
-
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mutation2" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=1236715862]
+[node name="Pos2" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations/SpawnPos" unique_id=900865655]
 anchors_preset = 0
 offset_left = 120.0
 offset_top = 40.0
 offset_right = 160.0
 offset_bottom = 80.0
 
-[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1812425315]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 48.0
-offset_right = 512.0
-offset_bottom = 144.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1309228719]
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=273969981]
-texture_filter = 1
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-mouse_filter = 2
-
-[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1689406635]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 46.0
-offset_right = 514.0
-offset_bottom = 145.0
-mouse_filter = 2
-texture = ExtResource("43_k7gp0")
-expand_mode = 1
-
-[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=760267366]
-visible = false
-anchors_preset = 0
-offset_left = 412.0
-offset_top = 65.0
-offset_right = 452.0
-offset_bottom = 105.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2/Hidden" unique_id=511680985]
-layout_mode = 0
-offset_left = 12.0
-offset_top = -9.0
-offset_right = 92.0
-offset_bottom = 71.0
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2/Hidden" unique_id=679112372]
-texture_filter = 1
-position = Vector2(52, 31)
-scale = Vector2(0.5263158, 0.5882353)
-texture = ExtResource("44_l8wio")
-
-[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation2" unique_id=1767306478]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 151.0
-offset_right = 514.0
-offset_bottom = 197.605
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 13
-text = "Hidden
-
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mutation3" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=539167721]
+[node name="Pos3" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations/SpawnPos" unique_id=1710849393]
 anchors_preset = 0
 offset_left = 240.0
 offset_top = 40.0
 offset_right = 280.0
 offset_bottom = 80.0
 
-[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=1570275749]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 48.0
-offset_right = 512.0
-offset_bottom = 144.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=560478581]
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=1095681450]
-texture_filter = 1
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-mouse_filter = 2
-
-[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=1828134592]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 46.0
-offset_right = 514.0
-offset_bottom = 145.0
-mouse_filter = 2
-texture = ExtResource("43_k7gp0")
-expand_mode = 1
-
-[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=735679105]
-visible = false
-anchors_preset = 0
-offset_left = 412.0
-offset_top = 65.0
-offset_right = 452.0
-offset_bottom = 105.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3/Hidden" unique_id=2124655384]
-layout_mode = 0
-offset_left = 12.0
-offset_top = -9.0
-offset_right = 92.0
-offset_bottom = 71.0
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3/Hidden" unique_id=33014728]
-texture_filter = 1
-position = Vector2(52, 31)
-scale = Vector2(0.5263158, 0.5882353)
-texture = ExtResource("44_l8wio")
-
-[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation3" unique_id=73305269]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 151.0
-offset_right = 514.0
-offset_bottom = 197.605
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 13
-text = "Hidden
-
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Mutation4" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations" unique_id=170668565]
+[node name="Pos4" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations/SpawnPos" unique_id=1401949019]
 anchors_preset = 0
 offset_left = 360.0
 offset_top = 40.0
 offset_right = 400.0
 offset_bottom = 80.0
 
-[node name="BlackBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=541025386]
-layout_mode = 0
-offset_left = 416.0
-offset_top = 48.0
-offset_right = 512.0
-offset_bottom = 144.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=1986742451]
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=6647037]
-texture_filter = 1
-layout_mode = 0
-offset_left = 424.0
-offset_top = 56.0
-offset_right = 504.0
-offset_bottom = 136.0
-mouse_filter = 2
-
-[node name="Highlight" type="TextureRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=1154946864]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 46.0
-offset_right = 514.0
-offset_bottom = 145.0
-mouse_filter = 2
-texture = ExtResource("43_k7gp0")
-expand_mode = 1
-
-[node name="Hidden" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=883716937]
-visible = false
+[node name="ParentNode" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations" unique_id=2120985473]
 anchors_preset = 0
-offset_left = 412.0
-offset_top = 65.0
-offset_right = 452.0
-offset_bottom = 105.0
-
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4/Hidden" unique_id=1921275026]
-layout_mode = 0
-offset_left = 12.0
-offset_top = -9.0
-offset_right = 92.0
-offset_bottom = 71.0
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4/Hidden" unique_id=1732898066]
-texture_filter = 1
-position = Vector2(52, 31)
-scale = Vector2(0.5263158, 0.5882353)
-texture = ExtResource("44_l8wio")
-
-[node name="MutationName" type="Label" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Mutations/Mutation4" unique_id=72657355]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 151.0
-offset_right = 514.0
-offset_bottom = 197.605
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 13
-text = "Hidden
-
-"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="InformationUnloadedHint" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=333033916]
 visible = false

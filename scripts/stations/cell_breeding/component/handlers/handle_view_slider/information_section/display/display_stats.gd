@@ -4,27 +4,24 @@ extends Node
 
 
 @onready var clean_bar_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/CleanBar",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/CleanBar",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/CleanBar"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/CleanBar",
+ 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/CleanBar",
+ 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/CleanBar"	
 ]
-
 @onready var defect_bars : Array[TextureProgressBar] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/DefectBar",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/DefectBar",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/DefectBar"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/DefectBar",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/DefectBar",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/DefectBar"
 ]
-
 @onready var hide_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/HiddenSprite",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/HiddenSprite",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/HiddenSprite"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/HiddenSprite"
 ]
-
 @onready var off_labels : Array[Label] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/OffLabel",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/OffLabel",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/OffLabel"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Strength/OffLabel",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Intelligence/OffLabel",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats/Community/OffLabel"
 ]
 
 

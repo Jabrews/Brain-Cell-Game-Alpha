@@ -6,29 +6,29 @@ const STAT_TYPES: Array[String] = [
 	"community",
 ]
 
-@onready var total_frame : TextureRect = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance/Frame"
-@onready var total_percant_label : Label = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance/DeathChancePercant"
+@onready var total_frame : TextureRect = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance/Frame"
+@onready var total_percant_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance/DeathChancePercant"
 @onready var stat_danger_chance_increase_labels : Array[Label] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength/DeathChance",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence/DeathChance",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community/DeathChance"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength/DeathChance",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence/DeathChance",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community/DeathChance"
 ]
 @onready var stat_danger_pots : Array[TextureRect] =  [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength/Pot",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence/Pot",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community/Pot"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength/Pot",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence/Pot",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community/Pot"
 ]
-@onready var lifespan_num_label : Label = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger/LifeNum"
-@onready var lifespan_death_chance_increase_label : Label = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger/DeathChance"
+@onready var lifespan_num_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger/LifeNum"
+@onready var lifespan_death_chance_increase_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger/DeathChance"
 @onready var hidden_stat_sprites : Array[Sprite2D]=  [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/StrengthHide",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/IntelligenceHide",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/CommunityHide"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/StrengthHide",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/IntelligenceHide",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/CommunityHide"
 ]
 @onready var off_blockers : Array[Control] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Strength",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Intelligence",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Community"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Strength",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Intelligence",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Community"
 ]
 
 func _ready() -> void:
