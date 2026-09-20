@@ -61,6 +61,39 @@ extends Node
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/OffLabel"
 ]
 
+## death chance
+
+# left 
+@onready var l_death_chance_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay"
+@onready var l_death_chance_percant_label : Label = $"../../BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance/DeathChancePercant"
+@onready var l_death_chance_frame : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance/Frame"
+
+# right  
+@onready var r_death_chance_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay"
+@onready var r_death_chance_percant_label : Label = $"../../BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance/DeathChancePercant"
+@onready var r_death_chance_frame : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance/Frame"
+
+## blood type
+
+# left
+@onready var l_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay"
+@onready var l_no_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay/NoBloodType"
+
+# right 
+@onready var r_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay"
+@onready var r_no_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay/NoBloodType"
+
+
+func _ready() -> void:
+	for bar : Sprite2D in l_clean_bars : 
+		bar.material = bar.material.duplicate()
+	
+	for bar : Sprite2D in r_clean_bars : 
+		bar.material = bar.material.duplicate()
+		
+	l_death_chance_frame.material = l_death_chance_frame.material.duplicate()
+	r_death_chance_frame.material = r_death_chance_frame.material.duplicate()
+
 
 func _get_stat(side: String) -> Dictionary:
 	
@@ -90,3 +123,39 @@ func _get_stat(side: String) -> Dictionary:
 		_:
 			push_error("Invalid side: ", side)
 			return {}
+
+func _get_death_chance(side : String) -> Dictionary : 
+	
+	match side : 
+		'left' :
+			return {
+				'death_chance_parent' : l_death_chance_parent,
+				'death_chance_percant_label' :  l_death_chance_percant_label,
+				'death_chance_frame' :  l_death_chance_frame,
+			}
+		'right' :
+			return {
+				'death_chance_parent' : r_death_chance_parent,
+				'death_chance_percant_label' :  r_death_chance_percant_label,
+				'death_chance_frame' :  r_death_chance_frame,
+			}
+		_ : 
+			push_error("Invalid side: ", side)
+			return {}
+
+func _get_blood_type(side : String) -> Dictionary : 
+	match side : 
+		'left':
+			return {
+				'blood_type_parent'	 : l_blood_type_parent,
+				'no_blood_type_parent' : l_no_blood_type_parent,
+			}
+		'right' :
+			return {
+				'blood_type_parent'	 : r_blood_type_parent,
+				'no_blood_type_parent' : r_no_blood_type_parent,
+			}
+		_ : 
+			push_error("Invalid side: ", side)
+			return {}
+	

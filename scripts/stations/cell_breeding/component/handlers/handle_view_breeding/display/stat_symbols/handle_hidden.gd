@@ -1,9 +1,9 @@
 extends Node
 
 @onready var hidden_question_mark_sprites : Array[Sprite2D] = [
-	$"../QuestionMark/QuestionStrength",
-	$"../QuestionMark/QuestionIntelligence",
-	$"../QuestionMark/QuestionCommunity"
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionStrength",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionIntelligence",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionCommunity"
 ]
 
 

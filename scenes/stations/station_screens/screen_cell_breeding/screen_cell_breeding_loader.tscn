@@ -24,12 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="18_3ol1a"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="19_7nxlq"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="20_6v68c"]
-[ext_resource type="Script" uid="uid://ik08rwohsq4n" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/symbol_manager.gd" id="21_0kbkf"]
-[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_hidden.gd" id="22_bllym"]
-[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_arrow.gd" id="23_xicq0"]
 [ext_resource type="Texture2D" uid="uid://dvjrss36t8u0b" path="res://models/screens/breeding_symbols/question_mark.png" id="24_utl2c"]
 [ext_resource type="Texture2D" uid="uid://c5k5ibq6s2pn2" path="res://models/screens/breeding_symbols/arrow_UP.png" id="25_o0v6m"]
-[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/up_arrow_symbol.gd" id="26_nakc5"]
+[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/cell_breeding/component/ui/up_arrow_symbol.gd" id="26_nakc5"]
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="27_umtiy"]
 [ext_resource type="Shader" uid="uid://cehnd5u738tts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/total_death_chance_frame.gdshader" id="28_vq4nr"]
 [ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="29_q1t35"]
@@ -1228,13 +1225,10 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("21_0kbkf")
 
 [node name="HandleHidden" type="Node" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=2030038457]
-script = ExtResource("22_bllym")
 
 [node name="HandleArrow" type="Node" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=51175671]
-script = ExtResource("23_xicq0")
 
 [node name="QuestionMark" type="Control" parent="SeatCellLoading/StatDisplay/SymbolManager" unique_id=201270423]
 anchors_preset = 0

@@ -2,15 +2,15 @@
 extends Node
 
 @onready var up_arrows : Array[Sprite2D] = [
-	$"../ArrowUp/UpStrength",
-	$"../ArrowUp/UpIntelligence",
-	$"../ArrowUp/UpCommunity"
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpStrength",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpIntelligence",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpCommunity"
 ]
 
 @onready var down_arrows : Array[Sprite2D] = [
-	$"../ArrowDown/DownStrength",
-	$"../ArrowDown/DownIntelligence",
-	$"../ArrowDown/DownCommunity"
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownStrength",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownIntelligence",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownCommunity"
 ]
 
 

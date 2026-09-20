@@ -15,9 +15,9 @@ func _ready() -> void:
 		BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
 		],
 		BrainCellStat.new("strength", true, 50, 0, true),
-		BrainCellStat.new("intelligence", true, 100, 10, false),
+		BrainCellStat.new("intelligence", true, 100, 200, false),
 		BrainCellStat.new("community", true, 125, 50, false),
-		3,
+		1,
 		false,
 		false,
 	)
@@ -38,23 +38,22 @@ func _ready() -> void:
 	)
 	
 	
-	#var cell_three : BrainCell = BrainCell.new(
-		#'cell_three',
-		#[],
-		#BrainCellStat.new("strength", true, 300, 0, false),
-		#BrainCellStat.new("intelligence", true, 300, 0, false),
-		#BrainCellStat.new("community", true, 300, 0, false),
-		#3,
-		#false,
-		#false,
-		#false
-	#)
+	var cell_three : BrainCell = BrainCell.new(
+		'cell_three',
+		[],
+		BrainCellStat.new("strength", true, 300, 300, false),
+		BrainCellStat.new("intelligence", true, 300, 0, false),
+		BrainCellStat.new("community", true, 300, 300, false),
+		1,
+		false,
+		false,
+	)
 	
 	var cells : Array[BrainCell] = []	
 	
 	cells.append(cell_one)
 	cells.append(cell_two)
-	#cells.append(cell_three)
+	cells.append(cell_three)
 	
 	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
 	

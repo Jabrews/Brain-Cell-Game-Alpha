@@ -5,6 +5,8 @@ extends Node
 
 
 func check_for_symbols(cell_1 : BrainCell, cell_2 : BrainCell) -> void:
+	
+	return
 
 	var stats_1 = [
 		cell_1.strength,

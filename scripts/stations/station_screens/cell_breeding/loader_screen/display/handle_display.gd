@@ -107,13 +107,15 @@ func apply_charge_boost_to_copy(
 	)
 
 
-func update_symbols(main_left_cell : BrainCell, main_right_cell : BrainCell) -> void:
+func update_symbols(_main_left_cell : BrainCell, _main_right_cell : BrainCell) -> void:
 	
-	if main_left_cell and main_right_cell:
-		symbol_manager.check_for_symbols(main_left_cell, main_right_cell)
+	return
 	
-	if not main_left_cell or not main_right_cell:
-		symbol_manager.hide_symbols()
+	#if main_left_cell and main_right_cell:
+		#symbol_manager.check_for_symbols(main_left_cell, main_right_cell)
+	#
+	#if not main_left_cell or not main_right_cell:
+		#symbol_manager.hide_symbols()
 		
 
 

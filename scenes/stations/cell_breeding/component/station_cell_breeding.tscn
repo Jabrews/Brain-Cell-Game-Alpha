@@ -40,13 +40,16 @@
 [ext_resource type="Script" uid="uid://bg6px0pnfcift" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/get_side_components.gd" id="18_pjaa2"]
 [ext_resource type="Script" uid="uid://dotvi2i3phx0q" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_stats.gd" id="19_y63pt"]
 [ext_resource type="Shader" uid="uid://cehnd5u738tts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/total_death_chance_frame.gdshader" id="20_nedwh"]
+[ext_resource type="Script" uid="uid://grpave2s2brq" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/stat_symbols/display_stat_symbols.gd" id="20_nm6wx"]
 [ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="21_x5req"]
 [ext_resource type="Shader" uid="uid://3crm1j3sldsg" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/pot_fill.gdshader" id="22_1ufwy"]
-[ext_resource type="Script" uid="uid://bhyq24r20raoi" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/selected_view_slider.gd" id="22_h6dfq"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="23_q2fkw"]
 [ext_resource type="AudioStream" uid="uid://blyvvd4y36iqr" path="res://sounds/station_cell_breeder/reset_btn_appear.mp3" id="23_vsr2l"]
+[ext_resource type="Script" uid="uid://hk41fnhr8xfa" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_blood_type.gd" id="24_nm6wx"]
+[ext_resource type="Script" uid="uid://bna44g4cyhcb6" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_death_chance_skull.gd" id="25_oipmh"]
 [ext_resource type="Texture2D" uid="uid://djxgrddvaiim5" path="res://models/breeding_screen/breeding_skull.png" id="27_gcvv8"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="27_gwke6"]
+[ext_resource type="Script" uid="uid://oiejhcantc5b" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_death_chance.gd" id="27_oipmh"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="28_bxgwh"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="28_q2fkw"]
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="29_xdl70"]
@@ -54,12 +57,11 @@
 [ext_resource type="PackedScene" uid="uid://dydn51vl306li" path="res://scenes/stations/cell_breeding/ui/cell_loader/selected_view_slider/view_btn.tscn" id="30_k7gp0"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="31_gwke6"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="34_gwke6"]
-[ext_resource type="Script" uid="uid://ik08rwohsq4n" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/symbol_manager.gd" id="39_tvpn4"]
-[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_hidden.gd" id="40_odqr3"]
-[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/display/symbol_manager/handle_arrow.gd" id="41_e38bu"]
+[ext_resource type="Script" uid="uid://0kji6fs6xf2m" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/stat_symbols/handle_hidden.gd" id="40_odqr3"]
+[ext_resource type="Script" uid="uid://n3lhs6hgtoxj" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/stat_symbols/handle_arrow.gd" id="41_e38bu"]
 [ext_resource type="Texture2D" uid="uid://dvjrss36t8u0b" path="res://models/screens/breeding_symbols/question_mark.png" id="42_k6uk6"]
 [ext_resource type="Texture2D" uid="uid://c5k5ibq6s2pn2" path="res://models/screens/breeding_symbols/arrow_UP.png" id="43_ibnnx"]
-[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/up_arrow_symbol.gd" id="44_le1xe"]
+[ext_resource type="Script" uid="uid://dp27irxml08u3" path="res://scripts/stations/cell_breeding/component/ui/up_arrow_symbol.gd" id="44_le1xe"]
 [ext_resource type="Texture2D" uid="uid://bv6urhadtuxp1" path="res://models/screens/breeding_symbols/arrow_DOWN.png" id="45_kn2w5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
@@ -452,6 +454,28 @@ script = ExtResource("18_pjaa2")
 [node name="DisplayStats" type="Node" parent="HandleBreedingView/Display" unique_id=786577542]
 script = ExtResource("19_y63pt")
 
+[node name="DisplayStatSymbols" type="Node" parent="HandleBreedingView/Display" unique_id=91349413]
+script = ExtResource("20_nm6wx")
+
+[node name="HandleHidden" type="Node" parent="HandleBreedingView/Display/DisplayStatSymbols" unique_id=151116096]
+script = ExtResource("40_odqr3")
+
+[node name="HandleArrow" type="Node" parent="HandleBreedingView/Display/DisplayStatSymbols" unique_id=859031864]
+script = ExtResource("41_e38bu")
+
+[node name="DisplayDeathChance" type="Node" parent="HandleBreedingView/Display" unique_id=223924811]
+script = ExtResource("27_oipmh")
+
+[node name="DisplayBloodType" type="Node" parent="HandleBreedingView/Display" unique_id=1785791741]
+script = ExtResource("24_nm6wx")
+
+[node name="DisplayDeathChanceSkull" type="Node" parent="HandleBreedingView/Display" unique_id=1348996482]
+script = ExtResource("25_oipmh")
+
+[node name="FlashDelayTimer" type="Timer" parent="HandleBreedingView/Display/DisplayDeathChanceSkull" unique_id=1849140018]
+process_mode = 3
+wait_time = 0.5
+
 [node name="Tables" type="Node3D" parent="." unique_id=1979987505]
 
 [node name="MainTable" type="StaticBody3D" parent="Tables" unique_id=364932455]
@@ -738,7 +762,6 @@ stream = ExtResource("23_vsr2l")
 
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
-visible = false
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
@@ -1383,106 +1406,101 @@ on box to begin
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SymbolManager" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=1172269335]
+[node name="QuestionMark" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=962812483]
+z_index = 1
 anchors_preset = 0
-offset_left = 408.0
-offset_top = 56.0
-offset_right = 448.0
-offset_bottom = 96.0
-script = ExtResource("39_tvpn4")
+offset_left = 446.0
+offset_top = -42.0
+offset_right = 486.0
+offset_bottom = -2.0
 
-[node name="HandleHidden" type="Node" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1584510701]
-script = ExtResource("40_odqr3")
-
-[node name="HandleArrow" type="Node" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1238610391]
-script = ExtResource("41_e38bu")
-
-[node name="QuestionMark" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1550317668]
-anchors_preset = 0
-offset_top = -104.0
-offset_right = 40.0
-offset_bottom = -64.0
-
-[node name="QuestionStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/QuestionMark" unique_id=871977575]
+[node name="QuestionStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark" unique_id=1981778525]
 visible = false
 texture_filter = 1
-position = Vector2(392.5, 195.5)
+position = Vector2(353.25, 195.5)
 scale = Vector2(2.7, 2.1666665)
 texture = ExtResource("42_k6uk6")
 
-[node name="QuestionIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/QuestionMark" unique_id=1184159776]
+[node name="QuestionIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark" unique_id=752919062]
 visible = false
 texture_filter = 1
-position = Vector2(391.25, 272)
+position = Vector2(352, 272)
 scale = Vector2(2.7, 2.1666665)
 texture = ExtResource("42_k6uk6")
 
-[node name="QuestionCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/QuestionMark" unique_id=689642882]
+[node name="QuestionCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark" unique_id=678111019]
 visible = false
 texture_filter = 1
-position = Vector2(392.5, 352.422)
+position = Vector2(353.25, 352.422)
 scale = Vector2(2.7, 2.1666665)
 texture = ExtResource("42_k6uk6")
 
-[node name="ArrowUp" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1517758417]
+[node name="ArrowUp" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=1251017545]
+z_index = 1
 anchors_preset = 0
-offset_top = -104.0
-offset_right = 40.0
-offset_bottom = -64.0
+offset_left = 446.0
+offset_top = -42.0
+offset_right = 486.0
+offset_bottom = -2.0
 
-[node name="UpStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowUp" unique_id=1794093658]
+[node name="UpStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp" unique_id=1387047513]
+process_mode = 3
 visible = false
 texture_filter = 1
-position = Vector2(392.5, 195.65851)
+position = Vector2(353.25, 195.65851)
 rotation = -1.5707964
 scale = Vector2(2.5896037, 2.134701)
 texture = ExtResource("43_ibnnx")
 script = ExtResource("44_le1xe")
 
-[node name="UpIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowUp" unique_id=200901037]
+[node name="UpIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp" unique_id=225163764]
+process_mode = 3
 visible = false
 texture_filter = 1
-position = Vector2(391.25, 272)
+position = Vector2(352, 272)
 rotation = -1.5707964
 scale = Vector2(2.5896037, 2.134701)
 texture = ExtResource("43_ibnnx")
 script = ExtResource("44_le1xe")
 
-[node name="UpCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowUp" unique_id=2071581761]
+[node name="UpCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp" unique_id=1528764709]
+process_mode = 3
 visible = false
 texture_filter = 1
-position = Vector2(391.5, 351.42203)
+position = Vector2(352.25, 351.42203)
 rotation = -1.5707964
 scale = Vector2(2.5896037, 2.134701)
 texture = ExtResource("43_ibnnx")
 script = ExtResource("44_le1xe")
 
-[node name="ArrowDown" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager" unique_id=1105789553]
+[node name="ArrowDown" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay" unique_id=660991696]
+z_index = 1
 anchors_preset = 0
-offset_top = -104.0
-offset_right = 40.0
-offset_bottom = -64.0
+offset_left = 446.0
+offset_top = -42.0
+offset_right = 486.0
+offset_bottom = -2.0
 
-[node name="DownStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowDown" unique_id=1269722255]
+[node name="DownStrength" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown" unique_id=1744476874]
 visible = false
 texture_filter = 1
-position = Vector2(392.5, 195.64217)
+position = Vector2(353.25, 195.64217)
 rotation = -1.5707964
 scale = Vector2(2.582133, 2.134701)
 texture = ExtResource("45_kn2w5")
 
-[node name="DownIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowDown" unique_id=1165487534]
+[node name="DownIntelligence" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown" unique_id=256170842]
 visible = false
 texture_filter = 1
-position = Vector2(391.25, 271.99997)
+position = Vector2(352, 271.99997)
 rotation = -1.5707964
 scale = Vector2(2.582133, 2.134701)
 texture = ExtResource("45_kn2w5")
 
-[node name="DownCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/SymbolManager/ArrowDown" unique_id=1771077011]
+[node name="DownCommunity" type="Sprite2D" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown" unique_id=2005596678]
 visible = false
 texture_filter = 1
-position = Vector2(391.5, 351.84402)
+position = Vector2(352.25, 351.84402)
 rotation = -1.5707964
 scale = Vector2(2.582133, 2.134701)
 texture = ExtResource("45_kn2w5")
@@ -1495,12 +1513,12 @@ offset_right = 461.0
 offset_bottom = 32.0
 
 [node name="LeftDeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=780565827]
+visible = false
 anchors_preset = 0
 offset_top = -8.0
 offset_bottom = -8.0
 
 [node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay" unique_id=1057477853]
-visible = false
 anchors_preset = 0
 offset_left = 114.0
 offset_top = 4.0
@@ -1519,6 +1537,7 @@ texture = ExtResource("21_x5req")
 expand_mode = 1
 
 [node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/LeftDeathChanceDisplay/TotalDeathChance" unique_id=377385808]
+process_mode = 3
 layout_mode = 0
 offset_left = -18.0
 offset_top = 364.0
@@ -1531,6 +1550,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RightDeathChanceDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=1560619292]
+visible = false
 anchors_preset = 0
 offset_left = 384.0
 offset_top = -8.0
@@ -1538,7 +1558,6 @@ offset_right = 384.0
 offset_bottom = -8.0
 
 [node name="TotalDeathChance" type="Control" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay" unique_id=194000156]
-visible = false
 anchors_preset = 0
 offset_left = 114.0
 offset_top = 4.0
@@ -1557,6 +1576,7 @@ texture = ExtResource("21_x5req")
 expand_mode = 1
 
 [node name="DeathChancePercant" type="Label" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay/RightDeathChanceDisplay/TotalDeathChance" unique_id=62236857]
+process_mode = 3
 layout_mode = 0
 offset_left = -18.0
 offset_top = 364.0
@@ -1569,6 +1589,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Skull" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/DeathChanceDisplay" unique_id=1953868673]
+process_mode = 3
 texture_filter = 1
 layout_mode = 0
 offset_left = 315.0
@@ -1599,10 +1620,10 @@ offset_right = 448.0
 offset_bottom = 32.0
 
 [node name="LeftBloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType" unique_id=1922601429]
+visible = false
 anchors_preset = 0
 
 [node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay" unique_id=1279955600]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -1620,12 +1641,12 @@ theme_override_font_sizes/font_size = 30
 text = "None"
 
 [node name="RightBloodTypeDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType" unique_id=37355440]
+visible = false
 anchors_preset = 0
 offset_left = 387.0
 offset_right = 387.0
 
 [node name="NoBloodType" type="Control" parent="BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay" unique_id=2027430248]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -1673,7 +1694,6 @@ offset_top = 400.0
 offset_right = 1248.0
 offset_bottom = 688.0
 mouse_filter = 2
-script = ExtResource("22_h6dfq")
 
 [node name="SlideHandle" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1409566521]
 anchors_preset = 0
