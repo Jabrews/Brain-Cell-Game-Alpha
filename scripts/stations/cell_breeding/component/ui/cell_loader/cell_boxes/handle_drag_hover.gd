@@ -9,6 +9,8 @@ extends Node
 
 var hovered: bool = false
 
+@export var is_boost_box : bool = false
+
 func _ready() -> void:
 	blink_selected_border_timer.connect('timeout', _handle_blink_selected_border_timer_timeout)
 
@@ -38,6 +40,12 @@ func _process(_delta: float) -> void:
 func _handle_hover_on() -> void:
 	
 	if parent_box.loaded_cell :
+		
+		#if not is_main_box and not is_selected_view_box : 		
+		if is_boost_box : 
+			if parent_box.side == 'right' :
+				already_occupied_hint.position = Vector2(-200.0, 24.0)
+		
 		blink_selected_border_timer.start()
 		already_occupied_hint.visible = true
 		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'error')

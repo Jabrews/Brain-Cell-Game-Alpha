@@ -425,6 +425,8 @@ script = ExtResource("5_ac4jf")
 [node name="HandleConfirmBtn" type="Node" parent="." unique_id=1735938697]
 script = ExtResource("10_275he")
 
+[node name="HandleBoostBtn" type="Node" parent="." unique_id=1525550362]
+
 [node name="HandleSelectedViewSlider" type="Node" parent="." unique_id=2031448372]
 script = ExtResource("10_jh1bc")
 

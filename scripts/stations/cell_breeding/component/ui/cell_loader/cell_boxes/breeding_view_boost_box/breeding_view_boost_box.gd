@@ -6,9 +6,13 @@ var box_type : String = 'boost'
 # components
 @export var drag_cell_entry_parent_node: Node
 @onready var display_background : TextureRect = $DisplayBackground
-@onready var display_mock_cell_entry : Node = $DisplayMockCellEntry
 @onready var mock_cell_entry : Control = $MockCellEntry
 @onready var add_a_cell_hint : Control = $AddACellHint
+
+# helper components
+@onready var display_mock_cell_entry : Node = $DisplayMockCellEntry
+@onready var handle_boost_btn: Node = $HandleBoostBtn
+
 
 var loaded_cell : BrainCell 
 
@@ -29,6 +33,9 @@ func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh 
 	
 	_update_breeding_ui_state()
 	
+	handle_boost_btn._handle_loaded_cell_changed(loaded_cell)
+	
+	
 	if refresh : 
 		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')
 	
@@ -43,6 +50,8 @@ func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	mock_cell_entry.visible = false 
 	
 	_update_breeding_ui_state()
+	
+	handle_boost_btn._handle_loaded_cell_changed(loaded_cell)
 	
 	if refresh : 
 		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')

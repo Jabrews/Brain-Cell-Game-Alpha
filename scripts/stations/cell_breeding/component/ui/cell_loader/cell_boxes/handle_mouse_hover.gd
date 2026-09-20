@@ -39,10 +39,6 @@ func _handle_mouse_entered() -> void:
 		if parent_box.prevent_interact 	 :
 			return
 		
-		
-		
-	
-	
 	if hovered:
 		return
 
@@ -63,6 +59,12 @@ func _handle_hover_start() -> void:
 	if parent_box.loaded_cell : 
 		remove_border.visible = true
 	else : 
+		
+		# right boost box does not get this hint
+		if not is_main_box and not is_selected_view_box : 		
+			if parent_box.side == 'right' :			
+				add_a_cell_hint.position= Vector2(-256.0, 24.0)
+				
 		add_a_cell_hint.visible = true
 
 

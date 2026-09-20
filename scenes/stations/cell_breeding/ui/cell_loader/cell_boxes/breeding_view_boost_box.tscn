@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://3eja24fj48er"]
 
-[ext_resource type="Texture2D" uid="uid://dnv5m0cdht5q6" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_default.png" id="1_dyhft"]
 [ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="1_miwuh"]
 [ext_resource type="Script" uid="uid://b6dinrv02wf3n" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_boost_box/breeding_view_boost_box.gd" id="1_o2lr4"]
 [ext_resource type="Texture2D" uid="uid://bug3b3fwygm5j" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_inactive.png" id="2_av1m0"]
+[ext_resource type="Script" uid="uid://bvgilsj62d7jp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_boost_box/handle_boost_btn/handle_boost_btn.gd" id="2_b5xv8"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_dyhft"]
 [ext_resource type="Script" uid="uid://dyltphmqknt1b" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/handle_mouse_hover.gd" id="2_hfdni"]
 [ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_av1m0"]
-[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="3_etegk"]
 [ext_resource type="Script" uid="uid://dhptcb5igp6g2" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/handle_drag_hover.gd" id="3_xkuvg"]
 [ext_resource type="Script" uid="uid://b4cfl0n3vhymw" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/display_mock_cell_entry.gd" id="4_b5xv8"]
 [ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/cell_breeder/ui/cell_entry/defect_bar.png" id="4_etegk"]
@@ -18,11 +17,64 @@
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_hfdni"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_xkuvg"]
 [ext_resource type="Texture2D" uid="uid://b0japhu6uvgga" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_outside_border.png" id="10_b5xv8"]
+[ext_resource type="Texture2D" uid="uid://rl2a2l2ic862" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_hover.png" id="10_t4l4e"]
 [ext_resource type="Texture2D" uid="uid://djnps8v8tsxbm" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png" id="11_t4l4e"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_av1m0"]
-shader = ExtResource("3_etegk")
-shader_parameter/hologram_enabled = true
+[sub_resource type="Shader" id="Shader_b5xv8"]
+code = "shader_type canvas_item;
+
+uniform bool hologram_enabled = false;
+
+uniform float shimmer_speed : hint_range(0.0, 5.0) = 1.2;
+uniform float shimmer_strength : hint_range(0.0, 1.0) = 0.15;
+
+uniform float scanline_strength : hint_range(0.0, 1.0) = 0.08;
+uniform float scanline_density : hint_range(1.0, 300.0) = 90.0;
+
+uniform vec4 hologram_tint : source_color = vec4(0.7, 0.9, 1.0, 1.0);
+
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	if (hologram_enabled) {
+		float shimmer_position =
+			UV.x +
+			UV.y * 0.35 +
+			TIME * shimmer_speed;
+
+		float shimmer =
+			sin(shimmer_position * 12.0) * 0.5 + 0.5;
+
+		shimmer = pow(shimmer, 8.0);
+
+		float scanline =
+			sin(UV.y * scanline_density + TIME * 3.0);
+
+		scanline = scanline * 0.5 + 0.5;
+
+		vec3 final_color = COLOR.rgb * hologram_tint.rgb;
+
+		final_color += shimmer * shimmer_strength;
+		final_color *= 1.0 - scanline * scanline_strength;
+
+		COLOR = vec4(
+			final_color,
+			tex.a * COLOR.a
+		);
+	}
+	else {
+		COLOR = vec4(
+			COLOR.rgb,
+			tex.a * COLOR.a
+		);
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b5xv8"]
+shader = SubResource("Shader_b5xv8")
+shader_parameter/hologram_enabled = false
 shader_parameter/shimmer_speed = 0.7770000369075
 shader_parameter/shimmer_strength = 0.0650000030875
 shader_parameter/scanline_strength = 0.0
@@ -50,11 +102,15 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o2lr4")
 
+[node name="HandleBoostBtn" type="Node" parent="." unique_id=2093069411]
+script = ExtResource("2_b5xv8")
+
 [node name="HandleMouseHover" type="Node" parent="." unique_id=428991126]
 script = ExtResource("2_hfdni")
 
 [node name="HandleDragHover" type="Node" parent="." unique_id=1702835753]
 script = ExtResource("3_xkuvg")
+is_boost_box = true
 
 [node name="BlinkSelectedBorder" type="Timer" parent="HandleDragHover" unique_id=313912476]
 wait_time = 0.1
@@ -65,38 +121,30 @@ script = ExtResource("4_b5xv8")
 [node name="HandleBoxInsideBorder" type="Node" parent="." unique_id=857801221]
 script = ExtResource("5_xkuvg")
 
-[node name="BoostBtn1" type="Control" parent="." unique_id=157253912]
+[node name="BoostBtn" type="Control" parent="." unique_id=157253912]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Default" type="TextureRect" parent="BoostBtn1" unique_id=2042209743]
-visible = false
+[node name="BoostBtn" type="TextureRect" parent="BoostBtn" unique_id=927815431]
 texture_filter = 1
-layout_mode = 0
-offset_top = -80.0
-offset_right = 72.0
-offset_bottom = -8.0
-texture = ExtResource("1_dyhft")
-
-[node name="Inactive" type="TextureRect" parent="BoostBtn1" unique_id=927815431]
-modulate = Color(0.71, 0.71, 0.71, 0.6117647)
-texture_filter = 1
+material = SubResource("ShaderMaterial_b5xv8")
 layout_mode = 0
 offset_top = -80.0
 offset_right = 72.0
 offset_bottom = -8.0
 texture = ExtResource("2_av1m0")
 
-[node name="Boosted" type="TextureRect" parent="BoostBtn1" unique_id=1888624986]
+[node name="Hover" type="TextureRect" parent="BoostBtn" unique_id=1970253299]
 visible = false
 texture_filter = 1
-material = SubResource("ShaderMaterial_av1m0")
 layout_mode = 0
-offset_top = -80.0
-offset_right = 72.0
-offset_bottom = -8.0
-texture = ExtResource("1_dyhft")
+offset_left = -1.0
+offset_top = -81.0
+offset_right = 73.0
+offset_bottom = -7.0
+mouse_filter = 2
+texture = ExtResource("10_t4l4e")
 
 [node name="DisplayBackground" type="TextureRect" parent="." unique_id=177675813]
 texture_filter = 1
