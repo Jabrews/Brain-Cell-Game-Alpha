@@ -2,28 +2,47 @@ extends Node
 
 # visual components
 @onready var left_boost_display : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay"
+@onready var left_add_main_cell_hint : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/AddMainCellHint"
+
+# display component
+@onready var display_boost_stats : Node = $DisplayBoostStats
 
 # is called from boost box
 func _handle(side : String) :
 	
-	var cell : BrainCell	
+	var boost_cell : BrainCell	
+	var main_cell : BrainCell
 	var boost_display : Control 
+	var add_a_cell_hint : Control
 	
 	match side : 
 		'left' :
-			cell = GLBreedingComponetsBus.breeding_ui_state['left_boost']
+			boost_cell = GLBreedingComponetsBus.breeding_ui_state['left_boost']
+			main_cell = GLBreedingComponetsBus.breeding_ui_state['left_main']
 			boost_display = left_boost_display
+			add_a_cell_hint = left_add_main_cell_hint
 		'right' :
-			cell = GLBreedingComponetsBus.breeding_ui_state['right_boost']
+			boost_cell = GLBreedingComponetsBus.breeding_ui_state['right_boost']
+			main_cell = GLBreedingComponetsBus.breeding_ui_state['left_main']
 			boost_display = left_boost_display
+			add_a_cell_hint = left_add_main_cell_hint
 		_ : 
 			push_error('unable to find corrisponding boost cell on side : ', side)
-			cell = null
+			boost_cell = null
+			main_cell = null
 	
-	if not cell : 
+	if not boost_cell: 
 		return
 	
 	boost_display.visible = true
+	
+	display_boost_stats._display(boost_cell, side)
+	
+	# add a cell hint	
+	if not main_cell : 
+		add_a_cell_hint.visible = true
+	else : 
+		add_a_cell_hint.visible = false 
 
 func _close_boost_display(side : String) :
 	

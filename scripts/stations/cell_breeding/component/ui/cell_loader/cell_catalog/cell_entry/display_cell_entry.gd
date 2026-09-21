@@ -60,25 +60,3 @@ func load_stat_bars(cell : BrainCell) :
 		defect_bar.value = cell_stat.defect
 		
 		
-		
-		
-		
-		
-		
-		
-		
-	
-	
-	
-		
-		
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	

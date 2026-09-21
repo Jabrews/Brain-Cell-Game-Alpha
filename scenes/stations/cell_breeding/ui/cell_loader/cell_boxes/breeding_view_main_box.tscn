@@ -330,6 +330,7 @@ color = Color(0, 0, 0, 0.6156863)
 
 [node name="Hint" type="Control" parent="MockCellEntry/UnavaibleLock" unique_id=638243787]
 visible = false
+z_index = 2
 anchors_preset = 0
 offset_left = 21.0
 offset_top = 1.0

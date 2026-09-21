@@ -20,7 +20,6 @@ signal cell_loaded_on_selected_view(cell : BrainCell)
 signal cell_removed_from_selected_view()
 
 
-
 var breeding_ui_state: Dictionary[String, BrainCell] = {
 	'left_main' : null,
 	'right_main' : null,
@@ -34,5 +33,14 @@ var breeding_panel_state : Dictionary[String, BrainCell] = {
 	'left_boost' : null,
 	'right_boost' : null,
 }
+
+
+
+var left_boost_stat : String = 'none'
+var right_boost_stat : String = 'none'
+var left_boost_direction : String = 'none'
+var right_boost_direction : String = 'none'
+
+
 
 var reasons_confirm_invalid : Array[String] = []

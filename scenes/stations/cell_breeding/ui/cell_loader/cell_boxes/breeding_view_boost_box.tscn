@@ -524,3 +524,36 @@ theme_override_fonts/font = ExtResource("9_xkuvg")
 theme_override_font_sizes/font_size = 16
 text = "Add A Cell by dragging it onto the box. "
 autowrap_mode = 2
+
+[node name="MustAddChargeCellHint" type="Control" parent="." unique_id=1175926673]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = 12.0
+offset_top = -5.0
+offset_right = 52.0
+offset_bottom = 35.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="MustAddChargeCellHint" unique_id=1606992281]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -55.0
+offset_right = 239.0
+offset_bottom = -29.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="MustAddChargeCellHint" unique_id=209627685]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = 62.0
+offset_top = -51.0
+offset_right = 276.0
+offset_bottom = 2.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_xkuvg")
+theme_override_font_sizes/font_size = 16
+text = "Add A Cell to box to access "
+autowrap_mode = 2

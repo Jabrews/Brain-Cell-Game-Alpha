@@ -8,6 +8,7 @@ extends Node
 @onready var boost_btn : TextureRect = $"../BoostBtn/BoostBtn"
 @onready var boost_btn_hover : TextureRect = $"../BoostBtn/Hover"
 @onready var parent_box : Control = $".."
+@onready var must_add_charge_cell_hint : Control =  $"../MustAddChargeCellHint"
 
 var loaded_cell : BrainCell
 var hovered : bool = false
@@ -36,6 +37,14 @@ func _handle_mouse_entered() :
 		hovered = true
 		
 		boost_btn_hover.visible = true
+	
+	else : 
+		
+		if parent_box.side == 'right' : 	
+			must_add_charge_cell_hint.position = Vector2(-237.0, -5.0)
+			
+			
+		must_add_charge_cell_hint.visible = true
 
 func _handle_mouse_exited() :
 	
@@ -44,6 +53,9 @@ func _handle_mouse_exited() :
 		hovered = false		
 		
 		boost_btn_hover.visible = false 
+		
+		
+	must_add_charge_cell_hint.visible = false
 
 func _handle_loaded_cell_changed(cell : BrainCell) :
 	
