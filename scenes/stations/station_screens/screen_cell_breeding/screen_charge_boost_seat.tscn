@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="12_lr2a2"]
 [ext_resource type="Texture2D" uid="uid://c6aslvaxw0sey" path="res://models/screens/charge_seat/highlight.png" id="13_wghld"]
 [ext_resource type="Texture2D" uid="uid://djxgrddvaiim5" path="res://models/breeding_screen/breeding_skull.png" id="15_jdk76"]
-[ext_resource type="Script" uid="uid://b5w83ifnr3pk8" path="res://scripts/stations/station_screens/cell_breeding/screen_charge_boost_seat/handle_display/skull_sprite.gd" id="16_fkch0"]
+[ext_resource type="Script" uid="uid://b5w83ifnr3pk8" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/skull_sprite.gd" id="16_fkch0"]
 [ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="18_2mx5v"]
 [ext_resource type="Texture2D" uid="uid://cnadverlbc0j2" path="res://models/mutations/random_disruptor_disrupt/interupt_interpreter.png" id="18_h4au0"]
 [ext_resource type="Script" uid="uid://u8nx4wyc23w0" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_manager_boost_seat.gd" id="19_31yg1"]

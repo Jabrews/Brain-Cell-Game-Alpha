@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="1_miwuh"]
 [ext_resource type="Script" uid="uid://b6dinrv02wf3n" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_boost_box/breeding_view_boost_box.gd" id="1_o2lr4"]
 [ext_resource type="Texture2D" uid="uid://bug3b3fwygm5j" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_inactive.png" id="2_av1m0"]
-[ext_resource type="Script" uid="uid://bvgilsj62d7jp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_boost_box/handle_boost_btn/handle_boost_btn.gd" id="2_b5xv8"]
+[ext_resource type="Script" uid="uid://bvgilsj62d7jp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_boost_box/handle_boost_btn/handle_boost_btn_pressed.gd" id="2_b5xv8"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_dyhft"]
 [ext_resource type="Script" uid="uid://dyltphmqknt1b" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/handle_mouse_hover.gd" id="2_hfdni"]
 [ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_av1m0"]
@@ -102,7 +102,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o2lr4")
 
-[node name="HandleBoostBtn" type="Node" parent="." unique_id=2093069411]
+[node name="HandleBoostBtnPressed" type="Node" parent="." unique_id=2093069411]
 script = ExtResource("2_b5xv8")
 
 [node name="HandleMouseHover" type="Node" parent="." unique_id=428991126]

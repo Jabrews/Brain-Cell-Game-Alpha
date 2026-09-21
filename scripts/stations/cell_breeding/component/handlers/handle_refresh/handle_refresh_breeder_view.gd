@@ -8,6 +8,7 @@ extends Node
 @onready var handle_confirm_btn : Node = $HandleConfirmBtn
 @onready var handle_wanted_highlight : Node = $HandleWantedHighlight
 @onready var handle_breeding_view : Node = $"../HandleBreedingView"
+@onready var handle_boost_display : Node = $HandleBoostDisplay
 
 var last_ui_state : Dictionary[String, BrainCell] = {}
 
@@ -31,6 +32,7 @@ func _handle_refresh() :
 	handle_wanted_borders._handle()
 	handle_confirm_btn._handle()
 	handle_breeding_view._handle()
+	handle_boost_display._handle()
 	
 	last_ui_state = ui_state 
 	

@@ -2,6 +2,8 @@ extends Node
 
 @export var side : String = 'left'
 var box_type : String = 'boost'
+@export var handle_boost_display : Node
+
 
 # components
 @export var drag_cell_entry_parent_node: Node
@@ -11,7 +13,7 @@ var box_type : String = 'boost'
 
 # helper components
 @onready var display_mock_cell_entry : Node = $DisplayMockCellEntry
-@onready var handle_boost_btn: Node = $HandleBoostBtn
+@onready var handle_boost_btn_pressed : Node = $HandleBoostBtnPressed
 
 
 var loaded_cell : BrainCell 
@@ -33,7 +35,7 @@ func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh 
 	
 	_update_breeding_ui_state()
 	
-	handle_boost_btn._handle_loaded_cell_changed(loaded_cell)
+	handle_boost_btn_pressed._handle_loaded_cell_changed(loaded_cell)
 	
 	
 	if refresh : 
@@ -51,7 +53,7 @@ func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	
 	_update_breeding_ui_state()
 	
-	handle_boost_btn._handle_loaded_cell_changed(loaded_cell)
+	handle_boost_btn_pressed._handle_loaded_cell_changed(loaded_cell)
 	
 	if refresh : 
 		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')

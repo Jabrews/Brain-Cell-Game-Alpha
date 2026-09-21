@@ -7,8 +7,10 @@ extends Node
 
 @onready var boost_btn : TextureRect = $"../BoostBtn/BoostBtn"
 @onready var boost_btn_hover : TextureRect = $"../BoostBtn/Hover"
+@onready var parent_box : Control = $".."
 
 var loaded_cell : BrainCell
+var hovered : bool = false
 
 func _ready() -> void:
 	
@@ -19,15 +21,28 @@ func _ready() -> void:
 	boost_btn.material.set_shader_parameter('hologram_enabled', false)
 	# default is inactive, so low opacity
 	boost_btn.modulate.a = 0.5
+	
+func _process(_delta: float) -> void:	
+	if loaded_cell : 
+		if hovered : 
+			if Input.is_action_just_pressed('attack')  :
+				parent_box.handle_boost_display._handle(parent_box.side)
+	
 
 func _handle_mouse_entered() :
 	
 	if loaded_cell : 
+		
+		hovered = true
+		
 		boost_btn_hover.visible = true
 
 func _handle_mouse_exited() :
 	
 	if loaded_cell : 
+		
+		hovered = false		
+		
 		boost_btn_hover.visible = false 
 
 func _handle_loaded_cell_changed(cell : BrainCell) :

@@ -11,6 +11,7 @@ extends Node
 # handle components
 @onready var handle_btn_section : Node = $HandleBtnSection
 @onready var handle_information_section : Node = $HandleInformationSection
+@onready var handle_boost_display : Node = $"../HandleBoostDisplay"
 
 
 const SLIDE_CONTENT_CLOSE_POS : Vector2 = Vector2(0.0, 280.0)
@@ -39,6 +40,11 @@ func _handle(toggle_value : bool) :
 	if toggle_value : 	
 		slide_content.position = SLIDE_CONTENT_OPEN_POS
 		slide_handle.position = SLIDE_HANDLE_OPEN_POS
+	
+		# close boost display
+		handle_boost_display._close_boost_display('left')
+		handle_boost_display._close_boost_display('right')
+	
 	
 	else : 
 		slide_content.position =  SLIDE_CONTENT_CLOSE_POS
