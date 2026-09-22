@@ -11,10 +11,12 @@ var side: String = "left"
 func _ready() -> void:
 	body_entered.connect(_handle_body_entered)
 	body_exited.connect(_handle_body_exited)
+	
+	GLCellManagerBus.connect("cell_changed", _handle_cell_changed)
+	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
 
 
 func _handle_body_entered(body: Node3D) -> void:
-	
 	
 	var incoming_cell: BrainCell = body.designated_brain_cell
 
@@ -33,7 +35,6 @@ func _handle_body_entered(body: Node3D) -> void:
 
 
 func _handle_body_exited(body: Node3D) -> void:
-	
 	
 	var exiting_cell: BrainCell = body.designated_brain_cell
 
@@ -55,6 +56,35 @@ func _handle_body_exited(body: Node3D) -> void:
 	main_light_manager._toggle_light(false)
 
 
+func _handle_cell_changed(cell: BrainCell) -> void:
+	
+	var seat_type: String = get_seat_type()
+	var station_cell: BrainCell = parent_station.get_panel_cell(seat_type)
+	
+	if station_cell == null:
+		return
+	
+	if station_cell.name != cell.name:
+		return
+	
+	parent_station.set_panel_cell(seat_type, cell)
+
+
+func _handle_cell_deleted(cell_name: String) -> void:
+	
+	var seat_type: String = get_seat_type()
+	var station_cell: BrainCell = parent_station.get_panel_cell(seat_type)
+	
+	if station_cell == null:
+		return
+	
+	if station_cell.name != cell_name:
+		return
+	
+	parent_station.set_panel_cell(seat_type, null)
+	main_light_manager._toggle_light(false)
+
+
 func get_seat_type() -> String:
 	match side:
 		"left":
@@ -65,4 +95,4 @@ func get_seat_type() -> String:
 
 		_:
 			push_error("Invalid side: ", side)
-			return ''
+			return ""

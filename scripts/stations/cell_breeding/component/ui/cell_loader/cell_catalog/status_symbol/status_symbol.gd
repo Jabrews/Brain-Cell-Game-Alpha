@@ -62,7 +62,7 @@ func get_status_texture() -> Texture:
 func get_hint_text() -> String:
 	match status:
 		"near_death_alert":
-			return "Cell is nearing death. Breeding will likely end in the cell's death."
+			return "Cell life span low (1). Will die next round."
 
 		"low_lifespan":
 			return "Cell has a low lifespan. Breeding will likely end in the cell's death."
