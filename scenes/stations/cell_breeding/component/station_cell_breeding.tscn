@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://cxy6rb3p03ltg" path="res://scripts/stations/cell_breeding/component/handlers/handle_boost_display/reset_boost_display.gd" id="14_enf6v"]
 [ext_resource type="Script" uid="uid://uockcigitbmr" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/display/display_mutations.gd" id="15_2j5xm"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="15_n3nrt"]
+[ext_resource type="Script" uid="uid://by4puaia0ktof" path="res://scripts/stations/cell_breeding/component/handlers/handle_boost_display/display_boost_debuff.gd" id="16_a40n5"]
 [ext_resource type="Script" uid="uid://co6dlmltd34ot" path="res://scripts/stations/cell_breeding/component/handlers/handle_boost_display/handle_charge_direction.gd" id="16_bmm5s"]
 [ext_resource type="Script" uid="uid://bj350l0xbj47e" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/slide_handle.gd" id="16_bxgwh"]
 [ext_resource type="Script" uid="uid://catmrc862ogfl" path="res://scripts/stations/cell_breeding/component/ui/exit_header/reset_btn.gd" id="16_svls5"]
@@ -588,6 +589,9 @@ script = ExtResource("14_enf6v")
 
 [node name="HandleStatSelected" type="Node" parent="HandleBoostDisplay" unique_id=731107552]
 script = ExtResource("13_idfuw")
+
+[node name="DisplayBoostDebuff" type="Node" parent="HandleBoostDisplay/HandleStatSelected" unique_id=1662758763]
+script = ExtResource("16_a40n5")
 
 [node name="HandleChargeDirection" type="Node" parent="HandleBoostDisplay" unique_id=1946312839]
 script = ExtResource("16_bmm5s")

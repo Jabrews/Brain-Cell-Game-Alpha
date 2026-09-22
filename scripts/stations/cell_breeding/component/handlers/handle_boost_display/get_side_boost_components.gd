@@ -47,6 +47,11 @@ extends Node
 	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/Off"
 ]
 @onready var l_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/CellNameLabel"
+@onready var l_death_alert_sprites : Array[Sprite2D] = [
+	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DeathAlert", 
+	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DeathAlert", 
+	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DeathAlert"
+]
 
 
 func _ready() -> void:
@@ -91,6 +96,7 @@ func _get_boost_stat(side : String) -> Dictionary :
 				"hidden_sprites" : l_hidden_sprites,
 				"off_parents" : l_off_parents,
 				"cell_name_label" : l_cell_name_label,
+				'death_alert_sprites' : l_death_alert_sprites
 			}
 			
 		"right":

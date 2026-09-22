@@ -11,6 +11,7 @@ var stats : Array[String] = [
 @onready var parent_station : Node3D = $"../.."
 @onready var handle_charge_direction : Node = $"../HandleChargeDirection"
 @onready var display_validity_label : Node = $"../DisplayValidityLabel"
+@onready var display_boost_debuff : Node= $DisplayBoostDebuff
 
 var stat_parents : Array[Control]
 var stat_highlights : Array[Sprite2D]
@@ -28,6 +29,24 @@ func _handle(side : String, stat : String) -> void:
 	if stat_index == -1:
 		push_error("Invalid stat: ", stat)
 		return
+		
+	# get boost cell
+	var boost_cell : BrainCell
+	
+	match side:
+		"left":
+			boost_cell = GLBreedingComponetsBus.breeding_ui_state["left_boost"]
+		
+		"right":
+			boost_cell = GLBreedingComponetsBus.breeding_ui_state["right_boost"]
+	
+	# ALWAYS reset stat for buff preview
+	
+	
+	# TODO add checking also to right
+	if side == 'left' : 
+		display_boost_debuff._reset(side, boost_cell)
+		
 	
 	# remember if clicked stat was already selected
 	var was_selected : bool = stat_parents[stat_index].selected
@@ -39,6 +58,8 @@ func _handle(side : String, stat : String) -> void:
 		stat_highlights[index].visible = false
 		stat_highlights[index].modulate.a = 0.5
 	
+	
+
 	
 	# clicked already selected stat -> unselect
 	if was_selected:
@@ -54,21 +75,14 @@ func _handle(side : String, stat : String) -> void:
 	stat_highlights[stat_index].modulate.a = 1.0
 	
 	
-	# get boost cell
-	var boost_cell : BrainCell
-	
-	match side:
-		"left":
-			boost_cell = GLBreedingComponetsBus.breeding_ui_state["left_boost"]
-		
-		"right":
-			boost_cell = GLBreedingComponetsBus.breeding_ui_state["right_boost"]
+
 	
 	
 	# no boost cell
 	if not boost_cell:
 		handle_charge_direction._toggle_available(side, false)
 		parent_station.set_boost_stat(side, "none")
+
 		return
 	
 	
@@ -87,3 +101,4 @@ func _handle(side : String, stat : String) -> void:
 	handle_charge_direction._toggle_available(side, true)
 	display_validity_label._display_type(side, 'valid')
 	parent_station.set_boost_stat(side, stat)
+	display_boost_debuff._display(side, stat, boost_cell)

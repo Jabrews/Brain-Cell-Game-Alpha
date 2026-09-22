@@ -6,6 +6,7 @@ extends Node
 
 # display component
 @onready var display_boost_stats : Node = $DisplayBoostStats
+@onready var display_boost_debuff : Node = $HandleStatSelected/DisplayBoostDebuff
 
 # is called from boost box
 func _handle(side : String) :
@@ -37,6 +38,19 @@ func _handle(side : String) :
 	boost_display.visible = true
 	
 	display_boost_stats._display(boost_cell, side)
+	
+	# display boost on selected stat, if it exist
+	var selected_boost_stat : String 
+	
+	match side : 
+		'left' :
+			selected_boost_stat = GLBreedingComponetsBus.left_boost_stat
+		'right' :
+			selected_boost_stat = GLBreedingComponetsBus.right_boost_stat
+	
+	if selected_boost_stat != 'none' :
+		display_boost_debuff._display(side, selected_boost_stat, boost_cell)
+	
 	
 	# add a cell hint	
 	if not main_cell : 

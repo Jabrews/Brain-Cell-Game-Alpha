@@ -142,6 +142,7 @@ func _display_clean_stat(
 	max_value : float
 ) -> void:
 	
+	
 	clean_bars[index].material.set_shader_parameter(
 		"old_prisoner_value",
 		0.0
