@@ -22,7 +22,8 @@ func _get_reduced(selected_stat : String, boost_cell : BrainCell) -> BrainCellSt
 	)
 	return reduced_stat
 
-func _check_death(selected_stat : String , boost_cell : BrainCell) :
+func _check_death(selected_stat : String , boost_cell : BrainCell) -> bool : 
+	
 	
 	if boost_cell == null:
 		return false
@@ -34,6 +35,9 @@ func _check_death(selected_stat : String , boost_cell : BrainCell) :
 		return false
 
 	# if we are at 1.0 kill
-	if old_stat.value <= 20.0 : 
+	if old_stat.value <= 51 : 
+
 		return true 
+	else : 
+		return false
 	

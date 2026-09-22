@@ -3,6 +3,7 @@ extends Node
 # components
 @onready var get_side_boost_components : Node = $"../GetSideBoostComponents"
 @onready var parent_station : Node3D = $"../.."
+@onready var display_validity_label : Node = $"../DisplayValidityLabel"
 
 
 func _toggle_available(side : String, toggle_value : bool) :
@@ -23,6 +24,7 @@ func _toggle_available(side : String, toggle_value : bool) :
 		down_charge_direction_btn.selected = false
 		
 		parent_station.set_boost_direction(side, "none")
+		GLBreedingComponetsBus.emit_signal('refresh_stat_display')
 
 
 func _toggle_btn_pressed(side : String, btn_direction : String) :
@@ -70,6 +72,8 @@ func _toggle_btn_pressed(side : String, btn_direction : String) :
 	# clicked already selected -> unselect
 	if was_selected:
 		parent_station.set_boost_direction(side, "none")
+		display_validity_label._display_type(side, 'valid')
+		GLBreedingComponetsBus.emit_signal('refresh_stat_display')
 		return
 	
 	
@@ -78,6 +82,12 @@ func _toggle_btn_pressed(side : String, btn_direction : String) :
 	selected_highlight.visible = true
 	selected_highlight.modulate.a = 1.0
 	
+	display_validity_label._display_type(side, 'valid_chosen')
+	GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'boost_confirm')
+	
 	
 	# communicate back to parent
 	parent_station.set_boost_direction(side, btn_direction)
+	
+	GLBreedingComponetsBus.emit_signal('refresh_stat_display')
+	

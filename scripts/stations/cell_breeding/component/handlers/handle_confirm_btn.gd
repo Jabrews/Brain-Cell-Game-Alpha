@@ -13,20 +13,20 @@ func finale_breeding_request() :
 	var main_right_cell : BrainCell = parent_station.right_main_cell
 	var boost_left_cell : BrainCell = parent_station.left_boost_cell
 	var boost_right_cell : BrainCell = parent_station.right_boost_cell
-	#var boost_left_stat : String = energy_boost_cell_manager.energy_boost_left_stat
-	#var boost_right_stat : String = energy_boost_cell_manager.energy_boost_right_stat
-	#var boost_left_direction : String = energy_boost_cell_manager.energy_boost_left_direction
-	#var boost_right_direction : String = energy_boost_cell_manager.energy_boost_right_direction
+	var boost_left_stat : String = GLBreedingComponetsBus.left_boost_stat
+	var boost_right_stat : String = GLBreedingComponetsBus.right_boost_stat
+	var boost_left_direction : String = GLBreedingComponetsBus.left_boost_direction
+	var boost_right_direction : String = GLBreedingComponetsBus.right_boost_direction
 	
 	GLCellBreederBus.emit_signal('player_breeded_cells', 
-	main_left_cell ,
-	main_right_cell ,
-	boost_left_cell ,
-	boost_right_cell ,
-	'', # boost
-	'',
-	'', # direction
-	'',
+		main_left_cell ,
+		main_right_cell ,
+		boost_left_cell ,
+		boost_right_cell ,
+		boost_left_stat,
+		boost_right_stat,
+		boost_left_direction,
+		boost_right_direction,
 	)
 	
 	# close

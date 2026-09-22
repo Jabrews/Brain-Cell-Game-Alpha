@@ -3,6 +3,8 @@ extends Node
 
 func _get_reduced(selected_stat: String, selected_direction : String, boost_cell: BrainCell) -> BrainCell:
 	
+	
+	
 	if boost_cell == null:
 		return null
 	
@@ -13,7 +15,7 @@ func _get_reduced(selected_stat: String, selected_direction : String, boost_cell
 	var old_stat: BrainCellStat = cell.get(selected_stat)
 	
 	# if we are at 1.0 kill
-	if old_stat.value <= 20.0 : 
+	if old_stat.value <= 51.0 : 
 		return null
 	
 	

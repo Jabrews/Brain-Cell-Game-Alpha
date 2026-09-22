@@ -12,6 +12,8 @@ const STAT_TYPES: Array[String] = [
 
 func _display(cell : BrainCell, side : String) -> void:
 	
+	
+	
 	if not cell:
 		return
 	

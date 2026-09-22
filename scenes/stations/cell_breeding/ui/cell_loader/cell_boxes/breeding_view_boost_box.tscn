@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://rl2a2l2ic862" path="res://models/cell_breeder/ui/cell_reciever_box/boost_btn_hover.png" id="10_t4l4e"]
 [ext_resource type="Texture2D" uid="uid://djnps8v8tsxbm" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png" id="11_t4l4e"]
 
-[sub_resource type="Shader" id="Shader_b5xv8"]
+[sub_resource type="Shader" id="Shader_xkuvg"]
 code = "shader_type canvas_item;
 
 uniform bool hologram_enabled = false;
@@ -73,7 +73,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b5xv8"]
-shader = SubResource("Shader_b5xv8")
+shader = SubResource("Shader_xkuvg")
 shader_parameter/hologram_enabled = false
 shader_parameter/shimmer_speed = 0.7770000369075
 shader_parameter/shimmer_strength = 0.0650000030875

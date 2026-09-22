@@ -3,6 +3,8 @@ extends Node
 # visual components
 @onready var left_boost_display : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay"
 @onready var left_add_main_cell_hint : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/AddMainCellHint"
+@onready var right_boost_display : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay"
+@onready var right_add_main_cell_hint : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/AddMainCellHint"
 
 # display component
 @onready var display_boost_stats : Node = $DisplayBoostStats
@@ -24,9 +26,9 @@ func _handle(side : String) :
 			add_a_cell_hint = left_add_main_cell_hint
 		'right' :
 			boost_cell = GLBreedingComponetsBus.breeding_ui_state['right_boost']
-			main_cell = GLBreedingComponetsBus.breeding_ui_state['left_main']
-			boost_display = left_boost_display
-			add_a_cell_hint = left_add_main_cell_hint
+			main_cell = GLBreedingComponetsBus.breeding_ui_state['right_main']
+			boost_display = right_boost_display 
+			add_a_cell_hint = right_add_main_cell_hint
 		_ : 
 			push_error('unable to find corrisponding boost cell on side : ', side)
 			boost_cell = null
@@ -66,7 +68,7 @@ func _close_boost_display(side : String) :
 		'left' :
 			boost_display = left_boost_display
 		'right' :
-			boost_display = left_boost_display
+			boost_display = right_boost_display 
 		_ : 
 			push_error('unable to find corrisponding boost cell on side : ', side)
 			boost_display = null

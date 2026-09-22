@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://djxgrddvaiim5" path="res://models/breeding_screen/breeding_skull.png" id="15_jdk76"]
 [ext_resource type="Script" uid="uid://b5w83ifnr3pk8" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/skull_sprite.gd" id="16_fkch0"]
 [ext_resource type="Script" uid="uid://coutbjr6b0rl2" path="res://reusable/mutation_disrupt/disruptor_warning.gd" id="18_2mx5v"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="18_5oomn"]
 [ext_resource type="Texture2D" uid="uid://cnadverlbc0j2" path="res://models/mutations/random_disruptor_disrupt/interupt_interpreter.png" id="18_h4au0"]
 [ext_resource type="Script" uid="uid://u8nx4wyc23w0" path="res://scripts/stations/station_screens/cell_breeding/interupt/disruptor_manager_boost_seat.gd" id="19_31yg1"]
 [ext_resource type="Script" uid="uid://c031fta4e1x7w" path="res://reusable/mutation_disrupt/disruptor_hack_text/hack_text_manager.gd" id="20_2mx5v"]
@@ -773,6 +774,47 @@ position = Vector2(100, 66)
 texture = ExtResource("15_jdk76")
 script = ExtResource("16_fkch0")
 
+[node name="DetectHoverRect" type="ColorRect" parent="StatDisplay/DeathAlert/StrengthDeathAlert" unique_id=227424994]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 1, 1, 0)
+
+[node name="DeathHint" type="Control" parent="StatDisplay/DeathAlert/StrengthDeathAlert" unique_id=1992052047]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = -579.0
+offset_top = -162.0
+offset_right = -539.0
+offset_bottom = -122.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatDisplay/DeathAlert/StrengthDeathAlert/DeathHint" unique_id=809666063]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 122.0
+offset_right = 796.0
+offset_bottom = 211.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HintText" type="Label" parent="StatDisplay/DeathAlert/StrengthDeathAlert/DeathHint" unique_id=1418749496]
+texture_filter = 1
+layout_mode = 0
+offset_left = 608.0
+offset_top = 124.0
+offset_right = 822.0
+offset_bottom = 328.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("18_5oomn")
+theme_override_font_sizes/font_size = 20
+text = "Clean range below 15%
+Boost cell will die 
+after breeding"
+
 [node name="IntelligenceDeathAlert" type="Sprite2D" parent="StatDisplay/DeathAlert" unique_id=1618623521]
 visible = false
 modulate = Color(1, 0, 0.20000029, 1)
@@ -781,6 +823,47 @@ position = Vector2(100, 123)
 texture = ExtResource("15_jdk76")
 script = ExtResource("16_fkch0")
 
+[node name="DetectHoverRect" type="ColorRect" parent="StatDisplay/DeathAlert/IntelligenceDeathAlert" unique_id=1450959060]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 1, 1, 0)
+
+[node name="DeathHint" type="Control" parent="StatDisplay/DeathAlert/IntelligenceDeathAlert" unique_id=131428058]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = -579.0
+offset_top = -162.0
+offset_right = -539.0
+offset_bottom = -122.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatDisplay/DeathAlert/IntelligenceDeathAlert/DeathHint" unique_id=1081442818]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 122.0
+offset_right = 796.0
+offset_bottom = 211.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HintText" type="Label" parent="StatDisplay/DeathAlert/IntelligenceDeathAlert/DeathHint" unique_id=39252722]
+texture_filter = 1
+layout_mode = 0
+offset_left = 608.0
+offset_top = 124.0
+offset_right = 822.0
+offset_bottom = 328.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("18_5oomn")
+theme_override_font_sizes/font_size = 20
+text = "Clean range below 15%
+Boost cell will die 
+after breeding"
+
 [node name="CommunityDeathAlert" type="Sprite2D" parent="StatDisplay/DeathAlert" unique_id=588928003]
 visible = false
 modulate = Color(1, 0, 0.20000029, 1)
@@ -788,6 +871,47 @@ texture_filter = 1
 position = Vector2(100, 178)
 texture = ExtResource("15_jdk76")
 script = ExtResource("16_fkch0")
+
+[node name="DetectHoverRect" type="ColorRect" parent="StatDisplay/DeathAlert/CommunityDeathAlert" unique_id=1960842490]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 21.0
+color = Color(1, 1, 1, 0)
+
+[node name="DeathHint" type="Control" parent="StatDisplay/DeathAlert/CommunityDeathAlert" unique_id=16136147]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_left = -579.0
+offset_top = -162.0
+offset_right = -539.0
+offset_bottom = -122.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatDisplay/DeathAlert/CommunityDeathAlert/DeathHint" unique_id=647594263]
+layout_mode = 0
+offset_left = 604.0
+offset_top = 122.0
+offset_right = 796.0
+offset_bottom = 211.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HintText" type="Label" parent="StatDisplay/DeathAlert/CommunityDeathAlert/DeathHint" unique_id=206175549]
+texture_filter = 1
+layout_mode = 0
+offset_left = 608.0
+offset_top = 124.0
+offset_right = 822.0
+offset_bottom = 328.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("18_5oomn")
+theme_override_font_sizes/font_size = 20
+text = "Clean range below 15%
+Boost cell will die 
+after breeding"
 
 [node name="NoCell" type="Control" parent="." unique_id=2071064501]
 layout_mode = 3

@@ -17,6 +17,7 @@ var off_labels: Array[Label]
 
 func _display(cell: BrainCell, components: Dictionary) -> void:
 	
+	
 	no_cell_loaded_label = components["no_cell_loaded_label"]
 	stat_display_parent = components["stat_display_parent"]
 	cell_name_label = components["cell_name_label"]

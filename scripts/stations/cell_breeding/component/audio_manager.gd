@@ -5,6 +5,10 @@ extends Node
 @onready var s_box_removed : AudioStreamPlayer3D = $RemoveFromBox
 @onready var s_error : AudioStreamPlayer3D = $Error
 @onready var s_reset_btn_enter : AudioStreamPlayer3D = $ResetBtnEnter
+@onready var s_skull_warning : AudioStreamPlayer3D = $SkullWarning
+@onready var s_cycle_stat : AudioStreamPlayer3D = $CycleStat
+@onready var s_invalid_stat : AudioStreamPlayer3D = $InvalidStat
+@onready var s_boost_confirm : AudioStreamPlayer3D = $BoostConfirm
 
 
 func _ready() -> void:
@@ -23,6 +27,14 @@ func _handle_breeder_play_sound(sound_type : String) :
 			s_error.play()
 		'reset_btn_enter' : 
 			s_reset_btn_enter.play()
+		'skull_warning' : 
+			s_skull_warning.play()
+		'cycle_stat' : 
+			s_cycle_stat.play()
+		'invalid_stat' :
+			s_invalid_stat.play()
+		'boost_confirm' :
+			s_boost_confirm.play()
 		_ : 
 			push_error('trouble finding breeder sound : ', sound_type)
 			return

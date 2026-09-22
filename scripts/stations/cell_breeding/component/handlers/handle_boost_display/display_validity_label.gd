@@ -15,6 +15,8 @@ func _display_type(side : String, type : String):
 	valid_label = boost_components['valid_label']
 	invalid_label = boost_components['invalid_label']
 	none_label = boost_components['none_label']
+	valid_label.material.set_shader_parameter('hologram_enabled', false)
+	GLBreedingComponetsBus.emit_signal('toggle_boost_activated', side, false)
 	
 	valid_label.visible = false
 	invalid_label.visible = false
@@ -27,3 +29,7 @@ func _display_type(side : String, type : String):
 			invalid_label.visible = true
 		'none' :
 			none_label.visible = true
+		'valid_chosen' : 
+			valid_label.visible = true
+			valid_label.material.set_shader_parameter('hologram_enabled', true)
+			GLBreedingComponetsBus.emit_signal('toggle_boost_activated', side, true)

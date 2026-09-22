@@ -8,7 +8,7 @@ extends Node
 @onready var up_arrows : Array[Sprite2D] = [
 	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpStrength", 
 	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpIntelligence", 
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpCommunity"
+		$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpCommunity"
 ]
 @onready var down_arrows : Array[Sprite2D] = [
 	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownStrength",
@@ -25,6 +25,8 @@ extends Node
 
 
 func check_for_symbols(cell_1 : BrainCell, cell_2 : BrainCell) -> void:
+	
+	hide_symbols()
 
 	var stats_1 = [
 		cell_1.strength,

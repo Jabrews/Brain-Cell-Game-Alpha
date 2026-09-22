@@ -46,10 +46,7 @@ func _display(side : String, selected_stat : String, cell : BrainCell) :
 		
 		death_alert_sprite._toggle_skull(true)
 		
-		
-		# TODO play alert sound
-	
-	
+		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'skull_warning')
 	
 	
 

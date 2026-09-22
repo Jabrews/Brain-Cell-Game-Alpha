@@ -41,12 +41,7 @@ func _handle(side : String, stat : String) -> void:
 			boost_cell = GLBreedingComponetsBus.breeding_ui_state["right_boost"]
 	
 	# ALWAYS reset stat for buff preview
-	
-	
-	# TODO add checking also to right
-	if side == 'left' : 
-		display_boost_debuff._reset(side, boost_cell)
-		
+	display_boost_debuff._reset(side, boost_cell)
 	
 	# remember if clicked stat was already selected
 	var was_selected : bool = stat_parents[stat_index].selected
@@ -58,7 +53,6 @@ func _handle(side : String, stat : String) -> void:
 		stat_highlights[index].visible = false
 		stat_highlights[index].modulate.a = 0.5
 	
-	
 
 	
 	# clicked already selected stat -> unselect
@@ -66,6 +60,8 @@ func _handle(side : String, stat : String) -> void:
 		handle_charge_direction._toggle_available(side, false)
 		parent_station.set_boost_stat(side, "none")
 		display_validity_label._display_type(side, 'none')
+		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'cycle_stat')
+		GLBreedingComponetsBus.emit_signal('refresh_stat_display')
 		return
 	
 	
@@ -74,15 +70,11 @@ func _handle(side : String, stat : String) -> void:
 	stat_highlights[stat_index].visible = true
 	stat_highlights[stat_index].modulate.a = 1.0
 	
-	
-
-	
-	
 	# no boost cell
 	if not boost_cell:
 		handle_charge_direction._toggle_available(side, false)
 		parent_station.set_boost_stat(side, "none")
-
+		GLBreedingComponetsBus.emit_signal('refresh_stat_display')
 		return
 	
 	
@@ -94,11 +86,33 @@ func _handle(side : String, stat : String) -> void:
 		handle_charge_direction._toggle_available(side, false)
 		parent_station.set_boost_stat(side, "none")
 		display_validity_label._display_type(side, 'invalid')
+		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'invalid_stat')
+		GLBreedingComponetsBus.emit_signal('refresh_stat_display')
 		return
 	
 	
 	# valid usable stat
 	handle_charge_direction._toggle_available(side, true)
-	display_validity_label._display_type(side, 'valid')
+
 	parent_station.set_boost_stat(side, stat)
 	display_boost_debuff._display(side, stat, boost_cell)
+	
+	# check if we have boost direction selected
+	var boost_direction : String	
+	match side : 
+		'left': 
+			boost_direction = GLBreedingComponetsBus.left_boost_direction
+		'right' : 
+			boost_direction = GLBreedingComponetsBus.right_boost_direction
+	
+	if boost_direction != 'none' :
+		display_validity_label._display_type(side, 'valid_chosen')
+	else : 
+		display_validity_label._display_type(side, 'valid')
+	
+	
+	GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'cycle_stat')
+	
+	GLBreedingComponetsBus.emit_signal('refresh_stat_display')
+	
+	

@@ -15,8 +15,9 @@ var box_type : String = 'boost'
 @onready var display_mock_cell_entry : Node = $DisplayMockCellEntry
 @onready var handle_boost_btn_pressed : Node = $HandleBoostBtnPressed
 
-
 var loaded_cell : BrainCell 
+
+
 
 func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh : bool = false) :
 	

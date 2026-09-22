@@ -7,7 +7,7 @@ extends Node
 
 @onready var boost_btn : TextureRect = $"../BoostBtn/BoostBtn"
 @onready var boost_btn_hover : TextureRect = $"../BoostBtn/Hover"
-@onready var parent_box : Control = $".."
+@onready var parent_box : Control =$".."
 @onready var must_add_charge_cell_hint : Control =  $"../MustAddChargeCellHint"
 
 var loaded_cell : BrainCell
@@ -17,6 +17,9 @@ func _ready() -> void:
 	
 	boost_btn.connect('mouse_entered', _handle_mouse_entered)
 	boost_btn.connect('mouse_exited', _handle_mouse_exited)
+	
+	GLBreedingComponetsBus.connect('toggle_boost_activated', _handle_toggle_boost_activated)	
+	
 	
 	# set holo off
 	boost_btn.material.set_shader_parameter('hologram_enabled', false)
@@ -69,5 +72,12 @@ func _handle_loaded_cell_changed(cell : BrainCell) :
 		boost_btn.modulate.a = 0.5
 				
 		
+func _handle_toggle_boost_activated(side : String, toggle_value: bool) : 
+	
+	if side != parent_box.side :
+		return
+		
+	boost_btn.material.set_shader_parameter('hologram_enabled', toggle_value)
+
 		
 	
