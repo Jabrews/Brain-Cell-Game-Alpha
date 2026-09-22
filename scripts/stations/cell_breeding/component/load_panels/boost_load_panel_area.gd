@@ -7,6 +7,8 @@ extends Area3D
 @export_enum("left", "right")
 var side: String = "left"
 
+var type : String = 'boost'
+
 
 func _ready() -> void:
 	body_entered.connect(_handle_body_entered)

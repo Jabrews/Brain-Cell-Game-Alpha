@@ -78,7 +78,7 @@ func _play_flash_tween(selected_mesh : MeshInstance3D) -> void:
 			_set_flash_opacity(selected_mesh, value),
 		0.0,
 		1.0,
-		1.0
+		0.5
 	)
 	
 	flash_tween.tween_method(
@@ -86,7 +86,7 @@ func _play_flash_tween(selected_mesh : MeshInstance3D) -> void:
 			_set_flash_opacity(selected_mesh, value),
 		1.0,
 		0.0,
-		1.0
+		0.5
 	)
 
 

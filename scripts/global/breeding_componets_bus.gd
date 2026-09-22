@@ -28,6 +28,9 @@ signal cell_removed_from_selected_view()
 # updating stat display. dealing with boost without refreshing
 signal refresh_stat_display()
 
+# wanted cell panel flashing
+signal toggle_cell_picked_up(toggle_value : bool, cell_name : String)
+
 
 var breeding_ui_state: Dictionary[String, BrainCell] = {
 	'left_main' : null,

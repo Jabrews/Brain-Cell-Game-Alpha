@@ -32,6 +32,8 @@ func state_start() -> void:
 	
 	# Remember exactly how the cell was rotated before pickup.
 	original_rotation = parent_cell_container.rotation
+	
+	GLBreedingComponetsBus.emit_signal('toggle_cell_picked_up', true, parent_cell_container.designated_brain_cell.name)
 
 
 func state_process(delta) -> void:
@@ -206,3 +208,5 @@ func state_end() -> void:
 	
 	parent_cell_container.cell_defect_event_manager._handle_cell_picked_up(false)
 	stat_display.toggle_cell_picked_up(false)
+	
+	GLBreedingComponetsBus.emit_signal('toggle_cell_picked_up', false, parent_cell_container.designated_brain_cell.name)
