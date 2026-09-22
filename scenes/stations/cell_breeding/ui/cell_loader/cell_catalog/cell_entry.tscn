@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://cqv4ygmo1pj1o" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/handle_inside_border.gd" id="7_vww63"]
 [ext_resource type="Texture2D" uid="uid://dh360tqdcq4cs" path="res://models/cell_breeder/ui/cell_entry/borders/outside/selected_border.png" id="11_5ic05"]
 [ext_resource type="Texture2D" uid="uid://t1jvwphtxy88" path="res://models/cell_breeder/ui/cell_entry/borders/outside/selected_border_dragging.png" id="12_gbaeh"]
+[ext_resource type="Shader" uid="uid://cipi4en6gmg2i" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/wanted_box_flash_texture.gdshader" id="18_3ckio"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6ef2"]
 shader = ExtResource("4_hsfwe")
@@ -35,6 +36,47 @@ load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asdwg"]
 load_path = "res://.godot/imported/cell_entry_inside_border.png-71ccfcd3b5922cb00d6ce458b1b2a12b.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yiebt"]
+shader = ExtResource("18_3ckio")
+shader_parameter/low_color = Color(0.25, 0, 0, 0)
+shader_parameter/high_color = Color(0.77, 0, 0, 0.38431373)
+shader_parameter/flash_speed = 3.0000001392401203
+shader_parameter/opacity = 1.0
+
+[sub_resource type="Shader" id="Shader_b5xv8"]
+code = "shader_type canvas_item;
+
+uniform vec4 low_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 high_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+uniform float flash_speed : hint_range(0.1, 10.0) = 2.0;
+uniform float opacity : hint_range(0.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// 0 -> 1 -> 0
+	float flash = (sin(TIME * flash_speed) + 1.0) * 0.5;
+
+	vec3 current_color = mix(
+		low_color.rgb,
+		high_color.rgb,
+		flash
+	);
+
+	COLOR = vec4(
+		tex.rgb * current_color,
+		tex.a * opacity
+	);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4l4e"]
+shader = SubResource("Shader_b5xv8")
+shader_parameter/low_color = Color(0.24166667, 0.25, 0, 0.3529412)
+shader_parameter/high_color = Color(0.98333335, 1, 0, 0.3529412)
+shader_parameter/flash_speed = 3.0000001392401203
+shader_parameter/opacity = 1.0
 
 [node name="CellEntry" type="Control" unique_id=6030190]
 layout_mode = 3
@@ -337,6 +379,7 @@ texture = SubResource("CompressedTexture2D_asdwg")
 visible = false
 modulate = Color(1, 0, 0, 0.49019608)
 texture_filter = 1
+material = SubResource("ShaderMaterial_yiebt")
 layout_mode = 0
 offset_left = -5.0
 offset_top = 3.0
@@ -348,6 +391,7 @@ texture = ExtResource("3_asdwg")
 visible = false
 modulate = Color(1, 1, 0, 0.49019608)
 texture_filter = 1
+material = SubResource("ShaderMaterial_t4l4e")
 layout_mode = 0
 offset_left = -5.0
 offset_top = 3.0

@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://b0japhu6uvgga" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_outside_border.png" id="13_0al8j"]
 [ext_resource type="Texture2D" uid="uid://djnps8v8tsxbm" path="res://models/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png" id="14_brrht"]
 [ext_resource type="Script" uid="uid://baudyhn1sooh8" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/cell_boxes/breeding_view_main_box/unavailable_lock.gd" id="17_yiebt"]
+[ext_resource type="Shader" uid="uid://cipi4en6gmg2i" path="res://scenes/stations/cell_breeding/ui/cell_loader/cell_boxes/wanted_box_flash_texture.gdshader" id="19_4fvhw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_akrcg"]
 shader = ExtResource("10_t836k")
@@ -30,6 +31,13 @@ shader_parameter/noise_scale = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lc5m8"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yiebt"]
+shader = ExtResource("19_4fvhw")
+shader_parameter/low_color = Color(0.43, 0, 0, 0)
+shader_parameter/high_color = Color(0.77, 0, 0, 0.38431373)
+shader_parameter/flash_speed = 3.0000001392401203
+shader_parameter/opacity = 1.0
 
 [node name="BreedingViewMainBox" type="Control" unique_id=232418977]
 layout_mode = 3
@@ -413,6 +421,7 @@ texture = ExtResource("14_brrht")
 visible = false
 modulate = Color(1, 0, 0, 0.38431373)
 texture_filter = 1
+material = SubResource("ShaderMaterial_yiebt")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0

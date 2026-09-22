@@ -30,7 +30,7 @@
 render_priority = 1
 transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 0.35000002, 0.35000002, 0.627451)
+albedo_color = Color(1, 0.35000002, 0.35000002, 0.2901961)
 grow = true
 grow_amount = 0.01
 stencil_mode = 3
@@ -42,7 +42,7 @@ metadata/_stencil_owned = true
 next_pass = SubResource("StandardMaterial3D_3668h")
 transparency = 1
 no_depth_test = true
-albedo_color = Color(1, 0.35000002, 0.35000002, 0.49019608)
+albedo_color = Color(1, 0.35000002, 0.35000002, 0.29411766)
 metallic_specular = 0.0
 texture_filter = 0
 stencil_mode = 1
@@ -54,10 +54,23 @@ material = SubResource("StandardMaterial3D_knc53")
 radius = 0.48
 height = 1.6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaacc"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 0.9566667, 0.35000002, 0.29411766)
+grow = true
+grow_amount = 0.01
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gl6c0"]
+next_pass = SubResource("StandardMaterial3D_vaacc")
 transparency = 1
 no_depth_test = true
-albedo_color = Color(1, 0.95686275, 0.34901962, 0.19607843)
+albedo_color = Color(1, 0.9566667, 0.35000002, 0.19607843)
 metallic_specular = 0.0
 texture_filter = 0
 stencil_mode = 1

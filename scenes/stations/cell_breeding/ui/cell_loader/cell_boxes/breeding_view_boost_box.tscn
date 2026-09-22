@@ -93,6 +93,40 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_slhok"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
+[sub_resource type="Shader" id="Shader_b5xv8"]
+code = "shader_type canvas_item;
+
+uniform vec4 low_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 high_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+uniform float flash_speed : hint_range(0.1, 10.0) = 2.0;
+uniform float opacity : hint_range(0.0, 1.0) = 1.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// 0 -> 1 -> 0
+	float flash = (sin(TIME * flash_speed) + 1.0) * 0.5;
+
+	vec3 current_color = mix(
+		low_color.rgb,
+		high_color.rgb,
+		flash
+	);
+
+	COLOR = vec4(
+		tex.rgb * current_color,
+		tex.a * opacity
+	);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t4l4e"]
+shader = SubResource("Shader_b5xv8")
+shader_parameter/low_color = Color(0.4156667, 0.43, 0, 0.3529412)
+shader_parameter/high_color = Color(0.98333335, 1, 0, 0.3529412)
+shader_parameter/flash_speed = 3.0000001392401203
+shader_parameter/opacity = 1.0
+
 [node name="BreedingViewBoostBox" type="Control" unique_id=641033110]
 layout_mode = 3
 anchors_preset = 15
@@ -449,6 +483,7 @@ expand_mode = 1
 visible = false
 modulate = Color(0.98333335, 1, 0, 0.3529412)
 texture_filter = 1
+material = SubResource("ShaderMaterial_t4l4e")
 layout_mode = 0
 offset_left = 3.0
 offset_top = 2.0

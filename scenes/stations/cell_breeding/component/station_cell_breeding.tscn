@@ -2755,6 +2755,7 @@ theme_override_font_sizes/font_size = 20
 text = "boost cell"
 
 [node name="RightBoostDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BoostDisplays" unique_id=682560134]
+visible = false
 anchors_preset = 0
 offset_left = 380.0
 offset_top = -4.0
