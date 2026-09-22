@@ -21,7 +21,6 @@
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
-[ext_resource type="PackedScene" uid="uid://beyeyaat0751v" path="res://scenes/stations/station_components/cell_breeding/station_cell_breeding.tscn" id="16_ngeto"]
 [ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
 [ext_resource type="PackedScene" uid="uid://dkmet5r7r2ydn" path="res://scenes/mutation_file_cabinet/mutation_file_cabinet.tscn" id="17_j7s3e"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_clean.gd" id="17_m5ih7"]
@@ -489,10 +488,6 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 [node name="CellTrashCan" parent="Stations/ContainerStations" unique_id=995289130 instance=ExtResource("9_kb5nk")]
 transform = Transform3D(-0.50000006, 0, 0.8660254, 0, 1, 0, -0.8660254, 0, -0.50000006, 1.1959085, 0, 15.370551)
 
-[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=2146164221 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("16_ngeto")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.008186, -0.00906235, -0.28001475)
-cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
-
 [node name="HiddenStatInterpreters" type="Node" parent="Stations/ContainerStations" unique_id=988819967]
 
 [node name="Stations" type="Node" parent="Stations/ContainerStations/HiddenStatInterpreters" unique_id=1482589801]
@@ -545,10 +540,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -7.9000006)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -16.1)
 
 [node name="GoalTreshold" parent="Stations/ContainerStations" unique_id=606315026 instance=ExtResource("14_r52yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.922908, 3.1953754, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.215354, 3.1953754, 17)
 
-[node name="CellBreeding2" parent="Stations/ContainerStations" unique_id=1160068214 instance=ExtResource("15_0ycs4")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 15.497986, 0.0082941055, 11.173466)
+[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=1160068214 instance=ExtResource("15_0ycs4")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 15.497986, 0.0082941055, -1.5564411)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 3.3025842, 4.9931126)

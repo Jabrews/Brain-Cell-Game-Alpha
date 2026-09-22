@@ -8,7 +8,7 @@ extends Node
 var flash_tween : Tween
 
 # percentage opacity
-var finale_mat_albedo_transparency : float = 50.0
+var finale_mat_albedo_transparency : float = 75.0
 var finale_next_pass_albedo_transparency : float = 75.0
 
 

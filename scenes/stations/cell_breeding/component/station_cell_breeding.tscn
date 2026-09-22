@@ -77,6 +77,7 @@
 [ext_resource type="AudioStream" uid="uid://dfrps3sdbx6" path="res://sounds/station_cell_breeder/skull_warning.mp3" id="46_r7by8"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="47_l131e"]
 [ext_resource type="AudioStream" uid="uid://y6pew2qpgpk3" path="res://sounds/prisoner_profiler/cycle_select.mp3" id="48_8vhvh"]
+[ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="51_wyb05"]
 [ext_resource type="Script" uid="uid://b2b2cod3bcuwp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exit_btn.gd" id="57_odqr3"]
 [ext_resource type="Script" uid="uid://cimxska5kirot" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_display_parent.gd" id="58_4gocy"]
 [ext_resource type="Texture2D" uid="uid://c6aslvaxw0sey" path="res://models/screens/charge_seat/highlight.png" id="59_k6uk6"]
@@ -84,6 +85,9 @@
 [ext_resource type="Script" uid="uid://b5w83ifnr3pk8" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/skull_sprite.gd" id="60_ibnnx"]
 [ext_resource type="Script" uid="uid://b5x3qnh04exuh" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exsplain_hint.gd" id="61_le1xe"]
 [ext_resource type="Script" uid="uid://rtif1cbbm6up" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/direction_btn_parent.gd" id="62_f4qcm"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="82_teu5o"]
+[ext_resource type="Script" uid="uid://dlgat110o2ir0" path="res://scripts/stations/station_screens/cell_breeding/new_cell_screen/compound_blood_type_label.gd" id="83_wyb05"]
+[ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="84_elcrl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -211,6 +215,22 @@ size = Vector3(0.046875, 1.8056641, 2.3426514)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wnhlu"]
 size = Vector3(0.046875, 1.8056641, 2.34581)
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_um02t"]
+albedo_color = Color(0, 0, 0.45490196, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_elcrl"]
+material = SubResource("ORMMaterial3D_um02t")
+radius = 2.0
+height = 0.12
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_617gn"]
+albedo_color = Color(0.09276601, 0.28279603, 0.9945757, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2s3s"]
+material = SubResource("StandardMaterial3D_617gn")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4118e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_awyxg"]
 shader = ExtResource("3_41g38")
@@ -582,6 +602,296 @@ shader_parameter/noise_scale = 1.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fsyu"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="Shader" id="Shader_3movu"]
+code = "shader_type canvas_item;
+
+uniform float stat_defect_value : hint_range(0.0, 1.0);
+uniform float start_value : hint_range(0.0, 1.0);
+
+uniform vec4 defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
+
+uniform vec4 increase_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
+uniform vec4 decrease_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
+
+uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
+uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
+uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
+
+// Keeps shader from coloring the white/empty edge pixels.
+uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
+
+void fragment() {
+
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges =
+		pixel_x >= edge_padding &&
+		pixel_x <= (tex_width - edge_padding);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// Base defect bar
+		if (UV.x <= stat_defect_value) {
+			result = vec4(defect_color.rgb, tex.a);
+		}
+
+		// Change stripe
+		float left = min(start_value, stat_defect_value);
+		float right = max(start_value, stat_defect_value);
+
+		if (
+			right - left > 0.001 &&
+			UV.x >= left &&
+			UV.x <= right
+		) {
+
+			float region_uv = (UV.x - left) / (right - left);
+
+			vec4 overlay_color;
+			float stripe_pos;
+
+			if (stat_defect_value > start_value) {
+				// Defect increased -> red stripe moves right
+				overlay_color = increase_color;
+				stripe_pos = fract(TIME * stripe_speed);
+			}
+			else {
+				// Defect decreased -> blue stripe moves left
+				overlay_color = decrease_color;
+				stripe_pos = 1.0 - fract(TIME * stripe_speed);
+			}
+
+			float stripe =
+				smoothstep(
+					stripe_pos - stripe_width,
+					stripe_pos,
+					region_uv
+				)
+				*
+				(
+					1.0
+					-
+					smoothstep(
+						stripe_pos,
+						stripe_pos + stripe_width,
+						region_uv
+					)
+				);
+
+			result.rgb = mix(
+				result.rgb,
+				overlay_color.rgb,
+				stripe * overlay_opacity
+			);
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h2s3s"]
+shader = SubResource("Shader_3movu")
+shader_parameter/stat_defect_value = 0.0
+shader_parameter/start_value = 0.0
+shader_parameter/defect_color = Color(0.5, 0, 0, 1)
+shader_parameter/increase_color = Color(1, 0.2, 0.2, 1)
+shader_parameter/decrease_color = Color(0.2, 0.8, 1, 1)
+shader_parameter/overlay_opacity = 0.2490000118275
+shader_parameter/stripe_width = 0.10000000405148
+shader_parameter/stripe_speed = 1.00000004424012
+shader_parameter/edge_padding = 2.6370001252575
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4118e"]
+load_path = "res://.godot/imported/progress_bar_under.png-e57f123632c318b1d08ae788f52e6ada.ctex"
+
+[sub_resource type="Shader" id="Shader_3tyvt"]
+code = "shader_type canvas_item;
+
+uniform float prisoner_value : hint_range(0.0, 1.0);
+uniform float start_value : hint_range(0.0, 1.0);
+
+uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+
+uniform vec4 increase_color : source_color = vec4(0.2, 0.8, 1.0, 1.0);
+uniform vec4 decrease_color : source_color = vec4(1.0, 0.2, 0.2, 1.0);
+
+uniform float overlay_opacity : hint_range(0.0, 1.0) = 0.7;
+uniform float stripe_width : hint_range(0.01, 0.5) = 0.08;
+uniform float stripe_speed : hint_range(0.1, 5.0) = 0.5;
+
+// keeps shader from coloring the white/empty edge pixels.
+uniform float edge_padding : hint_range(0.0, 20.0) = 0.0;
+
+void fragment() {
+
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges =
+		pixel_x >= edge_padding &&
+		pixel_x <= (tex_width - edge_padding);
+
+	float in_yellow = step(UV.x, prisoner_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// prisoner bar
+		if (in_yellow > 0.5) {
+			result = vec4(yellow_color.rgb, tex.a);
+		}
+
+		// change stripe
+		float left = min(start_value, prisoner_value);
+		float right = max(start_value, prisoner_value);
+
+		if (
+			right - left > 0.001 &&
+			UV.x >= left &&
+			UV.x <= right
+		) {
+
+			float region_uv = (UV.x - left) / (right - left);
+
+			vec4 overlay_color;
+			float stripe_pos;
+
+			if (prisoner_value > start_value) {
+				// increase -> blue -> move right
+				overlay_color = increase_color;
+				stripe_pos = fract(TIME * stripe_speed);
+			}
+			else {
+				// decrease -> red -> move left
+				overlay_color = decrease_color;
+				stripe_pos = 1.0 - fract(TIME * stripe_speed);
+			}
+
+			float stripe =
+				smoothstep(
+					stripe_pos - stripe_width,
+					stripe_pos,
+					region_uv
+				)
+				*
+				(
+					1.0
+					-
+					smoothstep(
+						stripe_pos,
+						stripe_pos + stripe_width,
+						region_uv
+					)
+				);
+
+			result.rgb = mix(
+				result.rgb,
+				overlay_color.rgb,
+				stripe * overlay_opacity
+			);
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_872qu"]
+shader = SubResource("Shader_3tyvt")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/start_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/increase_color = Color(0.100000024, 0.69999987, 1, 0.9843137)
+shader_parameter/decrease_color = Color(1, 0.19999999, 0.19999999, 1)
+shader_parameter/overlay_opacity = 0.7790000370025
+shader_parameter/stripe_width = 0.10000000405148
+shader_parameter/stripe_speed = 1.00000004424012
+shader_parameter/edge_padding = 3.2970001566075
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8x2mq"]
+load_path = "res://.godot/imported/progress_bar_under.png-a4ddba47758af10b1c8dd6544faba67e.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xf6yj"]
+shader = ExtResource("27_gwke6")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("28_bxgwh")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xf8x4"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ub4or"]
+shader = ExtResource("82_teu5o")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.84800004028
+shader_parameter/shimmer_strength = 0.594000028215
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(0.9343551, 0.97784275, 0.9999998, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u4es"]
+atlas = ExtResource("84_elcrl")
+region = Rect2(0, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7v84"]
+atlas = ExtResource("84_elcrl")
+region = Rect2(22, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r2bi6"]
+atlas = ExtResource("84_elcrl")
+region = Rect2(44, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkncc"]
+atlas = ExtResource("84_elcrl")
+region = Rect2(66, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywryo"]
+atlas = ExtResource("84_elcrl")
+region = Rect2(110, 0, 22, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2g5r"]
+atlas = ExtResource("84_elcrl")
+region = Rect2(132, 0, 22, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jkxk7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7u4es")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_r7v84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r2bi6")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_mkncc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywryo")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a2g5r")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.05
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vloa8"]
+load_path = "res://.godot/imported/random_blood.png-71253817ce11fe69d57c081f7df908ae.ctex"
 
 [sub_resource type="Shader" id="Shader_k4bql"]
 code = "shader_type canvas_item;
@@ -1039,6 +1349,25 @@ stream = ExtResource("48_8vhvh")
 volume_db = 5.0
 unit_size = 5.0
 pitch_scale = 1.5
+
+[node name="BredCellSpawner" type="Node3D" parent="." unique_id=1936616184]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4489317, 0.043589592, -7)
+script = ExtResource("51_wyb05")
+
+[node name="SpawnPos" type="Node3D" parent="BredCellSpawner" unique_id=1924445703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="MeshBottom" type="MeshInstance3D" parent="BredCellSpawner" unique_id=945909082]
+mesh = SubResource("SphereMesh_elcrl")
+
+[node name="TopCube" type="StaticBody3D" parent="BredCellSpawner" unique_id=862367520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
+[node name="MeshTop" type="MeshInstance3D" parent="BredCellSpawner/TopCube" unique_id=1107160743]
+mesh = SubResource("BoxMesh_h2s3s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BredCellSpawner/TopCube" unique_id=1444498578]
+shape = SubResource("BoxShape3D_4118e")
 
 [node name="BreedingUI" type="Control" parent="." unique_id=633291662]
 process_mode = 3
@@ -4552,6 +4881,581 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="BG" type="ColorRect" parent="BreedingUI/NewCellDisplay" unique_id=363189793]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 1248.0
+offset_bottom = 664.0
+color = Color(0.31, 0.061999995, 0.061999995, 1)
+
+[node name="NewCell" type="Control" parent="BreedingUI/NewCellDisplay" unique_id=510811260]
+anchors_preset = 0
+offset_left = 288.0
+offset_top = 104.0
+offset_right = 328.0
+offset_bottom = 144.0
+
+[node name="BG" type="ColorRect" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=1183550488]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -56.0
+offset_right = 672.0
+offset_bottom = 560.0
+color = Color(0.25, 0.0475, 0.0475, 1)
+
+[node name="BG2" type="ColorRect" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=2057307327]
+layout_mode = 0
+offset_left = 32.0
+offset_top = -56.0
+offset_right = 672.0
+offset_bottom = -8.0
+color = Color(0.13, 0.024699999, 0.024699999, 1)
+
+[node name="DefectBars" type="Control" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=1528818384]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthDefect" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/DefectBars" unique_id=393014260]
+texture_filter = 1
+material = SubResource("ShaderMaterial_h2s3s")
+position = Vector2(352, 105.750015)
+scale = Vector2(1.8580644, 0.51250017)
+texture = SubResource("CompressedTexture2D_4118e")
+
+[node name="IntelligenceDefect" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/DefectBars" unique_id=778185542]
+texture_filter = 1
+material = SubResource("ShaderMaterial_h2s3s")
+position = Vector2(352, 225.75)
+scale = Vector2(1.8580644, 0.5124997)
+texture = SubResource("CompressedTexture2D_4118e")
+
+[node name="CommunityDefect" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/DefectBars" unique_id=1434273657]
+texture_filter = 1
+material = SubResource("ShaderMaterial_h2s3s")
+position = Vector2(352, 345.75)
+scale = Vector2(1.8580644, 0.5124997)
+texture = SubResource("CompressedTexture2D_4118e")
+
+[node name="ProgressBars" type="Control" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=17107146]
+anchors_preset = 0
+offset_top = 12.0
+offset_bottom = 12.0
+
+[node name="StrengthBar" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/ProgressBars" unique_id=1741396354]
+texture_filter = 1
+material = SubResource("ShaderMaterial_872qu")
+position = Vector2(352, 64.49999)
+scale = Vector2(1.8580643, 0.97499985)
+texture = SubResource("CompressedTexture2D_8x2mq")
+
+[node name="StengthLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/ProgressBars" unique_id=1865507337]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 20.0
+offset_right = 640.0
+offset_bottom = 45.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 25
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="IntelligenceBar" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/ProgressBars" unique_id=1951353154]
+texture_filter = 1
+material = SubResource("ShaderMaterial_872qu")
+position = Vector2(352, 184.5)
+scale = Vector2(1.8580643, 0.97499985)
+texture = SubResource("CompressedTexture2D_8x2mq")
+
+[node name="IntelligenceLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/ProgressBars" unique_id=432560945]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 140.0
+offset_right = 640.0
+offset_bottom = 165.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 25
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityBar" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/ProgressBars" unique_id=1360439758]
+texture_filter = 1
+material = SubResource("ShaderMaterial_872qu")
+position = Vector2(352, 304.5)
+scale = Vector2(1.8580643, 0.9750003)
+texture = SubResource("CompressedTexture2D_8x2mq")
+
+[node name="CommunityLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/ProgressBars" unique_id=708815797]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 260.0
+offset_right = 632.0
+offset_bottom = 285.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 25
+text = "Community"
+horizontal_alignment = 1
+
+[node name="OffDisableLabels" type="Control" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=809284039]
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/OffDisableLabels" unique_id=401433502]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 68.0
+offset_right = 640.0
+offset_bottom = 93.80647
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/OffDisableLabels" unique_id=588584911]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 188.0
+offset_right = 640.0
+offset_bottom = 213.80647
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/OffDisableLabels" unique_id=1626545285]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 308.0
+offset_right = 640.0
+offset_bottom = 333.80646
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideStats" type="Control" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=953252388]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/HideStats" unique_id=119628495]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_xf6yj")
+position = Vector2(352, 96.5)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_xf8x4")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/HideStats" unique_id=555345878]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_xf6yj")
+position = Vector2(352, 216.50002)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_xf8x4")
+
+[node name="CommunityHide" type="Sprite2D" parent="BreedingUI/NewCellDisplay/NewCell/HideStats" unique_id=1975889622]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_xf6yj")
+position = Vector2(352, 336.50003)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_xf8x4")
+
+[node name="BloodType" type="Control" parent="BreedingUI/NewCellDisplay/NewCell" unique_id=2103301618]
+anchors_preset = 0
+offset_left = 197.0
+offset_top = 32.0
+offset_right = 237.0
+offset_bottom = 72.0
+
+[node name="BloodTypeBG" type="ColorRect" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=359426652]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 376.0
+offset_right = 224.0
+offset_bottom = 446.0
+color = Color(0.2555218, 6.4675696e-08, 7.219613e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=1948373835]
+texture_filter = 1
+layout_mode = 0
+offset_left = -10.0
+offset_top = 350.0
+offset_right = 310.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 22
+text = "Blood Type"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SingleBloodType" type="Control" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=619760755]
+visible = false
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="FakeBloodType" type="Control" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/SingleBloodType" unique_id=2080849149]
+anchors_preset = 0
+offset_left = -33.0
+offset_top = -71.0
+offset_right = 7.0
+offset_bottom = -31.0
+
+[node name="BloodTypeA" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/SingleBloodType/FakeBloodType" unique_id=695834319]
+texture_filter = 1
+layout_mode = 0
+offset_left = 107.0
+offset_top = 442.0
+offset_right = 255.0
+offset_bottom = 514.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 51
+text = "A"
+horizontal_alignment = 1
+
+[node name="BloodType+" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/SingleBloodType/FakeBloodType" unique_id=2074080189]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ub4or")
+layout_mode = 0
+offset_left = 187.0
+offset_top = 436.0
+offset_right = 207.0
+offset_bottom = 475.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 32
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CompoundBloodType" type="Control" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=1426890446]
+visible = false
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="FakeBloodType" type="Control" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType" unique_id=245012187]
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 88.0
+offset_right = 78.0
+offset_bottom = 128.0
+
+[node name="BloodTypeA" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType" unique_id=499063229]
+texture_filter = 1
+layout_mode = 0
+offset_left = 74.0
+offset_top = 288.0
+offset_right = 146.0
+offset_bottom = 360.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 43
+text = "A"
+script = ExtResource("83_wyb05")
+
+[node name="NewLetterDelay" type="Timer" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType/BloodTypeA" unique_id=1037098102]
+wait_time = 0.5
+
+[node name="BloodTypeDash" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType" unique_id=1344354717]
+texture_filter = 1
+layout_mode = 0
+offset_left = 103.0
+offset_top = 290.0
+offset_right = 126.0
+offset_bottom = 339.0
+theme_override_colors/font_color = Color(0.99887687, 0.10179319, 1.92523e-07, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 43
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodTypeA2" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType" unique_id=1807479126]
+texture_filter = 1
+layout_mode = 0
+offset_left = 133.0
+offset_top = 289.0
+offset_right = 205.0
+offset_bottom = 361.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 43
+text = "O"
+script = ExtResource("83_wyb05")
+
+[node name="NewLetterDelay" type="Timer" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType/BloodTypeA2" unique_id=1293063026]
+wait_time = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType" unique_id=1953066646]
+texture_filter = 1
+position = Vector2(247.99997, 400)
+scale = Vector2(2.107955, 2.3624976)
+sprite_frames = SubResource("SpriteFrames_jkxk7")
+autoplay = "default"
+
+[node name="NoneBloodType" type="Control" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=499036316]
+anchors_preset = 0
+offset_top = 9.0
+offset_right = 40.0
+offset_bottom = 49.0
+
+[node name="BloodTypeA" type="Label" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/NoneBloodType" unique_id=1124646061]
+texture_filter = 1
+layout_mode = 0
+offset_left = 74.0
+offset_top = 371.0
+offset_right = 222.0
+offset_bottom = 443.0
+theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 51
+text = "None"
+horizontal_alignment = 1
+
+[node name="BloodDrop" type="TextureRect" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=2113630192]
+modulate = Color(0.95, 0.5225, 0.5225, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 261.0
+offset_top = 347.0
+offset_right = 287.0
+offset_bottom = 372.0
+texture = SubResource("CompressedTexture2D_vloa8")
+expand_mode = 1
+
+[node name="BloodDrop2" type="TextureRect" parent="BreedingUI/NewCellDisplay/NewCell/BloodType" unique_id=1000472640]
+modulate = Color(0.95, 0.5225, 0.5225, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 347.0
+offset_right = 38.0
+offset_bottom = 372.0
+texture = SubResource("CompressedTexture2D_vloa8")
+expand_mode = 1
+
+[node name="Header" type="Label" parent="BreedingUI/NewCellDisplay" unique_id=287112205]
+texture_filter = 1
+layout_mode = 0
+offset_left = 320.0
+offset_top = 56.0
+offset_right = 960.0
+offset_bottom = 96.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 25
+text = "New Cell Preview -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftCell" type="Control" parent="BreedingUI/NewCellDisplay" unique_id=1959386990]
+anchors_preset = 0
+offset_top = 200.0
+offset_right = 40.0
+offset_bottom = 240.0
+
+[node name="DefectBars" type="Control" parent="BreedingUI/NewCellDisplay/LeftCell" unique_id=2121799953]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthDefect" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/DefectBars" unique_id=501079105]
+texture_filter = 1
+material = SubResource("ShaderMaterial_h2s3s")
+position = Vector2(176, 104)
+scale = Vector2(0.67096776, 0.21249977)
+texture = SubResource("CompressedTexture2D_4118e")
+
+[node name="IntelligenceDefect" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/DefectBars" unique_id=1574470333]
+texture_filter = 1
+material = SubResource("ShaderMaterial_h2s3s")
+position = Vector2(176, 163)
+scale = Vector2(0.67096776, 0.21249977)
+texture = SubResource("CompressedTexture2D_4118e")
+
+[node name="CommunityDefect" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/DefectBars" unique_id=300402311]
+texture_filter = 1
+material = SubResource("ShaderMaterial_h2s3s")
+position = Vector2(176, 224.00005)
+scale = Vector2(0.67096776, 0.21249977)
+texture = SubResource("CompressedTexture2D_4118e")
+
+[node name="ProgressBars" type="Control" parent="BreedingUI/NewCellDisplay/LeftCell" unique_id=3463350]
+anchors_preset = 0
+offset_top = 12.0
+offset_bottom = 12.0
+
+[node name="StrengthBar" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/ProgressBars" unique_id=607925111]
+texture_filter = 1
+material = SubResource("ShaderMaterial_872qu")
+position = Vector2(176, 75.99999)
+scale = Vector2(0.6709677, 0.39999974)
+texture = SubResource("CompressedTexture2D_8x2mq")
+
+[node name="StengthLabel" type="Label" parent="BreedingUI/NewCellDisplay/LeftCell/ProgressBars" unique_id=2128397476]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 55.0
+offset_right = 280.0
+offset_bottom = 71.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceBar" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/ProgressBars" unique_id=544009263]
+texture_filter = 1
+material = SubResource("ShaderMaterial_872qu")
+position = Vector2(176, 135)
+scale = Vector2(0.6709677, 0.39999974)
+texture = SubResource("CompressedTexture2D_8x2mq")
+
+[node name="IntelligenceLabel" type="Label" parent="BreedingUI/NewCellDisplay/LeftCell/ProgressBars" unique_id=858223898]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 116.0
+offset_right = 280.0
+offset_bottom = 132.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CommunityBar" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/ProgressBars" unique_id=723142662]
+texture_filter = 1
+material = SubResource("ShaderMaterial_872qu")
+position = Vector2(176, 196)
+scale = Vector2(0.6709677, 0.39999974)
+texture = SubResource("CompressedTexture2D_8x2mq")
+
+[node name="CommunityLabel" type="Label" parent="BreedingUI/NewCellDisplay/LeftCell/ProgressBars" unique_id=1880297832]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 176.0
+offset_right = 280.0
+offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 12
+text = "Community"
+horizontal_alignment = 1
+
+[node name="OffDisableLabels" type="Control" parent="BreedingUI/NewCellDisplay/LeftCell" unique_id=2071128473]
+visible = false
+anchors_preset = 0
+offset_top = -4.0
+offset_right = 40.0
+offset_bottom = 36.0
+
+[node name="StrengthOffLabel" type="Label" parent="BreedingUI/NewCellDisplay/LeftCell/OffDisableLabels" unique_id=411680337]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 68.0
+offset_right = 640.0
+offset_bottom = 93.80647
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceOffLabel" type="Label" parent="BreedingUI/NewCellDisplay/LeftCell/OffDisableLabels" unique_id=1333283845]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 188.0
+offset_right = 640.0
+offset_bottom = 213.80647
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityOffLabel" type="Label" parent="BreedingUI/NewCellDisplay/LeftCell/OffDisableLabels" unique_id=234328964]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 308.0
+offset_right = 640.0
+offset_bottom = 333.80646
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 15
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideStats" type="Control" parent="BreedingUI/NewCellDisplay/LeftCell" unique_id=1209654564]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/HideStats" unique_id=2093676956]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_xf6yj")
+position = Vector2(352, 96.5)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_xf8x4")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/HideStats" unique_id=444641395]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_xf6yj")
+position = Vector2(352, 216.50002)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_xf8x4")
+
+[node name="CommunityHide" type="Sprite2D" parent="BreedingUI/NewCellDisplay/LeftCell/HideStats" unique_id=590415171]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_xf6yj")
+position = Vector2(352, 336.50003)
+scale = Vector2(1.8285716, 1.9750001)
+texture = SubResource("CompressedTexture2D_xf8x4")
+
 [node name="InteractFooter" type="Control" parent="BreedingUI" unique_id=1674396304]
 anchors_preset = 0
 offset_right = 40.0
@@ -4567,30 +5471,31 @@ color = Color(0.24313726, 0, 0, 1)
 
 [node name="ConfirmBtn" type="Control" parent="BreedingUI/InteractFooter" unique_id=2049235082]
 anchors_preset = 0
-offset_left = 512.0
-offset_top = 667.0
-offset_right = 552.0
-offset_bottom = 707.0
+offset_left = 608.0
+offset_top = 669.0
+offset_right = 648.0
+offset_bottom = 709.0
 script = ExtResource("14_a775l")
 
 [node name="BtnBg" type="ColorRect" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1902126170]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 1.0
+offset_left = 108.0
+offset_top = 5.0
 offset_right = 279.0
-offset_bottom = 40.0
+offset_bottom = 35.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1940816088]
 texture_filter = 1
 layout_mode = 0
-offset_left = 22.0
+offset_left = 108.0
+offset_top = 5.0
 offset_right = 278.0
-offset_bottom = 40.0
+offset_bottom = 35.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.9, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -4599,10 +5504,10 @@ vertical_alignment = 1
 visible = false
 z_index = 2
 anchors_preset = 0
-offset_left = -4.0
-offset_top = 1.0
-offset_right = 36.0
-offset_bottom = 41.0
+offset_left = 37.0
+offset_top = 7.0
+offset_right = 77.0
+offset_bottom = 47.0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter/ConfirmBtn/Hint" unique_id=282712396]
@@ -4627,6 +5532,37 @@ theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 20
 text = "Missing main breeding cells in panel"
 autowrap_mode = 2
+
+[node name="BackBtn" type="Control" parent="BreedingUI/InteractFooter" unique_id=2135722905]
+visible = false
+anchors_preset = 0
+offset_left = 416.0
+offset_top = 669.0
+offset_right = 456.0
+offset_bottom = 709.0
+
+[node name="BtnBg" type="ColorRect" parent="BreedingUI/InteractFooter/BackBtn" unique_id=106026893]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 5.0
+offset_right = 279.0
+offset_bottom = 35.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/BackBtn" unique_id=169943160]
+texture_filter = 1
+layout_mode = 0
+offset_left = 152.0
+offset_top = 5.0
+offset_right = 278.0
+offset_bottom = 35.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 20
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ExitHeader" type="Control" parent="BreedingUI" unique_id=910873983]
 anchors_preset = 0
