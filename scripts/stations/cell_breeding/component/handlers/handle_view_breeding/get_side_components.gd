@@ -13,7 +13,7 @@ extends Node
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/CleanBar"
 ]
 
-@onready var l_defect_bars : Array[TextureProgressBar] = [
+@onready var l_defect_bars : Array[Sprite2D] = [
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DefectBar",
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DefectBar",
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DefectBar"
@@ -43,7 +43,7 @@ extends Node
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/CleanBar"
 ]
 
-@onready var r_defect_bars : Array[TextureProgressBar] = [
+@onready var r_defect_bars : Array[Sprite2D] = [
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DefectBar",
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DefectBar",
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DefectBar"
@@ -88,7 +88,14 @@ func _ready() -> void:
 	for bar : Sprite2D in l_clean_bars : 
 		bar.material = bar.material.duplicate()
 	
+	for bar : Sprite2D in l_defect_bars : 
+		bar.material = bar.material.duplicate()
+		
+	
 	for bar : Sprite2D in r_clean_bars : 
+		bar.material = bar.material.duplicate()
+		
+	for bar : Sprite2D in r_defect_bars : 
 		bar.material = bar.material.duplicate()
 		
 	l_death_chance_frame.material = l_death_chance_frame.material.duplicate()

@@ -352,7 +352,7 @@ shader_parameter/blur_amount = 1.50000007125
 shader_parameter/tint_strength = 0.0
 shader_parameter/tint_color = Color(0, 0, 0, 0)
 
-[sub_resource type="Shader" id="Shader_3movu"]
+[sub_resource type="Shader" id="Shader_juc07"]
 code = "shader_type canvas_item;
 
 uniform float stat_defect_value : hint_range(0.0, 1.0);
@@ -445,7 +445,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4mres"]
-shader = SubResource("Shader_3movu")
+shader = SubResource("Shader_juc07")
 shader_parameter/stat_defect_value = 0.0
 shader_parameter/start_value = 0.0
 shader_parameter/defect_color = Color(0.5, 0, 0, 1)
@@ -459,7 +459,7 @@ shader_parameter/edge_padding = 2.6370001252575
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8udft"]
 load_path = "res://.godot/imported/progress_bar_under.png-e57f123632c318b1d08ae788f52e6ada.ctex"
 
-[sub_resource type="Shader" id="Shader_3tyvt"]
+[sub_resource type="Shader" id="Shader_q55pm"]
 code = "shader_type canvas_item;
 
 uniform float prisoner_value : hint_range(0.0, 1.0);
@@ -554,7 +554,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wo7b4"]
-shader = SubResource("Shader_3tyvt")
+shader = SubResource("Shader_q55pm")
 shader_parameter/prisoner_value = 0.0
 shader_parameter/start_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)

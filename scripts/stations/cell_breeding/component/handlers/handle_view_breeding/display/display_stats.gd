@@ -10,7 +10,7 @@ var no_cell_loaded_label: Label
 var stat_display_parent: Control
 var cell_name_label: Label
 var clean_bars: Array[Sprite2D]
-var defect_bars: Array[TextureProgressBar]
+var defect_bars: Array[Sprite2D]
 var hidden_sprites: Array[Sprite2D]
 var off_labels: Array[Label]
 
@@ -65,7 +65,7 @@ func load_stat_bars(cell: BrainCell) -> void:
 		
 		_display_enabled_stat(i)
 		_display_hidden_stat(i, cell_stat)
-		_display_defect_stat(i, cell_stat)
+		_display_defect_stat(i, cell_stat, max_value)
 		_display_clean_stat(i, cell_stat, max_value)
 
 
@@ -94,9 +94,25 @@ func _display_hidden_stat(
 func _display_defect_stat(
 	index: int,
 	cell_stat: BrainCellStat,
+	max_value : float
 ) -> void:
-	defect_bars[index].max_value = IVCellCreator.max_stat_value
-	defect_bars[index].value = cell_stat.defect
+	
+	
+	defect_bars[index].material.set_shader_parameter(
+		"prior_defect_value",
+		cell_stat.defect / max_value
+	)
+	
+	var new_defect_value : float = GAMECellBreeder.death_chance_helper.decrease_old_cell._get_increased_defect_stat(cell_stat.defect)
+	
+	defect_bars[index].material.set_shader_parameter(
+		"new_defect_value",
+		new_defect_value / max_value
+	)
+	
+	# before made sprite
+	#defect_bars[index].max_value = IVCellCreator.max_stat_value
+	#defect_bars[index].value = cell_stat.defect
 
 
 func _display_clean_stat(

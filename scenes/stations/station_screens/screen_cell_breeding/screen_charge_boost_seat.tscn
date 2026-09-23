@@ -31,7 +31,7 @@ shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
-[sub_resource type="Shader" id="Shader_u4kgo"]
+[sub_resource type="Shader" id="Shader_yyp4h"]
 code = "shader_type canvas_item;
 
 // values (0 → 1)
@@ -87,7 +87,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7vl8u"]
-shader = SubResource("Shader_u4kgo")
+shader = SubResource("Shader_yyp4h")
 shader_parameter/prior_defect_value = 0.0
 shader_parameter/new_defect_value = 0.0
 shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
