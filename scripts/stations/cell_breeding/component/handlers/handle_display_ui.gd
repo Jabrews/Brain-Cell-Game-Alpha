@@ -6,6 +6,7 @@ extends Node
 
 # display helpers
 @onready var display_cell_catalog : Node = $"../DisplayCellCatalog"
+@onready var display_new_cell_preview : Node = $"../DisplayNewCellPreview"
 
 # handler helpers
 @onready var handle_breeding_box_startup : Node = $"../HandleBreedingBoxStartup"
@@ -31,6 +32,9 @@ func _toggle_display(toggle_value : bool) :
 		
 		# close slider
 		handle_toggle_selected_view_slider._handle(false)
+		
+		# close new cell preview
+		display_new_cell_preview._close()
 	
 	if not toggle_value : 
 		# user will always get out breeder in area

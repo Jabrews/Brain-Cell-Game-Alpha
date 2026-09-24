@@ -3,9 +3,25 @@ extends Node
 # components
 @onready var parent_station : Node3D = $".."
 @onready var handle_display_ui : Node = $"../HandleDisplayUi"
+@onready var display_new_cell_preview : Node = $"../DisplayNewCellPreview"
+
+var current_screen : String = 'cell_loader'
 
 func _handle() :  
-	finale_breeding_request()
+	
+	if current_screen == 'cell_loader' :
+		
+		display_new_cell_preview._display()
+		
+		current_screen = 'new_cell_preview'
+		
+	elif current_screen == 'new_cell_preview' :
+		
+		finale_breeding_request()
+		
+		current_screen = 'cell_loader'
+
+	
 
 func finale_breeding_request() :
 	

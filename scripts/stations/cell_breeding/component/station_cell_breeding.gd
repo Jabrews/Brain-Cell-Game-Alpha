@@ -2,6 +2,7 @@ extends Node
 
 # component handlers
 @onready var handle_refresh_breeding_view : Node = $HandleRefreshBreederView
+@export var cell_container_parent_node : Node
 
 # panel cells
 var left_main_cell: BrainCell

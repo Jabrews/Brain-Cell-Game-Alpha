@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://7x522ncryoiq" path="res://scripts/stations/cell_breeding/component/station_cell_breeding.gd" id="1_dmors"]
 [ext_resource type="Script" uid="uid://dtckfqq1m8fkv" path="res://scripts/stations/cell_breeding/component/handlers/handle_display_ui.gd" id="2_awyxg"]
 [ext_resource type="Script" uid="uid://b8lokfw7kv86s" path="res://scripts/stations/cell_breeding/component/hologram/hologram_interact_area.gd" id="2_dmors"]
+[ext_resource type="Script" uid="uid://cprt4iheuifpe" path="res://scripts/stations/cell_breeding/component/display/display_new_cell_preview.gd" id="2_h2s3s"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="3_41g38"]
 [ext_resource type="Script" uid="uid://06w84xu08m2m" path="res://scripts/stations/cell_breeding/component/display/display_cell_catalog.gd" id="3_a0emy"]
 [ext_resource type="Script" uid="uid://dhpblxaa3i444" path="res://scripts/stations/cell_breeding/component/handlers/handle_breeding_box_startup.gd" id="3_jleg6"]
@@ -33,6 +34,7 @@
 [ext_resource type="Script" uid="uid://dsiqdhrr7s11j" path="res://scripts/stations/cell_breeding/component/handlers/handle_boost_display/get_side_boost_components.gd" id="13_00uyy"]
 [ext_resource type="AudioStream" uid="uid://b2ssde0ymv0as" path="res://sounds/station_cell_breeder/remove_from_box.mp3" id="13_0xebg"]
 [ext_resource type="Script" uid="uid://b5jstsc6yxecj" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/display/display_stats.gd" id="13_2fsyu"]
+[ext_resource type="Script" uid="uid://duesmoonpfwao" path="res://scripts/stations/cell_breeding/component/handlers/handle_back_btn.gd" id="13_872qu"]
 [ext_resource type="Script" uid="uid://ltn2xrbuhlyq" path="res://scripts/stations/cell_breeding/component/handlers/handle_boost_display/handle_stat_selected.gd" id="13_idfuw"]
 [ext_resource type="Script" uid="uid://ymgorwad2s7i" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_slider/information_section/display/display_death_chance.gd" id="14_275he"]
 [ext_resource type="Script" uid="uid://bqbquxrpdwf7q" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/confirm_btn.gd" id="14_a775l"]
@@ -89,6 +91,8 @@
 [ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="82_teu5o"]
 [ext_resource type="Script" uid="uid://dlgat110o2ir0" path="res://scripts/stations/station_screens/cell_breeding/new_cell_screen/compound_blood_type_label.gd" id="83_wyb05"]
 [ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="84_elcrl"]
+[ext_resource type="Script" uid="uid://47xp3r1p3is3" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/interact_footer.gd" id="88_4118e"]
+[ext_resource type="Script" uid="uid://cyrgg7d2r0e5n" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/back_btn.gd" id="91_8x2mq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -936,6 +940,9 @@ shader_parameter/scroll_speed = 0.2
 [node name="StationCellBreeding" type="Node3D" unique_id=1160068214]
 script = ExtResource("1_dmors")
 
+[node name="DisplayNewCellPreview" type="Node" parent="." unique_id=521299501]
+script = ExtResource("2_h2s3s")
+
 [node name="DisplayCellCatalog" type="Node" parent="." unique_id=1438846030]
 script = ExtResource("3_a0emy")
 
@@ -965,6 +972,9 @@ script = ExtResource("5_ac4jf")
 
 [node name="HandleConfirmBtn" type="Node" parent="." unique_id=1735938697]
 script = ExtResource("10_275he")
+
+[node name="HandleBackBtn" type="Node" parent="." unique_id=1078166937]
+script = ExtResource("13_872qu")
 
 [node name="HandleBoostDisplay" type="Node" parent="." unique_id=1525550362]
 script = ExtResource("11_tvpn4")
@@ -4840,7 +4850,6 @@ theme_override_constants/v_separation = 194
 columns = 2
 
 [node name="NewCellDisplay" type="Control" parent="BreedingUI" unique_id=726775436]
-visible = false
 z_index = 1
 anchors_preset = 0
 offset_right = 40.0
@@ -5261,6 +5270,7 @@ vertical_alignment = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("88_4118e")
 
 [node name="BG" type="ColorRect" parent="BreedingUI/InteractFooter" unique_id=1314323368]
 layout_mode = 0
@@ -5337,10 +5347,11 @@ autowrap_mode = 2
 [node name="BackBtn" type="Control" parent="BreedingUI/InteractFooter" unique_id=2135722905]
 visible = false
 anchors_preset = 0
-offset_left = 416.0
-offset_top = 669.0
-offset_right = 456.0
-offset_bottom = 709.0
+offset_left = 508.0
+offset_top = 670.0
+offset_right = 548.0
+offset_bottom = 710.0
+script = ExtResource("91_8x2mq")
 
 [node name="BtnBg" type="ColorRect" parent="BreedingUI/InteractFooter/BackBtn" unique_id=106026893]
 layout_mode = 0
