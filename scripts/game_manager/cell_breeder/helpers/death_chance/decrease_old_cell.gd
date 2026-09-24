@@ -2,8 +2,6 @@ extends Node
 
 func _decrease(cell : BrainCell) -> BrainCell :
 	
-	cell.life_span -= 1	 
-	
 	var strength_increase_percant = randf_range(0.15, 0.20)	
 	var intelligence_increase_percant = randf_range(0.15, 0.20)	
 	var community_increase_percant = randf_range(0.15, 0.20)	
