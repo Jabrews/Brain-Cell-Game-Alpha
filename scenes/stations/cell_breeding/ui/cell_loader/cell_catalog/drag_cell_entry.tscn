@@ -36,6 +36,11 @@ script = ExtResource("2_27qp8")
 
 [node name="HandleDrop" type="Node" parent="." unique_id=36035916]
 script = ExtResource("3_6dlfl")
+selected_view_radius = 30.0
+left_main_radius = 25.0
+right_main_radius = 25.0
+left_boost_radius = 30.0
+right_boost_radius = 30.0
 
 [node name="DisplayBackground" type="ColorRect" parent="." unique_id=1254315577]
 layout_mode = 0
