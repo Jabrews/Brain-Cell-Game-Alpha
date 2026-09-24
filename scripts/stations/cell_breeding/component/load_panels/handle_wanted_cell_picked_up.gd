@@ -26,7 +26,6 @@ func _toggle_cell_picked_up(toggle_value : bool, cell_name : String) -> void:
 	)
 	
 	if not ui_wanted_cell:
-		parent_light_manager._flash_lights(false)
 		return
 	
 	# ignore cells that this panel does not want

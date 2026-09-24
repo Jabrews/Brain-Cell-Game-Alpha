@@ -80,6 +80,7 @@
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="47_l131e"]
 [ext_resource type="AudioStream" uid="uid://y6pew2qpgpk3" path="res://sounds/prisoner_profiler/cycle_select.mp3" id="48_8vhvh"]
 [ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="51_wyb05"]
+[ext_resource type="AudioStream" uid="uid://cxh4fexnvvpp6" path="res://sounds/station_cell_breeder/breeding_finished_charge.mp3" id="53_xf6yj"]
 [ext_resource type="Script" uid="uid://b2b2cod3bcuwp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exit_btn.gd" id="57_odqr3"]
 [ext_resource type="Script" uid="uid://cimxska5kirot" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_display_parent.gd" id="58_4gocy"]
 [ext_resource type="Shader" uid="uid://065in37icekp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/breeding_defect_bar.gdshader" id="59_elcrl"]
@@ -93,6 +94,7 @@
 [ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="84_elcrl"]
 [ext_resource type="Script" uid="uid://47xp3r1p3is3" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/interact_footer.gd" id="88_4118e"]
 [ext_resource type="Script" uid="uid://cyrgg7d2r0e5n" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/back_btn.gd" id="91_8x2mq"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="95_xf8x4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -937,6 +939,37 @@ shader_parameter/line_thickness = 0.42300001683262
 shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
+[sub_resource type="Curve" id="Curve_xf8x4"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xf8x4"]
+curve = SubResource("Curve_xf8x4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xf6yj"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_xf8x4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ub4or"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 1)
+albedo_texture = ExtResource("95_xf8x4")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xf8x4"]
+material = SubResource("StandardMaterial3D_ub4or")
+size = Vector2(0.2, 0.2)
+
 [node name="StationCellBreeding" type="Node3D" unique_id=1160068214]
 script = ExtResource("1_dmors")
 
@@ -1371,6 +1404,9 @@ stream = ExtResource("48_8vhvh")
 volume_db = 5.0
 unit_size = 5.0
 pitch_scale = 1.5
+
+[node name="BreedingFinishedCharge" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1882687983]
+stream = ExtResource("53_xf6yj")
 
 [node name="BredCellSpawner" type="Node3D" parent="." unique_id=1936616184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4489317, 0.043589592, -7)
@@ -5498,3 +5534,25 @@ theme_override_font_sizes/font_size = 20
 text = "cell Breeder"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BreedingParticle" type="Node3D" parent="." unique_id=1176477517]
+
+[node name="LeftFinishedParticle" type="GPUParticles3D" parent="BreedingParticle" unique_id=1599260021]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3.2607198, 2.2)
+emitting = false
+amount = 10
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xf6yj")
+draw_pass_1 = SubResource("QuadMesh_xf8x4")
+
+[node name="RightFinishedParticle" type="GPUParticles3D" parent="BreedingParticle" unique_id=1477620668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3.2607198, -2.3)
+emitting = false
+amount = 10
+lifetime = 1.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xf6yj")
+draw_pass_1 = SubResource("QuadMesh_xf8x4")

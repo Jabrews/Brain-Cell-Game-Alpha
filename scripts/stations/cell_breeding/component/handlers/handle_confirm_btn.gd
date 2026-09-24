@@ -4,6 +4,8 @@ extends Node
 @onready var parent_station : Node3D = $".."
 @onready var handle_display_ui : Node = $"../HandleDisplayUi"
 @onready var display_new_cell_preview : Node = $"../DisplayNewCellPreview"
+@onready var left_finsihed_particle : GPUParticles3D = $"../BreedingParticle/LeftFinishedParticle"
+@onready var right_finsihed_particle : GPUParticles3D = $"../BreedingParticle/RightFinishedParticle"
 
 var current_screen : String = 'cell_loader'
 
@@ -47,6 +49,11 @@ func finale_breeding_request() :
 	
 	# close
 	handle_display_ui._toggle_display(false)
+	
+	GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'breeding_finished')
+	
+	left_finsihed_particle.emitting = true	
+	right_finsihed_particle.emitting = true	
 	
 	# reset ui cells
 	for key in GLBreedingComponetsBus.breeding_ui_state : 
