@@ -50,10 +50,8 @@
 [ext_resource type="Script" uid="uid://cejvdg1d7u1gl" path="res://scripts/stations/cell_breeding/component/handlers/handle_boost_display/display_boost_stats.gd" id="18_7oiwu"]
 [ext_resource type="Script" uid="uid://bg6px0pnfcift" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/get_side_components.gd" id="18_pjaa2"]
 [ext_resource type="Script" uid="uid://dotvi2i3phx0q" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_stats.gd" id="19_y63pt"]
-[ext_resource type="Shader" uid="uid://cehnd5u738tts" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/total_death_chance_frame.gdshader" id="20_nedwh"]
 [ext_resource type="Script" uid="uid://grpave2s2brq" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/stat_symbols/display_stat_symbols.gd" id="20_nm6wx"]
 [ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="21_x5req"]
-[ext_resource type="Shader" uid="uid://3crm1j3sldsg" path="res://scripts/stations/station_screens/cell_breeding/loader_screen/pot_fill.gdshader" id="22_1ufwy"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="23_q2fkw"]
 [ext_resource type="AudioStream" uid="uid://blyvvd4y36iqr" path="res://sounds/station_cell_breeder/reset_btn_appear.mp3" id="23_vsr2l"]
 [ext_resource type="Script" uid="uid://hk41fnhr8xfa" path="res://scripts/stations/cell_breeding/component/handlers/handle_view_breeding/display/display_blood_type.gd" id="24_nm6wx"]
@@ -79,7 +77,6 @@
 [ext_resource type="AudioStream" uid="uid://dfrps3sdbx6" path="res://sounds/station_cell_breeder/skull_warning.mp3" id="46_r7by8"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="47_l131e"]
 [ext_resource type="AudioStream" uid="uid://y6pew2qpgpk3" path="res://sounds/prisoner_profiler/cycle_select.mp3" id="48_8vhvh"]
-[ext_resource type="Script" uid="uid://i30ql1q0fvk0" path="res://scripts/stations/station_components/cell_breeding/bred_cell_spawner.gd" id="51_wyb05"]
 [ext_resource type="AudioStream" uid="uid://cxh4fexnvvpp6" path="res://sounds/station_cell_breeder/breeding_finished_charge.mp3" id="53_xf6yj"]
 [ext_resource type="Script" uid="uid://b2b2cod3bcuwp" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exit_btn.gd" id="57_odqr3"]
 [ext_resource type="Script" uid="uid://cimxska5kirot" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_display_parent.gd" id="58_4gocy"]
@@ -90,7 +87,6 @@
 [ext_resource type="Script" uid="uid://b5x3qnh04exuh" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exsplain_hint.gd" id="61_le1xe"]
 [ext_resource type="Script" uid="uid://rtif1cbbm6up" path="res://scripts/stations/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/direction_btn_parent.gd" id="62_f4qcm"]
 [ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="82_teu5o"]
-[ext_resource type="Script" uid="uid://dlgat110o2ir0" path="res://scripts/stations/station_screens/cell_breeding/new_cell_screen/compound_blood_type_label.gd" id="83_wyb05"]
 [ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="84_elcrl"]
 [ext_resource type="Script" uid="uid://47xp3r1p3is3" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/interact_footer.gd" id="88_4118e"]
 [ext_resource type="Script" uid="uid://cyrgg7d2r0e5n" path="res://scripts/stations/cell_breeding/component/ui/interact_footer/back_btn.gd" id="91_8x2mq"]
@@ -222,6 +218,44 @@ size = Vector3(0.046875, 1.8056641, 2.3426514)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wnhlu"]
 size = Vector3(0.046875, 1.8056641, 2.34581)
+
+[sub_resource type="GDScript" id="GDScript_4118e"]
+script/source = "extends Node
+
+# components
+@onready var cell_container_instance : PackedScene = preload('res://scenes/characters/cell_container/cell_container.tscn')
+@onready var spawn_position : Node3D = $SpawnPos
+@onready var parent_cell_breeding_station : Node = $\"..\"
+
+func _ready() -> void:
+	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded) 
+	
+	
+func _handle_cell_breeded(
+		_main_left_cell,
+		_main_right_cell,
+		new_cell : BrainCell,
+		_boost_left_cell, 
+		_boost_right_cell,
+		_kill_cell_1,
+		_kill_cell_2,
+	) : 
+		
+	create_cell_container_instance(new_cell)
+
+func create_cell_container_instance(cell : BrainCell) :
+	
+	var cell_container = cell_container_instance.instantiate()
+	cell_container.name = cell.name
+	cell_container.designated_brain_cell = cell
+	
+	var cell_container_parent_node : Node = parent_cell_breeding_station.cell_container_parent_node 
+	
+	cell_container_parent_node.add_child(cell_container)
+	
+	cell_container.global_position = spawn_position.global_position
+	
+"
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_um02t"]
 albedo_color = Color(0, 0, 0.45490196, 1)
@@ -355,15 +389,130 @@ shader_parameter/stripe_amount = 28.0
 shader_parameter/stripe_slant = 0.8
 shader_parameter/edge_padding = 5.0
 
+[sub_resource type="Shader" id="Shader_872qu"]
+code = "shader_type canvas_item;
+
+uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
+uniform vec4 fill_color : source_color = vec4(1.0);
+
+uniform float tolerance : hint_range(0.0, 1.0) = 0.05;
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Find pixels matching the selected color
+	float difference = distance(tex.rgb, target_color.rgb);
+
+	float target_mask = 1.0 - smoothstep(
+		0.0,
+		tolerance,
+		difference
+	);
+
+	// Perimeter position
+	float perimeter;
+
+	if (UV.y < 0.5 && UV.x < 0.5) {
+		perimeter = UV.x * 0.5;
+	}
+	else if (UV.y < 0.5) {
+		perimeter = 0.25 + UV.y * 0.5;
+	}
+	else if (UV.x > 0.5) {
+		perimeter = 0.5 + (1.0 - UV.x) * 0.5;
+	}
+	else {
+		perimeter = 0.75 + (1.0 - UV.y) * 0.5;
+	}
+
+	// Has the white fill reached this pixel?
+	float fill_mask = step(perimeter, progress);
+
+	// Selected color is transparent until the fill reaches it
+	float alpha = tex.a * (1.0 - target_mask);
+	alpha += target_mask * fill_mask;
+
+	vec3 final_color = mix(tex.rgb, fill_color.rgb, target_mask * fill_mask);
+
+	COLOR = vec4(final_color, alpha);
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yqqxt"]
-shader = ExtResource("20_nedwh")
+shader = SubResource("Shader_872qu")
 shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/progress = 0.0
 
+[sub_resource type="Shader" id="Shader_8x2mq"]
+code = "shader_type canvas_item;
+
+uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
+uniform float tolerance : hint_range(0.0, 1.0) = 0.05;
+
+uniform float current_value : hint_range(0.0, 1.0) = 0.5;
+uniform float secondary_value : hint_range(0.0, 1.0) = 0.7;
+
+uniform vec4 current_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform vec4 secondary_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+uniform float pulse_speed : hint_range(0.1, 10.0) = 2.0;
+
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Detect the selected grey color
+	float difference = distance(tex.rgb, target_color.rgb);
+
+	float target_mask = 1.0 - smoothstep(
+		0.0,
+		tolerance,
+		difference
+	);
+
+	// Fill from bottom to top
+	float height = 1.0 - UV.y;
+
+	float current_mask = step(height, current_value);
+	float secondary_mask = step(height, secondary_value);
+
+	// Pulsing opacity for secondary value
+	float pulse = (sin(TIME * pulse_speed * 3.14159) + 1.0) / 2.0;
+	float secondary_alpha = mix(0.25, 0.75, pulse);
+
+	// Selected grey is transparent by default
+	vec4 result = tex;
+
+	if (target_mask > 0.0) {
+		result.a = 0.0;
+	}
+
+	// Secondary fill
+	if (secondary_mask > 0.0) {
+		result = mix(
+			result,
+			vec4(secondary_color.rgb, secondary_alpha),
+			target_mask
+		);
+	}
+
+	// Current fill
+	if (current_mask > 0.0) {
+		result = mix(
+			result,
+			current_color,
+			target_mask
+		);
+	}
+
+	COLOR = result;
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k7gp0"]
-shader = ExtResource("22_1ufwy")
+shader = SubResource("Shader_8x2mq")
 shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/current_value = 0.0
@@ -420,7 +569,7 @@ shader_parameter/noise_scale = 1.0
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bmm5s"]
-shader = ExtResource("20_nedwh")
+shader = SubResource("Shader_872qu")
 shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/tolerance = 0.05
@@ -857,6 +1006,33 @@ shader_parameter/shimmer_strength = 0.594000028215
 shader_parameter/scanline_strength = 0.08
 shader_parameter/scanline_density = 90.0
 shader_parameter/hologram_tint = Color(0.9343551, 0.97784275, 0.9999998, 1)
+
+[sub_resource type="GDScript" id="GDScript_xf6yj"]
+script/source = "extends Label
+
+@onready var new_letter_delay: Timer = $NewLetterDelay
+
+var possible_chars: Array[String] = [
+	\"O\",
+	\"A\",
+	\"B\",
+]
+
+
+func _ready() -> void:
+	new_letter_delay.timeout.connect(_handle_new_letter_delay)
+	new_letter_delay.start()
+
+
+func _handle_new_letter_delay() -> void:
+	var old_letter: String = text
+	var new_letter: String = old_letter
+	
+	while new_letter == old_letter:
+		new_letter = possible_chars.pick_random()
+	
+	text = new_letter
+"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7u4es"]
 atlas = ExtResource("84_elcrl")
@@ -1410,7 +1586,7 @@ stream = ExtResource("53_xf6yj")
 
 [node name="BredCellSpawner" type="Node3D" parent="." unique_id=1936616184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4489317, 0.043589592, -7)
-script = ExtResource("51_wyb05")
+script = SubResource("GDScript_4118e")
 
 [node name="SpawnPos" type="Node3D" parent="BredCellSpawner" unique_id=1924445703]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -5189,7 +5365,7 @@ theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 43
 text = "A"
-script = ExtResource("83_wyb05")
+script = SubResource("GDScript_xf6yj")
 
 [node name="NewLetterDelay" type="Timer" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType/BloodTypeA" unique_id=1037098102]
 wait_time = 0.5
@@ -5219,7 +5395,7 @@ theme_override_colors/font_color = Color(1, 0.101960786, 0, 1)
 theme_override_fonts/font = ExtResource("15_n3nrt")
 theme_override_font_sizes/font_size = 43
 text = "O"
-script = ExtResource("83_wyb05")
+script = SubResource("GDScript_xf6yj")
 
 [node name="NewLetterDelay" type="Timer" parent="BreedingUI/NewCellDisplay/NewCell/BloodType/CompoundBloodType/FakeBloodType/BloodTypeA2" unique_id=1293063026]
 wait_time = 0.5
