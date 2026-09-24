@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
 [ext_resource type="PackedScene" uid="uid://cbkhifesyls7u" path="res://scenes/stations/station_components/goal_threshold_interface/station_goal_threshold_interface.tscn" id="14_r52yi"]
-[ext_resource type="PackedScene" uid="uid://coetu5aaafg85" path="res://scenes/stations/cell_breeding/component/station_cell_breeding.tscn" id="15_0ycs4"]
+[ext_resource type="PackedScene" uid="uid://coetu5aaafg85" path="res://scenes/stations/station_components/cell_breeding/component/station_cell_breeding.tscn" id="15_0ycs4"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
