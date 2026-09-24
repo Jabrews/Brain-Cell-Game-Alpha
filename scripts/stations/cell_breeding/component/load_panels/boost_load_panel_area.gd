@@ -30,6 +30,8 @@ func _handle_body_entered(body: Node3D) -> void:
 	# don't replace an existing cell
 	if parent_station.get_panel_cell(seat_type) != null:
 		return
+		
+	body.spawn_flesh_bug_on_death = false
 
 	parent_station.set_panel_cell(seat_type, incoming_cell)
 	boost_light_manager._toggle_light(true)
@@ -51,6 +53,8 @@ func _handle_body_exited(body: Node3D) -> void:
 	# only clear if this body owns the currently stored cell
 	if station_cell.name != exiting_cell.name:
 		return
+	
+	body.spawn_flesh_bug_on_death = true 
 
 	parent_station.set_panel_cell(seat_type, null)
 	boost_light_manager._toggle_light(false)
