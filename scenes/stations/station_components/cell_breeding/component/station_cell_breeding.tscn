@@ -5611,6 +5611,11 @@ offset_top = 5.0
 offset_right = 279.0
 offset_bottom = 35.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_neighbor_left = NodePath("../../BackBtn/BtnBg")
+focus_neighbor_top = NodePath("../../../CellLoader/SelectedViewSlider/SlideHandle/SlideBg")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
 
 [node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/ConfirmBtn" unique_id=1940816088]
 texture_filter = 1
@@ -5676,6 +5681,11 @@ offset_top = 5.0
 offset_right = 279.0
 offset_bottom = 35.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../CellLoader/SelectedViewSlider/SlideHandle/SlideBg")
+focus_neighbor_right = NodePath("../../ConfirmBtn/BtnBg")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
 
 [node name="ConfirmLabel" type="Label" parent="BreedingUI/InteractFooter/BackBtn" unique_id=169943160]
 texture_filter = 1

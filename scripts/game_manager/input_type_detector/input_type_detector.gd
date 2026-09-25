@@ -1,5 +1,8 @@
 extends Node
 
+var mouse_texture: Texture2D = preload("res://models/mouse_cursor/mouse_cursor.png")
+var blank_mouse_texture: Texture2D = preload("res://models/mouse_cursor/blank_mouse.png")
+
 var input_type: String = "keyboard"
 
 signal recieve_input_type_changed(new_input_type: String)
@@ -35,6 +38,8 @@ func _input(event: InputEvent) -> void:
 	_set_input_type(new_input_type)
 
 
+
+
 func _set_input_type(new_input_type: String) -> void:
 	if new_input_type == input_type:
 		return
@@ -42,3 +47,10 @@ func _set_input_type(new_input_type: String) -> void:
 	input_type = new_input_type
 
 	recieve_input_type_changed.emit(input_type)
+
+	if input_type == "keyboard":
+		Input.set_custom_mouse_cursor(mouse_texture)
+
+	elif input_type == "controller":
+		Input.set_custom_mouse_cursor(blank_mouse_texture)
+	

@@ -15,6 +15,8 @@ var hovered : bool = false
 func _ready() -> void:
 	background.connect('mouse_entered', _handle_mouse_entered)
 	background.connect('mouse_exited', _handle_mouse_exited)
+	background.connect('focus_entered', _handle_mouse_entered)
+	background.connect('focus_exited', _handle_mouse_exited)
 	
 	_toggle_confirm_available(false)
 
