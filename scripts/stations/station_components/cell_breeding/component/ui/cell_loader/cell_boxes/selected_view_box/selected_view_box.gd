@@ -29,6 +29,13 @@ func _handle_entry_dropped(cell : BrainCell) :
 	
 	GLBreedingComponetsBus.emit_signal('cell_loaded_on_selected_view', loaded_cell)
 	
+	## Controller
+	if GAMEInputTypeDetector.input_type == 'controller' : 		
+		
+		await get_tree().process_frame
+		
+		display_background.grab_focus()
+	
 	
 func _handle_box_empty(play_sound : bool = false) :
 	
@@ -44,3 +51,10 @@ func _handle_box_empty(play_sound : bool = false) :
 	on_selected_border.visible = false
 	
 	GLBreedingComponetsBus.emit_signal('cell_removed_from_selected_view')
+	
+	## Controller
+	if GAMEInputTypeDetector.input_type == 'controller' : 		
+		
+		await get_tree().process_frame
+		
+		display_background.grab_focus()

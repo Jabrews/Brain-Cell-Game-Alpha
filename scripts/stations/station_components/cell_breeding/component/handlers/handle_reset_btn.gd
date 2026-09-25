@@ -9,6 +9,9 @@ extends Node
 @onready var left_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox"
 @onready var right_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox"
 
+# breeding ui parent
+@onready var exit_btn : ColorRect = $"../BreedingUI/ExitHeader/ExitBtn"
+
 func _handle(): 
 	
 	var panel_state: Dictionary[String, BrainCell] = GLBreedingComponetsBus.breeding_panel_state.duplicate()
@@ -27,7 +30,8 @@ func _handle():
 			box._handle_entry_dropped(cell, false)
 		
 	GLBreedingComponetsBus.emit_signal("initate_breeder_refresh")
-	
+
+	exit_btn.grab_focus()
 
 func get_box(box_type: String) -> Control:
 	match box_type:

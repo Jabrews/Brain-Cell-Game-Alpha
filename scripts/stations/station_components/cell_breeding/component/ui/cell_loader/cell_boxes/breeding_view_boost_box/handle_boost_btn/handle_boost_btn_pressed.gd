@@ -17,6 +17,8 @@ func _ready() -> void:
 	
 	boost_btn.connect('mouse_entered', _handle_mouse_entered)
 	boost_btn.connect('mouse_exited', _handle_mouse_exited)
+	boost_btn.connect('focus_entered', _handle_mouse_entered)
+	boost_btn.connect('focus_exited', _handle_mouse_exited)
 	
 	GLBreedingComponetsBus.connect('toggle_boost_activated', _handle_toggle_boost_activated)	
 	
@@ -29,7 +31,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:	
 	if loaded_cell : 
 		if hovered : 
-			if Input.is_action_just_pressed('attack')  :
+			if Input.is_action_just_pressed('attack')  or Input.is_action_just_pressed('interact'):
 				parent_box.handle_boost_display._handle(parent_box.side)
 	
 

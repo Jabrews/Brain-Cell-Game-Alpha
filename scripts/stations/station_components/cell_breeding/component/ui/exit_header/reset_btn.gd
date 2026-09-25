@@ -21,6 +21,8 @@ var final_position: Vector2 = Vector2(77.0, -290.0)
 func _ready() -> void:
 	btn_bg.mouse_entered.connect(_handle_mouse_entered)
 	btn_bg.mouse_exited.connect(_handle_mouse_exited)
+	btn_bg.focus_entered.connect(_handle_mouse_entered)
+	btn_bg.focus_exited.connect(_handle_mouse_exited)
 
 	hint.visible = false
 	visible = false
@@ -28,7 +30,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if hovered : 
-		if Input.is_action_just_pressed('attack') : 
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact') : 
 			handle_reset_btn._handle()
 
 func reset(): 

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://gcnqwkipjc5n"]
+
+[ext_resource type="Script" uid="uid://camg0e0sfrdm5" path="res://scripts/game_manager/input_type_detector/input_type_detector.gd" id="1_3wt75"]
+
+[node name="InputTypeDetector" type="Node" unique_id=92862480]
+process_mode = 3
+script = ExtResource("1_3wt75")

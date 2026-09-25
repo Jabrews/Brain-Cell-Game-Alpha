@@ -17,11 +17,13 @@ var selected : bool = false # property is set by handlers
 func _ready() -> void:
 	detect_hover_rect.connect("mouse_entered", _handle_mouse_entered)
 	detect_hover_rect.connect("mouse_exited", _handle_mouse_exited)
+	detect_hover_rect.connect("focus_entered", _handle_mouse_entered)
+	detect_hover_rect.connect("focus_exited", _handle_mouse_exited)
 
 func _process(_delta: float) -> void: 
 	
 	if hovered : 
-		if Input.is_action_just_pressed('attack') : 
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact') : 
 			handle_stat_selected._handle(parent_boost_display.side, selected_stat)
 			
 

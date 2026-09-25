@@ -9,6 +9,7 @@ extends Node
 @onready var display_background: TextureRect = $"../DisplayBackground"
 @onready var remove_border : TextureRect = $"../RemoveBorder"
 @onready var add_a_cell_hint : Control = $"../AddACellHint"
+@onready var selected_border : TextureRect = $"../SelectedBorder"
 
 
 
@@ -17,12 +18,14 @@ var hovered: bool = false
 func _ready() -> void:
 	display_background.connect('mouse_entered', _handle_mouse_entered)
 	display_background.connect('mouse_exited', _handle_mouse_exited)
+	display_background.connect('focus_entered', _handle_mouse_entered)
+	display_background.connect('focus_exited', _handle_mouse_exited)
 
 
 func _process(_delta: float) -> void:
 	if hovered :
 		if parent_box.loaded_cell : 
-			if Input.is_action_just_pressed('attack') : 
+			if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact') : 
 				
 				if not is_selected_view_box : 
 					parent_box._handle_box_empty(true, true)
@@ -58,7 +61,10 @@ func _handle_hover_start() -> void:
 	
 	if parent_box.loaded_cell : 
 		remove_border.visible = true
+		
 	else : 
+		
+		selected_border.visible = true
 		
 		# right boost box does not get this hint
 		if not is_main_box and not is_selected_view_box : 		
@@ -74,3 +80,4 @@ func _handle_hover_end() -> void:
 		remove_border.visible = false 
 	else : 
 		add_a_cell_hint.visible = false 
+		selected_border.visible = false

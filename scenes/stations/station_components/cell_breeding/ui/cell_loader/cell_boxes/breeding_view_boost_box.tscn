@@ -167,6 +167,8 @@ layout_mode = 0
 offset_top = -80.0
 offset_right = 72.0
 offset_bottom = -8.0
+focus_neighbor_bottom = NodePath("../../DisplayBackground")
+focus_mode = 2
 texture = ExtResource("2_av1m0")
 
 [node name="Hover" type="TextureRect" parent="BoostBtn" unique_id=1970253299]
@@ -185,6 +187,8 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 72.0
 offset_bottom = 72.0
+focus_neighbor_top = NodePath("../BoostBtn/BoostBtn")
+focus_mode = 2
 texture = ExtResource("1_miwuh")
 expand_mode = 1
 

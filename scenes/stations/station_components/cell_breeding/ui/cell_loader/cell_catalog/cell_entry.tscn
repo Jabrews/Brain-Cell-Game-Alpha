@@ -111,6 +111,7 @@ offset_left = -9.0
 offset_top = -9.0
 offset_right = 127.0
 offset_bottom = 127.0
+focus_mode = 2
 texture = ExtResource("1_7it5b")
 
 [node name="CellName" type="Label" parent="." unique_id=1258845842]

@@ -52,6 +52,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 104.0
 offset_bottom = 104.0
+focus_mode = 2
 texture = ExtResource("1_ch84l")
 
 [node name="MockCellEntry" type="Control" parent="." unique_id=168524614]

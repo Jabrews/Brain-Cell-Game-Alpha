@@ -54,6 +54,7 @@ func toggle_display_lock(toggle_value: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
 		GLPlayerState.emit_signal('lock_player_position', true)
+		breeding_ui.grab_focus()
 
 	else:
 		GLHideUiBus.emit_signal('toggle_hide_ui', false)

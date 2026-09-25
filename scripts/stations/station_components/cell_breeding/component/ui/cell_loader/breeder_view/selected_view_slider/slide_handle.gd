@@ -18,10 +18,12 @@ var opened : bool = false
 func _ready() -> void:
 	slide_bg.connect('mouse_entered', _handle_mouse_entered)
 	slide_bg.connect('mouse_exited', _handle_mouse_exited)
+	slide_bg.connect('focus_entered', _handle_mouse_entered)
+	slide_bg.connect('focus_exited', _handle_mouse_exited)
 
 func _process(_delta: float) -> void: 
 	if hovered : 
-		if Input.is_action_just_pressed('attack') : 
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'): 
 			toggle_open()
 			
 func _handle_mouse_entered() :

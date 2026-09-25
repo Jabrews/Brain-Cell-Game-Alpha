@@ -9,18 +9,23 @@ var hovered : bool = false
 func _ready() -> void:
 	connect('mouse_entered', _handle_mouse_entered)
 	connect('mouse_exited', _handle_mouse_exited)
+	connect('focus_entered', _handle_mouse_entered)
+	connect('focus_exited', _handle_mouse_exited)
 
 func _handle_mouse_entered() :
 	hovered = true
 	scale = Vector2(1.05, 1.05)
+	color = Color.LIGHT_GRAY
 
 func _handle_mouse_exited() :
 	hovered = false
 	scale = Vector2(1.0, 1.0)
+	color = Color.WHITE
+	
 
 func _process(_delta: float) -> void:
 	if hovered == true : 
-		if Input.is_action_just_pressed('attack') :
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact') :
 			handle_display_ui._toggle_display(false)
 			
 			

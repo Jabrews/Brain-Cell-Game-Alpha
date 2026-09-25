@@ -39,6 +39,13 @@ func _handle_entry_dropped(cell : BrainCell, play_sound : bool = false, refresh 
 	
 	if refresh : 
 		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')
+		
+		## Controller
+		if GAMEInputTypeDetector.input_type == 'controller' : 		
+			
+			await get_tree().process_frame
+			
+			display_background.grab_focus()
 	
 	
 func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
@@ -57,6 +64,13 @@ func _handle_box_empty(play_sound : bool = false, refresh : bool = false) :
 	
 	if refresh : 
 		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')
+		
+		## Controller
+		if GAMEInputTypeDetector.input_type == 'controller' : 		
+			
+			await get_tree().process_frame
+			
+			display_background.grab_focus()
 
 
 func _update_breeding_ui_state() : 

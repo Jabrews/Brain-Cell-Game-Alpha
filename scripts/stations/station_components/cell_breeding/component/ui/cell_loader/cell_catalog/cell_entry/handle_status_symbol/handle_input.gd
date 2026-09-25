@@ -17,6 +17,9 @@ var dragging: bool = false
 func _ready() -> void:
 	entry_texture.mouse_entered.connect(_handle_mouse_enter)
 	entry_texture.mouse_exited.connect(_handle_mouse_exit)
+	
+	entry_texture.focus_entered.connect(_handle_mouse_enter)
+	entry_texture.focus_exited.connect(_handle_mouse_exit)
 
 	holding_detect_timer.timeout.connect(_handle_holding_detect_timeout)
 
@@ -25,11 +28,11 @@ func _process(_delta: float) -> void:
 	if not hovered and not dragging:
 		return
 
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed('interact'):
 		holding = true
 		holding_detect_timer.start()
 
-	if Input.is_action_just_released("attack"):
+	if Input.is_action_just_released("attack") or Input.is_action_just_released('interact'):
 		
 		if holding and not dragging:
 			print("normal click")

@@ -21,11 +21,13 @@ var selected : bool = false
 func _ready() -> void:
 	btn_bg.mouse_entered.connect(_handle_mouse_entered)
 	btn_bg.mouse_exited.connect(_handle_mouse_exited)
+	btn_bg.focus_entered.connect(_handle_mouse_entered)
+	btn_bg.focus_exited.connect(_handle_mouse_exited)
 
 
 func _process(_delta: float) -> void:
 	if hovered and available:
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed('interact'):
 			var side : String = parent_boost_display.side
 			handle_charge_direction._toggle_btn_pressed(side, direction)
 
