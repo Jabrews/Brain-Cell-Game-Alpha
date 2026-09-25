@@ -7,11 +7,13 @@ extends Node
 # visual components
 @onready var slide_content : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideContent"
 @onready var slide_handle : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideHandle"
+@onready var slide_bg_rect : ColorRect = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideHandle/SlideBg"
 
 # handle components
 @onready var handle_btn_section : Node = $HandleBtnSection
 @onready var handle_information_section : Node = $HandleInformationSection
 @onready var handle_boost_display : Node = $"../HandleBoostDisplay"
+@onready var toggle_slider_focus : Node = $ToggleSliderFocus
 
 
 const SLIDE_CONTENT_CLOSE_POS : Vector2 = Vector2(0.0, 280.0)
@@ -50,12 +52,27 @@ func _handle(toggle_value : bool) :
 		slide_content.position =  SLIDE_CONTENT_CLOSE_POS
 		slide_handle.position = SLIDE_HANDLE_CLOSE_POS 
 	
+	toggle_slider_focus._toggle(toggle_value)
+	
+	if toggle_value : 	
+		
+		if GAMEInputTypeDetector.input_type == 'controller' :
+			
+			await get_tree().process_frame
+			
+			slide_bg_rect.grab_focus()
+		
+		
+		
+	
+	
+	
+	
 	
 func _handle_cell_loaded_on_selected_view(cell : BrainCell) :
 	handle_btn_section._toggle_active(true)
 	handle_information_section._toggle_active(true)
 	handle_information_section._display_information_section(cell)
-	
 	
 	
 func _cell_removed_from_selected_view() :

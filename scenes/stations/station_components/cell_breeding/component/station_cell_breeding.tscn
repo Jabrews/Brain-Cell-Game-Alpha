@@ -52,6 +52,7 @@
 [ext_resource type="Script" uid="uid://dotvi2i3phx0q" path="res://scripts/stations/station_components/cell_breeding/component/handlers/handle_view_breeding/display/display_stats.gd" id="19_y63pt"]
 [ext_resource type="Script" uid="uid://grpave2s2brq" path="res://scripts/stations/station_components/cell_breeding/component/handlers/handle_view_breeding/display/stat_symbols/display_stat_symbols.gd" id="20_nm6wx"]
 [ext_resource type="Texture2D" uid="uid://bohpfv5sdxfl6" path="res://models/breeding_screen/total_death_chance_frame.png" id="21_x5req"]
+[ext_resource type="Script" uid="uid://l5f1ut6yo4ja" path="res://scripts/stations/station_components/cell_breeding/component/handlers/handle_view_slider/toggle_slider_focus.gd" id="23_ivyfi"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="23_q2fkw"]
 [ext_resource type="AudioStream" uid="uid://blyvvd4y36iqr" path="res://sounds/station_cell_breeder/reset_btn_appear.mp3" id="23_vsr2l"]
 [ext_resource type="Script" uid="uid://hk41fnhr8xfa" path="res://scripts/stations/station_components/cell_breeding/component/handlers/handle_view_breeding/display/display_blood_type.gd" id="24_nm6wx"]
@@ -1211,6 +1212,9 @@ script = ExtResource("18_7oiwu")
 
 [node name="HandleSelectedViewSlider" type="Node" parent="." unique_id=2031448372]
 script = ExtResource("10_jh1bc")
+
+[node name="ToggleSliderFocus" type="Node" parent="HandleSelectedViewSlider" unique_id=1603043115]
+script = ExtResource("23_ivyfi")
 
 [node name="HandleBtnSection" type="Node" parent="HandleSelectedViewSlider" unique_id=567767176]
 script = ExtResource("11_yqqxt")
@@ -2523,6 +2527,7 @@ offset_right = 40.0
 offset_bottom = 36.0
 
 [node name="LeftBoostDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BoostDisplays" unique_id=2136869072]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -4193,9 +4198,9 @@ mouse_filter = 2
 [node name="SlideHandle" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1409566521]
 anchors_preset = 0
 offset_left = 432.0
-offset_top = 242.0
+offset_top = -16.0
 offset_right = 472.0
-offset_bottom = 282.0
+offset_bottom = 24.0
 script = ExtResource("16_bxgwh")
 
 [node name="SlideHover" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideHandle" unique_id=1089181671]
@@ -4216,6 +4221,7 @@ offset_bottom = 40.0
 focus_neighbor_left = NodePath("../../../BreedingView/Boxes/LeftBreedingViewMainBox/DisplayBackground")
 focus_neighbor_top = NodePath("../../../BreedingView/Boxes/LeftBreedingViewMainBox/DisplayBackground")
 focus_neighbor_right = NodePath("../../../BreedingView/Boxes/RightBreedingViewMainBox/DisplayBackground")
+focus_neighbor_bottom = NodePath("../../SlideContent/BoxSection/SelectedViewBox/DisplayBackground")
 focus_mode = 2
 color = Color(0.47, 0, 0, 1)
 
@@ -4236,9 +4242,9 @@ vertical_alignment = 1
 
 [node name="SlideContent" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=2120854872]
 anchors_preset = 0
-offset_top = 282.0
+offset_top = 24.0
 offset_right = 40.0
-offset_bottom = 322.0
+offset_bottom = 64.0
 
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1899304568]
 layout_mode = 0
@@ -4999,6 +5005,11 @@ offset_right = 36.0
 offset_bottom = 99.0
 drag_cell_entry_parent_node = NodePath("../../../../../DragCellEntryParentNode")
 
+[node name="DisplayBackground" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox" index="3" unique_id=1287551043]
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../../SlideHandle/SlideBg")
+focus_neighbor_bottom = NodePath(".")
+
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection" unique_id=1528806629]
 layout_mode = 0
 offset_right = 160.0
@@ -5079,12 +5090,24 @@ offset_bottom = -3.0
 info_section_type = "stats"
 label_text = "Stats"
 
+[node name="BG2" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/StatsViewBtn" index="0" unique_id=871811873]
+focus_neighbor_left = NodePath("../../../../BoxSection/SelectedViewBox/DisplayBackground")
+focus_neighbor_top = NodePath("../../../../../SlideHandle/SlideBg")
+focus_neighbor_bottom = NodePath("../../DeathChangeViewBtn/BG2")
+focus_mode = 2
+
 [node name="DeathChangeViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=1497145258 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
 offset_top = 56.0
 offset_bottom = 56.0
 info_section_type = "death_chance"
 label_text = "Death Chance"
+
+[node name="BG2" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/DeathChangeViewBtn" index="0" unique_id=871811873]
+focus_neighbor_left = NodePath("../../../../BoxSection/SelectedViewBox/DisplayBackground")
+focus_neighbor_top = NodePath("../../StatsViewBtn/BG2")
+focus_neighbor_bottom = NodePath("../../BloodTypeViewBtn/BG2")
+focus_mode = 2
 
 [node name="BloodTypeViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=1334943118 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
@@ -5093,12 +5116,23 @@ offset_bottom = 115.0
 info_section_type = "blood_type"
 label_text = "Blood Type"
 
+[node name="BG2" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/BloodTypeViewBtn" index="0" unique_id=871811873]
+focus_neighbor_left = NodePath("../../../../BoxSection/SelectedViewBox/DisplayBackground")
+focus_neighbor_top = NodePath("../../DeathChangeViewBtn/BG2")
+focus_neighbor_bottom = NodePath("../../MutationsViewBtn/BG2")
+focus_mode = 2
+
 [node name="MutationsViewBtn" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent" unique_id=108224177 instance=ExtResource("30_k7gp0")]
 layout_mode = 0
 offset_top = 175.0
 offset_bottom = 175.0
 info_section_type = "mutations"
 label_text = "Mutations"
+
+[node name="BG2" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/MutationsViewBtn" index="0" unique_id=871811873]
+focus_neighbor_left = NodePath("../../../../BoxSection/SelectedViewBox/DisplayBackground")
+focus_neighbor_top = NodePath("../../BloodTypeViewBtn/BG2")
+focus_mode = 2
 
 [node name="BtnUnloadedHint" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=41881637]
 visible = false
@@ -5816,3 +5850,8 @@ draw_pass_1 = SubResource("QuadMesh_xf8x4")
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox"]
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox"]
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox"]
+[editable path="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"]
+[editable path="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/StatsViewBtn"]
+[editable path="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/DeathChangeViewBtn"]
+[editable path="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/BloodTypeViewBtn"]
+[editable path="BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/MutationsViewBtn"]
