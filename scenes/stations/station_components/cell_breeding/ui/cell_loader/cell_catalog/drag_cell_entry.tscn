@@ -29,6 +29,7 @@ load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948
 z_index = 2
 layout_mode = 3
 anchors_preset = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_7bpug")
 
 [node name="DisplayDragCellEntry" type="Node" parent="." unique_id=300995727]
@@ -46,6 +47,7 @@ right_boost_radius = 30.0
 layout_mode = 0
 offset_right = 82.0
 offset_bottom = 82.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 color = Color(0.10980392, 0.10980392, 0.10980392, 1)
 
 [node name="CellName" type="Label" parent="." unique_id=1365005680]
@@ -54,6 +56,7 @@ layout_mode = 0
 offset_top = 1.0
 offset_right = 82.0
 offset_bottom = 26.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("1_ofjlq")
 theme_override_font_sizes/font_size = 16
 text = "Billy Bob Jr"
@@ -66,6 +69,7 @@ offset_left = -9.0
 offset_top = -33.0
 offset_right = 31.0
 offset_bottom = 7.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="Strength" type="Control" parent="StatDisplay" unique_id=924036388]
@@ -73,6 +77,7 @@ anchors_preset = 0
 offset_top = 3.0
 offset_right = 40.0
 offset_bottom = 43.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="CleanBar" type="TextureProgressBar" parent="StatDisplay/Strength" unique_id=1929297359]
 texture_filter = 1
@@ -81,6 +86,7 @@ offset_left = 12.0
 offset_top = 55.0
 offset_right = 88.0
 offset_bottom = 61.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 value = 75.0
 nine_patch_stretch = true
@@ -95,6 +101,7 @@ offset_top = 62.0
 offset_right = 88.0
 offset_bottom = 64.85715
 scale = Vector2(1, 1.4)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
@@ -106,6 +113,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/Strength/Off" unique_id=898712691]
@@ -114,6 +122,7 @@ offset_left = 12.0
 offset_top = 55.0
 offset_right = 88.0
 offset_bottom = 66.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
@@ -123,6 +132,7 @@ offset_left = 13.0
 offset_top = 57.0
 offset_right = 87.0
 offset_bottom = 64.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_6dlfl")
 theme_override_font_sizes/font_size = 6
@@ -144,6 +154,7 @@ anchors_preset = 0
 offset_top = 22.0
 offset_right = 40.0
 offset_bottom = 62.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="CleanBar" type="TextureProgressBar" parent="StatDisplay/Intelligence" unique_id=465731407]
 texture_filter = 1
@@ -152,6 +163,7 @@ offset_left = 12.0
 offset_top = 55.0
 offset_right = 88.0
 offset_bottom = 61.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 value = 75.0
 nine_patch_stretch = true
@@ -166,6 +178,7 @@ offset_top = 62.0
 offset_right = 88.0
 offset_bottom = 64.85715
 scale = Vector2(1, 1.4)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
@@ -177,6 +190,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/Intelligence/Off" unique_id=1703074392]
@@ -185,6 +199,7 @@ offset_left = 12.0
 offset_top = 55.0
 offset_right = 88.0
 offset_bottom = 66.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
@@ -194,6 +209,7 @@ offset_left = 13.0
 offset_top = 57.0
 offset_right = 87.0
 offset_bottom = 64.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_6dlfl")
 theme_override_font_sizes/font_size = 6
@@ -215,6 +231,7 @@ anchors_preset = 0
 offset_top = 40.0
 offset_right = 40.0
 offset_bottom = 80.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 
 [node name="CleanBar" type="TextureProgressBar" parent="StatDisplay/Community" unique_id=422943506]
 texture_filter = 1
@@ -223,6 +240,7 @@ offset_left = 12.0
 offset_top = 55.0
 offset_right = 88.0
 offset_bottom = 61.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 value = 75.0
 nine_patch_stretch = true
@@ -237,6 +255,7 @@ offset_top = 62.0
 offset_right = 88.0
 offset_bottom = 64.85715
 scale = Vector2(1, 1.4)
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
@@ -248,6 +267,7 @@ visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/Community/Off" unique_id=223074595]
@@ -256,6 +276,7 @@ offset_left = 12.0
 offset_top = 55.0
 offset_right = 88.0
 offset_bottom = 66.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 color = Color(0.09, 0.09, 0.09, 1)
 
@@ -265,6 +286,7 @@ offset_left = 13.0
 offset_top = 57.0
 offset_right = 87.0
 offset_bottom = 64.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_6dlfl")
 theme_override_font_sizes/font_size = 6
@@ -289,6 +311,7 @@ offset_left = -3.0
 offset_top = -3.0
 offset_right = 85.0
 offset_bottom = 85.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("9_3sy3o")
 expand_mode = 1

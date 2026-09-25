@@ -18,7 +18,7 @@ func _toggle_active(toggle_value : bool) :
 		unloaded_hint.visible = false 
 		
 		# starts on stats
-		btn_parent.get_children()[0]._handle_btn_pressed(true) # skip btn dow
+		#btn_parent.get_children()[0]._handle_btn_pressed(true) # skip btn dow
 		
 		
 	else :

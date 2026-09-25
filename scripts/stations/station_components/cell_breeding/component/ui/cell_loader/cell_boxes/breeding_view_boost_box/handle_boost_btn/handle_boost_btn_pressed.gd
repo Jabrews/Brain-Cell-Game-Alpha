@@ -37,11 +37,12 @@ func _process(_delta: float) -> void:
 
 func _handle_mouse_entered() :
 	
+	boost_btn_hover.visible = true
+	
 	if loaded_cell : 
 		
 		hovered = true
 		
-		boost_btn_hover.visible = true
 	
 	else : 
 		
@@ -53,12 +54,11 @@ func _handle_mouse_entered() :
 
 func _handle_mouse_exited() :
 	
+	boost_btn_hover.visible = false 
+	
 	if loaded_cell : 
 		
 		hovered = false		
-		
-		boost_btn_hover.visible = false 
-		
 		
 	must_add_charge_cell_hint.visible = false
 

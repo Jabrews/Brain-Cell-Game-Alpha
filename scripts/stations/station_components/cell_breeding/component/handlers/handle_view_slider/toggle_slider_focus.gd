@@ -19,9 +19,15 @@ extends Node
 	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/MutationsViewBtn/BG2"
 ]
 
+@onready var selected_cell_box : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
+
 
 func _ready() -> void:
 	_toggle(false)
+	
+	GLBreedingComponetsBus.connect('cell_loaded_on_selected_view', _handle_cell_loaded_on_selected_view)	
+	GLBreedingComponetsBus.connect('cell_removed_from_selected_view', _handle_cell_removed_from_selected_view)	
+	
 
 func _toggle(toggle_value : bool) -> void:
 	if toggle_value:
@@ -37,8 +43,16 @@ func _toggle(toggle_value : bool) -> void:
 		selected_cell_box_display_background.focus_mode = Control.FOCUS_ALL
 		
 		# TODO only enable if found selected cell
-		for component : Control in toggle_mode_components : 		
-			component.focus_mode = Control.FOCUS_ALL
+		
+		if selected_cell_box.loaded_cell :
+			
+			for component : Control in toggle_mode_components : 		
+				component.focus_mode = Control.FOCUS_ALL
+		
+		else : 
+			for component : Control in toggle_mode_components : 		
+				component.focus_mode = Control.FOCUS_NONE
+		
 		
 	
 	else:
@@ -53,3 +67,10 @@ func _toggle(toggle_value : bool) -> void:
 		for component : Control in toggle_mode_components : 		
 			component.focus_mode = Control.FOCUS_NONE
 		
+func _handle_cell_loaded_on_selected_view(_loaded_cell : BrainCell) :
+	for component : Control in toggle_mode_components : 		
+			component.focus_mode = Control.FOCUS_ALL
+
+func _handle_cell_removed_from_selected_view() :
+		for component : Control in toggle_mode_components : 		
+			component.focus_mode = Control.FOCUS_NONE
