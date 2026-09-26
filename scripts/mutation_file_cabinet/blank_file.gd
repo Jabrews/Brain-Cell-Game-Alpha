@@ -6,14 +6,8 @@ var locked: bool = true
 # parent componnet
 @onready var mutation_file_cabinet : Node3D = $"../.."
 
-# audio manager componnet
-@onready var audio_manager : Node3D = $"../../AudioManager"
-
 # get mutation symbol/icon
 @onready var get_mutation_symbol : Node = $"../../GetMutationSymbol"
-
-# controller focus component
-@onready var controller_foucs : Control = $ControllerFocus
 
 
 # file components
@@ -48,31 +42,13 @@ func _ready() -> void:
 	
 	original_position = position
 	original_lock_pos = locked_icon_sprite.global_position
-	
-	detect_mouse_area.mouse_entered.connect(_handle_mouse_entered)
-	detect_mouse_area.mouse_exited.connect(_handle_mouse_exited)
-	
-	controller_foucs.connect('focus_entered', _handle_mouse_entered)
-	controller_foucs.connect('focus_exited', _handle_mouse_exited)
-	
-
-func _process(_delta: float) -> void:
-	if file_being_hover_over and designated_file_info and not locked: 
-		if Input.is_action_just_pressed('attack') :
-			mutation_file_cabinet._display_file_view(designated_file_info)
-			
-		if GAMEInputTypeDetector.input_type == 'controller' : 
-			if Input.is_action_just_pressed('interact') :
-				mutation_file_cabinet._display_file_view(designated_file_info)
-
-
 
 func _load_file_info(new_designated_file_info: FileInfo = null) -> void:
 	designated_file_info = new_designated_file_info
 	locked = true
 
 	if designated_file_info == null:
-		load_file_label_style("disabled")
+		#load_file_label_style("disabled")
 		return
 
 	if designated_file_info.seen:
@@ -127,7 +103,6 @@ func _handle_mouse_entered() -> void:
 		return
 		
 	if locked : 
-		audio_manager.play_invalid()
 		shake_lock()
 		return
 
@@ -136,7 +111,6 @@ func _handle_mouse_entered() -> void:
 	await get_tree().create_timer(0.15).timeout
 
 	if show_hover_delay_true:
-		audio_manager.play_valid()
 		click_to_view_label.visible = true
 		hover_file("up")
 

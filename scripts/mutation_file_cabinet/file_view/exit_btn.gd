@@ -17,6 +17,8 @@ var hover_tween: Tween
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
+	focus_entered.connect(_on_mouse_entered)
+	focus_exited.connect(_on_mouse_exited)
 
 	org_pos = position
 	org_scale = scale
@@ -29,8 +31,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if being_hovered_over:
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed('interact') or Input.is_action_just_pressed('drop_item'):
 			get_parent()._close_file_view()
+			
 
 
 func start_floating() -> void:

@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bd2peu55fydah" path="res://reusable/modular_scripts/floating_label/floating_label_2d.gd" id="7_0tp8k"]
 [ext_resource type="Script" uid="uid://dlkwt78hm0yuv" path="res://scripts/mutation_file_cabinet/press_to_leave.gd" id="7_8gn6o"]
 [ext_resource type="Script" uid="uid://dvy0f8mt8i2yy" path="res://scripts/mutation_file_cabinet/audio_manager.gd" id="7_doic2"]
+[ext_resource type="Script" uid="uid://hufo7btruhuo" path="res://scripts/mutation_file_cabinet/blank_file.gd" id="8_62fj7"]
 [ext_resource type="AudioStream" uid="uid://bcgydw07vdwaf" path="res://sounds/file_cabinet/cabinet_open.mp3" id="8_b38vp"]
 [ext_resource type="Script" uid="uid://dxq4d5cq0abum" path="res://scripts/mutation_file_cabinet/file_view/file_view.gd" id="8_hioyw"]
 [ext_resource type="Texture2D" uid="uid://ybnnjg3hknus" path="res://models/file_cabinet/paper.png" id="8_kdclm"]
@@ -947,6 +948,15 @@ transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
 
+[node name="ControllerFocus" type="Control" parent="Files/File" unique_id=1062961699]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("../../File2/ControllerFocus")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
+
 [node name="File2" type="Node3D" parent="Files" unique_id=46558380]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020820856, 0, 0)
 script = ExtResource("2_v8dss")
@@ -978,6 +988,15 @@ texture = ExtResource("5_r6817")
 transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.7123909, 0.818599, -0.15794837)
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
+
+[node name="ControllerFocus" type="Control" parent="Files/File2" unique_id=788639423]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("../../File3/ControllerFocus")
+focus_neighbor_bottom = NodePath("../../File/ControllerFocus")
+focus_mode = 2
 
 [node name="File3" type="Node3D" parent="Files" unique_id=1375311558]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.047548473, 0, 0)
@@ -1011,6 +1030,15 @@ transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
 
+[node name="ControllerFocus" type="Control" parent="Files/File3" unique_id=1961168634]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("../../File4/ControllerFocus")
+focus_neighbor_bottom = NodePath("../../File2/ControllerFocus")
+focus_mode = 2
+
 [node name="File4" type="Node3D" parent="Files" unique_id=1052606660]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.085810065, 0, 0)
 script = ExtResource("2_v8dss")
@@ -1042,6 +1070,15 @@ texture = ExtResource("5_r6817")
 transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.5340444, 0.818599, -0.76692253)
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
+
+[node name="ControllerFocus" type="Control" parent="Files/File4" unique_id=2005035521]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("../../File5/ControllerFocus")
+focus_neighbor_bottom = NodePath("../../File3/ControllerFocus")
+focus_mode = 2
 
 [node name="File5" type="Node3D" parent="Files" unique_id=1059304766]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.116925, 0, 0)
@@ -1075,6 +1112,15 @@ transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
 
+[node name="ControllerFocus" type="Control" parent="Files/File5" unique_id=256401079]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("../../File6/ControllerFocus")
+focus_neighbor_bottom = NodePath("../../File4/ControllerFocus")
+focus_mode = 2
+
 [node name="File6" type="Node3D" parent="Files" unique_id=1837632478]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.13106823, 0, 0)
 script = ExtResource("2_v8dss")
@@ -1106,6 +1152,15 @@ texture = ExtResource("5_r6817")
 transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-08, 1.370218, 0.818599, -0.15794837)
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
+
+[node name="ControllerFocus" type="Control" parent="Files/File6" unique_id=1684494189]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath("../../File7/ControllerFocus")
+focus_neighbor_bottom = NodePath("../../File5/ControllerFocus")
+focus_mode = 2
 
 [node name="File7" type="Node3D" parent="Files" unique_id=1075388070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14804018, 0, 0)
@@ -1139,9 +1194,18 @@ transform = Transform3D(-1.3113417e-08, 0, 0.3, 0, 0.3, 0, -0.3, 0, -1.3113417e-
 texture_filter = 0
 texture = ExtResource("6_0tp8k")
 
+[node name="ControllerFocus" type="Control" parent="Files/File7" unique_id=161543987]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath("../../File6/ControllerFocus")
+focus_mode = 2
+
 [node name="File8" type="Node3D" parent="Files" unique_id=731464087]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1621834, 0, 0)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_8" type="MeshInstance3D" parent="Files/File8" unique_id=527644693]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2074308, -0.15815495, -0.2147297)
@@ -1173,7 +1237,7 @@ texture = ExtResource("6_0tp8k")
 
 [node name="File9" type="Node3D" parent="Files" unique_id=1815537853]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17066932, 0, 0)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_9" type="MeshInstance3D" parent="Files/File9" unique_id=1994321285]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1357677, -0.15815495, -0.2147297)
@@ -1205,7 +1269,7 @@ texture = ExtResource("6_0tp8k")
 
 [node name="File10" type="Node3D" parent="Files" unique_id=331913888]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17915523, 0, 0)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_10" type="MeshInstance3D" parent="Files/File10" unique_id=1126106170]
 transform = Transform3D(1, 0, 0, 0, 1.01, 0, 0, 0, 1, 1.0635905, -0.15815495, -0.2147297)
@@ -1237,7 +1301,7 @@ texture = ExtResource("6_0tp8k")
 
 [node name="File11" type="Node3D" parent="Files" unique_id=1521269391]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19046974, 0, 0)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_11" type="MeshInstance3D" parent="Files/File11" unique_id=2102060333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98722076, -0.15815495, -0.2147297)
@@ -1269,7 +1333,7 @@ texture = ExtResource("6_0tp8k")
 
 [node name="File12" type="Node3D" parent="Files" unique_id=503693470]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2058587, 0, 0)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_12" type="MeshInstance3D" parent="Files/File12" unique_id=941643472]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9155577, -0.15815495, -0.2147297)
@@ -1301,7 +1365,7 @@ texture = ExtResource("6_0tp8k")
 
 [node name="File13" type="Node3D" parent="Files" unique_id=255205613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0591837, -0.15865985, -0.22912025)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_1" type="MeshInstance3D" parent="Files/File13" unique_id=431398052]
 mesh = SubResource("ArrayMesh_bj4q8")
@@ -1332,7 +1396,7 @@ texture = ExtResource("6_0tp8k")
 
 [node name="File14" type="Node3D" parent="Files" unique_id=1328691712]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.71036506, 0, 0)
-script = ExtResource("2_v8dss")
+script = ExtResource("8_62fj7")
 
 [node name="File_2" type="MeshInstance3D" parent="Files/File14" unique_id=339259345]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7074306, -0.15815495, -0.2147297)
@@ -1523,6 +1587,13 @@ offset_top = 31.999998
 offset_right = 934.6667
 offset_bottom = 61.052628
 scale = Vector2(1.0588228, 0.826087)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
+focus_mode = 2
 texture = ExtResource("10_rppej")
 script = ExtResource("11_7hlws")
 
