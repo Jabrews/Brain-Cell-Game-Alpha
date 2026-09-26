@@ -15,6 +15,8 @@ var stat_disabled : bool = false
 func _ready() -> void:
 	bar.mouse_entered.connect(_handle_mouse_entered)
 	bar.mouse_exited.connect(_handle_mouse_exited)
+	bar.focus_entered.connect(_handle_mouse_entered)
+	bar.focus_exited.connect(_handle_mouse_exited)
 	
 	bar.material = bar.material.duplicate()	
 
@@ -24,7 +26,7 @@ func _process(_delta: float) -> void:
 		return
 	
 	if stat_hovered_over:
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed('interact'):
 			get_parent()._handle_pop_up_stat_selected(stat_type)
 
 

@@ -9,10 +9,12 @@ func _ready() -> void:
 	
 	mouse_entered.connect(_handle_mouse_entered)
 	mouse_exited.connect(_handle_mouse_exited)
+	focus_entered.connect(_handle_mouse_entered)
+	focus_exited.connect(_handle_mouse_exited)
 
 func _process(_delta: float) -> void: 
 	if mouse_hovered_over :
-		if Input.is_action_just_pressed('attack') :
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
 			get_parent().hide_popup()
 
 func _handle_mouse_entered() -> void:

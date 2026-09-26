@@ -31,6 +31,8 @@ extends Node
 	$"../BreedingUI/NewCellDisplay/NewCell/HideStats/CommunityHide"
 ]
 
+@onready var confirm_btn_bg : ColorRect = $"../BreedingUI/InteractFooter/ConfirmBtn/BtnBg"
+
 
 var stat_types : Array[String] = [
 	"strength",
@@ -105,6 +107,9 @@ func _display() -> void:
 	
 	
 	_display_cell_visuals(preview_new_cell)
+	
+	if GAMEInputTypeDetector.input_type == 'controller' : 
+		confirm_btn_bg.grab_focus()
 
 
 func apply_charge_boost_to_copy(

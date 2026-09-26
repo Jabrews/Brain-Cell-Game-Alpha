@@ -23,7 +23,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void: 
 	if hovered : 
 		if confirm_available : 
-			if Input.is_action_just_pressed('attack') :
+			if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
 				handle_confirm_btn._handle()
 
 

@@ -7,9 +7,13 @@ extends Node
 @onready var left_finsihed_particle : GPUParticles3D = $"../BreedingParticle/LeftFinishedParticle"
 @onready var right_finsihed_particle : GPUParticles3D = $"../BreedingParticle/RightFinishedParticle"
 
+
 var current_screen : String = 'cell_loader'
 
 func _handle() :  
+	
+
+	
 	
 	if current_screen == 'cell_loader' :
 		

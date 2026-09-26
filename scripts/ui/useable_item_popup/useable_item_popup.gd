@@ -11,6 +11,9 @@ var active_useable_item_obj : UseableItemObject
 @onready var intelligence_stat_option : Control = $Intelligence
 @onready var community_stat_option : Control = $Community
 @onready var cell_name : Label = $CellName
+# for grab_focus
+@onready var strength_bar_rect : TextureRect = $Strength/Bar
+
 
 # type specific
 # defect shot
@@ -41,6 +44,10 @@ func _handle_show_useable_item_pop_up(selected_cell: BrainCell, useable_item_obj
 	visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
+	
+	if GAMEInputTypeDetector.input_type == 'controller' :
+		await get_tree().process_frame
+		strength_bar_rect.grab_focus()
 				
 	strength_stat_option.handle_display_stat_info(active_cell.strength)
 	intelligence_stat_option.handle_display_stat_info(active_cell.intelligence)

@@ -167,6 +167,9 @@ func serve_item_cards() -> void:
 	item_offer_card_2.update(item_2)
 	item_offer_card_3.update(item_3)
 	
+	if GAMEInputTypeDetector.input_type == 'controller' :
+		item_offer_card_1.grab_focus()
+	
 	GLPlayerState.emit_signal('lock_player_position', true)
 
 

@@ -64,6 +64,10 @@ offset_left = 238.0
 offset_top = 188.0
 offset_right = 468.0
 offset_bottom = 547.375
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
 texture = ExtResource("11_05saj")
 script = ExtResource("12_5kdy1")
 
@@ -108,6 +112,11 @@ offset_left = 531.0
 offset_top = 188.0
 offset_right = 761.0
 offset_bottom = 547.375
+focus_neighbor_left = NodePath("../Card1Container")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../Card3Container")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
 texture = ExtResource("11_05saj")
 script = ExtResource("12_5kdy1")
 
@@ -152,6 +161,11 @@ offset_left = 818.0
 offset_top = 188.0
 offset_right = 1048.0
 offset_bottom = 547.375
+focus_neighbor_left = NodePath("../Card2Container")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
+focus_mode = 2
 texture = ExtResource("11_05saj")
 script = ExtResource("12_5kdy1")
 

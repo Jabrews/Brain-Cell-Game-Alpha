@@ -17,10 +17,12 @@ var hover_active : bool = false
 func _ready() -> void:
 	red_bg.connect('mouse_entered', _handle_mouse_entered)
 	red_bg.connect('mouse_exited', _handle_mouse_exited)
+	red_bg.connect('focus_entered', _handle_mouse_entered)
+	red_bg.connect('focus_exited', _handle_mouse_exited)
 
 func _process(_delta: float) -> void: 
 	if hover_active : 
-		if Input.is_action_just_pressed('attack') :
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
 			parent_useable_item_popup._handle_pop_up_mutation_selected(loaded_mutation.type)
 			
 	

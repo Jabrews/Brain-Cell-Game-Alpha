@@ -17,10 +17,7 @@ func _ready() -> void:
 
 func _toggle_new_cell_preview(toggle_value : bool) : 
 	
-	confirm_btn.visible = false
 	back_btn.visible = false
-	
-	await get_tree().create_timer(0.3).timeout
 	
 	confirm_btn.visible = true
 	
