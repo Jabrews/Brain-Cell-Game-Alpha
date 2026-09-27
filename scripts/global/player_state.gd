@@ -11,6 +11,7 @@ signal player_health_changed()
 
 var player_holding_axe_mount : bool = false
 signal toggle_player_picked_up_axe_mount(toggleValue : bool)
+signal toggle_player_looking_at_axe_mount(toggle_value : bool)
 
 signal lock_player_position(toggle_value : bool)
 

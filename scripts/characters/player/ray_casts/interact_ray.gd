@@ -55,6 +55,8 @@ func _process(_delta: float) -> void:
 			target_position.z = -2.5
 			GLPlayerState.emit_signal('toggle_pickup_reduce_player_senstivty', true)
 		
+		#if collider.is_in_group('useable_item_area') :
+			#GLUsableItemBus.emit_signal('toggle_show_pickup_label', false)				
 		
 
 		ray_cast_controller_parent.set_ray_mode("interact")

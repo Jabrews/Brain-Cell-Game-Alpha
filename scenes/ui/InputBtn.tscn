@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bjrgxfg6kh0d1"]
+
+[ext_resource type="Script" uid="uid://bqkb5g21kj73k" path="res://scripts/ui/input_btn/input_btn.gd" id="1_6oygs"]
+[ext_resource type="Texture2D" uid="uid://d0j8g1l8yjhxy" path="res://models/input_btns/a_interact.png" id="1_kmw3c"]
+
+[node name="InputBtn" type="Control" unique_id=1359138110]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6oygs")
+
+[node name="BtnTextureRect" type="TextureRect" parent="." unique_id=1613958604]
+texture_filter = 1
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("1_kmw3c")

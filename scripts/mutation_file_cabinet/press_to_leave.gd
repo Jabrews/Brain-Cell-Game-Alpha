@@ -1,4 +1,4 @@
-extends Label
+extends Control
 
 var breathing_tween : Tween
 

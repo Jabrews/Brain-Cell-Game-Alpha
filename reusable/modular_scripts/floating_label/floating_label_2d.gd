@@ -1,4 +1,4 @@
-extends Label
+extends Control
 
 @export var y_axis_positive_transform: float = 5.0
 @export var float_speed: float = 0.5

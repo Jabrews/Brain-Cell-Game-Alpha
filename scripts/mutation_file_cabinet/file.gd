@@ -23,7 +23,7 @@ var locked: bool = true
 @onready var locked_icon_sprite: Sprite3D = $LockedIconSprite
 
 # click to view label
-@onready var click_to_view_label : Label = $"../../ClickToView"
+@onready var click_to_view_parent  : Control = $"../../ClickToView"
 
 
 # hover stuff
@@ -137,7 +137,7 @@ func _handle_mouse_entered() -> void:
 
 	if show_hover_delay_true:
 		audio_manager.play_valid()
-		click_to_view_label.visible = true
+		click_to_view_parent.visible = true
 		hover_file("up")
 
 
@@ -146,7 +146,7 @@ func _handle_mouse_exited() -> void:
 	file_being_hover_over = false
 	
 	show_hover_delay_true = false
-	click_to_view_label.visible = false 
+	click_to_view_parent.visible = false 
 	hover_file("down")
 
 

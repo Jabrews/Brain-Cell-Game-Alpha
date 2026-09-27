@@ -34,6 +34,9 @@ func _process(_delta):
 	# PICK UP USABLE ITEM #
 	if not player_holding_item:
 		if collider.is_in_group('usable_item'):
+			
+			GLUsableItemBus.emit_signal('toggle_show_pickup_label', true)						
+			
 			if Input.is_action_just_pressed('interact'):
 				pickup_usable_item(collider)
 		
@@ -46,6 +49,7 @@ func _process(_delta):
 
 
 func pickup_usable_item(collider : Node) -> void:
+	
 
 	GLUsableItemBus.emit_signal(
 		'useable_item_picked_up', 

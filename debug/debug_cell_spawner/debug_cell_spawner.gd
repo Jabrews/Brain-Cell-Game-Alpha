@@ -49,29 +49,29 @@ func _ready() -> void:
 		false,
 	)
 	
-	var cells : Array[BrainCell] = []	
-	
-	cells.append(cell_one)
-	cells.append(cell_two)
-	cells.append(cell_three)
-	
-	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
-	
-	for cell in cells :
-		
-		var cell_container = cell_container_p_s.instantiate()
-
-		cell_container.name = cell.name
-		cell_container.designated_brain_cell = cell
-
-		cell_container_parent_node.add_child(cell_container)
-
-		cell_container.global_position = spawn_pos.global_position
-		
-		
-		
-		
-
-
-	
-	
+	#var cells : Array[BrainCell] = []	
+	#
+	#cells.append(cell_one)
+	#cells.append(cell_two)
+	#cells.append(cell_three)
+	#
+	#GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
+	#
+	#for cell in cells :
+		#
+		#var cell_container = cell_container_p_s.instantiate()
+#
+		#cell_container.name = cell.name
+		#cell_container.designated_brain_cell = cell
+#
+		#cell_container_parent_node.add_child(cell_container)
+#
+		#cell_container.global_position = spawn_pos.global_position
+		#
+		#
+		#
+		#
+#
+#
+	#
+	#

@@ -5,9 +5,10 @@
 [ext_resource type="Script" uid="uid://b8mpf2nnb7ral" path="res://scripts/ui/fps_counter.gd" id="4_0dwhk"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_g5kmx"]
 [ext_resource type="Texture2D" uid="uid://cdv5schqpo0vj" path="res://models/blood_noise/3_blood_display.png" id="5_0dwhk"]
+[ext_resource type="Script" uid="uid://k6vv5m6k3iw4" path="res://scripts/ui/axe_label_manager.gd" id="6_khplb"]
 [ext_resource type="Script" uid="uid://bn73xwmm170ls" path="res://scripts/ui/blood_overlay.gd" id="6_pfayw"]
-[ext_resource type="Script" uid="uid://d4b1ul6fr6gpx" path="res://scripts/ui/drop_axe_at_mount.gd" id="7_7vp6q"]
 [ext_resource type="Texture2D" uid="uid://dyc4q2f7pd5lq" path="res://models/cursor/cursor.png" id="8_jcn1r"]
+[ext_resource type="PackedScene" uid="uid://bjrgxfg6kh0d1" path="res://scenes/ui/InputBtn.tscn" id="8_vnqvi"]
 [ext_resource type="Script" uid="uid://c4lwsm1lq7bw4" path="res://scripts/ui/player_cursor.gd" id="9_4kltc"]
 [ext_resource type="PackedScene" uid="uid://33d63f8ania3" path="res://scenes/ui/useable_item_popup.tscn" id="9_uegxj"]
 [ext_resource type="Shader" uid="uid://dt7lkosoh8nsh" path="res://scripts/shaders/hold_display.gdshader" id="10_swkix"]
@@ -50,27 +51,101 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_aac20")
 
-[node name="DropItemLabel" type="Label" parent="UseableItemManager" unique_id=1966094915]
+[node name="ItemEnergyLevel" type="Control" parent="UseableItemManager" unique_id=761150454]
 visible = false
-layout_mode = 0
-offset_left = 368.0
-offset_top = 664.0
-offset_right = 968.0
-offset_bottom = 694.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 30
-text = "Press F To Drop Item"
+anchors_preset = 0
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 48.0
+offset_bottom = 24.0
 
-[node name="ItemEnergyLevel" type="Label" parent="UseableItemManager" unique_id=1174816212]
-visible = false
+[node name="BG" type="ColorRect" parent="UseableItemManager/ItemEnergyLevel" unique_id=952540336]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 216.0
+offset_bottom = 80.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ItemEnergyLabel" type="Label" parent="UseableItemManager/ItemEnergyLevel" unique_id=1174816212]
 layout_mode = 0
 offset_left = 8.0
 offset_top = 40.0
 offset_right = 160.0
 offset_bottom = 70.0
 theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 35
 text = "Charge Left : 0"
+
+[node name="DropItem" type="Control" parent="UseableItemManager" unique_id=400599182]
+visible = false
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 656.0
+offset_right = 88.0
+offset_bottom = 696.0
+
+[node name="BG" type="ColorRect" parent="UseableItemManager/DropItem" unique_id=1792415266]
+layout_mode = 0
+offset_left = 344.0
+offset_top = -16.0
+offset_right = 848.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="UseableItemManager/DropItem" unique_id=1171148867]
+texture_filter = 1
+layout_mode = 0
+offset_left = 368.0
+offset_top = -8.0
+offset_right = 823.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To Drop Item"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="UseableItemManager/DropItem" unique_id=1359138110 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 496.0
+offset_top = -8.0
+offset_right = 496.0
+offset_bottom = -8.0
+button_input_action = "drop_item"
+
+[node name="PickupItem" type="Control" parent="UseableItemManager" unique_id=1122762036]
+visible = false
+anchors_preset = 0
+offset_left = 48.0
+offset_top = 656.0
+offset_right = 88.0
+offset_bottom = 696.0
+
+[node name="BG" type="ColorRect" parent="UseableItemManager/PickupItem" unique_id=311403879]
+layout_mode = 0
+offset_left = 328.0
+offset_top = -16.0
+offset_right = 864.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="UseableItemManager/PickupItem" unique_id=1791713043]
+texture_filter = 1
+layout_mode = 0
+offset_left = 343.0
+offset_top = -13.0
+offset_right = 848.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To Pick up Item"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="UseableItemManager/PickupItem" unique_id=2135190316 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 472.0
+offset_top = -8.0
+offset_right = 472.0
+offset_bottom = -8.0
 
 [node name="FPSCounter" type="Label" parent="." unique_id=2019697512]
 texture_filter = 1
@@ -89,19 +164,107 @@ scale = Vector2(1.498829, 1.5)
 texture = ExtResource("5_0dwhk")
 script = ExtResource("6_pfayw")
 
-[node name="DropAxeBackAtMount" type="Label" parent="." unique_id=783017163]
+[node name="AxeLabelManager" type="Control" parent="." unique_id=513794480]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_khplb")
+
+[node name="PressToReturn" type="Control" parent="AxeLabelManager" unique_id=907098243]
 visible = false
 texture_filter = 1
-layout_mode = 0
+anchors_preset = 0
 offset_left = 8.0
 offset_top = 664.0
 offset_right = 1272.0
 offset_bottom = 714.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 40
-text = "Drop Axe Back at mount"
+
+[node name="BG" type="ColorRect" parent="AxeLabelManager/PressToReturn" unique_id=1070526303]
+layout_mode = 0
+offset_left = 440.0
+offset_top = -8.0
+offset_right = 816.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="DropAxeLabel" type="Label" parent="AxeLabelManager/PressToReturn" unique_id=145584581]
+texture_filter = 1
+layout_mode = 0
+offset_top = -8.0
+offset_right = 1264.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 42
+text = "Return Axe to mount"
 horizontal_alignment = 1
-script = ExtResource("7_7vp6q")
+
+[node name="PickupAxeFromMount" type="Control" parent="AxeLabelManager" unique_id=1531832326]
+visible = false
+texture_filter = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 664.0
+offset_right = 1272.0
+offset_bottom = 714.0
+
+[node name="BG" type="ColorRect" parent="AxeLabelManager/PickupAxeFromMount" unique_id=1003121376]
+layout_mode = 0
+offset_left = 352.0
+offset_top = -16.0
+offset_right = 920.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="DropAxeLabel" type="Label" parent="AxeLabelManager/PickupAxeFromMount" unique_id=556941095]
+texture_filter = 1
+layout_mode = 0
+offset_top = -16.0
+offset_right = 1264.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press     To Pickup Axe "
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="AxeLabelManager/PickupAxeFromMount" unique_id=269063420 instance=ExtResource("8_vnqvi")]
+layout_mode = 1
+offset_left = 512.0
+offset_top = -8.0
+offset_right = 512.0
+offset_bottom = -8.0
+
+[node name="DropAxeBackAtMount" type="Control" parent="AxeLabelManager" unique_id=2136335024]
+visible = false
+anchors_preset = 0
+offset_top = 664.0
+offset_right = 40.0
+offset_bottom = 704.0
+
+[node name="BG" type="ColorRect" parent="AxeLabelManager/DropAxeBackAtMount" unique_id=1914677654]
+layout_mode = 0
+offset_left = 352.0
+offset_top = -16.0
+offset_right = 920.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="DropAxeLabel" type="Label" parent="AxeLabelManager/DropAxeBackAtMount" unique_id=1584846424]
+texture_filter = 1
+layout_mode = 0
+offset_top = -16.0
+offset_right = 1264.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To Return Axe "
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="AxeLabelManager/DropAxeBackAtMount" unique_id=896629186 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 512.0
+offset_top = -8.0
+offset_right = 512.0
+offset_bottom = -8.0
 
 [node name="PlayerCursor" type="Sprite2D" parent="." unique_id=604506960]
 modulate = Color(1, 1, 1, 0.3372549)
@@ -189,19 +352,41 @@ text = "Sit In Chair"
 horizontal_alignment = 1
 script = ExtResource("10_y220t")
 
-[node name="ViewFileCabinet" type="Label" parent="." unique_id=2021863598]
+[node name="ViewFileCabinet" type="Control" parent="." unique_id=838087403]
 visible = false
 texture_filter = 1
-layout_mode = 0
-offset_left = 232.0
-offset_top = 648.0
-offset_right = 1082.0
-offset_bottom = 698.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 50
-text = "View File Cabinet"
-horizontal_alignment = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 664.0
+offset_right = 858.0
+offset_bottom = 714.0
 script = ExtResource("17_mgwkc")
+
+[node name="BG" type="ColorRect" parent="ViewFileCabinet" unique_id=329168637]
+layout_mode = 0
+offset_left = 320.0
+offset_top = -16.0
+offset_right = 944.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="ViewFileCabinet" unique_id=1812605725]
+texture_filter = 1
+layout_mode = 0
+offset_top = -16.0
+offset_right = 1264.0
+offset_bottom = 41.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To View File Cabinet"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="ViewFileCabinet" unique_id=162483799 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 456.0
+offset_top = -8.0
+offset_right = 456.0
+offset_bottom = -8.0
 
 [node name="EventNoticeManager" type="Control" parent="." unique_id=803210852]
 layout_mode = 1
@@ -410,16 +595,39 @@ text = "Retry"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ViewBreeder" type="Label" parent="." unique_id=82300313]
+[node name="ViewBreeder" type="Control" parent="." unique_id=581744205]
 visible = false
 texture_filter = 1
-layout_mode = 0
-offset_left = 8.0
+anchors_preset = 0
+offset_left = 29.0
 offset_top = 664.0
-offset_right = 1272.0
+offset_right = 1293.0
 offset_bottom = 714.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 40
-text = "View Breeder"
-horizontal_alignment = 1
 script = ExtResource("28_khplb")
+
+[node name="BG" type="ColorRect" parent="ViewBreeder" unique_id=1784461203]
+layout_mode = 0
+offset_left = 344.0
+offset_top = -16.0
+offset_right = 904.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="ViewBreeder" unique_id=1290496854]
+texture_filter = 1
+layout_mode = 0
+offset_left = 360.0
+offset_top = -8.0
+offset_right = 894.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To View Breeder"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="ViewBreeder" unique_id=1581594755 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 483.0
+offset_top = -8.0
+offset_right = 483.0
+offset_bottom = -8.0

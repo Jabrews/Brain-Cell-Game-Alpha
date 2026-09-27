@@ -111,6 +111,7 @@ disruptable_reciever=""
 detect_cognisance_area=""
 interpreter_plug=""
 hologram_interact_area=""
+useable_item_area=""
 
 [input]
 

@@ -13,6 +13,9 @@ signal hide_useable_item_pop_up(useable_item_obj : UseableItemObject) ## not use
 signal pop_up_chose_stat(selected_stat : String, selected_cell : BrainCell, useable_item_obj : UseableItemObject)
 signal scissors_pop_up_chose_mutation(selected_mutation_type : String, selected_cell : BrainCell, useable_item_obj : UseableItemObject)
 
+# pickup item label signals
+signal toggle_show_pickup_label(toggle_value : bool)
+
 
 # indv items	
 signal use_hidden_shot(selected_cell : BrainCell, useable_item_obj : UseableItemObject)

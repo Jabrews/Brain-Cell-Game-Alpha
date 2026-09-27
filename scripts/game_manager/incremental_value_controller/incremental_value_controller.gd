@@ -60,7 +60,7 @@ func handle_round(round : int):
 			IVCellCreator.max_stat_value = 300
 			## USEABLE ITEMS ##
 			IVItemStats.defect_shot_decrease = 50
-			IVUseableItemSpawner.defect_shots_to_spawn = 1
+			IVUseableItemSpawner.defect_shots_to_spawn = 2
 			IVUseableItemSpawner.hidden_shots_to_spawn = 0
 			IVUseableItemSpawner.steroids_to_spawn = 0
 			IVUseableItemSpawner.ice_cube_to_spawn = 0

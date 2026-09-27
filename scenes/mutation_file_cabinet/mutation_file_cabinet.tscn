@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://dxq4d5cq0abum" path="res://scripts/mutation_file_cabinet/file_view/file_view.gd" id="8_hioyw"]
 [ext_resource type="Texture2D" uid="uid://ybnnjg3hknus" path="res://models/file_cabinet/paper.png" id="8_kdclm"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="9_epm46"]
+[ext_resource type="Script" uid="uid://gmvwml0e3mmf" path="res://scripts/mutation_file_cabinet/file_cabinet_interact_area.gd" id="9_j3au5"]
 [ext_resource type="AudioStream" uid="uid://hmosxrk8yh6v" path="res://sounds/file_cabinet/cabinet_close.mp3" id="9_pnxu0"]
 [ext_resource type="AudioStream" uid="uid://dsmv44vw8rqee" path="res://sounds/file_cabinet/invalid_select.mp3" id="10_lsj1o"]
 [ext_resource type="Texture2D" uid="uid://c87dyek62j74i" path="res://models/file_cabinet/exit_btn.png" id="10_rppej"]
@@ -22,6 +23,10 @@
 [ext_resource type="AudioStream" uid="uid://dt0ni5wysktfa" path="res://sounds/file_cabinet/select_valid.mp3" id="11_bby81"]
 [ext_resource type="AudioStream" uid="uid://c65ij8d7mgpym" path="res://sounds/file_cabinet/page_turning.mp3" id="12_61d2c"]
 [ext_resource type="AudioStream" uid="uid://c4bi3yxvkv5j1" path="res://sounds/file_cabinet/book_close.mp3" id="13_pnxu0"]
+[ext_resource type="Texture2D" uid="uid://d0j8g1l8yjhxy" path="res://models/input_btns/a_interact.png" id="20_88k5s"]
+[ext_resource type="Script" uid="uid://cnjycwfwnb4gu" path="res://scripts/mutation_file_cabinet/input_btns/leave_input_btn.gd" id="20_dfmjg"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="23_vyu14"]
+[ext_resource type="Script" uid="uid://c2xk50jerbqbw" path="res://scripts/mutation_file_cabinet/input_btns/click_to_view_input_btn.gd" id="27_88k5s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6c3k"]
 resource_name = "FilePaper"
@@ -894,8 +899,7 @@ shadow_mesh = SubResource("ArrayMesh_0f8cl")
 [sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
 size = Vector3(1.2675781, 2.2876587, 1.3939819)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ixuf4"]
-size = Vector3(3.3, 0.6, 1.0969483)
+[sub_resource type="BoxShape3D" id="BoxShape3D_j3au5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rppej"]
 shader = ExtResource("9_epm46")
@@ -1465,12 +1469,15 @@ mesh = SubResource("ArrayMesh_gt0nn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00390625, 1.1560974, 0.0011291504)
 shape = SubResource("BoxShape3D_keru6")
 
-[node name="DetectPlayerArea" type="Area3D" parent="." unique_id=1029803734]
-collision_layer = 0
+[node name="FileCabinetInteractArea" type="Area3D" parent="." unique_id=1037484792 groups=["hologram_interact_area"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 1.3, 1, -0.2)
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource("9_j3au5")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectPlayerArea" unique_id=527993512]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0, -0.17425543)
-shape = SubResource("BoxShape3D_ixuf4")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FileCabinetInteractArea" unique_id=504029288]
+transform = Transform3D(1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_j3au5")
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=1714591203]
 script = ExtResource("7_doic2")
@@ -1493,20 +1500,46 @@ stream = ExtResource("12_61d2c")
 [node name="PageClose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1779680188]
 stream = ExtResource("13_pnxu0")
 
-[node name="ToLeave" type="Label" parent="." unique_id=6186536]
+[node name="ToLeave" type="Control" parent="." unique_id=866753052]
 visible = false
-offset_left = 960.0
-offset_top = 52.0
-offset_right = 1290.0
-offset_bottom = 148.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.69803923)
-theme_override_fonts/font = ExtResource("1_t562i")
-theme_override_font_sizes/font_size = 30
-text = "Press E to 
-Leave
-"
-horizontal_alignment = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1080.0
+offset_top = 64.0
+offset_right = 1410.0
+offset_bottom = 160.0
+mouse_filter = 2
 script = ExtResource("7_8gn6o")
+
+[node name="ViewCabinetLabel" type="Label" parent="ToLeave" unique_id=1664978757]
+texture_filter = 1
+layout_mode = 0
+offset_left = -240.0
+offset_top = 4.0
+offset_right = 294.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+theme_override_fonts/font = ExtResource("23_vyu14")
+theme_override_font_sizes/font_size = 30
+text = "Press      To Leave Cabinet"
+horizontal_alignment = 1
+
+[node name="LeaveInputBtn" type="Control" parent="ToLeave" unique_id=1989642189]
+anchors_preset = 0
+offset_left = -70.0
+offset_right = -30.0
+offset_bottom = 40.0
+script = ExtResource("20_dfmjg")
+
+[node name="BtnTextureRect" type="TextureRect" parent="ToLeave/LeaveInputBtn" unique_id=601941664]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.9999995
+offset_top = 3.9999998
+offset_right = 56.0
+offset_bottom = 52.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("20_88k5s")
 
 [node name="FileView" type="Control" parent="." unique_id=1072467109]
 process_mode = 3
@@ -1597,18 +1630,52 @@ focus_mode = 2
 texture = ExtResource("10_rppej")
 script = ExtResource("11_7hlws")
 
-[node name="ClickToView" type="Label" parent="." unique_id=1648272860]
+[node name="ClickToView" type="Control" parent="." unique_id=154705962]
 visible = false
 texture_filter = 1
-offset_left = 432.0
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
 offset_top = 656.0
-offset_right = 887.0
+offset_right = 471.0
 offset_bottom = 691.0
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("1_t562i")
-theme_override_font_sizes/font_size = 35
-text = "Click to view"
+mouse_filter = 2
 script = ExtResource("7_0tp8k")
 
-[connection signal="body_entered" from="DetectPlayerArea" to="." method="_on_detect_player_area_body_entered"]
-[connection signal="body_exited" from="DetectPlayerArea" to="." method="_on_detect_player_area_body_exited"]
+[node name="BG" type="ColorRect" parent="ClickToView" unique_id=1967633451]
+layout_mode = 0
+offset_left = 392.0
+offset_top = -8.0
+offset_right = 856.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="ClickToView" unique_id=833823134]
+texture_filter = 1
+layout_mode = 0
+offset_left = 360.0
+offset_top = -8.0
+offset_right = 894.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("23_vyu14")
+theme_override_font_sizes/font_size = 50
+text = "Press      To View File"
+horizontal_alignment = 1
+
+[node name="ClickToViewInputBtn" type="Control" parent="ClickToView" unique_id=699333925]
+anchors_preset = 0
+offset_left = 527.0
+offset_top = -7.0
+offset_right = 567.0
+offset_bottom = 33.0
+script = ExtResource("27_88k5s")
+
+[node name="BtnTextureRect" type="TextureRect" parent="ClickToView/ClickToViewInputBtn" unique_id=856819083]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.9999995
+offset_top = 3.9999998
+offset_right = 56.0
+offset_bottom = 52.0
+texture = ExtResource("20_88k5s")
