@@ -72,6 +72,7 @@ GLGoalThresholdBus="*uid://bs1hi3l23ehcj"
 GLGameEndBus="*uid://b87t1lnb4xp6c"
 GLHideUiBus="*uid://dw707277cabio"
 GAMEInputTypeDetector="*uid://gcnqwkipjc5n"
+GLGoalThresholdManagerBus="*uid://dkrjpskp7jc7e"
 
 [debug]
 

@@ -23,22 +23,22 @@ size = Vector3(1.4581543, 1.7504883, 1.425293)
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
 size = Vector3(1.4581543, 1.7504883, 1.425293)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0upth"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jke3x"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_oapr3"]
-material = SubResource("StandardMaterial3D_0upth")
+material = SubResource("StandardMaterial3D_jke3x")
 radius = 0.1
 height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
 size = Vector3(1.1315918, 0.24450684, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1kj4"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bu33w"]
 albedo_color = Color(0.54901963, 0.95686275, 0.9529412, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_u8c0o"]
-material = SubResource("StandardMaterial3D_a1kj4")
+material = SubResource("StandardMaterial3D_bu33w")
 size = Vector3(1, 0.05, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oapr3"]
@@ -61,11 +61,11 @@ size = Vector3(0.64785767, 0.088134766, 0.4013977)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6ef8e"]
 size = Vector3(0.02, 0.21641724, 0.24408326)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2r8kx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddnfd"]
 albedo_color = Color(0, 0.5500002, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1dxtj"]
-material = SubResource("StandardMaterial3D_2r8kx")
+material = SubResource("StandardMaterial3D_ddnfd")
 size = Vector3(0.02, 0.16449708, 0.22937745)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_64opd"]
@@ -75,34 +75,34 @@ top_radius = 0.1
 bottom_radius = 0.1
 height = 1.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ewaq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ef8e"]
 albedo_color = Color(0, 0, 0, 1)
 metallic_specular = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_otmio"]
-material = SubResource("StandardMaterial3D_5ewaq")
+material = SubResource("StandardMaterial3D_6ef8e")
 size = Vector3(1.2318802, 0.67269564, 0.036132813)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7qiga"]
 viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5kxe"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1dxtj"]
 resource_local_to_scene = true
 shading_mode = 0
 albedo_texture = SubResource("ViewportTexture_7qiga")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rjgdw"]
-material = SubResource("StandardMaterial3D_d5kxe")
+material = SubResource("StandardMaterial3D_1dxtj")
 size = Vector2(1.182, 0.608)
 orientation = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
-material = SubResource("StandardMaterial3D_5ewaq")
+material = SubResource("StandardMaterial3D_6ef8e")
 size = Vector3(7.3013306, 4.058052, 0.036132813)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_pqj0v"]
-material = SubResource("StandardMaterial3D_d5kxe")
+material = SubResource("StandardMaterial3D_1dxtj")
 size = Vector2(7, 3.8)
 orientation = 0
 
@@ -130,6 +130,7 @@ script = ExtResource("6_jke3x")
 
 [node name="CellSeats" type="Node3D" parent="." unique_id=1542385413]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85410976, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="Seats" type="Node3D" parent="CellSeats" unique_id=69647466]
 
@@ -831,6 +832,7 @@ size = Vector2i(128, 64)
 
 [node name="GoalScreenTV" type="Node3D" parent="." unique_id=782315824]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04518509, 0.7640114, 0)
+metadata/_edit_lock_ = true
 
 [node name="TVBack" type="MeshInstance3D" parent="GoalScreenTV" unique_id=1055254949]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54104614, 2.1682243, 0)
@@ -849,6 +851,7 @@ size = Vector2i(694, 384)
 [node name="GoalThreshold" parent="GoalScreenTV/TvFrontPannel/SubViewport" unique_id=1484582413 instance=ExtResource("2_yrnsf")]
 
 [node name="Audio" type="Node3D" parent="." unique_id=1577145653]
+metadata/_edit_lock_ = true
 
 [node name="InvalidSound" type="AudioStreamPlayer3D" parent="Audio" unique_id=1224458595]
 stream = ExtResource("7_5ky03")

@@ -2,52 +2,56 @@ extends Node
 
 @onready var cell_container_p_s : PackedScene = preload("res://scenes/characters/cell_container/cell_container.tscn")
 @onready var spawn_pos : Node3D =$SpawnPos
-@export var cell_container_parent_node : Node 
+@export var cell_container_parent_node : Node
 
 
 func _ready() -> void:
 	
+	return
+	
+	
+	
 	# Cell 1
-	var cell_one: BrainCell = BrainCell.new(
-		"cell_one",
-		[
-		BrainCellMutation.new('airborne', true, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),
-		BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-		],
-		BrainCellStat.new("strength", true, 50, 0, true),
-		BrainCellStat.new("intelligence", true, 100, 100, false),
-		BrainCellStat.new("community", true, 125, 50, false),
-		2,
-		false,
-		false,
-	)
+	#var cell_one: BrainCell = BrainCell.new(
+		#"cell_one",
+		#[
+		#BrainCellMutation.new('airborne', true, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),
+		#BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
+		#],
+		#BrainCellStat.new("strength", true, 50, 0, true),
+		#BrainCellStat.new("intelligence", true, 100, 100, false),
+		#BrainCellStat.new("community", true, 125, 50, false),
+		#2,
+		#false,
+		#false,
+	#)
 	
 	
 	# Cell 2
-	var cell_two : BrainCell = BrainCell.new(
-		"cell_two",
-		[
-		BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-		],
-		BrainCellStat.new("strength", true, 200, 100, true),
-		BrainCellStat.new("intelligence", true, 50, 10, false),
-		BrainCellStat.new("community", true, 75, 0, false),
-		3,
-		false,
-		false,
-	)
+	#var cell_two : BrainCell = BrainCell.new(
+		#"cell_two",
+		#[
+		#BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
+		#],
+		#BrainCellStat.new("strength", true, 200, 100, true),
+		#BrainCellStat.new("intelligence", true, 50, 10, false),
+		#BrainCellStat.new("community", true, 75, 0, false),
+		#3,
+		#false,
+		#false,
+	#)
 	
 	
-	var cell_three : BrainCell = BrainCell.new(
-		'cell_three',
-		[],
-		BrainCellStat.new("strength", true, 1, 1, false),
-		BrainCellStat.new("intelligence", true, 1, 1, false),
-		BrainCellStat.new("community", true, 15, 15, false),
-		1,
-		false,
-		false,
-	)
+	#var cell_three : BrainCell = BrainCell.new(
+		#'cell_three',
+		#[],
+		#BrainCellStat.new("strength", true, 1, 1, false),
+		#BrainCellStat.new("intelligence", true, 1, 1, false),
+		#BrainCellStat.new("community", true, 15, 15, false),
+		#1,
+		#false,
+		#false,
+	#)
 	
 	#var cells : Array[BrainCell] = []	
 	#

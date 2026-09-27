@@ -1,0 +1,479 @@
+[gd_scene format=3 uid="uid://cshqon2ghejce"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_374oa"]
+[ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="2_1jr5h"]
+[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="3_6sfgh"]
+[ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_ip8dg"]
+[ext_resource type="Script" uid="uid://jjvtq2ttvqqr" path="res://scripts/stations/station_screens/goal_threshold_interface/progress_circle.gd" id="5_8uqr3"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_6o43e"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_2vi63"]
+[ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="8_w8abe"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="9_qw2pl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
+shader = ExtResource("1_374oa")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="Shader" id="Shader_dak4g"]
+code = "shader_type canvas_item;
+
+uniform float red_value : hint_range(0.0, 1.0) = 0.8;
+uniform float yellow_value : hint_range(0.0, 1.0) = 0.3;
+
+uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
+uniform vec4 yellow_color : source_color = vec4(1.0, 0.9, 0.0, 1.0);
+uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
+
+// color on the sprite that this effect is allowed to replace
+uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
+// how close a pixel has to be to mask_color
+uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+uniform float flash_speed : hint_range(0.0, 10.0) = 3.0;
+uniform float yellow_low_opacity : hint_range(0.0, 1.0) = 0.2;
+uniform float yellow_high_opacity : hint_range(0.0, 1.0) = 0.8;
+
+uniform float blip_width : hint_range(0.001, 0.05) = 0.01;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 result = tex;
+
+	// distance between current pixel color and chosen mask color
+	float color_distance = distance(tex.rgb, mask_color.rgb);
+
+	bool inside_mask =
+		tex.a > 0.0 &&
+		color_distance <= mask_tolerance;
+
+	if (inside_mask) {
+
+		// -------------------------
+		// RED BAR
+		// -------------------------
+
+		if (UV.x <= red_value) {
+			result = vec4(red_color.rgb, tex.a);
+		}
+
+
+		// -------------------------
+		// YELLOW BAR
+		// starts at red_value
+		// and extends left
+		// -------------------------
+
+		float yellow_start = max(
+			red_value - yellow_value,
+			0.0
+		);
+
+		bool in_yellow =
+			UV.x >= yellow_start &&
+			UV.x <= red_value;
+
+		if (in_yellow) {
+			float flash =
+				sin(TIME * flash_speed) * 0.5 + 0.5;
+
+			float opacity = mix(
+				yellow_low_opacity,
+				yellow_high_opacity,
+				flash
+			);
+
+			result.rgb = mix(
+				result.rgb,
+				yellow_color.rgb,
+				opacity
+			);
+		}
+
+
+		// -------------------------
+		// RED VALUE BLIP
+		// -------------------------
+
+		float dist_to_blip =
+			abs(UV.x - red_value);
+
+		if (dist_to_blip <= blip_width) {
+			result.rgb = blip_color.rgb;
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_75nl1"]
+shader = SubResource("Shader_dak4g")
+shader_parameter/red_value = 0.8
+shader_parameter/yellow_value = 0.0
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/yellow_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 2.000000095
+shader_parameter/yellow_low_opacity = 0.10000000475
+shader_parameter/yellow_high_opacity = 0.50000002375
+shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cimo1"]
+shader = ExtResource("3_6sfgh")
+shader_parameter/progress = 0.0
+shader_parameter/base_color = Color(0, 0, 0, 1)
+shader_parameter/progress_color = Color(0.86546135, 0.72076094, 0, 1)
+shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
+shader_parameter/mask_tolerance = 0.1
+
+[node name="ScreenGoalThresholdInterface" type="Node2D" unique_id=600951827]
+
+[node name="Bg" type="ColorRect" parent="." unique_id=496745655]
+offset_right = 584.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=557957891]
+material = SubResource("ShaderMaterial_vau7t")
+offset_right = 584.0
+offset_bottom = 384.0
+
+[node name="Stats" type="Control" parent="." unique_id=388877193]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 72.0
+offset_right = 112.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="Stats" unique_id=157124321]
+layout_mode = 1
+anchor_left = -3.4
+anchor_top = -1.2
+anchor_right = -3.4
+anchor_bottom = -1.2
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StrengthBar" type="Sprite2D" parent="Stats/Strength" unique_id=1243225219]
+texture_filter = 1
+material = SubResource("ShaderMaterial_75nl1")
+position = Vector2(400.50003, 124)
+scale = Vector2(1.363924, 1.421875)
+texture = ExtResource("2_1jr5h")
+
+[node name="ProgressCircle" type="TextureRect" parent="Stats/Strength" unique_id=227555391]
+texture_filter = 1
+material = SubResource("ShaderMaterial_cimo1")
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 192.0
+offset_bottom = 168.0
+texture = ExtResource("4_ip8dg")
+script = ExtResource("5_8uqr3")
+
+[node name="PercantLabel" type="Label" parent="Stats/Strength/ProgressCircle" unique_id=868884737]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_right = 66.048004
+offset_bottom = 72.16
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("6_6o43e")
+theme_override_font_sizes/font_size = 40
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Emergency" type="Sprite2D" parent="Stats/Strength/ProgressCircle" unique_id=1795533434]
+visible = false
+position = Vector2(47.25, 40.999996)
+scale = Vector2(1.1013514, 0.96874994)
+texture = ExtResource("7_2vi63")
+
+[node name="CheckMark" type="Sprite2D" parent="Stats/Strength/ProgressCircle" unique_id=1431526503]
+visible = false
+texture_filter = 1
+position = Vector2(44.375, 44.499992)
+scale = Vector2(4.1911764, 3.9444451)
+texture = ExtResource("8_w8abe")
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Strength" unique_id=1843146900]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 62.0
+offset_right = 216.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 16
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Strength" unique_id=103852088]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 112.0
+offset_right = 616.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 25
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disabled" type="Control" parent="Stats/Strength" unique_id=1566270902]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Stats/Strength/Disabled" unique_id=653928086]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="Stats/Strength/Disabled" unique_id=890120847]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="Stats" unique_id=1033576757]
+layout_mode = 1
+anchor_left = -3.4
+anchor_top = 1.8
+anchor_right = -3.4
+anchor_bottom = 1.8
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StrengthBar" type="Sprite2D" parent="Stats/Intelligence" unique_id=1136364859]
+texture_filter = 1
+material = SubResource("ShaderMaterial_75nl1")
+position = Vector2(372.5, 124)
+scale = Vector2(1.1867087, 1.421875)
+texture = ExtResource("2_1jr5h")
+
+[node name="ProgressCircle" type="TextureRect" parent="Stats/Intelligence" unique_id=920071692]
+texture_filter = 1
+material = SubResource("ShaderMaterial_cimo1")
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 192.0
+offset_bottom = 168.0
+texture = ExtResource("4_ip8dg")
+script = ExtResource("5_8uqr3")
+
+[node name="PercantLabel" type="Label" parent="Stats/Intelligence/ProgressCircle" unique_id=1241458902]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_right = 66.048004
+offset_bottom = 72.16
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("6_6o43e")
+theme_override_font_sizes/font_size = 40
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Emergency" type="Sprite2D" parent="Stats/Intelligence/ProgressCircle" unique_id=808511360]
+visible = false
+position = Vector2(47.25, 40.999996)
+scale = Vector2(1.1013514, 0.96874994)
+texture = ExtResource("7_2vi63")
+
+[node name="CheckMark" type="Sprite2D" parent="Stats/Intelligence/ProgressCircle" unique_id=719060809]
+visible = false
+texture_filter = 1
+position = Vector2(44.375, 44.499992)
+scale = Vector2(4.1911764, 3.9444451)
+texture = ExtResource("8_w8abe")
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Intelligence" unique_id=2093793513]
+texture_filter = 1
+layout_mode = 0
+offset_left = 49.0
+offset_top = 61.0
+offset_right = 241.0
+offset_bottom = 77.0
+scale = Vector2(1, 1.4400024)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Intelligence" unique_id=1130340107]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 112.0
+offset_right = 552.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 25
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disabled" type="Control" parent="Stats/Intelligence" unique_id=750644723]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Stats/Intelligence/Disabled" unique_id=380025603]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="Stats/Intelligence/Disabled" unique_id=1358283853]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="Stats" unique_id=379933883]
+layout_mode = 1
+anchor_left = -3.4
+anchor_top = 5.2
+anchor_right = -3.4
+anchor_bottom = 5.2
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="StrengthBar" type="Sprite2D" parent="Stats/Community" unique_id=253069489]
+texture_filter = 1
+material = SubResource("ShaderMaterial_75nl1")
+position = Vector2(344.50003, 124)
+scale = Vector2(1.0094936, 1.421875)
+texture = ExtResource("2_1jr5h")
+
+[node name="ProgressCircle" type="TextureRect" parent="Stats/Community" unique_id=2140441299]
+texture_filter = 1
+material = SubResource("ShaderMaterial_cimo1")
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 192.0
+offset_bottom = 168.0
+texture = ExtResource("4_ip8dg")
+script = ExtResource("5_8uqr3")
+
+[node name="PercantLabel" type="Label" parent="Stats/Community/ProgressCircle" unique_id=1145155738]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.312
+anchor_bottom = 0.18
+offset_right = 66.048004
+offset_bottom = 72.16
+theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
+theme_override_fonts/font = ExtResource("6_6o43e")
+theme_override_font_sizes/font_size = 40
+text = "50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Emergency" type="Sprite2D" parent="Stats/Community/ProgressCircle" unique_id=1844398568]
+visible = false
+position = Vector2(47.25, 40.999996)
+scale = Vector2(1.1013514, 0.96874994)
+texture = ExtResource("7_2vi63")
+
+[node name="CheckMark" type="Sprite2D" parent="Stats/Community/ProgressCircle" unique_id=610981581]
+visible = false
+texture_filter = 1
+position = Vector2(44.375, 44.499992)
+scale = Vector2(4.1911764, 3.9444451)
+texture = ExtResource("8_w8abe")
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Community" unique_id=858415259]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 62.0
+offset_right = 216.0
+offset_bottom = 78.0
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 16
+text = "Community"
+horizontal_alignment = 1
+
+[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Community" unique_id=1806242968]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 112.0
+offset_right = 504.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 25
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disabled" type="Control" parent="Stats/Community" unique_id=519851978]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Stats/Community/Disabled" unique_id=1490901321]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="Stats/Community/Disabled" unique_id=1355856928]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
