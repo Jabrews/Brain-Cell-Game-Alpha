@@ -19,7 +19,7 @@ func _init(
 	new_total_turns : int,
 	new_early_completion_reward_energy : int,
 	new_early_completion_turn_limit : int,
-	early_reward_claimed : bool,
+	new_early_reward_claimed : bool,
 	new_strength : ThresholdStat,
 	new_intelligence : ThresholdStat,
 	new_community : ThresholdStat
@@ -30,7 +30,7 @@ func _init(
 	
 	early_completion_reward_energy = new_early_completion_reward_energy
 	early_completion_turn_limit = new_early_completion_turn_limit
-	early_reward_claimed = early_reward_claimed
+	early_reward_claimed = new_early_reward_claimed
 	
 	strength = new_strength
 	intelligence = new_intelligence

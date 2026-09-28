@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://b1d8og0sww57y"]
 
 [ext_resource type="Script" uid="uid://di1ynyqfn07pq" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/cell_light.gd" id="1_8sx04"]
+[ext_resource type="Script" uid="uid://2ys5i5lfvc6q" path="res://scripts/stations/goal_threshold_interface/component/station_goal_theshold_interface.gd" id="1_vkqeh"]
+[ext_resource type="Script" uid="uid://dstc1sevit4ub" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_stats.gd" id="2_70tpf"]
 [ext_resource type="Script" uid="uid://dsl32hlbsmoij" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/detect_cell_seat.gd" id="2_t0kqf"]
 [ext_resource type="Script" uid="uid://cv0cpcu1fdg06" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/btn_cycle_stat.gd" id="3_b1uhs"]
+[ext_resource type="Script" uid="uid://wsectx02b4v" path="res://scripts/stations/goal_threshold_interface/component/helper_refresh_displays.gd" id="3_lfxd2"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_ja745"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="5_4dk20"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_vpv14"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="7_o6ut5"]
 [ext_resource type="PackedScene" uid="uid://cxmrm8jiilv0x" path="res://scenes/stations/station_screens/goal_threshold_interface/screen_selected_stat.tscn" id="8_votah"]
-[ext_resource type="PackedScene" uid="uid://cshqon2ghejce" path="res://scenes/stations/goal_threshold_interface/screen/screen_goal_threshold_interface.tscn" id="9_47arw"]
-[ext_resource type="PackedScene" uid="uid://bynb8tfccsbxo" path="res://scenes/stations/goal_threshold_interface/screen/screen_turns_left.tscn" id="10_mpw3p"]
+[ext_resource type="PackedScene" uid="uid://cshqon2ghejce" path="res://scenes/stations/goal_threshold_interface/screen/screen_stat_threshold_display.tscn" id="9_47arw"]
+[ext_resource type="PackedScene" uid="uid://bynb8tfccsbxo" path="res://scenes/stations/goal_threshold_interface/screen/screen_turns_display.tscn" id="10_mpw3p"]
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="10_nfgcj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_qwcuh"]
@@ -114,6 +117,13 @@ orientation = 0
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="StationGoalThresholdInterface" type="Node3D" unique_id=605944660]
+script = ExtResource("1_vkqeh")
+
+[node name="HelperDissolveStats" type="Node" parent="." unique_id=917487189]
+script = ExtResource("2_70tpf")
+
+[node name="HelperRefreshDisplays" type="Node" parent="." unique_id=555968757]
+script = ExtResource("3_lfxd2")
 
 [node name="CellSeats" type="Node3D" parent="." unique_id=488858946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85410976, 0, 0)
@@ -473,43 +483,43 @@ size = Vector2i(128, 64)
 
 [node name="ScreenSelectedStat" parent="CellSeats/SelectedStatTvs/SelectedStatTV2/TvFrontPannel/SubViewport" unique_id=1763664813 instance=ExtResource("8_votah")]
 
-[node name="GoalScreenTV" type="Node3D" parent="." unique_id=137975337]
+[node name="StatThresholdTV" type="Node3D" parent="." unique_id=137975337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8451097, 0.5493412, 0)
 
-[node name="TVBack" type="MeshInstance3D" parent="GoalScreenTV" unique_id=532275834]
+[node name="TVBack" type="MeshInstance3D" parent="StatThresholdTV" unique_id=532275834]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20846558, 1.9578495, 0)
 mesh = SubResource("BoxMesh_1pok5")
 
-[node name="TvFrontPannel" type="MeshInstance3D" parent="GoalScreenTV" unique_id=925848669]
+[node name="TvFrontPannel" type="MeshInstance3D" parent="StatThresholdTV" unique_id=925848669]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.20977342, 1.9558773, -0.04984951)
 mesh = SubResource("PlaneMesh_acg5v")
 script = ExtResource("7_o6ut5")
 
-[node name="SubViewport" type="SubViewport" parent="GoalScreenTV/TvFrontPannel" unique_id=1095862931]
+[node name="SubViewport" type="SubViewport" parent="StatThresholdTV/TvFrontPannel" unique_id=1095862931]
 disable_3d = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(584, 384)
 
-[node name="ScreenGoalThresholdInterface" parent="GoalScreenTV/TvFrontPannel/SubViewport" unique_id=600951827 instance=ExtResource("9_47arw")]
+[node name="ScreenStatThresholdDisplay" parent="StatThresholdTV/TvFrontPannel/SubViewport" unique_id=600951827 instance=ExtResource("9_47arw")]
 
-[node name="TurnLeftTV" type="Node3D" parent="." unique_id=2114533416]
+[node name="TurnTV" type="Node3D" parent="." unique_id=2114533416]
 transform = Transform3D(0.8892358, 0, 0.45744914, 0, 1, 0, -0.45744914, 0, 0.8892358, -2.3479204, 0.49207926, 3.6352024)
 
-[node name="TVBack" type="MeshInstance3D" parent="TurnLeftTV" unique_id=689070404]
+[node name="TVBack" type="MeshInstance3D" parent="TurnTV" unique_id=689070404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.165192, 2.4278457, 1.1920929e-06)
 mesh = SubResource("BoxMesh_jqawa")
 
-[node name="TvFrontPannel" type="MeshInstance3D" parent="TurnLeftTV" unique_id=950484034]
+[node name="TvFrontPannel" type="MeshInstance3D" parent="TurnTV" unique_id=950484034]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.161013, 2.4493706, -0.04984951)
 mesh = SubResource("PlaneMesh_jqawa")
 script = ExtResource("7_o6ut5")
 
-[node name="SubViewport" type="SubViewport" parent="TurnLeftTV/TvFrontPannel" unique_id=239886695]
+[node name="SubViewport" type="SubViewport" parent="TurnTV/TvFrontPannel" unique_id=239886695]
 disable_3d = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(384, 384)
 
-[node name="ScreenTurnsLeft" parent="TurnLeftTV/TvFrontPannel/SubViewport" unique_id=683296768 instance=ExtResource("10_mpw3p")]
+[node name="ScreenTurnsDisplay" parent="TurnTV/TvFrontPannel/SubViewport" unique_id=683296768 instance=ExtResource("10_mpw3p")]
 
 [node name="TurnLeftLight" type="Node3D" parent="." unique_id=1243577269]
 transform = Transform3D(0.83946717, 0, 0.5434104, 0, 1, 0, -0.5434104, 0, 0.83946717, 5.829857, 1.5038934, -0.5597358)

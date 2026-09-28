@@ -1,17 +1,22 @@
 [gd_scene format=3 uid="uid://cshqon2ghejce"]
 
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_374oa"]
-[ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="2_1jr5h"]
-[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="3_6sfgh"]
-[ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_ip8dg"]
-[ext_resource type="Script" uid="uid://jjvtq2ttvqqr" path="res://scripts/stations/station_screens/goal_threshold_interface/progress_circle.gd" id="5_8uqr3"]
-[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_6o43e"]
-[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_2vi63"]
-[ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="8_w8abe"]
-[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="9_qw2pl"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_6c3qd"]
+[ext_resource type="Script" uid="uid://dxpaaltib7fu7" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/screen_stat_threshold_display.gd" id="1_lue6d"]
+[ext_resource type="Script" uid="uid://5s4jotkmfrx3" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/refresh_display.gd" id="1_x2m6x"]
+[ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="2_x2m6x"]
+[ext_resource type="Script" uid="uid://bx6axg85o33fo" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/helper_display_stat_postions.gd" id="3_352qn"]
+[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="3_lue6d"]
+[ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_352qn"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_v4hsa"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_kegbq"]
+[ext_resource type="Script" uid="uid://byt707vfcvvuf" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/progress_circle.gd" id="8_v4hsa"]
+[ext_resource type="Texture2D" uid="uid://bjl3lcagjkgmv" path="res://models/screens/breeding_symbols/checkmark.png" id="8_w7rbg"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="9_plfpx"]
+[ext_resource type="Texture2D" uid="uid://cjx483tj54mw7" path="res://models/goal_threshold/BarMedium.png" id="11_352qn"]
+[ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="12_1qjac"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
-shader = ExtResource("1_374oa")
+shader = ExtResource("1_6c3qd")
 shader_parameter/line_opacity = 0.12
 shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
@@ -124,14 +129,21 @@ shader_parameter/yellow_high_opacity = 0.50000002375
 shader_parameter/blip_width = 0.002000000095
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cimo1"]
-shader = ExtResource("3_6sfgh")
+shader = ExtResource("3_lue6d")
 shader_parameter/progress = 0.0
 shader_parameter/base_color = Color(0, 0, 0, 1)
-shader_parameter/progress_color = Color(0.86546135, 0.72076094, 0, 1)
+shader_parameter/progress_color = Color(0.87, 0, 0, 1)
 shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 shader_parameter/mask_tolerance = 0.1
 
-[node name="ScreenGoalThresholdInterface" type="Node2D" unique_id=600951827]
+[node name="ScreenStatThresholdDisplay" type="Node2D" unique_id=600951827]
+script = ExtResource("1_lue6d")
+
+[node name="RefreshDisplay" type="Node" parent="." unique_id=908792165]
+script = ExtResource("1_x2m6x")
+
+[node name="HelperDisplayStatPostions" type="Node" parent="RefreshDisplay" unique_id=1602819283]
+script = ExtResource("3_352qn")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=496745655]
 offset_right = 584.0
@@ -160,12 +172,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="StrengthBar" type="Sprite2D" parent="Stats/Strength" unique_id=1243225219]
+[node name="Bar" type="Sprite2D" parent="Stats/Strength" unique_id=1243225219]
 texture_filter = 1
 material = SubResource("ShaderMaterial_75nl1")
 position = Vector2(400.50003, 124)
 scale = Vector2(1.363924, 1.421875)
-texture = ExtResource("2_1jr5h")
+texture = ExtResource("2_x2m6x")
 
 [node name="ProgressCircle" type="TextureRect" parent="Stats/Strength" unique_id=227555391]
 texture_filter = 1
@@ -175,8 +187,8 @@ offset_left = 96.0
 offset_top = 80.0
 offset_right = 192.0
 offset_bottom = 168.0
-texture = ExtResource("4_ip8dg")
-script = ExtResource("5_8uqr3")
+texture = ExtResource("4_352qn")
+script = ExtResource("8_v4hsa")
 
 [node name="PercantLabel" type="Label" parent="Stats/Strength/ProgressCircle" unique_id=868884737]
 layout_mode = 1
@@ -186,7 +198,7 @@ anchor_bottom = 0.18
 offset_right = 66.048004
 offset_bottom = 72.16
 theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
-theme_override_fonts/font = ExtResource("6_6o43e")
+theme_override_fonts/font = ExtResource("6_v4hsa")
 theme_override_font_sizes/font_size = 40
 text = "50%"
 horizontal_alignment = 1
@@ -196,14 +208,14 @@ vertical_alignment = 1
 visible = false
 position = Vector2(47.25, 40.999996)
 scale = Vector2(1.1013514, 0.96874994)
-texture = ExtResource("7_2vi63")
+texture = ExtResource("7_kegbq")
 
 [node name="CheckMark" type="Sprite2D" parent="Stats/Strength/ProgressCircle" unique_id=1431526503]
 visible = false
 texture_filter = 1
 position = Vector2(44.375, 44.499992)
 scale = Vector2(4.1911764, 3.9444451)
-texture = ExtResource("8_w8abe")
+texture = ExtResource("8_w7rbg")
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Strength" unique_id=1843146900]
 texture_filter = 1
@@ -212,20 +224,20 @@ offset_left = 72.0
 offset_top = 62.0
 offset_right = 216.0
 offset_bottom = 78.0
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 16
 text = "Strength"
 horizontal_alignment = 1
 
-[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Strength" unique_id=103852088]
+[node name="TresholdValueLeft" type="Label" parent="Stats/Strength" unique_id=103852088]
 texture_filter = 1
 layout_mode = 0
-offset_left = 192.0
+offset_left = 184.0
 offset_top = 112.0
-offset_right = 616.0
+offset_right = 616.00006
 offset_bottom = 138.0
 theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 25
 text = "100"
 horizontal_alignment = 1
@@ -253,7 +265,7 @@ offset_top = 80.0
 offset_right = 616.0
 offset_bottom = 168.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 30
 text = "Off"
 horizontal_alignment = 1
@@ -269,12 +281,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="StrengthBar" type="Sprite2D" parent="Stats/Intelligence" unique_id=1136364859]
+[node name="Bar" type="Sprite2D" parent="Stats/Intelligence" unique_id=1136364859]
 texture_filter = 1
 material = SubResource("ShaderMaterial_75nl1")
-position = Vector2(372.5, 124)
-scale = Vector2(1.1867087, 1.421875)
-texture = ExtResource("2_1jr5h")
+position = Vector2(376, 124)
+scale = Vector2(1.363924, 1.421875)
+texture = ExtResource("11_352qn")
 
 [node name="ProgressCircle" type="TextureRect" parent="Stats/Intelligence" unique_id=920071692]
 texture_filter = 1
@@ -284,8 +296,8 @@ offset_left = 96.0
 offset_top = 80.0
 offset_right = 192.0
 offset_bottom = 168.0
-texture = ExtResource("4_ip8dg")
-script = ExtResource("5_8uqr3")
+texture = ExtResource("4_352qn")
+script = ExtResource("8_v4hsa")
 
 [node name="PercantLabel" type="Label" parent="Stats/Intelligence/ProgressCircle" unique_id=1241458902]
 layout_mode = 1
@@ -295,7 +307,7 @@ anchor_bottom = 0.18
 offset_right = 66.048004
 offset_bottom = 72.16
 theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
-theme_override_fonts/font = ExtResource("6_6o43e")
+theme_override_fonts/font = ExtResource("6_v4hsa")
 theme_override_font_sizes/font_size = 40
 text = "50%"
 horizontal_alignment = 1
@@ -305,14 +317,14 @@ vertical_alignment = 1
 visible = false
 position = Vector2(47.25, 40.999996)
 scale = Vector2(1.1013514, 0.96874994)
-texture = ExtResource("7_2vi63")
+texture = ExtResource("7_kegbq")
 
 [node name="CheckMark" type="Sprite2D" parent="Stats/Intelligence/ProgressCircle" unique_id=719060809]
 visible = false
 texture_filter = 1
 position = Vector2(44.375, 44.499992)
 scale = Vector2(4.1911764, 3.9444451)
-texture = ExtResource("8_w8abe")
+texture = ExtResource("8_w7rbg")
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Intelligence" unique_id=2093793513]
 texture_filter = 1
@@ -322,20 +334,20 @@ offset_top = 61.0
 offset_right = 241.0
 offset_bottom = 77.0
 scale = Vector2(1, 1.4400024)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 12
 text = "Intelligence"
 horizontal_alignment = 1
 
-[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Intelligence" unique_id=1130340107]
+[node name="TresholdValueLeft" type="Label" parent="Stats/Intelligence" unique_id=1130340107]
 texture_filter = 1
 layout_mode = 0
-offset_left = 192.0
+offset_left = 188.0
 offset_top = 112.0
-offset_right = 552.0
+offset_right = 571.0
 offset_bottom = 138.0
 theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 25
 text = "100"
 horizontal_alignment = 1
@@ -363,7 +375,7 @@ offset_top = 80.0
 offset_right = 616.0
 offset_bottom = 168.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 30
 text = "Off"
 horizontal_alignment = 1
@@ -379,12 +391,12 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="StrengthBar" type="Sprite2D" parent="Stats/Community" unique_id=253069489]
+[node name="Bar" type="Sprite2D" parent="Stats/Community" unique_id=253069489]
 texture_filter = 1
 material = SubResource("ShaderMaterial_75nl1")
-position = Vector2(344.50003, 124)
-scale = Vector2(1.0094936, 1.421875)
-texture = ExtResource("2_1jr5h")
+position = Vector2(352, 124)
+scale = Vector2(1.363924, 1.421875)
+texture = ExtResource("12_1qjac")
 
 [node name="ProgressCircle" type="TextureRect" parent="Stats/Community" unique_id=2140441299]
 texture_filter = 1
@@ -394,8 +406,8 @@ offset_left = 96.0
 offset_top = 80.0
 offset_right = 192.0
 offset_bottom = 168.0
-texture = ExtResource("4_ip8dg")
-script = ExtResource("5_8uqr3")
+texture = ExtResource("4_352qn")
+script = ExtResource("8_v4hsa")
 
 [node name="PercantLabel" type="Label" parent="Stats/Community/ProgressCircle" unique_id=1145155738]
 layout_mode = 1
@@ -405,7 +417,7 @@ anchor_bottom = 0.18
 offset_right = 66.048004
 offset_bottom = 72.16
 theme_override_colors/font_color = Color(0.96862745, 0.70980394, 0, 1)
-theme_override_fonts/font = ExtResource("6_6o43e")
+theme_override_fonts/font = ExtResource("6_v4hsa")
 theme_override_font_sizes/font_size = 40
 text = "50%"
 horizontal_alignment = 1
@@ -415,14 +427,14 @@ vertical_alignment = 1
 visible = false
 position = Vector2(47.25, 40.999996)
 scale = Vector2(1.1013514, 0.96874994)
-texture = ExtResource("7_2vi63")
+texture = ExtResource("7_kegbq")
 
 [node name="CheckMark" type="Sprite2D" parent="Stats/Community/ProgressCircle" unique_id=610981581]
 visible = false
 texture_filter = 1
 position = Vector2(44.375, 44.499992)
 scale = Vector2(4.1911764, 3.9444451)
-texture = ExtResource("8_w8abe")
+texture = ExtResource("8_w7rbg")
 
 [node name="StatTypeLabel" type="Label" parent="Stats/Community" unique_id=858415259]
 texture_filter = 1
@@ -431,20 +443,20 @@ offset_left = 72.0
 offset_top = 62.0
 offset_right = 216.0
 offset_bottom = 78.0
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 16
 text = "Community"
 horizontal_alignment = 1
 
-[node name="CurrTresholdValueLeft" type="Label" parent="Stats/Community" unique_id=1806242968]
+[node name="TresholdValueLeft" type="Label" parent="Stats/Community" unique_id=1806242968]
 texture_filter = 1
 layout_mode = 0
-offset_left = 192.0
+offset_left = 188.0
 offset_top = 112.0
-offset_right = 504.0
+offset_right = 523.0
 offset_bottom = 138.0
 theme_override_colors/font_color = Color(1, 0.7176471, 0, 0.7058824)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 25
 text = "100"
 horizontal_alignment = 1
@@ -472,7 +484,7 @@ offset_top = 80.0
 offset_right = 616.0
 offset_bottom = 168.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("9_qw2pl")
+theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 30
 text = "Off"
 horizontal_alignment = 1

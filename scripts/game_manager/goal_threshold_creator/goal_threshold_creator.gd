@@ -8,9 +8,9 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,
-			ThresholdStat.new("large", 400, false),   # strength
-			ThresholdStat.new("small", 100, false),   # intelligence
-			ThresholdStat.new("medium", 250, false)   # community
+			ThresholdStat.new("large", 400, 400, false, false),   # strength
+			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		
 		2: ThresholdPiece.new(
@@ -18,9 +18,9 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			30,
 			2,
 			false,		
-			ThresholdStat.new("medium", 250, false),
-			ThresholdStat.new("large", 400, false),
-			ThresholdStat.new("small", 100, false)
+			ThresholdStat.new("large", 0, 400, false, false),   # strength
+			ThresholdStat.new("small", 0, 100, false, false),   # intelligence
+			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		
 		3: ThresholdPiece.new(
@@ -28,18 +28,18 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			35,
 			3,
 			false,		
-			ThresholdStat.new("small", 100, false),
-			ThresholdStat.new("medium", 250, false),
-			ThresholdStat.new("large", 400, false)
+			ThresholdStat.new("large", 0, 400, false, false),   # strength
+			ThresholdStat.new("small", 0, 100, false, false),   # intelligence
+			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		4: ThresholdPiece.new(
 			6,
 			40,
 			3,
 			false,		
-			ThresholdStat.new("large", 450, false),
-			ThresholdStat.new("medium", 300, false),
-			ThresholdStat.new("large", 400, false)
+			ThresholdStat.new("large", 0, 400, false, false),   # strength
+			ThresholdStat.new("small", 0, 100, false, false),   # intelligence
+			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		)
 	},
 )

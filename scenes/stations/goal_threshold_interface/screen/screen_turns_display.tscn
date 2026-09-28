@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://bynb8tfccsbxo"]
 
-[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_klcjy"]
-[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_duyu4"]
-[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_yfyon"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_bl5an"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_f2fr5"]
+[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_o1dyw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_duyu4"]
-shader = ExtResource("1_klcjy")
+shader = ExtResource("1_bl5an")
 shader_parameter/line_opacity = 0.12
 shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
-[node name="ScreenTurnsLeft" type="Node2D" unique_id=683296768]
+[node name="ScreenTurnDisplay" type="Node2D" unique_id=683296768]
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1286817743]
 offset_right = 384.0
@@ -42,7 +42,7 @@ layout_mode = 0
 offset_left = 1.0
 offset_right = 386.0
 offset_bottom = 75.0
-theme_override_fonts/font = ExtResource("2_duyu4")
+theme_override_fonts/font = ExtResource("2_f2fr5")
 theme_override_font_sizes/font_size = 37
 text = "Turns Left To Complete"
 horizontal_alignment = 1
@@ -55,7 +55,7 @@ offset_left = 9.0
 offset_top = 56.0
 offset_right = 393.0
 offset_bottom = 281.0
-theme_override_fonts/font = ExtResource("2_duyu4")
+theme_override_fonts/font = ExtResource("2_f2fr5")
 theme_override_font_sizes/font_size = 200
 text = "4"
 horizontal_alignment = 1
@@ -82,7 +82,7 @@ offset_left = 192.0
 offset_top = 280.0
 offset_right = 376.0
 offset_bottom = 339.0
-theme_override_fonts/font = ExtResource("2_duyu4")
+theme_override_fonts/font = ExtResource("2_f2fr5")
 theme_override_font_sizes/font_size = 23
 text = "Complete a Stat 
 Early Reward"
@@ -101,7 +101,7 @@ modulate = Color(0.45999998, 1, 0.48699993, 1)
 texture_filter = 1
 position = Vector2(304, 326)
 scale = Vector2(2.2583342, 2.241075)
-texture = ExtResource("3_yfyon")
+texture = ExtResource("3_o1dyw")
 
 [node name="HeaderLabel" type="Label" parent="Reward/EnergyReward" unique_id=164467472]
 texture_filter = 1
@@ -111,7 +111,7 @@ offset_top = 288.0
 offset_right = 308.0
 offset_bottom = 364.0
 theme_override_colors/font_color = Color(0.45882353, 0.68235296, 0.10980392, 1)
-theme_override_fonts/font = ExtResource("2_duyu4")
+theme_override_fonts/font = ExtResource("2_f2fr5")
 theme_override_font_sizes/font_size = 45
 text = "+25"
 horizontal_alignment = 1
@@ -137,7 +137,7 @@ offset_left = 134.0
 offset_top = 276.0
 offset_right = 198.0
 offset_bottom = 378.0
-theme_override_fonts/font = ExtResource("2_duyu4")
+theme_override_fonts/font = ExtResource("2_f2fr5")
 theme_override_font_sizes/font_size = 80
 text = "4"
 horizontal_alignment = 1
