@@ -10,20 +10,57 @@ var active_threshold_piece : ThresholdPiece
 
 func _ready() -> void:
 	GLGoalThresholdManagerBus.connect('created_goal_threshold', _handle_created_goal_threshold)
-
+	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
+	
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') :
+		GLGameManagerBus.emit_signal('proceed_next_energy_turn')
+	
 func _handle_created_goal_threshold(new_goal_threshold : GoalThreshold) :
 	
-		goal_threshold = new_goal_threshold
-		
-		# starts at piece 1
-		active_threshold_piece = goal_threshold.pieces[1]
-		
-		# create dissolve stats
-		helper_dissolve_stats._create_inital_stats(active_threshold_piece)
-		
-		# refresh screens
-		helper_refresh_displays._refresh()
+	goal_threshold = new_goal_threshold
 	
+	# starts at piece 1
+	active_threshold_piece = goal_threshold.pieces[1]
+	
+	# create dissolve stats
+	helper_dissolve_stats._create_inital_stats(active_threshold_piece)
+	
+	# refresh screens
+	helper_refresh_displays._refresh()
+	
+
+func _handle_next_turn() -> void:
+	
+	if active_threshold_piece == null:
+		return
+	
+	# decrease turn count
+	active_threshold_piece.turns_remaining -= 1
+	
+	# warning if last turn
+	if active_threshold_piece.turns_remaining == 0 : 
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('default', 'Finale Turn. Last chance to reach Stat Goal', {}))
+	
+	# warning if last energy turn
+	# find how many turns used
+	var turns_used : int = (
+		active_threshold_piece.total_turns -
+		active_threshold_piece.turns_remaining
+	)
+	if turns_used == active_threshold_piece.early_completion_turn_limit :
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('default', 'Last Turn for Energy Reward Eligibility', {}))
+	
+	
+	# end game
+	if active_threshold_piece.turns_remaining < 0 : 
+		GLGameEndBus.emit_signal('game_ended')
+	
+	# keep manager reference synced
+	GLGoalThresholdManagerBus.active_goal_threshold = goal_threshold
+	
+	# refresh screens
+	helper_refresh_displays._refresh()
 	
 	
 	

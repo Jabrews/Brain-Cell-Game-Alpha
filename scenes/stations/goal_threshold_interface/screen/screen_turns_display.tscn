@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://bynb8tfccsbxo"]
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_bl5an"]
+[ext_resource type="Script" uid="uid://dr8oah2lno6f0" path="res://scripts/stations/goal_threshold_interface/screen/turn_display/screen_turn_display.gd" id="1_o1dyw"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_f2fr5"]
+[ext_resource type="Script" uid="uid://bo61scdbejiyv" path="res://scripts/stations/goal_threshold_interface/screen/turn_display/refresh_display.gd" id="2_knja2"]
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_o1dyw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_duyu4"]
@@ -12,6 +14,10 @@ shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
 [node name="ScreenTurnDisplay" type="Node2D" unique_id=683296768]
+script = ExtResource("1_o1dyw")
+
+[node name="RefreshDisplay" type="Node" parent="." unique_id=2124707087]
+script = ExtResource("2_knja2")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1286817743]
 offset_right = 384.0
@@ -140,5 +146,63 @@ offset_bottom = 378.0
 theme_override_fonts/font = ExtResource("2_f2fr5")
 theme_override_font_sizes/font_size = 80
 text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardCompleted" type="Control" parent="." unique_id=74191642]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="RewardCompleted" unique_id=641461939]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 280.0
+offset_right = 376.0
+offset_bottom = 376.0
+color = Color(0.22, 0.19066666, 0, 1)
+
+[node name="HeaderLabel" type="Label" parent="RewardCompleted" unique_id=1857588826]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 280.0
+offset_right = 376.0
+offset_bottom = 375.0
+theme_override_colors/font_color = Color(0.19999993, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_f2fr5")
+theme_override_font_sizes/font_size = 23
+text = "Reward Completed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RewardFailed" type="Control" parent="." unique_id=1152056302]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="RewardFailed" unique_id=1926213209]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 280.0
+offset_right = 376.0
+offset_bottom = 376.0
+color = Color(0.37770507, 0, 0.013098664, 1)
+
+[node name="HeaderLabel" type="Label" parent="RewardFailed" unique_id=501787123]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 280.0
+offset_right = 376.0
+offset_bottom = 375.0
+theme_override_colors/font_color = Color(1, 0, 0.016666412, 1)
+theme_override_fonts/font = ExtResource("2_f2fr5")
+theme_override_font_sizes/font_size = 23
+text = "Reward Failed"
 horizontal_alignment = 1
 vertical_alignment = 1
