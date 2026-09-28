@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://dstc1sevit4ub" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_stats.gd" id="2_70tpf"]
 [ext_resource type="Script" uid="uid://dsl32hlbsmoij" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/detect_cell_seat.gd" id="2_t0kqf"]
 [ext_resource type="Script" uid="uid://cv0cpcu1fdg06" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/btn_cycle_stat.gd" id="3_b1uhs"]
+[ext_resource type="Script" uid="uid://co6ttmd0o0ul7" path="res://scripts/stations/goal_threshold_interface/component/handle_dissolving.gd" id="3_j6f7w"]
 [ext_resource type="Script" uid="uid://wsectx02b4v" path="res://scripts/stations/goal_threshold_interface/component/helper_refresh_displays.gd" id="3_lfxd2"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_ja745"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="5_4dk20"]
@@ -124,6 +125,12 @@ script = ExtResource("2_70tpf")
 
 [node name="HelperRefreshDisplays" type="Node" parent="." unique_id=555968757]
 script = ExtResource("3_lfxd2")
+
+[node name="HandleDissolving" type="Node" parent="." unique_id=523468581]
+script = ExtResource("3_j6f7w")
+
+[node name="DissolveDelayTimer" type="Timer" parent="HandleDissolving" unique_id=1404066779]
+wait_time = 0.5
 
 [node name="CellSeats" type="Node3D" parent="." unique_id=488858946]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85410976, 0, 0)

@@ -8,21 +8,10 @@ extends TextureRect
 var flash_emergency_tween : Tween
 var flash_checkmark_tween : Tween
 
+var current_display_state : String = ""
+
 
 func _display(dissolved_stat : DissolveStat) -> void:
-	
-	# reset everything
-	percant_label.visible = false
-	emergency_sprite.visible = false
-	checkmark_sprite.visible = false
-	
-	percant_label.modulate.a = 1.0
-	emergency_sprite.modulate.a = 1.0
-	checkmark_sprite.modulate.a = 1.0
-	
-	toggle_flash_emergency_tween(false)
-	toggle_flash_checkmark_tween(false)
-	
 	
 	var threshold_stat : ThresholdStat = dissolved_stat.corresponding_threshold_stat
 	
@@ -34,20 +23,23 @@ func _display(dissolved_stat : DissolveStat) -> void:
 	
 	# disabled
 	if threshold_stat.disabled:
+		_set_display_state("disabled")
 		return
 	
 	
 	# finished
 	if threshold_stat.finished:
-		checkmark_sprite.visible = true
+		_set_display_state("finished")
 		return
 	
 	
 	# low turns warning
-	var active_piece : ThresholdPiece = GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
+	var active_piece : ThresholdPiece = (
+		GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
+	)
 	
 	if active_piece.turns_remaining <= 1:
-		toggle_flash_emergency_tween(true)
+		_set_display_state("emergency")
 		return
 	
 	
@@ -56,12 +48,64 @@ func _display(dissolved_stat : DissolveStat) -> void:
 	var current_value : float = threshold_stat.current_value
 	
 	if current_value <= percent_of_max:
-		toggle_flash_checkmark_tween(true)
+		_set_display_state("checkmark")
 		return
 	
 	
 	# normal display
-	percant_label.visible = true
+	_set_display_state("normal")
+
+
+func _set_display_state(new_state : String) -> void:
+	
+	# already displaying this state
+	# do not restart tweens
+	if current_display_state == new_state:
+		return
+	
+	current_display_state = new_state
+	
+	
+	# stop previous tweens
+	if flash_emergency_tween:
+		flash_emergency_tween.kill()
+		flash_emergency_tween = null
+	
+	if flash_checkmark_tween:
+		flash_checkmark_tween.kill()
+		flash_checkmark_tween = null
+	
+	
+	# reset visuals
+	percant_label.visible = false
+	emergency_sprite.visible = false
+	checkmark_sprite.visible = false
+	
+	percant_label.modulate.a = 1.0
+	emergency_sprite.modulate.a = 1.0
+	checkmark_sprite.modulate.a = 1.0
+	
+	
+	match new_state:
+		
+		"disabled":
+			pass
+		
+		
+		"finished":
+			checkmark_sprite.visible = true
+		
+		
+		"emergency":
+			toggle_flash_emergency_tween(true)
+		
+		
+		"checkmark":
+			toggle_flash_checkmark_tween(true)
+		
+		
+		"normal":
+			percant_label.visible = true
 
 
 func toggle_flash_emergency_tween(toggle_value : bool) -> void:
@@ -174,7 +218,14 @@ func _update_percant_label(max_value : float, curr_value : float) -> void:
 	
 	if max_value <= 0.0:
 		percant_label.text = "0%"
+		
+		self.material.set_shader_parameter(
+			"progress",
+			0.0
+		)
+		
 		return
+	
 	
 	var percent : float = (
 		1.0 - (curr_value / max_value)
@@ -184,14 +235,8 @@ func _update_percant_label(max_value : float, curr_value : float) -> void:
 	
 	percant_label.text = str(roundi(percent)) + "%"
 	
-	# set progress circle 
+	
 	self.material.set_shader_parameter(
 		"progress",
-		float(curr_value) / float(max_value)
+		curr_value / max_value
 	)
-			
-		
-	
-	
-	
-	

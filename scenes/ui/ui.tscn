@@ -457,32 +457,33 @@ scale = Vector2(1.498829, 1.5)
 texture = SubResource("CompressedTexture2D_ygedu")
 script = ExtResource("21_oopc8")
 
-[node name="ThresholdEmergencyTimeLeft" type="Control" parent="." unique_id=919333310]
-visible = false
+[node name="GoalInterfaceLastRoundEmergency" type="Control" parent="." unique_id=919333310]
 layout_mode = 1
-anchors_preset = 0
-offset_left = 568.0
-offset_right = 608.0
-offset_bottom = 40.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 476.0
+offset_right = 476.0
+grow_horizontal = 2
 script = ExtResource("22_o71gb")
 
-[node name="BG" type="ColorRect" parent="ThresholdEmergencyTimeLeft" unique_id=1941743789]
+[node name="BG" type="ColorRect" parent="GoalInterfaceLastRoundEmergency" unique_id=1941743789]
 layout_mode = 0
 offset_left = 16.0
 offset_top = 24.0
-offset_right = 136.0
+offset_right = 224.0
 offset_bottom = 80.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 color = Color(0, 0, 0, 0.54901963)
 
-[node name="EmergencySprite" type="Sprite2D" parent="ThresholdEmergencyTimeLeft" unique_id=289798333]
+[node name="EmergencySprite" type="Sprite2D" parent="GoalInterfaceLastRoundEmergency" unique_id=289798333]
 modulate = Color(1, 0.19607843, 0.19607843, 1)
 texture_filter = 1
 position = Vector2(44.000004, 51.000004)
 scale = Vector2(0.6621622, 0.671875)
 texture = ExtResource("22_fv78h")
 
-[node name="TimeLeftLabel" type="Label" parent="ThresholdEmergencyTimeLeft" unique_id=1243909657]
+[node name="WarningLabel" type="Label" parent="GoalInterfaceLastRoundEmergency" unique_id=1243909657]
 texture_filter = 1
 layout_mode = 0
 offset_left = 71.0
@@ -493,8 +494,10 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.6745098, 0.039215688, 0.039215688, 1)
 theme_override_fonts/font = ExtResource("4_g5kmx")
 theme_override_font_sizes/font_size = 40
-text = "1:05"
+text = "Last Turn "
 horizontal_alignment = 1
+
+[node name="FlashTimer" type="Timer" parent="GoalInterfaceLastRoundEmergency" unique_id=2074966379]
 
 [node name="EnergyLeftDisplay" type="Control" parent="." unique_id=978364777]
 anchors_preset = 0

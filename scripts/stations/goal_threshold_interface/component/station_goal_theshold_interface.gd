@@ -7,14 +7,13 @@ extends Node
 var goal_threshold : GoalThreshold
 var active_threshold_piece : ThresholdPiece 
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') : 
+		GLGameManagerBus.emit_signal('proceed_next_energy_turn')
 
 func _ready() -> void:
 	GLGoalThresholdManagerBus.connect('created_goal_threshold', _handle_created_goal_threshold)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
-	
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') :
-		GLGameManagerBus.emit_signal('proceed_next_energy_turn')
 	
 func _handle_created_goal_threshold(new_goal_threshold : GoalThreshold) :
 	
@@ -41,6 +40,9 @@ func _handle_next_turn() -> void:
 	# warning if last turn
 	if active_threshold_piece.turns_remaining == 0 : 
 		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('turn_warning', 'Finale Turn. Last chance to reach Stat Goal', {}))
+		GLGoalThresholdManagerBus.emit_signal('toggle_emergency_ui', true)
+	else : 
+		GLGoalThresholdManagerBus.emit_signal('toggle_emergency_ui', false)
 	
 	# warning if last energy turn
 	# find how many turns used
