@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://cv0cpcu1fdg06" path="res://scripts/stations/station_components/goal_threshold_interface/cell_seat/btn_cycle_stat.gd" id="3_b1uhs"]
 [ext_resource type="Script" uid="uid://co6ttmd0o0ul7" path="res://scripts/stations/goal_threshold_interface/component/handle_dissolving.gd" id="3_j6f7w"]
 [ext_resource type="Script" uid="uid://wsectx02b4v" path="res://scripts/stations/goal_threshold_interface/component/helper_refresh_displays.gd" id="3_lfxd2"]
+[ext_resource type="Script" uid="uid://bpwyuvlnmotgb" path="res://scripts/stations/goal_threshold_interface/component/helper_detect_finished.gd" id="4_8uguy"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_ja745"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="5_4dk20"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_vpv14"]
@@ -125,6 +126,9 @@ script = ExtResource("2_70tpf")
 
 [node name="HelperRefreshDisplays" type="Node" parent="." unique_id=555968757]
 script = ExtResource("3_lfxd2")
+
+[node name="HelperDetectFinished" type="Node" parent="." unique_id=240556103]
+script = ExtResource("4_8uguy")
 
 [node name="HandleDissolving" type="Node" parent="." unique_id=523468581]
 script = ExtResource("3_j6f7w")

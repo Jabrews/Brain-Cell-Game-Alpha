@@ -7,10 +7,6 @@ extends Node
 var goal_threshold : GoalThreshold
 var active_threshold_piece : ThresholdPiece 
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') : 
-		GLGameManagerBus.emit_signal('proceed_next_energy_turn')
-
 func _ready() -> void:
 	GLGoalThresholdManagerBus.connect('created_goal_threshold', _handle_created_goal_threshold)
 	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_next_turn)
