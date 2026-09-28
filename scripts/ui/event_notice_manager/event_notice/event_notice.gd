@@ -58,6 +58,9 @@ func get_header_text_from_type(event_type: String) -> String:
 
 		"age_warning":
 			return "Cell Lifespan\nWarning"
+		
+		'turn_warning': 
+			return "DANGER Turn\nWarning"
 
 		"default":
 			return "New Event\nDetected"
@@ -80,6 +83,9 @@ func get_wait_time_from_type(event_type : String) -> float:
 
 		"age_warning":
 			return 0.5
+		
+		"turn_warning" : 
+			return 1.0
 
 		"default":
 			return 1.0

@@ -40,7 +40,7 @@ func _handle_next_turn() -> void:
 	
 	# warning if last turn
 	if active_threshold_piece.turns_remaining == 0 : 
-		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('default', 'Finale Turn. Last chance to reach Stat Goal', {}))
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('turn_warning', 'Finale Turn. Last chance to reach Stat Goal', {}))
 	
 	# warning if last energy turn
 	# find how many turns used
@@ -49,7 +49,7 @@ func _handle_next_turn() -> void:
 		active_threshold_piece.turns_remaining
 	)
 	if turns_used == active_threshold_piece.early_completion_turn_limit :
-		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('default', 'Last Turn for Energy Reward Eligibility', {}))
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('turn_warning', 'Last Turn for Energy Reward Eligibility', {}))
 	
 	
 	# end game

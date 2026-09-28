@@ -22,6 +22,11 @@ func _load(event_notice_type : String) :
 		'age_warning' : 
 			header_label.add_theme_color_override("font_color",Color(0.8, 0.494, 0.588) )
 			body_label.add_theme_color_override("font_color", Color.WHITE)
+		'turn_warning' : 		
+			emergency_scale()
+			header_label.material.set_shader_parameter("hologram_enabled", true)			
+			header_label.add_theme_color_override("font_color", Color(0.918, 0.0, 0.247))
+			body_label.add_theme_color_override("font_color", Color.WHITE)
 		'default'  : 
 			header_label.add_theme_color_override("font_color", Color(1.0, 0.596, 0.29))
 			body_label.add_theme_color_override("font_color", Color.WHITE)
