@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://5s4jotkmfrx3" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/refresh_display.gd" id="1_x2m6x"]
 [ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="2_x2m6x"]
 [ext_resource type="Script" uid="uid://bx6axg85o33fo" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/helper_display_stat_postions.gd" id="3_352qn"]
-[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="3_lue6d"]
+[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/threshold_progress_circle_outline.gdshader" id="3_lue6d"]
 [ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_352qn"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_v4hsa"]
 [ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_kegbq"]

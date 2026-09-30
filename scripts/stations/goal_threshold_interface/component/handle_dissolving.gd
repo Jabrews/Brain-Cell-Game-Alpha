@@ -80,9 +80,13 @@ func _handle_dissolve_delay_timer() -> void:
 		)
 		
 		
-		# stat completed
+		## stat completed
 		if threshold_stat.current_value <= 0.0:
 			threshold_stat.finished = true
+			
+			# let parent station know
+			parent_station._handle_threshold_stat_finished()
+			
 	
 	
 	# remove stats that finished dissolving

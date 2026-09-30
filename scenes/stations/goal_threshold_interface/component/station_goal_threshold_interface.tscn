@@ -60,7 +60,7 @@ script = ExtResource("4_8uguy")
 script = ExtResource("3_j6f7w")
 
 [node name="DissolveDelayTimer" type="Timer" parent="HandleDissolving" unique_id=1404066779]
-wait_time = 0.5
+wait_time = 0.1
 
 [node name="StatThresholdTV" type="Node3D" parent="." unique_id=137975337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8451097, 0.5493412, 0)

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://1kitv362gqvl" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_estimated_time_left.gd" id="5_g3eu6"]
 [ext_resource type="Script" uid="uid://c4krboqibo4nh" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_start.gd" id="5_vqu4o"]
 [ext_resource type="Script" uid="uid://dks84608hwqnr" path="res://scripts/stations/station_screens/goal_threshold_interface/display/display_emergency.gd" id="6_7fjsm"]
-[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/station_screens/goal_threshold_interface/threshold_progress_circle_outline.gdshader" id="6_g3eu6"]
+[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/threshold_progress_circle_outline.gdshader" id="6_g3eu6"]
 [ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="7_7fjsm"]
 [ext_resource type="Script" uid="uid://jjvtq2ttvqqr" path="res://scripts/stations/station_screens/goal_threshold_interface/progress_circle.gd" id="8_vqu4o"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_25vk6"]

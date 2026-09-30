@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://vgie5w5m3275" path="res://scenes/stations/station_components/hidden_stat_interpreter/emergency_light.tscn" id="13_3ujpq"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
-[ext_resource type="PackedScene" uid="uid://cbkhifesyls7u" path="res://scenes/stations/station_components/goal_threshold_interface/station_goal_threshold_interface.tscn" id="14_r52yi"]
 [ext_resource type="PackedScene" uid="uid://coetu5aaafg85" path="res://scenes/stations/station_components/cell_breeding/component/station_cell_breeding.tscn" id="15_0ycs4"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
@@ -26,7 +25,6 @@
 [ext_resource type="PackedScene" uid="uid://b4cwkhm8fu843" path="res://debug/station_unhide_mutation/station_unhide_mutation.tscn" id="18_8muua"]
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/defect_event_triggerer.gd" id="18_58boi"]
-[ext_resource type="PackedScene" uid="uid://b4pvxjq2gtg0x" path="res://scenes/shareholder_demand_provider/shareholder_demand_provider.tscn" id="18_m2qbd"]
 [ext_resource type="Script" uid="uid://cfkbsod3fqx61" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_defect.gd" id="18_v2xyd"]
 [ext_resource type="PackedScene" uid="uid://b1d8og0sww57y" path="res://scenes/stations/goal_threshold_interface/component/station_goal_threshold_interface.tscn" id="19_0ycs4"]
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
@@ -537,13 +535,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -7.9000006)
 [node name="EmergencyLight4" parent="Stations/ContainerStations/HiddenStatInterpreters/EmergencyLights" unique_id=2131813906 instance=ExtResource("13_3ujpq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.8, 5.6, -16.1)
 
-[node name="GoalTreshold" parent="Stations/ContainerStations" unique_id=606315026 instance=ExtResource("14_r52yi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.215354, 3.1953754, 17)
-visible = false
-
 [node name="CellBreeding" parent="Stations/ContainerStations" unique_id=1160068214 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("15_0ycs4")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 15.497986, 0.0082941055, -1.5564411)
 cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
+
+[node name="GoalThresholdInterface" parent="Stations/ContainerStations" unique_id=605944660 instance=ExtResource("19_0ycs4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.164282, 3.030553, 17.233646)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.442163, 3.3025842, 4.9931126)
@@ -554,12 +551,6 @@ mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 
 [node name="UnhideMutation" parent="Stations" unique_id=1284783246 instance=ExtResource("18_8muua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
-
-[node name="ShareholderDemandProvider" parent="Stations" unique_id=1678189998 instance=ExtResource("18_m2qbd")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 13.994104, 3, -13)
-
-[node name="StationGoalThresholdInterface" parent="Stations" unique_id=605944660 instance=ExtResource("19_0ycs4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.164282, 3.030553, 17.233646)
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")

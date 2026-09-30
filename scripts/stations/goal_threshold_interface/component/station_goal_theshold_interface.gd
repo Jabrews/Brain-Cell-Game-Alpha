@@ -61,6 +61,22 @@ func _handle_next_turn() -> void:
 	# refresh screens
 	helper_refresh_displays._refresh()
 	
+func _handle_threshold_stat_finished() :
+	
+	var strength_stat_threshold : ThresholdStat = active_threshold_piece.strength
+	var intelligence_stat_threshold : ThresholdStat = active_threshold_piece.intelligence
+	var community_stat_threshold : ThresholdStat = active_threshold_piece.community
+		
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
