@@ -12,10 +12,13 @@ func _ready() :
 	connect_signals()
 	
 	GLGameManagerBus.current_round = 1
-	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
+	GLGameManagerBus.curr_turn = 1
+	
+	goal_threshold_creator._create_goal()
+	
+	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round)
 	
 	#goal_threshold_manager._create_goal()
-	goal_threshold_creator._create_goal()
 	
 ##### INIT HELPERS ######
 
@@ -33,7 +36,7 @@ func initate_next_round() :
 	
 	# update round logic
 	GLGameManagerBus.current_round += 1
-	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
+	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round)
 	
 	# delete all prior cells
 	GLCellManagerBus.emit_signal('delete_cells_for_next_round')

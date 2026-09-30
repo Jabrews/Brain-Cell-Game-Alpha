@@ -73,8 +73,8 @@ func _ready() -> void:
 	)
 
 	GLGameManagerBus.connect(
-		"proceed_next_energy_turn",
-		_handle_proceed_next_energy_turn
+		"proceed_next_turn",
+		_handle_next_turn	
 	)
 
 	detect_cell_left.connect(
@@ -119,7 +119,7 @@ func _handle_cell_added_to_collection(new_cell: BrainCell) -> void:
 		extractor_lights._switch_light_state('cells_loaded')
 
 
-func _handle_proceed_next_energy_turn() -> void:
+func _handle_next_turn() -> void:
 	
 	if len(cells_to_create) != 0 : 
 		for cell : BrainCell in cells_to_create : 

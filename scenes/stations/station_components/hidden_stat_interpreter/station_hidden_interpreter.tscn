@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bpi5dt0umx4rp" path="res://scenes/stations/station_screens/hidden_interpreter/screen_hidden_interpreter.tscn" id="3_q5brb"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="4_k5va8"]
 [ext_resource type="PackedScene" uid="uid://bwvl6q87pofak" path="res://reusable/mutation_disrupt/disruptable_reciever/disruptable_reciever.tscn" id="5_2rnm3"]
-[ext_resource type="Script" uid="uid://c37qtvh1gk3el" path="res://scripts/stations/station_components/hidden_interpreter/energy_decrease_symbol/energy_decrease_spawner.gd" id="6_ulbnn"]
-[ext_resource type="PackedScene" uid="uid://5a1rtusg0sih" path="res://scenes/stations/station_components/hidden_stat_interpreter/energy_decrease_symbol.tscn" id="7_gow6p"]
 [ext_resource type="Script" uid="uid://c1b5fl6kro71e" path="res://scripts/stations/station_components/hidden_interpreter/audio_manager.gd" id="10_k67sj"]
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="11_h2l15"]
 [ext_resource type="AudioStream" uid="uid://c7ncshh48gvd7" path="res://sounds/hidden_stat_interpreter/interpreter_finished.mp3" id="12_jgci0"]
@@ -155,24 +153,6 @@ draw_pass_1 = SubResource("PlaneMesh_gow6p")
 
 [node name="DisruptableReciever" parent="." unique_id=1601090376 node_paths=PackedStringArray("parent_disruptable_screen") instance=ExtResource("5_2rnm3")]
 parent_disruptable_screen = NodePath("../TvFrontPannel/SubViewport/ScreenHiddenInterpreter")
-
-[node name="EnergyDecreaseSpawner" type="Node3D" parent="." unique_id=1403976759]
-script = ExtResource("6_ulbnn")
-energy_decrease_symbol_scene = ExtResource("7_gow6p")
-
-[node name="SpawnDelay" type="Timer" parent="EnergyDecreaseSpawner" unique_id=832608461]
-wait_time = 7.0
-
-[node name="SpawnSpots" type="Node3D" parent="EnergyDecreaseSpawner" unique_id=1380800405]
-
-[node name="Spawn1" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=2049315680]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 2.3386102, 2.6281414)
-
-[node name="Spawn2" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=221854741]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 2.1618297, -0.45434725)
-
-[node name="Spawn3" type="Node3D" parent="EnergyDecreaseSpawner/SpawnSpots" unique_id=1658468259]
-transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.6352744, 2.3386102, 2.3282068)
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=380838061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8696864, 0)

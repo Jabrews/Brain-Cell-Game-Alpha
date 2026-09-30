@@ -4,143 +4,20 @@ extends Node
 @onready var serve_item_offer_parent: Control = $ServeItemOffer
 @onready var header_label: Label = $HeaderLabel
 @onready var blur_bg: ColorRect = $BlurBg
+
 # sounds
-@onready var s_start : AudioStreamPlayer2D = $ServeItemOffer/Audio/Start
-@onready var s_select : AudioStreamPlayer2D = $ServeItemOffer/Audio/Select
+@onready var s_start: AudioStreamPlayer2D = $ServeItemOffer/Audio/Start
+@onready var s_select: AudioStreamPlayer2D = $ServeItemOffer/Audio/Select
 
 # cards
-
 @onready var item_offer_card_1: TextureRect = $ServeItemOffer/Card1Container
 @onready var item_offer_card_2: TextureRect = $ServeItemOffer/Card2Container
-@onready var item_offer_card_3 : TextureRect = $ServeItemOffer/Card3Container
-
-
-var serve_first_card_next_turn: bool = false
-var serve_second_card_next_turn: bool = false
-
-var has_served_first_card: bool = false
-var has_served_second_card: bool = false
+@onready var item_offer_card_3: TextureRect = $ServeItemOffer/Card3Container
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect(
-		"proceed_next_round",
-		_handle_next_round
-	)
-
-	# instead now we wait till cinnamatic finished
-	#GLGameManagerBus.connect(
-		#"proceed_next_energy_turn",
-		#_handle_energy_turn_changed
-	#)
-
-	GLGameManagerBus.connect(
-		"energy_changed",
-		_handle_energy_changed
-	)
-	
-	#GLCinnamaticBus.connect('toggle_showing_cinnamatic', _handle_toggle_showing_cinnamatic)
-	GLCinnamaticBus.connect('toggle_energy_cinnamatic', _handle_toggle_energy_cinnamatic)
-
 	toggle_display_lock(false)
 	toggle_mouse_filter(false)
-
-
-func _handle_energy_changed() -> void:
-	# energy changes can schedule an offer.
-	# they never serve it.
-	_check_if_offer_should_be_scheduled()
-
-
-func _handle_energy_turn_changed() -> void:
-	# serve something that was scheduled BEFORE this turn.
-	if serve_first_card_next_turn:
-		serve_first_card_next_turn = false
-		has_served_first_card = true
-		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
-		GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', false)
-		s_start.play()
-		
-		serve_item_cards()
-		return
-
-	if serve_second_card_next_turn:
-		serve_second_card_next_turn = false
-		has_served_second_card = true
-		GLEventNoticeManagerBus.emit_signal('delete_event_notice_shareholder_item_offer', 1)
-		GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', false)
-		s_start.play()
-
-		serve_item_cards()
-		return
-
-	# Nothing was waiting to be served.
-	# Now check if this turn should schedule something
-	# for the NEXT energy turn.
-	_check_if_offer_should_be_scheduled()
-
-
-func _check_if_offer_should_be_scheduled() -> void:
-	var curr_energy: int = GLGameManagerBus.curr_energy
-	var max_energy: int = GLGameManagerBus.max_energy
-
-	var energy_percent: float = (
-		curr_energy / float(max_energy)
-	) * 100.0
-
-
-	# FIRST OFFER
-	if (
-		energy_percent <= IVShareholderOffers.first_item_offer_energy_percant
-		and not has_served_first_card
-		and not serve_first_card_next_turn
-	):
-		serve_first_card_next_turn = true
-		
-		GLEventNoticeManagerBus.emit_signal(
-			"create_event_notice",
-			EventNotice.new(
-				"default",
-				"Item offer incoming next turn.",
-				{'serve_num' : 1}
-			)
-		)
-		
-
-
-		return
-
-
-	# Don't schedule second while first is still waiting.
-	if serve_first_card_next_turn:
-		return
-
-
-	# SECOND OFFER
-	if (
-		energy_percent <= IVShareholderOffers.second_item_offer_energy_percant
-		and not has_served_second_card
-		and not serve_second_card_next_turn
-	):
-		serve_second_card_next_turn = true
-		
-		GLEventNoticeManagerBus.emit_signal(
-			"create_event_notice",
-			EventNotice.new(
-				"default",
-				"Item offer incoming next turn.",
-				{'serve_num' : 2}
-			)
-		)
-		
-
-
-func _handle_next_round() -> void:
-	serve_first_card_next_turn = false
-	serve_second_card_next_turn = false
-
-	has_served_first_card = false
-	has_served_second_card = false
 
 
 func serve_item_cards() -> void:
@@ -148,6 +25,7 @@ func serve_item_cards() -> void:
 	toggle_mouse_filter(true)
 
 	serve_item_offer_parent.visible = true
+	s_start.play()
 
 	var item_to_offer_copy = GLShareholderOfferState.items_to_offer.duplicate()
 
@@ -158,7 +36,8 @@ func serve_item_cards() -> void:
 	# get random item for card 2
 	var item_2 = item_to_offer_copy.pick_random()
 	item_to_offer_copy.erase(item_2)
-	
+
+	# get random item for card 3
 	var item_3 = item_to_offer_copy.pick_random()
 	item_to_offer_copy.erase(item_3)
 
@@ -166,17 +45,16 @@ func serve_item_cards() -> void:
 	item_offer_card_1.update(item_1)
 	item_offer_card_2.update(item_2)
 	item_offer_card_3.update(item_3)
-	
-	if GAMEInputTypeDetector.input_type == 'controller' :
+
+	if GAMEInputTypeDetector.input_type == "controller":
 		item_offer_card_1.grab_focus()
-	
-	GLPlayerState.emit_signal('lock_player_position', true)
+
+	GLPlayerState.emit_signal("lock_player_position", true)
 
 
 func handle_card_picked(offer_card: TextureRect) -> void:
-	
 	s_select.play()
-	
+
 	var tween := create_tween()
 
 	tween.set_pause_mode(
@@ -204,8 +82,6 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 	)
 
 	await tween.finished
-	
-	GLEventNoticeManagerBus.emit_signal('toggle_hide_event_notice', true)
 
 	serve_item_offer_parent.visible = false
 
@@ -220,21 +96,22 @@ func handle_card_picked(offer_card: TextureRect) -> void:
 
 	toggle_display_lock(false)
 	toggle_mouse_filter(false)
-	GLPlayerState.emit_signal('lock_player_position', false)
 
-func _handle_toggle_energy_cinnamatic(toggle_value : bool) : 
-	if toggle_value == false : 	
-		_handle_energy_turn_changed()
+	GLPlayerState.emit_signal(
+		"lock_player_position",
+		false
+	)
+
 
 func toggle_display_lock(toggle_value: bool) -> void:
-	
-
-	
 	if toggle_value:
 		header_label.visible = true
 		blur_bg.visible = true
-		GLHideUiBus.emit_signal('toggle_hide_ui', true)
-		
+
+		GLHideUiBus.emit_signal(
+			"toggle_hide_ui",
+			true
+		)
 
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
@@ -242,7 +119,11 @@ func toggle_display_lock(toggle_value: bool) -> void:
 	else:
 		header_label.visible = false
 		blur_bg.visible = false
-		GLHideUiBus.emit_signal('toggle_hide_ui', false)
+
+		GLHideUiBus.emit_signal(
+			"toggle_hide_ui",
+			false
+		)
 
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false

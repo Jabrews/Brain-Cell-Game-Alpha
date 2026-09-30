@@ -11,14 +11,9 @@ var last_round : int = 0
 @onready var iv_helper_mutations : Node = $IVHelperMutations
 @onready var iv_helper_mutation_event_trigger : Node = $IVHelperMutationEventTrigger
 
-func _ready() -> void:
-	# when energy changes outside of prisoner generation
-	# ex. cell defector decrease station
-	GLGameManagerBus.connect('energy_changed', _handle_energy_changed)
-
 
 @warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
-func change_progression_step(round : int, curr_energy: int) :
+func change_progression_step(round : int) :
 	
 	if last_round != round :
 		handle_round(round)
@@ -27,16 +22,16 @@ func change_progression_step(round : int, curr_energy: int) :
 		GLUsableItemBus.emit_signal('spawn_new_usable_items')
 		
 		
-		handle_energy(round, GLGameManagerBus.curr_energy)	
+		handle_turn(round)
 		
 		GLGameManagerBus.emit_signal('process_next_round')
 		
 		last_round = round
 	
 	
-	handle_energy(round, GLGameManagerBus.curr_energy)
+	handle_turn(round)
 	
-	GLGameManagerBus.emit_signal('proceed_next_energy_turn')
+	GLGameManagerBus.emit_signal('proceed_next_turn')
 	
 
 @warning_ignore("shadowed_global_identifier")
@@ -45,9 +40,6 @@ func handle_round(round : int):
 	match round :
 		1 :
 			IVCellBreeding.newly_breeded_cell_can_die_from_defect = false
-			## ENERGY ##
-			GLGameManagerBus.curr_energy = 100
-			GLGameManagerBus.max_energy = 100
 			## BREEDING ##
 			IVCellBreeding.max_cell_breeding_attempts = 5
 			IVCellBreeding.curr_cell_breeding_attempt = 0
@@ -87,15 +79,16 @@ func handle_round(round : int):
 
 
 @warning_ignore("shadowed_global_identifier")
-func handle_energy(round : int, energy: int) :
+func handle_turn(round : int) :
 	
-	iv_helper_hidden_stats._update_hidden_stat_values(round, energy)
-	iv_helper_profiler_spare_progression._update_spare_progression(round, energy)
-	iv_helper_cell_stat_creation._update_cell_stat_creation(round, energy)
-	iv_helper_shareholder_items._update_shareholder_items(round, energy)
-	iv_helper_mutations._update_mutations(round, energy)
-	iv_helper_mutation_event_trigger._update_mutations_event_trigger(round, energy)
+	var active_goal_piece_index : int = GLGoalThresholdManagerBus.active_goal_threshold.active_piece_index
 	
 	
-func _handle_energy_changed() :
-	handle_energy(GLGameManagerBus.current_round, GLGameManagerBus.curr_energy)
+	iv_helper_hidden_stats._update_hidden_stat_values(round, active_goal_piece_index)
+	iv_helper_profiler_spare_progression._update_spare_progression(round, active_goal_piece_index)
+	iv_helper_cell_stat_creation._update_cell_stat_creation(round, active_goal_piece_index)
+	iv_helper_shareholder_items._update_shareholder_items(round, active_goal_piece_index)
+	iv_helper_mutations._update_mutations(round, active_goal_piece_index)
+	iv_helper_mutation_event_trigger._update_mutations_event_trigger(round, active_goal_piece_index)
+	
+	

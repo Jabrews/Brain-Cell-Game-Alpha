@@ -7,7 +7,6 @@ extends Node
 @onready var screen_hidden_interpreter : Node2D = $TvFrontPannel/SubViewport/ScreenHiddenInterpreter
 @onready var progress_time_spent_manager : Node = $ProgressTimeSpentManager
 @onready var jolt_particles : GPUParticles3D = $JoltParticles 
-@onready var energy_decrease_spawner : Node3D = $EnergyDecreaseSpawner
 @onready var audio_manager : Node3D = $AudioManager
 
 var loaded_cell_container : CharacterBody3D
@@ -132,9 +131,6 @@ func _handle_defect_event_jolt(selected_interpreters : Array):
 			audio_manager.toggle_play_jolt(true)
 			audio_manager.toggle_play_idle_drone(false)
 			
-			#audio_manager.toggle_play_jolt(true)
-			energy_decrease_spawner._start_spawning_decrease_particles(selected_interpreters)
-			
 			if loaded_cell_container:
 				GLDefectEventMangerBus.emit_signal(
 					'initate_defect_event_cell_container',
@@ -148,8 +144,6 @@ func _handle_defect_event_jolt_ended(lever_flipped : bool = false) :
 	jolt_particles.emitting = false 
 			
 	jolt_active = false 
-	
-	energy_decrease_spawner._stop_spawning_decrease_particles()
 	
 	audio_manager.toggle_play_jolt(false)
 	

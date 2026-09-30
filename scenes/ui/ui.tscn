@@ -22,12 +22,8 @@
 [ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
 [ext_resource type="Script" uid="uid://cw31gxlbj441f" path="res://scripts/ui/view_demands.gd" id="20_ygedu"]
 [ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
-[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="22_fv78h"]
-[ext_resource type="Script" uid="uid://ww357ejx8on1" path="res://scripts/ui/threshold_emergency_time_left.gd" id="22_o71gb"]
 [ext_resource type="Script" uid="uid://dulxe11r8rej1" path="res://scripts/ui/game_end/game_end.gd" id="22_qmss2"]
 [ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/game_end/retry_btn.gd" id="23_26a3v"]
-[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="24_fqqne"]
-[ext_resource type="Script" uid="uid://d3qhqd2o4aav1" path="res://scripts/ui/energy_left_display.gd" id="24_qhbcy"]
 [ext_resource type="Script" uid="uid://ydot0phojew" path="res://scripts/ui/view_breeder_label.gd" id="28_khplb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
@@ -456,83 +452,6 @@ position = Vector2(640, 360)
 scale = Vector2(1.498829, 1.5)
 texture = SubResource("CompressedTexture2D_ygedu")
 script = ExtResource("21_oopc8")
-
-[node name="GoalInterfaceLastRoundEmergency" type="Control" parent="." unique_id=919333310]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 476.0
-offset_right = 476.0
-grow_horizontal = 2
-script = ExtResource("22_o71gb")
-
-[node name="BG" type="ColorRect" parent="GoalInterfaceLastRoundEmergency" unique_id=1941743789]
-layout_mode = 0
-offset_left = 16.0
-offset_top = 24.0
-offset_right = 224.0
-offset_bottom = 80.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-color = Color(0, 0, 0, 0.54901963)
-
-[node name="EmergencySprite" type="Sprite2D" parent="GoalInterfaceLastRoundEmergency" unique_id=289798333]
-modulate = Color(1, 0.19607843, 0.19607843, 1)
-texture_filter = 1
-position = Vector2(44.000004, 51.000004)
-scale = Vector2(0.6621622, 0.671875)
-texture = ExtResource("22_fv78h")
-
-[node name="WarningLabel" type="Label" parent="GoalInterfaceLastRoundEmergency" unique_id=1243909657]
-texture_filter = 1
-layout_mode = 0
-offset_left = 71.0
-offset_top = 29.0
-offset_right = 131.0
-offset_bottom = 75.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_colors/font_color = Color(0.6745098, 0.039215688, 0.039215688, 1)
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 40
-text = "Last Turn "
-horizontal_alignment = 1
-
-[node name="FlashTimer" type="Timer" parent="GoalInterfaceLastRoundEmergency" unique_id=2074966379]
-
-[node name="EnergyLeftDisplay" type="Control" parent="." unique_id=978364777]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("24_qhbcy")
-
-[node name="BG" type="ColorRect" parent="EnergyLeftDisplay" unique_id=935900799]
-layout_mode = 0
-offset_left = 1152.0
-offset_top = 24.0
-offset_right = 1264.0
-offset_bottom = 72.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-color = Color(0, 0, 0, 0.54901963)
-
-[node name="EnergySprite" type="Sprite2D" parent="EnergyLeftDisplay" unique_id=429371238]
-texture_filter = 1
-position = Vector2(1182.0001, 48)
-scale = Vector2(2.666675, 2.2857144)
-texture = ExtResource("24_fqqne")
-
-[node name="EnergyLeftLabel" type="Label" parent="EnergyLeftDisplay" unique_id=1158598930]
-texture_filter = 1
-layout_mode = 0
-offset_left = 1198.0001
-offset_top = 24.0
-offset_right = 1258.0001
-offset_bottom = 70.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_colors/font_color = Color(1, 0.9529412, 0.22352941, 1)
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 40
-text = "100"
-horizontal_alignment = 1
 
 [node name="GameEnd" type="Control" parent="." unique_id=1799871232]
 process_mode = 3

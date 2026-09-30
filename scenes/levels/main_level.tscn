@@ -21,7 +21,6 @@
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
 [ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
-[ext_resource type="PackedScene" uid="uid://n1eekgv0lbkm" path="res://scenes/stations/station_components/prisoner_profiler/prisoner_profiler.tscn" id="16_w7r6u"]
 [ext_resource type="PackedScene" uid="uid://dkmet5r7r2ydn" path="res://scenes/mutation_file_cabinet/mutation_file_cabinet.tscn" id="17_j7s3e"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="PackedScene" uid="uid://b4cwkhm8fu843" path="res://debug/station_unhide_mutation/station_unhide_mutation.tscn" id="18_8muua"]
@@ -474,9 +473,6 @@ prisoners_parent_node = NodePath("../../../Charcters/PrisonerParentNode")
 
 [node name="CellObserver" parent="Stations/PrisonerStations" unique_id=1071932212 instance=ExtResource("4_7xrfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 5)
-
-[node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=261005381 instance=ExtResource("16_w7r6u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.481184, -0.012770176, -11.879996)
 
 [node name="ProfilerKey" parent="Stations/PrisonerStations" unique_id=712150991 instance=ExtResource("6_m2qbd")]
 transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, -11, 0.62401414, -9.293873)

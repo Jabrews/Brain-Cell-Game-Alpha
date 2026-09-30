@@ -31,13 +31,10 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 	current_cell_constructor = cell_constructor
 	
 	if not prevent_update_incr_update:
+		
 		var curr_round = GLGameManagerBus.current_round
-		var curr_energy = GLGameManagerBus.curr_energy
 
-		incrmental_value_controller.change_progression_step(
-			curr_round,
-			curr_energy,
-		)
+		incrmental_value_controller.change_progression_step(curr_round,)
 		
 	# decide prisoner picks quanity			
 	GLPrisonerPicks.prisoners_to_pick = cell_constructor.prisoner_picks

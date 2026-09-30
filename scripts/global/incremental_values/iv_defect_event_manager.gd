@@ -24,8 +24,3 @@ var weight_active_interpreters : Array[String] = []
 
 # timer wait time
 var defect_event_trigger_wait_time : float = 30.0
-
-# interpreter event energy decrease
-var interpreter_jolt_energy_decrease_multiple = 1
-var interpreter_jolt_energy_decrease_single = 2
-	

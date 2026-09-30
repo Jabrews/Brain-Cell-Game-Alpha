@@ -19,16 +19,12 @@ func _ready() -> void:
 	GLCellManagerBus.connect('hidden_stat_interpreted', _handle_hidden_stat_interpreted)
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
 	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
-	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_energy_turn_changed_increment_life_span)
+	GLGameManagerBus.connect('proceed_next_turn', _handle_proceed_next_turn)
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	GLCellManagerBus.connect('mutation_frowny_increase_defect', _handle_mutation_frowny_increase_defect)
 	GLCellManagerBus.connect('unhide_cell_mutation', _handle_unhide_cell_mutation)
 	GLCellManagerBus.connect('cell_hit_by_crystal', _handle_cell_hiy_by_crystals)
 	GLCellManagerBus.connect('collected_cell_changed', _handle_collected_cell_changed)	
-	
-	# unsetting breeder unavaible
-	GLGameManagerBus.connect('proceed_next_energy_turn', _handle_proceed_next_energy_turn)
-	
 	
 	# DEBUG
 	GLCellManagerBus.connect('debug_unhide_collected_cell_mutation', _handle_debug_unhide_collected_cell_mutation)
@@ -300,18 +296,7 @@ func _handle_delete_cells_for_next_round() :
 	set_collected_cells([])
 	set_prisoner_cells([])
 
-func _handle_energy_turn_changed_increment_life_span() :
-	
-	#decrease lifespan on collected cells
-	for cell : BrainCell in collected_cells :
-		
-		# dont decrease lifespan on froze cell
-		if cell.cell_is_frozen :
-			cell.cell_is_frozen = false
-		else :
-			cell.life_span -= 1
-			
-		update_collected_cells([cell])
+
 	
 func _handle_defect_decreaser_used(selected_brain_cell : BrainCell) :
 
@@ -372,12 +357,23 @@ func _handle_collected_cell_changed(cell : BrainCell) :
 	else :
 		update_collected_cells([cell])
 	
-func _handle_proceed_next_energy_turn() :
+func _handle_proceed_next_turn()	:
 	
 	# turn off breeder unavaible
 	for cell : BrainCell in collected_cells : 	
 		cell.breeder_unavaible = false
 		
+		update_collected_cells([cell])
+	
+	#decrease lifespan on collected cells
+	for cell : BrainCell in collected_cells :
+		
+		# dont decrease lifespan on froze cell
+		if cell.cell_is_frozen :
+			cell.cell_is_frozen = false
+		else :
+			cell.life_span -= 1
+			
 		update_collected_cells([cell])
 	
 	
