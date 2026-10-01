@@ -1,7 +1,7 @@
 extends Node
 
 # helper components
-@onready var helper_dissolve_stats : Node = $HelperDissolveStats
+@onready var helper_dissolve_cell : Node = $HelperDissolveCell
 @onready var helper_refresh_displays : Node = $HelperRefreshDisplays
 
 var goal_threshold : GoalThreshold
@@ -20,7 +20,7 @@ func _handle_created_goal_threshold(new_goal_threshold : GoalThreshold) :
 	active_threshold_piece = goal_threshold.pieces[1]
 	
 	# create dissolve stats
-	helper_dissolve_stats._create_inital_stats(active_threshold_piece)
+	helper_dissolve_cell._create_inital_dissolving_cell(active_threshold_piece)
 	
 	# refresh screens
 	helper_refresh_displays._refresh()

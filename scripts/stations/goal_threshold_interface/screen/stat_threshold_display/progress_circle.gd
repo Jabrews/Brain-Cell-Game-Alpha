@@ -1,19 +1,21 @@
 extends TextureRect
 
 # components
-@onready var percant_label : Label = $PercantLabel
-@onready var emergency_sprite : Sprite2D = $Emergency
-@onready var checkmark_sprite : Sprite2D = $CheckMark
+@onready var percant_label: Label = $PercantLabel
+@onready var emergency_sprite: Sprite2D = $Emergency
+@onready var checkmark_sprite: Sprite2D = $CheckMark
 
-var flash_emergency_tween : Tween
-var flash_checkmark_tween : Tween
+var flash_emergency_tween: Tween
+var flash_checkmark_tween: Tween
 
-var current_display_state : String = ""
+var current_display_state: String = ""
 
 
-func _display(dissolved_stat : DissolveStat) -> void:
+func _display(dissolving_stat: DissolvingStat) -> void:
 	
-	var threshold_stat : ThresholdStat = dissolved_stat.corresponding_threshold_stat
+	var threshold_stat: ThresholdStat = (
+		dissolving_stat.corresponding_threshold_stat
+	)
 	
 	_update_percant_label(
 		threshold_stat.max_value,
@@ -34,18 +36,19 @@ func _display(dissolved_stat : DissolveStat) -> void:
 	
 	
 	# low turns warning
-	var active_piece : ThresholdPiece = (
+	var active_piece: ThresholdPiece = (
 		GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
 	)
 	
-	if active_piece.turns_remaining <= 1:
-		_set_display_state("emergency")
-		return
-	
+	if active_piece != null:
+		if active_piece.turns_remaining <= 1:
+			_set_display_state("emergency")
+			return
+#	
 	
 	# less than 25% remaining
-	var percent_of_max : float = threshold_stat.max_value * 0.25
-	var current_value : float = threshold_stat.current_value
+	var percent_of_max: float = threshold_stat.max_value * 0.25
+	var current_value: float = threshold_stat.current_value
 	
 	if current_value <= percent_of_max:
 		_set_display_state("checkmark")
@@ -56,7 +59,7 @@ func _display(dissolved_stat : DissolveStat) -> void:
 	_set_display_state("normal")
 
 
-func _set_display_state(new_state : String) -> void:
+func _set_display_state(new_state: String) -> void:
 	
 	# already displaying this state
 	# do not restart tweens
@@ -108,7 +111,7 @@ func _set_display_state(new_state : String) -> void:
 			percant_label.visible = true
 
 
-func toggle_flash_emergency_tween(toggle_value : bool) -> void:
+func toggle_flash_emergency_tween(toggle_value: bool) -> void:
 	
 	if flash_emergency_tween:
 		flash_emergency_tween.kill()
@@ -161,7 +164,7 @@ func toggle_flash_emergency_tween(toggle_value : bool) -> void:
 	)
 
 
-func toggle_flash_checkmark_tween(toggle_value : bool) -> void:
+func toggle_flash_checkmark_tween(toggle_value: bool) -> void:
 	
 	if flash_checkmark_tween:
 		flash_checkmark_tween.kill()
@@ -214,7 +217,10 @@ func toggle_flash_checkmark_tween(toggle_value : bool) -> void:
 	)
 
 
-func _update_percant_label(max_value : float, curr_value : float) -> void:
+func _update_percant_label(
+	max_value: float,
+	curr_value: float
+) -> void:
 	
 	if max_value <= 0.0:
 		percant_label.text = "0%"
@@ -227,14 +233,17 @@ func _update_percant_label(max_value : float, curr_value : float) -> void:
 		return
 	
 	
-	var percent : float = (
+	var percent: float = (
 		1.0 - (curr_value / max_value)
 	) * 100.0
 	
-	percent = clampf(percent, 0.0, 100.0)
+	percent = clampf(
+		percent,
+		0.0,
+		100.0
+	)
 	
 	percant_label.text = str(roundi(percent)) + "%"
-	
 	
 	self.material.set_shader_parameter(
 		"progress",

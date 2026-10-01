@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var parent_station: Node3D = $".."
-@onready var helper_dissolve_stats: Node = $"../HelperDissolveStats"
+@onready var helper_dissolve_cell : Node = $"../HelperDissolveCell"
 @onready var helper_refresh_displays: Node = $"../HelperRefreshDisplays"
 
 # screen components
@@ -65,9 +65,8 @@ func _handle() -> void:
 	)
 	
 	# create dissolve stats for NEW piece
-	helper_dissolve_stats._create_inital_stats(
-		parent_station.active_threshold_piece
-	)
+	helper_dissolve_cell._create_inital_dissolving_cell(parent_station.active_threshold_piece)
+	
 	
 	# refresh screens
 	helper_refresh_displays._refresh()

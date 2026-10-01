@@ -715,7 +715,7 @@ position = Vector2(288, 96)
 sprite_frames = SubResource("SpriteFrames_v4hsa")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.67021596
+frame_progress = 0.4023261
 
 [node name="PiecesOutMaxLabel" type="Label" parent="LoadingNextPiece" unique_id=1372397024]
 texture_filter = 1
