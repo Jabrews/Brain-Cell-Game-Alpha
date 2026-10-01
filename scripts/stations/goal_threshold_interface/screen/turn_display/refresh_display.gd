@@ -22,6 +22,9 @@ func _refresh() -> void:
 	var active_goal_threshold : GoalThreshold = GLGoalThresholdManagerBus.active_goal_threshold
 	var active_threshold_piece : ThresholdPiece = active_goal_threshold.get_active_piece()
 	
+	if not active_goal_threshold or not active_threshold_piece : 
+		return
+	
 	toggle_low_turns_tween(false)
 	
 	turns_left_label.text = str(active_threshold_piece.turns_remaining)

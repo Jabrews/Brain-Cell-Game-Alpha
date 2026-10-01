@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://dstc1sevit4ub" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_stats.gd" id="2_70tpf"]
 [ext_resource type="Script" uid="uid://co6ttmd0o0ul7" path="res://scripts/stations/goal_threshold_interface/component/handle_dissolving.gd" id="3_j6f7w"]
 [ext_resource type="Script" uid="uid://wsectx02b4v" path="res://scripts/stations/goal_threshold_interface/component/helper_refresh_displays.gd" id="3_lfxd2"]
-[ext_resource type="Script" uid="uid://bpwyuvlnmotgb" path="res://scripts/stations/goal_threshold_interface/component/helper_detect_finished.gd" id="4_8uguy"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="7_o6ut5"]
 [ext_resource type="PackedScene" uid="uid://cshqon2ghejce" path="res://scenes/stations/goal_threshold_interface/screen/screen_stat_threshold_display.tscn" id="9_47arw"]
 [ext_resource type="PackedScene" uid="uid://bynb8tfccsbxo" path="res://scenes/stations/goal_threshold_interface/screen/screen_turns_display.tscn" id="10_mpw3p"]
@@ -52,9 +51,6 @@ script = ExtResource("2_70tpf")
 
 [node name="HelperRefreshDisplays" type="Node" parent="." unique_id=555968757]
 script = ExtResource("3_lfxd2")
-
-[node name="HelperDetectFinished" type="Node" parent="." unique_id=240556103]
-script = ExtResource("4_8uguy")
 
 [node name="HandleDissolving" type="Node" parent="." unique_id=523468581]
 script = ExtResource("3_j6f7w")

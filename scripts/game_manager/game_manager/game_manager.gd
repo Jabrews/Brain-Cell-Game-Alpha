@@ -3,7 +3,6 @@ extends Node
 # components
 @onready var cell_creator : Node = $CellCreator
 @onready var cell_manager : Node = $CellManager
-@onready var goal_threshold_manager : Node = $GoalThresholdManager #delete me 
 @onready var goal_threshold_creator : Node = $GoalTheresholdCreator
 @onready var incremental_value_controller : Node = $IncrementalValueController
 

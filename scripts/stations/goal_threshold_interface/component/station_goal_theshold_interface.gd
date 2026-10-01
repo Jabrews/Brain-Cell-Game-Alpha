@@ -41,19 +41,9 @@ func _handle_next_turn() -> void:
 	else : 
 		GLGoalThresholdManagerBus.emit_signal('toggle_emergency_ui', false)
 	
-	# warning if last energy turn
-	# find how many turns used
-	var turns_used : int = (
-		active_threshold_piece.total_turns -
-		active_threshold_piece.turns_remaining
-	)
-	if turns_used == active_threshold_piece.early_completion_turn_limit :
-		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('turn_warning', 'Last Turn for Energy Reward Eligibility', {}))
-	
-	
 	# end game
 	if active_threshold_piece.turns_remaining < 0 : 
-		GLGameEndBus.emit_signal('game_ended')
+		GLEndStateScreenBus.emit_signal('game_ended')
 	
 	# keep manager reference synced
 	GLGoalThresholdManagerBus.active_goal_threshold = goal_threshold
@@ -61,14 +51,49 @@ func _handle_next_turn() -> void:
 	# refresh screens
 	helper_refresh_displays._refresh()
 	
-func _handle_threshold_stat_finished() :
+func _handle_threshold_stat_finished() -> void:
 	
-	var strength_stat_threshold : ThresholdStat = active_threshold_piece.strength
-	var intelligence_stat_threshold : ThresholdStat = active_threshold_piece.intelligence
-	var community_stat_threshold : ThresholdStat = active_threshold_piece.community
+	var strength_stat_threshold: ThresholdStat = active_threshold_piece.strength
+	var intelligence_stat_threshold: ThresholdStat = active_threshold_piece.intelligence
+	var community_stat_threshold: ThresholdStat = active_threshold_piece.community
+	
+	# check if all stats are either finished or disabled
+	var strength_complete: bool = strength_stat_threshold.finished or strength_stat_threshold.disabled
+	
+	var intelligence_complete: bool = intelligence_stat_threshold.finished or intelligence_stat_threshold.disabled
+	
+	var community_complete: bool = community_stat_threshold.finished or community_stat_threshold.disabled
+	
+	if (
+		strength_complete
+		and intelligence_complete
+		and community_complete
+	):
 		
+		goal_threshold.active_piece_index += 1
+
+		# finish game if the next goal piece does not exist
+		if not goal_threshold.pieces.has(goal_threshold.active_piece_index):
+			GLEndStateScreenBus.emit_signal("game_finished")
+			return
+
+		# move to next goal piece
+		active_threshold_piece = goal_threshold.pieces[
+			goal_threshold.active_piece_index
+		]
 		
-		
+		# TODO 
+		# when finished with a goal make sure the cell currently dissolving dies first
+		# DONT want it to carry over
+
+		# create dissolve stats
+		helper_dissolve_stats._create_inital_stats(active_threshold_piece)
+
+		# refresh screens
+		helper_refresh_displays._refresh()
+				
+				
+			
 	
 	
 	

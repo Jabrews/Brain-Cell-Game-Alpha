@@ -56,7 +56,6 @@
 [ext_resource type="Script" uid="uid://dertw3gxyvk66" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/update_admin_panel.gd" id="41_r52yi"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
-[ext_resource type="Script" uid="uid://byaatbb2wxiat" path="res://scripts/game_manager/goal_threshold_manager/goal_threshold_manager.gd" id="53_24n7g"]
 [ext_resource type="Script" uid="uid://baip3c1wsm8xg" path="res://scripts/game_manager/goal_threshold_creator/goal_threshold_creator.gd" id="55_dixnm"]
 [ext_resource type="PackedScene" uid="uid://dmuet5mnk23qy" path="res://scenes/door/door.tscn" id="57_ms0m2"]
 [ext_resource type="PackedScene" uid="uid://c5qtndnhvffsn" path="res://scenes/door/door_button.tscn" id="58_otmbb"]
@@ -661,9 +660,6 @@ script = ExtResource("48_3ujpq")
 
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
-
-[node name="GoalThresholdManager" type="Node" parent="GameManager" unique_id=2069601123]
-script = ExtResource("53_24n7g")
 
 [node name="GoalTheresholdCreator" type="Node" parent="GameManager" unique_id=987317733]
 script = ExtResource("55_dixnm")

@@ -3,7 +3,7 @@ extends Control
 @onready var retry_btn_bg : ColorRect = $RetryBtn/ColorRect2
 
 func _ready() -> void:
-	GLGameEndBus.connect('game_ended', _handle_game_ended)
+	GLEndStateScreenBus.connect('game_ended', _handle_game_ended)
 
 func _handle_game_ended() :
 	visible = true

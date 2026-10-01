@@ -5,6 +5,7 @@ extends Node
 @onready var dissolve_delay_timer : Timer = $DissolveDelayTimer
 @onready var helper_dissolve_stats : Node = $"../HelperDissolveStats"
 @onready var helper_refresh_displays : Node = $"../HelperRefreshDisplays"
+@onready var handle_detect_finshed : Node = $"../HelperDetectFinished"
 @onready var parent_station : Node3D = $".."
 
 var valid_dissolving_stats : Array[DissolveStat] = []
@@ -99,5 +100,6 @@ func _handle_dissolve_delay_timer() -> void:
 	# nothing left dissolving
 	if valid_dissolving_stats.is_empty():
 		dissolve_delay_timer.stop()
+		return
 	
 	helper_refresh_displays._refresh()
