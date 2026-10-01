@@ -1,5 +1,20 @@
 extends Node
 
+# componnets
+@onready var loading_next_piece_parent : Control = $"../LoadingNextPiece"
+@onready var pieces_out_max_label : Label = $"../LoadingNextPiece/PiecesOutMaxLabel"
 
-func _display() :
-	pass
+
+func _display(goal_threshold : GoalThreshold) :
+	
+	pieces_out_max_label.text = str(goal_threshold.active_piece_index) + '/4'
+	
+	loading_next_piece_parent.visible = true	
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	loading_next_piece_parent.visible = false 
+	
+	
+	
+	

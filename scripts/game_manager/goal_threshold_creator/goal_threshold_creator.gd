@@ -9,7 +9,7 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			2,   # early completion turn limit
 			false,
 			ThresholdStat.new("small", 100, 100, false, false),   # strength
-			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new("small", 150, 150, false, false),   # intelligence
 			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		
@@ -18,8 +18,8 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			30,
 			2,
 			false,		
-			ThresholdStat.new("large", 400, 400, false, false),   # strength
-			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new("large", 100, 100, false, false),   # strength
+			ThresholdStat.new("small", 150, 150, false, false),   # intelligence
 			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		

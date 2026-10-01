@@ -5,8 +5,8 @@ extends Node
 @onready var dissolve_delay_timer : Timer = $DissolveDelayTimer
 @onready var helper_dissolve_stats : Node = $"../HelperDissolveStats"
 @onready var helper_refresh_displays : Node = $"../HelperRefreshDisplays"
-@onready var handle_detect_finshed : Node = $"../HelperDetectFinished"
 @onready var parent_station : Node3D = $".."
+@onready var handle_threshold_stat_finished : Node = $"../HandleThresholdStatFinished"
 
 var valid_dissolving_stats : Array[DissolveStat] = []
 
@@ -86,7 +86,7 @@ func _handle_dissolve_delay_timer() -> void:
 			threshold_stat.finished = true
 			
 			# let parent station know
-			parent_station._handle_threshold_stat_finished()
+			handle_threshold_stat_finished._handle()
 			
 	
 	

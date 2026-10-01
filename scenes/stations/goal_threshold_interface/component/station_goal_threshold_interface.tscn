@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dstc1sevit4ub" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_stats.gd" id="2_70tpf"]
 [ext_resource type="Script" uid="uid://co6ttmd0o0ul7" path="res://scripts/stations/goal_threshold_interface/component/handle_dissolving.gd" id="3_j6f7w"]
 [ext_resource type="Script" uid="uid://wsectx02b4v" path="res://scripts/stations/goal_threshold_interface/component/helper_refresh_displays.gd" id="3_lfxd2"]
+[ext_resource type="Script" uid="uid://b0eal35fxuxa0" path="res://scripts/stations/goal_threshold_interface/component/handle_threshold_stat_finished.gd" id="5_blton"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="7_o6ut5"]
 [ext_resource type="PackedScene" uid="uid://cshqon2ghejce" path="res://scenes/stations/goal_threshold_interface/screen/screen_stat_threshold_display.tscn" id="9_47arw"]
 [ext_resource type="PackedScene" uid="uid://bynb8tfccsbxo" path="res://scenes/stations/goal_threshold_interface/screen/screen_turns_display.tscn" id="10_mpw3p"]
@@ -57,6 +58,9 @@ script = ExtResource("3_j6f7w")
 
 [node name="DissolveDelayTimer" type="Timer" parent="HandleDissolving" unique_id=1404066779]
 wait_time = 0.1
+
+[node name="HandleThresholdStatFinished" type="Node" parent="." unique_id=961192048]
+script = ExtResource("5_blton")
 
 [node name="StatThresholdTV" type="Node3D" parent="." unique_id=137975337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8451097, 0.5493412, 0)
