@@ -16,6 +16,13 @@
 [ext_resource type="Texture2D" uid="uid://cjx483tj54mw7" path="res://models/goal_threshold/BarMedium.png" id="11_352qn"]
 [ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="12_1qjac"]
 [ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="15_kegbq"]
+[ext_resource type="Texture2D" uid="uid://l5f8ml6a2pkc" path="res://models/goal_threshold/bars_accept_cell/BarLarge.png" id="16_3l4dx"]
+[ext_resource type="Texture2D" uid="uid://chyb1sra7gn6f" path="res://models/screens/prisoner_profiler_symbols/defect.png" id="16_plfpx"]
+[ext_resource type="Texture2D" uid="uid://dh8gukj1683r4" path="res://models/goal_threshold/bars_accept_cell/BarMedium.png" id="17_ps5e4"]
+[ext_resource type="Texture2D" uid="uid://cnnr44l8f0irk" path="res://models/goal_threshold/bars_accept_cell/BarSmall.png" id="18_rm1ek"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="20_xrr3f"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="21_40ur5"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="22_my6kx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
 shader = ExtResource("1_6c3qd")
@@ -137,6 +144,18 @@ shader_parameter/base_color = Color(0, 0, 0, 1)
 shader_parameter/progress_color = Color(0.87, 0, 0, 1)
 shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 shader_parameter/mask_tolerance = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3qeo"]
+shader = ExtResource("21_40ur5")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("22_my6kx")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nv3my"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7rbg"]
 atlas = ExtResource("15_kegbq")
@@ -678,6 +697,660 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="AcceptCell" type="Control" parent="." unique_id=795334077]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatBG" type="ColorRect" parent="AcceptCell" unique_id=673416693]
+layout_mode = 0
+offset_right = 432.0
+offset_bottom = 384.0
+color = Color(0.22, 0, 0, 1)
+
+[node name="DefectBG" type="ColorRect" parent="AcceptCell" unique_id=82061772]
+layout_mode = 0
+offset_left = 432.0
+offset_right = 584.0
+offset_bottom = 384.0
+color = Color(0.12, 0, 0, 1)
+
+[node name="Stats" type="Control" parent="AcceptCell" unique_id=1236786442]
+anchors_preset = 0
+offset_left = 72.0
+offset_right = 112.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="AcceptCell/Stats" unique_id=41442280]
+layout_mode = 1
+anchor_left = -3.4
+anchor_top = -1.2
+anchor_right = -3.4
+anchor_bottom = -1.2
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Strength" unique_id=658992085]
+texture_filter = 1
+position = Vector2(288, 124)
+scale = Vector2(1.363924, 1.421875)
+texture = ExtResource("16_3l4dx")
+
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Strength" unique_id=412282237]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 88.0
+offset_right = 488.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 16
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Strength" unique_id=1593014799]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Strength/Disabled" unique_id=644931361]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Strength/Disabled" unique_id=447622214]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="AcceptCell/Stats" unique_id=767641120]
+layout_mode = 1
+anchor_left = -3.4
+anchor_top = 1.4
+anchor_right = -3.4
+anchor_bottom = 1.4
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Intelligence" unique_id=466382837]
+texture_filter = 1
+position = Vector2(277, 124)
+scale = Vector2(1.363924, 1.421875)
+texture = ExtResource("17_ps5e4")
+
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Intelligence" unique_id=572579508]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 88.0
+offset_right = 488.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 16
+text = "Intelligence"
+horizontal_alignment = 1
+
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Intelligence" unique_id=691431563]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=1470744327]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=1652102648]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="AcceptCell/Stats" unique_id=212040180]
+layout_mode = 1
+anchor_left = -3.4
+anchor_top = 3.8
+anchor_right = -3.4
+anchor_bottom = 3.8
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Community" unique_id=682528239]
+texture_filter = 1
+position = Vector2(276, 124)
+scale = Vector2(1.363924, 1.421875)
+texture = ExtResource("18_rm1ek")
+
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Community" unique_id=290938754]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 88.0
+offset_right = 488.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 16
+text = "Community"
+horizontal_alignment = 1
+
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Community" unique_id=2009167141]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Community/Disabled" unique_id=346711554]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+color = Color(0, 0, 0, 1)
+
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Community/Disabled" unique_id=297568627]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 616.0
+offset_bottom = 168.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectIgnored" type="Control" parent="AcceptCell" unique_id=941482644]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DecreaseIgnoredHeader" type="Control" parent="AcceptCell/DefectIgnored" unique_id=725848128]
+anchors_preset = 0
+offset_left = 189.0
+offset_top = 50.0
+offset_right = 229.0
+offset_bottom = 90.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/DecreaseIgnoredHeader" unique_id=1910943332]
+layout_mode = 0
+offset_left = 246.0
+offset_top = -47.0
+offset_right = 392.0
+color = Color(0.19, 0, 0, 1)
+
+[node name="DefectSymbol" type="Sprite2D" parent="AcceptCell/DefectIgnored/DecreaseIgnoredHeader" unique_id=2074700220]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+position = Vector2(283.56253, -22.5)
+scale = Vector2(0.4593753, 0.45833334)
+texture = ExtResource("16_plfpx")
+
+[node name="DefectIgnoredHeader" type="Label" parent="AcceptCell/DefectIgnored/DecreaseIgnoredHeader" unique_id=1873144658]
+texture_filter = 1
+layout_mode = 0
+offset_left = 310.00003
+offset_top = -47.999996
+offset_right = 393.00003
+offset_bottom = -0.9999962
+theme_override_colors/font_color = Color(0.79, 0.059776668, 0.0474, 1)
+theme_override_constants/line_spacing = -5
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 23
+text = "Defect 
+Ignored"
+
+[node name="Strength" type="Control" parent="AcceptCell/DefectIgnored" unique_id=831405949]
+anchors_preset = 0
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 24.0
+offset_bottom = 32.0
+
+[node name="IgnoredPercant" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=608291309]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=286419613]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 70.0
+offset_right = 581.0
+offset_bottom = 102.0
+
+[node name="BG1" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=1078374668]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 71.0
+offset_right = 580.0
+offset_bottom = 101.0
+color = Color(0.23, 0, 0, 1)
+
+[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=84592480]
+texture_filter = 1
+layout_mode = 0
+offset_left = 475.0
+offset_top = 66.0
+offset_right = 581.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 35
+text = "98%"
+horizontal_alignment = 1
+
+[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=321722905]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 470.0
+offset_bottom = 83.0
+
+[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=299070165]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats" unique_id=1953046372]
+texture_filter = 1
+position = Vector2(526, 110.00001)
+scale = Vector2(1.1199998, 0.833333)
+texture = ExtResource("20_xrr3f")
+
+[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats" unique_id=454397489]
+texture_filter = 1
+position = Vector2(526, 119)
+scale = Vector2(1.12, 0.49999958)
+texture = ExtResource("20_xrr3f")
+
+[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=524680440]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=465694894]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 67.0
+offset_right = 578.0
+offset_bottom = 105.0
+color = Color(0.23, 0.23, 0.23, 1)
+
+[node name="DisabledLabel" type="Label" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=604227037]
+texture_filter = 1
+layout_mode = 0
+offset_left = 480.0
+offset_top = 68.0
+offset_right = 581.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 0.01666665, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 25
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=774954809]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 481.0
+offset_bottom = 82.0
+color = Color(0.23137255, 0.23137255, 0.23137255, 1)
+
+[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=1080157406]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Hidden" unique_id=1005782641]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l3qeo")
+position = Vector2(525.75, 96)
+scale = Vector2(0.35714287, 1.35)
+texture = SubResource("CompressedTexture2D_nv3my")
+
+[node name="StrengthHide2" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Hidden" unique_id=2027525043]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l3qeo")
+position = Vector2(459, 81.5)
+scale = Vector2(0.06984128, 0.07499993)
+texture = SubResource("CompressedTexture2D_nv3my")
+
+[node name="Intelligence" type="Control" parent="AcceptCell/DefectIgnored" unique_id=1987756250]
+anchors_preset = 0
+offset_left = -16.0
+offset_top = 96.0
+offset_right = 24.0
+offset_bottom = 136.0
+
+[node name="IgnoredPercant" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=2122810937]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=793437845]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 70.0
+offset_right = 581.0
+offset_bottom = 102.0
+
+[node name="BG1" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=1140112407]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 71.0
+offset_right = 580.0
+offset_bottom = 101.0
+color = Color(0.23, 0, 0, 1)
+
+[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=1181106744]
+texture_filter = 1
+layout_mode = 0
+offset_left = 475.0
+offset_top = 66.0
+offset_right = 581.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 35
+text = "98%"
+horizontal_alignment = 1
+
+[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=1605987810]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 470.0
+offset_bottom = 83.0
+
+[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=2032204107]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats" unique_id=2038283869]
+texture_filter = 1
+position = Vector2(526, 110.00001)
+scale = Vector2(1.1199998, 0.833333)
+texture = ExtResource("20_xrr3f")
+
+[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats" unique_id=1839188309]
+texture_filter = 1
+position = Vector2(526, 119)
+scale = Vector2(1.12, 0.49999958)
+texture = ExtResource("20_xrr3f")
+
+[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=1906956212]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=499627643]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 67.0
+offset_right = 578.0
+offset_bottom = 105.0
+color = Color(0.23, 0.23, 0.23, 1)
+
+[node name="DisabledLabel" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=231872870]
+texture_filter = 1
+layout_mode = 0
+offset_left = 480.0
+offset_top = 68.0
+offset_right = 581.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 0.01666665, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 25
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=308287738]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 481.0
+offset_bottom = 82.0
+color = Color(0.23137255, 0.23137255, 0.23137255, 1)
+
+[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=353096265]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Hidden" unique_id=1622494103]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l3qeo")
+position = Vector2(525.75, 96)
+scale = Vector2(0.35714287, 1.35)
+texture = SubResource("CompressedTexture2D_nv3my")
+
+[node name="StrengthHide2" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Hidden" unique_id=150146253]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l3qeo")
+position = Vector2(459, 81.5)
+scale = Vector2(0.06984128, 0.07499993)
+texture = SubResource("CompressedTexture2D_nv3my")
+
+[node name="Community" type="Control" parent="AcceptCell/DefectIgnored" unique_id=2033982768]
+anchors_preset = 0
+offset_left = -16.0
+offset_top = 192.0
+offset_right = 24.0
+offset_bottom = 232.0
+
+[node name="IgnoredPercant" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=981527079]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=64341742]
+layout_mode = 0
+offset_left = 470.0
+offset_top = 70.0
+offset_right = 581.0
+offset_bottom = 102.0
+
+[node name="BG1" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=578803419]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 71.0
+offset_right = 580.0
+offset_bottom = 101.0
+color = Color(0.23, 0, 0, 1)
+
+[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=269828280]
+texture_filter = 1
+layout_mode = 0
+offset_left = 475.0
+offset_top = 66.0
+offset_right = 581.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 35
+text = "98%"
+horizontal_alignment = 1
+
+[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=879321256]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 470.0
+offset_bottom = 83.0
+
+[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=1332662600]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats" unique_id=1158114956]
+texture_filter = 1
+position = Vector2(526, 110.00001)
+scale = Vector2(1.1199998, 0.833333)
+texture = ExtResource("20_xrr3f")
+
+[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats" unique_id=213824481]
+texture_filter = 1
+position = Vector2(526, 119)
+scale = Vector2(1.12, 0.49999958)
+texture = ExtResource("20_xrr3f")
+
+[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=751249234]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=800184828]
+layout_mode = 0
+offset_left = 481.0
+offset_top = 67.0
+offset_right = 578.0
+offset_bottom = 105.0
+color = Color(0.23, 0.23, 0.23, 1)
+
+[node name="DisabledLabel" type="Label" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=1033983209]
+texture_filter = 1
+layout_mode = 0
+offset_left = 480.0
+offset_top = 68.0
+offset_right = 581.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(1, 0.01666665, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 25
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=680338374]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 80.0
+offset_right = 481.0
+offset_bottom = 82.0
+color = Color(0.23137255, 0.23137255, 0.23137255, 1)
+
+[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=1574632849]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Hidden" unique_id=1178439015]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l3qeo")
+position = Vector2(525.75, 96)
+scale = Vector2(0.35714287, 1.35)
+texture = SubResource("CompressedTexture2D_nv3my")
+
+[node name="StrengthHide2" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Hidden" unique_id=96404352]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_l3qeo")
+position = Vector2(459, 81.5)
+scale = Vector2(0.06984128, 0.07499993)
+texture = SubResource("CompressedTexture2D_nv3my")
+
+[node name="AreYouSureFooter" type="Control" parent="AcceptCell" unique_id=802309249]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DefectBG" type="ColorRect" parent="AcceptCell/AreYouSureFooter" unique_id=1389942635]
+layout_mode = 0
+offset_top = 320.0
+offset_right = 584.0
+offset_bottom = 384.0
+color = Color(0.07, 0, 0, 1)
+
+[node name="AreYouSureLabel" type="Label" parent="AcceptCell/AreYouSureFooter" unique_id=1901786418]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 320.0
+offset_right = 580.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(1, 0.07450981, 0.05882353, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 23
+text = "Are You Sure You Wish To Sacrifice
+This Cell ?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DenyLabel" type="Label" parent="AcceptCell/AreYouSureFooter" unique_id=363106490]
+texture_filter = 1
+layout_mode = 0
+offset_left = -216.0
+offset_top = 320.0
+offset_right = 356.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(0.71, 0.05372333, 0.042600002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 35
+text = "Deny"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmLabel" type="Label" parent="AcceptCell/AreYouSureFooter" unique_id=1159652967]
+texture_filter = 1
+layout_mode = 0
+offset_left = 232.0
+offset_top = 320.0
+offset_right = 804.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(0.09309005, 0.87, 0.0522, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 31
+text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="LoadingNextPiece" type="Control" parent="." unique_id=1237327283]
 visible = false
 layout_mode = 3
@@ -715,7 +1388,7 @@ position = Vector2(288, 96)
 sprite_frames = SubResource("SpriteFrames_v4hsa")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.4023261
+frame_progress = 0.51227254
 
 [node name="PiecesOutMaxLabel" type="Label" parent="LoadingNextPiece" unique_id=1372397024]
 texture_filter = 1
