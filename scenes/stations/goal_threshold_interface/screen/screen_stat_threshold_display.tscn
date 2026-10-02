@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cn1glkvwjhwsd" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/display_new_piece_loading.gd" id="2_w7rbg"]
 [ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="2_x2m6x"]
 [ext_resource type="Script" uid="uid://bx6axg85o33fo" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/helper_display_stat_postions.gd" id="3_352qn"]
-[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/threshold_progress_circle_outline.gdshader" id="3_lue6d"]
+[ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/shaders/threshold_progress_circle_outline.gdshader" id="3_lue6d"]
 [ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_352qn"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_v4hsa"]
 [ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_kegbq"]
@@ -17,12 +17,15 @@
 [ext_resource type="Texture2D" uid="uid://bnui7nvx2dja1" path="res://models/goal_threshold/BarSmall.png" id="12_1qjac"]
 [ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="15_kegbq"]
 [ext_resource type="Texture2D" uid="uid://l5f8ml6a2pkc" path="res://models/goal_threshold/bars_accept_cell/BarLarge.png" id="16_3l4dx"]
+[ext_resource type="Shader" uid="uid://c8l3dppygpvfr" path="res://scenes/stations/goal_threshold_interface/screen/accept_cell_shaders/threshold_stat.gdshader" id="16_my6kx"]
 [ext_resource type="Texture2D" uid="uid://chyb1sra7gn6f" path="res://models/screens/prisoner_profiler_symbols/defect.png" id="16_plfpx"]
 [ext_resource type="Texture2D" uid="uid://dh8gukj1683r4" path="res://models/goal_threshold/bars_accept_cell/BarMedium.png" id="17_ps5e4"]
 [ext_resource type="Texture2D" uid="uid://cnnr44l8f0irk" path="res://models/goal_threshold/bars_accept_cell/BarSmall.png" id="18_rm1ek"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="20_xrr3f"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="21_40ur5"]
+[ext_resource type="Shader" uid="uid://cj1uxfdnp7kay" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/shaders/clean_bar_defect_ignored.gdshader" id="21_l3qeo"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="22_my6kx"]
+[ext_resource type="Shader" uid="uid://8alueq6obkxe" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/shaders/defect_bar_defect_ignored.gdshader" id="23_nv3my"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
 shader = ExtResource("1_6c3qd")
@@ -144,6 +147,210 @@ shader_parameter/base_color = Color(0, 0, 0, 1)
 shader_parameter/progress_color = Color(0.87, 0, 0, 1)
 shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 shader_parameter/mask_tolerance = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40ur5"]
+shader = ExtResource("16_my6kx")
+shader_parameter/current_value = 1.0
+shader_parameter/dissolve_value = 0.298000014155
+shader_parameter/defect_value = 0.0350000016625
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/orange_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/stripe_color = Color(1, 0.01666665, 0, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 0.0
+shader_parameter/defect_flash_speed = 0.0
+shader_parameter/stripe_density = 12.54
+shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="Shader" id="Shader_wx24v"]
+code = "shader_type canvas_item;
+
+uniform float current_value : hint_range(0.0, 1.0) = 0.8;
+uniform float dissolve_value : hint_range(0.0, 1.0) = 0.3;
+uniform float defect_value : hint_range(0.0, 1.0) = 0.1;
+
+uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
+uniform vec4 orange_color : source_color = vec4(1.0, 0.5, 0.0, 1.0);
+uniform vec4 stripe_color : source_color = vec4(0.4, 0.0, 0.0, 1.0);
+uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
+
+uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+uniform float flash_speed = 3.0;
+uniform float defect_flash_speed = 7.0;
+uniform float stripe_density = 80.0;
+uniform float blip_width = 0.01;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 result = tex;
+
+	bool on_bar = tex.a > 0.0
+		&& distance(tex.rgb, mask_color.rgb) <= mask_tolerance;
+
+	if (on_bar) {
+		float dissolve_start = max(current_value - dissolve_value, 0.0);
+		float defect_end = min(dissolve_start + defect_value, current_value);
+
+		if (UV.x <= current_value) {
+			result.rgb = red_color.rgb;
+		}
+
+		// Flashing orange: the intended dissolve area.
+		if (UV.x >= dissolve_start && UV.x <= current_value) {
+			float flash = sin(TIME * flash_speed) * 0.5 + 0.5;
+			result.rgb = mix(
+				result.rgb,
+				orange_color.rgb,
+				mix(0.2, 0.8, flash)
+			);
+		}
+
+		// Faster flashing stripes: the amount defect blocks.
+		if (UV.x >= dissolve_start && UV.x <= defect_end) {
+			float stripes = step(
+				0.5,
+				fract((UV.x + UV.y) * stripe_density)
+			);
+			float flash = sin(TIME * defect_flash_speed) * 0.5 + 0.5;
+			result.rgb = mix(
+				result.rgb,
+				stripe_color.rgb,
+				stripes * mix(0.45, 0.9, flash)
+			);
+		}
+
+		if (abs(UV.x - current_value) <= blip_width) {
+			result.rgb = blip_color.rgb;
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8e7w"]
+shader = SubResource("Shader_wx24v")
+shader_parameter/current_value = 1.0
+shader_parameter/dissolve_value = 0.298000014155
+shader_parameter/defect_value = 0.0350000016625
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/orange_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/stripe_color = Color(1, 0.01666665, 0, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 0.0
+shader_parameter/defect_flash_speed = 0.0
+shader_parameter/stripe_density = 12.54
+shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="Shader" id="Shader_nv3my"]
+code = "shader_type canvas_item;
+
+uniform float current_value : hint_range(0.0, 1.0) = 0.8;
+uniform float dissolve_value : hint_range(0.0, 1.0) = 0.3;
+uniform float defect_value : hint_range(0.0, 1.0) = 0.1;
+
+uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
+uniform vec4 orange_color : source_color = vec4(1.0, 0.5, 0.0, 1.0);
+uniform vec4 stripe_color : source_color = vec4(0.4, 0.0, 0.0, 1.0);
+uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
+
+uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
+
+uniform float flash_speed = 3.0;
+uniform float defect_flash_speed = 7.0;
+uniform float stripe_density = 80.0;
+uniform float blip_width = 0.01;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+	vec4 result = tex;
+
+	bool on_bar = tex.a > 0.0
+		&& distance(tex.rgb, mask_color.rgb) <= mask_tolerance;
+
+	if (on_bar) {
+		float dissolve_start = max(current_value - dissolve_value, 0.0);
+		float defect_end = min(dissolve_start + defect_value, current_value);
+
+		if (UV.x <= current_value) {
+			result.rgb = red_color.rgb;
+		}
+
+		// Flashing orange: the intended dissolve area.
+		if (UV.x >= dissolve_start && UV.x <= current_value) {
+			float flash = sin(TIME * flash_speed) * 0.5 + 0.5;
+			result.rgb = mix(
+				result.rgb,
+				orange_color.rgb,
+				mix(0.2, 0.8, flash)
+			);
+		}
+
+		// Faster flashing stripes: the amount defect blocks.
+		if (UV.x >= dissolve_start && UV.x <= defect_end) {
+			float stripes = step(
+				0.5,
+				fract((UV.x + UV.y) * stripe_density)
+			);
+			float flash = sin(TIME * defect_flash_speed) * 0.5 + 0.5;
+			result.rgb = mix(
+				result.rgb,
+				stripe_color.rgb,
+				stripes * mix(0.45, 0.9, flash)
+			);
+		}
+
+		if (abs(UV.x - current_value) <= blip_width) {
+			result.rgb = blip_color.rgb;
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wx24v"]
+shader = SubResource("Shader_nv3my")
+shader_parameter/current_value = 1.0
+shader_parameter/dissolve_value = 0.298000014155
+shader_parameter/defect_value = 0.0350000016625
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/orange_color = Color(1, 0.8, 0.05, 1)
+shader_parameter/stripe_color = Color(1, 0.01666665, 0, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/flash_speed = 0.0
+shader_parameter/defect_flash_speed = 0.0
+shader_parameter/stripe_density = 12.54
+shader_parameter/blip_width = 0.002000000095
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
+shader = ExtResource("21_l3qeo")
+shader_parameter/prisoner_value = 0.5250000249375
+shader_parameter/flash_value = 0.350000016625
+shader_parameter/mask_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
+shader_parameter/mask_tolerance = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/flash_color = Color(1, 0.14509805, 0, 1)
+shader_parameter/flash_speed = 3.0
+shader_parameter/edge_padding = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eudqh"]
+shader = ExtResource("23_nv3my")
+shader_parameter/defect_value = 0.350000016625
+shader_parameter/mask_color = Color(0.5529412, 0.5294118, 0.56078434, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/defect_color = Color(0.8, 0, 0, 1)
+shader_parameter/flash_speed = 3.0
+shader_parameter/low_opacity = 0.4330000205675
+shader_parameter/high_opacity = 1.0
+shader_parameter/edge_padding = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l3qeo"]
 shader = ExtResource("21_40ur5")
@@ -734,6 +941,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Strength" unique_id=658992085]
 texture_filter = 1
+material = SubResource("ShaderMaterial_40ur5")
 position = Vector2(288, 124)
 scale = Vector2(1.363924, 1.421875)
 texture = ExtResource("16_3l4dx")
@@ -758,19 +966,19 @@ offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Strength/Disabled" unique_id=644931361]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 80.0
-offset_right = 616.0
-offset_bottom = 168.0
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 488.0
+offset_bottom = 152.0
 color = Color(0, 0, 0, 1)
 
 [node name="OffLabel" type="Label" parent="AcceptCell/Stats/Strength/Disabled" unique_id=447622214]
 texture_filter = 1
 layout_mode = 0
-offset_left = 96.0
-offset_top = 80.0
-offset_right = 616.0
-offset_bottom = 168.0
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 488.0
+offset_bottom = 152.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 30
@@ -790,6 +998,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Intelligence" unique_id=466382837]
 texture_filter = 1
+material = SubResource("ShaderMaterial_i8e7w")
 position = Vector2(277, 124)
 scale = Vector2(1.363924, 1.421875)
 texture = ExtResource("17_ps5e4")
@@ -806,27 +1015,27 @@ theme_override_font_sizes/font_size = 16
 text = "Intelligence"
 horizontal_alignment = 1
 
-[node name="Disabled" type="Control" parent="AcceptCell/Stats/Intelligence" unique_id=691431563]
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Intelligence" unique_id=1060327601]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=1470744327]
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=1111720413]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 80.0
-offset_right = 616.0
-offset_bottom = 168.0
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 488.0
+offset_bottom = 152.0
 color = Color(0, 0, 0, 1)
 
-[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=1652102648]
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=2094426848]
 texture_filter = 1
 layout_mode = 0
-offset_left = 96.0
-offset_top = 80.0
-offset_right = 616.0
-offset_bottom = 168.0
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 488.0
+offset_bottom = 152.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 30
@@ -846,6 +1055,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Community" unique_id=682528239]
 texture_filter = 1
+material = SubResource("ShaderMaterial_wx24v")
 position = Vector2(276, 124)
 scale = Vector2(1.363924, 1.421875)
 texture = ExtResource("18_rm1ek")
@@ -862,27 +1072,27 @@ theme_override_font_sizes/font_size = 16
 text = "Community"
 horizontal_alignment = 1
 
-[node name="Disabled" type="Control" parent="AcceptCell/Stats/Community" unique_id=2009167141]
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Community" unique_id=439100775]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Community/Disabled" unique_id=346711554]
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Community/Disabled" unique_id=1367352335]
 layout_mode = 0
-offset_left = 96.0
-offset_top = 80.0
-offset_right = 616.0
-offset_bottom = 168.0
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 488.0
+offset_bottom = 152.0
 color = Color(0, 0, 0, 1)
 
-[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Community/Disabled" unique_id=297568627]
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Community/Disabled" unique_id=802572241]
 texture_filter = 1
 layout_mode = 0
-offset_left = 96.0
-offset_top = 80.0
-offset_right = 616.0
-offset_bottom = 168.0
+offset_left = 72.0
+offset_top = 104.0
+offset_right = 488.0
+offset_bottom = 152.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_plfpx")
 theme_override_font_sizes/font_size = 30
@@ -984,12 +1194,14 @@ offset_bottom = 40.0
 
 [node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats" unique_id=1953046372]
 texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
 position = Vector2(526, 110.00001)
 scale = Vector2(1.1199998, 0.833333)
 texture = ExtResource("20_xrr3f")
 
 [node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats" unique_id=454397489]
 texture_filter = 1
+material = SubResource("ShaderMaterial_eudqh")
 position = Vector2(526, 119)
 scale = Vector2(1.12, 0.49999958)
 texture = ExtResource("20_xrr3f")
@@ -1106,12 +1318,14 @@ offset_bottom = 40.0
 
 [node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats" unique_id=2038283869]
 texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
 position = Vector2(526, 110.00001)
 scale = Vector2(1.1199998, 0.833333)
 texture = ExtResource("20_xrr3f")
 
 [node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats" unique_id=1839188309]
 texture_filter = 1
+material = SubResource("ShaderMaterial_eudqh")
 position = Vector2(526, 119)
 scale = Vector2(1.12, 0.49999958)
 texture = ExtResource("20_xrr3f")
@@ -1228,12 +1442,14 @@ offset_bottom = 40.0
 
 [node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats" unique_id=1158114956]
 texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
 position = Vector2(526, 110.00001)
 scale = Vector2(1.1199998, 0.833333)
 texture = ExtResource("20_xrr3f")
 
 [node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats" unique_id=213824481]
 texture_filter = 1
+material = SubResource("ShaderMaterial_eudqh")
 position = Vector2(526, 119)
 scale = Vector2(1.12, 0.49999958)
 texture = ExtResource("20_xrr3f")
