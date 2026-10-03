@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="10_nfgcj"]
 [ext_resource type="Script" uid="uid://3xonvahn8nev" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/confirm_dissolve.gd" id="11_itwf4"]
 [ext_resource type="PackedScene" uid="uid://c3pwmpsk12xc1" path="res://scenes/hoverable_mesh_scenes/goal_interface_btn_highlight.tscn" id="11_vkqeh"]
+[ext_resource type="Script" uid="uid://dqsmqma2argmd" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/dissolve_finished.gd" id="12_4f3xm"]
 [ext_resource type="Script" uid="uid://tin3jdgj1ol0" path="res://scripts/stations/goal_threshold_interface/component/buttons/confirm_btn.gd" id="18_klxul"]
 [ext_resource type="Script" uid="uid://b7pid3jn2lk4d" path="res://scripts/stations/goal_threshold_interface/component/buttons/deny_btn.gd" id="22_jureo"]
 
@@ -249,6 +250,9 @@ script = ExtResource("10_jureo")
 [node name="ConfirmDissolve" type="Node" parent="ElevatorManager/States" unique_id=1085583697]
 script = ExtResource("11_itwf4")
 
+[node name="DissolveFinished" type="Node" parent="ElevatorManager/States" unique_id=1591006113]
+script = ExtResource("12_4f3xm")
+
 [node name="HelperDissolveCell" type="Node" parent="." unique_id=917487189]
 script = ExtResource("2_70tpf")
 
@@ -466,3 +470,7 @@ uppercase = true
 [node name="BackPlate" type="MeshInstance3D" parent="ConfirmDenyBtns" unique_id=1617660563]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5776367, -1.2738037, -2.4661713)
 mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="CinnamticCamera" type="Camera3D" parent="." unique_id=579600439]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.6130452, 1.5723739, -5.1759453)
+fov = 80.0

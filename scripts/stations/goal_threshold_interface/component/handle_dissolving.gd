@@ -6,6 +6,8 @@ extends Node
 @onready var helper_refresh_displays: Node = $"../HelperRefreshDisplays"
 @onready var handle_threshold_stat_finished: Node = $"../HandleThresholdStatFinished"
 
+@onready var elevator_manager : Node = $"../ElevatorManager"
+
 var valid_dissolving_stats: Array[DissolvingStat] = []
 
 
@@ -96,10 +98,7 @@ func _handle_dissolve_delay_timer_timeout() -> void:
 			
 			threshold_stat.finished = true
 			
-			handle_threshold_stat_finished._handle()
-			
-			if helper_dissolve_cell.dissolving_cell != dissolving_cell:
-				return
+			handle_threshold_stat_finished._handle(dissolving_cell)
 	
 	
 	# display final values from this tick
@@ -127,17 +126,9 @@ func _handle_dissolve_delay_timer_timeout() -> void:
 	dissolve_delay_timer.stop()
 	
 	
-	var collected_cell: BrainCell = (
-		dissolving_cell.corresponding_cell
-	)
-	
-	
-	if collected_cell != null:
-		GLCellManagerBus.collected_cell.emit_signal(
-			"delete_selected_collected_cell",
-			collected_cell
-		)
-	
+	if dissolving_cell.corresponding_cell != null : 
+		GLCellManagerBus.emit_signal('delete_selected_collected_cell', dissolving_cell.corresponding_cell)
+		elevator_manager._dissolving_cell_finished()
 	
 	# only clear if this is STILL the same cell
 	if helper_dissolve_cell.dissolving_cell == dissolving_cell:

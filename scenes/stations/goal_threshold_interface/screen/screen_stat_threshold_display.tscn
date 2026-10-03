@@ -28,6 +28,7 @@
 [ext_resource type="Shader" uid="uid://cj1uxfdnp7kay" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/shaders/clean_bar_defect_ignored.gdshader" id="21_l3qeo"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="22_my6kx"]
 [ext_resource type="Shader" uid="uid://8alueq6obkxe" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/shaders/defect_bar_defect_ignored.gdshader" id="23_nv3my"]
+[ext_resource type="Script" uid="uid://c4b4vfqxh22ju" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/float_parent.gd" id="29_i8e7w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
 shader = ExtResource("1_6c3qd")
@@ -913,6 +914,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AcceptCell" type="Control" parent="." unique_id=795334077]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1626,3 +1628,49 @@ theme_override_fonts/font = ExtResource("6_v4hsa")
 theme_override_font_sizes/font_size = 83
 text = "1 / 4"
 horizontal_alignment = 1
+
+[node name="GoalComplete" type="Control" parent="." unique_id=84461497]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="GoalComplete" unique_id=788312149]
+layout_mode = 0
+offset_right = 584.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="GoalComplete" unique_id=2093286933]
+material = SubResource("ShaderMaterial_vau7t")
+layout_mode = 0
+offset_right = 584.0
+offset_bottom = 384.0
+
+[node name="FloatParent" type="Control" parent="GoalComplete" unique_id=1902778995]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("29_i8e7w")
+
+[node name="LoadingNextLabel" type="Label" parent="GoalComplete/FloatParent" unique_id=298210089]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0.16799992, 1, 0.04000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 74
+text = "Goal Complete"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Checkmark" type="Sprite2D" parent="GoalComplete/FloatParent" unique_id=1206957841]
+modulate = Color(0.16862746, 1, 0.039215688, 1)
+texture_filter = 1
+position = Vector2(288, 232)
+scale = Vector2(13.676471, 7.611111)
+texture = ExtResource("8_w7rbg")

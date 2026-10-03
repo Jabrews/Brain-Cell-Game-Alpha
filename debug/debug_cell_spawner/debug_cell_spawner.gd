@@ -13,8 +13,8 @@ func _ready() -> void:
 	var cell_one: BrainCell = BrainCell.new(
 		"cell_one",
 		[],
-		BrainCellStat.new("strength", true, 50, 0, false),
-		BrainCellStat.new("intelligence", true, 125, 25, false),
+		BrainCellStat.new("strength", true, 320, 0, false),
+		BrainCellStat.new("intelligence", true, 275, 25, false),
 		BrainCellStat.new("community", true, 125, 0, false),
 		2,
 		false,
@@ -23,18 +23,16 @@ func _ready() -> void:
 	
 	
 	# Cell 2
-	#var cell_two : BrainCell = BrainCell.new(
-		#"cell_two",
-		#[
-		#BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-		#],
-		#BrainCellStat.new("strength", true, 200, 100, true),
-		#BrainCellStat.new("intelligence", true, 50, 10, false),
-		#BrainCellStat.new("community", true, 75, 0, false),
-		#3,
-		#false,
-		#false,
-	#)
+	var cell_two : BrainCell = BrainCell.new(
+		"cell_two",
+		[],
+		BrainCellStat.new("strength", true, 200, 100, true),
+		BrainCellStat.new("intelligence", true, 150, 25, false),
+		BrainCellStat.new("community", false, 0, 0, false),
+		3,
+		false,
+		false,
+	)
 	
 	
 	#var cell_three : BrainCell = BrainCell.new(
@@ -51,7 +49,7 @@ func _ready() -> void:
 	var cells : Array[BrainCell] = []	
 	
 	cells.append(cell_one)
-	#cells.append(cell_two)
+	cells.append(cell_two)
 	#cells.append(cell_three)
 	#
 	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)

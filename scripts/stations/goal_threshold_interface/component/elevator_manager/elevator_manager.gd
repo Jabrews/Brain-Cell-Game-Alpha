@@ -5,6 +5,10 @@ extends Node
 @onready var cell_recieved_state : Node = $States/CellRecieved
 @onready var returning_cell_state : Node = $States/ReturningCell
 @onready var confirm_dissolve_state : Node = $States/ConfirmDissolve
+@onready var dissolve_finished_state : Node = $States/DissolveFinished
+
+# components
+@onready var handle_dissolve_cell : Node = $"../HelperDissolveCell"
 
 
 var cell_container_on_elevator : CharacterBody3D
@@ -33,7 +37,13 @@ func _handle_cell_removed_from_elevator(cell_container : CharacterBody3D) :
 	
 	if cell_container_on_elevator == cell_container : 
 		cell_container_on_elevator = null	
+
+func _dissolving_cell_finished() :
 	
+	# if not already set
+	cell_container_on_elevator = null	
+	
+	switch_state('dissolve_finished')
 
 func switch_state(state: String) -> void:
 	if state == current_elevator_state and active_state:
@@ -50,6 +60,13 @@ func switch_state(state: String) -> void:
 			next_state = returning_cell_state
 		"confirm_dissolve":
 			next_state = confirm_dissolve_state
+			
+			# START DISSOLVE			
+			handle_dissolve_cell._create_dissolving_cell(cell_container_on_elevator)
+			
+		'dissolve_finished' :
+			next_state = dissolve_finished_state
+			
 		_:
 			push_error("Unable to find state: " + state)
 			return
@@ -62,6 +79,10 @@ func switch_state(state: String) -> void:
 
 	if state == "cell_recieved" or state == "returning_cell":
 		active_state._start_state(cell_container_on_elevator)
+	elif state == 'dissolve_finished' : 
+		active_state._start_state()
+		await get_tree().create_timer(2.0).timeout		
+		switch_state('inactive')		
 	else:
 		active_state._start_state()
 	
@@ -77,7 +98,7 @@ func _handle_confirm_btn_pressed() :
 	
 	switch_state('confirm_dissolve')
 	
-	# TODO
+	## NOTE
 	# isnt set back to returning cell and inactive untill dissolving done
 	# called elsewhere
 	

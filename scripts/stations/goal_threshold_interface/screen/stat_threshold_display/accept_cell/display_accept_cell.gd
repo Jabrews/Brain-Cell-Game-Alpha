@@ -48,7 +48,7 @@ extends Node
 
 
 func _ready() -> void:
-	for threshold_bar : Sprite2D in threshold_bars : 
+	for threshold_bar : Sprite2D in threshold_bars :
 		threshold_bar.material = threshold_bar.material.duplicate()
 	
 	for clean_bar : Sprite2D in defect_ignored_clean_bars :
@@ -62,7 +62,7 @@ func _ready() -> void:
 
 func show_accept_cell_screen(elevator_cell : BrainCell) :
 	
-	if not elevator_cell : 
+	if not elevator_cell :
 		push_error('attempting to show accept cell screen without cell')
 		return
 	
@@ -174,7 +174,7 @@ func _display_threshold_bars(
 	
 
 func _display_defect_ignored_percant(
-	stat : BrainCellStat, 
+	stat : BrainCellStat,
 	threshold_stat : ThresholdStat,
 	ignored_percent_label : Label,
 	ignored_percant_parent : Control,
@@ -182,24 +182,32 @@ func _display_defect_ignored_percant(
 	ignored_hidden_parent : Control
 ) :
 	
-	ignored_percent_label.visible = false	
+	ignored_percent_label.visible = false
 	ignored_percant_parent.visible = false
 	ignored_disabled_parent.visible = false
 	ignored_hidden_parent.visible = false
 	
-	if stat.enabled == false or threshold_stat.disabled: 
+	if stat.enabled == false or threshold_stat.disabled:
 		ignored_disabled_parent.visible  = true
 		return
 		
-	if stat.hidden : 
+	if stat.hidden :
 		ignored_hidden_parent.visible = true
 		return
-	
+		
 	ignored_percant_parent.visible = true
 	ignored_percent_label.visible = true
-	
-	# TODO set ignored percant label
-	ignored_percent_label.text = str('')
+
+	var percentage: float = 100.0
+
+	if stat.value > 0.0:
+		percentage = clampf(
+			float(stat.defect) / float(stat.value) * 100.0,
+			0.0,
+			100.0
+		)
+
+	ignored_percent_label.text = "%.1f%%" % percentage
 	
 
 func _display_defect_ignored_bars(
@@ -208,20 +216,35 @@ func _display_defect_ignored_bars(
 	ignored_clean_bar : Sprite2D,
 	ignored_defect_bar : Sprite2D
 ) :
-	ignored_clean_bar.visible = false	
+	ignored_clean_bar.visible = false
 	ignored_defect_bar.visible = false
 	
-	if stat.hidden or stat.enabled == false or threshold_stat.disabled: 
+	if stat.hidden or stat.enabled == false or threshold_stat.disabled:
 		return
 	
 	ignored_clean_bar.visible = true
 	ignored_defect_bar.visible = true
 	
-	# TODO
-	ignored_clean_bar.material.set_shader_parameter("prisoner_value", 0)
-	ignored_clean_bar.material.set_shader_parameter("flash_value", 0)
+	var max_value : float = IVCellCreator.max_stat_value
 	
-	ignored_clean_bar.material.set_shader_parameter("defect_value", 0)
+	# prisoner value
+	
+	var prisoner_value : float = stat.value / max_value
+		
+	ignored_clean_bar.material.set_shader_parameter("prisoner_value", prisoner_value)
+	
+	# flash + defect value
+	
+	var defect_value : float = stat.defect / max_value
+	
+	ignored_defect_bar.material.set_shader_parameter("defect_value", defect_value)
+	
+	ignored_clean_bar.material.set_shader_parameter("flash_value", defect_value)
+	
+	
+	
+	
+
 	
 		
 
@@ -231,4 +254,4 @@ func _display_defect_ignored_bars(
 #### HIDE #####
 
 func hide_accept_cell_screen() :
-	accept_cell_parent.visible = false 
+	accept_cell_parent.visible = false

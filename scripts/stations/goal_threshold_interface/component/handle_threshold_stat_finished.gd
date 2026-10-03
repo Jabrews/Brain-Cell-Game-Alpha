@@ -4,12 +4,14 @@ extends Node
 @onready var parent_station: Node3D = $".."
 @onready var helper_dissolve_cell : Node = $"../HelperDissolveCell"
 @onready var helper_refresh_displays: Node = $"../HelperRefreshDisplays"
+@onready var elevator_manager : Node = $"../ElevatorManager"
+@onready var cinnamtic_camera : Camera3D = $"../CinnamticCamera"
 
 # screen components
 @onready var screen_stat_threshold_display: Node2D = $"../StatThresholdTV/TvFrontPannel/SubViewport/ScreenStatThresholdDisplay"
 
 
-func _handle() -> void:
+func _handle(dissolving_cell  : DissolvingCell) -> void:
 	
 	var goal_threshold: GoalThreshold = parent_station.goal_threshold
 	var active_threshold_piece: ThresholdPiece = parent_station.active_threshold_piece
@@ -45,6 +47,17 @@ func _handle() -> void:
 	# move to next piece
 	goal_threshold.active_piece_index += 1
 	
+	# finish 
+	if dissolving_cell == null or dissolving_cell.corresponding_cell == null : 
+		push_error('attempting to end dissolving without dissolving cell : ', dissolving_cell, ' | ', dissolving_cell.corresponding_cell)
+	
+	else : 
+		GLCellManagerBus.emit_signal('delete_selected_collected_cell', dissolving_cell.corresponding_cell)
+		elevator_manager._dissolving_cell_finished()
+	
+	_toggle_cinnamatic(true)
+	
+	
 	# finish game if the next goal piece does not exist
 	if not goal_threshold.pieces.has(goal_threshold.active_piece_index):
 		GLEndStateScreenBus.emit_signal("game_finished")
@@ -70,3 +83,46 @@ func _handle() -> void:
 	
 	# refresh screens
 	helper_refresh_displays._refresh()
+	
+	await get_tree().create_timer(5.5).timeout	
+	
+	_toggle_cinnamatic(false)
+	
+
+func _toggle_cinnamatic(toggle_value : bool) :
+	
+	if toggle_value : 	
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		GLHideUiBus.emit_signal('toggle_hide_ui', true)
+		GLPlayerState.emit_signal('lock_player_position', true)
+		GLCinnamaticBus.emit_signal('toggle_goal_cinnamtic', true)
+		
+		cinnamtic_camera.fov = 80.0
+		
+		cinnamtic_camera.current = true
+		
+		var cam_fov_tween : Tween = create_tween()
+		
+		cam_fov_tween.tween_property(
+			cinnamtic_camera,
+			"fov",
+			65,
+			4.5
+		)
+	
+	else: 		
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		GLHideUiBus.emit_signal('toggle_hide_ui', false)
+		GLPlayerState.emit_signal('lock_player_position', false)
+		GLCinnamaticBus.emit_signal('toggle_goal_cinnamtic', false)
+		
+		cinnamtic_camera.current = false
+		
+
+		
+		
+		
+		
+		
+		
+	
