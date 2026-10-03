@@ -1,8 +1,8 @@
 extends Node
 
 # components
-@onready var elevator_light_mesh: MeshInstance3D = $"../../Elevator/Light/LightMesh"
-@onready var elevator_light: SpotLight3D = $"../../Elevator/Light/Light"
+@onready var elevator_light_mesh: MeshInstance3D = $"../../../Elevator/Light/LightMesh"
+@onready var elevator_light: SpotLight3D = $"../../../Elevator/Light/Light"
 @onready var flash_timer : Timer = $FlashTimer
 
 const RED_COLOR: Color = Color("#a12020")
@@ -17,23 +17,9 @@ var current_state: String = "off"
 var flash_on: bool = false
 
 
-func _process(_delta: float) -> void:
-	
-	if Input.is_action_just_pressed("debug1"):
-		_switch_state("off")
-	
-	if Input.is_action_just_pressed("debug2"):
-		_switch_state("returning_cell")
-	
-	if Input.is_action_just_pressed("debug3"):
-		_switch_state("on")
-	
-	if Input.is_action_just_pressed("debug4"):
-		_switch_state("dissolving_cell")
 
 func _ready() -> void:
 	
-	await get_tree().process_frame
 	
 	# duplicate light mesh material
 	light_material = elevator_light_mesh.get_active_material(0).duplicate()

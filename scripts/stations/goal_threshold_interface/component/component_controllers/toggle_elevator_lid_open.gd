@@ -1,13 +1,13 @@
 extends Node
 
 # components
-@onready var elevator_lid_mesh: MeshInstance3D = $"../../Elevator/ElevatorLid/ElevatorLid"
-@onready var elevator_lid_coll_shape: CollisionShape3D = $"../../Elevator/ElevatorLid/CollisionShape3D"
+@onready var elevator_lid_mesh: MeshInstance3D = $"../../../Elevator/ElevatorLid/ElevatorLid"
+@onready var elevator_lid_coll_shape: CollisionShape3D = $"../../../Elevator/ElevatorLid/CollisionShape3D"
 
 const OPEN_FINALE_TRANSFORM: Vector3 = Vector3(0.054, 0.888, 0.999)
 const CLOSED_FINALE_TRANSFORM: Vector3 = Vector3(0.977, 0.888, 0.999)
 
-const DOOR_TWEEN_DURATION: float = 0.5
+const DOOR_TWEEN_DURATION: float = 1.0
 
 var door_busy: bool = false
 var door_tween: Tween
@@ -26,8 +26,10 @@ func _toggle_open(toggle_value: bool) -> void:
 	
 	if toggle_value:
 		_toggle_open_door_tween()
+		elevator_lid_coll_shape.disabled = true 
 	else:
 		_toggle_close_door_tween()
+		elevator_lid_coll_shape.disabled = false 
 
 
 func _toggle_open_door_tween() -> void:
@@ -35,7 +37,6 @@ func _toggle_open_door_tween() -> void:
 	door_busy = true
 	
 	# disable collision when opening
-	elevator_lid_coll_shape.disabled = true
 	
 	if door_tween:
 		door_tween.kill()
@@ -79,6 +80,5 @@ func _toggle_close_door_tween() -> void:
 	await door_tween.finished
 	
 	# enable collision after fully closed
-	elevator_lid_coll_shape.disabled = false
 	
 	door_busy = false

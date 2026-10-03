@@ -2,11 +2,12 @@
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_6c3qd"]
 [ext_resource type="Script" uid="uid://dxpaaltib7fu7" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/screen_stat_threshold_display.gd" id="1_lue6d"]
-[ext_resource type="Script" uid="uid://5s4jotkmfrx3" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/refresh_display.gd" id="1_x2m6x"]
+[ext_resource type="Script" uid="uid://5s4jotkmfrx3" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/refresh_stat_display.gd" id="1_x2m6x"]
 [ext_resource type="Script" uid="uid://cn1glkvwjhwsd" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/display_new_piece_loading.gd" id="2_w7rbg"]
 [ext_resource type="Texture2D" uid="uid://os3xohtbvd8k" path="res://models/goal_threshold/BarLarge.png" id="2_x2m6x"]
 [ext_resource type="Script" uid="uid://bx6axg85o33fo" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/helper_display_stat_postions.gd" id="3_352qn"]
 [ext_resource type="Shader" uid="uid://cb8hbbwc5pimj" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/shaders/threshold_progress_circle_outline.gdshader" id="3_lue6d"]
+[ext_resource type="Script" uid="uid://b4i7m2bbr5t00" path="res://scripts/stations/goal_threshold_interface/screen/stat_threshold_display/display_accept_cell.gd" id="3_wx24v"]
 [ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_352qn"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_v4hsa"]
 [ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_kegbq"]
@@ -553,10 +554,13 @@ script = ExtResource("1_lue6d")
 [node name="DisplayNewPieceLoading" type="Node" parent="." unique_id=724506019]
 script = ExtResource("2_w7rbg")
 
-[node name="RefreshDisplay" type="Node" parent="." unique_id=908792165]
+[node name="DisplayAcceptCell" type="Node" parent="." unique_id=310326507]
+script = ExtResource("3_wx24v")
+
+[node name="RefreshStatDisplay" type="Node" parent="." unique_id=908792165]
 script = ExtResource("1_x2m6x")
 
-[node name="HelperDisplayStatPostions" type="Node" parent="RefreshDisplay" unique_id=1602819283]
+[node name="HelperDisplayStatPostions" type="Node" parent="RefreshStatDisplay" unique_id=1602819283]
 script = ExtResource("3_352qn")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=496745655]
@@ -570,6 +574,7 @@ offset_right = 584.0
 offset_bottom = 384.0
 
 [node name="Stats" type="Control" parent="." unique_id=388877193]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 72.0

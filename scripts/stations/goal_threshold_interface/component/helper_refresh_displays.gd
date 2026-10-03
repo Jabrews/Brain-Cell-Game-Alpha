@@ -14,7 +14,7 @@ func _refresh() :
 	
 	### STAT SCREEN ###
 	var dissolving_cell : DissolvingCell = helper_dissolve_cell.dissolving_cell 
-	screen_stat_threshold_display.refresh_display._refresh(dissolving_cell)
+	screen_stat_threshold_display.refresh_stat_display._refresh(dissolving_cell)
 
 	### TURN SCREEN ###
 	screen_turn_display.refresh_display._refresh()

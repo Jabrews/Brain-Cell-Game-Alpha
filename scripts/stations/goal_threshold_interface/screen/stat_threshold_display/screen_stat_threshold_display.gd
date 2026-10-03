@@ -1,5 +1,5 @@
 extends Node
 
-# components
-@onready var refresh_display : Node = $RefreshDisplay
+@onready var refresh_stat_display : Node = $RefreshStatDisplay
 @onready var display_new_piece_loading : Node = $DisplayNewPieceLoading
+@onready var display_accept_cell : Node = $DisplayAcceptCell

@@ -1,7 +1,7 @@
 extends Node
 
-@onready var confirm_btn_mesh: MeshInstance3D = $"../../ConfirmDenyBtns/ConfirmBtn/MeshInstance3D"
-@onready var deny_btn_mesh: MeshInstance3D = $"../../ConfirmDenyBtns/DenyBtn/MeshInstance3D"
+@onready var confirm_btn_mesh: MeshInstance3D = $"../../../ConfirmDenyBtns/ConfirmBtn/MeshInstance3D"
+@onready var deny_btn_mesh: MeshInstance3D = $"../../../ConfirmDenyBtns/DenyBtn/MeshInstance3D"
 
 const CONFIRM_BTN_AVAILABLE_COLOR: Color = Color("#43a123")
 const CONFIRM_BTN_UNAVAILABLE_COLOR: Color = Color("#8aa182")

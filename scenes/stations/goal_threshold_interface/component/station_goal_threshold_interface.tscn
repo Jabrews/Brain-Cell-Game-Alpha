@@ -1,21 +1,29 @@
 [gd_scene format=4 uid="uid://b1d8og0sww57y"]
 
 [ext_resource type="Script" uid="uid://2ys5i5lfvc6q" path="res://scripts/stations/goal_threshold_interface/component/station_goal_theshold_interface.gd" id="1_vkqeh"]
-[ext_resource type="Script" uid="uid://dstc1sevit4ub" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_cell/helper_dissolve_cell.gd" id="2_70tpf"]
-[ext_resource type="Script" uid="uid://dp5c7tfct3rnb" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_cell/toggle_elevator_lid_open.gd" id="3_70tpf"]
+[ext_resource type="Script" uid="uid://dstc1sevit4ub" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_cell.gd" id="2_70tpf"]
+[ext_resource type="Script" uid="uid://c5afrmkll8m7f" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/elevator_manager.gd" id="2_acgaq"]
+[ext_resource type="Script" uid="uid://dp5c7tfct3rnb" path="res://scripts/stations/goal_threshold_interface/component/component_controllers/toggle_elevator_lid_open.gd" id="3_70tpf"]
 [ext_resource type="Script" uid="uid://wsectx02b4v" path="res://scripts/stations/goal_threshold_interface/component/helper_refresh_displays.gd" id="3_lfxd2"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_ja745"]
-[ext_resource type="Script" uid="uid://bspkctgqee72y" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_cell/toggle_elevator_up.gd" id="4_lfxd2"]
+[ext_resource type="Script" uid="uid://bspkctgqee72y" path="res://scripts/stations/goal_threshold_interface/component/component_controllers/toggle_elevator_up.gd" id="4_lfxd2"]
 [ext_resource type="Script" uid="uid://c4u54vao12y6n" path="res://scripts/stations/goal_threshold_interface/component/handle_dissolving.gd" id="5_47arw"]
 [ext_resource type="Script" uid="uid://b0eal35fxuxa0" path="res://scripts/stations/goal_threshold_interface/component/handle_threshold_stat_finished.gd" id="5_blton"]
-[ext_resource type="Script" uid="uid://dgkgpph7giinq" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_cell/toggle_elevator_btns_available.gd" id="5_j6f7w"]
-[ext_resource type="Script" uid="uid://du1ejjkus0thc" path="res://scripts/stations/goal_threshold_interface/component/helper_dissolve_cell/handle_elevator_light_state.gd" id="6_8uguy"]
+[ext_resource type="Script" uid="uid://dgkgpph7giinq" path="res://scripts/stations/goal_threshold_interface/component/component_controllers/toggle_elevator_btns_available.gd" id="5_j6f7w"]
+[ext_resource type="Script" uid="uid://du1ejjkus0thc" path="res://scripts/stations/goal_threshold_interface/component/component_controllers/handle_elevator_light_state.gd" id="6_8uguy"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_vpv14"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="7_o6ut5"]
+[ext_resource type="Script" uid="uid://ds4x257ckc4g3" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/inactive.gd" id="8_gj2hl"]
+[ext_resource type="Script" uid="uid://cranxmvatfdxe" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/cell_recieved.gd" id="9_7m8fw"]
 [ext_resource type="PackedScene" uid="uid://cshqon2ghejce" path="res://scenes/stations/goal_threshold_interface/screen/screen_stat_threshold_display.tscn" id="9_47arw"]
+[ext_resource type="Script" uid="uid://cqkg2ek652nyf" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/handle_detect_cell_area.gd" id="10_cxl67"]
+[ext_resource type="Script" uid="uid://b2o0kix1f0y0q" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/returning_cell.gd" id="10_jureo"]
 [ext_resource type="PackedScene" uid="uid://bynb8tfccsbxo" path="res://scenes/stations/goal_threshold_interface/screen/screen_turns_display.tscn" id="10_mpw3p"]
 [ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="10_nfgcj"]
+[ext_resource type="Script" uid="uid://3xonvahn8nev" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/confirm_dissolve.gd" id="11_itwf4"]
 [ext_resource type="PackedScene" uid="uid://c3pwmpsk12xc1" path="res://scenes/hoverable_mesh_scenes/goal_interface_btn_highlight.tscn" id="11_vkqeh"]
+[ext_resource type="Script" uid="uid://tin3jdgj1ol0" path="res://scripts/stations/goal_threshold_interface/component/buttons/confirm_btn.gd" id="18_klxul"]
+[ext_resource type="Script" uid="uid://b7pid3jn2lk4d" path="res://scripts/stations/goal_threshold_interface/component/buttons/deny_btn.gd" id="22_jureo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ewaq"]
 albedo_color = Color(0, 0, 0, 1)
@@ -173,6 +181,9 @@ material = SubResource("StandardMaterial3D_8uguy")
 radius = 0.1
 height = 0.2
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(0.6180191, 1.9584656, 0.47964478)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwg3o"]
 albedo_color = Color(0.2627451, 0.6313726, 0.13725491, 1)
 
@@ -202,22 +213,44 @@ size = Vector3(1.8447266, 0.39819336, 0.0028381348)
 [node name="StationGoalThresholdInterface" type="Node3D" unique_id=605944660]
 script = ExtResource("1_vkqeh")
 
-[node name="HelperDissolveCell" type="Node" parent="." unique_id=917487189]
-script = ExtResource("2_70tpf")
+[node name="ElevatorManager" type="Node" parent="." unique_id=198134577]
+script = ExtResource("2_acgaq")
 
-[node name="ToggleElevatorLidOpen" type="Node" parent="HelperDissolveCell" unique_id=432465082]
+[node name="HandleDetectCellArea" type="Node" parent="ElevatorManager" unique_id=416019546]
+script = ExtResource("10_cxl67")
+
+[node name="ComponentControllers" type="Node" parent="ElevatorManager" unique_id=1285280121]
+
+[node name="ToggleElevatorLidOpen" type="Node" parent="ElevatorManager/ComponentControllers" unique_id=432465082]
 script = ExtResource("3_70tpf")
 
-[node name="ToggleElevatorUp" type="Node" parent="HelperDissolveCell" unique_id=1130276976]
+[node name="ToggleElevatorUp" type="Node" parent="ElevatorManager/ComponentControllers" unique_id=1130276976]
 script = ExtResource("4_lfxd2")
 
-[node name="ToggleElevatorBtnsAvailable" type="Node" parent="HelperDissolveCell" unique_id=1713003407]
+[node name="ToggleElevatorBtnsAvailable" type="Node" parent="ElevatorManager/ComponentControllers" unique_id=1713003407]
 script = ExtResource("5_j6f7w")
 
-[node name="HandleElevatorLightState" type="Node" parent="HelperDissolveCell" unique_id=1916779295]
+[node name="HandleElevatorLightState" type="Node" parent="ElevatorManager/ComponentControllers" unique_id=1916779295]
 script = ExtResource("6_8uguy")
 
-[node name="FlashTimer" type="Timer" parent="HelperDissolveCell/HandleElevatorLightState" unique_id=482228058]
+[node name="FlashTimer" type="Timer" parent="ElevatorManager/ComponentControllers/HandleElevatorLightState" unique_id=482228058]
+
+[node name="States" type="Node" parent="ElevatorManager" unique_id=913642119]
+
+[node name="Inactive" type="Node" parent="ElevatorManager/States" unique_id=193158284]
+script = ExtResource("8_gj2hl")
+
+[node name="CellRecieved" type="Node" parent="ElevatorManager/States" unique_id=452640407]
+script = ExtResource("9_7m8fw")
+
+[node name="ReturningCell" type="Node" parent="ElevatorManager/States" unique_id=82331204]
+script = ExtResource("10_jureo")
+
+[node name="ConfirmDissolve" type="Node" parent="ElevatorManager/States" unique_id=1085583697]
+script = ExtResource("11_itwf4")
+
+[node name="HelperDissolveCell" type="Node" parent="." unique_id=917487189]
+script = ExtResource("2_70tpf")
 
 [node name="HelperRefreshDisplays" type="Node" parent="." unique_id=555968757]
 script = ExtResource("3_lfxd2")
@@ -309,7 +342,6 @@ shape = SubResource("ConcavePolygonShape3D_47arw")
 
 [node name="ElevatorLid" type="StaticBody3D" parent="Elevator" unique_id=897116335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03050363, 0)
-visible = false
 collision_layer = 2
 collision_mask = 0
 
@@ -320,6 +352,7 @@ mesh = SubResource("ArrayMesh_mpw3p")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/ElevatorLid" unique_id=575195395]
 transform = Transform3D(0.9786699, 0, 0, 0, 0.8891301, 0, 0, 0, 1, 1.1014359, 1.012532, 0.00045681)
 shape = SubResource("ConcavePolygonShape3D_vkqeh")
+disabled = true
 
 [node name="Elevator" type="StaticBody3D" parent="Elevator" unique_id=1887355627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.022900224, 0)
@@ -348,12 +381,21 @@ spot_range = 0.645
 spot_attenuation = 4.8
 spot_angle = 18.95
 
+[node name="DetectCellArea" type="Area3D" parent="Elevator" unique_id=216414045]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/DetectCellArea" unique_id=77567078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045693874, 0.115738034, 0.0031610727)
+shape = SubResource("BoxShape3D_qa1qv")
+
 [node name="ConfirmDenyBtns" type="Node3D" parent="." unique_id=655171215]
 
 [node name="ConfirmBtn" type="StaticBody3D" parent="ConfirmDenyBtns" unique_id=2030817793 groups=["interactable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.99759924, -1.270821, -2.47955)
 collision_layer = 0
 collision_mask = 32
+script = ExtResource("18_klxul")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ConfirmDenyBtns/ConfirmBtn" unique_id=390657901]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033544898, 0, 0)
@@ -389,6 +431,7 @@ uppercase = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0975993, -1.270821, -2.47955)
 collision_layer = 0
 collision_mask = 32
+script = ExtResource("22_jureo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ConfirmDenyBtns/DenyBtn" unique_id=1027406305]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.033544898, 0, 0)

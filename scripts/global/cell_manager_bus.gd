@@ -20,6 +20,7 @@ signal cell_hit_by_crystal(cell : BrainCell)
 # the rest acutally contain the logic in the listner function
 signal collected_cell_changed(new_cell : BrainCell)
 
+
 # emmited
 signal cell_deleted(cell_name : String)
 signal cell_changed(new_cell : BrainCell)
@@ -29,3 +30,6 @@ signal cells_updated()
 ### DEBUG ###
 signal debug_unhide_collected_cell_mutation(selected_cell : BrainCell)
 signal debug_create_collected_cells(cells : Array[BrainCell])
+
+# for locking
+signal toggle_lock_cell_pickup(cell_name : String, toggle_value : bool)
