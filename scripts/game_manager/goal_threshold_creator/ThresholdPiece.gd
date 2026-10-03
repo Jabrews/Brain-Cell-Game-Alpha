@@ -36,6 +36,17 @@ func _init(
 	intelligence = new_intelligence
 	community = new_community
 
+func get_stat(stat_type: String) -> ThresholdStat:
+	match stat_type:
+		"strength":
+			return strength
+		"intelligence":
+			return intelligence
+		"community":
+			return community
+		_:
+			push_error("Unknown threshold stat: " + stat_type)
+			return null
 
 func print_info() -> void:
 	print("------ THRESHOLD PIECE ------")

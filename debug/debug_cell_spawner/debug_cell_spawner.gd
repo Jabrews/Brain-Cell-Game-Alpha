@@ -13,9 +13,9 @@ func _ready() -> void:
 	var cell_one: BrainCell = BrainCell.new(
 		"cell_one",
 		[],
-		BrainCellStat.new("strength", true, 50, 0, true),
-		BrainCellStat.new("intelligence", true, 100, 100, false),
-		BrainCellStat.new("community", true, 125, 50, false),
+		BrainCellStat.new("strength", true, 50, 0, false),
+		BrainCellStat.new("intelligence", true, 125, 25, false),
+		BrainCellStat.new("community", true, 125, 0, false),
 		2,
 		false,
 		false,

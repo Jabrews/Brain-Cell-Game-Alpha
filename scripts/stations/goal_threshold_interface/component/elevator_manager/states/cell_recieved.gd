@@ -34,7 +34,7 @@ func _start_state(cell_on_elevator: Node3D) -> void:
 	handle_elevator_light_state._switch_state("on")
 	
 	# show accept cell screen
-	display_accept_cell.show_accept_cell_screen(cell_on_elevator)
+	display_accept_cell.show_accept_cell_screen(cell_on_elevator.designated_brain_cell)
 
 	await get_tree().create_timer(1.0).timeout
 
