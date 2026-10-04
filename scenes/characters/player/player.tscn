@@ -32,9 +32,9 @@
 [ext_resource type="AudioStream" uid="uid://dmhxj4tti0hkq" path="res://sounds/player_local_sounds/axe/axe_swing.mp3" id="24_d73qs"]
 [ext_resource type="AudioStream" uid="uid://b2ws1ps0f2keq" path="res://sounds/player_local_sounds/interactable/ice_cube_used.mp3" id="25_u6wme"]
 [ext_resource type="AudioStream" uid="uid://ufxpxrhtk0lf" path="res://sounds/player_local_sounds/interactable/scissor_snip.mp3" id="30_r0hd7"]
-[ext_resource type="AudioStream" uid="uid://w647yulxe8lj" path="res://sounds/goal_threshold_interface/emergency_start_2.mp3" id="32_10pim"]
-[ext_resource type="AudioStream" uid="uid://rfwq70y3qt6t" path="res://sounds/goal_threshold_interface/tick_sound.mp3" id="32_nt8su"]
-[ext_resource type="AudioStream" uid="uid://ng0hu2ohefo1" path="res://sounds/goal_threshold_interface/emergency_end_2.mp3" id="34_pbtrp"]
+[ext_resource type="AudioStream" uid="uid://w647yulxe8lj" path="res://sounds/goal_threshold_interface/old/emergency_start_2.mp3" id="32_10pim"]
+[ext_resource type="AudioStream" uid="uid://rfwq70y3qt6t" path="res://sounds/goal_threshold_interface/old/tick_sound.mp3" id="32_nt8su"]
+[ext_resource type="AudioStream" uid="uid://ng0hu2ohefo1" path="res://sounds/goal_threshold_interface/old/emergency_end_2.mp3" id="34_pbtrp"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.5

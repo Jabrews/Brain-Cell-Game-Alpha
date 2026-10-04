@@ -176,6 +176,9 @@ geometry_source_group_name = &"nav_mesh_coll"
 agent_radius = 0.7
 agent_max_slope = 20.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+size = Vector3(1.9710693, 5.3234863, 1.9683838)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_awaeu"]
 size = Vector3(0.1, 4.618823, 3.9)
 
@@ -550,6 +553,10 @@ mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 
 [node name="UnhideMutation" parent="Stations" unique_id=1284783246 instance=ExtResource("18_8muua")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Stations" unique_id=1951142033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.122078, 2.6627197, 15.695568)
+mesh = SubResource("BoxMesh_qa1qv")
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")

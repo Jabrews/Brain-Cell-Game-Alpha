@@ -4,6 +4,7 @@ extends TextureRect
 @onready var percant_label: Label = $PercantLabel
 @onready var emergency_sprite: Sprite2D = $Emergency
 @onready var checkmark_sprite: Sprite2D = $CheckMark
+@onready var helper_dissolve_cell : Node = $"../../../../../../../HelperDissolveCell"
 
 var flash_emergency_tween: Tween
 var flash_checkmark_tween: Tween
@@ -165,55 +166,40 @@ func toggle_flash_emergency_tween(toggle_value: bool) -> void:
 
 
 func toggle_flash_checkmark_tween(toggle_value: bool) -> void:
-	
 	if flash_checkmark_tween:
 		flash_checkmark_tween.kill()
 		flash_checkmark_tween = null
-	
-	
+
 	if not toggle_value:
 		checkmark_sprite.visible = false
 		checkmark_sprite.modulate.a = 1.0
 		percant_label.modulate.a = 1.0
 		return
-	
-	
+
 	checkmark_sprite.visible = true
 	percant_label.visible = true
-	
-	checkmark_sprite.modulate.a = 1.0
-	percant_label.modulate.a = 0.0
-	
-	
+
+	checkmark_sprite.modulate.a = 0.0
+	percant_label.modulate.a = 1.0
+
 	flash_checkmark_tween = create_tween()
 	flash_checkmark_tween.set_loops()
-	
+
+	# Play each time the checkmark begins appearing.
+	flash_checkmark_tween.tween_callback(play_sound_if_dissolving)
+
 	flash_checkmark_tween.tween_property(
-		checkmark_sprite,
-		"modulate:a",
-		0.0,
-		1.0
+		checkmark_sprite, "modulate:a", 1.0, 0.5
 	)
-	
 	flash_checkmark_tween.parallel().tween_property(
-		percant_label,
-		"modulate:a",
-		1.0,
-		1.0
+		percant_label, "modulate:a", 0.0, 0.5
 	)
-	
+
 	flash_checkmark_tween.tween_property(
-		checkmark_sprite,
-		"modulate:a",
-		1.0,
-		1.0
+		checkmark_sprite, "modulate:a", 0.0, 0.5
 	)
-	
 	flash_checkmark_tween.parallel().tween_property(
-		percant_label,
-		"modulate:a",
-		0.0,
-		1.0
+		percant_label, "modulate:a", 1.0, 0.5
 	)
 
 
@@ -249,3 +235,11 @@ func _update_percant_label(
 		"progress",
 		curr_value / max_value
 	)
+
+func play_sound_if_dissolving() :
+	
+	if helper_dissolve_cell.dissolving_cell :
+		
+		if helper_dissolve_cell.dissolving_cell.corresponding_cell :
+			GLGoalThresholdManagerBus.emit_signal('play_sound', 'checkmark_show')
+		

@@ -19,12 +19,20 @@
 [ext_resource type="Script" uid="uid://cqkg2ek652nyf" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/handle_detect_cell_area.gd" id="10_cxl67"]
 [ext_resource type="Script" uid="uid://b2o0kix1f0y0q" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/returning_cell.gd" id="10_jureo"]
 [ext_resource type="PackedScene" uid="uid://bynb8tfccsbxo" path="res://scenes/stations/goal_threshold_interface/screen/screen_turns_display.tscn" id="10_mpw3p"]
-[ext_resource type="AudioStream" uid="uid://bms6utcoxkhyg" path="res://sounds/hidden_stat_interpreter/interpreter_invalid_stat.mp3" id="10_nfgcj"]
 [ext_resource type="Script" uid="uid://3xonvahn8nev" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/confirm_dissolve.gd" id="11_itwf4"]
 [ext_resource type="PackedScene" uid="uid://c3pwmpsk12xc1" path="res://scenes/hoverable_mesh_scenes/goal_interface_btn_highlight.tscn" id="11_vkqeh"]
 [ext_resource type="Script" uid="uid://dqsmqma2argmd" path="res://scripts/stations/goal_threshold_interface/component/elevator_manager/states/dissolve_finished.gd" id="12_4f3xm"]
 [ext_resource type="Script" uid="uid://tin3jdgj1ol0" path="res://scripts/stations/goal_threshold_interface/component/buttons/confirm_btn.gd" id="18_klxul"]
+[ext_resource type="Script" uid="uid://pcemdxrtj0q6" path="res://scripts/stations/goal_threshold_interface/component/audio_manager.gd" id="20_5smfl"]
+[ext_resource type="AudioStream" uid="uid://clb5q5fnp0c7t" path="res://sounds/goal_threshold_interface/elevator_moving.mp3" id="21_5smfl"]
 [ext_resource type="Script" uid="uid://b7pid3jn2lk4d" path="res://scripts/stations/goal_threshold_interface/component/buttons/deny_btn.gd" id="22_jureo"]
+[ext_resource type="AudioStream" uid="uid://dyf85tt4qgxtk" path="res://sounds/goal_threshold_interface/elevator_arrive.mp3" id="22_oaxy4"]
+[ext_resource type="AudioStream" uid="uid://c1xylpkyegbs7" path="res://sounds/goal_threshold_interface/lid_close.mp3" id="23_f07pw"]
+[ext_resource type="AudioStream" uid="uid://41rmc6grvpja" path="res://sounds/goal_threshold_interface/lid_open.mp3" id="23_x5m0a"]
+[ext_resource type="AudioStream" uid="uid://dp55bbybi8sd5" path="res://sounds/prisoner_profiler/electric_box/beep_3.mp3" id="25_0d88n"]
+[ext_resource type="AudioStream" uid="uid://m1g4plrkrxfv" path="res://sounds/goal_threshold_interface/goal_complete_ding.mp3" id="26_gl4ym"]
+[ext_resource type="AudioStream" uid="uid://bysy8sy01504f" path="res://sounds/goal_threshold_interface/piece_complete.mp3" id="27_bh7dn"]
+[ext_resource type="AudioStream" uid="uid://fuxnapkk0atd" path="res://sounds/goal_threshold_interface/next_goal.mp3" id="28_uirr1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ewaq"]
 albedo_color = Color(0, 0, 0, 1)
@@ -321,13 +329,51 @@ spot_range = 1.581
 spot_attenuation = 1.4
 spot_angle = 164.33
 
-[node name="Audio" type="Node3D" parent="." unique_id=1419029013]
+[node name="AudioManager" type="Node3D" parent="." unique_id=1419029013]
+script = ExtResource("20_5smfl")
 
-[node name="InvalidSound" type="AudioStreamPlayer3D" parent="Audio" unique_id=1049486753]
-stream = ExtResource("10_nfgcj")
-volume_db = -15.0
-pitch_scale = 0.9
-max_distance = 30.0
+[node name="ElevatorMoving" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=859564622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("21_5smfl")
+volume_db = -5.0
+pitch_scale = 1.2
+max_distance = 40.0
+
+[node name="ElevatorArrive" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=683783108]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("22_oaxy4")
+max_distance = 40.0
+
+[node name="LidOpen" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1655275119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("23_x5m0a")
+max_distance = 40.0
+
+[node name="LidClose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=469408581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("23_f07pw")
+max_distance = 40.0
+
+[node name="CheckmarkShow" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1681372141]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("25_0d88n")
+pitch_scale = 0.8
+max_distance = 40.0
+
+[node name="GoalCompleteDing" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=821060031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("26_gl4ym")
+max_distance = 40.0
+
+[node name="PieceComplete" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=639217039]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("27_bh7dn")
+max_distance = 40.0
+
+[node name="NextGoal" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=770192419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6744032, 0.057872772, -1.2271416)
+stream = ExtResource("28_uirr1")
+max_distance = 40.0
 
 [node name="Elevator" type="Node3D" parent="." unique_id=1131083673]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.6157773, -1.9916774, -1.3094759)
@@ -350,11 +396,11 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="ElevatorLid" type="MeshInstance3D" parent="Elevator/ElevatorLid" unique_id=157555662]
-transform = Transform3D(0.97739506, 0, 0, 0, 0.88797194, 0, 0, 0, 0.9986974, 1.1014359, 1.012532, 0.00045681)
+transform = Transform3D(0.054, 0, 0, 0, 0.888, 0, 0, 0, 0.999, 1.1014359, 1.012532, 0.00045681)
 mesh = SubResource("ArrayMesh_mpw3p")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/ElevatorLid" unique_id=575195395]
-transform = Transform3D(0.9786699, 0, 0, 0, 0.8891301, 0, 0, 0, 1, 1.1014359, 1.012532, 0.00045681)
+transform = Transform3D(0.054, 0, 0, 0, 0.888, 0, 0, 0, 0.999, 1.1014359, 1.012532, 0.00045681)
 shape = SubResource("ConcavePolygonShape3D_vkqeh")
 disabled = true
 

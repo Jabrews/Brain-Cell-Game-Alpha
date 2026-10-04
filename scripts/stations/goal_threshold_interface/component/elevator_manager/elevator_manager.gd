@@ -13,17 +13,12 @@ extends Node
 
 var cell_container_on_elevator : CharacterBody3D
 
-var current_elevator_state : String = 'inactive'
+var current_elevator_state : String 
 var active_state : Node 
 
 var buttons_avaible : bool = false
 
 
-func _ready() -> void:
-	
-	await get_tree().process_frame	
-	
-	switch_state('inactive')
 
 
 func _handle_cell_added_to_elevator(cell_container : CharacterBody3D) : 

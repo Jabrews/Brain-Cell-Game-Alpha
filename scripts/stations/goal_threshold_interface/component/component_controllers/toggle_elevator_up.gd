@@ -12,6 +12,8 @@ const ELEVATOR_MOVE_DURATION: float = 1.5
 var elevator_busy: bool = false
 var elevator_move_tween: Tween
 
+var elevator_up : bool = true
+
 #func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed('debug1') : 
 		#_toggle_up(true)
@@ -24,10 +26,15 @@ func _toggle_up(toggle_value: bool) -> void:
 	if elevator_busy:
 		return
 	
+	if elevator_up == toggle_value : 
+		return
+	
 	if toggle_value:
 		_toggle_up_tween()
 	else:
 		_toggle_down_tween()
+	
+	elevator_up = toggle_value
 
 
 func _toggle_up_tween() -> void:
@@ -39,6 +46,9 @@ func _toggle_up_tween() -> void:
 	elevator_move_tween = create_tween().set_parallel(true)
 	elevator_move_tween.set_trans(Tween.TRANS_QUAD)
 	elevator_move_tween.set_ease(Tween.EASE_IN_OUT)
+	
+	GLGoalThresholdManagerBus.emit_signal('play_sound', 'elevator_moving')
+	
 
 	elevator_move_tween.tween_property(
 		elevator_mesh, "position",
@@ -48,8 +58,14 @@ func _toggle_up_tween() -> void:
 		elevator_coll_shape, "position",
 		ELEVATOR_FINALE_UP_POS, ELEVATOR_MOVE_DURATION
 	)
+	
+	# only for sound
+	await get_tree().create_timer(1.0).timeout
+	GLGoalThresholdManagerBus.emit_signal('play_sound', 'elevator_arrive')
 
 	await elevator_move_tween.finished
+	
+	
 	elevator_busy = false
 
 
@@ -62,6 +78,8 @@ func _toggle_down_tween() -> void:
 	elevator_move_tween = create_tween().set_parallel(true)
 	elevator_move_tween.set_trans(Tween.TRANS_QUAD)
 	elevator_move_tween.set_ease(Tween.EASE_IN_OUT)
+	
+	GLGoalThresholdManagerBus.emit_signal('play_sound', 'elevator_moving')
 
 	elevator_move_tween.tween_property(
 		elevator_mesh, "position",

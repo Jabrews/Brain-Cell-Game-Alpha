@@ -98,6 +98,8 @@ func _handle_dissolve_delay_timer_timeout() -> void:
 			
 			threshold_stat.finished = true
 			
+			GLGoalThresholdManagerBus.emit_signal('play_sound', 'goal_complete_ding')
+			
 			handle_threshold_stat_finished._handle(dissolving_cell)
 	
 	
