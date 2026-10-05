@@ -80,9 +80,11 @@ func _handle(dissolving_cell  : DissolvingCell) -> void:
 	# create dissolve stats for NEW piece
 	helper_dissolve_cell._create_inital_dissolving_cell(parent_station.active_threshold_piece)
 	
-	
 	# refresh screens
 	helper_refresh_displays._refresh()
+	
+	# update incremental values
+	GLGameManagerBus.emit_signal('proceed_next_goal_piece')
 	
 	await get_tree().create_timer(5.5).timeout	
 	

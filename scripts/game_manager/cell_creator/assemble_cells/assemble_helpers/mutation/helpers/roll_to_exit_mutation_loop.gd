@@ -4,7 +4,8 @@ extends Node
 var just_exited_mutation_loop : bool = false
 
 func _ready() -> void:
-	GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
+	return
+	#GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
 
 
 func _handle_roll(energy_phase: int) -> bool:
@@ -61,5 +62,5 @@ func roll_to_exit_mutation_loop() -> bool:
 	return random_number <= chance_to_exit
 
 
-func _handle_process_next_round() :
-	just_exited_mutation_loop = false
+#func _handle_process_next_round() :
+	#just_exited_mutation_loop = false

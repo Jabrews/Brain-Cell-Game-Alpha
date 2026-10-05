@@ -3,7 +3,6 @@ extends Node
 # components
 @onready var cell_manager : Node = $"../CellManager"
 @onready var assemble_cells : Node = $AssembleCells
-@onready var incrmental_value_controller : Node = $"../IncrementalValueController"
 
 var current_cell_constructor : CellConstructor
 
@@ -18,24 +17,14 @@ func connect_signals() -> void:
 		handle_create_prisoners
 	)
 
-	GLShareholderOfferState.connect(
-		"create_prisoner_cells_user_chose_shareholder_offer",
-		_handle_create_prisoner_cells_user_chose_shareholder_offer
-	)
-
 
 # signal create_prisoner_cells(cell_constructor : CellConstructor)
-func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update_incr_update : bool = false ) -> void:
+func handle_create_prisoners( cell_constructor : CellConstructor) -> void:
 	
-
 	current_cell_constructor = cell_constructor
 	
-	if not prevent_update_incr_update:
-		
-		var curr_round = GLGameManagerBus.current_round
-
-		incrmental_value_controller.change_progression_step(curr_round,)
-		
+	GLGameManagerBus.emit_signal('proceed_next_turn')	
+	
 	# decide prisoner picks quanity			
 	GLPrisonerPicks.prisoners_to_pick = cell_constructor.prisoner_picks
 			
@@ -56,22 +45,4 @@ func handle_create_prisoners( cell_constructor : CellConstructor, prevent_update
 	GLCellCreatorBus.emit_signal(
 		"get_newest_prisoner_cells",
 		new_prisoner_cells
-	)
-
-	# TODO FIX SHAREHOLDER OFFERs
-	###### shareholder offers #####
-	if GLShareholderOfferState.await_user_choose_shareholder_offer_before_create:
-		return
-	#################################
-
-
-
-# called after user chooses an offer
-func _handle_create_prisoner_cells_user_chose_shareholder_offer() -> void:
-
-	GLShareholderOfferState.await_user_choose_shareholder_offer_before_create = false
-
-	handle_create_prisoners(
-		current_cell_constructor,
-		true
 	)

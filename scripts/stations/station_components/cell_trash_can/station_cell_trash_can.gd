@@ -10,7 +10,7 @@ extends Node
 var curr_trash_filled : int = 0
 
 func _ready() -> void:
-	GLGameManagerBus.connect('process_next_round', _handle_next_round)
+	#GLGameManagerBus.connect('process_next_round', _handle_next_round)
 	GLDefectEventMangerBus.connect('prisoners_extracted', _handle_prisoners_extracted)
 
 func increment_trash_filled() :
@@ -46,11 +46,11 @@ func _handle_panel_cell_recieved(loaded_cell) :
 		
 		increment_trash_filled()
 
-func _handle_next_round() :
-	curr_trash_filled = 0
-	blood_plane_controller._reset()
-	capacity_label_manager._update_labels(curr_trash_filled, IVCellTrashcan.max_capaicty)
-	flood_blood_manager._reset()
+#func _handle_next_round() :
+	#curr_trash_filled = 0
+	#blood_plane_controller._reset()
+	#capacity_label_manager._update_labels(curr_trash_filled, IVCellTrashcan.max_capaicty)
+	#flood_blood_manager._reset()
 	
 func _handle_prisoners_extracted(quanity : int) :
 	var curr_quanitiy_index = 0

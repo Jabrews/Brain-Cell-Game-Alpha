@@ -18,10 +18,10 @@ var last_picked_choice: PossibleMutationEventChoice
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect(
-		"process_next_round",
-		_handle_process_next_round
-	)
+	#GLGameManagerBus.connect(
+		#"process_next_round",
+		#_handle_process_next_round
+	#)
 
 	GLMutationEventBus.connect(
 		"trigger_random_mutation_failed",
@@ -72,42 +72,42 @@ func _handle_trigger_random_mutation_failed() -> void:
 	last_picked_choice = null
 
 
-func _handle_process_next_round() -> void:
-	last_picked_choice = null
-
-	trigger_delay_timer.stop()
-
-	var random_time_min: float = (
-		IVRandomMutationEventTrigger
-		.mutation_event_delay_min_wait_time
-	)
-
-	var random_time_max: float = (
-		IVRandomMutationEventTrigger
-		.mutation_event_delay_max_wait_time
-	)
-
-	trigger_delay_timer.wait_time = randf_range(
-		random_time_min,
-		random_time_max
-	)
-
-	if GameAdminPanel.enabled:
-		await get_tree().process_frame
-
-		GameAdminPanel.updater_random_mutation_event.wait_time_min = (
-			random_time_min
-		)
-
-		GameAdminPanel.updater_random_mutation_event.wait_time_max = (
-			random_time_max
-		)
-
-		GameAdminPanel.updater_random_mutation_event.wait_time = (
-			trigger_delay_timer.wait_time
-		)
-
-	trigger_delay_timer.start()
+#func _handle_process_next_round() -> void:
+	#last_picked_choice = null
+#
+	#trigger_delay_timer.stop()
+#
+	#var random_time_min: float = (
+		#IVRandomMutationEventTrigger
+		#.mutation_event_delay_min_wait_time
+	#)
+#
+	#var random_time_max: float = (
+		#IVRandomMutationEventTrigger
+		#.mutation_event_delay_max_wait_time
+	#)
+#
+	#trigger_delay_timer.wait_time = randf_range(
+		#random_time_min,
+		#random_time_max
+	#)
+#
+	#if GameAdminPanel.enabled:
+		#await get_tree().process_frame
+#
+		#GameAdminPanel.updater_random_mutation_event.wait_time_min = (
+			#random_time_min
+		#)
+#
+		#GameAdminPanel.updater_random_mutation_event.wait_time_max = (
+			#random_time_max
+		#)
+#
+		#GameAdminPanel.updater_random_mutation_event.wait_time = (
+			#trigger_delay_timer.wait_time
+		#)
+#
+	#trigger_delay_timer.start()
 
 
 func _handle_trigger_delay_timeout() -> void:

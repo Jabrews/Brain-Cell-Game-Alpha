@@ -45,7 +45,7 @@ func _ready() -> void:
 	
 	# des. cell changing listeners
 	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
-	GLGameManagerBus.connect('process_next_round', _handle_next_round)
+	#GLGameManagerBus.connect('process_next_round', _handle_next_round)
 	GLCellManagerBus.connect("cell_changed", _handle_cell_changed)
 	
 	# update constant mutations
@@ -207,6 +207,6 @@ func check_for_cell_dead_on_update() :
 func _toggle_cell_put_onto_hidden_interpreter(toggle_value) :
 	on_stat_interpreter = toggle_value
 	
-func _handle_next_round() :
-	spawn_flesh_bug_on_death = false
+#func _handle_next_round() :
+	#spawn_flesh_bug_on_death = false
 	

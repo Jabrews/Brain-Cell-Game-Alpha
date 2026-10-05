@@ -5,7 +5,8 @@ extends Node
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
+	return
+	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 
 
 func _update() :
@@ -18,7 +19,7 @@ func _update() :
 		pick_num_label.visible = true
 		pick_num_label.text = str(GLPrisonerPicks.prisoners_to_pick)
 
-
-func _handle_next_round() :
-	out_of_prisoners_label.visible = true
-	pick_num_label.visible = false
+#
+#func _handle_next_round() :
+	#out_of_prisoners_label.visible = true
+	#pick_num_label.visible = false

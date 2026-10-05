@@ -1,9 +1,5 @@
 extends Node
 
-# tells cell_prisoner_cretor to await offer card being chose
-var await_user_choose_shareholder_offer_before_create : bool = false
-signal create_prisoner_cells_user_chose_shareholder_offer()
-
 ## ITEM OFFER SIGNALS ##
 # lets useable item spawner know to spawn an item
 signal spawn_item_to_offer(useable_offer_item : UseableOfferItem)

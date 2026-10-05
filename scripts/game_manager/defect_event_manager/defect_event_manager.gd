@@ -5,16 +5,15 @@ var current_defect_urgency_num: int = 0
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
+	#GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
 	GLDefectEventMangerBus.connect('cell_added_to_trashcan', _handle_cell_added_to_trashcan)
 	GLDefectEventMangerBus.connect('prisoners_extracted', _handle_prisoners_extracted)
 	
 	update_defect_event_chance()
 	
-
-func _handle_process_next_round() -> void:
-	IVDefectEventManager.current_defect_urgency_num = 0
-	update_defect_event_chance()
+#func _handle_process_next_round() -> void:
+	#IVDefectEventManager.current_defect_urgency_num = 0
+	#update_defect_event_chance()
 
 
 func _handle_cell_added_to_trashcan() -> void:

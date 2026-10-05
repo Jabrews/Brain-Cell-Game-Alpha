@@ -15,30 +15,29 @@ func _ready() :
 	
 	goal_threshold_creator._create_goal()
 	
-	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round)
-	
-	#goal_threshold_manager._create_goal()
+	incremental_value_controller._update_incremental_values()
 	
 ##### INIT HELPERS ######
 
 func connect_signals() : 
-	GLGameManagerBus.connect('proceed_next_round', initate_next_round)
+	return
+	#GLGameManagerBus.connect('proceed_next_round', initate_next_round)
 
 
-func initate_next_round() : 
-	var curr_round = GLGameManagerBus.current_round
-	var max_rounds = GLGameManagerBus.max_rounds
-	
-	if curr_round >= max_rounds :
-		push_error('GAME FINISHED')
-		get_tree().current_scene.queue_free()
-	
-	# update round logic
-	GLGameManagerBus.current_round += 1
-	incremental_value_controller.change_progression_step(GLGameManagerBus.current_round)
-	
-	# delete all prior cells
-	GLCellManagerBus.emit_signal('delete_cells_for_next_round')
+#func initate_next_round() : 
+	#var curr_round = GLGameManagerBus.current_round
+	#var max_rounds = GLGameManagerBus.max_rounds
+	#
+	#if curr_round >= max_rounds :
+		#push_error('GAME FINISHED')
+		#get_tree().current_scene.queue_free()
+	#
+	## update round logic
+	#GLGameManagerBus.current_round += 1
+	#incremental_value_controller.change_progression_step(GLGameManagerBus.current_round)
+	#
+	## delete all prior cells
+	#GLCellManagerBus.emit_signal('delete_cells_for_next_round')
 	
 
 

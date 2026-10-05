@@ -5,10 +5,10 @@ var available_mutations: Array[BrainCellMutation] = []
 
 
 func _ready() -> void:
-	GLGameManagerBus.connect(
-		"process_next_round",
-		_handle_process_next_round
-	)
+	#GLGameManagerBus.connect(
+		#"process_next_round",
+		#_handle_process_next_round
+	#)
 
 	GLCellManagerBus.connect(
 		"prisoner_picked_by_player",
@@ -182,8 +182,8 @@ func get_energy_phase_chance(
 			return 0
 
 
-func _handle_process_next_round() -> void:
-	_fill_available_mutations()
+#func _handle_process_next_round() -> void:
+	#_fill_available_mutations()
 
 
 func _fill_available_mutations() -> void:

@@ -8,7 +8,7 @@ func _ready() -> void:
 	GLMutationExsplosiveState.connect('create_exsplosion_decal', _handle_create_exsplosion_decal)
 	
 	# resetting
-	GLGameManagerBus.connect('process_next_round', _handle_next_round)
+	#GLGameManagerBus.connect('process_next_round', _handle_next_round)
 
 
 func _handle_create_exsplosion_decal(cell_glob_pos : Vector3) :
@@ -17,6 +17,6 @@ func _handle_create_exsplosion_decal(cell_glob_pos : Vector3) :
 	add_child(explosion_decal_instance)
 	explosion_decal_instance.global_position = cell_glob_pos + Vector3(0, 1.0, 0)
 
-func _handle_next_round() : 
-	for children : RigidBody3D in get_children() :
-		children.queue_free()
+#func _handle_next_round() : 
+	#for children : RigidBody3D in get_children() :
+		#children.queue_free()

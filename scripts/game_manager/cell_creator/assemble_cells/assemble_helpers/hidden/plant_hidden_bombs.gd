@@ -3,10 +3,11 @@ extends Node
 var just_planted_bomb : bool = false
 
 func _ready() -> void:
-	GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
+	return
+	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)
 
-func _handle_next_round() :
-	just_planted_bomb = false
+#func _handle_next_round() :
+	#just_planted_bomb = false
 
 func _check_can_plant_bombs() :
 	

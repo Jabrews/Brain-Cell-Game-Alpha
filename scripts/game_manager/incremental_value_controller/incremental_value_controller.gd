@@ -1,7 +1,7 @@
 extends Node
 
-var round_incr_values_set = false
 var last_round : int = 0
+var last_threshold_piece_index : int = 0
 
 # components
 @onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
@@ -12,27 +12,51 @@ var last_round : int = 0
 @onready var iv_helper_mutation_event_trigger : Node = $IVHelperMutationEventTrigger
 
 
-@warning_ignore("shadowed_global_identifier") # FUCK THIS WTF
-func change_progression_step(round : int) :
+func _ready() -> void:
+	GLGameManagerBus.connect('proceed_next_goal_piece', _handle_proceed_next_goal_piece)
+	GLGameManagerBus.connect('proceed_next_turn', _handle_proceed_next_turn)
 	
-	if last_round != round :
-		handle_round(round)
+func _process(_delta: float) -> void: 
+	if Input.is_action_just_pressed('debug1') :
+		print(IVHiddenStats.max_stats_to_hide)
+	
+
+func _handle_proceed_next_goal_piece() :
+	_update_incremental_values() # just cause only round 1 in playtest
+
+func _handle_proceed_next_turn() :
+	_update_incremental_values()
+
+
+func _update_incremental_values() : 
+	
+	# handle round IVS
+	# prevent from running twice
+	var current_round : int = GLGameManagerBus.current_round	
+	
+	if last_round != current_round : 
+		handle_round(current_round)
 		
-		# any event calls
+		# just some helpers
 		GLUsableItemBus.emit_signal('spawn_new_usable_items')
 		
+		last_round = current_round
 		
-		handle_turn(round)
+		GLGameManagerBus.emit_signal('process_new_ivs')
 		
-		GLGameManagerBus.emit_signal('process_next_round')
+	# handle goal piece IVS
+	# prevent from running twice
+	var current_threshold_piece_index : int = GLGoalThresholdManagerBus.active_goal_threshold.active_piece_index
+	
+	if current_threshold_piece_index != last_threshold_piece_index : 	
 		
-		last_round = round
+		handle_threshold_piece(current_round)
+		
+		last_threshold_piece_index = current_threshold_piece_index		
+		
+		GLGameManagerBus.emit_signal('process_new_ivs')
 	
-	
-	handle_turn(round)
-	
-	GLGameManagerBus.emit_signal('proceed_next_turn')
-	
+		
 
 @warning_ignore("shadowed_global_identifier")
 func handle_round(round : int):
@@ -79,7 +103,7 @@ func handle_round(round : int):
 
 
 @warning_ignore("shadowed_global_identifier")
-func handle_turn(round : int) :
+func handle_threshold_piece(round : int) :
 	
 	var active_goal_piece_index : int = GLGoalThresholdManagerBus.active_goal_threshold.active_piece_index
 	
