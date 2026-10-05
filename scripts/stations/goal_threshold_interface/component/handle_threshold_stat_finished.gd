@@ -97,7 +97,7 @@ func _toggle_cinnamatic(toggle_value : bool) :
 		GLPlayerState.emit_signal('lock_player_position', true)
 		GLCinnamaticBus.emit_signal('toggle_goal_cinnamtic', true)
 		
-		cinnamtic_camera.fov = 80.0
+		cinnamtic_camera.fov = 100
 		
 		cinnamtic_camera.current = true
 		
@@ -107,7 +107,7 @@ func _toggle_cinnamatic(toggle_value : bool) :
 			cinnamtic_camera,
 			"fov",
 			65,
-			4.5
+			3.3
 		)
 	
 	else: 		

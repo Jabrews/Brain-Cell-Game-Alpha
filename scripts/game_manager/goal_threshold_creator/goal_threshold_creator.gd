@@ -8,39 +8,39 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,
-			ThresholdStat.new("small", 200, 200, false, false),   # strength
-			ThresholdStat.new("small", 300, 300, false, false),   # intelligence
+			ThresholdStat.new("small", 100, 100, false, false),   # strength
+			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
 			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		
 		2: ThresholdPiece.new(
-			5,
-			30,
-			2,
-			false,		
-			ThresholdStat.new("large", 100, 100, false, false),   # strength
-			ThresholdStat.new("small", 150, 150, false, false),   # intelligence
+			4,   # total turns
+			25,  # early completion energy reward
+			2,   # early completion turn limit
+			false,
+			ThresholdStat.new("small", 100, 100, false, false),   # strength
+			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
 			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		
 		3: ThresholdPiece.new(
-			5,
-			35,
-			3,
-			false,		
-			ThresholdStat.new("large", 400, 400, false, false),   # strength
-			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
+			4,   # total turns
+			25,  # early completion energy reward
+			2,   # early completion turn limit
+			false,
+			ThresholdStat.new("small", 10, 10, false, false),   # strength
+			ThresholdStat.new("small", 10, 10, false, false),   # intelligence
 			ThresholdStat.new("medium", 0, 0, true, false)   # community
 		),
 		4: ThresholdPiece.new(
-			6,
-			40,
-			3,
-			false,		
-			ThresholdStat.new("large", 400, 400, false, false),   # strength
-			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
+			4,   # total turns
+			25,  # early completion energy reward
+			2,   # early completion turn limit
+			false,
+			ThresholdStat.new("small", 10, 10, false, false),   # strength
+			ThresholdStat.new("small", 10, 10, false, false),   # intelligence
 			ThresholdStat.new("medium", 0, 0, true, false)   # community
-		)
+		),
 	},
 )
 

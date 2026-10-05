@@ -10,9 +10,7 @@ func _display(goal_threshold : GoalThreshold) :
 	
 	goal_complete_parent.visible = true
 	
-	GLGoalThresholdManagerBus.emit_signal('play_sound', 'piece_complete')
-	
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.0).timeout
 	
 	goal_complete_parent.visible = false 
 	

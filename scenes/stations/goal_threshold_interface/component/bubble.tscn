@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://beu4r6tq1qpty"]
+
+[ext_resource type="Texture2D" uid="uid://dojbiokx2oi6m" path="res://models/bubble_defect_event/bubble.png" id="1_53pgg"]
+[ext_resource type="Script" uid="uid://qfs27t5mf45e" path="res://scripts/stations/goal_threshold_interface/component/bubble_manager/bubble.gd" id="2_3uqr4"]
+[ext_resource type="Texture2D" uid="uid://cl4waf1yffhe6" path="res://models/bubble_defect_event/bubble_pop_spriteframes.png" id="2_b6n7f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv7c1"]
+atlas = ExtResource("1_53pgg")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac6ur"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(0, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm8r5"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(11, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43duk"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(22, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dklnu"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(33, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1mxa2"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(44, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olwkt"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(55, 0, 11, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvl0w"]
+atlas = ExtResource("2_b6n7f")
+region = Rect2(66, 0, 11, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkchc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv7c1")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ac6ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm8r5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43duk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dklnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1mxa2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olwkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvl0w")
+}],
+"loop": 0,
+"name": &"Pop",
+"speed": 10.0
+}]
+
+[node name="Bubble" type="AnimatedSprite3D" unique_id=1557355258]
+modulate = Color(1, 0, 0, 1)
+pixel_size = 0.025
+billboard = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_rkchc")
+animation = &"Idle"
+script = ExtResource("2_3uqr4")
+
+[node name="PopLifespanTimer" type="Timer" parent="." unique_id=1588877121]

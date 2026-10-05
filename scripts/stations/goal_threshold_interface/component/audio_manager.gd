@@ -10,6 +10,10 @@ extends Node
 @onready var s_piece_complete : AudioStreamPlayer3D = $PieceComplete
 @onready var s_next_goal : AudioStreamPlayer3D = $NextGoal
 
+# loop
+@onready var s_dissolving_loop : AudioStreamPlayer3D = $DissolvingLoop
+@onready var s_static_loop : AudioStreamPlayer3D = $StaticLoop
+
 
 
 func _ready() -> void:
@@ -34,3 +38,10 @@ func _handle_play_sound(sound_type : String) :
 			s_piece_complete.play()	
 		'next_goal' :
 			s_next_goal.play()
+		'start_dissolve_loop':
+			s_dissolving_loop.play()
+			s_static_loop.play()
+		'stop_dissolve_loop': 
+			s_dissolving_loop.stop()
+			s_static_loop.stop()
+			
