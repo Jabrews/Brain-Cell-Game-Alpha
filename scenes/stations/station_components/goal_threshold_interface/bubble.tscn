@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://beu4r6tq1qpty"]
 
 [ext_resource type="Texture2D" uid="uid://dojbiokx2oi6m" path="res://models/bubble_defect_event/bubble.png" id="1_53pgg"]
-[ext_resource type="Script" uid="uid://qfs27t5mf45e" path="res://scripts/stations/goal_threshold_interface/component/bubble_manager/bubble.gd" id="2_3uqr4"]
+[ext_resource type="Script" uid="uid://qfs27t5mf45e" path="res://scripts/stations/station_components/goal_threshold_interface/bubble_manager/bubble.gd" id="2_3uqr4"]
 [ext_resource type="Texture2D" uid="uid://cl4waf1yffhe6" path="res://models/bubble_defect_event/bubble_pop_spriteframes.png" id="2_b6n7f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cv7c1"]

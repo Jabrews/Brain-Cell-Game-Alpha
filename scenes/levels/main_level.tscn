@@ -26,7 +26,7 @@
 [ext_resource type="Script" uid="uid://dt7mr4gkrn8ip" path="res://debug/debug_keys/debug_keys.gd" id="18_44ape"]
 [ext_resource type="Script" uid="uid://d4a6fy8scdx18" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/defect_event_triggerer.gd" id="18_58boi"]
 [ext_resource type="Script" uid="uid://cfkbsod3fqx61" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_defect.gd" id="18_v2xyd"]
-[ext_resource type="PackedScene" uid="uid://b1d8og0sww57y" path="res://scenes/stations/goal_threshold_interface/component/station_goal_threshold_interface.tscn" id="19_0ycs4"]
+[ext_resource type="PackedScene" uid="uid://b1d8og0sww57y" path="res://scenes/stations/station_components/goal_threshold_interface/station_goal_threshold_interface.tscn" id="19_0ycs4"]
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
 [ext_resource type="Script" uid="uid://2at8c3hwj8eb" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_interpreter.gd" id="20_5xq6v"]
 [ext_resource type="Script" uid="uid://hndem18jdi0y" path="res://scripts/game_manager/entitiy_room_management/entity_room_management.gd" id="20_ea07q"]

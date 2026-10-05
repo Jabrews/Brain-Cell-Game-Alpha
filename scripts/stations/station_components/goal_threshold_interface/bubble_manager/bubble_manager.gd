@@ -12,7 +12,8 @@ extends Node
 @onready var spawn_bubble_timer: Timer = $SpawnBubbleTimer
 @onready var bubble_parent_node: Node = $BubbleParentNode
 @onready var bubble_scene: PackedScene = preload(
-	"res://scenes/stations/goal_threshold_interface/component/bubble.tscn"
+	"res://scenes/stations/station_components/goal_threshold_interface/bubble.tscn"
+	
 )
 @onready var tiny_dots_parent : Node3D = $TinyDotsParent
 

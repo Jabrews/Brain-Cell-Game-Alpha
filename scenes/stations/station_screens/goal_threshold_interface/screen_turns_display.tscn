@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bynb8tfccsbxo"]
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_bl5an"]
-[ext_resource type="Script" uid="uid://dr8oah2lno6f0" path="res://scripts/stations/goal_threshold_interface/screen/turn_display/screen_turn_display.gd" id="1_o1dyw"]
+[ext_resource type="Script" uid="uid://dr8oah2lno6f0" path="res://scripts/stations/station_screens/goal_threshold_interface/turn_display/screen_turn_display.gd" id="1_o1dyw"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_f2fr5"]
-[ext_resource type="Script" uid="uid://bo61scdbejiyv" path="res://scripts/stations/goal_threshold_interface/screen/turn_display/refresh_display.gd" id="2_knja2"]
+[ext_resource type="Script" uid="uid://bo61scdbejiyv" path="res://scripts/stations/station_screens/goal_threshold_interface/turn_display/refresh_display.gd" id="2_knja2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_duyu4"]
 shader = ExtResource("1_bl5an")
