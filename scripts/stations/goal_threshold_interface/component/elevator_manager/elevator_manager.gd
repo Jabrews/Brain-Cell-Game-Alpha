@@ -13,7 +13,7 @@ extends Node
 
 var cell_container_on_elevator : CharacterBody3D
 
-var current_elevator_state : String 
+var current_elevator_state : String = 'inactive'
 var active_state : Node 
 
 var buttons_avaible : bool = false
@@ -24,6 +24,11 @@ var buttons_avaible : bool = false
 func _handle_cell_added_to_elevator(cell_container : CharacterBody3D) : 
 	
 	if not cell_container_on_elevator : 	
+		
+		# dont allow untill its ready
+		if current_elevator_state != 'inactive' :
+			return
+		
 		cell_container_on_elevator = cell_container
 		switch_state('cell_recieved')		
 		

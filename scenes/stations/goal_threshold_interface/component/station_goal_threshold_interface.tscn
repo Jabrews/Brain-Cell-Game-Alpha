@@ -205,7 +205,7 @@ radius = 0.1
 height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
-size = Vector3(0.6180191, 1.9584656, 0.47964478)
+size = Vector3(0.6180191, 1.7741089, 0.47964478)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdbui"]
 resource_name = "GoalTubeGlass"
@@ -544,7 +544,7 @@ mesh = SubResource("ArrayMesh_mpw3p")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/ElevatorLid" unique_id=575195395]
 transform = Transform3D(0.054, 0, 0, 0, 0.888, 0, 0, 0, 0.999, 1.1014359, 1.012532, 0.00045681)
 shape = SubResource("ConcavePolygonShape3D_vkqeh")
-disabled = true
+debug_color = Color(0.65075, 0.3515, 0.95, 0.7607843)
 
 [node name="Elevator" type="StaticBody3D" parent="Elevator" unique_id=1887355627]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.022900224, 0)
@@ -578,7 +578,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/DetectCellArea" unique_id=77567078]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045693874, 0.115738034, 0.0031610727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045693874, 0.02355969, 0.0031610727)
 shape = SubResource("BoxShape3D_qa1qv")
 
 [node name="GoalTube" type="Node3D" parent="." unique_id=2146691242]
