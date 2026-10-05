@@ -79,6 +79,7 @@
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="47_l131e"]
 [ext_resource type="AudioStream" uid="uid://y6pew2qpgpk3" path="res://sounds/prisoner_profiler/cycle_select.mp3" id="48_8vhvh"]
 [ext_resource type="AudioStream" uid="uid://cxh4fexnvvpp6" path="res://sounds/station_cell_breeder/breeding_finished_charge.mp3" id="53_xf6yj"]
+[ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="57_3xmbv"]
 [ext_resource type="Script" uid="uid://b2b2cod3bcuwp" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exit_btn.gd" id="57_odqr3"]
 [ext_resource type="Script" uid="uid://cimxska5kirot" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_display_parent.gd" id="58_4gocy"]
 [ext_resource type="Shader" uid="uid://065in37icekp" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/breeding_defect_bar.gdshader" id="59_elcrl"]
@@ -1672,6 +1673,16 @@ focus_neighbor_top = NodePath("../../LeftBreedingViewBoostBox/DisplayBackground"
 focus_neighbor_right = NodePath("../../RightBreedingViewMainBox/DisplayBackground")
 focus_neighbor_bottom = NodePath("../../../../SelectedViewSlider/SlideHandle/SlideBg")
 
+[node name="LockRect2" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox" unique_id=1889950433]
+texture_filter = 1
+layout_mode = 0
+offset_left = -166.0
+offset_top = -384.0
+offset_right = -54.0
+offset_bottom = -288.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("57_3xmbv")
+
 [node name="RightBreedingViewMainBox" parent="BreedingUI/CellLoader/BreedingView/Boxes" unique_id=813830853 node_paths=PackedStringArray("drag_cell_entry_parent_node") instance=ExtResource("8_uhd45")]
 layout_mode = 1
 offset_left = 814.0
@@ -2011,6 +2022,62 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CellUnavaible" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay" unique_id=465778294]
+visible = false
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 472.0
+offset_right = 72.0
+offset_bottom = 512.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=352617208]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -470.0
+offset_right = 304.0
+offset_bottom = -192.0
+color = Color(0, 0, 0, 0.7647059)
+
+[node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=640251323]
+texture_filter = 1
+layout_mode = 0
+offset_left = 104.0
+offset_top = -440.0
+offset_right = 168.0
+offset_bottom = -384.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("57_3xmbv")
+
+[node name="Text" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=937024760]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -376.0
+offset_right = 304.0
+offset_bottom = -316.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 30
+text = "Cell is Locked 
+After Breeding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=841749374]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -296.0
+offset_right = 304.0
+offset_bottom = -237.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 24
+text = "Won’t become available 
+again until the next turn."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="NoCellLoadedLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay" unique_id=913135661]
 texture_filter = 1
 layout_mode = 0
@@ -2222,6 +2289,62 @@ theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 12
 text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CellUnavaible" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay" unique_id=1660783278]
+visible = false
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 472.0
+offset_right = 72.0
+offset_bottom = 512.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=2122203057]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -470.0
+offset_right = 304.0
+offset_bottom = -192.0
+color = Color(0, 0, 0, 0.7647059)
+
+[node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=1093499463]
+texture_filter = 1
+layout_mode = 0
+offset_left = 104.0
+offset_top = -440.0
+offset_right = 168.0
+offset_bottom = -384.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("57_3xmbv")
+
+[node name="Text" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=550114330]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -376.0
+offset_right = 304.0
+offset_bottom = -316.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 30
+text = "Cell is Locked 
+After Breeding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=85040093]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -296.0
+offset_right = 304.0
+offset_bottom = -237.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 24
+text = "Won’t become available 
+again until the next turn."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -4198,9 +4321,9 @@ mouse_filter = 2
 [node name="SlideHandle" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=1409566521]
 anchors_preset = 0
 offset_left = 432.0
-offset_top = -16.0
+offset_top = 248.0
 offset_right = 472.0
-offset_bottom = 24.0
+offset_bottom = 288.0
 script = ExtResource("16_bxgwh")
 
 [node name="SlideHover" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideHandle" unique_id=1089181671]
@@ -4242,9 +4365,9 @@ vertical_alignment = 1
 
 [node name="SlideContent" type="Control" parent="BreedingUI/CellLoader/SelectedViewSlider" unique_id=2120854872]
 anchors_preset = 0
-offset_top = 24.0
+offset_top = 288.0
 offset_right = 40.0
-offset_bottom = 64.0
+offset_bottom = 328.0
 
 [node name="BG" type="ColorRect" parent="BreedingUI/CellLoader/SelectedViewSlider/SlideContent" unique_id=1899304568]
 layout_mode = 0

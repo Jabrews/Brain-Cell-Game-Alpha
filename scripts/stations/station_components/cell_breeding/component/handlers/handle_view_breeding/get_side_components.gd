@@ -4,6 +4,7 @@ extends Node
 
 # left
 @onready var l_no_cell_loaded_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/NoCellLoadedLabel"
+@onready var l_cell_unavaible_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible"
 @onready var l_stat_display_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay"
 @onready var l_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/CellName"
 
@@ -35,6 +36,7 @@ extends Node
 # right
 @onready var r_no_cell_loaded_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/NoCellLoadedLabel"
 @onready var r_stat_display_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay"
+@onready var r_cell_unavaible_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible"
 @onready var r_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/CellName"
 
 @onready var r_clean_bars : Array[Sprite2D] = [
@@ -109,6 +111,7 @@ func _get_stat(side: String) -> Dictionary:
 			return {
 				"no_cell_loaded_label": l_no_cell_loaded_label,
 				"stat_display_parent": l_stat_display_parent,
+				'cell_unavaible_parent' : l_cell_unavaible_parent,
 				"cell_name_label": l_cell_name_label,
 				"clean_bars": l_clean_bars,
 				"defect_bars": l_defect_bars,
@@ -120,6 +123,7 @@ func _get_stat(side: String) -> Dictionary:
 			return {
 				"no_cell_loaded_label": r_no_cell_loaded_label,
 				"stat_display_parent": r_stat_display_parent,
+				'cell_unavaible_parent' : r_cell_unavaible_parent,
 				"cell_name_label": r_cell_name_label,
 				"clean_bars": r_clean_bars,
 				"defect_bars": r_defect_bars,

@@ -7,6 +7,7 @@ const STAT_TYPES: Array[String] = [
 ]
 
 var no_cell_loaded_label: Label
+var cell_unavaible_parent : Control
 var stat_display_parent: Control
 var cell_name_label: Label
 var clean_bars: Array[Sprite2D]
@@ -20,6 +21,7 @@ func _display(cell: BrainCell, components: Dictionary) -> void:
 	
 	no_cell_loaded_label = components["no_cell_loaded_label"]
 	stat_display_parent = components["stat_display_parent"]
+	cell_unavaible_parent = components['cell_unavaible_parent']
 	cell_name_label = components["cell_name_label"]
 	clean_bars = components["clean_bars"]
 	defect_bars = components["defect_bars"]
@@ -30,6 +32,12 @@ func _display(cell: BrainCell, components: Dictionary) -> void:
 		no_cell_loaded_label.visible = false
 		stat_display_parent.visible = true
 		
+		if cell.breeder_unavaible : 
+			cell_unavaible_parent.visible = true
+		
+		else : 
+			cell_unavaible_parent.visible = false
+		
 		cell_name_label.text = cell.name
 		
 		load_stat_bars(cell)
@@ -37,6 +45,7 @@ func _display(cell: BrainCell, components: Dictionary) -> void:
 	else:
 		no_cell_loaded_label.visible = true
 		stat_display_parent.visible = false
+		cell_unavaible_parent.visible = false
 
 
 func load_stat_bars(cell: BrainCell) -> void:
