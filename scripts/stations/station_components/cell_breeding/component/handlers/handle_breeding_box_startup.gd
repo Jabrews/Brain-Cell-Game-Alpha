@@ -12,11 +12,10 @@ extends Node
 @onready var left_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox"
 @onready var right_boost_box: Control = $"../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox"
 
-
 func _handle() -> void:
 	var ui_state: Dictionary[String, BrainCell] = GLBreedingComponetsBus.breeding_ui_state.duplicate()
 	var panel_state: Dictionary[String, BrainCell] = GLBreedingComponetsBus.breeding_panel_state.duplicate()
-
+	
 	var load_state: Dictionary[String, BrainCell] = ui_state
 
 	# if UI has never been populated, initialize from physical panel

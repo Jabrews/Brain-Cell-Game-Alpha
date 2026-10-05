@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="5_kwfm5"]
 [ext_resource type="Script" uid="uid://b1vuubrptyhph" path="res://scripts/stations/station_components/cell_breeding/component/load_panels/main_light_manager.gd" id="6_5un1r"]
 [ext_resource type="Script" uid="uid://b5473243lbuu8" path="res://scripts/stations/station_components/cell_breeding/component/load_panels/boost_load_panel_area.gd" id="6_mblg6"]
+[ext_resource type="Script" uid="uid://dmux362gj0wi2" path="res://scripts/stations/station_components/cell_breeding/component/handlers/helper_verify_ui_state.gd" id="6_ugge0"]
 [ext_resource type="Script" uid="uid://tbpm68kedhpk" path="res://scripts/stations/station_components/cell_breeding/component/handlers/handle_refresh/handle_wanted_borders.gd" id="7_2e72x"]
 [ext_resource type="Script" uid="uid://dehr6ov61xdgs" path="res://scripts/stations/station_components/cell_breeding/component/load_panels/boost_light_manager.gd" id="7_47xdj"]
 [ext_resource type="PackedScene" uid="uid://dhs0jhmgd10ck" path="res://scenes/stations/station_components/cell_breeding/ui/cell_loader/cell_boxes/selected_view_box.tscn" id="8_a0emy"]
@@ -1177,6 +1178,9 @@ script = ExtResource("8_iv7m4")
 
 [node name="HandleBoostDisplay" type="Node" parent="HandleRefreshBreederView" unique_id=1474253305]
 script = ExtResource("9_e38bu")
+
+[node name="HelperVerifyUiState" type="Node" parent="HandleRefreshBreederView" unique_id=1401584633]
+script = ExtResource("6_ugge0")
 
 [node name="HandleResetBtn" type="Node" parent="." unique_id=932431619]
 script = ExtResource("5_ac4jf")

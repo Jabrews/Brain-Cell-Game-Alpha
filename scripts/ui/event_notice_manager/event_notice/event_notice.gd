@@ -18,7 +18,7 @@ var is_finishing: bool = false
 
 func _ready() -> void:
 	
-	GLGameManagerBus.connect('process_next_round', _handle_next_round)	
+	#GLGameManagerBus.connect('process_next_round', _handle_next_round)	
 	
 	# Create unique materials
 	header_label.material = header_label.material.duplicate()
@@ -184,13 +184,13 @@ func _handle_progress_complete() -> void:
 			"_handle_spot_freed"
 		)
 
-func _handle_next_round() -> void:
-	increment_progress_timer.stop()
-
-	if is_finishing:
-		return
-
-	_handle_progress_complete()
+#func _handle_next_round() -> void:
+	#increment_progress_timer.stop()
+#
+	#if is_finishing:
+		#return
+#
+	#_handle_progress_complete()
 	
 func _delete_early() -> void : 	
 	increment_progress_timer.stop()

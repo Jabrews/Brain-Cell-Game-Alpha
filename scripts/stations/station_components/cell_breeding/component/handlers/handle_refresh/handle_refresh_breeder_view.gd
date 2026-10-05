@@ -10,7 +10,27 @@ extends Node
 @onready var handle_breeding_view : Node = $"../HandleBreedingView"
 @onready var handle_boost_display : Node = $HandleBoostDisplay
 
+# helper component
+@onready var helper_verify_ui_state : Node = $HelperVerifyUiState
+
 var last_ui_state : Dictionary[String, BrainCell] = {}
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("debug1"):
+		
+		var ui_state: Dictionary[String, BrainCell] = GLBreedingComponetsBus.breeding_ui_state.duplicate()
+		var panel_state: Dictionary[String, BrainCell] = GLBreedingComponetsBus.breeding_panel_state.duplicate()
+
+		for key: String in ["right_main"]:
+			var ui_cell: BrainCell = ui_state.get(key)
+			var panel_cell: BrainCell = panel_state.get(key)
+
+			print("ui ", key, ": ", ui_cell.name if ui_cell != null else "null")
+			print("panel ", key, ": ", panel_cell.name if panel_cell != null else "null")
+		
+
+
+
 
 
 func _ready() -> void:
@@ -19,6 +39,9 @@ func _ready() -> void:
 func _handle_refresh() : 
 	
 	handle_wanted_highlight._handle(last_ui_state)
+	
+	
+	helper_verify_ui_state._verify()	
 	
 	# called everytime a breeder box changes.
 	var panel_state: Dictionary[String, BrainCell] = GLBreedingComponetsBus.breeding_panel_state.duplicate()
