@@ -30,6 +30,7 @@ func _create_dissolving_cell(elevator_cell_container: CharacterBody3D) :
 	var elevator_cell : BrainCell = elevator_cell_container.designated_brain_cell
 	
 	
+	
 	dissolving_cell = DissolvingCell.new(
 		elevator_cell,
 		DissolvingStat.new('strength', elevator_cell.strength.value, elevator_cell.strength.defect, active_threshold_piece.strength),
@@ -38,6 +39,8 @@ func _create_dissolving_cell(elevator_cell_container: CharacterBody3D) :
 	)
 	
 	handle_dissolving._refresh()
+	
+	GLCellManagerBus.emit_signal('delete_selected_collected_cell', elevator_cell)
 		
 	
 	

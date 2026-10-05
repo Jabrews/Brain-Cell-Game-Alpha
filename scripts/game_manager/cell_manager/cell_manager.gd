@@ -8,7 +8,7 @@ var collected_cells : Array[BrainCell] = []
 #func _process(_delta: float) -> void:
 	#if Input.is_action_just_pressed('debug1') : 
 		#for cell : BrainCell in collected_cells : 
-			#print(cell)
+			#print(cell.name)
 
 
 func _ready() -> void:
@@ -375,7 +375,6 @@ func _handle_proceed_next_turn()	:
 			cell.life_span -= 1
 			
 		update_collected_cells([cell])
-	
 	
 	
 	

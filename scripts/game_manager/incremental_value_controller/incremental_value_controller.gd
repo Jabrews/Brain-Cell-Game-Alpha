@@ -16,10 +16,6 @@ func _ready() -> void:
 	GLGameManagerBus.connect('proceed_next_goal_piece', _handle_proceed_next_goal_piece)
 	GLGameManagerBus.connect('proceed_next_turn', _handle_proceed_next_turn)
 	
-func _process(_delta: float) -> void: 
-	if Input.is_action_just_pressed('debug1') :
-		print(IVHiddenStats.max_stats_to_hide)
-	
 
 func _handle_proceed_next_goal_piece() :
 	_update_incremental_values() # just cause only round 1 in playtest

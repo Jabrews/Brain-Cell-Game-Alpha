@@ -12,6 +12,8 @@ var finale_mat_albedo_transparency : float = 75.0
 var finale_next_pass_albedo_transparency : float = 75.0
 
 
+
+
 func _ready() -> void:
 	
 	GLBreedingComponetsBus.connect(
@@ -49,6 +51,7 @@ func _handle_toggle_wanted_highlight(
 	
 	if cell_name != parent_cell_name:
 		return
+	
 	
 	_reset_highlight()
 	

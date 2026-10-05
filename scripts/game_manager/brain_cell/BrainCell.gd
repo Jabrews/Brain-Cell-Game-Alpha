@@ -26,7 +26,7 @@ func _init(
 	community: BrainCellStat,
 	life_span: int,
 	cell_is_frozen: bool = false,
-	breeder_unavaible : bool = false
+	breeder_unavaible : bool = false,
 ) -> void:
 	self.name = name
 	self.mutations = mutations
@@ -39,7 +39,7 @@ func _init(
 	self.cell_is_frozen = cell_is_frozen
 	
 	self.breeder_unavaible = breeder_unavaible
-
+	
 
 func get_stat(stat_type: String) -> BrainCellStat:
 	match stat_type:
