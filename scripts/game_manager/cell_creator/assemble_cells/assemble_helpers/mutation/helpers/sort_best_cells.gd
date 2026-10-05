@@ -74,9 +74,6 @@ func _get_cell_score(cell: BrainCell) -> float:
 	var ran_num : int = randi_range(0, 100)
 	if ran_num <= IVMutations.chance_to_weight_hidden_stats_low :
 		
-		if GameAdminPanel.enabled :
-			GameAdminPanel.updater_admin_batch_mutation.weighed_hidden_stats_lower = true
-		
 		return total_clean - total_defect - (stats_hidden * 4) 
 		
 	else : 

@@ -2,8 +2,6 @@ extends Node
 
 ## components
 @onready var defect_event_update_timer: Timer = $DefectEventUpdateTimer
-# admin panel helper
-@onready var update_admin_panel : Node = $UpdateAdminPanel
 
 # interpreter event
 @onready var defect_interpreter : Node = $DefectInterpreter
@@ -64,7 +62,10 @@ func roll_defect_event_chance() -> void:
 	
 	### GET FINAL CHANCES ###
 	
+	
+	@warning_ignore("unused_variable")
 	var interpreter_chance: int = 0
+	@warning_ignore("unused_variable")
 	var cell_chance: int = 0
 	
 	for event in events:
@@ -77,22 +78,11 @@ func roll_defect_event_chance() -> void:
 				cell_chance = event["chance"]
 	###########################
 	
-	update_admin_panel._update(
-		interpreter_chance,
-		cell_chance,
-		IVDefectEventManager.weight_increase_interpreter_jolt_chance,
-	)
 	
 	### NO EVENT ROLL ###
 	var chance_to_exit: int = randi_range(0, 100)
 	
 	if chance_to_exit <= IVDefectEventManager.no_event_chance:
-		
-		if GameAdminPanel.enabled:
-			GLDefectEventMangerBus.emit_signal(
-				"finished_trigger_event",
-				"none"
-			)
 		
 		return
 
@@ -115,9 +105,6 @@ func roll_defect_event_chance() -> void:
 		# It failed, so remove it from this round
 		# and try another event.
 		events.remove_at(index)
-
-
-
 
 
 	

@@ -13,13 +13,6 @@ func _handle_roll(energy_phase: int) -> bool:
 		0:
 			var should_exit: bool = roll_to_exit_mutation_loop()
 
-			if should_exit and GameAdminPanel.enabled:
-				GameAdminPanel.updater_admin_batch_mutation.skipped = true
-				GameAdminPanel.updater_admin_batch_mutation.why_skipped = (
-					"rolled to exit mutation loop | chance: %s"
-					% IVMutations.chance_to_exit_mutation_loop
-				)
-
 			return should_exit
 
 		1:
@@ -32,13 +25,6 @@ func _handle_roll(energy_phase: int) -> bool:
 
 			if should_exit:
 				just_exited_mutation_loop = true
-
-				if GameAdminPanel.enabled:
-					GameAdminPanel.updater_admin_batch_mutation.skipped = true
-					GameAdminPanel.updater_admin_batch_mutation.why_skipped = (
-						"rolled to exit mutation loop | chance: %s"
-						% IVMutations.chance_to_exit_mutation_loop
-					)
 
 			return should_exit
 

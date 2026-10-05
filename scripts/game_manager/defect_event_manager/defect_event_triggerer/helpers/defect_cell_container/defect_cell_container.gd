@@ -26,14 +26,6 @@ func _initate_defect_event():
 		if roll < event["chance"]:
 			event["node"]._handle()
 			
-			# admin stuff
-			if GameAdminPanel.enabled:
-				GLDefectEventMangerBus.emit_signal(
-					"finished_trigger_event",
-					"cell-" + event['type'] + '-' + str(event['chance'])
-				)
-			
-			
 			return
 		
 		# It failed, so remove it from this round

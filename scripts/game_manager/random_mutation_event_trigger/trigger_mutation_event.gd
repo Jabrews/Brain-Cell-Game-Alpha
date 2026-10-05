@@ -1,10 +1,7 @@
 extends Node
 
-
 # Components
 @onready var trigger_delay_timer: Timer = $TriggerDelayTimer
-
-# Helper components
 @onready var get_valid_posible_mutation_event_choices: Node = (
 	$GetValidPossibleMutationEvents
 )
@@ -12,19 +9,8 @@ extends Node
 var last_picked_choice: PossibleMutationEventChoice
 
 
-#func _process(_delta: float) -> void:
-	#if Input.is_action_just_pressed('debug1') : 
-		#trigger_mutation_event()
-
-
 func _ready() -> void:
-	#GLGameManagerBus.connect(
-		#"process_next_round",
-		#_handle_process_next_round
-	#)
-
-	GLMutationEventBus.connect(
-		"trigger_random_mutation_failed",
+	GLMutationEventBus.trigger_random_mutation_failed.connect(
 		_handle_trigger_random_mutation_failed
 	)
 
@@ -33,37 +19,7 @@ func _ready() -> void:
 	)
 
 	trigger_delay_timer.one_shot = true
-
-	var random_time_min: float = (
-		IVRandomMutationEventTrigger
-		.mutation_event_delay_min_wait_time
-	)
-
-	var random_time_max: float = (
-		IVRandomMutationEventTrigger
-		.mutation_event_delay_max_wait_time
-	)
-
-	trigger_delay_timer.wait_time = randf_range(
-		random_time_min,
-		random_time_max
-	)
-
-	await get_tree().process_frame
-
-	if GameAdminPanel.enabled:
-		GameAdminPanel.updater_random_mutation_event.wait_time_min = (
-			random_time_min
-		)
-
-		GameAdminPanel.updater_random_mutation_event.wait_time_max = (
-			random_time_max
-		)
-
-		GameAdminPanel.updater_random_mutation_event.wait_time = (
-			trigger_delay_timer.wait_time
-		)
-
+	_set_random_delay()
 	trigger_delay_timer.start()
 
 
@@ -72,139 +28,43 @@ func _handle_trigger_random_mutation_failed() -> void:
 	last_picked_choice = null
 
 
-#func _handle_process_next_round() -> void:
-	#last_picked_choice = null
-#
-	#trigger_delay_timer.stop()
-#
-	#var random_time_min: float = (
-		#IVRandomMutationEventTrigger
-		#.mutation_event_delay_min_wait_time
-	#)
-#
-	#var random_time_max: float = (
-		#IVRandomMutationEventTrigger
-		#.mutation_event_delay_max_wait_time
-	#)
-#
-	#trigger_delay_timer.wait_time = randf_range(
-		#random_time_min,
-		#random_time_max
-	#)
-#
-	#if GameAdminPanel.enabled:
-		#await get_tree().process_frame
-#
-		#GameAdminPanel.updater_random_mutation_event.wait_time_min = (
-			#random_time_min
-		#)
-#
-		#GameAdminPanel.updater_random_mutation_event.wait_time_max = (
-			#random_time_max
-		#)
-#
-		#GameAdminPanel.updater_random_mutation_event.wait_time = (
-			#trigger_delay_timer.wait_time
-		#)
-#
-	#trigger_delay_timer.start()
-
-
 func _handle_trigger_delay_timeout() -> void:
-	var random_time_min: float = (
-		IVRandomMutationEventTrigger
-		.mutation_event_delay_min_wait_time
-	)
-
-	var random_time_max: float = (
-		IVRandomMutationEventTrigger
-		.mutation_event_delay_max_wait_time
-	)
-
-	trigger_delay_timer.wait_time = randf_range(
-		random_time_min,
-		random_time_max
-	)
-
-	if GameAdminPanel.enabled:
-		GameAdminPanel.updater_random_mutation_event.wait_time_min = (
-			random_time_min
-		)
-
-		GameAdminPanel.updater_random_mutation_event.wait_time_max = (
-			random_time_max
-		)
-
-		GameAdminPanel.updater_random_mutation_event.wait_time = (
-			trigger_delay_timer.wait_time
-		)
-
+	_set_random_delay()
 	trigger_mutation_event()
-
 	trigger_delay_timer.start()
 
 
-func trigger_mutation_event() -> void:
-	# Preserve the last choice for this selection attempt.
-	var previous_picked_choice: PossibleMutationEventChoice = (
-		last_picked_choice
+func _set_random_delay() -> void:
+	trigger_delay_timer.wait_time = randf_range(
+		IVRandomMutationEventTrigger.mutation_event_delay_min_wait_time,
+		IVRandomMutationEventTrigger.mutation_event_delay_max_wait_time
 	)
 
-	# Reset it immediately. The previous choice only affects this attempt.
+
+func trigger_mutation_event() -> void:
+	var previous_picked_choice: PossibleMutationEventChoice = last_picked_choice
 	last_picked_choice = null
 
-	if GameAdminPanel.enabled:
-		GameAdminPanel.updater_random_mutation_event.mutation_events.clear()
-		GameAdminPanel.updater_random_mutation_event.finale_choice = ""
-		GameAdminPanel.updater_random_mutation_event.why_none_chose = ""
-
-	var possible_mutation_event_choices: Array[PossibleMutationEventChoice] = get_valid_posible_mutation_event_choices._get_possible()
+	var possible_mutation_event_choices: Array[PossibleMutationEventChoice] = (
+		get_valid_posible_mutation_event_choices._get_possible()
+	)
 
 	if possible_mutation_event_choices.is_empty():
-		if GameAdminPanel.enabled:
-			GameAdminPanel.updater_random_mutation_event.finale_choice = ""
-			GameAdminPanel.updater_random_mutation_event.why_none_chose = (
-				"no valid random mutation event choices found"
-			)
-
-		GLMutationEventBus.emit_signal(
-			"finished_trigger_event",
-			""
-		)
-
+		GLMutationEventBus.emit_signal("finished_trigger_event", "")
 		return
 
-	########################
-	# SKIP EVENT CHANCE    #
-	########################
-
+	# Chance to skip this event.
 	var chance_to_skip_event: int = clampi(
 		IVRandomMutationEventTrigger.chance_to_skip_mutation_event,
 		0,
 		100
 	)
 
-	var skip_roll: int = randi_range(1, 100)
-
-	if skip_roll <= chance_to_skip_event:
-		if GameAdminPanel.enabled:
-			GameAdminPanel.updater_random_mutation_event.finale_choice = ""
-			GameAdminPanel.updater_random_mutation_event.why_none_chose = (
-				"random mutation skipped: "
-				+ str(chance_to_skip_event)
-			)
-
-		GLMutationEventBus.emit_signal(
-			"finished_trigger_event",
-			""
-		)
-
+	if randi_range(1, 100) <= chance_to_skip_event:
+		GLMutationEventBus.emit_signal("finished_trigger_event", "")
 		return
 
-	########################################
-	# ONLY ONE EVENT AND IT JUST RAN       #
-	########################################
-
+	# If the only choice just ran, allow it to repeat 25% of the time.
 	if (
 		possible_mutation_event_choices.size() == 1
 		and previous_picked_choice != null
@@ -213,256 +73,81 @@ func trigger_mutation_event() -> void:
 			possible_mutation_event_choices[0]
 		)
 
-		var same_as_previous_choice: bool = (
-			only_choice.mutation_event
-			== previous_picked_choice.mutation_event
+		if (
+			only_choice != null
+			and only_choice.mutation_event == previous_picked_choice.mutation_event
 			and only_choice.cell == previous_picked_choice.cell
-		)
+			and randi_range(1, 100) > 25
+		):
+			GLMutationEventBus.emit_signal("finished_trigger_event", "")
+			return
 
-		if same_as_previous_choice:
-			var repeat_roll: int = randi_range(1, 100)
-
-			# Only allow the sole event to repeat 25% of the time.
-			if repeat_roll > 25:
-				if GameAdminPanel.enabled:
-					var original_chance: int = clampi(
-						only_choice.mutation_event.trigger_chance,
-						-1,
-						1
-					)
-
-					var situation_increase_applied: bool = (
-						original_chance == 1
-					)
-
-					var adjusted_chance: int = maxi(
-						original_chance - 1,
-						-1
-					)
-
-					var reasons_why_unlikley: Array[String] = [
-						(
-							"only available event was "
-							+ "the previously selected event"
-						)
-					]
-
-					GameAdminPanel\
-						.updater_random_mutation_event\
-						.mutation_events.append(
-							RandomMutationEvent.new(
-								only_choice.cell.name,
-								only_choice.mutation_event.event_name,
-								adjusted_chance,
-								situation_increase_applied,
-								reasons_why_unlikley
-							)
-						)
-
-					GameAdminPanel\
-						.updater_random_mutation_event\
-						.finale_choice = ""
-
-					GameAdminPanel\
-						.updater_random_mutation_event\
-						.why_none_chose = (
-							"only available event was "
-							+ "the previously selected event"
-						)
-
-				GLMutationEventBus.emit_signal(
-					"finished_trigger_event",
-					""
-				)
-
-				return
-
-	#############################
-	# CALCULATE EVENT WEIGHTS   #
-	#############################
-
+	# Calculate selection weights.
 	var choice_weights: Array[float] = []
-	var adjusted_chances: Array[int] = []
-	var situation_increases_applied: Array[bool] = []
-	var choice_reasons: Array[Array] = []
-
 	var total_weight: float = 0.0
 
-	for choice: PossibleMutationEventChoice in (
-		possible_mutation_event_choices
-	):
+	for choice: PossibleMutationEventChoice in possible_mutation_event_choices:
 		if (
 			choice == null
 			or choice.mutation_event == null
 			or choice.cell == null
 		):
 			choice_weights.append(0.0)
-			adjusted_chances.append(-1)
-			situation_increases_applied.append(false)
-			choice_reasons.append([])
 			continue
 
-		var original_chance: int = clampi(
+		var chance_symbol: int = clampi(
 			choice.mutation_event.trigger_chance,
 			-1,
 			1
 		)
 
-		var chance_symbol: int = original_chance
-
-		# Records whether the event started at +1 before penalties.
-		var situation_increase_applied: bool = (
-			original_chance == 1
-		)
-
-		var reasons_why_unlikley: Array[String] = []
-
-		#################################
-		# CELL AWAY FROM PLAYER         #
-		#################################
-
 		if choice.away_from_player:
-			chance_symbol = maxi(
-				chance_symbol - 1,
-				-1
-			)
-
-			reasons_why_unlikley.append(
-				"cell is away from player's room"
-			)
-
-		#################################
-		# EVENT WAS PREVIOUSLY PICKED   #
-		#################################
+			chance_symbol = maxi(chance_symbol - 1, -1)
 
 		if previous_picked_choice != null:
-			var same_as_previous_choice: bool = (
-				choice.mutation_event
-				== previous_picked_choice.mutation_event
+			if (
+				choice.mutation_event == previous_picked_choice.mutation_event
 				and choice.cell == previous_picked_choice.cell
-			)
-
-			if same_as_previous_choice:
-				chance_symbol = maxi(
-					chance_symbol - 1,
-					-1
-				)
-
-				reasons_why_unlikley.append(
-					"event was the previously selected event"
-				)
-
-		#########################
-		# CONVERT TO WEIGHT     #
-		#########################
+			):
+				chance_symbol = maxi(chance_symbol - 1, -1)
 
 		var choice_weight: float = 1.0
 
 		match chance_symbol:
 			-1:
 				choice_weight = 0.5
-
 			0:
 				choice_weight = 1.0
-
 			1:
 				choice_weight = 1.5
 
 		choice_weights.append(choice_weight)
-		adjusted_chances.append(chance_symbol)
-		situation_increases_applied.append(
-			situation_increase_applied
-		)
-		choice_reasons.append(reasons_why_unlikley)
-
 		total_weight += choice_weight
 
-		if GameAdminPanel.enabled:
-			GameAdminPanel\
-				.updater_random_mutation_event\
-				.mutation_events.append(
-					RandomMutationEvent.new(
-						choice.cell.name,
-						choice.mutation_event.event_name,
-						chance_symbol,
-						situation_increase_applied,
-						reasons_why_unlikley
-					)
-				)
-
 	if total_weight <= 0.0:
-		if GameAdminPanel.enabled:
-			GameAdminPanel.updater_random_mutation_event.finale_choice = ""
-			GameAdminPanel.updater_random_mutation_event.why_none_chose = (
-				"no random mutation choices had valid weight"
-			)
-
-		GLMutationEventBus.emit_signal(
-			"finished_trigger_event",
-			""
-		)
-
+		GLMutationEventBus.emit_signal("finished_trigger_event", "")
 		return
 
-	#########################
-	# PICK WEIGHTED CHOICE  #
-	#########################
-
-	var choice_roll: float = randf_range(
-		0.0,
-		total_weight
-	)
-
+	# Pick a choice using its weight.
+	var choice_roll: float = randf() * total_weight
 	var current_weight: float = 0.0
 	var picked_choice: PossibleMutationEventChoice = null
-	var picked_choice_index: int = -1
 
-	for index: int in range(
-		possible_mutation_event_choices.size()
-	):
+	for index: int in range(possible_mutation_event_choices.size()):
+		if choice_weights[index] <= 0.0:
+			continue
+
 		current_weight += choice_weights[index]
+		picked_choice = possible_mutation_event_choices[index]
 
-		if choice_roll <= current_weight:
-			picked_choice = possible_mutation_event_choices[index]
-			picked_choice_index = index
+		if choice_roll < current_weight:
 			break
 
+	# The last valid choice also serves as a rounding fallback.
 	if picked_choice == null:
-		# Floating-point safety fallback.
-		picked_choice = possible_mutation_event_choices.back()
-		picked_choice_index = (
-			possible_mutation_event_choices.size() - 1
-		)
-
-	if picked_choice == null or picked_choice_index < 0:
-		if GameAdminPanel.enabled:
-			GameAdminPanel.updater_random_mutation_event.finale_choice = ""
-			GameAdminPanel.updater_random_mutation_event.why_none_chose = (
-				"weighted choice returned null"
-			)
-
-		GLMutationEventBus.emit_signal(
-			"finished_trigger_event",
-			""
-		)
-
+		GLMutationEventBus.emit_signal("finished_trigger_event", "")
 		return
 
-	if GameAdminPanel.enabled:
-		var picked_reasons: Array[String] = []
-
-		for reason: Variant in choice_reasons[picked_choice_index]:
-			picked_reasons.append(str(reason))
-
-		GameAdminPanel.updater_random_mutation_event.finale_choice = (
-			picked_choice.cell.name
-			+ "-"
-			+ picked_choice.mutation_event.event_name
-		)
-
-		GameAdminPanel.updater_random_mutation_event.why_none_chose = ""
-
-	# This successful choice affects only the next trigger attempt.
 	last_picked_choice = picked_choice
 
 	GLMutationEventBus.emit_signal(

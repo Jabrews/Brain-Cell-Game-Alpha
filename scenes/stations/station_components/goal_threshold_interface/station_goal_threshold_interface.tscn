@@ -205,7 +205,7 @@ radius = 0.1
 height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
-size = Vector3(0.6180191, 1.7741089, 0.47964478)
+size = Vector3(0.9242983, 1.7741089, 0.8970108)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdbui"]
 resource_name = "GoalTubeGlass"
@@ -578,7 +578,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/DetectCellArea" unique_id=77567078]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.045693874, 0.02355969, 0.0031610727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012140274, 0.02355969, 0.025396943)
 shape = SubResource("BoxShape3D_qa1qv")
 
 [node name="GoalTube" type="Node3D" parent="." unique_id=2146691242]

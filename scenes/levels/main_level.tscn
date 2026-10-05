@@ -53,7 +53,6 @@
 [ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/sickness_cell_container.gd" id="40_l5rsp"]
 [ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/bubble_cell_container.gd" id="41_l5rsp"]
 [ext_resource type="Script" uid="uid://dm406ltyvyxkh" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/helpers/defect_cell_container/defect_cell_container.gd" id="41_lp30k"]
-[ext_resource type="Script" uid="uid://dertw3gxyvk66" path="res://scripts/game_manager/defect_event_manager/defect_event_triggerer/update_admin_panel.gd" id="41_r52yi"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="Script" uid="uid://baip3c1wsm8xg" path="res://scripts/game_manager/goal_threshold_creator/goal_threshold_creator.gd" id="55_dixnm"]
@@ -62,7 +61,6 @@
 [ext_resource type="PackedScene" uid="uid://csxul1ta0njxi" path="res://scenes/ceiling_fan/ceiling_fan.tscn" id="59_m2qbd"]
 [ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
 [ext_resource type="PackedScene" uid="uid://dmms6n7t5qxwv" path="res://scenes/cell_transfer_box/cell_transfer_box.tscn" id="60_lp30k"]
-[ext_resource type="PackedScene" uid="uid://b3rgeck31iwbg" path="res://debug/admin_panel/admin_panel.tscn" id="62_l5rsp"]
 [ext_resource type="Script" uid="uid://nb3vghviy4u6" path="res://debug/debug_cell_spawner/debug_cell_spawner.gd" id="66_y36b7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_umov7"]
@@ -619,9 +617,6 @@ script = ExtResource("39_lp30k")
 [node name="DefectEvenTriggerer" type="Node" parent="GameManager/DefectEventManager" unique_id=1995310140]
 script = ExtResource("18_58boi")
 
-[node name="UpdateAdminPanel" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=2079731943]
-script = ExtResource("41_r52yi")
-
 [node name="DefectCellContainer" type="Node" parent="GameManager/DefectEventManager/DefectEvenTriggerer" unique_id=912366905]
 script = ExtResource("41_lp30k")
 
@@ -791,9 +786,6 @@ recieving_transfer_box = NodePath("../CellTransferBox")
 
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]
 script = ExtResource("18_44ape")
-
-[node name="AdminPanel" parent="." unique_id=1308868169 instance=ExtResource("62_l5rsp")]
-visible = false
 
 [node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998 node_paths=PackedStringArray("cell_container_parent_node")]
 script = ExtResource("66_y36b7")
