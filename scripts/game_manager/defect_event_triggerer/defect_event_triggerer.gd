@@ -53,7 +53,12 @@ func _handle_process_new_ivs() -> void:
 
 
 func _handle_inital_delay_timer_timeout() -> void:
-	_start_trigger_timer_if_events_remain()
+	
+	# TODO 
+	# delete when i want defect events
+	return
+	
+	#_start_trigger_timer_if_events_remain()
 
 
 func _handle_trigger_delay_timer_timeout() -> void:
