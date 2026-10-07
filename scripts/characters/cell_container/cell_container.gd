@@ -43,6 +43,8 @@ func _ready() -> void:
 	
 	stat_display._handle_brain_cell_recieved(designated_brain_cell)
 	
+	GLCellManagerBus.emit_signal('collected_cell_created', designated_brain_cell)
+	
 	# des. cell changing listeners
 	GLCellManagerBus.connect("cell_deleted", _handle_cell_deleted)
 	#GLGameManagerBus.connect('process_next_round', _handle_next_round)

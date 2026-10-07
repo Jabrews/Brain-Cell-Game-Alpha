@@ -10,6 +10,7 @@ var last_threshold_piece_index : int = 0
 @onready var iv_helper_shareholder_items : Node = $IVHelperShareholderItems
 @onready var iv_helper_mutations : Node = $IVHelperMutations
 @onready var iv_helper_mutation_event_trigger : Node = $IVHelperMutationEventTrigger
+@onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
 
 
 func _ready() -> void:
@@ -90,7 +91,7 @@ func handle_round(round : int):
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false
 			## CELL TRASHCAN ##
-			IVCellTrashcan.max_capaicty = 6
+			IVCellTrashcan.max_capaicty = 9
 			
 		2 :
 			pass
@@ -110,5 +111,6 @@ func handle_threshold_piece(round : int) :
 	iv_helper_shareholder_items._update_shareholder_items(round, active_goal_piece_index)
 	iv_helper_mutations._update_mutations(round, active_goal_piece_index)
 	iv_helper_mutation_event_trigger._update_mutations_event_trigger(round, active_goal_piece_index)
+	iv_helper_defect_event._update_defect_events(round, active_goal_piece_index)
 	
 	

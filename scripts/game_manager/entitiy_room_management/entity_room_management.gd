@@ -4,9 +4,8 @@ extends Node
 func _ready() -> void:
 	
 	# management signals
-	#GLGameManagerBus.connect('process_next_round', _handle_process_next_round)
 	GLCellManagerBus.connect('delete_selected_collected_cell', _handle_delete_selected_collected_cell)
-	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
+	GLCellManagerBus.connect('collected_cell_created', _handle_collected_cell_created)
 	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded)
 	
 	# room entrance area signal
@@ -41,7 +40,7 @@ func _handle_delete_selected_collected_cell(brain_cell : BrainCell) :
 			GLEntityRoomManagementBus.entity_room_profiles.erase(room_profile)
 	
 	
-func _handle_prisoner_picked_by_player(brain_cell : BrainCell) :
+func _handle_collected_cell_created(brain_cell : BrainCell) :
 	
 	GLEntityRoomManagementBus.entity_room_profiles.append(
 		EntityRoomProfile.new(

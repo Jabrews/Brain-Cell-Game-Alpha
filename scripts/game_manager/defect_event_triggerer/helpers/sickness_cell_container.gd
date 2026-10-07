@@ -1,7 +1,7 @@
 extends Node
 
 
-func _handle() -> void:
+func _initate() -> void:
 
 	# Find the room with the most cells in it.
 	var room_scores: Dictionary[String, int] = {

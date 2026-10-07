@@ -5,10 +5,7 @@ var available_mutations: Array[BrainCellMutation] = []
 
 
 func _ready() -> void:
-	GLCellManagerBus.connect(
-		"prisoner_picked_by_player",
-		_handle_prisoner_picked_by_player
-	)
+	GLCellManagerBus.connect('collected_cell_created', _handle_collected_cell_created)
 
 	_fill_available_mutations()
 
@@ -83,8 +80,8 @@ func _fill_available_mutations() -> void:
 	available_mutations = IVMutations.mutations.duplicate()
 
 
-func _handle_prisoner_picked_by_player(prisoner_cell: BrainCell) -> void:
-	for mutation: BrainCellMutation in prisoner_cell.mutations:
+func _handle_collected_cell_created(collected_cell: BrainCell) -> void:
+	for mutation: BrainCellMutation in collected_cell.mutations:
 		if not mutation.hidden:
 			GLMutationSeenManagerBus.emit_signal(
 				"mutation_seen_by_player",

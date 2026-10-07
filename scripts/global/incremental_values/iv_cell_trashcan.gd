@@ -2,4 +2,4 @@ extends Node
 
 
 
-var max_capaicty : int = 6
+var max_capaicty : int = 10

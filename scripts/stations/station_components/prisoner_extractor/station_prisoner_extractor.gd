@@ -334,7 +334,7 @@ func _spawn_cells() -> void:
 			right_spawn_pos
 		)
 		
-	GLDefectEventMangerBus.emit_signal('prisoners_extracted', len(cells_to_create))		
+	GLCellTrashcanBus.emit_signal('prisoners_extracted', len(cells_to_create))
 		
 	cells_to_create.clear()
 

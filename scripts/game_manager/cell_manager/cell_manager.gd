@@ -13,6 +13,7 @@ var collected_cells : Array[BrainCell] = []
 
 func _ready() -> void:
 	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
+	GLCellManagerBus.connect('collected_cell_created', _handle_collected_cell_created)
 	GLCellManagerBus.connect('delete_remaining_prisoners', _handle_delete_remaining_prisoners)
 	GLCellManagerBus.connect('cell_breeded', _handle_cell_breeded)
 	GLCellManagerBus.connect('delete_selected_collected_cell', _handle_delete_selected_collected_cell)
@@ -183,18 +184,23 @@ func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell):
 	# delete from prisoners
 	delete_prisoner_cells([prisoner_cell])
 	
-	# remove none mutation
-	for mutation : BrainCellMutation in prisoner_cell.mutations : 
+	# add to prisoner extractor
+	GLCellManagerBus.emit_signal('cell_added_to_collection', prisoner_cell)
+
+func _handle_collected_cell_created(collected_cell : BrainCell) :
+	
+		# remove none mutation
+	for mutation : BrainCellMutation in collected_cell.mutations : 
 		if mutation.type == 'none' : 
-			prisoner_cell.mutations.erase(mutation)
+			collected_cell.mutations.erase(mutation)
 	
 	# add to collection
 	var new_collection = collected_cells
-	new_collection.append(prisoner_cell)
+	new_collection.append(collected_cell)
 	set_collected_cells(new_collection)
 	
-	# spawn container 
-	GLCellManagerBus.emit_signal('cell_added_to_collection', prisoner_cell)
+	pass
+
 	
 func _handle_delete_remaining_prisoners() :
 	

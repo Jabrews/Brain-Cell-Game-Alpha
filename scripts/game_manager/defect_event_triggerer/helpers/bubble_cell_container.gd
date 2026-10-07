@@ -1,7 +1,7 @@
 extends Node
 
 
-func _handle() -> void:
+func _initate() -> void:
 	
 	# pick random cell 	
 	var ran_cell : BrainCell = GLCellManagerBus.collected_cells_refrence.pick_random()	
