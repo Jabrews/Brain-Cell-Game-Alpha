@@ -4,8 +4,11 @@ extends Node
 func _initate() -> void:
 	var available_interpreters: Array[String] = []
 
-	for interpreter_type: String in GLDefectEventMangerBus.interpreters_plugged_in:
-		if GLDefectEventMangerBus.interpreters_plugged_in[interpreter_type]:
+	for interpreter_type: String in IVHiddenStats.stats_to_hide:
+		if GLDefectEventMangerBus.interpreters_plugged_in.get(
+			interpreter_type,
+			false
+		):
 			available_interpreters.append(interpreter_type)
 
 	if available_interpreters.is_empty():
