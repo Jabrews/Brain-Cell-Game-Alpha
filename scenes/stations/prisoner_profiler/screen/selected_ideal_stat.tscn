@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://dnrq8r0q4pchh"]
+
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="1_0cwjl"]
+[ext_resource type="Script" uid="uid://dutsi21ckeews" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/selected_ideal_stat/selected_ideal_stat.gd" id="1_kltw8"]
+[ext_resource type="Script" uid="uid://p5c4epspjq1s" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/selected_ideal_stat/refresh_screen.gd" id="2_pveby"]
+[ext_resource type="Script" uid="uid://b4b34tdk7yj63" path="res://scripts/stations/station_screens/screen_prisoner_profiler/symbol_background.gd" id="3_t7s1s"]
+[ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="4_2qo2r"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="12_7375k"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="13_hn018"]
+
+[sub_resource type="Shader" id="Shader_myrkw"]
+code = "shader_type canvas_item;
+
+// values (0 → 1)
+uniform float prisoner_value : hint_range(0.0, 1.0); // yellow
+
+// colors
+uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+
+// edge padding
+uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	float tex_width = float(textureSize(TEXTURE, 0).x);
+	float pixel_x = UV.x * tex_width;
+
+	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+
+	float in_yellow = step(UV.x, prisoner_value);
+
+	vec4 result = tex;
+
+	if (inside_edges && tex.a > 0.0) {
+
+		// 1. draw yellow base
+		if (in_yellow > 0.5) {
+			result = vec4(yellow_color.rgb, tex.a);
+		}
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fba00"]
+shader = SubResource("Shader_myrkw")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="Shader" id="Shader_amfyt"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_a : source_color = vec4(0.15, 0.15, 0.15, 1.0);
+uniform vec4 color_b : source_color = vec4(0.20, 0.20, 0.20, 1.0);
+uniform float stripe_size = 12.0;
+
+void fragment() {
+	float stripe = mod(floor((UV.x + UV.y) * stripe_size), 2.0);
+	COLOR = mix(color_a, color_b, stripe);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s1uuy"]
+shader = SubResource("Shader_amfyt")
+shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.58431375)
+shader_parameter/color_b = Color(0.21, 0.21, 0.21, 0.27058825)
+shader_parameter/stripe_size = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb7gw"]
+shader = ExtResource("13_hn018")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="SelectedIdealStat" type="Node2D" unique_id=651939347]
+script = ExtResource("1_kltw8")
+
+[node name="RefreshScreen" type="Node" parent="." unique_id=1917550271]
+script = ExtResource("2_pveby")
+
+[node name="StatDisplay" type="Control" parent="." unique_id=2072831674]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="Sprite2D" parent="StatDisplay" unique_id=727407516]
+texture_filter = 1
+material = SubResource("ShaderMaterial_fba00")
+position = Vector2(420.49997, 122)
+scale = Vector2(2.7967741, 9.399999)
+texture = ExtResource("1_0cwjl")
+
+[node name="Locked" type="Control" parent="StatDisplay" unique_id=553153797]
+anchors_preset = 0
+offset_top = 26.0
+offset_right = 40.0
+offset_bottom = 66.0
+
+[node name="LockedBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=995874911 node_paths=PackedStringArray("symbol_sprite")]
+material = SubResource("ShaderMaterial_s1uuy")
+layout_mode = 0
+offset_top = -26.0
+offset_bottom = 237.0
+color = Color(1, 1, 1, 0.19607843)
+script = ExtResource("3_t7s1s")
+symbol_sprite = NodePath("../SymbolSprite")
+background_type = "lock"
+
+[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=517860459]
+texture_filter = 1
+position = Vector2(346, 110)
+texture = ExtResource("4_2qo2r")
+
+[node name="OffDisplay" type="Control" parent="." unique_id=814188083]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="OffDisplay" unique_id=320332398]
+layout_mode = 0
+offset_right = 854.0
+offset_bottom = 270.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="OffDisplay" unique_id=1744078039]
+texture_filter = 1
+layout_mode = 0
+offset_left = 250.0
+offset_top = 66.0
+offset_right = 652.0
+offset_bottom = 200.0
+theme_override_fonts/font = ExtResource("12_7375k")
+theme_override_font_sizes/font_size = 134
+text = "Off"
+
+[node name="NoneDisplay" type="Control" parent="." unique_id=1408329782]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="ColorRect" parent="NoneDisplay" unique_id=1970573084]
+layout_mode = 0
+offset_right = 854.0
+offset_bottom = 270.0
+color = Color(0.21, 0.21, 0.21, 1)
+
+[node name="Label" type="Label" parent="NoneDisplay" unique_id=1249892672]
+texture_filter = 1
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 840.0
+offset_bottom = 243.0
+theme_override_fonts/font = ExtResource("12_7375k")
+theme_override_font_sizes/font_size = 100
+text = "None 
+Selected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeedbackDisplay" type="Control" parent="." unique_id=1095034857]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FeedbackBG" type="ColorRect" parent="FeedbackDisplay" unique_id=24923507]
+layout_mode = 0
+offset_right = 840.0
+offset_bottom = 263.0
+color = Color(0, 0, 0, 1)
+
+[node name="FeedbackLabel" type="Label" parent="FeedbackDisplay" unique_id=684569102]
+texture_filter = 1
+custom_maximum_size = Vector2(801, 226)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 821.0
+offset_bottom = 246.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("12_7375k")
+theme_override_font_sizes/font_size = 50
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=826131046]
+material = SubResource("ShaderMaterial_hb7gw")
+offset_right = 840.0
+offset_bottom = 270.0

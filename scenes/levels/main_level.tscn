@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dmogk8sx2taw7" path="res://scenes/stations/station_components/prisoner_spawner/station_prisoner_spawner.tscn" id="2_k57ag"]
 [ext_resource type="Script" uid="uid://di3w151hrmfah" path="res://scripts/decals/exsplosion/exsplosion_decal_manager.gd" id="2_lp30k"]
 [ext_resource type="PackedScene" uid="uid://w3i2xhy1jmad" path="res://scenes/stations/station_components/cell_observer/station_cell_observer.tscn" id="4_7xrfk"]
-[ext_resource type="PackedScene" uid="uid://chyrlawstjobv" path="res://scenes/stations/station_components/prisoner_profiler/profiler_key.tscn" id="6_m2qbd"]
+[ext_resource type="PackedScene" uid="uid://clyrx2uxig38a" path="res://scenes/stations/prisoner_profiler/component/station_prisoner_profiler.tscn" id="6_l5rsp"]
 [ext_resource type="PackedScene" uid="uid://bmsxn20pdon0t" path="res://scenes/stations/station_components/prisoner_extractor/station_prisoner_extractor.tscn" id="7_l5rsp"]
 [ext_resource type="PackedScene" uid="uid://4k0l8pgdp2wr" path="res://scenes/stations/station_components/cell_trash_can/cell_trash_can.tscn" id="9_kb5nk"]
 [ext_resource type="Script" uid="uid://gdyxevxk1giy" path="res://scripts/game_manager/cell_creator/cell_creator.gd" id="10_c7w6w"]
@@ -469,12 +469,12 @@ prisoners_parent_node = NodePath("../../../Charcters/PrisonerParentNode")
 [node name="CellObserver" parent="Stations/PrisonerStations" unique_id=1071932212 instance=ExtResource("4_7xrfk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 5)
 
-[node name="ProfilerKey" parent="Stations/PrisonerStations" unique_id=712150991 instance=ExtResource("6_m2qbd")]
-transform = Transform3D(-1, 0, -8.940697e-08, 0, 1, 0, 8.940697e-08, 0, -1, -11, 0.62401414, -9.293873)
-
 [node name="PrisonerExtractor" parent="Stations/PrisonerStations" unique_id=604560631 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("7_l5rsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.9, 15.553123)
 cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
+
+[node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=267444250 instance=ExtResource("6_l5rsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.308971, 0, -12.108076)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 

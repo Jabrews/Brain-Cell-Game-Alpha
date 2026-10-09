@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://dtkm0t3hnh6cw"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_hoco6"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_3am8q"]
+[ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_hb1po"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3am8q"]
+shader = ExtResource("1_hoco6")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="EnergyDisplay" type="Node2D" unique_id=711000672]
+
+[node name="BG" type="ColorRect" parent="." unique_id=2055697387]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 2.0
+offset_right = 448.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.37, 0, 0.13566671, 1)
+
+[node name="CurrEnergy" type="Control" parent="." unique_id=1376237784]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="CurrEnergy" unique_id=1522967648]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 420.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.26732236, 9.024516e-08, 0.09127956, 1)
+
+[node name="HeaderLabel" type="Label" parent="CurrEnergy" unique_id=787430718]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_right = 456.0
+offset_bottom = 96.0
+theme_override_colors/font_color = Color(1, 0.68235296, 0.22352941, 1)
+theme_override_fonts/font = ExtResource("2_3am8q")
+theme_override_font_sizes/font_size = 85
+text = " Energy Left "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnergyValueLabel" type="Label" parent="CurrEnergy" unique_id=1215934056]
+texture_filter = 1
+layout_mode = 0
+offset_left = -26.0
+offset_top = 96.0
+offset_right = 422.0
+offset_bottom = 264.0
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_3am8q")
+theme_override_font_sizes/font_size = 150
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EnergySymbol" type="Sprite2D" parent="CurrEnergy" unique_id=1504019627]
+texture_filter = 1
+position = Vector2(317, 178)
+scale = Vector2(5.333333, 7.714286)
+texture = ExtResource("3_hb1po")
+
+[node name="UsedEnergy" type="Control" parent="." unique_id=1996061938]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2.0
+offset_top = 24.0
+offset_right = 38.0
+offset_bottom = 64.0
+
+[node name="EnergyValueLabel" type="Label" parent="UsedEnergy" unique_id=211624415]
+texture_filter = 1
+layout_mode = 0
+offset_left = 2.0
+offset_top = 163.0
+offset_right = 449.0
+offset_bottom = 322.0
+theme_override_colors/font_color = Color(0.65, 0, 0, 1)
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_3am8q")
+theme_override_font_sizes/font_size = 60
+text = "(  -10  )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=204477213]
+material = SubResource("ShaderMaterial_3am8q")
+offset_right = 448.0
+offset_bottom = 448.0
+metadata/_edit_lock_ = true
