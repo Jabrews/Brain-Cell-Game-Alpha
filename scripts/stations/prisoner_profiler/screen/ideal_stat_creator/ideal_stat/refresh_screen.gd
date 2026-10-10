@@ -13,17 +13,16 @@ const LOCK_MAX_WIDTH : float = 840.0
 func _ready() -> void:
 	stat_display_bar.material = stat_display_bar.material.duplicate()
 
-func _refresh(
-	stat_value : float, 
-	stat_enabled : bool,
-	lock_max_value : float,
-) : 
+func _refresh(ideal_stat : IdealStat) : 
+	
+	if not ideal_stat : 
+		return
 	
 	## deal with enabled vs disabled parent display
 	parent_off_display.visible = false
 	parent_stat_display.visible = false
 	
-	if stat_enabled : 
+	if ideal_stat.enabled: 
 		parent_stat_display.visible = true
 	else : 
 		parent_off_display.visible = true
@@ -33,11 +32,11 @@ func _refresh(
 	## set bar shader value
 	var max_stat_value : float = IVCellCreator.max_stat_value	
 	
-	stat_display_bar.material.set_shader_parameter("prisoner_value", stat_value / max_stat_value)
+	stat_display_bar.material.set_shader_parameter("prisoner_value", ideal_stat.value / max_stat_value)
 	
 	
 	## set lock bg
-	_load_lock_bg(lock_max_value)
+	_load_lock_bg(ideal_stat.lock_max_value)
 
 
 func _load_lock_bg(lock_max_value: float) -> void:

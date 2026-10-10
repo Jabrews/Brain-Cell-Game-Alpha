@@ -12,21 +12,18 @@ extends Node
 const LOCK_MAX_WIDTH : float = 840.0
 
 func _refresh(
-	selected_stat : String,
-	stat_value : float, 
-	stat_enabled : bool,
-	lock_max_value : float,
+	ideal_stat : IdealStat
 ) :
 	
 	parent_off_display.visible = false	
 	parent_stat_display.visible = false
 	parent_none_display.visible = false
 	
-	if selected_stat == 'none' :
+	if not ideal_stat : 
 		parent_none_display.visible = true
 		return
 	
-	if stat_enabled == false : 
+	if ideal_stat.enabled == false : 
 		parent_off_display.visible = true
 		return
 	
@@ -35,11 +32,11 @@ func _refresh(
 	## set bar shader value
 	var max_stat_value : float = IVCellCreator.max_stat_value	
 	
-	stat_display_bar.material.set_shader_parameter("prisoner_value", stat_value / max_stat_value)
+	stat_display_bar.material.set_shader_parameter("prisoner_value", ideal_stat.value / max_stat_value)
 	
 	
 	## set lock bg
-	_load_lock_bg(lock_max_value)
+	_load_lock_bg(ideal_stat.lock_max_value)
 
 
 func _load_lock_bg(lock_max_value: float) -> void:
