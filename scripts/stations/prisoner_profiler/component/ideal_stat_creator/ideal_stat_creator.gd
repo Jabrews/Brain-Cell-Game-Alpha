@@ -6,6 +6,7 @@ extends Node
 @onready var display_hint_active_stat_light : Node = $DisplayHintActiveStatLight
 @onready var display_enabled_btn : Node = $DisplayEnabledBtn
 # componenents
+@onready var stat_lock_manager : Node = $StatLockManager
 @onready var handle_refresh_screens : Node = $HandleRefreshScreens
 
 
@@ -23,9 +24,19 @@ var possible_selected_stats : Array[String] = ['strength', 'intelligence', 'comm
 var selected_stat : String = 'none'
 var selected_stat_index : int = 3
 
+# TODO make sure lock works with current iteration of lock manager
+# if not make sure timing correct, and gbt logic (derrorigtory)
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') :
+		print(strength_ideal_stat.lock_max_value)
+		print(IVPrisonerProfiler.strength_stat_lock_percant_index)
+
+
 func _ready() -> void:
 	
-	await get_tree().process_frame	
+	await get_tree().process_frame
+	
+	stat_lock_manager._initate_new_stat_locks()
 	
 	handle_refresh_screens._handle()
 	
@@ -38,8 +49,12 @@ func _set_ideal_stat_value(ideal_stat_type : String, new_value : float) :
 	if selected_ideal_stat : 	
 		
 		selected_ideal_stat.value = new_value
-	
+		
 		handle_refresh_screens._handle()
+	
+		# LOCKED FEEDBACK	
+		if selected_ideal_stat.value > selected_ideal_stat.lock_max_value : 
+			GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'lock_alert', {'stat' : ideal_stat_type})
 	
 func _set_ideal_stat_enabled(ideal_stat_type : String, new_ideal_stat_enabled : bool) :
 	

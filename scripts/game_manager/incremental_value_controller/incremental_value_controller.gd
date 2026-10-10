@@ -86,7 +86,8 @@ func handle_round(round : int):
 			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
 			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.10, 0.25, 0.35, 0.55, 0.68, 0.80, 0.84, 0.92, 0.98, 1.01]
+			IVPrisonerProfiler.stat_lock_percantages = [0.10, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.01]
+			#IVPrisonerProfiler.stat_lock_percantages = [0.05, 0.10, 0.25, 0.35, 0.55, 0.68, 0.80, 0.84, 0.92, 0.98, 1.01]
 			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false

@@ -62,19 +62,17 @@ func _ready() -> void:
 	)
 	
 	
-
 	
-	
-	#var cell_three : BrainCell = BrainCell.new(
-		#'cell_three',
-		#[],
-		#BrainCellStat.new("strength", true, 1, 1, false),
-		#BrainCellStat.new("intelligence", true, 1, 1, false),
-		#BrainCellStat.new("community", true, 15, 15, false),
-		#1,
-		#false,
-		#false,
-	#)
+	var cell_three : BrainCell = BrainCell.new(
+		'cell_three',
+		[],
+		BrainCellStat.new("strength", true, 1, 1, false),
+		BrainCellStat.new("intelligence", true, 1, 1, false),
+		BrainCellStat.new("community", true, 15, 15, false),
+		1,
+		false,
+		false,
+	)
 	
 	var cells : Array[BrainCell] = []	
 	
@@ -82,6 +80,9 @@ func _ready() -> void:
 	cells.append(cell_2)
 	cells.append(cell_3)
 	cells.append(cell_4)
+	cells.append(cell_three)
+	
+	return
 	
 	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
 	

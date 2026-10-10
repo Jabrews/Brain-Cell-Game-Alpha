@@ -11,6 +11,7 @@ signal recieve_profiler_spare_icons(spare_icon_constructors : Array[SpareIconCon
 # NEW
 
 signal play_sound(sound_type : String)
+signal display_feedback(feedback_type : String, data : Dictionary)
 	
 
 

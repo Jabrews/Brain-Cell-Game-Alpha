@@ -93,6 +93,7 @@
 [ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="84_elcrl"]
 [ext_resource type="Script" uid="uid://47xp3r1p3is3" path="res://scripts/stations/station_components/cell_breeding/component/ui/interact_footer/interact_footer.gd" id="88_4118e"]
 [ext_resource type="Script" uid="uid://cyrgg7d2r0e5n" path="res://scripts/stations/station_components/cell_breeding/component/ui/interact_footer/back_btn.gd" id="91_8x2mq"]
+[ext_resource type="AudioStream" uid="uid://cd1ew561fh1d3" path="res://sounds/prisoner_profiler/increment.mp3" id="95_debbi"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="95_xf8x4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
@@ -4299,10 +4300,15 @@ offset_bottom = 677.0
 layout_direction = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer" unique_id=263262927]
+process_mode = 3
 custom_minimum_size = Vector2(320, 605)
 layout_mode = 2
 offset_transform_position = Vector2(0, 500)
+localize_numeral_system = false
 layout_direction = 3
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 
 [node name="GridContainerLeft" type="GridContainer" parent="BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer" unique_id=1495238694]
 layout_mode = 2
@@ -5982,6 +5988,16 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_xf6yj")
 draw_pass_1 = SubResource("QuadMesh_xf8x4")
+
+[node name="Increment" type="AudioStreamPlayer3D" parent="." unique_id=454145287]
+stream = ExtResource("95_debbi")
+unit_size = 5.0
+pitch_scale = 0.8
+
+[node name="Increment2" type="AudioStreamPlayer3D" parent="." unique_id=1170446208]
+stream = ExtResource("95_debbi")
+unit_size = 5.0
+pitch_scale = 0.8
 
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox"]
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox"]

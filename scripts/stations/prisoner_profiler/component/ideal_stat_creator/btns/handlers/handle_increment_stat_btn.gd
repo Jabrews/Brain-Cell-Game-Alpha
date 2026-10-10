@@ -16,9 +16,9 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 	var increment: float
 	match increment_direction:
 		"up":
-			increment = 10.0
+			increment = IVPrisonerProfiler.stat_increment_amount
 		"down":
-			increment = -10.0
+			increment = -IVPrisonerProfiler.stat_increment_amount
 		_:
 			_play_failed_sound(holding_press)
 			push_error("Invalid increment direction: " + increment_direction)
@@ -43,15 +43,29 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 		max_stat_value
 	)
 
-	if is_equal_approx(new_value, ideal_stat.value):
-		_play_failed_sound(holding_press)
-		return
+	# deal with value before lock
+	if is_equal_approx(new_value, ideal_stat.lock_max_value):
+		if increment > 0.0:
+			new_value = minf(ideal_stat.lock_max_value + 0.1, max_stat_value)
+		else:
+			new_value = maxf(ideal_stat.lock_max_value - 0.1, 0.0)
+	
 
-	if not holding_press : 
-		GLPrisonerProfilerComponentsBus.emit_signal("play_sound", "increment")
-	else : 
-		GLPrisonerProfilerComponentsBus.emit_signal("play_sound", "increment_hold")
-	parent_ideal_stat_creator._set_ideal_stat_value(selected_stat, new_value)
+	if holding_press:
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			"play_sound",
+			"increment_hold"
+		)
+	else:
+		GLPrisonerProfilerComponentsBus.emit_signal(
+			"play_sound",
+			"increment"
+		)
+
+	parent_ideal_stat_creator._set_ideal_stat_value(
+		selected_stat,
+		new_value
+	)
 
 
 func _play_failed_sound(holding_press: bool) -> void:
