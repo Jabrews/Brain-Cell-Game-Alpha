@@ -20,9 +20,10 @@
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="8_psjku"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="9_cnw5g"]
 [ext_resource type="Script" uid="uid://de0ha375qhowb" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_hint_active_stat_light.gd" id="11_kpsnx"]
-[ext_resource type="Script" uid="uid://cs85lvqn8wafa" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_disable_btn.gd" id="11_psjku"]
-[ext_resource type="Script" uid="uid://b5xthjkp1wi77" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disable_btn.gd" id="12_ght3r"]
+[ext_resource type="Script" uid="uid://cs85lvqn8wafa" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_enabled_btn.gd" id="11_psjku"]
+[ext_resource type="Script" uid="uid://b5xthjkp1wi77" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/enabled_btn.gd" id="12_ght3r"]
 [ext_resource type="Script" uid="uid://qxq5nuc87dls" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/cycle_stat_btn.gd" id="13_p4ckv"]
+[ext_resource type="Script" uid="uid://c60dtmlsrvudd" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_enabled_btn.gd" id="13_xj4xg"]
 [ext_resource type="PackedScene" uid="uid://dnrq8r0q4pchh" path="res://scenes/stations/prisoner_profiler/screen/selected_ideal_stat.tscn" id="15_a0ne0"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
@@ -242,7 +243,7 @@ script = ExtResource("2_psjku")
 [node name="HandleIncrementStatBtn" type="Node" parent="Logic/IdealStatCreator/BtnHandlers" unique_id=1645396352]
 script = ExtResource("3_ght3r")
 
-[node name="HandleDisableBtn" type="Node" parent="Logic/IdealStatCreator/BtnHandlers" unique_id=1838495258]
+[node name="HandleEnabledBtn" type="Node" parent="Logic/IdealStatCreator/BtnHandlers" unique_id=1838495258]
 script = ExtResource("11_psjku")
 
 [node name="HandleFinishedBtn" type="Node" parent="Logic/IdealStatCreator/BtnHandlers" unique_id=1062756329]
@@ -250,6 +251,9 @@ script = ExtResource("7_ke6ed")
 
 [node name="StatLockManager" type="Node" parent="Logic/IdealStatCreator" unique_id=1870192197]
 script = ExtResource("6_shygs")
+
+[node name="HandleRefreshScreens" type="Node" parent="Logic/IdealStatCreator" unique_id=1051467354]
+script = ExtResource("5_q026i")
 
 [node name="DisplayActiveStatHighlight" type="Node" parent="Logic/IdealStatCreator" unique_id=462084891]
 script = ExtResource("4_jvne4")
@@ -260,8 +264,8 @@ script = ExtResource("5_s4ohe")
 [node name="DisplayHintActiveStatLight" type="Node" parent="Logic/IdealStatCreator" unique_id=1570898214]
 script = ExtResource("11_kpsnx")
 
-[node name="HandleRefreshScreens" type="Node" parent="Logic/IdealStatCreator" unique_id=1051467354]
-script = ExtResource("5_q026i")
+[node name="DisplayEnabledBtn" type="Node" parent="Logic/IdealStatCreator" unique_id=1493416115]
+script = ExtResource("13_xj4xg")
 
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
 
@@ -517,22 +521,22 @@ font = ExtResource("2_1kfjt")
 font_size = 40
 outline_size = 0
 
-[node name="DisableBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1536035479 groups=["interactable"]]
+[node name="EnabledBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1536035479 groups=["interactable"]]
 transform = Transform3D(0.90862375, -0.4176151, 0, 0.417615, 0.9086242, 0, -7.450581e-09, -1.4901161e-08, 1, -0.30248117, 0.25061905, 0.011492252)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("12_ght3r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/DisableBtn" unique_id=1339679193]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=1339679193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22551143, -0.011363089)
 shape = SubResource("BoxShape3D_0l5kk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/DisableBtn" unique_id=714367789]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=714367789]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22637343, -0.011363089)
 mesh = SubResource("BoxMesh_hv7us")
 script = SubResource("GDScript_03v8i")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/DisableBtn" unique_id=246606172 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=246606172 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -540,11 +544,11 @@ hover_mesh_scene = ExtResource("6_1kfjt")
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/DisableBtn/HoverableMesh" unique_id=1067299044]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn/HoverableMesh" unique_id=1067299044]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07366574, -0.011363089)
 shape = SubResource("BoxShape3D_psjku")
 
-[node name="OnOffLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/DisableBtn" unique_id=838480606]
+[node name="OnOffLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=838480606]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.018645227, -0.22676593, -0.015128493)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)

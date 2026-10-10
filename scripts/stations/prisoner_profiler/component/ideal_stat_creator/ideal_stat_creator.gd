@@ -4,6 +4,7 @@ extends Node
 @onready var display_active_stat_highlight : Node = $DisplayActiveStatHighlight
 @onready var display_active_stat_label : Node = $DisplayActiveStatLabel
 @onready var display_hint_active_stat_light : Node = $DisplayHintActiveStatLight
+@onready var display_enabled_btn : Node = $DisplayEnabledBtn
 # componenents
 @onready var handle_refresh_screens : Node = $HandleRefreshScreens
 
@@ -29,7 +30,7 @@ func _ready() -> void:
 	handle_refresh_screens._handle()
 	
 
-
+# set helpers
 func _set_ideal_stat_value(ideal_stat_type : String, new_value : float) :
 	
 	var selected_ideal_stat : IdealStat = get_ideal_stat_bt_type(ideal_stat_type)
@@ -39,6 +40,16 @@ func _set_ideal_stat_value(ideal_stat_type : String, new_value : float) :
 		selected_ideal_stat.value = new_value
 	
 		handle_refresh_screens._handle()
+	
+func _set_ideal_stat_enabled(ideal_stat_type : String, new_ideal_stat_enabled : bool) :
+	
+	var selected_ideal_stat : IdealStat = get_ideal_stat_bt_type(ideal_stat_type)
+	
+	if selected_ideal_stat : 
+		selected_ideal_stat.enabled = new_ideal_stat_enabled 
+		display_enabled_btn._display_btn(selected_ideal_stat)
+		handle_refresh_screens._handle()
+	
 
 
 func _set_selected_stat(new_selected_stat : String, new_selected_stat_index : int) :
@@ -49,9 +60,12 @@ func _set_selected_stat(new_selected_stat : String, new_selected_stat_index : in
 	display_active_stat_highlight._display_type(selected_stat_index)
 	display_hint_active_stat_light._display_type(selected_stat_index)
 	display_active_stat_label._display_label(selected_stat)
+	display_enabled_btn._display_btn(get_ideal_stat_bt_type(new_selected_stat))
 	handle_refresh_screens._handle()
+
+
 	
-# helpers
+# get helpers
 func get_ideal_stat_bt_type(ideal_stat_type : String) -> IdealStat : 
 	match ideal_stat_type : 	
 		'strength' :
@@ -65,4 +79,6 @@ func get_ideal_stat_bt_type(ideal_stat_type : String) -> IdealStat :
 	
 func get_ideal_stats() -> Array[IdealStat] : 
 	return [strength_ideal_stat, intelligence_ideal_stat, community_ideal_stat]
+
+
 	
