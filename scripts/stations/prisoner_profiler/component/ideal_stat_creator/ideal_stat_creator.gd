@@ -1,8 +1,10 @@
 extends Node
 
-# components
+# display components
 @onready var display_active_stat_highlight : Node = $DisplayActiveStatHighlight
 @onready var display_active_stat_label : Node = $DisplayActiveStatLabel
+@onready var display_hint_active_stat_light : Node = $DisplayHintActiveStatLight
+# componenents
 @onready var handle_refresh_screens : Node = $HandleRefreshScreens
 
 
@@ -61,6 +63,7 @@ func _set_selected_stat(new_selected_stat : String, new_selected_stat_index : in
 	
 	# call helpers
 	display_active_stat_highlight._display_type(selected_stat_index)
+	display_hint_active_stat_light._display_type(selected_stat_index)
 	display_active_stat_label._display_label(selected_stat)
 	handle_refresh_screens._handle()
 	

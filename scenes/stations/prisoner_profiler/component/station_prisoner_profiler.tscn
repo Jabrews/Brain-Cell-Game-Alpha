@@ -6,23 +6,26 @@
 [ext_resource type="Script" uid="uid://yoxtehwn6oqt" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/toggle_enabled.gd" id="2_t2r7p"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="3_cvm4e"]
 [ext_resource type="Script" uid="uid://kna6e1wj3n2l" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_increment_stat_btn.gd" id="3_ght3r"]
-[ext_resource type="Script" uid="uid://s8ijtdxc5xya" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display_active_stat_highlight.gd" id="4_jvne4"]
+[ext_resource type="Script" uid="uid://s8ijtdxc5xya" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_active_stat_highlight.gd" id="4_jvne4"]
 [ext_resource type="Script" uid="uid://b0wqime12cias" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/ideal_stat_creator.gd" id="5_orlka"]
 [ext_resource type="Script" uid="uid://bns1ailn5oera" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/handle_refresh_screens.gd" id="5_q026i"]
-[ext_resource type="Script" uid="uid://bwaepwefx2kh5" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display_active_stat_label.gd" id="5_s4ohe"]
+[ext_resource type="Script" uid="uid://bwaepwefx2kh5" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_active_stat_label.gd" id="5_s4ohe"]
 [ext_resource type="PackedScene" uid="uid://bm8mcmj3vxox3" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_btn_hover.tscn" id="5_wi8gv"]
 [ext_resource type="PackedScene" uid="uid://b366gm7tg6uso" path="res://scenes/hoverable_mesh_scenes/stat_control_panel_on_off_panel_btn.tscn" id="6_1kfjt"]
 [ext_resource type="Script" uid="uid://cewgclamm62t1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/stat_lock_manager.gd" id="6_shygs"]
 [ext_resource type="PackedScene" uid="uid://cw3j1wx83t7s4" path="res://scenes/hoverable_mesh_scenes/choose_stat_btn.tscn" id="7_cvm4e"]
 [ext_resource type="PackedScene" uid="uid://ciyo2ry207y6x" path="res://scenes/stations/prisoner_profiler/screen/ideal_stat.tscn" id="7_k2ogl"]
+[ext_resource type="Script" uid="uid://8odot5ar5bcm" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_finished_btn.gd" id="7_ke6ed"]
 [ext_resource type="Script" uid="uid://c1ae634j0lvw1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/increment_stat_btn.gd" id="8_ght3r"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="8_psjku"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="9_cnw5g"]
+[ext_resource type="Script" uid="uid://de0ha375qhowb" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_hint_active_stat_light.gd" id="11_kpsnx"]
 [ext_resource type="Script" uid="uid://cs85lvqn8wafa" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_disable_btn.gd" id="11_psjku"]
 [ext_resource type="Script" uid="uid://b5xthjkp1wi77" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disable_btn.gd" id="12_ght3r"]
 [ext_resource type="Script" uid="uid://qxq5nuc87dls" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/cycle_stat_btn.gd" id="13_p4ckv"]
 [ext_resource type="PackedScene" uid="uid://dnrq8r0q4pchh" path="res://scenes/stations/prisoner_profiler/screen/selected_ideal_stat.tscn" id="15_a0ne0"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
+[ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -84,7 +87,7 @@ size = Vector3(0.02, 0.345, 0.345)
 size = Vector3(0.02, 0.21641724, 0.24408326)
 
 [sub_resource type="BoxMesh" id="BoxMesh_p4ckv"]
-size = Vector3(0.01, 0.8, 0.64)
+size = Vector3(0.01, 0.38552245, 0.64)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bl8ty"]
 load_path = "res://.godot/imported/energy_symbol.png-5626c71ab2f35397b3301af5cd47d48e.s3tc.ctex"
@@ -113,6 +116,13 @@ albedo_color = Color(0, 0.5500002, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3nek5"]
 material = SubResource("StandardMaterial3D_f05ry")
+size = Vector3(0.02, 0.16449708, 0.22937745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s4ohe"]
+albedo_color = Color(0.17103687, 0.6608755, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ke6ed"]
+material = SubResource("StandardMaterial3D_s4ohe")
 size = Vector3(0.02, 0.16449708, 0.22937745)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qc6t"]
@@ -154,17 +164,36 @@ size = Vector3(1, 1.1748047, 1.735)
 
 [sub_resource type="BoxMesh" id="BoxMesh_3ttrg"]
 material = SubResource("StandardMaterial3D_keru6")
-size = Vector3(1, 1, 0.4)
+size = Vector3(1, 0.8173828, 0.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qb1nn"]
-size = Vector3(1, 1, 0.4)
+size = Vector3(1, 0.7817383, 0.4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_hg5wy"]
 material = SubResource("StandardMaterial3D_keru6")
 size = Vector3(0.01, 0.32579687, 1.5274609)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bl8ty"]
-size = Vector3(1, 1, 1.735)
+size = Vector3(0.01, 0.405208, 0.46087402)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4ohe"]
+material = SubResource("StandardMaterial3D_keru6")
+size = Vector3(0.01, 0.52193993, 0.46087402)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ke6ed"]
+albedo_color = Color(0.34407574, 0.34407577, 0.3440756, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_edn1u"]
+material = SubResource("StandardMaterial3D_ke6ed")
+size = Vector3(0.0128125, 0.12407629, 0.38279665)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0upth"]
+albedo_color = Color(0.34407574, 0.34407577, 0.3440756, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_edn1u"]
+material = SubResource("StandardMaterial3D_0upth")
+radius = 0.03
+height = 0.06
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ght3r"]
 albedo_color = Color(0, 0, 0, 1)
@@ -209,6 +238,9 @@ script = ExtResource("3_ght3r")
 [node name="HandleDisableBtn" type="Node" parent="Logic/IdealStatCreator/BtnHandlers" unique_id=1838495258]
 script = ExtResource("11_psjku")
 
+[node name="HandleFinishedBtn" type="Node" parent="Logic/IdealStatCreator/BtnHandlers" unique_id=1062756329]
+script = ExtResource("7_ke6ed")
+
 [node name="StatLockManager" type="Node" parent="Logic/IdealStatCreator" unique_id=1870192197]
 script = ExtResource("6_shygs")
 
@@ -217,6 +249,9 @@ script = ExtResource("4_jvne4")
 
 [node name="DisplayActiveStatLabel" type="Node" parent="Logic/IdealStatCreator" unique_id=1234185637]
 script = ExtResource("5_s4ohe")
+
+[node name="DisplayHintActiveStatLight" type="Node" parent="Logic/IdealStatCreator" unique_id=1570898214]
+script = ExtResource("11_kpsnx")
 
 [node name="HandleRefreshScreens" type="Node" parent="Logic/IdealStatCreator" unique_id=1051467354]
 script = ExtResource("5_q026i")
@@ -421,7 +456,7 @@ outline_size = 0
 transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, 0.42359334, -0.8024857, 0.5266521)
 
 [node name="DisplayMesh" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl" unique_id=810457001]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20875105, 1.3645114, -0.50881326)
+transform = Transform3D(0.99999434, 1.7881393e-07, -5.2154064e-08, 1.1920929e-07, 0.9999933, 7.450581e-09, -8.940697e-08, -7.0780516e-08, 0.9999966, -0.21998739, 1.3755085, -0.5272604)
 mesh = SubResource("BoxMesh_p4ckv")
 
 [node name="EnergySpent" type="Node3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl" unique_id=1593182276]
@@ -429,6 +464,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
 
 [node name="NoneLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1647604078]
 transform = Transform3D(-8.940697e-08, 0, 1.0000005, 1.4901161e-08, 1.0000006, 7.4505806e-08, -1.0000002, -4.4703484e-08, 0, -0.18875727, 1.3891338, -0.5622134)
+visible = false
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "None
@@ -438,35 +474,32 @@ font_size = 33
 outline_size = 0
 
 [node name="EnergyLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1512980852]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.2036186, 1.2662206, -0.48533148)
-visible = false
+transform = Transform3D(-2.2351742e-08, 8.940697e-08, 0.9999996, -1.1175871e-08, 0.9999995, 2.9802322e-08, -0.99999976, 3.7252903e-09, -3.7252903e-08, -0.20033646, 1.2647107, -0.52934253)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
-text = "- 0"
+text = "-99"
 font = ExtResource("2_1kfjt")
 font_size = 33
 outline_size = 0
 
 [node name="EnergyIcon3" type="Sprite3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=834701501]
-transform = Transform3D(-3.934025e-08, 0, 0.9, 0, 0.9, 0, -0.9, 0, -3.934025e-08, -0.19064441, 1.2627908, -0.68640614)
-visible = false
+transform = Transform3D(-3.7252903e-08, 0, 0.8999996, -1.8626451e-09, 0.8999996, -2.9802322e-08, -0.8999998, 1.8626451e-09, -2.9802322e-08, -0.19060946, 1.262774, -0.68688023)
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_bl8ty")
 
 [node name="StatValueLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=82504853]
-transform = Transform3D(-8.940697e-08, -2.9802322e-08, 1.0000007, 1.4901161e-08, 1.0000006, 5.9604645e-08, -1.0000002, -2.9802322e-08, 0, -0.19998246, 1.4386449, -0.5441705)
-visible = false
+transform = Transform3D(-8.940697e-08, 5.9604645e-08, 1.0000001, 1.4901161e-08, 1, -5.9604645e-08, -1.0000002, -2.9802322e-08, 7.450581e-09, -0.19882393, 1.4382867, -0.55881083)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
-text = "+ 100"
+text = "+100"
 font = ExtResource("2_1kfjt")
-font_size = 33
+font_size = 40
 outline_size = 0
 
 [node name="DisableBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1536035479 groups=["interactable"]]
-transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.21982256, 0.099659085, 0.052233562)
+transform = Transform3D(0.90862375, -0.4176151, 0, 0.417615, 0.9086242, 0, -7.450581e-09, -1.4901161e-08, 1, -0.30248117, 0.25061905, 0.011492252)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("12_ght3r")
@@ -502,7 +535,7 @@ font_size = 24
 outline_size = 0
 
 [node name="CycleStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1843287231 groups=["interactable"]]
-transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.39293736, 0.4527309, -1.1708429)
+transform = Transform3D(0.9086238, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, -1.1175871e-08, 1, -0.40332747, 0.4527309, -1.0443106)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("13_p4ckv")
@@ -537,7 +570,7 @@ font_size = 24
 outline_size = 0
 
 [node name="CycleStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1653455289 groups=["interactable"]]
-transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.252812, 0.12061, -1.1745696)
+transform = Transform3D(0.9086235, -0.4176151, 0, 0.417615, 0.9086242, 0, -1.4901161e-08, -2.9802322e-08, 1, -0.29563522, 0.21675777, -1.0507009)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("13_p4ckv")
@@ -571,6 +604,33 @@ text = "↓"
 font = ExtResource("2_1kfjt")
 font_size = 24
 outline_size = 0
+
+[node name="FinishedBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=886026901 groups=["interactable"]]
+transform = Transform3D(0.9999999, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -0.6093888, 1.0932326, -1.1602798)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("22_edn1u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn" unique_id=1121261344]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.980232e-08, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ght3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn" unique_id=1444860758]
+transform = Transform3D(1, -1.7881393e-07, 7.450581e-09, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0, 0)
+mesh = SubResource("BoxMesh_ke6ed")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn" unique_id=1064638567 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("7_cvm4e")
+hover_mesh_scale = 0.0
+hover_mesh_scale_x = 0.0
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn/HoverableMesh" unique_id=1210757394]
+shape = SubResource("BoxShape3D_psjku")
 
 [node name="SelectedIdealStatDisplay" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=550093060]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07841921, -0.9401617, -0.069479465)
@@ -625,16 +685,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.087402344, 0)
 shape = SubResource("BoxShape3D_p4ckv")
 
 [node name="Base4" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Mesh" unique_id=1071635858]
-transform = Transform3D(0.91874504, -0.39485133, 0, 0.39485142, 0.91874504, 0, -2.9802322e-08, 1.4901161e-08, 1, -0.794265, 0.05180192, -0.49993452)
+transform = Transform3D(0.91874504, -0.39485133, 0, 0.39485142, 0.91874504, 0, 0, 1.4901161e-08, 1, -0.80242634, 0.05180192, -0.40053892)
 collision_layer = 2
 collision_mask = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Mesh/Base4" unique_id=1543953022]
-transform = Transform3D(1, 7.450581e-09, 6.2584877e-07, 2.0861626e-07, 1, 2.0563602e-06, 2.9802322e-08, 0, 1.0000002, -5.9604645e-08, -4.7683716e-07, -0.66750026)
+transform = Transform3D(0.9999989, -2.9802322e-08, 6.4074993e-07, 3.5762787e-07, 0.99999815, 2.0675361e-06, 4.4703484e-08, 3.7252903e-08, 1.0000002, 0, 0.091308355, -0.6675)
 mesh = SubResource("BoxMesh_3ttrg")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Mesh/Base4" unique_id=1461831228]
-transform = Transform3D(1, 7.450581e-09, 4.7683716e-07, 2.0861626e-07, 1, 1.6987324e-06, 2.9802322e-08, 0, 1.0000002, -1.1920929e-07, -0.02470684, -0.66750026)
+transform = Transform3D(0.9999989, -2.9802322e-08, 4.8428774e-07, 3.5762787e-07, 0.99999815, 1.6987324e-06, 9.685755e-08, 6.3329935e-08, 1.0000002, -9.536743e-07, 0.08442402, -0.66750026)
 shape = SubResource("BoxShape3D_qb1nn")
 
 [node name="Base3" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Mesh" unique_id=1327076454]
@@ -648,6 +708,79 @@ mesh = SubResource("BoxMesh_hg5wy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Mesh/Base3" unique_id=1562854412]
 shape = SubResource("BoxShape3D_bl8ty")
+
+[node name="Base5" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Mesh" unique_id=239655821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64365625, 1.144552, -1.6890461)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Mesh/Base5" unique_id=1253598332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3841858e-06, -0.018660545, 0.53329444)
+mesh = SubResource("BoxMesh_s4ohe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Mesh/Base5" unique_id=1881351348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0038042068, 0.034569502, 0.53753805)
+shape = SubResource("BoxShape3D_bl8ty")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Mesh/Base5" unique_id=117053424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014009476, 0.17045283, 0.5333028)
+mesh = SubResource("BoxMesh_edn1u")
+
+[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Mesh/Base5" unique_id=2062494749]
+transform = Transform3D(-1.1175871e-07, -1.4901158e-08, 1.0000013, -5.960465e-08, 1.3352824, 1.0430814e-07, -1.067519, -8.9406974e-08, -2.0861626e-07, 0.008957386, 0.17411518, 0.5258796)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Finished"
+font = ExtResource("2_1kfjt")
+font_size = 20
+outline_size = 0
+
+[node name="HintActiveStatLight" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=2034840125]
+
+[node name="StrengthLight" type="Node3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight" unique_id=1428987912]
+transform = Transform3D(-0.010927491, -0.49832278, -0.8669219, 0.0409194, 0.8660254, -0.49832278, 0.9991027, -0.040919423, 0.010927506, -0.35765123, -0.19619823, -1.2045736)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight/StrengthLight" unique_id=64651271]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006503582, 0, 0.079202175)
+mesh = SubResource("SphereMesh_edn1u")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight/StrengthLight" unique_id=772538904]
+transform = Transform3D(-1, 2.6077032e-08, 7.450581e-09, -3.7252903e-09, 1, -1.4901161e-07, -2.9802322e-08, 0, -1.0000004, -0.002334118, 1.1920929e-07, -0.24626589)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.5
+spot_range = 0.316
+spot_attenuation = 4.8
+spot_angle = 7.11
+
+[node name="IntelligenceLight" type="Node3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight" unique_id=202656084]
+transform = Transform3D(-0.010927469, -0.49832278, -0.8669217, 0.0409194, 0.8660254, -0.49832278, 0.9991027, -0.040919423, 0.010927506, -0.31361485, -0.29747152, -1.200958)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight/IntelligenceLight" unique_id=890642850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006503582, 0, 0.079202175)
+mesh = SubResource("SphereMesh_edn1u")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight/IntelligenceLight" unique_id=1989267421]
+transform = Transform3D(-1, 2.6077032e-08, 7.450581e-09, -3.7252903e-09, 1, -1.4901161e-07, -2.9802322e-08, 0, -1.0000004, -0.002334118, 1.1920929e-07, -0.24626589)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.5
+spot_range = 0.316
+spot_attenuation = 4.8
+spot_angle = 7.11
+
+[node name="CommunityLight" type="Node3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight" unique_id=1780462883]
+transform = Transform3D(-0.010927409, -0.49832278, -0.86692125, 0.0409194, 0.8660254, -0.49832278, 0.9991027, -0.040919423, 0.010927498, -0.2716365, -0.40324175, -1.1975124)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight/CommunityLight" unique_id=1874694401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.006503582, 0, 0.079202175)
+mesh = SubResource("SphereMesh_edn1u")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="IdealStatCreator/ControlInterface/HintActiveStatLight/CommunityLight" unique_id=2039457682]
+transform = Transform3D(-1, 2.6077032e-08, 7.450581e-09, -3.7252903e-09, 1, -1.4901161e-07, -2.9802322e-08, 0, -1.0000004, -0.002334118, 1.1920929e-07, -0.24626589)
+light_color = Color(1, 0, 0, 1)
+light_energy = 0.5
+spot_range = 0.316
+spot_attenuation = 4.8
+spot_angle = 7.11
 
 [node name="EnergyDisplay" type="Node3D" parent="IdealStatCreator" unique_id=1154783397]
 
