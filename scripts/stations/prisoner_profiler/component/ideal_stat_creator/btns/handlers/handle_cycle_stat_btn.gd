@@ -9,7 +9,7 @@ func _handle(cycle_direction: String) -> void:
 		GLPlayerLocalSoundsBus.emit_signal("sound_btn_press_failed")
 		return
 	
-	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'cycle_stat')
 
 	var direction_increment: int
 	match cycle_direction:

@@ -26,6 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://dnrq8r0q4pchh" path="res://scenes/stations/prisoner_profiler/screen/selected_ideal_stat.tscn" id="15_a0ne0"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
+[ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
+[ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
+[ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="28_vy86u"]
+[ext_resource type="AudioStream" uid="uid://cd1ew561fh1d3" path="res://sounds/prisoner_profiler/increment.mp3" id="29_uy7hd"]
+[ext_resource type="AudioStream" uid="uid://boiulgfftjxux" path="res://sounds/prisoner_profiler/lock_shake.mp3" id="30_gvbd7"]
+[ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="31_dlq5h"]
+[ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="32_msnii"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -416,6 +423,12 @@ original_coll_shape = NodePath("../CollisionShape3D")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, -0.038982987)
 shape = SubResource("BoxShape3D_psjku")
 
+[node name="HoldIncrementDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=1217491688]
+wait_time = 0.2
+
+[node name="HoldActiveDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=1495823833]
+wait_time = 0.5
+
 [node name="IncrementStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=360227087 groups=["interactable"]]
 transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.31469175, 0.34432793, 0.56217194)
 collision_layer = 0
@@ -451,6 +464,12 @@ text = "<"
 font = ExtResource("2_1kfjt")
 font_size = 30
 outline_size = 0
+
+[node name="HoldIncrementDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=888769884]
+wait_time = 0.2
+
+[node name="HoldActiveDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=622827750]
+wait_time = 0.5
 
 [node name="CurrStatDisplayLabelsl" type="Node3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=2067219678]
 transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, 0.42359334, -0.8024857, 0.5266521)
@@ -798,3 +817,38 @@ size = Vector2i(448, 342)
 render_target_update_mode = 4
 
 [node name="EnergyDisplay" parent="IdealStatCreator/EnergyDisplay/TvFrontPannel/SubViewport" unique_id=711000672 instance=ExtResource("17_onj7t")]
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=1442438825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 3, 4.3)
+script = ExtResource("27_vy86u")
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=429271691]
+stream = ExtResource("27_xj4xg")
+unit_size = 5.0
+
+[node name="FeedbackSound" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1487581212]
+stream = ExtResource("28_vy86u")
+unit_size = 5.0
+
+[node name="Increment" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1325317969]
+stream = ExtResource("29_uy7hd")
+unit_size = 5.0
+
+[node name="LockShake" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=906843651]
+stream = ExtResource("30_gvbd7")
+unit_size = 5.0
+pitch_scale = 0.9
+
+[node name="OnOffClick" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1241233086]
+stream = ExtResource("31_dlq5h")
+unit_size = 5.0
+
+[node name="Generate" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=370097742]
+stream = ExtResource("32_msnii")
+unit_size = 5.0
+
+[node name="IncrementHold" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=884669139]
+stream = ExtResource("29_uy7hd")
+volume_db = -10.0
+unit_size = 5.0
+pitch_scale = 1.6
