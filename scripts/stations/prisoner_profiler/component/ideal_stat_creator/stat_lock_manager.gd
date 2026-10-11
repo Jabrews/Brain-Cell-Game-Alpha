@@ -2,6 +2,10 @@ extends Node
 
 @onready var parent_ideal_stat_creator: Node = $".."
 
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed('debug1') :
+		_initate_new_stat_locks()
+
 
 func _initate_new_stat_locks() -> void:
 	var max_value: float = IVCellCreator.max_stat_value
@@ -27,10 +31,10 @@ func _initate_new_stat_locks() -> void:
 
 	for cell: BrainCell in collected_cells:
 		for stat_type: String in highest_clean_values.keys():
-			if not cell.stats.has(stat_type):
+			if not cell.get_stat(stat_type) : 
 				continue
 
-			var cell_stat: BrainCellStat = cell.stats[stat_type]
+			var cell_stat : BrainCellStat = cell.get_stat(stat_type)
 			if not cell_stat.enabled:
 				continue
 

@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://g3ip46kiwfyn" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/ideal_stat/ideal_stat.gd" id="1_2ekhl"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="1_6tihu"]
 [ext_resource type="Script" uid="uid://cgi3ny4s5ey5t" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/ideal_stat/refresh_screen.gd" id="2_wfdj5"]
+[ext_resource type="Script" uid="uid://m76apra6acts" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/ideal_stat/handle_feedback.gd" id="3_2ekhl"]
 [ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="4_cdsvk"]
+[ext_resource type="Script" uid="uid://cchhe45i183v0" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/locked_sprite.gd" id="6_wfdj5"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="10_cmfbh"]
 
 [sub_resource type="Shader" id="Shader_8qqjc"]
@@ -71,6 +73,12 @@ script = ExtResource("1_2ekhl")
 [node name="RefreshScreen" type="Node" parent="." unique_id=218784105]
 script = ExtResource("2_wfdj5")
 
+[node name="HandleFeedback" type="Node" parent="." unique_id=185053319]
+script = ExtResource("3_2ekhl")
+
+[node name="FadeDelayTimer" type="Timer" parent="HandleFeedback" unique_id=1929976263]
+wait_time = 2.0
+
 [node name="StatDisplay" type="Control" parent="." unique_id=10978378]
 layout_mode = 3
 anchors_preset = 0
@@ -97,10 +105,11 @@ offset_top = -26.0
 offset_bottom = 237.0
 color = Color(1, 1, 1, 0.19607843)
 
-[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=1727220739]
+[node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=1727220739]
 texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("4_cdsvk")
+script = ExtResource("6_wfdj5")
 
 [node name="OffDisplay" type="Control" parent="." unique_id=485254466]
 visible = false

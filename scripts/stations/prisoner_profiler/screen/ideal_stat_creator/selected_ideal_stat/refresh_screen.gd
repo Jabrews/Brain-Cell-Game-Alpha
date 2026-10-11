@@ -7,7 +7,7 @@ extends Node
 @onready var parent_none_display : Control = $"../NoneDisplay"
 # lock components
 @onready var locked_bg_rect : ColorRect = $"../StatDisplay/Locked/LockedBG"
-@onready var locked_symbol_sprite : Sprite2D = $"../StatDisplay/Locked/SymbolSprite"
+@onready var locked_symbol_sprite : Sprite2D = $"../StatDisplay/Locked/LockedSprite"
 
 const LOCK_MAX_WIDTH : float = 840.0
 

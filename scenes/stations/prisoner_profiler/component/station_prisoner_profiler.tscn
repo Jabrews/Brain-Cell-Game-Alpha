@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cfos6tlxbxvcp" path="res://scripts/stations/prisoner_profiler/component/station_prisoner_profiler.gd" id="1_ckmt1"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_1kfjt"]
 [ext_resource type="Script" uid="uid://xkm1ci6ax4ds" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_cycle_stat_btn.gd" id="2_psjku"]
-[ext_resource type="Script" uid="uid://yoxtehwn6oqt" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/toggle_enabled.gd" id="2_t2r7p"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="3_cvm4e"]
 [ext_resource type="Script" uid="uid://kna6e1wj3n2l" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_increment_stat_btn.gd" id="3_ght3r"]
 [ext_resource type="Script" uid="uid://s8ijtdxc5xya" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_active_stat_highlight.gd" id="4_jvne4"]
@@ -34,6 +33,20 @@
 [ext_resource type="AudioStream" uid="uid://boiulgfftjxux" path="res://sounds/prisoner_profiler/lock_shake.mp3" id="30_gvbd7"]
 [ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="31_dlq5h"]
 [ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="32_msnii"]
+
+[sub_resource type="GDScript" id="GDScript_jwm4y"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -233,7 +246,7 @@ script = ExtResource("1_ckmt1")
 script = ExtResource("5_orlka")
 
 [node name="ToggleEnabled" type="Node" parent="Logic/IdealStatCreator" unique_id=893844953]
-script = ExtResource("2_t2r7p")
+script = SubResource("GDScript_jwm4y")
 
 [node name="BtnHandlers" type="Node" parent="Logic/IdealStatCreator" unique_id=1193381496]
 
@@ -318,6 +331,7 @@ script = ExtResource("3_cvm4e")
 size = Vector2i(840, 270)
 
 [node name="IdealStat" parent="IdealStatCreator/IdealStatsWall/IdealStats/IdealIntelligence/IdealTV/SubViewport" unique_id=1476427046 instance=ExtResource("7_k2ogl")]
+stat_type = "intelligence"
 
 [node name="IdealCommunity" type="Node3D" parent="IdealStatCreator/IdealStatsWall/IdealStats" unique_id=654898885]
 transform = Transform3D(1.000001, 0, 0, 0, 1, 0, 0, 0, 1.000001, 0.5472518, -2.2243981, 0.0058125257)
@@ -340,6 +354,7 @@ script = ExtResource("3_cvm4e")
 size = Vector2i(840, 270)
 
 [node name="IdealStat" parent="IdealStatCreator/IdealStatsWall/IdealStats/IdealCommunity/IdealTV/SubViewport" unique_id=1830378441 instance=ExtResource("7_k2ogl")]
+stat_type = "community"
 
 [node name="ActiveStatHighlightMeshes" type="Node3D" parent="IdealStatCreator/IdealStatsWall/IdealStats" unique_id=1930611853]
 

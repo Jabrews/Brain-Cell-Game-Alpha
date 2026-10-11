@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="1_0cwjl"]
 [ext_resource type="Script" uid="uid://dutsi21ckeews" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/selected_ideal_stat/selected_ideal_stat.gd" id="1_kltw8"]
 [ext_resource type="Script" uid="uid://p5c4epspjq1s" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/selected_ideal_stat/refresh_screen.gd" id="2_pveby"]
-[ext_resource type="Script" uid="uid://b4b34tdk7yj63" path="res://scripts/stations/station_screens/screen_prisoner_profiler/symbol_background.gd" id="3_t7s1s"]
+[ext_resource type="Script" uid="uid://5k2aeob7qq4i" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/selected_ideal_stat/handle_feedback.gd" id="3_pveby"]
 [ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="4_2qo2r"]
+[ext_resource type="Script" uid="uid://cchhe45i183v0" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/locked_sprite.gd" id="5_kltw8"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="12_7375k"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="13_hn018"]
 
@@ -80,6 +81,12 @@ script = ExtResource("1_kltw8")
 [node name="RefreshScreen" type="Node" parent="." unique_id=1917550271]
 script = ExtResource("2_pveby")
 
+[node name="HandleFeedback" type="Node" parent="." unique_id=1999798790]
+script = ExtResource("3_pveby")
+
+[node name="FadeDelayTimer" type="Timer" parent="HandleFeedback" unique_id=1406329784]
+wait_time = 2.0
+
 [node name="StatDisplay" type="Control" parent="." unique_id=2072831674]
 layout_mode = 3
 anchors_preset = 0
@@ -99,20 +106,18 @@ offset_top = 26.0
 offset_right = 40.0
 offset_bottom = 66.0
 
-[node name="LockedBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=995874911 node_paths=PackedStringArray("symbol_sprite")]
+[node name="LockedBG" type="ColorRect" parent="StatDisplay/Locked" unique_id=995874911]
 material = SubResource("ShaderMaterial_s1uuy")
 layout_mode = 0
 offset_top = -26.0
 offset_bottom = 237.0
 color = Color(1, 1, 1, 0.19607843)
-script = ExtResource("3_t7s1s")
-symbol_sprite = NodePath("../SymbolSprite")
-background_type = "lock"
 
-[node name="SymbolSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=517860459]
+[node name="LockedSprite" type="Sprite2D" parent="StatDisplay/Locked" unique_id=517860459]
 texture_filter = 1
 position = Vector2(346, 110)
 texture = ExtResource("4_2qo2r")
+script = ExtResource("5_kltw8")
 
 [node name="OffDisplay" type="Control" parent="." unique_id=814188083]
 visible = false

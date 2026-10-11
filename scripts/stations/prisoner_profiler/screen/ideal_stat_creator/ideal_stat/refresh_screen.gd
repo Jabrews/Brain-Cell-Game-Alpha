@@ -6,7 +6,7 @@ extends Node
 @onready var parent_stat_display : Control = $"../StatDisplay"
 # lock components
 @onready var locked_bg_rect : ColorRect = $"../StatDisplay/Locked/LockedBG"
-@onready var locked_symbol_sprite : Sprite2D = $"../StatDisplay/Locked/SymbolSprite"
+@onready var locked_symbol_sprite : Sprite2D = $"../StatDisplay/Locked/LockedSprite"
 
 const LOCK_MAX_WIDTH : float = 840.0
 
@@ -51,6 +51,14 @@ func _load_lock_bg(lock_max_value: float) -> void:
 		0.0,
 		1.0
 	)
+	
+	
+	if lock_max_value + 2 > IVCellCreator.max_stat_value :
+		locked_bg_rect.visible = false
+		locked_symbol_sprite.visible = false
+	else : 
+		locked_bg_rect.visible = true 
+		locked_symbol_sprite.visible = true 
 
 	var lock_x: float = LOCK_MAX_WIDTH * lock_percent
 

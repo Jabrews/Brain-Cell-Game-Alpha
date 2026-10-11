@@ -37,19 +37,24 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 		push_error("max_stat_value must be greater than 0.")
 		return
 
+	var current_value: float = ideal_stat.value
 	var new_value: float = clampf(
-		ideal_stat.value + increment,
+		current_value + increment,
 		0.0,
 		max_stat_value
 	)
 
-	# deal with value before lock
-	if is_equal_approx(new_value, ideal_stat.lock_max_value):
-		if increment > 0.0:
-			new_value = minf(ideal_stat.lock_max_value + 0.1, max_stat_value)
-		else:
-			new_value = maxf(ideal_stat.lock_max_value - 0.1, 0.0)
-	
+	# deal with one interval before lock
+	var lock_value: float = ideal_stat.lock_max_value
+	var value_before_lock: float = maxf(lock_value - 0.1, 0.0)
+
+	if (
+		increment > 0.0
+		and current_value < lock_value
+		and new_value >= lock_value
+		and not is_equal_approx(current_value, value_before_lock)
+	):
+		new_value = value_before_lock
 
 	if holding_press:
 		GLPrisonerProfilerComponentsBus.emit_signal(
