@@ -180,7 +180,7 @@ offset_bottom = 40.0
 [node name="FeedbackBG" type="ColorRect" parent="FeedbackDisplay" unique_id=24923507]
 layout_mode = 0
 offset_right = 840.0
-offset_bottom = 263.0
+offset_bottom = 276.0
 color = Color(0, 0, 0, 1)
 
 [node name="FeedbackLabel" type="Label" parent="FeedbackDisplay" unique_id=684569102]

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var parent_ideal_stat_creator: Node = $"../.."
+@onready var energy_manager : Node = $"../../EnergyManager"
 
 
 func _handle(increment_direction: String, holding_press: bool = false) -> void:
@@ -68,7 +69,24 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 		if before_lock_found : 
 			new_value = ideal_stat.lock_max_value - 1.0
 		
-
+		
+	# update increments used (used in energy)
+	if new_value != current_value : 
+		
+		match increment_direction : 
+			'up' :
+				ideal_stat.increments_used += 1
+				
+				# check if we've just surpassed max energy with it all spent
+				# ONLT EXIST IN UP INCREMENT
+				var total_energy_spent : int = energy_manager._get_total_energy_spent()
+				if parent_ideal_stat_creator.total_energy + total_energy_spent == 0 : 
+					GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'alert_invalid_energy_left', {})
+				
+				
+			'down' :
+				ideal_stat.increments_used -= 1
+	
 
 	if holding_press:
 		GLPrisonerProfilerComponentsBus.emit_signal(

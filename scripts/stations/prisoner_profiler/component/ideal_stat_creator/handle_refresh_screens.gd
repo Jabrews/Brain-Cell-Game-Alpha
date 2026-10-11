@@ -2,6 +2,7 @@ extends Node
 
 # components
 @onready var parent_ideal_stat_creator: Node = $".."
+@onready var energy_manager : Node = $"../EnergyManager"
 @onready var screen_ideal_stats: Array[Node2D] = [
 	$"../../../IdealStatCreator/IdealStatsWall/IdealStats/IdealStrength/IdealTV/SubViewport/IdealStat",
 	$"../../../IdealStatCreator/IdealStatsWall/IdealStats/IdealIntelligence/IdealTV/SubViewport/IdealStat",
@@ -31,6 +32,11 @@ func _handle() -> void:
 	var selected_refresh_screen: Node = screen_selected_ideal_stat.refresh_screen
 	selected_refresh_screen._refresh(selected_ideal_stat)
 	
-	## TODO
 	## deal with screen energy display
-	#screen_energy_display.
+	
+	var total_energy_spent : int = energy_manager._get_total_energy_spent()
+	
+	var total_energy : int = parent_ideal_stat_creator.total_energy
+	
+	screen_energy_display.refresh_screen._refresh(total_energy, total_energy_spent)
+	

@@ -1,5 +1,34 @@
 extends Node
 
+# components
+@onready var parent_ideal_stat_creator : Node = $"../.."
+@onready var energy_manager : Node = $"../../EnergyManager"
+
+
 
 func _handle() :
-	pass
+	
+	
+	## 1. see if all ideal stats are dissabled	
+	
+	var ideal_stats : Array[IdealStat] = parent_ideal_stat_creator.get_ideal_stats()
+	
+	var all_stats_dissabled : bool = true
+	
+	for ideal_stat in ideal_stats : 
+		if ideal_stat.enabled == true : 
+			all_stats_dissabled = false
+			return
+	
+	if all_stats_dissabled : 
+		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'all_stats_disabled', {})		
+		return
+	
+	## 2. see if player has exceeded maximum energy
+	var total_energy : int = parent_ideal_stat_creator.total_energy
+	var total_energy_spent : int = energy_manager._get_total_energy_spent
+	
+	if total_energy + total_energy_spent < 0 : 
+		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'exceeded_energy', {})		
+		
+	

@@ -16,16 +16,27 @@ func _ready() -> void:
 
 func _handle_display_feedback(feedback_type : String, _data : Dictionary) :
 	
-	# lock alert is exception
-	if feedback_type != 'lock_alert' : 
-		feedback_display_parent.visible = true
-		
-		fade_delay_timer.stop()
-		fade_delay_timer.start()
+	var displaying_feedback : bool = false
 	
 	match feedback_type : 	
 		'lock_alert' :
 			locked_sprite._shake()		
+			GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'lock_shake')
+		
+		'all_stats_disabled' : 
+			
+			displaying_feedback = true
+			
+			feedback_bg.color = Color.DARK_RED
+			feedback_label.add_theme_color_override("font_color", Color.WHITE)
+			feedback_label.text = 'INVALID - ALL STATS DISABLED'
+		
+	if displaying_feedback : 
+		
+		if not feedback_display_parent.visible : 
+			feedback_display_parent.visible = true
+			fade_delay_timer.start()
+			
 			
 			
 func _handle_fade_delay_timer_timeout() :

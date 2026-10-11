@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://dtkm0t3hnh6cw"]
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_hoco6"]
+[ext_resource type="Script" uid="uid://bjpamfm6rebh" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/energy_display/energy_display.gd" id="1_o45o1"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_3am8q"]
+[ext_resource type="Script" uid="uid://c3aawfbobf0c6" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/energy_display/refresh_screen.gd" id="2_o3kd1"]
 [ext_resource type="Texture2D" uid="uid://cgwdnpcjuv0hx" path="res://models/screens/prisoner_profiler_symbols/energy_symbol.png" id="3_hb1po"]
+[ext_resource type="Script" uid="uid://b6ykq4p0rx3il" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/energy_display/handle_feedback.gd" id="3_on2tf"]
+[ext_resource type="Script" uid="uid://culx67koroyjb" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/energy_display/hint_invalid_energy_left.gd" id="5_0e8fh"]
+[ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="5_o3kd1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3am8q"]
 shader = ExtResource("1_hoco6")
@@ -12,6 +17,13 @@ shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
 [node name="EnergyDisplay" type="Node2D" unique_id=711000672]
+script = ExtResource("1_o45o1")
+
+[node name="RefreshScreen" type="Node" parent="." unique_id=538579094]
+script = ExtResource("2_o3kd1")
+
+[node name="HandleFeedback" type="Node" parent="." unique_id=602126439]
+script = ExtResource("3_on2tf")
 
 [node name="BG" type="ColorRect" parent="." unique_id=2055697387]
 anchors_preset = 8
@@ -63,37 +75,37 @@ vertical_alignment = 1
 [node name="EnergyValueLabel" type="Label" parent="CurrEnergy" unique_id=1215934056]
 texture_filter = 1
 layout_mode = 0
-offset_left = -26.0
+offset_left = -11.0
 offset_top = 96.0
-offset_right = 422.0
+offset_right = 438.0
 offset_bottom = 264.0
 theme_override_constants/line_spacing = -10
 theme_override_fonts/font = ExtResource("2_3am8q")
 theme_override_font_sizes/font_size = 150
-text = "100"
+text = "77"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EnergySymbol" type="Sprite2D" parent="CurrEnergy" unique_id=1504019627]
 texture_filter = 1
-position = Vector2(317, 178)
+position = Vector2(305, 178)
 scale = Vector2(5.333333, 7.714286)
 texture = ExtResource("3_hb1po")
 
 [node name="UsedEnergy" type="Control" parent="." unique_id=1996061938]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -2.0
+offset_left = -14.0
 offset_top = 24.0
-offset_right = 38.0
+offset_right = 26.0
 offset_bottom = 64.0
 
 [node name="EnergyValueLabel" type="Label" parent="UsedEnergy" unique_id=211624415]
 texture_filter = 1
 layout_mode = 0
-offset_left = 2.0
+offset_left = 29.0
 offset_top = 163.0
-offset_right = 449.0
+offset_right = 476.0
 offset_bottom = 322.0
 theme_override_colors/font_color = Color(0.65, 0, 0, 1)
 theme_override_constants/line_spacing = -10
@@ -103,8 +115,102 @@ text = "(  -10  )"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="HintInvalidEnergyLeft" type="Control" parent="." unique_id=570295180]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 14.0
+offset_right = 44.0
+offset_bottom = 54.0
+script = ExtResource("5_0e8fh")
+
+[node name="BG" type="ColorRect" parent="HintInvalidEnergyLeft" unique_id=1940676304]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -19.0
+offset_top = 89.0
+offset_right = 119.0
+offset_bottom = 201.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6509804, 0, 0, 1)
+
+[node name="EnergySymbol" type="Sprite2D" parent="HintInvalidEnergyLeft" unique_id=1719182713]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+position = Vector2(69, 140)
+scale = Vector2(1.0855852, 0.9207597)
+texture = ExtResource("5_o3kd1")
+
+[node name="EnergyValueLabel" type="Label" parent="HintInvalidEnergyLeft" unique_id=36181063]
+texture_filter = 1
+layout_mode = 0
+offset_left = -151.0
+offset_top = 110.0
+offset_right = 296.0
+offset_bottom = 269.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_3am8q")
+theme_override_font_sizes/font_size = 28
+text = "Not Enough
+Energy Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EmergencyBlinkTimer" type="Timer" parent="HintInvalidEnergyLeft" unique_id=1955045933]
+wait_time = 0.5
+
 [node name="ScanLines" type="ColorRect" parent="." unique_id=204477213]
 material = SubResource("ShaderMaterial_3am8q")
 offset_right = 448.0
 offset_bottom = 448.0
 metadata/_edit_lock_ = true
+
+[node name="FeedbackInvalidEnergyLeft" type="Control" parent="." unique_id=193625830]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="FeedbackInvalidEnergyLeft" unique_id=1564964746]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 428.0
+offset_bottom = 322.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.82, 0, 0, 0.40784314)
+
+[node name="EnergySymbol" type="Sprite2D" parent="FeedbackInvalidEnergyLeft" unique_id=1235855608]
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+position = Vector2(224, 80)
+scale = Vector2(2.0540543, 1.9291298)
+texture = ExtResource("5_o3kd1")
+
+[node name="EnergyValueLabel" type="Label" parent="FeedbackInvalidEnergyLeft" unique_id=2042162247]
+texture_filter = 1
+layout_mode = 0
+offset_top = 128.0
+offset_right = 447.0
+offset_bottom = 287.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_3am8q")
+theme_override_font_sizes/font_size = 60
+text = "Not Enough
+Energy Left"
+horizontal_alignment = 1
+vertical_alignment = 1

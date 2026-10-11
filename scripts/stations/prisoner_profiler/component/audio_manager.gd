@@ -8,11 +8,13 @@ extends Node
 @onready var s_lock_shake : AudioStreamPlayer3D = $LockShake
 @onready var s_on_off_click : AudioStreamPlayer3D = $OnOffClick
 @onready var s_generate : AudioStreamPlayer3D = $Generate
+@onready var s_energy_alert_beep : AudioStreamPlayer3D = $EnergyAlertBeep
 
 
 
 func _ready() -> void:
 	GLPrisonerProfilerComponentsBus.connect('play_sound', _handle_play_sound)
+	GLPrisonerProfilerComponentsBus.connect('display_feedback', _handle_display_feedback)
 
 func _handle_play_sound(sound_type: String) -> void:
 	match sound_type:
@@ -30,5 +32,14 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_on_off_click.play()
 		"generate":
 			s_generate.play()
+		'energy_alert_beep' :
+			s_energy_alert_beep.play()
 		_:
 			push_error("Unknown sound type: " + sound_type)
+
+func _handle_display_feedback(type : String, _data : Dictionary) : 
+	
+	if type == 'lock_alert' :
+		return
+	
+	_handle_play_sound('feedback')

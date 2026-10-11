@@ -7,6 +7,7 @@ extends Node
 @onready var display_enabled_btn : Node = $DisplayEnabledBtn
 # componenents
 @onready var stat_lock_manager : Node = $StatLockManager
+@onready var energy_manager : Node = $EnergyManager
 @onready var handle_refresh_screens : Node = $HandleRefreshScreens
 
 
@@ -24,19 +25,22 @@ var possible_selected_stats : Array[String] = ['strength', 'intelligence', 'comm
 var selected_stat : String = 'none'
 var selected_stat_index : int = 3
 
-# TODO make sure lock works with current iteration of lock manager
-# if not make sure timing correct, and gbt logic (derrorigtory)
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') :
-		print(strength_ideal_stat.lock_max_value)
-		print(IVPrisonerProfiler.strength_stat_lock_percant_index)
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed('debug1') :
+		#print(strength_ideal_stat.lock_max_value)
+		#print(IVPrisonerProfiler.strength_stat_lock_percant_index)
 
 
 func _ready() -> void:
 	
 	await get_tree().process_frame
 	
+	# sets ideal_stat.max_lock_stat_value
 	stat_lock_manager._initate_new_stat_locks()
+	
+	# find max_energy, reset each ideal_stat.energy_used
+	energy_manager._initate_new_energy_state()	
+	
 	
 	await get_tree().process_frame
 	
@@ -52,6 +56,8 @@ func _set_ideal_stat_value(ideal_stat_type : String, new_value : float) :
 		
 		selected_ideal_stat.value = new_value
 		
+		# refresh 
+		energy_manager._compute_energy_state()
 		handle_refresh_screens._handle()
 	
 		# LOCKED FEEDBACK	
@@ -64,7 +70,10 @@ func _set_ideal_stat_enabled(ideal_stat_type : String, new_ideal_stat_enabled : 
 	
 	if selected_ideal_stat : 
 		selected_ideal_stat.enabled = new_ideal_stat_enabled 
+		
+		# refresh
 		display_enabled_btn._display_btn(selected_ideal_stat)
+		energy_manager._compute_energy_state()
 		handle_refresh_screens._handle()
 	
 
