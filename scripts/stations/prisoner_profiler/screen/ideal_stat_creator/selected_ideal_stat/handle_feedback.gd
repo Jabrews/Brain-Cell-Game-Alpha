@@ -18,6 +18,8 @@ func _handle_display_feedback(feedback_type : String, _data : Dictionary) :
 	
 	var displaying_feedback : bool = false
 	
+	fade_delay_timer.wait_time = 2.0
+	
 	match feedback_type : 	
 		'lock_alert' :
 			locked_sprite._shake()		
@@ -30,6 +32,24 @@ func _handle_display_feedback(feedback_type : String, _data : Dictionary) :
 			feedback_bg.color = Color.DARK_RED
 			feedback_label.add_theme_color_override("font_color", Color.WHITE)
 			feedback_label.text = 'INVALID - ALL STATS DISABLED'
+		
+		'exceeded_energy' : 
+			displaying_feedback = true
+			
+			feedback_bg.color = Color.DARK_RED
+			feedback_label.add_theme_color_override("font_color", Color.BLACK)
+			feedback_label.text = 'INVALID - EXCEEDED ENERGY LEFT'
+		
+		'lock_warning' :
+			
+			fade_delay_timer.wait_time = 3.0
+			
+			displaying_feedback = true
+			
+			feedback_bg.color = Color.DARK_RED
+			feedback_label.add_theme_color_override("font_color", Color.WHITE)
+			feedback_label.text = 'INVALID - STAT IN LOCK RANGE'
+		
 		
 	if displaying_feedback : 
 		

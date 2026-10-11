@@ -695,6 +695,7 @@ size = Vector2i(840, 270)
 [node name="SelectStat" type="Label3D" parent="IdealStatCreator/ControlInterface/SelectedIdealStatDisplay" unique_id=630540096]
 transform = Transform3D(-0.0039530396, 0, 0.99999195, 0, 1, 0, -0.99999195, 0, -0.0039530396, -0.6869426, 1.9486396, 0.067727566)
 texture_filter = 0
+modulate = Color(1, 0, 0, 1)
 text = "None"
 font = ExtResource("9_cnw5g")
 font_size = 20

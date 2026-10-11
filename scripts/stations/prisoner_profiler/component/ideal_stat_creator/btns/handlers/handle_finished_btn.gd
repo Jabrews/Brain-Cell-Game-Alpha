@@ -18,7 +18,7 @@ func _handle() :
 	for ideal_stat in ideal_stats : 
 		if ideal_stat.enabled == true : 
 			all_stats_dissabled = false
-			return
+			continue
 	
 	if all_stats_dissabled : 
 		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'all_stats_disabled', {})		
@@ -26,9 +26,39 @@ func _handle() :
 	
 	## 2. see if player has exceeded maximum energy
 	var total_energy : int = parent_ideal_stat_creator.total_energy
-	var total_energy_spent : int = energy_manager._get_total_energy_spent
+	var total_energy_spent : int = energy_manager._get_total_energy_spent()
+	
+	print(total_energy, ' ', total_energy_spent)
 	
 	if total_energy + total_energy_spent < 0 : 
 		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'exceeded_energy', {})		
+		return
+	
+	## 3. see if any ideal stat is passed its lock
+	
+	var stats_in_lock_range : Array[String]	= []
+	
+	for ideal_stat in ideal_stats : 
+		
+		var stat_type = ideal_stat.stat_type
+		
+		if ideal_stat.value > ideal_stat.lock_max_value : 
+			stats_in_lock_range.append(stat_type)
+		
+	if len(stats_in_lock_range) > 0 : 
+		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'lock_warning', {'stats_in_lock_range' : stats_in_lock_range})		
+		return
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	

@@ -20,6 +20,8 @@ func _handle_display_feedback(feedback_type : String, data : Dictionary) :
 	
 	var displaying_feedback : bool = false
 	
+	fade_delay_timer.wait_time = 2.0
+	
 	match feedback_type : 	
 		'lock_alert' :
 			
@@ -37,6 +39,30 @@ func _handle_display_feedback(feedback_type : String, data : Dictionary) :
 			feedback_bg.color = Color.DARK_RED
 			feedback_label.add_theme_color_override("font_color", Color.WHITE)
 			feedback_label.text = 'INVALID - ALL STATS DISABLED'
+	
+		'exceeded_energy' : 
+			displaying_feedback = true
+			
+			feedback_bg.color = Color.DARK_RED
+			feedback_label.add_theme_color_override("font_color", Color.BLACK)
+			
+			feedback_label.text = 'INVALID - EXCEEDED ENERGY LEFT'
+		
+		'lock_warning' :
+			
+			var stat_in_lock_range : Array[String]  = data['stats_in_lock_range']
+			var stat_found_index = stat_in_lock_range.find(parent_screen_ideal_stat.stat_type)
+			if stat_found_index == -1 : 
+				return
+			
+			
+			fade_delay_timer.wait_time = 3.0
+			
+			displaying_feedback = true
+			
+			feedback_bg.color = Color.DARK_RED
+			feedback_label.add_theme_color_override("font_color", Color.WHITE)
+			feedback_label.text = 'INVALID - STAT IN LOCK RANGE'
 			
 			
 	if displaying_feedback : 
