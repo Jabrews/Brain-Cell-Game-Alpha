@@ -398,7 +398,8 @@ texture = ExtResource("5_0dwhk")
 script = ExtResource("6_pfayw")
 
 [node name="PlayerCursor" type="Sprite2D" parent="." unique_id=604506960]
-modulate = Color(1, 1, 1, 0.3372549)
+modulate = Color(1, 1, 1, 0.57254905)
+self_modulate = Color(1, 0.050000012, 0.050000012, 1)
 texture_filter = 1
 position = Vector2(640, 360)
 scale = Vector2(1.4545449, 1.4545448)

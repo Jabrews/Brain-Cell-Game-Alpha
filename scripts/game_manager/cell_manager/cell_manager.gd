@@ -5,12 +5,6 @@ var prisoner_cells : Array[BrainCell] = []
 var collected_cells : Array[BrainCell] = []
 
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') : 
-		for cell : BrainCell in collected_cells : 
-			print(cell.name)
-
-
 func _ready() -> void:
 	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
 	GLCellManagerBus.connect('collected_cell_created', _handle_collected_cell_created)

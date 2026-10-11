@@ -51,6 +51,15 @@ func _load_lock_bg(lock_max_value: float) -> void:
 		0.0,
 		1.0
 	)
+	
+	
+	if lock_max_value == IVCellCreator.max_stat_value : 
+		locked_bg_rect.visible = false
+		locked_symbol_sprite.visible = false
+		return
+	else : 
+		locked_bg_rect.visible = true 
+		locked_symbol_sprite.visible = true 
 
 	var lock_x: float = LOCK_MAX_WIDTH * lock_percent
 

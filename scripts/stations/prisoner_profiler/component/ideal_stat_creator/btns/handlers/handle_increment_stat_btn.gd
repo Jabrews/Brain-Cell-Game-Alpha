@@ -4,10 +4,15 @@ extends Node
 
 
 func _handle(increment_direction: String, holding_press: bool = false) -> void:
+	
+	## fail to increment events
+	
+	# 1.
 	if not parent_ideal_stat_creator.enabled:
 		_play_failed_sound(holding_press)
 		return
 
+	# 2.
 	var selected_stat: String = parent_ideal_stat_creator.selected_stat
 	if selected_stat == "none":
 		_play_failed_sound(holding_press)
@@ -24,14 +29,15 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 			push_error("Invalid increment direction: " + increment_direction)
 			return
 
-	var ideal_stat: IdealStat = (
-		parent_ideal_stat_creator.get_ideal_stat_bt_type(selected_stat)
-	)
+	var ideal_stat: IdealStat = parent_ideal_stat_creator.get_ideal_stat_bt_type(selected_stat)
+	
+	# 3.
 	if ideal_stat == null:
 		_play_failed_sound(holding_press)
 		push_error("Could not find IdealStat for: " + selected_stat)
 		return
 
+	# 4.
 	var max_stat_value: float = IVCellCreator.max_stat_value
 	if max_stat_value <= 0.0:
 		push_error("max_stat_value must be greater than 0.")
@@ -46,15 +52,23 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 
 	# deal with one interval before lock
 	var lock_value: float = ideal_stat.lock_max_value
-	var value_before_lock: float = maxf(lock_value - 0.1, 0.0)
+	
+	# check if it surpasses lock
+	if new_value >= lock_value : 
+		
+		var before_lock_found : bool = false
+		
+		# make sure before this happen that it was acutally behinde the lock
+		if lock_value - increment > current_value :
+			before_lock_found = true
+		 # because we include .15 (the tenth) in stat lock percantages 
+		elif lock_value - increment / 2 > current_value : 
+			before_lock_found = true
+	
+		if before_lock_found : 
+			new_value = ideal_stat.lock_max_value - 1.0
+		
 
-	if (
-		increment > 0.0
-		and current_value < lock_value
-		and new_value >= lock_value
-		and not is_equal_approx(current_value, value_before_lock)
-	):
-		new_value = value_before_lock
 
 	if holding_press:
 		GLPrisonerProfilerComponentsBus.emit_signal(

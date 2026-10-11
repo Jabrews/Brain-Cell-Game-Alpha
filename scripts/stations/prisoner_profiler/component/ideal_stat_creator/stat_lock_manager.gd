@@ -2,9 +2,12 @@ extends Node
 
 @onready var parent_ideal_stat_creator: Node = $".."
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :
 		_initate_new_stat_locks()
+		var str_ideal_stat : IdealStat = parent_ideal_stat_creator.strength_ideal_stat
+		print('strength lock max value : ', str_ideal_stat.lock_max_value)
+		print('strength lock index : ', IVPrisonerProfiler.strength_stat_lock_percant_index)
 
 
 func _initate_new_stat_locks() -> void:
@@ -30,22 +33,28 @@ func _initate_new_stat_locks() -> void:
 	var collected_cells: Array[BrainCell] = GLCellManagerBus.collected_cells_refrence
 
 	for cell: BrainCell in collected_cells:
+		
 		for stat_type: String in highest_clean_values.keys():
-			if not cell.get_stat(stat_type) : 
-				continue
-
+			
 			var cell_stat : BrainCellStat = cell.get_stat(stat_type)
-			if not cell_stat.enabled:
+			
+			if not cell_stat : 
+				push_error('cell doesnt have a stat with type : ', stat_type)
 				continue
-
-			var clean_value: float = maxf(
-				cell_stat.value - cell_stat.defect,
-				0.0
-			)
+			
+			if not cell_stat.enabled: 
+				continue
+			
+			# NOTE
+			# POSSIBLY GOOD IDEA HERE IF LOCKS GO WAY TOO QUICK
+			#var clean_value: float = maxf(
+				#cell_stat.value - cell_stat.defect,
+				#0.0
+			#)
 
 			highest_clean_values[stat_type] = maxf(
 				highest_clean_values[stat_type],
-				clean_value
+				cell_stat.value, # or clean_value
 			)
 
 	## 2. look at current index total_value * stat_percantage. 
@@ -67,7 +76,15 @@ func _initate_new_stat_locks() -> void:
 			lock_index += 1
 
 		_set_lock_index(ideal_stat.stat_type, lock_index)
-		ideal_stat.lock_max_value = max_value * percentages[lock_index]
+		
+		# check if 100% complete
+		# if so then just set to max value
+		if lock_index >= percentages.size() - 1 :
+			ideal_stat.lock_max_value = IVCellCreator.max_stat_value
+		
+		# other wise set lock value with lock index
+		else : 
+			ideal_stat.lock_max_value = max_value * percentages[lock_index]
 
 
 func _get_lock_index(stat_type: String) -> int:

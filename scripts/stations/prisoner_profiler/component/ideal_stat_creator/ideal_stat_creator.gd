@@ -38,6 +38,8 @@ func _ready() -> void:
 	
 	stat_lock_manager._initate_new_stat_locks()
 	
+	await get_tree().process_frame
+	
 	handle_refresh_screens._handle()
 	
 

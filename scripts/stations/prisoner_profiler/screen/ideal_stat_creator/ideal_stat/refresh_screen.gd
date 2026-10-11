@@ -52,10 +52,10 @@ func _load_lock_bg(lock_max_value: float) -> void:
 		1.0
 	)
 	
-	
-	if lock_max_value + 2 > IVCellCreator.max_stat_value :
+	if lock_max_value == IVCellCreator.max_stat_value : 
 		locked_bg_rect.visible = false
 		locked_symbol_sprite.visible = false
+		return
 	else : 
 		locked_bg_rect.visible = true 
 		locked_symbol_sprite.visible = true 
