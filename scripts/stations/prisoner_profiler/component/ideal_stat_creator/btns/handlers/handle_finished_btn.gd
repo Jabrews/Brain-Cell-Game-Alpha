@@ -28,8 +28,6 @@ func _handle() :
 	var total_energy : int = parent_ideal_stat_creator.total_energy
 	var total_energy_spent : int = energy_manager._get_total_energy_spent()
 	
-	print(total_energy, ' ', total_energy_spent)
-	
 	if total_energy + total_energy_spent < 0 : 
 		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'exceeded_energy', {})		
 		return

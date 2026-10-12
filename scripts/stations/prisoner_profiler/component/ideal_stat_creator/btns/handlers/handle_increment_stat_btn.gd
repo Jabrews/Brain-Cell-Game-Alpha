@@ -43,14 +43,15 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 	if max_stat_value <= 0.0:
 		push_error("max_stat_value must be greater than 0.")
 		return
-
+	
+	# get current and new values
 	var current_value: float = ideal_stat.value
 	var new_value: float = clampf(
 		current_value + increment,
 		0.0,
 		max_stat_value
 	)
-
+	
 	# deal with one interval before lock
 	var lock_value: float = ideal_stat.lock_max_value
 	
@@ -69,7 +70,12 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 		if before_lock_found : 
 			new_value = ideal_stat.lock_max_value - 1.0
 		
-		
+	## check if attempting to go past lock
+	if new_value >= ideal_stat.lock_max_value : 
+		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'lock_alert', {'stat' : ideal_stat.stat_type})
+		return
+	
+	
 	# update increments used (used in energy)
 	if new_value != current_value : 
 		

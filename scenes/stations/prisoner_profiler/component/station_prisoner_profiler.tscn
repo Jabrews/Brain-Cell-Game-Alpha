@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://b5xthjkp1wi77" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/enabled_btn.gd" id="12_ght3r"]
 [ext_resource type="Script" uid="uid://qxq5nuc87dls" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/cycle_stat_btn.gd" id="13_p4ckv"]
 [ext_resource type="Script" uid="uid://c60dtmlsrvudd" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_enabled_btn.gd" id="13_xj4xg"]
+[ext_resource type="Script" uid="uid://cqmsa5brbmdsj" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_interface_selected_labels.gd" id="14_uy7hd"]
 [ext_resource type="PackedScene" uid="uid://dnrq8r0q4pchh" path="res://scenes/stations/prisoner_profiler/screen/selected_ideal_stat.tscn" id="15_a0ne0"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
@@ -285,6 +286,9 @@ script = ExtResource("11_kpsnx")
 [node name="DisplayEnabledBtn" type="Node" parent="Logic/IdealStatCreator" unique_id=1493416115]
 script = ExtResource("13_xj4xg")
 
+[node name="DisplayInterfaceSelectedLabels" type="Node" parent="Logic/IdealStatCreator" unique_id=67018606]
+script = ExtResource("14_uy7hd")
+
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
 
 [node name="IdealStatsWall" type="Node3D" parent="IdealStatCreator" unique_id=685144758]
@@ -506,12 +510,12 @@ mesh = SubResource("BoxMesh_p4ckv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
 
 [node name="NoneLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1647604078]
-transform = Transform3D(-8.940697e-08, 0, 1.0000005, 1.4901161e-08, 1.0000006, 7.4505806e-08, -1.0000002, -4.4703484e-08, 0, -0.18875727, 1.3891338, -0.5622134)
+transform = Transform3D(-8.940697e-08, 8.940697e-08, 1, 1.4901161e-08, 1.0000001, 1.7881393e-07, -1.0000002, -4.4703484e-08, 7.450581e-09, -0.20612001, 1.347247, -0.5831133)
 visible = false
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
 text = "None
-Selected"
+"
 font = ExtResource("2_1kfjt")
 font_size = 33
 outline_size = 0
