@@ -4,3 +4,4 @@ extends Node
 
 # components
 @onready var refresh_screen : Node = $RefreshScreen
+@onready var handle_toggle_enabled : Node = $HandleToggleEnabled

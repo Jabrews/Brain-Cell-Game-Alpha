@@ -63,6 +63,17 @@ func _handle_display_feedback(feedback_type : String, data : Dictionary) :
 			feedback_bg.color = Color.DARK_RED
 			feedback_label.add_theme_color_override("font_color", Color.WHITE)
 			feedback_label.text = 'INVALID - STAT IN LOCK RANGE'
+		
+		'offer_sent' :
+			
+			fade_delay_timer.wait_time = 3.0
+			
+			displaying_feedback = true
+			
+			feedback_bg.color = Color.SKY_BLUE
+			feedback_label.add_theme_color_override("font_color", Color.BLACK)
+			feedback_label.text = 'OFFER SENT'
+			
 			
 			
 	if displaying_feedback : 

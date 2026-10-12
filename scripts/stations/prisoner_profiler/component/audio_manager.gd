@@ -9,6 +9,7 @@ extends Node
 @onready var s_on_off_click : AudioStreamPlayer3D = $OnOffClick
 @onready var s_generate : AudioStreamPlayer3D = $Generate
 @onready var s_energy_alert_beep : AudioStreamPlayer3D = $EnergyAlertBeep
+@onready var s_finished_ideal_creator : AudioStreamPlayer3D = $FinishedIdealCreator
 
 
 
@@ -34,6 +35,8 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_generate.play()
 		'energy_alert_beep' :
 			s_energy_alert_beep.play()
+		'finished_ideal_creator' :
+			s_finished_ideal_creator.play()
 		_:
 			push_error("Unknown sound type: " + sound_type)
 

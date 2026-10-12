@@ -1,10 +1,10 @@
 extends Node
 
 # visual components
-@onready var none_label : Label3D =  $"../../../IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent/NoneLabel"
-@onready var energy_spent_label : Label3D = $"../../../IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent/EnergyLabel"
-@onready var energy_spent_sprite : Sprite3D = $"../../../IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent/EnergyIcon3"
-@onready var stat_value_label : Label3D = $"../../../IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent/StatValueLabel"
+@onready var none_label : Label3D =  $"../../../IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent/NoneLabel"
+@onready var energy_spent_label : Label3D = $"../../../IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent/EnergyLabel"
+@onready var energy_spent_sprite : Sprite3D = $"../../../IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent/EnergyIcon3"
+@onready var stat_value_label : Label3D = $"../../../IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent/StatValueLabel"
 # helper components
 @onready var energy_manager : Node = $"../EnergyManager"
 

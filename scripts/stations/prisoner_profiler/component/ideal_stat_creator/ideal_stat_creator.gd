@@ -1,5 +1,7 @@
 extends Node
 
+# parent profiler
+@onready var parent_prisoner_profiler : Node3D = $"../.."
 # display components
 @onready var display_active_stat_highlight : Node = $DisplayActiveStatHighlight
 @onready var display_active_stat_label : Node = $DisplayActiveStatLabel
@@ -32,7 +34,14 @@ var selected_stat_index : int = 3
 		#print(IVPrisonerProfiler.strength_stat_lock_percant_index)
 
 
-func _ready() -> void:
+func _start() :
+	
+	strength_ideal_stat = IdealStat.new('strength')
+	intelligence_ideal_stat = IdealStat.new('intelligence')
+	community_ideal_stat = IdealStat.new('community')
+	
+	selected_stat = 'none'
+	selected_stat_index = 3
 	
 	await get_tree().process_frame
 	
@@ -40,15 +49,16 @@ func _ready() -> void:
 	stat_lock_manager._initate_new_stat_locks()
 	
 	# find max_energy, reset each ideal_stat.energy_used
-	energy_manager._initate_new_energy_state()	
+	energy_manager._initate_new_energy_state()
 	
+	# display refresh
 	display_interface_selected_labels._display_interface_labels(null)
+	display_active_stat_highlight._display_type(selected_stat_index)
+	display_hint_active_stat_light._display_type(selected_stat_index)
+	display_active_stat_label._display_label(selected_stat)
 	
-	
-	await get_tree().process_frame
-	
+	# screen refresh
 	handle_refresh_screens._handle()
-	
 
 # set helpers
 func _set_ideal_stat_value(ideal_stat_type : String, new_value : float) :
@@ -95,6 +105,15 @@ func _set_selected_stat(new_selected_stat : String, new_selected_stat_index : in
 	handle_refresh_screens._handle()
 
 
+## CONFIRM BTN FINALE
+func _handle_ideal_stats_creation_finished() : 
+	
+	parent_prisoner_profiler.handle_ideal_stats_finished(
+		strength_ideal_stat, intelligence_ideal_stat, community_ideal_stat
+	)
+	
+	GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'offer_sent', {})
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'finished_ideal_creator')
 	
 # get helpers
 func get_ideal_stat_bt_type(ideal_stat_type : String) -> IdealStat : 

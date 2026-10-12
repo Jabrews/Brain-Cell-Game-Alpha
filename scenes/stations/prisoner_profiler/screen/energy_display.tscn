@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b6ykq4p0rx3il" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/energy_display/handle_feedback.gd" id="3_on2tf"]
 [ext_resource type="Script" uid="uid://culx67koroyjb" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/energy_display/hint_invalid_energy_left.gd" id="5_0e8fh"]
 [ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="5_o3kd1"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="9_2il4u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3am8q"]
 shader = ExtResource("1_hoco6")
@@ -24,6 +25,9 @@ script = ExtResource("2_o3kd1")
 
 [node name="HandleFeedback" type="Node" parent="." unique_id=602126439]
 script = ExtResource("3_on2tf")
+
+[node name="FadeDelayTimer" type="Timer" parent="HandleFeedback" unique_id=2122693347]
+wait_time = 2.0
 
 [node name="BG" type="ColorRect" parent="." unique_id=2055697387]
 anchors_preset = 8
@@ -166,11 +170,31 @@ vertical_alignment = 1
 [node name="EmergencyBlinkTimer" type="Timer" parent="HintInvalidEnergyLeft" unique_id=1955045933]
 wait_time = 0.5
 
-[node name="ScanLines" type="ColorRect" parent="." unique_id=204477213]
-material = SubResource("ShaderMaterial_3am8q")
+[node name="DisabledDisplay" type="Control" parent="." unique_id=1295674949]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FeedbackBG" type="ColorRect" parent="DisabledDisplay" unique_id=131985737]
+layout_mode = 0
 offset_right = 448.0
-offset_bottom = 448.0
-metadata/_edit_lock_ = true
+offset_bottom = 344.0
+color = Color(0, 0, 0, 1)
+
+[node name="EnergyValueLabel" type="Label" parent="DisabledDisplay" unique_id=583071071]
+texture_filter = 1
+layout_mode = 0
+offset_right = 447.0
+offset_bottom = 344.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -10
+theme_override_fonts/font = ExtResource("2_3am8q")
+theme_override_font_sizes/font_size = 150
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="FeedbackInvalidEnergyLeft" type="Control" parent="." unique_id=193625830]
 visible = false
@@ -214,3 +238,39 @@ text = "Not Enough
 Energy Left"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FeedbackDisplay" type="Control" parent="." unique_id=1917493967]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FeedbackBG" type="ColorRect" parent="FeedbackDisplay" unique_id=466798099]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 344.0
+color = Color(0, 0, 0, 1)
+
+[node name="FeedbackLabel" type="Label" parent="FeedbackDisplay" unique_id=1710535679]
+texture_filter = 1
+custom_minimum_size = Vector2(413, 226)
+custom_maximum_size = Vector2(413, 226)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 429.0
+offset_bottom = 290.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("9_2il4u")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=204477213]
+material = SubResource("ShaderMaterial_3am8q")
+offset_right = 448.0
+offset_bottom = 448.0
+metadata/_edit_lock_ = true

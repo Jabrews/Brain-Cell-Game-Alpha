@@ -1,7 +1,7 @@
 extends Node
 
-@onready var on_off_label: Label3D = $"../../../IdealStatCreator/ControlInterface/Btns/EnabledBtn/OnOffLabel"
-@onready var on_off_btn_mesh: MeshInstance3D = $"../../../IdealStatCreator/ControlInterface/Btns/EnabledBtn/MeshInstance3D"
+@onready var on_off_label: Label3D = $"../../../IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn/OnOffLabel"
+@onready var on_off_btn_mesh: MeshInstance3D = $"../../../IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn/MeshInstance3D"
 
 const BTN_ON_COLOR: Color = Color.GREEN
 const BTN_OFF_COLOR: Color = Color.RED

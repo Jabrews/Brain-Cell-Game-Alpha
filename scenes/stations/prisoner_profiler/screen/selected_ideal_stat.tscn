@@ -170,6 +170,53 @@ Selected"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DisabledDisplay" type="Control" parent="." unique_id=1491340949]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FeedbackBG" type="ColorRect" parent="DisabledDisplay" unique_id=1357902466]
+layout_mode = 0
+offset_right = 840.0
+offset_bottom = 276.0
+color = Color(0, 0, 0, 1)
+
+[node name="FeedbackLabel" type="Label" parent="DisabledDisplay" unique_id=2048861154]
+texture_filter = 1
+custom_maximum_size = Vector2(801, 226)
+layout_mode = 0
+offset_left = 25.0
+offset_right = 826.0
+offset_bottom = 226.0
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("12_7375k")
+theme_override_font_sizes/font_size = 100
+text = "OFF"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FeedbackLabel2" type="Label" parent="DisabledDisplay" unique_id=1160156269]
+texture_filter = 1
+custom_maximum_size = Vector2(801, 226)
+layout_mode = 0
+offset_left = 20.0
+offset_top = 152.0
+offset_right = 821.0
+offset_bottom = 245.0
+theme_override_constants/line_spacing = 6
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 0
+theme_override_fonts/font = ExtResource("12_7375k")
+theme_override_font_sizes/font_size = 25
+text = "Pick Prisoner Offer
+To procced this turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="FeedbackDisplay" type="Control" parent="." unique_id=1095034857]
 visible = false
 layout_mode = 3

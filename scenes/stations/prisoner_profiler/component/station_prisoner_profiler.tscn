@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://xkm1ci6ax4ds" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_cycle_stat_btn.gd" id="2_psjku"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="3_cvm4e"]
 [ext_resource type="Script" uid="uid://kna6e1wj3n2l" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/handlers/handle_increment_stat_btn.gd" id="3_ght3r"]
+[ext_resource type="Script" uid="uid://yoxtehwn6oqt" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/toggle_enabled.gd" id="3_gvbd7"]
 [ext_resource type="Script" uid="uid://s8ijtdxc5xya" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_active_stat_highlight.gd" id="4_jvne4"]
 [ext_resource type="Script" uid="uid://b0wqime12cias" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/ideal_stat_creator.gd" id="5_orlka"]
 [ext_resource type="Script" uid="uid://bns1ailn5oera" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/handle_refresh_screens.gd" id="5_q026i"]
@@ -28,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dnrq8r0q4pchh" path="res://scenes/stations/prisoner_profiler/screen/selected_ideal_stat.tscn" id="15_a0ne0"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
+[ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
 [ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
 [ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="28_vy86u"]
@@ -36,20 +38,7 @@
 [ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="31_dlq5h"]
 [ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="32_msnii"]
 [ext_resource type="AudioStream" uid="uid://bmno4p7jn24bf" path="res://sounds/prisoner_profiler/energy_alert_beep_sound.mp3" id="35_vy86u"]
-
-[sub_resource type="GDScript" id="GDScript_jwm4y"]
-script/source = "extends Node
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[ext_resource type="AudioStream" uid="uid://cxdsnuo2chgue" path="res://sounds/prisoner_profiler/finished_btn.mp3" id="39_msnii"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -94,6 +83,14 @@ albedo_color = Color(0.25, 0.1375, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_mwxb2"]
 material = SubResource("StandardMaterial3D_5xq6v")
 size = Vector3(3.7563477, 0.5775116, 0.67896116)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uguy"]
+albedo_color = Color(0.39308554, 0.3930855, 0.39308548, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_dlq5h"]
+material = SubResource("StandardMaterial3D_8uguy")
+radius = 0.1
+height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5rl6t"]
 size = Vector3(0.02, 0.46619385, 0.36737794)
@@ -147,6 +144,48 @@ albedo_color = Color(0.17103687, 0.6608755, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ke6ed"]
 material = SubResource("StandardMaterial3D_s4ohe")
+size = Vector3(0.02, 0.16449708, 0.22937745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dlq5h"]
+albedo_color = Color(1, 1, 0.7, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_msnii"]
+material = SubResource("StandardMaterial3D_dlq5h")
+size = Vector3(0.02, 0.345, 0.345)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gyecf"]
+albedo_color = Color(1, 1, 0.7, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jkgvf"]
+material = SubResource("StandardMaterial3D_gyecf")
+size = Vector3(0.02, 0.345, 0.345)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_msnii"]
+albedo_color = Color(1, 0.68, 0.68, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gyecf"]
+material = SubResource("StandardMaterial3D_msnii")
+size = Vector3(0.02, 0.17, 0.29)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2w46h"]
+albedo_color = Color(0.65999997, 0.84700006, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cuykb"]
+material = SubResource("StandardMaterial3D_2w46h")
+size = Vector3(0.02, 0.16449708, 0.22937745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cuykb"]
+albedo_color = Color(0.65999997, 0.84700006, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bqxyo"]
+material = SubResource("StandardMaterial3D_cuykb")
+size = Vector3(0.02, 0.16449708, 0.22937745)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jkgvf"]
+albedo_color = Color(0.50028, 0.66, 0.44219998, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2w46h"]
+material = SubResource("StandardMaterial3D_jkgvf")
 size = Vector3(0.02, 0.16449708, 0.22937745)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qc6t"]
@@ -249,7 +288,7 @@ script = ExtResource("1_ckmt1")
 script = ExtResource("5_orlka")
 
 [node name="ToggleEnabled" type="Node" parent="Logic/IdealStatCreator" unique_id=893844953]
-script = SubResource("GDScript_jwm4y")
+script = ExtResource("3_gvbd7")
 
 [node name="BtnHandlers" type="Node" parent="Logic/IdealStatCreator" unique_id=1193381496]
 
@@ -295,7 +334,7 @@ script = ExtResource("14_uy7hd")
 transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 
 [node name="IdealStats" type="Node3D" parent="IdealStatCreator/IdealStatsWall" unique_id=1731804089]
-transform = Transform3D(1.0000006, 0, 0, 0, 1, 0, 0, 0, 1.0000006, 0, 1.1855989, -0.9698868)
+transform = Transform3D(1.0000006, 0, 0, 0, 1, 0, 0, 0, 1.0000006, 0, 0.90292406, -0.9698868)
 
 [node name="IdealStrength" type="Node3D" parent="IdealStatCreator/IdealStatsWall/IdealStats" unique_id=1123262168]
 transform = Transform3D(1.0000004, 0, 0, 0, 1, 0, 0, 0, 1.0000004, 0.5472518, -2.2206368, 0.0058125257)
@@ -409,19 +448,78 @@ shape = SubResource("BoxShape3D_byqsg")
 transform = Transform3D(0.99999756, 0, 0, 0, 1, 0, 0, 0, 0.99999756, -2.3841858e-07, -0.5112442, 0.26051927)
 mesh = SubResource("BoxMesh_mwxb2")
 
+[node name="CornerLights" type="Node3D" parent="IdealStatCreator/IdealStatsWall" unique_id=1719995830]
+
+[node name="Light" type="Node3D" parent="IdealStatCreator/IdealStatsWall/CornerLights" unique_id=1813409889]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3734707, 4.220369, 1.6861601)
+
+[node name="LightMesh" type="MeshInstance3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light" unique_id=1032351165]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1233252, 0.7421049, 1.1920929e-07)
+mesh = SubResource("SphereMesh_dlq5h")
+
+[node name="Light" type="SpotLight3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light" unique_id=241069192]
+transform = Transform3D(-2.1855693e-07, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -2.1855693e-07, -1.6344708, 0.74659395, -0.0066519976)
+light_energy = 0.2
+spot_range = 0.645
+spot_attenuation = 4.8
+spot_angle = 15.0
+
+[node name="Light2" type="Node3D" parent="IdealStatCreator/IdealStatsWall/CornerLights" unique_id=1667482620]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0676847, 4.220369, 1.6861601)
+
+[node name="LightMesh" type="MeshInstance3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light2" unique_id=221799067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1233252, 0.7421049, 1.1920929e-07)
+mesh = SubResource("SphereMesh_dlq5h")
+
+[node name="Light" type="SpotLight3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light2" unique_id=756404447]
+transform = Transform3D(-2.1855693e-07, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -2.1855693e-07, -1.6344708, 0.74659395, -0.0066519976)
+light_energy = 0.2
+spot_range = 0.645
+spot_attenuation = 4.8
+spot_angle = 15.0
+
+[node name="Light3" type="Node3D" parent="IdealStatCreator/IdealStatsWall/CornerLights" unique_id=874702589]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.3734707, 0.1990962, 1.6861601)
+
+[node name="LightMesh" type="MeshInstance3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light3" unique_id=1602265151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1233252, 0.7421049, 1.1920929e-07)
+mesh = SubResource("SphereMesh_dlq5h")
+
+[node name="Light" type="SpotLight3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light3" unique_id=232913011]
+transform = Transform3D(-2.1855693e-07, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -2.1855693e-07, -1.6344708, 0.74659395, -0.0066519976)
+light_energy = 0.2
+spot_range = 0.645
+spot_attenuation = 4.8
+spot_angle = 15.0
+
+[node name="Light4" type="Node3D" parent="IdealStatCreator/IdealStatsWall/CornerLights" unique_id=115290318]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0676847, 0.1990962, 1.6861601)
+
+[node name="LightMesh" type="MeshInstance3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light4" unique_id=565209102]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1233252, 0.7421049, 1.1920929e-07)
+mesh = SubResource("SphereMesh_dlq5h")
+
+[node name="Light" type="SpotLight3D" parent="IdealStatCreator/IdealStatsWall/CornerLights/Light4" unique_id=225524598]
+transform = Transform3D(-2.1855693e-07, 0, -1.0000001, 0, 1, 0, 1.0000001, 0, -2.1855693e-07, -1.6344708, 0.74659395, -0.0066519976)
+light_energy = 0.2
+spot_range = 0.645
+spot_attenuation = 4.8
+spot_angle = 15.0
+
 [node name="ControlInterface" type="Node3D" parent="IdealStatCreator" unique_id=943271660]
 transform = Transform3D(0.081838846, 0, -0.99664557, 0, 1, 0, 0.99664557, 0, 0.081838846, 2.5704777, 2.0682364, 4.788638)
 
-[node name="Btns" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=888316747]
+[node name="EnabledBtns" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=888316747]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6839044, 0)
+visible = false
 
-[node name="IncrementStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=197577330 groups=["interactable"]]
+[node name="IncrementStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=197577330 groups=["interactable"]]
 transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.29266274, 0.35445213, -0.3893819)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("8_ght3r")
 
-[node name="UpArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=1292243099]
+[node name="UpArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp" unique_id=1292243099]
 transform = Transform3D(-4.666272e-08, 0, 1.0000001, 0, 1.3352814, 0, -1.0675186, 0, -4.3711392e-08, 0.030485347, 0.027899027, -0.15769744)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -430,15 +528,15 @@ font = ExtResource("2_1kfjt")
 font_size = 30
 outline_size = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=116928349]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp" unique_id=116928349]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020290732, -0.17951286)
 shape = SubResource("BoxShape3D_5rl6t")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=837573514]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp" unique_id=837573514]
 transform = Transform3D(1, 0, 0, 0, 1.3352814, 0, 0, 0, 1.0675185, 0, 0.0188905, -0.18234098)
 mesh = SubResource("BoxMesh_un5io")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=1648882885 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp" unique_id=1648882885 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -447,32 +545,32 @@ orignal_mesh = NodePath("../MeshInstance3D")
 custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp/HoverableMesh" unique_id=1356242880]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp/HoverableMesh" unique_id=1356242880]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, -0.038982987)
 shape = SubResource("BoxShape3D_psjku")
 
-[node name="HoldIncrementDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=1217491688]
+[node name="HoldIncrementDelay" type="Timer" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp" unique_id=1217491688]
 wait_time = 0.2
 
-[node name="HoldActiveDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatUp" unique_id=1495823833]
+[node name="HoldActiveDelay" type="Timer" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatUp" unique_id=1495823833]
 wait_time = 0.5
 
-[node name="IncrementStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=360227087 groups=["interactable"]]
+[node name="IncrementStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=360227087 groups=["interactable"]]
 transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.31469175, 0.34432793, 0.56217194)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("8_ght3r")
 increment_direction = "down"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=1090896025]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown" unique_id=1090896025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019040108, 0.019222245)
 shape = SubResource("BoxShape3D_ght3r")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=1001258198]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown" unique_id=1001258198]
 transform = Transform3D(1, 0, 0, 0, 1.3352814, 0, 0, 0, 1.0675185, 0, 0.0188905, 0.016410917)
 mesh = SubResource("BoxMesh_un5io")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=1187123572 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown" unique_id=1187123572 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -480,11 +578,11 @@ hover_mesh_scene = ExtResource("5_wi8gv")
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown/HoverableMesh" unique_id=193355209]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown/HoverableMesh" unique_id=193355209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
 shape = SubResource("BoxShape3D_psjku")
 
-[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=320694237]
+[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown" unique_id=320694237]
 transform = Transform3D(-4.666272e-08, 0, 1.0000001, 0, 1.3352814, 0, -1.0675186, 0, -4.3711392e-08, 0.030485347, 0.027899027, 0.041054517)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -493,23 +591,23 @@ font = ExtResource("2_1kfjt")
 font_size = 30
 outline_size = 0
 
-[node name="HoldIncrementDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=888769884]
+[node name="HoldIncrementDelay" type="Timer" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown" unique_id=888769884]
 wait_time = 0.2
 
-[node name="HoldActiveDelay" type="Timer" parent="IdealStatCreator/ControlInterface/Btns/IncrementStatDown" unique_id=622827750]
+[node name="HoldActiveDelay" type="Timer" parent="IdealStatCreator/ControlInterface/EnabledBtns/IncrementStatDown" unique_id=622827750]
 wait_time = 0.5
 
-[node name="CurrStatDisplayLabelsl" type="Node3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=2067219678]
+[node name="CurrStatDisplayLabelsl" type="Node3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=2067219678]
 transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, 0.42359334, -0.8024857, 0.5266521)
 
-[node name="DisplayMesh" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl" unique_id=810457001]
+[node name="DisplayMesh" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl" unique_id=810457001]
 transform = Transform3D(0.99999434, 1.7881393e-07, -5.2154064e-08, 1.1920929e-07, 0.9999933, 7.450581e-09, -8.940697e-08, -7.0780516e-08, 0.9999966, -0.21998739, 1.3755085, -0.5272604)
 mesh = SubResource("BoxMesh_p4ckv")
 
-[node name="EnergySpent" type="Node3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl" unique_id=1593182276]
+[node name="EnergySpent" type="Node3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl" unique_id=1593182276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
 
-[node name="NoneLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1647604078]
+[node name="NoneLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1647604078]
 transform = Transform3D(-8.940697e-08, 8.940697e-08, 1, 1.4901161e-08, 1.0000001, 1.7881393e-07, -1.0000002, -4.4703484e-08, 7.450581e-09, -0.20612001, 1.347247, -0.5831133)
 visible = false
 texture_filter = 0
@@ -520,7 +618,7 @@ font = ExtResource("2_1kfjt")
 font_size = 33
 outline_size = 0
 
-[node name="EnergyLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1512980852]
+[node name="EnergyLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent" unique_id=1512980852]
 transform = Transform3D(-2.2351742e-08, 8.940697e-08, 0.9999996, -1.1175871e-08, 0.9999995, 2.9802322e-08, -0.99999976, 3.7252903e-09, -3.7252903e-08, -0.20033646, 1.2647107, -0.52934253)
 texture_filter = 0
 modulate = Color(1, 0, 0, 1)
@@ -530,13 +628,13 @@ font = ExtResource("2_1kfjt")
 font_size = 33
 outline_size = 0
 
-[node name="EnergyIcon3" type="Sprite3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=834701501]
+[node name="EnergyIcon3" type="Sprite3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent" unique_id=834701501]
 transform = Transform3D(-3.7252903e-08, 0, 0.8999996, -1.8626451e-09, 0.8999996, -2.9802322e-08, -0.8999998, 1.8626451e-09, -2.9802322e-08, -0.19060946, 1.262774, -0.68688023)
 modulate = Color(1, 0, 0, 1)
 texture_filter = 0
 texture = SubResource("CompressedTexture2D_bl8ty")
 
-[node name="StatValueLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CurrStatDisplayLabelsl/EnergySpent" unique_id=82504853]
+[node name="StatValueLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CurrStatDisplayLabelsl/EnergySpent" unique_id=82504853]
 transform = Transform3D(-8.940697e-08, 5.9604645e-08, 1.0000001, 1.4901161e-08, 1, -5.9604645e-08, -1.0000002, -2.9802322e-08, 7.450581e-09, -0.19882393, 1.4382867, -0.55881083)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -545,22 +643,22 @@ font = ExtResource("2_1kfjt")
 font_size = 40
 outline_size = 0
 
-[node name="EnabledBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1536035479 groups=["interactable"]]
+[node name="EnabledBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=1536035479 groups=["interactable"]]
 transform = Transform3D(0.90862375, -0.4176151, 0, 0.417615, 0.9086242, 0, -7.450581e-09, -1.4901161e-08, 1, -0.30248117, 0.25061905, 0.011492252)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("12_ght3r")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=1339679193]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn" unique_id=1339679193]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22551143, -0.011363089)
 shape = SubResource("BoxShape3D_0l5kk")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=714367789]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn" unique_id=714367789]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22637343, -0.011363089)
 mesh = SubResource("BoxMesh_hv7us")
 script = SubResource("GDScript_03v8i")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=246606172 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn" unique_id=246606172 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -568,11 +666,11 @@ hover_mesh_scene = ExtResource("6_1kfjt")
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn/HoverableMesh" unique_id=1067299044]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn/HoverableMesh" unique_id=1067299044]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07366574, -0.011363089)
 shape = SubResource("BoxShape3D_psjku")
 
-[node name="OnOffLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/EnabledBtn" unique_id=838480606]
+[node name="OnOffLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/EnabledBtn" unique_id=838480606]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.018645227, -0.22676593, -0.015128493)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -581,21 +679,21 @@ font = ExtResource("2_1kfjt")
 font_size = 24
 outline_size = 0
 
-[node name="CycleStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1843287231 groups=["interactable"]]
+[node name="CycleStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=1843287231 groups=["interactable"]]
 transform = Transform3D(0.9086238, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, -1.1175871e-08, 1, -0.40332747, 0.4527309, -1.0443106)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("13_p4ckv")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatUp" unique_id=1374129621]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatUp" unique_id=1374129621]
 transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
 shape = SubResource("BoxShape3D_ght3r")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatUp" unique_id=1815467749]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatUp" unique_id=1815467749]
 transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
 mesh = SubResource("BoxMesh_3nek5")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatUp" unique_id=126540542 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatUp" unique_id=126540542 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -603,11 +701,11 @@ hover_mesh_scene = ExtResource("7_cvm4e")
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatUp/HoverableMesh" unique_id=1271216005]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatUp/HoverableMesh" unique_id=1271216005]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
 shape = SubResource("BoxShape3D_psjku")
 
-[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatUp" unique_id=190453976]
+[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatUp" unique_id=190453976]
 transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -616,22 +714,22 @@ font = ExtResource("2_1kfjt")
 font_size = 24
 outline_size = 0
 
-[node name="CycleStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=1653455289 groups=["interactable"]]
+[node name="CycleStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=1653455289 groups=["interactable"]]
 transform = Transform3D(0.9086235, -0.4176151, 0, 0.417615, 0.9086242, 0, -1.4901161e-08, -2.9802322e-08, 1, -0.29563522, 0.21675777, -1.0507009)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("13_p4ckv")
 cycle_direction = "down"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatDown" unique_id=1894970010]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatDown" unique_id=1894970010]
 transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
 shape = SubResource("BoxShape3D_ght3r")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatDown" unique_id=1202378560]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatDown" unique_id=1202378560]
 transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
 mesh = SubResource("BoxMesh_3nek5")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatDown" unique_id=1224000893 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatDown" unique_id=1224000893 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -639,11 +737,11 @@ hover_mesh_scene = ExtResource("7_cvm4e")
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatDown/HoverableMesh" unique_id=354953838]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatDown/HoverableMesh" unique_id=354953838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
 shape = SubResource("BoxShape3D_psjku")
 
-[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Btns/CycleStatDown" unique_id=902021577]
+[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/CycleStatDown" unique_id=902021577]
 transform = Transform3D(-1.1920929e-07, -1.4901161e-08, 1.0000014, -5.9604645e-08, 1.3352823, 1.0430813e-07, -1.067519, -8.940697e-08, -2.0861626e-07, 0.010331333, 0.016070843, 0.009503365)
 texture_filter = 0
 outline_modulate = Color(0, 0, 0, 0)
@@ -652,21 +750,21 @@ font = ExtResource("2_1kfjt")
 font_size = 24
 outline_size = 0
 
-[node name="FinishedBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns" unique_id=886026901 groups=["interactable"]]
+[node name="FinishedBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns" unique_id=886026901 groups=["interactable"]]
 transform = Transform3D(0.9999999, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -0.6093888, 1.0932326, -1.1602798)
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("22_edn1u")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn" unique_id=1121261344]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/FinishedBtn" unique_id=1121261344]
 transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.980232e-08, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_ght3r")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn" unique_id=1444860758]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/FinishedBtn" unique_id=1444860758]
 transform = Transform3D(1, -1.7881393e-07, 7.450581e-09, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0, 0)
 mesh = SubResource("BoxMesh_ke6ed")
 
-[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn" unique_id=1064638567 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/FinishedBtn" unique_id=1064638567 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("8_psjku")
@@ -676,7 +774,188 @@ hover_mesh_scale_x = 0.0
 orignal_mesh = NodePath("../MeshInstance3D")
 original_coll_shape = NodePath("../CollisionShape3D")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/Btns/FinishedBtn/HoverableMesh" unique_id=1210757394]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/FinishedBtn/HoverableMesh" unique_id=1210757394]
+shape = SubResource("BoxShape3D_psjku")
+
+[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/EnabledBtns/FinishedBtn" unique_id=1544884084]
+transform = Transform3D(-1.1175871e-07, -1.4901158e-08, 1.0000013, -5.960465e-08, 1.3352824, 1.0430814e-07, -1.067519, -8.9406974e-08, -2.0861626e-07, -0.025699615, 0.2247684, -0.012844324)
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "Finished"
+font = ExtResource("2_1kfjt")
+font_size = 20
+outline_size = 0
+
+[node name="DisabledBtns" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=1316739610]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6839044, 0)
+
+[node name="IncrementStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=1060631751 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.29266274, 0.35445213, -0.3893819)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("27_dlq5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatUp" unique_id=1564305384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.020290732, -0.17951286)
+shape = SubResource("BoxShape3D_5rl6t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatUp" unique_id=1615159525]
+transform = Transform3D(1, 0, 0, 0, 1.3352814, 0, 0, 0, 1.0675185, 0, 0.0188905, -0.18234098)
+mesh = SubResource("BoxMesh_msnii")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatUp" unique_id=1077564216 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("5_wi8gv")
+orignal_mesh = NodePath("../MeshInstance3D")
+custom_b_sprite_pos = Vector3(0.2, 1, 0.8)
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatUp/HoverableMesh" unique_id=1403610880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, -0.038982987)
+shape = SubResource("BoxShape3D_psjku")
+
+[node name="IncrementStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=2098270087 groups=["interactable"]]
+transform = Transform3D(0.908624, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, 0, 1, -0.31469175, 0.34432793, 0.56217194)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("27_dlq5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatDown" unique_id=831889409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019040108, 0.019222245)
+shape = SubResource("BoxShape3D_ght3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatDown" unique_id=1580655054]
+transform = Transform3D(1, 0, 0, 0, 1.3352814, 0, 0, 0, 1.0675185, 0, 0.0188905, 0.016410917)
+mesh = SubResource("BoxMesh_jkgvf")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatDown" unique_id=666091574 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("5_wi8gv")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/IncrementStatDown/HoverableMesh" unique_id=889503298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_psjku")
+
+[node name="CurrStatDisplayLabelsl" type="Node3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=1880404374]
+transform = Transform3D(0.908624, -0.417615, 0, 0.41761503, 0.90862423, 0, 0, 0, 1, 0.42359334, -0.8024857, 0.5266521)
+
+[node name="DisplayMesh" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CurrStatDisplayLabelsl" unique_id=1112076615]
+transform = Transform3D(0.99999434, 1.7881393e-07, -5.2154064e-08, 1.1920929e-07, 0.9999933, 7.450581e-09, -8.940697e-08, -7.0780516e-08, 0.9999966, -0.21998739, 1.3755085, -0.5272604)
+mesh = SubResource("BoxMesh_p4ckv")
+
+[node name="EnergySpent" type="Node3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CurrStatDisplayLabelsl" unique_id=1369043486]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04037273, 0.05142796)
+
+[node name="EnabledBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=262371974 groups=["interactable"]]
+transform = Transform3D(0.90862375, -0.4176151, 0, 0.417615, 0.9086242, 0, -7.450581e-09, -1.4901161e-08, 1, -0.30248117, 0.25061905, 0.011492252)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("27_dlq5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/EnabledBtn" unique_id=1580014934]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22551143, -0.011363089)
+shape = SubResource("BoxShape3D_0l5kk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/EnabledBtn" unique_id=696704134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.22637343, -0.011363089)
+mesh = SubResource("BoxMesh_gyecf")
+script = SubResource("GDScript_03v8i")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/EnabledBtn" unique_id=1299470611 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("6_1kfjt")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/EnabledBtn/HoverableMesh" unique_id=693541445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07366574, -0.011363089)
+shape = SubResource("BoxShape3D_psjku")
+
+[node name="CycleStatUp" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=1596953389 groups=["interactable"]]
+transform = Transform3D(0.9086238, -0.4176151, 0, 0.417615, 0.9086242, 0, 0, -1.1175871e-08, 1, -0.40332747, 0.4527309, -1.0443106)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("27_dlq5h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatUp" unique_id=1154508944]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_ght3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatUp" unique_id=773199120]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_cuykb")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatUp" unique_id=528360363 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("7_cvm4e")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatUp/HoverableMesh" unique_id=1728499836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_psjku")
+
+[node name="CycleStatDown" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=984267488 groups=["interactable"]]
+transform = Transform3D(0.9086235, -0.4176151, 0, 0.417615, 0.9086242, 0, -1.4901161e-08, -2.9802322e-08, 1, -0.29563522, 0.21675777, -1.0507009)
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatDown" unique_id=1544701718]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.9802322e-08, 1, -1.1920929e-07, 0.0022497177, 0.011869192)
+shape = SubResource("BoxShape3D_ght3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatDown" unique_id=1238261251]
+transform = Transform3D(1, -1.7881393e-07, 0, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0.0009274483, 0.012953758)
+mesh = SubResource("BoxMesh_bqxyo")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatDown" unique_id=1359817587 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("7_cvm4e")
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/CycleStatDown/HoverableMesh" unique_id=392989068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0188905, 0.016410917)
+shape = SubResource("BoxShape3D_psjku")
+
+[node name="FinishedBtn" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns" unique_id=1595978701 groups=["interactable"]]
+transform = Transform3D(0.9999999, 0, 0, 0, 1.0000001, 0, 0, 0, 1, -0.6093888, 1.0932326, -1.1602798)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("22_edn1u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/FinishedBtn" unique_id=1649528470]
+transform = Transform3D(1, -4.4703484e-08, 0, 1.4901161e-08, 1.0000006, 0, 0, -2.980232e-08, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_ght3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/FinishedBtn" unique_id=1809772744]
+transform = Transform3D(1, -1.7881393e-07, 7.450581e-09, 1.4901161e-08, 1.3352823, 0, 0, -5.9604645e-08, 1.0675185, 0, 0, 0)
+mesh = SubResource("BoxMesh_2w46h")
+
+[node name="HoverableMesh" type="StaticBody3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/FinishedBtn" unique_id=1581732627 node_paths=PackedStringArray("orignal_mesh", "original_coll_shape") groups=["hoverable"]]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("8_psjku")
+hover_mesh_scene = ExtResource("7_cvm4e")
+hover_mesh_scale = 0.0
+hover_mesh_scale_x = 0.0
+orignal_mesh = NodePath("../MeshInstance3D")
+original_coll_shape = NodePath("../CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IdealStatCreator/ControlInterface/DisabledBtns/FinishedBtn/HoverableMesh" unique_id=836618275]
 shape = SubResource("BoxShape3D_psjku")
 
 [node name="SelectedIdealStatDisplay" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=550093060]
@@ -773,15 +1052,6 @@ shape = SubResource("BoxShape3D_bl8ty")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="IdealStatCreator/ControlInterface/Mesh/Base5" unique_id=117053424]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014009476, 0.17045283, 0.5333028)
 mesh = SubResource("BoxMesh_edn1u")
-
-[node name="DownArrowLabel" type="Label3D" parent="IdealStatCreator/ControlInterface/Mesh/Base5" unique_id=2062494749]
-transform = Transform3D(-1.1175871e-07, -1.4901158e-08, 1.0000013, -5.960465e-08, 1.3352824, 1.0430814e-07, -1.067519, -8.9406974e-08, -2.0861626e-07, 0.008957386, 0.17411518, 0.5258796)
-texture_filter = 0
-outline_modulate = Color(0, 0, 0, 0)
-text = "Finished"
-font = ExtResource("2_1kfjt")
-font_size = 20
-outline_size = 0
 
 [node name="HintActiveStatLight" type="Node3D" parent="IdealStatCreator/ControlInterface" unique_id=2034840125]
 
@@ -895,3 +1165,10 @@ stream = ExtResource("35_vy86u")
 volume_db = -5.0
 unit_size = 5.0
 max_distance = 10.0
+
+[node name="FinishedIdealCreator" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1606822152]
+stream = ExtResource("39_msnii")
+volume_db = 10.0
+unit_size = 5.0
+pitch_scale = 1.2
+max_distance = 20.0

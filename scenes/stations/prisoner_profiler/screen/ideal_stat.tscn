@@ -5,19 +5,18 @@
 [ext_resource type="Script" uid="uid://cgi3ny4s5ey5t" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/ideal_stat/refresh_screen.gd" id="2_wfdj5"]
 [ext_resource type="Script" uid="uid://m76apra6acts" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/ideal_stat/handle_feedback.gd" id="3_2ekhl"]
 [ext_resource type="Texture2D" uid="uid://b0qgq76ydwels" path="res://models/screens/prisoner_profiler_symbols/lock.png" id="4_cdsvk"]
+[ext_resource type="Script" uid="uid://caiwjt30lw5uq" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/ideal_stat/handle_toggle_enabled.gd" id="4_h8xa3"]
 [ext_resource type="Script" uid="uid://cchhe45i183v0" path="res://scripts/stations/prisoner_profiler/screen/ideal_stat_creator/locked_sprite.gd" id="6_wfdj5"]
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="9_umg2m"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="10_cmfbh"]
 
 [sub_resource type="Shader" id="Shader_8qqjc"]
 code = "shader_type canvas_item;
 
-// values (0 → 1)
-uniform float prisoner_value : hint_range(0.0, 1.0); // yellow
-
-// colors
+uniform float prisoner_value : hint_range(0.0, 1.0);
 uniform vec4 yellow_color : source_color = vec4(1.0, 1.0, 0.0, 1.0);
+uniform vec4 mask_color : source_color = vec4(0.25, 0.25, 0.25, 1.0);
 
-// edge padding
 uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
 
 void fragment() {
@@ -26,17 +25,17 @@ void fragment() {
 	float tex_width = float(textureSize(TEXTURE, 0).x);
 	float pixel_x = UV.x * tex_width;
 
-	bool inside_edges = pixel_x >= edge_padding && pixel_x <= (tex_width - edge_padding);
+	bool inside_edges = pixel_x >= edge_padding
+		&& pixel_x <= tex_width - edge_padding;
 
 	float in_yellow = step(UV.x, prisoner_value);
-
 	vec4 result = tex;
 
 	if (inside_edges && tex.a > 0.0) {
-
-		// draw yellow base
 		if (in_yellow > 0.5) {
-			result = vec4(yellow_color.rgb, tex.a);
+			result = vec4(yellow_color.rgb, tex.a * yellow_color.a);
+		} else {
+			result = vec4(mask_color.rgb, tex.a * mask_color.a);
 		}
 	}
 
@@ -46,7 +45,8 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5o5ns"]
 shader = SubResource("Shader_8qqjc")
 shader_parameter/prisoner_value = 0.310000014725
-shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_color = Color(0.56, 0.56, 0, 1)
+shader_parameter/mask_color = Color(0.92099476, 0.9209946, 0.9209946, 1)
 shader_parameter/edge_padding = 5.0
 
 [sub_resource type="Shader" id="Shader_4ewow"]
@@ -63,9 +63,16 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c0oty"]
 shader = SubResource("Shader_4ewow")
-shader_parameter/color_a = Color(0.37, 0.36630002, 0.3589, 0.23529412)
-shader_parameter/color_b = Color(0.21, 0.21, 0.21, 0.27058825)
+shader_parameter/color_a = Color(0.2901961, 0.28627452, 0.28235295, 0.23529412)
+shader_parameter/color_b = Color(0.14, 0.14, 0.14, 0.27058825)
 shader_parameter/stripe_size = 12.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rg0jn"]
+shader = ExtResource("9_umg2m")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
 
 [node name="IdealStat" type="Node2D" unique_id=1534148549]
 script = ExtResource("1_2ekhl")
@@ -78,6 +85,9 @@ script = ExtResource("3_2ekhl")
 
 [node name="FadeDelayTimer" type="Timer" parent="HandleFeedback" unique_id=1929976263]
 wait_time = 2.0
+
+[node name="HandleToggleEnabled" type="Node" parent="." unique_id=1854180668]
+script = ExtResource("4_h8xa3")
 
 [node name="StatDisplay" type="Control" parent="." unique_id=10978378]
 layout_mode = 3
@@ -102,6 +112,7 @@ offset_bottom = 66.0
 material = SubResource("ShaderMaterial_c0oty")
 layout_mode = 0
 offset_top = -26.0
+offset_right = 96.0
 offset_bottom = 237.0
 color = Color(1, 1, 1, 0.19607843)
 
@@ -164,3 +175,8 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=742089344]
+material = SubResource("ShaderMaterial_rg0jn")
+offset_right = 840.0
+offset_bottom = 270.0
