@@ -2,6 +2,7 @@ extends Node
 
 # compoents
 @onready var toggle_ideal_stat_creator_enabled : Node = $Logic/IdealStatCreator/ToggleEnabled
+@onready var toggle_offer_tablet_enabled : Node = $Logic/OfferTablet/ToggleEnabled
 
 # ideal stat creator finalized stats
 var strength_ideal_stat : IdealStat = null
@@ -28,5 +29,8 @@ func handle_ideal_stats_finished(
 	community_ideal_stat = new_com_ideal_stat
 	
 	toggle_ideal_stat_creator_enabled._toggle(false)
+	
+	toggle_offer_tablet_enabled._toggle(true)
+	
 	
 	
