@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://c60dtmlsrvudd" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_enabled_btn.gd" id="13_xj4xg"]
 [ext_resource type="Script" uid="uid://cqmsa5brbmdsj" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/display/display_interface_selected_labels.gd" id="14_uy7hd"]
 [ext_resource type="PackedScene" uid="uid://dnrq8r0q4pchh" path="res://scenes/stations/prisoner_profiler/screen/selected_ideal_stat.tscn" id="15_a0ne0"]
+[ext_resource type="Script" uid="uid://bgxt8ep1edisg" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/offer_tablet.gd" id="16_dd2e3"]
 [ext_resource type="Script" uid="uid://cakjb5yt3suo3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_enabled.gd" id="16_gyecf"]
 [ext_resource type="Script" uid="uid://cieqnrkourvyq" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/cinnamatic_manager.gd" id="17_jkgvf"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
@@ -35,6 +36,8 @@
 [ext_resource type="Script" uid="uid://c8b3nieqdo2e1" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/toggle_pole_exspand.gd" id="19_h220m"]
 [ext_resource type="Script" uid="uid://c3r8o24lsvdhh" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/toggle_tablet_pole_follow.gd" id="20_rv2o6"]
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
+[ext_resource type="Script" uid="uid://pmc6282tiht4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_display_offer_ui.gd" id="22_toge2"]
+[ext_resource type="Script" uid="uid://dpg6xu8puix3a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/display/display_turns_left.gd" id="23_8hdni"]
 [ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
 [ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
@@ -44,7 +47,18 @@
 [ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="31_dlq5h"]
 [ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="32_msnii"]
 [ext_resource type="AudioStream" uid="uid://bmno4p7jn24bf" path="res://sounds/prisoner_profiler/energy_alert_beep_sound.mp3" id="35_vy86u"]
+[ext_resource type="AudioStream" uid="uid://byg1fre14pmfr" path="res://sounds/prisoner_profiler/pole_moving.mp3" id="37_rv2o6"]
+[ext_resource type="Script" uid="uid://ddqygffy1viax" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/tablet_interact_area.gd" id="38_2txlu"]
+[ext_resource type="PackedScene" uid="uid://cilrrnnw5ggmd" path="res://scenes/stations/prisoner_profiler/screen/mock_offer_tablet_ui.tscn" id="39_bka8w"]
 [ext_resource type="AudioStream" uid="uid://cxdsnuo2chgue" path="res://sounds/prisoner_profiler/finished_btn.mp3" id="39_msnii"]
+[ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="40_kcyeb"]
+[ext_resource type="Texture2D" uid="uid://cs8ct6nglwbs3" path="res://models/breeding_screen/lifespan_next_arrow.png" id="42_1dla4"]
+[ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
+[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/flashing_texture.gdshader" id="42_8hdni"]
+[ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
+[ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
+[ext_resource type="AudioStream" uid="uid://rslpt20kiti5" path="res://sounds/prisoner_profiler/door_shut.mp3" id="49_4txwj"]
+[ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -404,6 +418,8 @@ material = SubResource("StandardMaterial3D_rv2o6")
 size = Vector2(1.5, 1)
 orientation = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_kcyeb"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p4t1i"]
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
@@ -507,6 +523,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_brdun")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_730rl"]
+shader = ExtResource("40_kcyeb")
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dla4"]
+shader = ExtResource("42_8hdni")
+shader_parameter/flash_speed = 5.0
+shader_parameter/min_opacity = 0.50000002375
+shader_parameter/max_opacity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u1cg"]
+shader = ExtResource("42_8hdni")
+shader_parameter/flash_speed = 5.0
+shader_parameter/min_opacity = 0.50000002375
+shader_parameter/max_opacity = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hdni"]
+shader = ExtResource("42_8hdni")
+shader_parameter/flash_speed = 2.0
+shader_parameter/min_opacity = 0.2
+shader_parameter/max_opacity = 1.0
+
 [node name="PrisonerProfiler" type="Node3D" unique_id=267444250]
 script = ExtResource("1_ckmt1")
 
@@ -557,6 +597,7 @@ script = ExtResource("13_xj4xg")
 script = ExtResource("14_uy7hd")
 
 [node name="OfferTablet" type="Node" parent="Logic" unique_id=1757081176]
+script = ExtResource("16_dd2e3")
 
 [node name="ToggleEnabled" type="Node" parent="Logic/OfferTablet" unique_id=1993524847]
 script = ExtResource("16_gyecf")
@@ -575,6 +616,12 @@ script = ExtResource("19_h220m")
 
 [node name="ToggleTabletPoleFollow" type="Node" parent="Logic/OfferTablet/CinnamaticManager/ComponentControllers" unique_id=1985020582]
 script = ExtResource("20_rv2o6")
+
+[node name="ToggleDisplayOfferUi" type="Node" parent="Logic/OfferTablet" unique_id=1410723889]
+script = ExtResource("22_toge2")
+
+[node name="DisplayTurnsLeft" type="Node" parent="Logic/OfferTablet" unique_id=662539169]
+script = ExtResource("23_8hdni")
 
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
 
@@ -1368,13 +1415,16 @@ render_target_update_mode = 4
 [node name="OfferTablet" type="Node3D" parent="." unique_id=1301911205]
 
 [node name="Poles" type="Node3D" parent="OfferTablet" unique_id=961028572]
+process_mode = 3
 
 [node name="MainPole2" type="MeshInstance3D" parent="OfferTablet/Poles" unique_id=153077138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4969839, 3.3670332, 5.0839825)
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4969839, 8.821909, 5.0839825)
 mesh = SubResource("ArrayMesh_2w46h")
 
 [node name="TabletHolderPole" type="StaticBody3D" parent="OfferTablet/Poles" unique_id=1157297023]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.4969839, 3.378632, 5.0839825)
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4969839, 8.833508, 5.0839825)
 collision_layer = 2
 collision_mask = 0
 
@@ -1398,8 +1448,26 @@ mesh = SubResource("PlaneMesh_r1744")
 script = ExtResource("3_cvm4e")
 
 [node name="SubViewport" type="SubViewport" parent="OfferTablet/Poles/TabletHolderPole/TabletTV/TvFrontPannel2" unique_id=721241468]
-size = Vector2i(448, 342)
+size = Vector2i(1240, 670)
 render_target_update_mode = 4
+
+[node name="MockOfferTabletUi" parent="OfferTablet/Poles/TabletHolderPole/TabletTV/TvFrontPannel2/SubViewport" unique_id=2052056433 instance=ExtResource("39_bka8w")]
+
+[node name="PoleMoving" type="AudioStreamPlayer3D" parent="OfferTablet/Poles/TabletHolderPole" unique_id=1409410253]
+stream = ExtResource("37_rv2o6")
+volume_db = -5.0
+unit_size = 5.0
+pitch_scale = 1.2
+max_distance = 20.0
+
+[node name="TabletInteractArea" type="Area3D" parent="OfferTablet/Poles/TabletHolderPole" unique_id=1772310095 groups=["hologram_interact_area"]]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+collision_layer = 131072
+collision_mask = 0
+script = ExtResource("38_2txlu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OfferTablet/Poles/TabletHolderPole/TabletInteractArea" unique_id=1271720393]
+shape = SubResource("BoxShape3D_kcyeb")
 
 [node name="FoldingDoorMeshes" type="Node3D" parent="OfferTablet" unique_id=130677836]
 
@@ -1414,6 +1482,185 @@ mesh = SubResource("ArrayMesh_gyecf")
 [node name="DoorR" type="MeshInstance3D" parent="OfferTablet/FoldingDoorMeshes" unique_id=599467523]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901946, 7.45, 6.298774)
 mesh = SubResource("ArrayMesh_jkgvf")
+
+[node name="OfferUi" type="Control" parent="." unique_id=240568422]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlurBg" type="ColorRect" parent="OfferUi" unique_id=494436698]
+material = SubResource("ShaderMaterial_730rl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1240.0
+offset_bottom = 680.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ExitHeader" type="Control" parent="OfferUi" unique_id=1041650409]
+anchors_preset = 0
+offset_top = -64.0
+offset_right = 40.0
+offset_bottom = -24.0
+
+[node name="BG" type="ColorRect" parent="OfferUi/ExitHeader" unique_id=1807441409]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 72.0
+offset_right = 1248.0
+offset_bottom = 112.0
+color = Color(0.39, 0.18251999, 0.06240001, 1)
+
+[node name="ExitBtn" type="ColorRect" parent="OfferUi/ExitHeader" unique_id=1309207832]
+layout_mode = 0
+offset_left = 1148.0
+offset_top = 76.0
+offset_right = 1220.0
+offset_bottom = 108.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
+focus_mode = 2
+script = ExtResource("42_2u1cg")
+
+[node name="ExitLabel" type="Label" parent="OfferUi/ExitHeader/ExitBtn" unique_id=963600555]
+texture_filter = 1
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 32.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 24
+text = "x"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OfferBody" type="Control" parent="OfferUi" unique_id=1914773321]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="OfferUi/OfferBody" unique_id=1693094140]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 1248.0
+offset_bottom = 688.0
+color = Color(0.14463603, 0.10017032, 0.052838787, 1)
+
+[node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="DefaultTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1076116794]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1603714781]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 240.0
+offset_bottom = 144.0
+color = Color(0.6217913, 0.36503816, 0.21109548, 1)
+
+[node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=589363437]
+texture_filter = 1
+layout_mode = 0
+offset_left = 48.0
+offset_top = 69.0
+offset_right = 240.0
+offset_bottom = 104.0
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 30
+text = "Turns Left"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrTurn" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1929312186]
+texture_filter = 1
+layout_mode = 0
+offset_left = 83.0
+offset_top = 96.0
+offset_right = 133.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 30
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextTurn" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=332908700]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1dla4")
+layout_mode = 0
+offset_left = 158.0
+offset_top = 96.0
+offset_right = 208.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 30
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="Arrow" type="Sprite2D" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1145803670]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2u1cg")
+position = Vector2(143, 118)
+scale = Vector2(2.7499995, 2.0000002)
+texture = ExtResource("42_1dla4")
+
+[node name="LastTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1386474911]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect2" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=1849445935]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 144.0
+color = Color(0.6217913, 0.36503816, 0.21109548, 1)
+
+[node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=1887123390]
+texture_filter = 1
+material = SubResource("ShaderMaterial_8hdni")
+layout_mode = 0
+offset_left = 48.0
+offset_top = 72.0
+offset_right = 240.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(1, 0.060000002, 0.060000002, 1)
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 35
+text = "LAST
+TURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=400354233]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 72.0
+offset_right = 192.0
+offset_bottom = 144.0
+color = Color(1, 0, 0, 0.37254903)
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=1442438825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 3, 4.3)
@@ -1470,6 +1717,26 @@ volume_db = 10.0
 unit_size = 5.0
 pitch_scale = 1.2
 max_distance = 20.0
+
+[node name="PoleExspandStart" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=564845296]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8844366, 5.132324, 0.76534176)
+stream = ExtResource("47_r1744")
+max_distance = 20.0
+
+[node name="DoorOpen" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=770071493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8844366, 5.132324, 0.76534176)
+stream = ExtResource("48_xrvkk")
+max_distance = 25.0
+
+[node name="DoorClose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=683785977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8844366, 5.132324, 0.76534176)
+stream = ExtResource("49_4txwj")
+max_distance = 25.0
+
+[node name="TabletStart" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=338405497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8844366, -1.8676758, 0.76534176)
+stream = ExtResource("50_cyrsn")
+max_distance = 25.0
 
 [node name="DeleteMe" type="Node3D" parent="." unique_id=1604480785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901946, 0, 5.0339823)

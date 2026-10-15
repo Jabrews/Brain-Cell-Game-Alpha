@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bjrgxfg6kh0d1" path="res://scenes/ui/InputBtn.tscn" id="8_vnqvi"]
 [ext_resource type="Script" uid="uid://c4lwsm1lq7bw4" path="res://scripts/ui/player_cursor.gd" id="9_4kltc"]
 [ext_resource type="PackedScene" uid="uid://33d63f8ania3" path="res://scenes/ui/useable_item_popup.tscn" id="9_uegxj"]
+[ext_resource type="Script" uid="uid://b2qctp8cxtw4f" path="res://scripts/ui/view_offer_tablet.gd" id="10_qhbcy"]
 [ext_resource type="Shader" uid="uid://dt7lkosoh8nsh" path="res://scripts/shaders/hold_display.gdshader" id="10_swkix"]
 [ext_resource type="Script" uid="uid://cjop1t15syvqd" path="res://scripts/ui/sit_in_chair.gd" id="10_y220t"]
 [ext_resource type="Texture2D" uid="uid://drr5m73c47u2f" path="res://models/cursor/holding_btn.png" id="11_hc5d0"]
@@ -264,6 +265,43 @@ theme_override_font_sizes/font_size = 12
 text = "FPS COUNTER : "
 script = ExtResource("4_0dwhk")
 
+[node name="ViewOfferTablet" type="Control" parent="Labels" unique_id=851558058]
+visible = false
+texture_filter = 1
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 664.0
+offset_right = 1272.0
+offset_bottom = 714.0
+script = ExtResource("10_qhbcy")
+
+[node name="BG" type="ColorRect" parent="Labels/ViewOfferTablet" unique_id=1952805413]
+layout_mode = 0
+offset_left = 344.0
+offset_top = -16.0
+offset_right = 971.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="Labels/ViewOfferTablet" unique_id=1765699468]
+texture_filter = 1
+layout_mode = 0
+offset_left = 360.0
+offset_top = -8.0
+offset_right = 894.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To View Offer Tablet"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="Labels/ViewOfferTablet" unique_id=1359138110 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 483.0
+offset_top = -8.0
+offset_right = 483.0
+offset_bottom = -8.0
+
 [node name="UseableItemManager" type="Control" parent="." unique_id=1031581067]
 anchors_preset = 0
 offset_right = 40.0
@@ -323,7 +361,7 @@ theme_override_font_sizes/font_size = 50
 text = "Press      To Drop Item"
 horizontal_alignment = 1
 
-[node name="InputBtn" parent="UseableItemManager/DropItem" unique_id=1359138110 instance=ExtResource("8_vnqvi")]
+[node name="InputBtn" parent="UseableItemManager/DropItem" unique_id=1862197552 instance=ExtResource("8_vnqvi")]
 layout_mode = 0
 offset_left = 496.0
 offset_top = -8.0

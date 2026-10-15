@@ -34,6 +34,7 @@
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
+[ext_resource type="Script" uid="uid://xn3mt6fb4q2p" path="res://scripts/game_manager/offer_card_creator/offer_card_creator.gd" id="33_lp30k"]
 [ext_resource type="Script" uid="uid://dpxrm4asdg8ty" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/roll_to_exit_mutation_loop.gd" id="34_lp30k"]
 [ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/trigger_mutation_event.gd" id="35_lp30k"]
 [ext_resource type="Script" uid="uid://dppco6rsi6d8d" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/sort_best_cells.gd" id="35_r52yi"]
@@ -599,6 +600,9 @@ mutation_seen_manager = NodePath("../../../../MutationSeenManager")
 
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
+
+[node name="OfferCardCreator" type="Node" parent="GameManager" unique_id=1724378018]
+script = ExtResource("33_lp30k")
 
 [node name="TriggerMutationEvent" type="Node" parent="GameManager" unique_id=1034953006]
 script = ExtResource("35_lp30k")

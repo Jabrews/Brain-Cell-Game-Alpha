@@ -10,6 +10,11 @@ extends Node
 @onready var s_generate : AudioStreamPlayer3D = $Generate
 @onready var s_energy_alert_beep : AudioStreamPlayer3D = $EnergyAlertBeep
 @onready var s_finished_ideal_creator : AudioStreamPlayer3D = $FinishedIdealCreator
+@onready var s_pole_exspand_start : AudioStreamPlayer3D = $PoleExspandStart
+@onready var s_door_open : AudioStreamPlayer3D = $DoorOpen
+@onready var s_door_close : AudioStreamPlayer3D = $DoorClose
+@onready var s_tablet_start : AudioStreamPlayer3D = $TabletStart
+@onready var s_pole_moving : AudioStreamPlayer3D = $"../OfferTablet/Poles/TabletHolderPole/PoleMoving"
 
 
 
@@ -37,6 +42,25 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_energy_alert_beep.play()
 		'finished_ideal_creator' :
 			s_finished_ideal_creator.play()
+		'pole_exspand_start' : 
+			s_pole_exspand_start.play()
+		'door_open' :
+			s_door_open.play()
+		'door_close' :
+			s_door_close.play()
+		'tablet_start' :			
+			s_tablet_start.play()
+			
+		# pole moving
+		'start_pole_moving' :
+			s_pole_moving.play()
+		"stop_pole_moving":
+			var fade := create_tween()
+			fade.tween_property(s_pole_moving, "volume_db", -80.0, 0.3)
+			await fade.finished
+
+			s_pole_moving.stop()
+			s_pole_moving.volume_db = -5.0
 		_:
 			push_error("Unknown sound type: " + sound_type)
 

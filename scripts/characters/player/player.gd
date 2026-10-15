@@ -38,6 +38,8 @@ var speed : float = 15.0
 
 var is_paused : bool = false
 
+var player_froze : bool = false
+
 var starting_postion : Vector3
 
 
@@ -58,6 +60,11 @@ func _ready():
 	GLGameManagerBus.connect(
 		'reset_player_position',
 		_handle_reset_player_position
+	)
+
+	GLPlayerState.connect(
+		'toggle_freeze_player',
+		_handle_toggle_freeze_player
 	)
 	
 	GLMutationExsplosiveState.connect(
@@ -144,6 +151,9 @@ func _apply_controller_deadzone(input: Vector2) -> Vector2:
 
 func _physics_process(delta: float) -> void:
 	if is_paused:
+		return
+	
+	if player_froze : 
 		return
 	
 	
@@ -306,3 +316,6 @@ func _handle_toggle_pickup_reduce_player_senstivty(toggle_value : bool):
 	else:
 		mouse_sensitivity_x = saved_mouse_sensitivty_x
 		mouse_sensitivity_y = saved_mouse_sensitivty_y
+
+func _handle_toggle_freeze_player(toggle_value : bool) :
+	player_froze = toggle_value

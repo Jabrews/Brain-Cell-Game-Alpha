@@ -71,6 +71,7 @@ GLHideUiBus="*uid://dw707277cabio"
 GAMEInputTypeDetector="*uid://gcnqwkipjc5n"
 GLGoalThresholdManagerBus="*uid://dkrjpskp7jc7e"
 GLEndStateScreenBus="*uid://cnxm41ewax8eh"
+GLOfferCardCreatorBus="*uid://b423k08nifw4i"
 
 [debug]
 

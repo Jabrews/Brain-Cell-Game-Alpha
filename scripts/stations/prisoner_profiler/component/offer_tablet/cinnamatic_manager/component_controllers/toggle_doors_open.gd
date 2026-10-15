@@ -25,13 +25,23 @@ func _toggle(toggle_value: bool) -> void:
 	var right_target_x: float = CLOSE_ROTATION_X
 
 	if toggle_value:
+		
+
+		
 		left_target_x = LEFT_OPEN_ROTATION_X
 		right_target_x = RIGHT_OPEN_ROTATION_X
+	
+
 
 	_tween_doors_to(left_target_x, right_target_x)
 
 	await door_tween.finished
 	door_busy = false
+	
+	if not toggle_value : 
+		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'door_close')		
+	else : 
+		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'door_open')		
 
 
 func _tween_doors_to(

@@ -16,3 +16,5 @@ signal toggle_player_looking_at_axe_mount(toggle_value : bool)
 signal lock_player_position(toggle_value : bool)
 
 signal toggle_pickup_reduce_player_senstivty(toggle_value : bool)
+
+signal toggle_freeze_player(toggle_value : bool)
