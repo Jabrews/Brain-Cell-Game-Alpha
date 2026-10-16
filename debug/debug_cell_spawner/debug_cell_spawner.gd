@@ -12,7 +12,7 @@ func _ready() -> void:
 	# Cell 1
 	var cell_1: BrainCell = BrainCell.new(
 		"cell_1",
-		[],
+		[BrainCellMutation.new('airborne', true, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),],
 		BrainCellStat.new("strength", false, 0, 0, false),
 		BrainCellStat.new("intelligence", true, 300, 25, true),
 		BrainCellStat.new("community", true, 125, 0, true),
@@ -25,6 +25,7 @@ func _ready() -> void:
 		# Cell 1
 	var cell_2: BrainCell = BrainCell.new(
 		"cell_2",
+		#[BrainCellMutation.new('airborne', false, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),],
 		[],
 		BrainCellStat.new("strength", true, 320, 0, true),
 		BrainCellStat.new("intelligence", true, 275, 25, false),
@@ -77,7 +78,7 @@ func _ready() -> void:
 	var cells : Array[BrainCell] = []	
 	
 	cells.append(cell_1)
-	cells.append(cell_2)
+	#cells.append(cell_2)
 	#cells.append(cell_3)
 	#cells.append(cell_4)
 	#cells.append(cell_three)

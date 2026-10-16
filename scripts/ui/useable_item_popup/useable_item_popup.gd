@@ -16,10 +16,9 @@ var active_useable_item_obj : UseableItemObject
 
 
 # type specific
-# defect shot
 @onready var defect_shot_node : Control = $DefectShot
 @onready var hidden_shot_node : Control = $HiddenShot
-@onready var scissors_node : Control = $Scissors
+@onready var popup_mutation_manager : Control = $PopupMutationManager
 
 @onready var defect_shot_charges_left_label : Label = $DefectShot/ChargestLeft
 @onready var hidden_shot_charges_left_label : Label = $HiddenShot/ChargestLeft
@@ -30,10 +29,10 @@ func _ready() -> void:
 	
 	if popup_type != 'defect_shot' :
 		defect_shot_node.queue_free()
-	if popup_type != 'scissors' : 
-		scissors_node.queue_free()
-	if popup_type != 'hidden_shot' : 
+	if popup_type != 'hidden_shot' :
 		hidden_shot_node.queue_free()
+	if popup_type != 'scissors' and popup_type != 'hidden_shot':
+		popup_mutation_manager.queue_free()
 		
 		
 	
@@ -63,15 +62,22 @@ func _handle_show_useable_item_pop_up(selected_cell: BrainCell, useable_item_obj
 		defect_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
 	elif popup_type == 'hidden_shot' : 
 		hidden_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
+		popup_mutation_manager._init_mutations(selected_cell.mutations)
 	elif popup_type == 'scissors' :
-		scissors_node.popup_mutation_manager._init_mutations(selected_cell.mutations)
+		popup_mutation_manager._init_mutations(selected_cell.mutations)
 		
 func _handle_pop_up_stat_selected(stat_type : String) :
 	GLUsableItemBus.emit_signal('pop_up_chose_stat', stat_type, active_cell, active_useable_item_obj)
 	hide_popup()
 
 func _handle_pop_up_mutation_selected(mutation_type : String) : 
-	GLUsableItemBus.emit_signal('scissors_pop_up_chose_mutation', mutation_type, active_cell, active_useable_item_obj)
+	
+	if popup_type == 'hidden_shot' :
+		GLUsableItemBus.emit_signal('hidden_shot_pop_up_chose_mutation', mutation_type, active_cell, active_useable_item_obj)
+	
+	elif popup_type == 'scissors' : 
+		GLUsableItemBus.emit_signal('scissors_pop_up_chose_mutation', mutation_type, active_cell, active_useable_item_obj)
+
 	hide_popup()
 	
 	

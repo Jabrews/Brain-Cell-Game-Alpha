@@ -4,6 +4,7 @@ extends Control
 
 var stat_hovered_over : bool = false
 var stat_disabled : bool = false
+var loaded_stat : BrainCellStat 
 
 # components
 @onready var highlight : Sprite2D = $Highlight
@@ -11,6 +12,7 @@ var stat_disabled : bool = false
 @onready var defect_bar : TextureProgressBar = $DefectBar
 @onready var hide_stat : Sprite2D = $Hide
 @onready var off_parent : Control = $Off
+@onready var parent_usable_item_popup : Control = $".."
 
 func _ready() -> void:
 	bar.mouse_entered.connect(_handle_mouse_entered)
@@ -27,6 +29,11 @@ func _process(_delta: float) -> void:
 	
 	if stat_hovered_over:
 		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed('interact'):
+			
+			if parent_usable_item_popup.popup_type == 'hidden_shot' :	
+				if not loaded_stat.hidden :
+					return
+			
 			get_parent()._handle_pop_up_stat_selected(stat_type)
 
 
@@ -46,7 +53,10 @@ func _handle_mouse_exited() -> void:
 func handle_display_stat_info(stat : BrainCellStat) -> void:
 	if stat == null:
 		reset_stat()
+		loaded_stat = null
 		return
+	
+	loaded_stat = stat
 	
 	var max_val : float = IVCellCreator.max_stat_value
 	

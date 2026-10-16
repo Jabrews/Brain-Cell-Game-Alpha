@@ -16,6 +16,7 @@ var held_useable_item_obj : UseableItemObject
 func _ready() -> void:
 	GLUsableItemBus.connect('pop_up_chose_stat', _handle_pop_up_chose_stat)
 	GLUsableItemBus.connect('scissors_pop_up_chose_mutation', _handle_scissors_pop_up_chose_mutation)
+	GLUsableItemBus.connect('hidden_shot_pop_up_chose_mutation', _handle_hidden_shot_pop_up_chose_mutation)
 
 func _process(_delta):
 
@@ -98,8 +99,6 @@ func handle_item_use(collider) -> void:
 	## HIDDEN SHOT ###
 	elif held_useable_item_obj.item_type == 'hidden_shot':
 		GLUsableItemBus.emit_signal('show_useable_item_pop_up', collider.designated_brain_cell, held_useable_item_obj)
-		#use_hidden_shot.use(collider, held_useable_item_obj)
-		#handle_item_used_up()
 	
 	## STERIOD ###
 	elif held_useable_item_obj.item_type == 'steroid' :
@@ -166,4 +165,12 @@ func _handle_scissors_pop_up_chose_mutation(selected_mutation_type: String, sele
 	
 	use_scissors.use_mutation(selected_mutation_type, selected_cell, useable_item_obj)
 	handle_item_used_up()
+
+func _handle_hidden_shot_pop_up_chose_mutation(selected_mutation_type: String, selected_cell : BrainCell, useable_item_obj : UseableItemObject) :
+	if not useable_item_obj.item_type == 'hidden_shot' :
+		push_error('somehow chose mutation without being hidden shot')
+	
+	var item_used_up = use_hidden_shot.use_mutation(selected_mutation_type, selected_cell, useable_item_obj)
+	if item_used_up : 
+		handle_item_used_up()
 	

@@ -9,6 +9,7 @@ func _ready() -> void:
 func connect_signals() : 
 	GLUsableItemBus.connect('use_defect_shot', _handle_use_defect_shot)
 	GLUsableItemBus.connect('use_hidden_shot', _handle_use_hidden_shot)
+	GLUsableItemBus.connect('use_hidden_shot_mutation', _handle_use_hidden_shot_mutation)
 	GLUsableItemBus.connect('use_steroid', _handle_use_steroid)
 	GLUsableItemBus.connect('use_ice_cube', _handle_use_icecube)
 	GLUsableItemBus.connect('use_scissors_stat', _handle_use_scissors_stat)
@@ -136,6 +137,24 @@ func _handle_use_scissors_mutation(selected_cell : BrainCell, _useable_item_obj 
 	GLCellManagerBus.emit_signal('cell_changed', selected_cell)
 	
 	
+
+func _handle_use_hidden_shot_mutation(selected_cell: BrainCell, _useable_item_obj: UseableItemObject, selected_mutation_type: String) -> void:
+	var selected_mutation: BrainCellMutation
+
+	for mutation: BrainCellMutation in selected_cell.mutations:
+		if mutation.type == selected_mutation_type:
+			selected_mutation = mutation
+			break
+
+	if not selected_mutation:
+		push_error(
+			"Mutation not found: %s | Cell: %s"
+			% [selected_mutation_type, selected_cell.name]
+		)
+		return
+
+	selected_mutation.hidden = false
+	GLCellManagerBus.emit_signal("cell_changed", selected_cell)
 	
 	
 	

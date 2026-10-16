@@ -13,10 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="10_g1fx7"]
 [ext_resource type="Texture2D" uid="uid://dv8i84kr582qj" path="res://models/scissors_popup/exit.png" id="12_s0cho"]
 [ext_resource type="Script" uid="uid://scbmh0aiw62t" path="res://scripts/ui/useable_item_popup/exit_btn.gd" id="13_26dn3"]
-[ext_resource type="Script" uid="uid://coic4vmxej8nr" path="res://scripts/ui/useable_item_popup/scissors/scissors.gd" id="14_nr6rx"]
 [ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="14_oag2g"]
-[ext_resource type="Script" uid="uid://dln0wjb2ik51x" path="res://scripts/ui/useable_item_popup/scissors/popup_mutation_manager.gd" id="14_oiwfp"]
-[ext_resource type="Script" uid="uid://da773r2u25dto" path="res://scripts/ui/useable_item_popup/scissors/mutation_card.gd" id="16_jw7ry"]
+[ext_resource type="Script" uid="uid://dln0wjb2ik51x" path="res://scripts/ui/useable_item_popup/popup_mutation_manager/popup_mutation_manager.gd" id="14_oiwfp"]
+[ext_resource type="Script" uid="uid://da773r2u25dto" path="res://scripts/ui/useable_item_popup/popup_mutation_manager/mutation_card.gd" id="16_jw7ry"]
 [ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="16_l3a33"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="17_fr6x8"]
 [ext_resource type="Texture2D" uid="uid://cjnkhlkl7scb" path="res://models/scissors_popup/mutations_highlight.png" id="19_lmn1t"]
@@ -434,212 +433,6 @@ theme_override_fonts/font = ExtResource("2_oag2g")
 theme_override_font_sizes/font_size = 16
 text = "3"
 
-[node name="Scissors" type="Control" parent="." unique_id=1507897016]
-anchors_preset = 0
-offset_left = 264.0
-offset_right = 304.0
-offset_bottom = 40.0
-script = ExtResource("14_nr6rx")
-
-[node name="PopupMutationManager" type="Control" parent="Scissors" unique_id=511281291]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("14_oiwfp")
-
-[node name="GetMutationSymbol" type="Node" parent="Scissors/PopupMutationManager" unique_id=1784778114]
-script = ExtResource("16_l3a33")
-
-[node name="NoMutationsFound" type="Control" parent="Scissors/PopupMutationManager" unique_id=554823047]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BlurBg" type="ColorRect" parent="Scissors/PopupMutationManager/NoMutationsFound" unique_id=1964705778]
-material = SubResource("ShaderMaterial_6o3yp")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 856.0
-offset_bottom = 536.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ChargestLeft" type="Label" parent="Scissors/PopupMutationManager/NoMutationsFound" unique_id=1704623808]
-texture_filter = 1
-layout_mode = 0
-offset_left = 718.0
-offset_top = 244.0
-offset_right = 908.0
-offset_bottom = 356.0
-theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 19
-text = "No 
-
-Mutations 
-
-Found"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MutationCard1" type="Control" parent="Scissors/PopupMutationManager" unique_id=405342848]
-anchors_preset = 0
-offset_left = 8.0
-offset_right = 48.0
-offset_bottom = 40.0
-script = ExtResource("16_jw7ry")
-
-[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=255427993]
-layout_mode = 0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 872.0
-offset_bottom = 192.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=770131417]
-layout_mode = 0
-offset_left = 720.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 184.0
-focus_mode = 2
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=536864818]
-texture_filter = 1
-layout_mode = 0
-offset_left = 720.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 184.0
-mouse_filter = 2
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=409357691]
-texture_filter = 1
-position = Vector2(792, 110)
-scale = Vector2(0.94736826, 1.0294119)
-texture = ExtResource("14_oag2g")
-
-[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard1" unique_id=891450947]
-visible = false
-layout_mode = 0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 872.0
-offset_bottom = 192.0
-mouse_filter = 2
-texture = ExtResource("19_lmn1t")
-expand_mode = 1
-
-[node name="MutationCard2" type="Control" parent="Scissors/PopupMutationManager" unique_id=599761293]
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 192.0
-offset_right = 48.0
-offset_bottom = 232.0
-script = ExtResource("16_jw7ry")
-
-[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1555471984]
-layout_mode = 0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 872.0
-offset_bottom = 192.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1600758361]
-layout_mode = 0
-offset_left = 720.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 184.0
-focus_mode = 2
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1561026798]
-texture_filter = 1
-layout_mode = 0
-offset_left = 720.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 184.0
-mouse_filter = 2
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=1484572996]
-texture_filter = 1
-position = Vector2(792, 110)
-scale = Vector2(0.94736826, 1.0294119)
-texture = ExtResource("14_oag2g")
-
-[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard2" unique_id=2016830430]
-visible = false
-layout_mode = 0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 872.0
-offset_bottom = 192.0
-mouse_filter = 2
-texture = ExtResource("19_lmn1t")
-expand_mode = 1
-
-[node name="MutationCard3" type="Control" parent="Scissors/PopupMutationManager" unique_id=746875013]
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 384.0
-offset_right = 48.0
-offset_bottom = 424.0
-script = ExtResource("16_jw7ry")
-
-[node name="BlackBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1969557567]
-layout_mode = 0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 872.0
-offset_bottom = 192.0
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1879526124]
-layout_mode = 0
-offset_left = 720.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 184.0
-focus_mode = 2
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=79056047]
-texture_filter = 1
-layout_mode = 0
-offset_left = 720.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 184.0
-mouse_filter = 2
-
-[node name="QuestionMarkSprite" type="Sprite2D" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=770453454]
-texture_filter = 1
-position = Vector2(792, 110)
-scale = Vector2(0.94736826, 1.0294119)
-texture = ExtResource("14_oag2g")
-
-[node name="Highlight" type="TextureRect" parent="Scissors/PopupMutationManager/MutationCard3" unique_id=1155806222]
-visible = false
-layout_mode = 0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 872.0
-offset_bottom = 192.0
-mouse_filter = 2
-texture = ExtResource("19_lmn1t")
-expand_mode = 1
-
 [node name="HiddenShot" type="Control" parent="." unique_id=108422791]
 anchors_preset = 0
 offset_left = -16.0
@@ -668,3 +461,203 @@ offset_bottom = 75.0
 theme_override_fonts/font = ExtResource("2_oag2g")
 theme_override_font_sizes/font_size = 16
 text = "3"
+
+[node name="PopupMutationManager" type="Control" parent="." unique_id=1389337297]
+anchors_preset = 0
+offset_left = 256.0
+offset_right = 296.0
+offset_bottom = 40.0
+script = ExtResource("14_oiwfp")
+
+[node name="GetMutationSymbol" type="Node" parent="PopupMutationManager" unique_id=608160000]
+script = ExtResource("16_l3a33")
+
+[node name="NoMutationsFound" type="Control" parent="PopupMutationManager" unique_id=351156237]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlurBg" type="ColorRect" parent="PopupMutationManager/NoMutationsFound" unique_id=1584709852]
+material = SubResource("ShaderMaterial_6o3yp")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 856.0
+offset_bottom = 536.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="ChargestLeft" type="Label" parent="PopupMutationManager/NoMutationsFound" unique_id=2139732089]
+texture_filter = 1
+layout_mode = 0
+offset_left = 718.0
+offset_top = 244.0
+offset_right = 908.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 19
+text = "No 
+
+Mutations 
+
+Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MutationCard1" type="Control" parent="PopupMutationManager" unique_id=153663129]
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+script = ExtResource("16_jw7ry")
+
+[node name="BlackBG" type="ColorRect" parent="PopupMutationManager/MutationCard1" unique_id=1854715703]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 872.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="PopupMutationManager/MutationCard1" unique_id=190542742]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+focus_mode = 2
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="PopupMutationManager/MutationCard1" unique_id=625861734]
+texture_filter = 1
+layout_mode = 0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+mouse_filter = 2
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="PopupMutationManager/MutationCard1" unique_id=804885182]
+texture_filter = 1
+position = Vector2(792, 110)
+scale = Vector2(0.94736826, 1.0294119)
+texture = ExtResource("14_oag2g")
+
+[node name="Highlight" type="TextureRect" parent="PopupMutationManager/MutationCard1" unique_id=157954020]
+visible = false
+layout_mode = 0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 872.0
+offset_bottom = 192.0
+mouse_filter = 2
+texture = ExtResource("19_lmn1t")
+expand_mode = 1
+
+[node name="MutationCard2" type="Control" parent="PopupMutationManager" unique_id=1972064439]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 192.0
+offset_right = 48.0
+offset_bottom = 232.0
+script = ExtResource("16_jw7ry")
+
+[node name="BlackBG" type="ColorRect" parent="PopupMutationManager/MutationCard2" unique_id=980792736]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 872.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="PopupMutationManager/MutationCard2" unique_id=917446951]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+focus_mode = 2
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="PopupMutationManager/MutationCard2" unique_id=1094760784]
+texture_filter = 1
+layout_mode = 0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+mouse_filter = 2
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="PopupMutationManager/MutationCard2" unique_id=1254315668]
+texture_filter = 1
+position = Vector2(792, 110)
+scale = Vector2(0.94736826, 1.0294119)
+texture = ExtResource("14_oag2g")
+
+[node name="Highlight" type="TextureRect" parent="PopupMutationManager/MutationCard2" unique_id=102484891]
+visible = false
+layout_mode = 0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 872.0
+offset_bottom = 192.0
+mouse_filter = 2
+texture = ExtResource("19_lmn1t")
+expand_mode = 1
+
+[node name="MutationCard3" type="Control" parent="PopupMutationManager" unique_id=353082827]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 384.0
+offset_right = 48.0
+offset_bottom = 424.0
+script = ExtResource("16_jw7ry")
+
+[node name="BlackBG" type="ColorRect" parent="PopupMutationManager/MutationCard3" unique_id=1986718479]
+layout_mode = 0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 872.0
+offset_bottom = 192.0
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="PopupMutationManager/MutationCard3" unique_id=1724781304]
+layout_mode = 0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+focus_mode = 2
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="PopupMutationManager/MutationCard3" unique_id=302457217]
+texture_filter = 1
+layout_mode = 0
+offset_left = 720.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 184.0
+mouse_filter = 2
+
+[node name="QuestionMarkSprite" type="Sprite2D" parent="PopupMutationManager/MutationCard3" unique_id=818355103]
+texture_filter = 1
+position = Vector2(792, 110)
+scale = Vector2(0.94736826, 1.0294119)
+texture = ExtResource("14_oag2g")
+
+[node name="Highlight" type="TextureRect" parent="PopupMutationManager/MutationCard3" unique_id=999100967]
+visible = false
+layout_mode = 0
+offset_left = 712.0
+offset_top = 32.0
+offset_right = 872.0
+offset_bottom = 192.0
+mouse_filter = 2
+texture = ExtResource("19_lmn1t")
+expand_mode = 1

@@ -8,7 +8,7 @@ extends Control
 @onready var red_bg : ColorRect = $RedBG
 
 # parent component
-@onready var parent_useable_item_popup : Control = $"../../.."
+@onready var parent_useable_item_popup : Control = $"../.."
 
 
 var loaded_mutation : BrainCellMutation 
@@ -23,6 +23,11 @@ func _ready() -> void:
 func _process(_delta: float) -> void: 
 	if hover_active : 
 		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
+			
+			if parent_useable_item_popup.popup_type == 'hidden_shot' : 
+				if not loaded_mutation.hidden :
+					return
+			
 			parent_useable_item_popup._handle_pop_up_mutation_selected(loaded_mutation.type)
 			
 	
