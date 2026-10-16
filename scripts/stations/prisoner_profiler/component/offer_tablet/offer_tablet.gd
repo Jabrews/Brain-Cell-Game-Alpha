@@ -1,6 +1,7 @@
 extends Node
 
 # components
+@onready var parent_prisoner_profiler : Node3D = $"../.."
 @onready var display_turns_left : Node = $DisplayTurnsLeft
 
 var current_offer_cards : Array[OfferCard] = []
@@ -12,7 +13,8 @@ func _ready() -> void:
 
 func _start() :
 	
-	GLOfferCardCreatorBus.emit_signal('create_offer_cards')		
+	var ideal_stats : Array[IdealStat] = parent_prisoner_profiler.get_finalized_ideal_stats()
+	GLOfferCardCreatorBus.emit_signal('create_offer_cards', ideal_stats)		
 	
 	display_turns_left._display()
 

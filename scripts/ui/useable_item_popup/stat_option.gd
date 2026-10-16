@@ -10,7 +10,7 @@ var stat_disabled : bool = false
 @onready var bar : TextureRect = $Bar
 @onready var defect_bar : TextureProgressBar = $DefectBar
 @onready var hide_stat : Sprite2D = $Hide
-
+@onready var off_parent : Control = $Off
 
 func _ready() -> void:
 	bar.mouse_entered.connect(_handle_mouse_entered)
@@ -55,11 +55,14 @@ func handle_display_stat_info(stat : BrainCellStat) -> void:
 		stat_disabled = true
 		stat_hovered_over = false
 		highlight.visible = false
-		visible = false
+		off_parent.visible = true
+		defect_bar.visible = false
 		return
 	
 	stat_disabled = false
 	visible = true
+	off_parent.visible = false
+	defect_bar.visible = true
 	
 	# hidden icon
 	hide_stat.visible = stat.hidden

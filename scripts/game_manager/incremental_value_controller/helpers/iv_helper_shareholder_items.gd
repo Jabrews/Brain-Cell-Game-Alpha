@@ -12,7 +12,7 @@ func _update_shareholder_items(round: int, goal_piece: int) -> void:
 			),
 			UseableOfferItem.new(
 				"hidden_shot",
-				"Reveals all hidden stats on a cell container."
+				"Reveal a chosen hidden stat on a cell container, 3 charges total"
 			),
 			UseableOfferItem.new(
 				"steroid",

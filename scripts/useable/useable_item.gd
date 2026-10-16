@@ -68,13 +68,8 @@ func load_item_sprite():
 func load_item_energy():
 	# if already has energy (dropped item), respect it
 	if designated_useable_item_obj.item_has_energy:
-		energy_left_label.text = 'energy left : ' + str(designated_useable_item_obj.item_energy)
+		energy_left_label.text = str(designated_useable_item_obj.item_energy)
 		return
-	
-	# default spawn behavior
-	#if designated_useable_item_obj.item_type == 'defect_shot':
-		#designated_useable_item_obj.item_has_energy = true
-		#designated_useable_item_obj.item_energy = 3
 	
 	else  :
 		designated_useable_item_obj.item_has_energy = false
@@ -92,7 +87,7 @@ func load_item_tip_text() :
 			tip_text = 'Decreases a chosen stat on a cell container by 15 percant, 3 charges total'
 
 		'hidden_shot':
-			tip_text = 'Reveals all hidden stats on a cell container.'
+			tip_text = 'Reveal a hidden stat on a cell container, 3 charges total'
 
 		'steroid':
 			tip_text = 'Increases the clean and defect values of a cell container by 30%.'

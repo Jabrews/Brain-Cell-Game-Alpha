@@ -32,5 +32,8 @@ func handle_ideal_stats_finished(
 	
 	toggle_offer_tablet_enabled._toggle(true)
 	
+
+func get_finalized_ideal_stats() -> Array[IdealStat] :
+	return [strength_ideal_stat, intelligence_ideal_stat, community_ideal_stat]
 	
 	

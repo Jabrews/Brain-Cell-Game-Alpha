@@ -1,9 +1,6 @@
 [gd_scene format=3 uid="uid://cilrrnnw5ggmd"]
 
-[ext_resource type="Texture2D" uid="uid://b7fpfcpiqgvw7" path="res://models/shareholder_demand_provider/card_bg.png" id="2_654yc"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_ljcj6"]
-[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_ojuym"]
-[ext_resource type="Texture2D" uid="uid://b2vqkhvvch5hx" path="res://models/shareholder_demand_provider/prisoner_effect.png" id="5_s7kq6"]
 
 [node name="MockOfferTabletUi" type="Node2D" unique_id=2052056433]
 
@@ -19,7 +16,7 @@ layout_mode = 0
 offset_top = 72.0
 offset_right = 1248.0
 offset_bottom = 112.0
-color = Color(0.39, 0.18251999, 0.06240001, 1)
+color = Color(0.12156863, 0.007843138, 0, 1)
 
 [node name="ExitBtn" type="ColorRect" parent="ExitHeader" unique_id=104060624]
 layout_mode = 0
@@ -58,7 +55,7 @@ layout_mode = 0
 offset_top = 48.0
 offset_right = 1248.0
 offset_bottom = 688.0
-color = Color(0.14463603, 0.10017032, 0.052838787, 1)
+color = Color(0.18, 0.009000002, 0, 1)
 
 [node name="TurnsLeftDisplay" type="Control" parent="OfferBody" unique_id=532377846]
 anchors_preset = 0
@@ -66,13 +63,13 @@ offset_top = -16.0
 offset_right = 40.0
 offset_bottom = 24.0
 
-[node name="ColorRect" type="ColorRect" parent="OfferBody/TurnsLeftDisplay" unique_id=680690413]
+[node name="ColorRect2" type="ColorRect" parent="OfferBody/TurnsLeftDisplay" unique_id=1808431739]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 1040.0
 offset_top = 72.0
-offset_right = 208.0
-offset_bottom = 144.0
-color = Color(0.6217913, 0.36503816, 0.21109548, 1)
+offset_right = 1232.0
+offset_bottom = 136.0
+color = Color(0.36078432, 0.019607844, 0, 1)
 
 [node name="Cards" type="Control" parent="." unique_id=1465949043]
 layout_mode = 3
@@ -80,107 +77,26 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Card1Container" type="TextureRect" parent="Cards" unique_id=275538461]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
+[node name="CardBg" type="ColorRect" parent="Cards" unique_id=2064796147]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 136.0
-offset_right = 408.0
-offset_bottom = 608.0
-texture = ExtResource("2_654yc")
+offset_left = 64.0
+offset_top = 152.0
+offset_right = 352.0
+offset_bottom = 640.0
+color = Color(0.28, 0, 0.0140000535, 1)
 
-[node name="FlavorText" type="Label" parent="Cards/Card1Container" unique_id=4508375]
+[node name="CardBg2" type="ColorRect" parent="Cards" unique_id=420065671]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 296.0
-offset_right = 288.0
-offset_bottom = 440.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("4_ojuym")
-theme_override_font_sizes/font_size = 16
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
+offset_left = 888.0
+offset_top = 152.0
+offset_right = 1176.0
+offset_bottom = 640.0
+color = Color(0.28, 0, 0.0140000535, 1)
 
-[node name="TypeImage" type="TextureRect" parent="Cards/Card1Container" unique_id=1554435135]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 40.0
-offset_right = 272.0
-offset_bottom = 232.0
-texture = ExtResource("5_s7kq6")
-
-[node name="Card1Container2" type="TextureRect" parent="Cards" unique_id=1156445383]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
+[node name="CardBg3" type="ColorRect" parent="Cards" unique_id=674271014]
 layout_mode = 0
 offset_left = 472.0
-offset_top = 136.0
-offset_right = 792.0
-offset_bottom = 608.0
-texture = ExtResource("2_654yc")
-
-[node name="FlavorText" type="Label" parent="Cards/Card1Container2" unique_id=308297391]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 296.0
-offset_right = 288.0
-offset_bottom = 440.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("4_ojuym")
-theme_override_font_sizes/font_size = 16
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="TypeImage" type="TextureRect" parent="Cards/Card1Container2" unique_id=254540595]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 40.0
-offset_right = 272.0
-offset_bottom = 232.0
-texture = ExtResource("5_s7kq6")
-
-[node name="Card1Container3" type="TextureRect" parent="Cards" unique_id=706096875]
-process_mode = 3
-texture_filter = 1
-custom_minimum_size = Vector2(160, 250)
-layout_mode = 0
-offset_left = 856.0
-offset_top = 136.0
-offset_right = 1176.0
-offset_bottom = 608.0
-texture = ExtResource("2_654yc")
-
-[node name="FlavorText" type="Label" parent="Cards/Card1Container3" unique_id=982513861]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 296.0
-offset_right = 288.0
-offset_bottom = 440.0
-theme_override_colors/font_color = Color(0.7652549, 0.77916974, 0.8167452, 1)
-theme_override_constants/line_spacing = 0
-theme_override_constants/paragraph_spacing = 0
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("4_ojuym")
-theme_override_font_sizes/font_size = 16
-text = "Flavor Text is acutally really cool and i love it. it looks so great in this pixel font. omg nvm pls kill "
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="TypeImage" type="TextureRect" parent="Cards/Card1Container3" unique_id=1307883124]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 40.0
-offset_right = 272.0
-offset_bottom = 232.0
-texture = ExtResource("5_s7kq6")
+offset_top = 152.0
+offset_right = 760.0
+offset_bottom = 640.0
+color = Color(0.28, 0, 0.0140000535, 1)

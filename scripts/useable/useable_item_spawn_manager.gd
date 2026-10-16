@@ -18,7 +18,7 @@ func connect_signals():
 
 	GLUsableItemBus.connect("useable_item_dropped", _handle_useable_item_dropped)
 	GLUsableItemBus.connect('spawn_new_usable_items', spawn_turn_items)
-	# spawn item from shareholder offer
+	# spawn item from shareholder 
 	GLShareholderOfferState.connect('spawn_item_to_offer', _handle_spawn_item_to_offer)
 	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)	
 	
@@ -39,8 +39,8 @@ func spawn_turn_items():
 
 	spawn_item_type(
 		"hidden_shot",
-		false,
-		0,
+		true,
+		3,
 		IVUseableItemSpawner.hidden_shots_to_spawn
 	)
 
@@ -142,8 +142,8 @@ func _handle_spawn_item_to_offer(useable_offer_item : UseableOfferItem) :
 		'hidden_shot' :
 			spawn_item_type(
 				"hidden_shot",
-				false,
-				0,
+				true,
+				3,
 				1,
 			)
 		'steroid' :

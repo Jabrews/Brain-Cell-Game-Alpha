@@ -1,6 +1,49 @@
 extends Node
 
 var debug_offer_cards : Array[OfferCard] = [
+	PrisonerOfferCard.new(
+		PrisonerCardStat.new(30, 100, true),
+		PrisonerCardStat.new(50, 80, true),
+		PrisonerCardStat.new(0, 0, false),
+		50,
+		1,
+		3,
+		'',
+		[]
+	),
+	
+	PrisonerOfferCard.new(
+		PrisonerCardStat.new(0, 0, false),
+		PrisonerCardStat.new(50, 80, true),
+		PrisonerCardStat.new(30, 100, true),
+		25,
+		1,
+		4,
+		'Ass Eaters',
+		[]
+	),
+	
+	ShareholderItemsCard.new(
+		[
+			UseableOfferItem.new(
+				"defect_shot",
+				"Decreases a chosen stat on a cell container by 15 percent, 3 charges total."
+			),		
+			UseableOfferItem.new(
+				"hidden_shot",
+				"Reveal a chosen hidden stat on a cell container, 3 charges total"
+			),
+			UseableOfferItem.new(
+				"ice_cube",
+				"Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction."
+			),
+		]
+	)
+	
+	
+	
+	
+	
 	
 ]
 
@@ -12,9 +55,9 @@ func _ready() -> void:
 	GLOfferCardCreatorBus.connect('create_offer_cards', _handle_create_offer_cards)
 
 func _handle_create_offer_cards(
-	strength_ideal_stat : IdealStat,
-	intelligence_ideal_stat : IdealStat,
-	community_ideal_stat : IdealStat
+	_strength_ideal_stat : IdealStat,
+	_intelligence_ideal_stat : IdealStat,
+	_community_ideal_stat : IdealStat
 ) :
 	
-	GLOfferCardCreatorBus.emit_signal('recieve_offer_cards', [])	
+	GLOfferCardCreatorBus.emit_signal('recieve_offer_cards', debug_offer_cards)	

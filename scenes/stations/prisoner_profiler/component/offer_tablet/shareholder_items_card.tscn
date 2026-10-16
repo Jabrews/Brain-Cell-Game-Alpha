@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://3huu8bvp1wfh"]
+
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_eo1kp"]
+[ext_resource type="Texture2D" uid="uid://berqcmgeuh6fq" path="res://models/share_holder_offer_card/item_defect.png" id="2_ox5x2"]
+
+[node name="ShareholderItemsCard" type="Control" unique_id=1756943011]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardHover" type="ColorRect" parent="." unique_id=659105489]
+visible = false
+layout_mode = 0
+offset_left = 8.0
+offset_top = -8.0
+offset_right = 312.0
+offset_bottom = 496.0
+color = Color(0.99195784, 0.986504, 0.97414774, 1)
+
+[node name="CardBg" type="ColorRect" parent="." unique_id=1781540887]
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 384.0
+color = Color(0.28, 0, 0.0140000535, 1)
+
+[node name="CardTypeHeader" type="Control" parent="." unique_id=1732262603]
+anchors_preset = 0
+offset_left = -62.0
+offset_top = 9.0
+offset_right = -22.0
+offset_bottom = 49.0
+
+[node name="CardBg" type="ColorRect" parent="CardTypeHeader" unique_id=1699152944]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 2.0
+offset_right = 286.0
+offset_bottom = 47.0
+color = Color(0.79, 0.06952005, 0.031600017, 1)
+
+[node name="TypeLabel" type="Label" parent="CardTypeHeader" unique_id=1095041571]
+layout_mode = 0
+offset_left = 78.0
+offset_right = 286.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("1_eo1kp")
+theme_override_font_sizes/font_size = 30
+text = "Item Request"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ItemsPossible" type="Control" parent="." unique_id=1404352028]
+anchors_preset = 0
+offset_top = 16.0
+offset_right = 40.0
+offset_bottom = 56.0
+
+[node name="BG" type="ColorRect" parent="ItemsPossible" unique_id=2030352453]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 63.0
+offset_right = 224.0
+offset_bottom = 232.0
+color = Color(0.4392157, 0.07450981, 0.05882353, 1)
+
+[node name="ItemPossibleRect" type="TextureRect" parent="ItemsPossible" unique_id=1569262299]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 216.0
+offset_bottom = 224.0
+texture = ExtResource("2_ox5x2")
+expand_mode = 1
+
+[node name="BodyLabel" type="Label" parent="." unique_id=267776428]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 240.0
+offset_right = 224.0
+offset_bottom = 351.0
+theme_override_fonts/font = ExtResource("1_eo1kp")
+theme_override_font_sizes/font_size = 22
+text = "Pick one random piece of labware"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="BodyLabel2" type="Label" parent="." unique_id=1878809666]
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.0
+offset_top = 296.0
+offset_right = 224.0
+offset_bottom = 407.0
+theme_override_colors/font_color = Color(1, 0, 0, 0.7294118)
+theme_override_fonts/font = ExtResource("1_eo1kp")
+theme_override_font_sizes/font_size = 18
+text = "Note : select card to view list 
+of possible items"
+vertical_alignment = 1

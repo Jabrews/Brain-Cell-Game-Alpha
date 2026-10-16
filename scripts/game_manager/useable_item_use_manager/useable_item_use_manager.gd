@@ -59,17 +59,17 @@ func _handle_use_defect_shot(selected_brain_cell : BrainCell, _useable_item_obj 
 	)
 
 	
-func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject) : 
-	selected_brain_cell.strength.hidden = false
-	selected_brain_cell.intelligence.hidden = false
-	selected_brain_cell.community.hidden= false
+func _handle_use_hidden_shot(selected_brain_cell : BrainCell, _useable_item_obj : UseableItemObject, selected_stat : String) : 
 	
-	for mutation : BrainCellMutation in selected_brain_cell.mutations : 	
-		mutation.hidden = false 
-		if mutation.type == 'none' : 
-			selected_brain_cell.mutations.erase(mutation)
+	var cell_stat : BrainCellStat = selected_brain_cell.get_stat(selected_stat)
 	
-	GLMutationSentientState.emit_signal('item_used_on_cell', 'hidden_shot', selected_brain_cell.name)	
+	if not cell_stat : 
+		push_error('unable to find stat : ', selected_stat)	
+		return
+	
+	cell_stat.hidden = false
+	
+	#GLMutationSentientState.emit_signal('item_used_on_cell', 'hidden_shot', selected_brain_cell.name)	
 	
 	GLCellManagerBus.emit_signal('cell_changed', selected_brain_cell)
 	

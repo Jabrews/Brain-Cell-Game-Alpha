@@ -427,6 +427,15 @@ offset_right = 32.0
 offset_bottom = 64.0
 popup_type = "scissors"
 
+[node name="HiddenPopUp" parent="UseableItemPopUps" unique_id=132183579 instance=ExtResource("9_uegxj")]
+visible = false
+layout_mode = 1
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 32.0
+offset_bottom = 64.0
+popup_type = "hidden_shot"
+
 [node name="BloodOverlay" type="Sprite2D" parent="." unique_id=505335901]
 modulate = Color(1, 1, 1, 0)
 texture_filter = 1

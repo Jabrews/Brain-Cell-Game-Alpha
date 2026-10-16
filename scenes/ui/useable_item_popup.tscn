@@ -49,6 +49,9 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y6twq"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fr6x8"]
+load_path = "res://.godot/imported/progress_bar_under.png-a4ddba47758af10b1c8dd6544faba67e.ctex"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6o3yp"]
 shader = ExtResource("17_fr6x8")
 shader_parameter/blur_amount = 3.0000001425
@@ -167,6 +170,39 @@ position = Vector2(560, 192)
 scale = Vector2(2.336508, 2)
 texture = SubResource("CompressedTexture2D_y6twq")
 
+[node name="Off" type="Control" parent="Strength" unique_id=264910886]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="TextureRect" parent="Strength/Off" unique_id=47850611]
+modulate = Color(0.72, 0.72, 0.72, 0.9647059)
+texture_filter = 1
+layout_mode = 0
+offset_left = 191.99998
+offset_top = 152.0
+offset_right = 771.21124
+offset_bottom = 208.07887
+scale = Vector2(1.2706935, 1.1412497)
+focus_mode = 2
+texture = SubResource("CompressedTexture2D_fr6x8")
+
+[node name="StrengthOffLabel" type="Label" parent="Strength/Off" unique_id=2045285459]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 169.0
+offset_right = 928.0
+offset_bottom = 196.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 27
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Intelligence" type="Control" parent="." unique_id=200129578]
 anchors_preset = 0
 offset_left = -16.0
@@ -228,6 +264,39 @@ material = SubResource("ShaderMaterial_5skub")
 position = Vector2(560, 192)
 scale = Vector2(2.336508, 2)
 texture = SubResource("CompressedTexture2D_y6twq")
+
+[node name="Off" type="Control" parent="Intelligence" unique_id=2022828709]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="TextureRect" parent="Intelligence/Off" unique_id=1089193161]
+modulate = Color(0.72, 0.72, 0.72, 0.9647059)
+texture_filter = 1
+layout_mode = 0
+offset_left = 191.99998
+offset_top = 152.0
+offset_right = 771.21124
+offset_bottom = 208.07887
+scale = Vector2(1.2706935, 1.1412497)
+focus_mode = 2
+texture = SubResource("CompressedTexture2D_fr6x8")
+
+[node name="StrengthOffLabel" type="Label" parent="Intelligence/Off" unique_id=1469675506]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 169.0
+offset_right = 928.0
+offset_bottom = 196.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 27
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Community" type="Control" parent="." unique_id=1038952386]
 anchors_preset = 0
@@ -291,6 +360,39 @@ position = Vector2(560, 192)
 scale = Vector2(2.336508, 2)
 texture = SubResource("CompressedTexture2D_y6twq")
 
+[node name="Off" type="Control" parent="Community" unique_id=1469942072]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bar" type="TextureRect" parent="Community/Off" unique_id=32822500]
+modulate = Color(0.72, 0.72, 0.72, 0.9647059)
+texture_filter = 1
+layout_mode = 0
+offset_left = 191.99998
+offset_top = 152.0
+offset_right = 771.21124
+offset_bottom = 208.07887
+scale = Vector2(1.2706935, 1.1412497)
+focus_mode = 2
+texture = SubResource("CompressedTexture2D_fr6x8")
+
+[node name="StrengthOffLabel" type="Label" parent="Community/Off" unique_id=140714240]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 169.0
+offset_right = 928.0
+offset_bottom = 196.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 27
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ExitBtn" type="TextureRect" parent="." unique_id=311109360]
 texture_filter = 1
 layout_mode = 0
@@ -311,6 +413,7 @@ offset_right = 24.0
 offset_bottom = 48.0
 
 [node name="ChargesLeftText" type="Label" parent="DefectShot" unique_id=38418678]
+texture_filter = 1
 layout_mode = 0
 offset_left = 134.0
 offset_top = 52.0
@@ -321,6 +424,7 @@ theme_override_font_sizes/font_size = 16
 text = "Charges Left -"
 
 [node name="ChargestLeft" type="Label" parent="DefectShot" unique_id=1476966604]
+texture_filter = 1
 layout_mode = 0
 offset_left = 360.0
 offset_top = 52.0
@@ -535,3 +639,32 @@ offset_bottom = 192.0
 mouse_filter = 2
 texture = ExtResource("19_lmn1t")
 expand_mode = 1
+
+[node name="HiddenShot" type="Control" parent="." unique_id=108422791]
+anchors_preset = 0
+offset_left = -16.0
+offset_top = 8.0
+offset_right = 24.0
+offset_bottom = 48.0
+
+[node name="ChargesLeftText" type="Label" parent="HiddenShot" unique_id=629683579]
+texture_filter = 1
+layout_mode = 0
+offset_left = 134.0
+offset_top = 52.0
+offset_right = 326.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 16
+text = "Charges Left -"
+
+[node name="ChargestLeft" type="Label" parent="HiddenShot" unique_id=591832478]
+texture_filter = 1
+layout_mode = 0
+offset_left = 360.0
+offset_top = 52.0
+offset_right = 552.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 16
+text = "3"

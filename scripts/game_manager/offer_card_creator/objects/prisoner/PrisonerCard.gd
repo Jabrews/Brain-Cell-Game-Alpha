@@ -1,17 +1,42 @@
 extends OfferCard
-
 class_name PrisonerOfferCard
 
-var strength: PrisonerCardStat = PrisonerCardStat.new()
-var intelligence: PrisonerCardStat = PrisonerCardStat.new()
-var community: PrisonerCardStat = PrisonerCardStat.new()
 
-var defect_rate: int = 1 # Range: 1–100
-var prisoner_picks: int = 1
-var average_lifespan: int = 0
-var specialization: String = ""
+var strength: PrisonerCardStat
+var intelligence: PrisonerCardStat
+var community: PrisonerCardStat
 
-var prisoner_cells: Array[BrainCell] = []
+var defect_rate: int
+var prisoner_picks: int
+var average_lifespan: int
+var specialization: String
+var prisoner_cells: Array[BrainCell]
+
+
+func _init(
+	new_strength: PrisonerCardStat,
+	new_intelligence: PrisonerCardStat,
+	new_community: PrisonerCardStat,
+	
+	new_defect_rate: int = 1,
+	new_prisoner_picks: int = 1,
+	new_average_lifespan: int = 0,
+	new_specialization: String = "",
+	new_prisoner_cells: Array[BrainCell] = []
+) -> void:
+	
+	super("prisoner", "A standard prisoner card")
+
+	strength = new_strength
+	intelligence = new_intelligence
+	community = new_community
+	
+	defect_rate = new_defect_rate
+	prisoner_picks = new_prisoner_picks
+	average_lifespan = new_average_lifespan
+	specialization = new_specialization
+	prisoner_cells = new_prisoner_cells.duplicate()
+
 
 func print_card() -> void:
 	super.print_card()

@@ -56,6 +56,8 @@
 [ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
 [ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/flashing_texture.gdshader" id="42_8hdni"]
 [ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
+[ext_resource type="PackedScene" uid="uid://ltbxbex2isix" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/prisoner_card.tscn" id="47_rrybr"]
+[ext_resource type="PackedScene" uid="uid://3huu8bvp1wfh" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/shareholder_items_card.tscn" id="48_u6huw"]
 [ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
 [ext_resource type="AudioStream" uid="uid://rslpt20kiti5" path="res://sounds/prisoner_profiler/door_shut.mp3" id="49_4txwj"]
 [ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
@@ -1515,7 +1517,7 @@ offset_left = 32.0
 offset_top = 72.0
 offset_right = 1248.0
 offset_bottom = 112.0
-color = Color(0.39, 0.18251999, 0.06240001, 1)
+color = Color(0.12156863, 0.007843138, 0, 1)
 
 [node name="ExitBtn" type="ColorRect" parent="OfferUi/ExitHeader" unique_id=1309207832]
 layout_mode = 0
@@ -1554,13 +1556,24 @@ offset_left = 32.0
 offset_top = 48.0
 offset_right = 1248.0
 offset_bottom = 688.0
-color = Color(0.14463603, 0.10017032, 0.052838787, 1)
+color = Color(0.18, 0.009000002, 0, 1)
+
+[node name="Header" type="Label" parent="OfferUi/OfferBody" unique_id=736163179]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 56.0
+offset_right = 882.0
+offset_bottom = 124.0
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 60
+text = "Shareholder Offers :"
 
 [node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
 anchors_preset = 0
-offset_top = -8.0
-offset_right = 40.0
-offset_bottom = 32.0
+offset_left = 992.0
+offset_top = -16.0
+offset_right = 1032.0
+offset_bottom = 24.0
 
 [node name="DefaultTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1076116794]
 anchors_preset = 0
@@ -1572,8 +1585,8 @@ layout_mode = 0
 offset_left = 48.0
 offset_top = 72.0
 offset_right = 240.0
-offset_bottom = 144.0
-color = Color(0.6217913, 0.36503816, 0.21109548, 1)
+offset_bottom = 136.0
+color = Color(0.36078432, 0.019607844, 0, 1)
 
 [node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=589363437]
 texture_filter = 1
@@ -1661,6 +1674,39 @@ offset_top = 72.0
 offset_right = 192.0
 offset_bottom = 144.0
 color = Color(1, 0, 0, 0.37254903)
+
+[node name="CardViewer" type="Control" parent="OfferUi/OfferBody" unique_id=1941522102]
+anchors_preset = 0
+offset_left = 445.0
+offset_top = -5.0
+offset_right = 485.0
+offset_bottom = 35.000004
+
+[node name="PrisonerCard" parent="OfferUi/OfferBody/CardViewer" unique_id=408096993 instance=ExtResource("47_rrybr")]
+layout_mode = 1
+offset_left = 91.0
+offset_top = 199.0
+offset_right = 91.0
+offset_bottom = 199.0
+
+[node name="PrisonerCard2" parent="OfferUi/OfferBody/CardViewer" unique_id=1852333900 instance=ExtResource("47_rrybr")]
+layout_mode = 1
+offset_left = -261.0
+offset_top = 199.0
+offset_right = -261.0
+offset_bottom = 199.0
+
+[node name="ShareholderItemsCard" parent="OfferUi/OfferBody/CardViewer" unique_id=1756943011 instance=ExtResource("48_u6huw")]
+layout_mode = 1
+offset_left = 435.0
+offset_top = 197.0
+offset_right = 435.0
+offset_bottom = 197.0
+
+[node name="SelectedCardModal" type="Control" parent="OfferUi/OfferBody" unique_id=731327129]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=1442438825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 3, 4.3)

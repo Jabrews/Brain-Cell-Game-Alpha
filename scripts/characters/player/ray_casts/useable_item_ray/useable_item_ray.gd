@@ -97,9 +97,9 @@ func handle_item_use(collider) -> void:
 
 	## HIDDEN SHOT ###
 	elif held_useable_item_obj.item_type == 'hidden_shot':
-		
-		use_hidden_shot.use(collider, held_useable_item_obj)
-		handle_item_used_up()
+		GLUsableItemBus.emit_signal('show_useable_item_pop_up', collider.designated_brain_cell, held_useable_item_obj)
+		#use_hidden_shot.use(collider, held_useable_item_obj)
+		#handle_item_used_up()
 	
 	## STERIOD ###
 	elif held_useable_item_obj.item_type == 'steroid' :
@@ -150,6 +150,12 @@ func _handle_pop_up_chose_stat(selected_stat : String, selected_cell : BrainCell
 		var item_used_up = use_defect_shot.use(selected_stat, selected_cell, useable_item_obj)
 		if item_used_up :
 			handle_item_used_up()
+			
+	if useable_item_obj.item_type == 'hidden_shot' :
+		var item_used_up = use_hidden_shot.use(selected_stat, selected_cell, useable_item_obj)
+		if item_used_up :
+			handle_item_used_up()
+			
 	if useable_item_obj.item_type == 'scissors' :
 		use_scissors.use_stat(selected_stat, selected_cell, useable_item_obj)
 		handle_item_used_up()
