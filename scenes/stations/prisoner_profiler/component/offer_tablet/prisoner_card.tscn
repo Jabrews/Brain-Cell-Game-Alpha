@@ -14,9 +14,17 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ns7ao"]
 shader = ExtResource("4_fgbto")
-shader_parameter/low_opacity = 0.50000002375
+shader_parameter/base_value = 0.0
+shader_parameter/base_color = Color(0.76, 0.76, 0, 1)
+shader_parameter/base_opacity = 0.50000002375
+shader_parameter/yellow_min_value = 0.0
+shader_parameter/yellow_max_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_opacity = 0.85
+shader_parameter/edge_padding = 5.0
+shader_parameter/low_opacity = 0.6000000285
 shader_parameter/high_opacity = 1.0
-shader_parameter/fade_speed = 5.00000023424012
+shader_parameter/fade_speed = 3.0000001392401203
 
 [node name="PrisonerCard" type="Control" unique_id=408096993]
 layout_mode = 3
