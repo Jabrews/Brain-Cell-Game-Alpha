@@ -40,9 +40,11 @@
 [ext_resource type="Script" uid="uid://pmc6282tiht4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_display_offer_ui.gd" id="22_toge2"]
 [ext_resource type="Script" uid="uid://dpg6xu8puix3a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/display/display_turns_left.gd" id="23_8hdni"]
 [ext_resource type="Script" uid="uid://c76uy3xav4sdo" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/preview_card_creation_factory.gd" id="25_k1kr7"]
+[ext_resource type="Script" uid="uid://ciixhggjkk4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/refresh_card_showcase.gd" id="26_s6kcd"]
 [ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
 [ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
+[ext_resource type="Script" uid="uid://bsfx8wu1anhrx" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/card_showcase_creation_factory.gd" id="27_y73jk"]
 [ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="28_vy86u"]
 [ext_resource type="AudioStream" uid="uid://cd1ew561fh1d3" path="res://sounds/prisoner_profiler/increment.mp3" id="29_uy7hd"]
 [ext_resource type="AudioStream" uid="uid://boiulgfftjxux" path="res://sounds/prisoner_profiler/lock_shake.mp3" id="30_gvbd7"]
@@ -626,9 +628,6 @@ script = ExtResource("14_uy7hd")
 [node name="OfferTablet" type="Node" parent="Logic" unique_id=1757081176]
 script = ExtResource("16_dd2e3")
 
-[node name="HandlePreviewCardSelected" type="Node" parent="Logic/OfferTablet" unique_id=163510125]
-script = ExtResource("17_u6huw")
-
 [node name="ToggleEnabled" type="Node" parent="Logic/OfferTablet" unique_id=1993524847]
 script = ExtResource("16_gyecf")
 
@@ -653,8 +652,17 @@ script = ExtResource("22_toge2")
 [node name="DisplayTurnsLeft" type="Node" parent="Logic/OfferTablet" unique_id=662539169]
 script = ExtResource("23_8hdni")
 
+[node name="HandlePreviewCardSelected" type="Node" parent="Logic/OfferTablet" unique_id=163510125]
+script = ExtResource("17_u6huw")
+
+[node name="RefreshCardShowcase" type="Node" parent="Logic/OfferTablet" unique_id=1590651502]
+script = ExtResource("26_s6kcd")
+
 [node name="PreviewCardCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1648568532]
 script = ExtResource("25_k1kr7")
+
+[node name="CardShowcaseCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1005080161]
+script = ExtResource("27_y73jk")
 
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
 
@@ -1599,18 +1607,39 @@ offset_right = 1248.0
 offset_bottom = 688.0
 color = Color(0.18, 0.009000002, 0, 1)
 
-[node name="CardInspector" type="Control" parent="OfferUi/OfferBody" unique_id=405900538]
+[node name="CardShowcase" type="Control" parent="OfferUi/OfferBody" unique_id=405900538]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="OfferUi/OfferBody/CardInspector" unique_id=1660439481]
+[node name="BG" type="ColorRect" parent="OfferUi/OfferBody/CardShowcase" unique_id=1660439481]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 48.0
 offset_right = 1248.0
 offset_bottom = 440.0
 color = Color(0.14, 0.0070000016, 0, 1)
+
+[node name="CardShowcaseParent" type="Control" parent="OfferUi/OfferBody/CardShowcase" unique_id=1633082963]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 72.0
+offset_bottom = 88.0
+
+[node name="HintSelectCardLabel" type="Label" parent="OfferUi/OfferBody/CardShowcase" unique_id=1025858822]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 1248.0
+offset_bottom = 440.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 35
+text = "Select Card To Preview"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
 anchors_preset = 0

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ucv4wxbydx5d"]
+
+[ext_resource type="Script" uid="uid://cgt5jt3fdhy02" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_showcase.gd" id="1_272ed"]
+
+[node name="PrisonerShowcase" type="Control" unique_id=1584234701]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_272ed")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1196740860]
+layout_mode = 0
+offset_right = 1216.0
+offset_bottom = 392.0
+color = Color(0.14, 0.0070000016, 0, 1)
+
+[node name="Label" type="Label" parent="." unique_id=3054457]
+texture_filter = 1
+layout_mode = 0
+offset_right = 1215.0
+offset_bottom = 390.0
+theme_override_font_sizes/font_size = 30
+text = "Prisoner Showcase"
+horizontal_alignment = 1
+vertical_alignment = 1

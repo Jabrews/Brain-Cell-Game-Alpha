@@ -7,6 +7,9 @@ extends Node
 	$"../../../OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2",
 	$"../../../OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3"
 ]
+@onready var refresh_card_showcase : Node = $"../RefreshCardShowcase"
+
+var selected_card_index : int = -1
 
 func handle(card_index: int) -> void:
 	
@@ -20,9 +23,15 @@ func handle(card_index: int) -> void:
 
 	# handle selected border
 	var selected_hover_parent: Control = preview_card_hover_parents[card_index]
-
 	selected_hover_parent._handle_selected()
+	
+	# find if it was selected on/off
+	if selected_hover_parent.border_state == 'selected' :
+		selected_card_index = card_index
+	else : 
+		selected_card_index = -1
 
+	# reset all other cards
 	for index in range(preview_card_hover_parents.size()):
 		if index == card_index:
 			continue
@@ -30,12 +39,4 @@ func handle(card_index: int) -> void:
 		preview_card_hover_parents[index]._reset()
 	
 	# handle offer showcase	
-	#var corresponding_offer_card: OfferCard = parent_offer_tablet.current_offer_cards[card_index]
-	
-	
-	
-	
-	
-	
-	
-	
+	refresh_card_showcase._refresh()

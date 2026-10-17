@@ -2,12 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bxl1ymfwywj2m" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/prisoner_preview_card.gd" id="1_g8cbj"]
 [ext_resource type="Script" uid="uid://ben6yc6u2b2sg" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/display_card.gd" id="2_ok26w"]
+[ext_resource type="Script" uid="uid://s2vli3iyymb2" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/display_alteration.gd" id="3_ok26w"]
 [ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="3_pojpf"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_kpuda"]
 [ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="5_qnviy"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_y3sct"]
 [ext_resource type="Shader" uid="uid://cnl7vq1hvsafm" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/clean_bar_texture.gdshader" id="7_s4e5r"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="8_v3t05"]
+[ext_resource type="Texture2D" uid="uid://ctxwjvoldy5yt" path="res://models/mutation_symbols/exsplosive.png" id="10_pojpf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_13b0c"]
 shader = ExtResource("3_pojpf")
@@ -38,6 +40,9 @@ script = ExtResource("1_g8cbj")
 
 [node name="DisplayCard" type="Node" parent="." unique_id=370093372]
 script = ExtResource("2_ok26w")
+
+[node name="DisplayAlteration" type="Node" parent="." unique_id=2061169715]
+script = ExtResource("3_ok26w")
 
 [node name="CardBg" type="ColorRect" parent="." unique_id=457453832]
 material = SubResource("ShaderMaterial_13b0c")
@@ -245,7 +250,7 @@ text = "OFF"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Mutations" type="Control" parent="." unique_id=1228377016]
+[node name="Alterations" type="Control" parent="." unique_id=1228377016]
 anchors_preset = 0
 offset_left = 211.0
 offset_top = 96.0
@@ -253,7 +258,7 @@ offset_right = 251.0
 offset_bottom = 136.0
 mouse_filter = 2
 
-[node name="NoMutationsFound" type="Control" parent="Mutations" unique_id=313090391]
+[node name="NoAlterationsFound" type="Control" parent="Alterations" unique_id=313090391]
 modulate = Color(1, 1, 1, 0.7411765)
 anchors_preset = 0
 offset_top = -15.0
@@ -261,28 +266,70 @@ offset_right = 40.0
 offset_bottom = 25.0
 mouse_filter = 2
 
-[node name="BodyBG2" type="ColorRect" parent="Mutations/NoMutationsFound" unique_id=628085113]
+[node name="BodyBG2" type="ColorRect" parent="Alterations/NoAlterationsFound" unique_id=628085113]
 layout_mode = 0
 offset_left = -22.0
 offset_top = 21.0
-offset_right = 47.0
-offset_bottom = 89.0
+offset_right = 51.0
+offset_bottom = 94.0
 mouse_filter = 2
 color = Color(0.4392157, 0.07450981, 0.05882353, 1)
 
-[node name="HeaderLabel" type="Label" parent="Mutations/NoMutationsFound" unique_id=1898084247]
+[node name="HeaderLabel" type="Label" parent="Alterations/NoAlterationsFound" unique_id=1898084247]
 texture_filter = 1
 layout_mode = 0
 offset_left = -20.0
 offset_top = 23.0
-offset_right = 47.0
-offset_bottom = 87.0
+offset_right = 51.0
+offset_bottom = 93.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("6_y3sct")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 16
 text = "No
-Mutations
+Alterations
 Found"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exsplosive" type="Control" parent="Alterations" unique_id=867089142]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="Alterations/Exsplosive" unique_id=1839311935]
+texture_filter = 1
+layout_mode = 0
+offset_left = -22.0
+offset_top = 6.0
+offset_right = 51.0
+offset_bottom = 79.0
+mouse_filter = 2
+color = Color(0.14901961, 0, 0.007843138, 1)
+
+[node name="ExsplosiveTextureRect" type="TextureRect" parent="Alterations/Exsplosive" unique_id=2032742682]
+texture_filter = 1
+layout_mode = 0
+offset_left = -19.0
+offset_top = 9.0
+offset_right = 43.0
+offset_bottom = 76.0
+mouse_filter = 2
+texture = ExtResource("10_pojpf")
+
+[node name="HeaderLabel" type="Label" parent="Alterations/Exsplosive" unique_id=1030938800]
+texture_filter = 1
+layout_mode = 0
+offset_left = -20.0
+offset_top = 7.0
+offset_right = 52.0
+offset_bottom = 26.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("6_y3sct")
+theme_override_font_sizes/font_size = 16
+text = "Exsplosive"
 horizontal_alignment = 1
 vertical_alignment = 1

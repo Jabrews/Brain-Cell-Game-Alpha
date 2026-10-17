@@ -19,7 +19,7 @@ var debug_offer_cards : Array[OfferCard] = [
 		25,
 		1,
 		4,
-		'Ass Eaters',
+		'exsplosive',
 		[]
 	),
 	

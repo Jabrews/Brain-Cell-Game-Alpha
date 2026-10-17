@@ -9,7 +9,7 @@ var community: PrisonerCardStat
 var defect_rate: int
 var prisoner_picks: int
 var average_lifespan: int
-var specialization: String
+var alteration : String
 var prisoner_cells: Array[BrainCell]
 
 
@@ -21,7 +21,7 @@ func _init(
 	new_defect_rate: int = 1,
 	new_prisoner_picks: int = 1,
 	new_average_lifespan: int = 0,
-	new_specialization: String = "",
+	new_alteration : String = "",
 	new_prisoner_cells: Array[BrainCell] = []
 ) -> void:
 	
@@ -34,7 +34,7 @@ func _init(
 	defect_rate = new_defect_rate
 	prisoner_picks = new_prisoner_picks
 	average_lifespan = new_average_lifespan
-	specialization = new_specialization
+	alteration = new_alteration
 	prisoner_cells = new_prisoner_cells.duplicate()
 
 
@@ -47,5 +47,5 @@ func print_card() -> void:
 	print("Defect rate: ", defect_rate)
 	print("Prisoner picks: ", prisoner_picks)
 	print("Average lifespan: ", average_lifespan)
-	print("Specialization: ", specialization)
+	print("Alteration : ", alteration)
 	print("Prisoner cells: ", prisoner_cells.size())

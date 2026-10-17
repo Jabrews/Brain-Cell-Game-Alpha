@@ -4,6 +4,7 @@ extends Node
 @onready var parent_prisoner_profiler : Node3D = $"../.."
 @onready var display_turns_left : Node = $DisplayTurnsLeft
 @onready var preview_card_creation_factory : Node = $PreviewCardCreationFactory
+@onready var card_showcase_creation_factory : Node = $CardShowcaseCreationFactory
 
 var current_offer_cards : Array[OfferCard] = []
 
@@ -22,4 +23,5 @@ func _handle_recieve_offer_cards(offer_cards : Array[OfferCard]) :
 	current_offer_cards = offer_cards
 	
 	preview_card_creation_factory._create_cards(current_offer_cards)
+	card_showcase_creation_factory._create_showcases(current_offer_cards)
 	
