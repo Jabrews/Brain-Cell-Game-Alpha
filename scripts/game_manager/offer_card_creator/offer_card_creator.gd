@@ -54,10 +54,6 @@ var debug_offer_cards : Array[OfferCard] = [
 func _ready() -> void:
 	GLOfferCardCreatorBus.connect('create_offer_cards', _handle_create_offer_cards)
 
-func _handle_create_offer_cards(
-	_strength_ideal_stat : IdealStat,
-	_intelligence_ideal_stat : IdealStat,
-	_community_ideal_stat : IdealStat
-) :
+func _handle_create_offer_cards(_ideal_stats : Array[IdealStat]) :
 	
 	GLOfferCardCreatorBus.emit_signal('recieve_offer_cards', debug_offer_cards)	

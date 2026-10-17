@@ -9,7 +9,7 @@ func _init(
 	new_items: Array[UseableOfferItem] = []
 ) -> void:
 	
-	super("shareholder_item", "Given 3 choices of items and player must choose one")
+	super("shareholder_items", "Given 3 choices of items and player must choose one")
 			
 	
 	

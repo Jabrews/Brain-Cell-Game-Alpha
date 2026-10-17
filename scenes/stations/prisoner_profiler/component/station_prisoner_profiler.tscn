@@ -38,6 +38,7 @@
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
 [ext_resource type="Script" uid="uid://pmc6282tiht4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_display_offer_ui.gd" id="22_toge2"]
 [ext_resource type="Script" uid="uid://dpg6xu8puix3a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/display/display_turns_left.gd" id="23_8hdni"]
+[ext_resource type="Script" uid="uid://c76uy3xav4sdo" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/card_creation_factory.gd" id="25_k1kr7"]
 [ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
 [ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
@@ -56,8 +57,6 @@
 [ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
 [ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/flashing_texture.gdshader" id="42_8hdni"]
 [ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
-[ext_resource type="PackedScene" uid="uid://ltbxbex2isix" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/prisoner_card.tscn" id="47_rrybr"]
-[ext_resource type="PackedScene" uid="uid://3huu8bvp1wfh" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/shareholder_items_card.tscn" id="48_u6huw"]
 [ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
 [ext_resource type="AudioStream" uid="uid://rslpt20kiti5" path="res://sounds/prisoner_profiler/door_shut.mp3" id="49_4txwj"]
 [ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
@@ -624,6 +623,9 @@ script = ExtResource("22_toge2")
 
 [node name="DisplayTurnsLeft" type="Node" parent="Logic/OfferTablet" unique_id=662539169]
 script = ExtResource("23_8hdni")
+
+[node name="CardCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1648568532]
+script = ExtResource("25_k1kr7")
 
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
 
@@ -1682,26 +1684,17 @@ offset_top = -5.0
 offset_right = 485.0
 offset_bottom = 35.000004
 
-[node name="PrisonerCard" parent="OfferUi/OfferBody/CardViewer" unique_id=408096993 instance=ExtResource("47_rrybr")]
-layout_mode = 1
-offset_left = 91.0
-offset_top = 199.0
-offset_right = 91.0
-offset_bottom = 199.0
+[node name="CardsParentNode" type="Control" parent="OfferUi/OfferBody/CardViewer" unique_id=216205026]
+anchors_preset = 0
 
-[node name="PrisonerCard2" parent="OfferUi/OfferBody/CardViewer" unique_id=1852333900 instance=ExtResource("47_rrybr")]
-layout_mode = 1
-offset_left = -261.0
-offset_top = 199.0
-offset_right = -261.0
-offset_bottom = 199.0
+[node name="SpawnPos1" type="Node2D" parent="OfferUi/OfferBody/CardViewer" unique_id=227995411]
+position = Vector2(-261, 197)
 
-[node name="ShareholderItemsCard" parent="OfferUi/OfferBody/CardViewer" unique_id=1756943011 instance=ExtResource("48_u6huw")]
-layout_mode = 1
-offset_left = 435.0
-offset_top = 197.0
-offset_right = 435.0
-offset_bottom = 197.0
+[node name="SpawnPos2" type="Node2D" parent="OfferUi/OfferBody/CardViewer" unique_id=27413213]
+position = Vector2(91, 197)
+
+[node name="SpawnPos3" type="Node2D" parent="OfferUi/OfferBody/CardViewer" unique_id=1199658485]
+position = Vector2(435, 197)
 
 [node name="SelectedCardModal" type="Control" parent="OfferUi/OfferBody" unique_id=731327129]
 anchors_preset = 0
