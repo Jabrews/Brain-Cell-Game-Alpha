@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dfss4n5s3e6en"]
+
+[ext_resource type="Script" uid="uid://bfekof2r2syhw" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/hover/preview_card_hover.gd" id="1_4jpy5"]
+
+[node name="PreviewCardHover" type="Control" unique_id=1739627600]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4jpy5")
+
+[node name="HoverBorder" type="ColorRect" parent="." unique_id=265123361]
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 267.0
+offset_bottom = 191.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0.39215687)
+
+[node name="SelectBorder" type="ColorRect" parent="." unique_id=1641219384]
+visible = false
+layout_mode = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 267.0
+offset_bottom = 191.0
+mouse_filter = 2
+
+[node name="DetectArea" type="ColorRect" parent="." unique_id=1574372299]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 264.0
+offset_bottom = 188.0
+color = Color(1, 1, 1, 0)

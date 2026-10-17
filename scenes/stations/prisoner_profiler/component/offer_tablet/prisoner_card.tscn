@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://ltbxbex2isix"]
 
-[ext_resource type="Script" uid="uid://bxl1ymfwywj2m" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/cards/prisoner_card/prisoner_card.gd" id="1_kcdtm"]
+[ext_resource type="Script" uid="uid://bxl1ymfwywj2m" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/prisoner_preview_card.gd" id="1_kcdtm"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_fvrva"]
-[ext_resource type="Script" uid="uid://ben6yc6u2b2sg" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/cards/prisoner_card/display_card.gd" id="2_k88on"]
+[ext_resource type="Script" uid="uid://ben6yc6u2b2sg" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/display_card.gd" id="2_k88on"]
 [ext_resource type="Texture2D" uid="uid://b2vqkhvvch5hx" path="res://models/shareholder_demand_provider/prisoner_effect.png" id="3_0eabe"]
-[ext_resource type="Shader" uid="uid://cov4fuxefoyk5" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/cards/prisoner_card/card_stat_opacity.gdshader" id="4_fgbto"]
+[ext_resource type="Shader" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/card_stat_opacity.gdshader" id="4_fgbto"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="5_qna83"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_rhvle"]
 [ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="7_qna83"]

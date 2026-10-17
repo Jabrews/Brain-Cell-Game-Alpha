@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://cakjb5yt3suo3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_enabled.gd" id="16_gyecf"]
 [ext_resource type="Script" uid="uid://cieqnrkourvyq" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/cinnamatic_manager.gd" id="17_jkgvf"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
+[ext_resource type="Script" uid="uid://c7w3uqlsrohyf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected.gd" id="17_u6huw"]
 [ext_resource type="Script" uid="uid://dipvrj7g8i4pk" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/toggle_doors_open.gd" id="18_bqxyo"]
 [ext_resource type="Script" uid="uid://bxm2vgup044hf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/component_controllers.gd" id="18_h220m"]
 [ext_resource type="Script" uid="uid://c8b3nieqdo2e1" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/toggle_pole_exspand.gd" id="19_h220m"]
@@ -38,7 +39,7 @@
 [ext_resource type="Script" uid="uid://vgacyxq6ydy6" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/finished_btn.gd" id="22_edn1u"]
 [ext_resource type="Script" uid="uid://pmc6282tiht4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_display_offer_ui.gd" id="22_toge2"]
 [ext_resource type="Script" uid="uid://dpg6xu8puix3a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/display/display_turns_left.gd" id="23_8hdni"]
-[ext_resource type="Script" uid="uid://c76uy3xav4sdo" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/card_creation_factory.gd" id="25_k1kr7"]
+[ext_resource type="Script" uid="uid://c76uy3xav4sdo" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/preview_card_creation_factory.gd" id="25_k1kr7"]
 [ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
 [ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
@@ -55,10 +56,11 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="40_kcyeb"]
 [ext_resource type="Texture2D" uid="uid://cs8ct6nglwbs3" path="res://models/breeding_screen/lifespan_next_arrow.png" id="42_1dla4"]
 [ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
-[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/flashing_texture.gdshader" id="42_8hdni"]
+[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/flashing_clean_bar_texture.gdshader" id="42_8hdni"]
 [ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
 [ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
 [ext_resource type="AudioStream" uid="uid://rslpt20kiti5" path="res://sounds/prisoner_profiler/door_shut.mp3" id="49_4txwj"]
+[ext_resource type="PackedScene" uid="uid://dfss4n5s3e6en" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/preview_cards/preview_card_hover.tscn" id="49_k1kr7"]
 [ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
@@ -532,21 +534,45 @@ shader_parameter/tint_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1dla4"]
 shader = ExtResource("42_8hdni")
-shader_parameter/flash_speed = 5.0
-shader_parameter/min_opacity = 0.50000002375
-shader_parameter/max_opacity = 1.0
+shader_parameter/base_value = 0.0
+shader_parameter/base_color = Color(0, 1, 1, 1)
+shader_parameter/base_opacity = 0.35
+shader_parameter/yellow_min_value = 0.0
+shader_parameter/yellow_max_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_opacity = 0.85
+shader_parameter/edge_padding = 5.0
+shader_parameter/low_opacity = 0.25
+shader_parameter/high_opacity = 1.0
+shader_parameter/fade_speed = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2u1cg"]
 shader = ExtResource("42_8hdni")
-shader_parameter/flash_speed = 5.0
-shader_parameter/min_opacity = 0.50000002375
-shader_parameter/max_opacity = 1.0
+shader_parameter/base_value = 0.0
+shader_parameter/base_color = Color(0, 1, 1, 1)
+shader_parameter/base_opacity = 0.35
+shader_parameter/yellow_min_value = 0.0
+shader_parameter/yellow_max_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_opacity = 0.85
+shader_parameter/edge_padding = 5.0
+shader_parameter/low_opacity = 0.25
+shader_parameter/high_opacity = 1.0
+shader_parameter/fade_speed = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8hdni"]
 shader = ExtResource("42_8hdni")
-shader_parameter/flash_speed = 2.0
-shader_parameter/min_opacity = 0.2
-shader_parameter/max_opacity = 1.0
+shader_parameter/base_value = 0.0
+shader_parameter/base_color = Color(0, 1, 1, 1)
+shader_parameter/base_opacity = 0.35
+shader_parameter/yellow_min_value = 0.0
+shader_parameter/yellow_max_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_opacity = 0.85
+shader_parameter/edge_padding = 5.0
+shader_parameter/low_opacity = 0.25
+shader_parameter/high_opacity = 1.0
+shader_parameter/fade_speed = 2.0
 
 [node name="PrisonerProfiler" type="Node3D" unique_id=267444250]
 script = ExtResource("1_ckmt1")
@@ -600,6 +626,9 @@ script = ExtResource("14_uy7hd")
 [node name="OfferTablet" type="Node" parent="Logic" unique_id=1757081176]
 script = ExtResource("16_dd2e3")
 
+[node name="HandlePreviewCardSelected" type="Node" parent="Logic/OfferTablet" unique_id=163510125]
+script = ExtResource("17_u6huw")
+
 [node name="ToggleEnabled" type="Node" parent="Logic/OfferTablet" unique_id=1993524847]
 script = ExtResource("16_gyecf")
 
@@ -624,7 +653,7 @@ script = ExtResource("22_toge2")
 [node name="DisplayTurnsLeft" type="Node" parent="Logic/OfferTablet" unique_id=662539169]
 script = ExtResource("23_8hdni")
 
-[node name="CardCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1648568532]
+[node name="PreviewCardCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1648568532]
 script = ExtResource("25_k1kr7")
 
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
@@ -1547,6 +1576,16 @@ text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Header" type="Label" parent="OfferUi/ExitHeader" unique_id=736163179]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 280.0
+offset_bottom = 107.0
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 30
+text = "Shareholder Offers"
+
 [node name="OfferBody" type="Control" parent="OfferUi" unique_id=1914773321]
 anchors_preset = 0
 offset_right = 40.0
@@ -1560,15 +1599,18 @@ offset_right = 1248.0
 offset_bottom = 688.0
 color = Color(0.18, 0.009000002, 0, 1)
 
-[node name="Header" type="Label" parent="OfferUi/OfferBody" unique_id=736163179]
+[node name="CardInspector" type="Control" parent="OfferUi/OfferBody" unique_id=405900538]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="OfferUi/OfferBody/CardInspector" unique_id=1660439481]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 56.0
-offset_right = 882.0
-offset_bottom = 124.0
-theme_override_fonts/font = ExtResource("2_1kfjt")
-theme_override_font_sizes/font_size = 60
-text = "Shareholder Offers :"
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 1248.0
+offset_bottom = 440.0
+color = Color(0.14, 0.0070000016, 0, 1)
 
 [node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
 anchors_preset = 0
@@ -1584,34 +1626,34 @@ offset_bottom = 40.0
 
 [node name="ColorRect2" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1603714781]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 72.0
-offset_right = 240.0
-offset_bottom = 136.0
+offset_left = -464.0
+offset_top = 64.0
+offset_right = -240.0
+offset_bottom = 91.0
 color = Color(0.36078432, 0.019607844, 0, 1)
 
 [node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=589363437]
 texture_filter = 1
 layout_mode = 0
-offset_left = 48.0
-offset_top = 69.0
-offset_right = 240.0
-offset_bottom = 104.0
+offset_left = -484.0
+offset_top = 57.0
+offset_right = -292.0
+offset_bottom = 97.0
 theme_override_fonts/font = ExtResource("2_1kfjt")
-theme_override_font_sizes/font_size = 30
-text = "Turns Left"
+theme_override_font_sizes/font_size = 27
+text = "Turns Left:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CurrTurn" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1929312186]
 texture_filter = 1
 layout_mode = 0
-offset_left = 83.0
-offset_top = 96.0
-offset_right = 133.0
-offset_bottom = 146.0
+offset_left = -339.0
+offset_top = 54.0
+offset_right = -289.0
+offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("9_cnw5g")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1620,12 +1662,12 @@ vertical_alignment = 1
 texture_filter = 1
 material = SubResource("ShaderMaterial_1dla4")
 layout_mode = 0
-offset_left = 158.0
-offset_top = 96.0
-offset_right = 208.0
-offset_bottom = 146.0
+offset_left = -290.0
+offset_top = 54.0
+offset_right = -240.0
+offset_bottom = 104.0
 theme_override_fonts/font = ExtResource("9_cnw5g")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 20
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1634,8 +1676,8 @@ justification_flags = 162
 [node name="Arrow" type="Sprite2D" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1145803670]
 texture_filter = 1
 material = SubResource("ShaderMaterial_2u1cg")
-position = Vector2(143, 118)
-scale = Vector2(2.7499995, 2.0000002)
+position = Vector2(-292, 77.5)
+scale = Vector2(1.8749992, 1.4166667)
 texture = ExtResource("42_1dla4")
 
 [node name="LastTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1386474911]
@@ -1677,29 +1719,94 @@ offset_right = 192.0
 offset_bottom = 144.0
 color = Color(1, 0, 0, 0.37254903)
 
-[node name="CardViewer" type="Control" parent="OfferUi/OfferBody" unique_id=1941522102]
+[node name="PreviewCardsHover" type="Control" parent="OfferUi/OfferBody" unique_id=438485868]
 anchors_preset = 0
-offset_left = 445.0
-offset_top = -5.0
-offset_right = 485.0
-offset_bottom = 35.000004
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 39.0
 
-[node name="CardsParentNode" type="Control" parent="OfferUi/OfferBody/CardViewer" unique_id=216205026]
-anchors_preset = 0
+[node name="PreviewCardHover1" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1739627600 instance=ExtResource("49_k1kr7")]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 447.0
+offset_right = 134.0
+offset_bottom = 447.0
 
-[node name="SpawnPos1" type="Node2D" parent="OfferUi/OfferBody/CardViewer" unique_id=227995411]
-position = Vector2(-261, 197)
+[node name="PreviewCardHover2" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1057547468 instance=ExtResource("49_k1kr7")]
+layout_mode = 0
+offset_left = 515.0
+offset_top = 447.0
+offset_right = 515.0
+offset_bottom = 447.0
+corrisponding_card_index = 1
 
-[node name="SpawnPos2" type="Node2D" parent="OfferUi/OfferBody/CardViewer" unique_id=27413213]
-position = Vector2(91, 197)
+[node name="PreviewCardHover3" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1224023589 instance=ExtResource("49_k1kr7")]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 449.0
+offset_right = 894.0
+offset_bottom = 449.0
+corrisponding_card_index = 2
 
-[node name="SpawnPos3" type="Node2D" parent="OfferUi/OfferBody/CardViewer" unique_id=1199658485]
-position = Vector2(435, 197)
-
-[node name="SelectedCardModal" type="Control" parent="OfferUi/OfferBody" unique_id=731327129]
+[node name="PreviewCards" type="Control" parent="OfferUi/OfferBody" unique_id=1288358713]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="PreviewCardParent" type="Control" parent="OfferUi/OfferBody/PreviewCards" unique_id=121556806]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SpawnPos1" type="Node2D" parent="OfferUi/OfferBody/PreviewCards" unique_id=1742506537]
+position = Vector2(134, 451)
+
+[node name="SpawnPos2" type="Node2D" parent="OfferUi/OfferBody/PreviewCards" unique_id=1412949269]
+position = Vector2(515, 451)
+
+[node name="SpawnPos3" type="Node2D" parent="OfferUi/OfferBody/PreviewCards" unique_id=246645297]
+position = Vector2(894, 453)
+
+[node name="ConfirmFooter" type="Control" parent="OfferUi" unique_id=1184043526]
+anchors_preset = 0
+offset_top = 592.0
+offset_right = 40.0
+offset_bottom = 632.0
+
+[node name="BG" type="ColorRect" parent="OfferUi/ConfirmFooter" unique_id=654125954]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 64.0
+offset_right = 1248.0
+offset_bottom = 112.0
+color = Color(0.12156863, 0.007843138, 0, 1)
+
+[node name="ConfirmBtn" type="ColorRect" parent="OfferUi/ConfirmFooter" unique_id=1982443362]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 72.0
+offset_right = 760.0
+offset_bottom = 104.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
+focus_mode = 2
+script = ExtResource("42_2u1cg")
+
+[node name="ExitLabel" type="Label" parent="OfferUi/ConfirmFooter/ConfirmBtn" unique_id=1907965999]
+texture_filter = 1
+layout_mode = 0
+offset_top = 4.0
+offset_right = 240.0
+offset_bottom = 28.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.9, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 22
+text = "confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AudioManager" type="Node3D" parent="." unique_id=1442438825]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 3, 4.3)

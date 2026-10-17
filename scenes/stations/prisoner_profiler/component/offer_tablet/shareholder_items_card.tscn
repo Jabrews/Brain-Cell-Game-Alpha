@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://3huu8bvp1wfh"]
 
-[ext_resource type="Script" uid="uid://1hf7gj21ubxp" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/cards/shareholder_items_card/shareholder_items_card.gd" id="1_d72xm"]
+[ext_resource type="Script" uid="uid://1hf7gj21ubxp" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/shareholder_items_card/shareholder_items_card.gd" id="1_d72xm"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_eo1kp"]
 [ext_resource type="Texture2D" uid="uid://berqcmgeuh6fq" path="res://models/share_holder_offer_card/item_defect.png" id="2_ox5x2"]
-[ext_resource type="Script" uid="uid://j36py2ihdjpc" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/cards/shareholder_items_card/items_possible_shuffle.gd" id="3_rxe4h"]
+[ext_resource type="Script" uid="uid://j36py2ihdjpc" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/shareholder_items_card/items_possible_shuffle.gd" id="3_rxe4h"]
 
 [node name="ShareholderItemsCard" type="Control" unique_id=1756943011]
 layout_mode = 3

@@ -3,7 +3,7 @@ extends Node
 # components
 @onready var parent_prisoner_profiler : Node3D = $"../.."
 @onready var display_turns_left : Node = $DisplayTurnsLeft
-@onready var card_creation_factory : Node = $CardCreationFactory
+@onready var preview_card_creation_factory : Node = $PreviewCardCreationFactory
 
 var current_offer_cards : Array[OfferCard] = []
 
@@ -21,5 +21,5 @@ func _start() :
 func _handle_recieve_offer_cards(offer_cards : Array[OfferCard]) :
 	current_offer_cards = offer_cards
 	
-	card_creation_factory._create_cards(current_offer_cards)
+	preview_card_creation_factory._create_cards(current_offer_cards)
 	

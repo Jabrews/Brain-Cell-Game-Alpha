@@ -8,10 +8,7 @@ extends Node
 	$"../StatDisplay/Strength/Disabled", $"../StatDisplay/Intelligence/Disabled", $"../StatDisplay/Community/Disabled"
 ]
 # labels / properties
-@onready var defect_rate_label : Label = $"../PrisonerInfoDisplay/DefectRate/DeathRatePercantLabel"
-@onready var average_lifespan_label : Label = $"../PrisonerInfoDisplay/AverageLifespan/AvargeLifespanLabel"
-@onready var prisoners_in_batch_label : Label = $"../PrisonerInfoDisplay/PrisonersInBatch/PrisonersInBatchLabel"
-@onready var prisoner_picks_label : Label = $"../PrisonerInfoDisplay/PrisonersPicks/PrisonerPicksLabel"
+@onready var defect_rate_label : Label = $"../DefectRate/DefectRatePercantLabel"
 # alteration display
 
 func _ready() -> void:
@@ -24,10 +21,6 @@ func _display(prisoner_card : PrisonerOfferCard, ideal_stats : Array[IdealStat])
 	display_stats(prisoner_card, ideal_stats)
 	
 	defect_rate_label.text = str(prisoner_card.defect_rate) + '%'
-	average_lifespan_label.text = str(prisoner_card.average_lifespan)
-	prisoners_in_batch_label.text = str(len(prisoner_card.prisoner_cells))
-	prisoner_picks_label.text = str(prisoner_card.prisoner_picks)
-	
 
 	
 func display_stats(prisoner_card : PrisonerOfferCard, ideal_stats : Array[IdealStat]) :
