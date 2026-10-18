@@ -7,7 +7,8 @@ extends Node
 	$"../../../OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2",
 	$"../../../OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3"
 ]
-@onready var refresh_card_showcase : Node = $"../RefreshCardShowcase"
+@onready var refresh_card_showcase : Node = $RefreshCardShowcase
+@onready var refresh_confirm_btn : Node = $RefreshConfirmBtn
 
 var selected_card_index : int = -1
 
@@ -39,4 +40,6 @@ func handle(card_index: int) -> void:
 		preview_card_hover_parents[index]._reset()
 	
 	# handle offer showcase	
-	refresh_card_showcase._refresh()
+	refresh_card_showcase._refresh(selected_card_index)
+	# handle confirm btn
+	refresh_confirm_btn._refresh(selected_card_index)

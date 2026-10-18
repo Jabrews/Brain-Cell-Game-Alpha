@@ -28,21 +28,22 @@ void fragment() {
 	float fill_start = min(yellow_min_value, yellow_max_value);
 	float fill_end = max(yellow_min_value, yellow_max_value);
 
+	float pulse = (sin(TIME * fade_speed) + 1.0) * 0.5;
+	float flash_opacity = mix(low_opacity, high_opacity, pulse);
+
 	if (inside_edges && tex.a > 0.0) {
-		// Base value fills from the left.
+		// Static base value fills from the left.
 		if (UV.x <= base_value) {
 			result.rgb = mix(result.rgb, base_color.rgb, base_opacity);
 		}
 
-		// Yellow range is drawn over the base value.
+		// Only the yellow range flashes over the base.
 		if (UV.x >= fill_start && UV.x <= fill_end) {
-			result.rgb = mix(result.rgb, yellow_color.rgb, yellow_opacity);
+			float overlay_opacity = yellow_opacity * flash_opacity;
+			result.rgb = mix(result.rgb, yellow_color.rgb, overlay_opacity);
 		}
 	}
 
-	float pulse = (sin(TIME * fade_speed) + 1.0) * 0.5;
-	float opacity = mix(low_opacity, high_opacity, pulse);
-
-	result.a *= opacity;
+	// Preserve the sprite's original alpha so the entire bar doesn't flash.
 	COLOR = result;
 }

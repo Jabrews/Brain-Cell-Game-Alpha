@@ -31,7 +31,7 @@
 [ext_resource type="Script" uid="uid://cakjb5yt3suo3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_enabled.gd" id="16_gyecf"]
 [ext_resource type="Script" uid="uid://cieqnrkourvyq" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/cinnamatic_manager.gd" id="17_jkgvf"]
 [ext_resource type="PackedScene" uid="uid://dtkm0t3hnh6cw" path="res://scenes/stations/prisoner_profiler/screen/energy_display.tscn" id="17_onj7t"]
-[ext_resource type="Script" uid="uid://c7w3uqlsrohyf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected.gd" id="17_u6huw"]
+[ext_resource type="Script" uid="uid://c7w3uqlsrohyf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected/handle_preview_card_selected.gd" id="17_u6huw"]
 [ext_resource type="Script" uid="uid://dipvrj7g8i4pk" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/toggle_doors_open.gd" id="18_bqxyo"]
 [ext_resource type="Script" uid="uid://bxm2vgup044hf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/component_controllers.gd" id="18_h220m"]
 [ext_resource type="Script" uid="uid://c8b3nieqdo2e1" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/cinnamatic_manager/component_controllers/toggle_pole_exspand.gd" id="19_h220m"]
@@ -40,8 +40,10 @@
 [ext_resource type="Script" uid="uid://pmc6282tiht4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_display_offer_ui.gd" id="22_toge2"]
 [ext_resource type="Script" uid="uid://dpg6xu8puix3a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/display/display_turns_left.gd" id="23_8hdni"]
 [ext_resource type="Script" uid="uid://c76uy3xav4sdo" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/preview_card_creation_factory.gd" id="25_k1kr7"]
-[ext_resource type="Script" uid="uid://ciixhggjkk4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/refresh_card_showcase.gd" id="26_s6kcd"]
+[ext_resource type="Script" uid="uid://hjpwxvy73mnh" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_confirm_btn_pressed.gd" id="26_ghmpk"]
+[ext_resource type="Script" uid="uid://ciixhggjkk4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected/refresh_card_showcase.gd" id="26_s6kcd"]
 [ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
+[ext_resource type="Script" uid="uid://dxumcj1bvvh4a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected/refresh_confirm_btn.gd" id="27_kbi0h"]
 [ext_resource type="Script" uid="uid://brbqybt4ygxdr" path="res://scripts/stations/prisoner_profiler/component/audio_manager.gd" id="27_vy86u"]
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
 [ext_resource type="Script" uid="uid://bsfx8wu1anhrx" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/card_showcase_creation_factory.gd" id="27_y73jk"]
@@ -58,12 +60,14 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="40_kcyeb"]
 [ext_resource type="Texture2D" uid="uid://cs8ct6nglwbs3" path="res://models/breeding_screen/lifespan_next_arrow.png" id="42_1dla4"]
 [ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
-[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/flashing_clean_bar_texture.gdshader" id="42_8hdni"]
+[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/flashing_clean_bar_texture.gdshader" id="42_8hdni"]
 [ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
+[ext_resource type="PackedScene" uid="uid://ucv4wxbydx5d" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/card_showcases/prisoner_showcase.tscn" id="48_s6kcd"]
 [ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
 [ext_resource type="AudioStream" uid="uid://rslpt20kiti5" path="res://sounds/prisoner_profiler/door_shut.mp3" id="49_4txwj"]
 [ext_resource type="PackedScene" uid="uid://dfss4n5s3e6en" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/preview_cards/preview_card_hover.tscn" id="49_k1kr7"]
 [ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
+[ext_resource type="Script" uid="uid://dl0diaqhemq3n" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/confirm_btn.gd" id="52_lixm1"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -655,8 +659,14 @@ script = ExtResource("23_8hdni")
 [node name="HandlePreviewCardSelected" type="Node" parent="Logic/OfferTablet" unique_id=163510125]
 script = ExtResource("17_u6huw")
 
-[node name="RefreshCardShowcase" type="Node" parent="Logic/OfferTablet" unique_id=1590651502]
+[node name="RefreshCardShowcase" type="Node" parent="Logic/OfferTablet/HandlePreviewCardSelected" unique_id=1590651502]
 script = ExtResource("26_s6kcd")
+
+[node name="RefreshConfirmBtn" type="Node" parent="Logic/OfferTablet/HandlePreviewCardSelected" unique_id=1350960990]
+script = ExtResource("27_kbi0h")
+
+[node name="HandleConfirmBtnPressed" type="Node" parent="Logic/OfferTablet" unique_id=362456136]
+script = ExtResource("26_ghmpk")
 
 [node name="PreviewCardCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1648568532]
 script = ExtResource("25_k1kr7")
@@ -1627,6 +1637,9 @@ offset_top = 48.0
 offset_right = 72.0
 offset_bottom = 88.0
 
+[node name="PrisonerShowcase" parent="OfferUi/OfferBody/CardShowcase/CardShowcaseParent" unique_id=1584234701 instance=ExtResource("48_s6kcd")]
+layout_mode = 0
+
 [node name="HintSelectCardLabel" type="Label" parent="OfferUi/OfferBody/CardShowcase" unique_id=1025858822]
 texture_filter = 1
 layout_mode = 0
@@ -1821,7 +1834,7 @@ focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
 focus_mode = 2
-script = ExtResource("42_2u1cg")
+script = ExtResource("52_lixm1")
 
 [node name="ExitLabel" type="Label" parent="OfferUi/ConfirmFooter/ConfirmBtn" unique_id=1907965999]
 texture_filter = 1
@@ -1834,6 +1847,39 @@ theme_override_colors/font_color = Color(0.9, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_cnw5g")
 theme_override_font_sizes/font_size = 22
 text = "confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmHint" type="Control" parent="OfferUi/ConfirmFooter" unique_id=746276511]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = 488.0
+offset_top = 72.0
+offset_right = 528.0
+offset_bottom = 112.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="OfferUi/ConfirmFooter/ConfirmHint" unique_id=712134686]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -64.0
+offset_right = 261.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="OfferUi/ConfirmFooter/ConfirmHint" unique_id=1565055496]
+texture_filter = 1
+layout_mode = 0
+offset_left = 56.0
+offset_top = -64.0
+offset_right = 261.0
+offset_bottom = -4.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 20
+text = "Must Select Card 
+To Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 

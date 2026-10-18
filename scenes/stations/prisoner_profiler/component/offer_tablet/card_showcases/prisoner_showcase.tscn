@@ -1,6 +1,36 @@
 [gd_scene format=3 uid="uid://ucv4wxbydx5d"]
 
 [ext_resource type="Script" uid="uid://cgt5jt3fdhy02" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_showcase.gd" id="1_272ed"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_5m33n"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="2_jcdp0"]
+[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/flashing_clean_bar_texture.gdshader" id="2_lnr22"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_lnr22"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_o3brn"]
+[ext_resource type="Shader" uid="uid://cbfpgvtvbun12" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/defect_bar.gdshader" id="4_f0sis"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3brn"]
+shader = ExtResource("2_lnr22")
+shader_parameter/base_value = 0.4890000232275
+shader_parameter/base_color = Color(0.65, 0.65, 0, 1)
+shader_parameter/base_opacity = 1.0
+shader_parameter/yellow_min_value = 0.262000012445
+shader_parameter/yellow_max_value = 0.6170000293075
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_opacity = 0.85
+shader_parameter/edge_padding = 5.0
+shader_parameter/low_opacity = 0.50000002375
+shader_parameter/high_opacity = 1.0
+shader_parameter/fade_speed = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0sis"]
+shader = ExtResource("4_f0sis")
+shader_parameter/value = 0.662000031445
+shader_parameter/fill_duration = 0.10000000149012
+shader_parameter/wander_amount = 0.20000000298023
+shader_parameter/wander_speed = 1.0
+shader_parameter/random_seed = 2.995
+shader_parameter/fill_color = Color(1, 0, 0.05000019, 1)
+shader_parameter/fill_opacity = 0.85
 
 [node name="PrisonerShowcase" type="Control" unique_id=1584234701]
 layout_mode = 3
@@ -22,3 +52,119 @@ theme_override_font_sizes/font_size = 30
 text = "Prisoner Showcase"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Silloute" type="Control" parent="." unique_id=395931801]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Silloute" unique_id=72098422]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 392.0
+color = Color(1, 0.66999996, 0.66999996, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Silloute" unique_id=27031942]
+layout_mode = 0
+offset_left = 832.0
+offset_right = 1216.0
+offset_bottom = 392.0
+color = Color(0.9999997, 0.7357409, 0.7333132, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Silloute" unique_id=158845782]
+layout_mode = 0
+offset_left = 384.0
+offset_right = 832.0
+offset_bottom = 392.0
+color = Color(0.9999947, 0.48382336, 0.50401515, 1)
+
+[node name="PrisonerExamples" type="Control" parent="." unique_id=1335643188]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ExampleOutcomesLabel" type="Label" parent="PrisonerExamples" unique_id=146878888]
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_constants/paragraph_spacing = 0
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 20
+text = "Example Outcomes"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExampleStats" type="Control" parent="PrisonerExamples" unique_id=1189273039]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="PrisonerExamples/ExampleStats" unique_id=576981912]
+visible = false
+anchors_preset = 0
+offset_left = 480.0
+offset_top = -48.0
+offset_right = 520.0
+offset_bottom = -8.0
+
+[node name="Bar" type="Sprite2D" parent="PrisonerExamples/ExampleStats/Strength" unique_id=1350074266]
+texture_filter = 1
+material = SubResource("ShaderMaterial_o3brn")
+position = Vector2(127.99999, 120)
+scale = Vector2(1.2903225, 0.74999976)
+texture = ExtResource("2_jcdp0")
+
+[node name="DefectBar" type="Sprite2D" parent="PrisonerExamples/ExampleStats/Strength" unique_id=316537783]
+texture_filter = 1
+material = SubResource("ShaderMaterial_f0sis")
+position = Vector2(127.99999, 142)
+scale = Vector2(1.2903225, 0.17499985)
+texture = ExtResource("3_lnr22")
+
+[node name="StatTypeLabel" type="Label" parent="PrisonerExamples/ExampleStats/Strength" unique_id=1664521901]
+texture_filter = 1
+layout_mode = 0
+offset_left = -72.0
+offset_top = 79.0
+offset_right = 112.0
+offset_bottom = 103.0
+theme_override_fonts/font = ExtResource("3_o3brn")
+theme_override_font_sizes/font_size = 18
+text = "Strength"
+vertical_alignment = 2
+
+[node name="Disabled" type="Control" parent="PrisonerExamples/ExampleStats/Strength" unique_id=2106770132]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DisabledBG" type="ColorRect" parent="PrisonerExamples/ExampleStats/Strength/Disabled" unique_id=711787276]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 104.0
+offset_right = 328.0
+offset_bottom = 145.0
+color = Color(0.21, 0.21, 0.21, 1)
+
+[node name="DisabledLabel" type="Label" parent="PrisonerExamples/ExampleStats/Strength/Disabled" unique_id=133442518]
+texture_filter = 1
+layout_mode = 0
+offset_left = -72.0
+offset_top = 104.0
+offset_right = 328.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o3brn")
+theme_override_font_sizes/font_size = 20
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectInfo" type="Control" parent="PrisonerExamples" unique_id=1631480196]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
