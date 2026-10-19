@@ -2,31 +2,29 @@
 
 [ext_resource type="Script" uid="uid://cgt5jt3fdhy02" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_showcase.gd" id="1_272ed"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_5m33n"]
-[ext_resource type="Script" uid="uid://d0a7m1xitmlje" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start/handle_start.gd" id="2_brnli"]
+[ext_resource type="Script" uid="uid://d0a7m1xitmlje" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start.gd" id="2_brnli"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="2_jcdp0"]
-[ext_resource type="Script" uid="uid://boqalc7ayv4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start/display_pris_picks.gd" id="3_jnpkc"]
+[ext_resource type="Script" uid="uid://boqalc7ayv4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/display_helpers/display_pris_picks.gd" id="3_jnpkc"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_lnr22"]
 [ext_resource type="Script" uid="uid://bjwf0d6dang4h" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_stop.gd" id="3_no38u"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_o3brn"]
 [ext_resource type="Shader" uid="uid://cbfpgvtvbun12" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/shaders/defect_bar.gdshader" id="4_f0sis"]
-[ext_resource type="Script" uid="uid://c8cava00dh7sw" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start/display_pris_properties.gd" id="4_s8qax"]
-[ext_resource type="Script" uid="uid://bno2i30maibwv" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/pris_gen_state_machine.gd" id="5_jnpkc"]
-[ext_resource type="Script" uid="uid://7ftq0isk7pre" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start/display_alteration.gd" id="5_yakfw"]
-[ext_resource type="Script" uid="uid://d2lqo1h40nu0k" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start/display_defect_info.gd" id="6_rjwpe"]
-[ext_resource type="Script" uid="uid://dodoouyw3tgi6" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/timer_manager.gd" id="9_66hxf"]
-[ext_resource type="Script" uid="uid://bh3qifhl7use5" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/media_controll_btn/handle_media_controll_pressed.gd" id="9_a643i"]
-[ext_resource type="Script" uid="uid://bs1dxg1lo83hn" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/states/loading.gd" id="11_66hxf"]
-[ext_resource type="Script" uid="uid://bgsjtq1adno60" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/states/displaying_pris.gd" id="11_m1u7o"]
-[ext_resource type="Script" uid="uid://d00bb4jtdl6wx" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/states/pause.gd" id="11_utfnr"]
-[ext_resource type="Script" uid="uid://dkndmrb0oiki2" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/component_controllers/refresh_fill_controller.gd" id="13_utfnr"]
-[ext_resource type="Script" uid="uid://c5d1v7iivwjd3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/component_controllers/display_prisoner_example.gd" id="14_m1u7o"]
+[ext_resource type="Script" uid="uid://c8cava00dh7sw" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/display_helpers/display_pris_properties.gd" id="4_s8qax"]
+[ext_resource type="Script" uid="uid://bno2i30maibwv" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/prisoner_generator_manager.gd" id="5_jnpkc"]
+[ext_resource type="Script" uid="uid://7ftq0isk7pre" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/display_helpers/display_alteration.gd" id="5_yakfw"]
+[ext_resource type="Script" uid="uid://d2lqo1h40nu0k" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/display_helpers/display_defect_info.gd" id="6_rjwpe"]
+[ext_resource type="Script" uid="uid://dodoouyw3tgi6" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/timer_manager.gd" id="9_66hxf"]
+[ext_resource type="Script" uid="uid://bh3qifhl7use5" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/playback_btn_manager/playback_btn_manager.gd" id="9_a643i"]
+[ext_resource type="Script" uid="uid://dkndmrb0oiki2" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/component_controllers/advance_light_controller.gd" id="13_utfnr"]
+[ext_resource type="Script" uid="uid://c5d1v7iivwjd3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/component_controllers/display_prisoner_example.gd" id="14_m1u7o"]
 [ext_resource type="Shader" uid="uid://droi4xlekghnq" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/shaders/clean_bar.gdshader" id="16_66hxf"]
 [ext_resource type="Texture2D" uid="uid://2fph03vx6n7g" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_showcase_gen_outline.png" id="16_maaqw"]
-[ext_resource type="Script" uid="uid://d382ovu7j1bsf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/pris_gen_state_machine/media_controll_btn/media_controll_btn.gd" id="18_cpxox"]
+[ext_resource type="Script" uid="uid://d382ovu7j1bsf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/playback_btn_manager/playback_btn.gd" id="18_cpxox"]
 [ext_resource type="Texture2D" uid="uid://b4blowfm2iw5u" path="res://models/prisoner_profiler/prisoner_showcase/media_control_start.png" id="18_p8mme"]
 [ext_resource type="Texture2D" uid="uid://dstxm5apy3v1j" path="res://models/prisoner_profiler/prisoner_showcase/Sprite-0004.png" id="19_mp10o"]
 [ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="22_s3kq4"]
 [ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="25_5bd5b"]
+[ext_resource type="Script" uid="uid://hn2pqfw7uyq7" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/reusable/detect_hint_rect.gd" id="27_6kinb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5bd5b"]
 atlas = ExtResource("19_mp10o")
@@ -102,7 +100,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ec6v4")
 }],
 "loop": 1,
-"name": &"Running",
+"name": &"Default",
 "speed": 5.0
 }]
 
@@ -314,54 +312,45 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_272ed")
 
-[node name="HandleStart" type="Node" parent="." unique_id=1279936049]
-script = ExtResource("2_brnli")
+[node name="DisplayHelpers" type="Node" parent="." unique_id=1111325405]
 
-[node name="DisplayPrisPicks" type="Node" parent="HandleStart" unique_id=118084718]
+[node name="DisplayPrisPicks" type="Node" parent="DisplayHelpers" unique_id=118084718]
 script = ExtResource("3_jnpkc")
 
-[node name="DisplayPrisProperties" type="Node" parent="HandleStart" unique_id=730753193]
+[node name="DisplayPrisProperties" type="Node" parent="DisplayHelpers" unique_id=730753193]
 script = ExtResource("4_s8qax")
 
-[node name="DisplayAlteration" type="Node" parent="HandleStart" unique_id=1265426633]
+[node name="DisplayAlteration" type="Node" parent="DisplayHelpers" unique_id=1265426633]
 script = ExtResource("5_yakfw")
 
-[node name="DisplayDefectInfo" type="Node" parent="HandleStart" unique_id=1872184096]
+[node name="DisplayDefectInfo" type="Node" parent="DisplayHelpers" unique_id=1872184096]
 script = ExtResource("6_rjwpe")
+
+[node name="HandleStart" type="Node" parent="." unique_id=1279936049]
+script = ExtResource("2_brnli")
 
 [node name="HandleStop" type="Node" parent="." unique_id=2099655201]
 script = ExtResource("3_no38u")
 
-[node name="PrisGenStateMachine" type="Node" parent="." unique_id=681927630]
+[node name="PrisonerGeneratorManager" type="Node" parent="." unique_id=681927630]
 script = ExtResource("5_jnpkc")
 
-[node name="TimerManger" type="Node" parent="PrisGenStateMachine" unique_id=970667660]
+[node name="TimerManager" type="Node" parent="PrisonerGeneratorManager" unique_id=970667660]
 script = ExtResource("9_66hxf")
 
-[node name="IncrementLoadingAdvanceTimer" type="Timer" parent="PrisGenStateMachine/TimerManger" unique_id=18362169]
+[node name="IncrementLoadingAdvanceTimer" type="Timer" parent="PrisonerGeneratorManager/TimerManager" unique_id=18362169]
 
-[node name="IncrementNewPrisonerAdvanceTimer" type="Timer" parent="PrisGenStateMachine/TimerManger" unique_id=158989962]
+[node name="IncrementNewPrisonerAdvanceTimer" type="Timer" parent="PrisonerGeneratorManager/TimerManager" unique_id=158989962]
 
-[node name="HandleMediaControllPressed" type="Node" parent="PrisGenStateMachine" unique_id=1462277074]
+[node name="PlaybackBtnManager" type="Node" parent="PrisonerGeneratorManager" unique_id=1462277074]
 script = ExtResource("9_a643i")
 
-[node name="States" type="Node" parent="PrisGenStateMachine" unique_id=807617200]
+[node name="ComponentControllers" type="Node" parent="PrisonerGeneratorManager" unique_id=1389229446]
 
-[node name="Pause" type="Node" parent="PrisGenStateMachine/States" unique_id=713613224]
-script = ExtResource("11_utfnr")
-
-[node name="Loading" type="Node" parent="PrisGenStateMachine/States" unique_id=1140583612]
-script = ExtResource("11_66hxf")
-
-[node name="DisplayingPris" type="Node" parent="PrisGenStateMachine/States" unique_id=1106466846]
-script = ExtResource("11_m1u7o")
-
-[node name="ComponentControllers" type="Node" parent="PrisGenStateMachine" unique_id=1389229446]
-
-[node name="RefreshFillController" type="Node" parent="PrisGenStateMachine/ComponentControllers" unique_id=403386618]
+[node name="AdvanceLightController" type="Node" parent="PrisonerGeneratorManager/ComponentControllers" unique_id=403386618]
 script = ExtResource("13_utfnr")
 
-[node name="DisplayPrisonerExample" type="Node" parent="PrisGenStateMachine/ComponentControllers" unique_id=373309288]
+[node name="DisplayPrisonerExample" type="Node" parent="PrisonerGeneratorManager/ComponentControllers" unique_id=373309288]
 script = ExtResource("14_m1u7o")
 
 [node name="BG" type="ColorRect" parent="." unique_id=1196740860]
@@ -447,13 +436,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="MediaControlBtn" type="Control" parent="PrisGenerator/Header" unique_id=1928313560]
+[node name="PlaybackBtn" type="Control" parent="PrisGenerator/Header" unique_id=1928313560]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("18_cpxox")
 
-[node name="HoverRect" type="ColorRect" parent="PrisGenerator/Header/MediaControlBtn" unique_id=1482067255]
+[node name="HoverRect" type="ColorRect" parent="PrisGenerator/Header/PlaybackBtn" unique_id=1482067255]
 visible = false
 texture_filter = 1
 layout_mode = 0
@@ -464,7 +453,7 @@ offset_bottom = 35.249996
 scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="PrisGenerator/Header/MediaControlBtn" unique_id=311410345]
+[node name="BG" type="ColorRect" parent="PrisGenerator/Header/PlaybackBtn" unique_id=311410345]
 layout_mode = 0
 offset_left = 802.0
 offset_top = 5.0
@@ -472,7 +461,7 @@ offset_right = 824.0
 offset_bottom = 28.0
 color = Color(0.14117648, 0.007843138, 0, 1)
 
-[node name="BtnTextureRect" type="TextureRect" parent="PrisGenerator/Header/MediaControlBtn" unique_id=1701188918]
+[node name="BtnTextureRect" type="TextureRect" parent="PrisGenerator/Header/PlaybackBtn" unique_id=1701188918]
 texture_filter = 1
 layout_mode = 0
 offset_left = 804.0
@@ -487,37 +476,36 @@ texture = ExtResource("18_p8mme")
 texture_filter = 1
 position = Vector2(778, 16)
 sprite_frames = SubResource("SpriteFrames_qa1qv")
-animation = &"Running"
-frame_progress = 0.6669749
+animation = &"Default"
 
-[node name="PrisonerStats" type="Control" parent="PrisGenerator" unique_id=1189273039]
+[node name="PrisonerExample" type="Control" parent="PrisGenerator" unique_id=1189273039]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Strength" type="Control" parent="PrisGenerator/PrisonerStats" unique_id=576981912]
+[node name="Strength" type="Control" parent="PrisGenerator/PrisonerExample" unique_id=576981912]
 anchors_preset = 0
 offset_left = 480.0
 offset_top = -48.0
 offset_right = 520.0
 offset_bottom = -8.0
 
-[node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerStats/Strength" unique_id=1350074266]
+[node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Strength" unique_id=1350074266]
 texture_filter = 1
 material = SubResource("ShaderMaterial_o3brn")
 position = Vector2(127.99999, 120)
 scale = Vector2(1.2903225, 0.74999976)
 texture = ExtResource("2_jcdp0")
 
-[node name="DefectBar" type="Sprite2D" parent="PrisGenerator/PrisonerStats/Strength" unique_id=316537783]
+[node name="DefectBar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Strength" unique_id=316537783]
 texture_filter = 1
 material = SubResource("ShaderMaterial_f0sis")
 position = Vector2(127.99999, 142)
 scale = Vector2(1.2903225, 0.17499985)
 texture = ExtResource("3_lnr22")
 
-[node name="StatTypeLabel" type="Label" parent="PrisGenerator/PrisonerStats/Strength" unique_id=1664521901]
+[node name="StatTypeLabel" type="Label" parent="PrisGenerator/PrisonerExample/Strength" unique_id=1664521901]
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
@@ -529,13 +517,13 @@ theme_override_font_sizes/font_size = 14
 text = "Strength"
 vertical_alignment = 2
 
-[node name="Disabled" type="Control" parent="PrisGenerator/PrisonerStats/Strength" unique_id=2106770132]
+[node name="Disabled" type="Control" parent="PrisGenerator/PrisonerExample/Strength" unique_id=2106770132]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DisabledBG" type="ColorRect" parent="PrisGenerator/PrisonerStats/Strength/Disabled" unique_id=711787276]
+[node name="DisabledBG" type="ColorRect" parent="PrisGenerator/PrisonerExample/Strength/Disabled" unique_id=711787276]
 layout_mode = 0
 offset_left = -72.0
 offset_top = 104.0
@@ -543,7 +531,7 @@ offset_right = 328.0
 offset_bottom = 145.0
 color = Color(0.21, 0.21, 0.21, 1)
 
-[node name="DisabledLabel" type="Label" parent="PrisGenerator/PrisonerStats/Strength/Disabled" unique_id=133442518]
+[node name="DisabledLabel" type="Label" parent="PrisGenerator/PrisonerExample/Strength/Disabled" unique_id=133442518]
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
@@ -557,28 +545,28 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intelligence" type="Control" parent="PrisGenerator/PrisonerStats" unique_id=1483716142]
+[node name="Intelligence" type="Control" parent="PrisGenerator/PrisonerExample" unique_id=1483716142]
 anchors_preset = 0
 offset_left = 480.0
 offset_top = 32.0
 offset_right = 520.0
 offset_bottom = 72.0
 
-[node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerStats/Intelligence" unique_id=782145339]
+[node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Intelligence" unique_id=782145339]
 texture_filter = 1
 material = SubResource("ShaderMaterial_o3brn")
 position = Vector2(127.99999, 120)
 scale = Vector2(1.2903225, 0.74999976)
 texture = ExtResource("2_jcdp0")
 
-[node name="DefectBar" type="Sprite2D" parent="PrisGenerator/PrisonerStats/Intelligence" unique_id=2073912716]
+[node name="DefectBar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Intelligence" unique_id=2073912716]
 texture_filter = 1
 material = SubResource("ShaderMaterial_f0sis")
 position = Vector2(127.99999, 142)
 scale = Vector2(1.2903225, 0.17499985)
 texture = ExtResource("3_lnr22")
 
-[node name="StatTypeLabel" type="Label" parent="PrisGenerator/PrisonerStats/Intelligence" unique_id=1283456982]
+[node name="StatTypeLabel" type="Label" parent="PrisGenerator/PrisonerExample/Intelligence" unique_id=1283456982]
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
@@ -590,13 +578,13 @@ theme_override_font_sizes/font_size = 14
 text = "Intelligence"
 vertical_alignment = 2
 
-[node name="Disabled" type="Control" parent="PrisGenerator/PrisonerStats/Intelligence" unique_id=403055249]
+[node name="Disabled" type="Control" parent="PrisGenerator/PrisonerExample/Intelligence" unique_id=403055249]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DisabledBG" type="ColorRect" parent="PrisGenerator/PrisonerStats/Intelligence/Disabled" unique_id=1881818083]
+[node name="DisabledBG" type="ColorRect" parent="PrisGenerator/PrisonerExample/Intelligence/Disabled" unique_id=1881818083]
 layout_mode = 0
 offset_left = -72.0
 offset_top = 104.0
@@ -604,7 +592,7 @@ offset_right = 328.0
 offset_bottom = 145.0
 color = Color(0.21, 0.21, 0.21, 1)
 
-[node name="DisabledLabel" type="Label" parent="PrisGenerator/PrisonerStats/Intelligence/Disabled" unique_id=1556177405]
+[node name="DisabledLabel" type="Label" parent="PrisGenerator/PrisonerExample/Intelligence/Disabled" unique_id=1556177405]
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
@@ -618,28 +606,28 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="Control" parent="PrisGenerator/PrisonerStats" unique_id=1030652206]
+[node name="Community" type="Control" parent="PrisGenerator/PrisonerExample" unique_id=1030652206]
 anchors_preset = 0
 offset_left = 480.0
 offset_top = 112.0
 offset_right = 520.0
 offset_bottom = 152.0
 
-[node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerStats/Community" unique_id=1099166839]
+[node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Community" unique_id=1099166839]
 texture_filter = 1
 material = SubResource("ShaderMaterial_o3brn")
 position = Vector2(127.99999, 120)
 scale = Vector2(1.2903225, 0.74999976)
 texture = ExtResource("2_jcdp0")
 
-[node name="DefectBar" type="Sprite2D" parent="PrisGenerator/PrisonerStats/Community" unique_id=1746365198]
+[node name="DefectBar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Community" unique_id=1746365198]
 texture_filter = 1
 material = SubResource("ShaderMaterial_f0sis")
 position = Vector2(127.99999, 142)
 scale = Vector2(1.2903225, 0.17499985)
 texture = ExtResource("3_lnr22")
 
-[node name="StatTypeLabel" type="Label" parent="PrisGenerator/PrisonerStats/Community" unique_id=804518546]
+[node name="StatTypeLabel" type="Label" parent="PrisGenerator/PrisonerExample/Community" unique_id=804518546]
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
@@ -651,13 +639,13 @@ theme_override_font_sizes/font_size = 14
 text = "Community"
 vertical_alignment = 2
 
-[node name="Disabled" type="Control" parent="PrisGenerator/PrisonerStats/Community" unique_id=1424393436]
+[node name="Disabled" type="Control" parent="PrisGenerator/PrisonerExample/Community" unique_id=1424393436]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="DisabledBG" type="ColorRect" parent="PrisGenerator/PrisonerStats/Community/Disabled" unique_id=28559548]
+[node name="DisabledBG" type="ColorRect" parent="PrisGenerator/PrisonerExample/Community/Disabled" unique_id=28559548]
 layout_mode = 0
 offset_left = -72.0
 offset_top = 104.0
@@ -665,7 +653,7 @@ offset_right = 328.0
 offset_bottom = 145.0
 color = Color(0.21, 0.21, 0.21, 1)
 
-[node name="DisabledLabel" type="Label" parent="PrisGenerator/PrisonerStats/Community/Disabled" unique_id=1069110923]
+[node name="DisabledLabel" type="Label" parent="PrisGenerator/PrisonerExample/Community/Disabled" unique_id=1069110923]
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
@@ -725,7 +713,6 @@ vertical_alignment = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-metadata/_edit_lock_ = true
 
 [node name="FrameBG3" type="ColorRect" parent="DefectRateDisplay" unique_id=831163375]
 layout_mode = 0
@@ -733,6 +720,7 @@ offset_left = 384.0
 offset_top = 272.0
 offset_right = 832.0
 offset_bottom = 392.0
+mouse_filter = 2
 color = Color(0.21568628, 0.007843138, 0, 1)
 
 [node name="TotalDefectRate" type="Control" parent="DefectRateDisplay" unique_id=972055911]
@@ -748,16 +736,19 @@ offset_left = 80.0
 offset_top = 240.0
 offset_right = 224.0
 offset_bottom = 296.0
+mouse_filter = 2
 color = Color(0.14117648, 0.007843138, 0, 1)
 
 [node name="DefectRateSymbol" type="TextureRect" parent="DefectRateDisplay/TotalDefectRate" unique_id=509929909]
 modulate = Color(1, 0.050000012, 0, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 108.0
+offset_left = 111.0
 offset_top = 259.0
-offset_right = 148.0
+offset_right = 145.0
 offset_bottom = 294.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 texture = SubResource("CompressedTexture2D_66hxf")
 
 [node name="DeathRatePercantLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate" unique_id=1137429308]
@@ -787,11 +778,93 @@ theme_override_font_sizes/font_size = 18
 text = "    Total Defect Rate :"
 horizontal_alignment = 1
 
+[node name="DetectHintRect" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate" unique_id=345676861 node_paths=PackedStringArray("hint_parent")]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 240.0
+offset_right = 224.0
+offset_bottom = 296.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("27_6kinb")
+hint_parent = NodePath("../DefectRateHint")
+
+[node name="DefectRateHint" type="Control" parent="DefectRateDisplay/TotalDefectRate" unique_id=469952899]
+visible = false
+anchors_preset = 0
+offset_left = 45.0
+offset_top = 81.0
+offset_right = 85.0
+offset_bottom = 121.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=1279124760]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 141.0
+offset_right = 382.0
+offset_bottom = 222.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=1664317094]
+texture_filter = 1
+custom_minimum_size = Vector2(197, 92)
+custom_maximum_size = Vector2(197, 92)
+layout_mode = 0
+offset_left = 185.0
+offset_top = 149.0
+offset_right = 382.0
+offset_bottom = 241.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 17
+text = "Refers to chance of defect equalling or surpassing stats clean value. "
+autowrap_mode = 2
+
+[node name="FakeBorder" type="Control" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=508620516]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/FakeBorder" unique_id=571493586]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 159.0
+offset_right = 36.0
+offset_bottom = 215.0
+mouse_filter = 2
+
+[node name="ColorRect4" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/FakeBorder" unique_id=154085919]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 214.0
+offset_right = 179.0
+offset_bottom = 215.0
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/FakeBorder" unique_id=1007030974]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 158.0
+offset_right = 179.0
+offset_bottom = 214.0
+mouse_filter = 2
+
+[node name="ColorRect5" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/FakeBorder" unique_id=1702051655]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 158.0
+offset_right = 179.0
+offset_bottom = 159.0
+mouse_filter = 2
+
 [node name="StrengthDefectRate" type="Control" parent="DefectRateDisplay" unique_id=824191593]
 anchors_preset = 0
 offset_top = 16.0
 offset_right = 40.0
 offset_bottom = 56.0
+mouse_filter = 2
 
 [node name="StatTypeLabel" type="Label" parent="DefectRateDisplay/StrengthDefectRate" unique_id=1727126640]
 texture_filter = 1
@@ -814,6 +887,7 @@ offset_left = 488.0
 offset_top = 334.0
 offset_right = 520.0
 offset_bottom = 366.0
+mouse_filter = 2
 texture = ExtResource("22_s3kq4")
 
 [node name="DeathRatePercantLabel" type="Label" parent="DefectRateDisplay/StrengthDefectRate" unique_id=1751017551]
@@ -835,6 +909,7 @@ offset_left = 86.0
 offset_top = 16.0
 offset_right = 126.0
 offset_bottom = 56.0
+mouse_filter = 2
 
 [node name="StatTypeLabel" type="Label" parent="DefectRateDisplay/IntelligenceDefectRate" unique_id=1751993399]
 texture_filter = 1
@@ -857,6 +932,7 @@ offset_left = 488.0
 offset_top = 334.0
 offset_right = 520.0
 offset_bottom = 366.0
+mouse_filter = 2
 texture = ExtResource("22_s3kq4")
 
 [node name="DeathRatePercantLabel" type="Label" parent="DefectRateDisplay/IntelligenceDefectRate" unique_id=2013991222]
@@ -878,6 +954,7 @@ offset_left = 168.0
 offset_top = 16.0
 offset_right = 208.0
 offset_bottom = 56.0
+mouse_filter = 2
 
 [node name="StatTypeLabel" type="Label" parent="DefectRateDisplay/CommunityDefectRate" unique_id=1745432365]
 texture_filter = 1
@@ -900,6 +977,7 @@ offset_left = 488.0
 offset_top = 334.0
 offset_right = 520.0
 offset_bottom = 366.0
+mouse_filter = 2
 texture = ExtResource("22_s3kq4")
 
 [node name="DeathRatePercantLabel" type="Label" parent="DefectRateDisplay/CommunityDefectRate" unique_id=1242345857]

@@ -12,14 +12,14 @@ func _refresh(selected_card_index : int) :
 	
 	
 	for card_showcase in card_showcases :
-		card_showcase._reset()
+		card_showcase._stop()
 	
 	if selected_card_index == -1 : 
 		hint_select_card_label.visible = true
 	else : 	
 		hint_select_card_label.visible = false 
 		# set this one active
-		card_showcases[selected_card_index]._display()
+		card_showcases[selected_card_index]._start()
 	
 	
 	

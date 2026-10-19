@@ -23,13 +23,13 @@ func _create_showcases(offer_cards : Array[OfferCard]) :
 			'prisoner' :
 				var prisoner_showcase_instance : Control = prisoner_showcase_p_s.instantiate()
 				card_showcase_parent.add_child(prisoner_showcase_instance)
-				prisoner_showcase_instance._reset()
+				prisoner_showcase_instance._stop()
 				prisoner_showcase_instance._load_offer(offer_card)
 				
 			'shareholder_items' :
 				var shareholder_items_showcase_instance : Control = shareholder_items_showcase_p_s.instantiate()
 				card_showcase_parent.add_child(shareholder_items_showcase_instance)
-				shareholder_items_showcase_instance._reset()
+				shareholder_items_showcase_instance._stop()
 				shareholder_items_showcase_instance._load_offer(offer_card)
 		
 		

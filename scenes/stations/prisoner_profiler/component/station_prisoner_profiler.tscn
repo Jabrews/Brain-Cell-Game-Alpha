@@ -62,7 +62,6 @@
 [ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
 [ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/flashing_clean_bar_texture.gdshader" id="42_8hdni"]
 [ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
-[ext_resource type="PackedScene" uid="uid://ucv4wxbydx5d" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/card_showcases/prisoner_showcase.tscn" id="48_s6kcd"]
 [ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
 [ext_resource type="AudioStream" uid="uid://rslpt20kiti5" path="res://sounds/prisoner_profiler/door_shut.mp3" id="49_4txwj"]
 [ext_resource type="PackedScene" uid="uid://dfss4n5s3e6en" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/preview_cards/preview_card_hover.tscn" id="49_k1kr7"]
@@ -1650,9 +1649,6 @@ offset_left = 32.0
 offset_top = 48.0
 offset_right = 72.0
 offset_bottom = 88.0
-
-[node name="PrisonerShowcase" parent="OfferUi/OfferBody/CardShowcase/CardShowcaseParent" unique_id=1584234701 instance=ExtResource("48_s6kcd")]
-layout_mode = 0
 
 [node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
 anchors_preset = 0
