@@ -1539,6 +1539,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+metadata/_edit_use_anchors_ = true
 
 [node name="BlurBg" type="ColorRect" parent="OfferUi" unique_id=494436698]
 material = SubResource("ShaderMaterial_730rl")

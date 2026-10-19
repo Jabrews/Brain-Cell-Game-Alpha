@@ -6,6 +6,7 @@ extends Control
 
 # display helpers
 @onready var display_defect_info : Node = $DisplayHelpers/DisplayDefectInfo
+@onready var display_pris_picks : Node = $DisplayHelpers/DisplayPrisPicks
 
 
 var loaded_prisoner_card : PrisonerOfferCard
@@ -15,6 +16,7 @@ func _load_offer(prisoner_card : PrisonerOfferCard) :
 	
 	# display helpers
 	display_defect_info._display(loaded_prisoner_card)
+	display_pris_picks._display(loaded_prisoner_card)
 	
 func _start() :
 	
