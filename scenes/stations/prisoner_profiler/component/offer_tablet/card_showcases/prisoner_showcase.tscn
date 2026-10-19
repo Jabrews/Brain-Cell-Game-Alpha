@@ -106,18 +106,21 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o3brn"]
 shader = ExtResource("16_66hxf")
-shader_parameter/base_value = 0.0
-shader_parameter/base_color = Color(0.65, 0.65, 0, 1)
-shader_parameter/base_opacity = 0.35
-shader_parameter/prisoner_value = 0.0
+shader_parameter/prisoner_value = 0.29600001406
 shader_parameter/prisoner_color = Color(1, 1, 0, 1)
-shader_parameter/prisoner_opacity = 0.70000003325
+shader_parameter/prisoner_opacity = 1.0
+shader_parameter/base_min_value = 0.22000001045
+shader_parameter/base_max_value = 0.3690000175275
+shader_parameter/base_color = Color(0.65, 0.65, 0, 1)
+shader_parameter/low_opacity = 0.2000000095
+shader_parameter/high_opacity = 0.50000002375
+shader_parameter/fade_speed = 10.0
 shader_parameter/edge_padding = 5.28400025099
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f0sis"]
 shader = ExtResource("4_f0sis")
 shader_parameter/defect_value = 0.0
-shader_parameter/fill_duration = 0.8
+shader_parameter/fill_duration = 0.10000000149012
 shader_parameter/fill_color = Color(1, 0, 0.05000019, 1)
 shader_parameter/fill_opacity = 1.0
 
@@ -479,7 +482,6 @@ sprite_frames = SubResource("SpriteFrames_qa1qv")
 animation = &"Default"
 
 [node name="PrisonerExample" type="Control" parent="PrisGenerator" unique_id=1189273039]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -668,6 +670,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Loading" type="Control" parent="PrisGenerator" unique_id=1204631780]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
