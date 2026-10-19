@@ -2,8 +2,8 @@ extends Node
 
 var debug_offer_cards : Array[OfferCard] = [
 	PrisonerOfferCard.new(
-		PrisonerCardStat.new(30, 100, true),
-		PrisonerCardStat.new(50, 80, true),
+		PrisonerCardStat.new(30, 100, 25, true),
+		PrisonerCardStat.new(50, 80, 25, true),
 		PrisonerCardStat.new(0, 0, false),
 		50,
 		1,
@@ -14,8 +14,8 @@ var debug_offer_cards : Array[OfferCard] = [
 	
 	PrisonerOfferCard.new(
 		PrisonerCardStat.new(0, 0, false),
-		PrisonerCardStat.new(50, 80, true),
-		PrisonerCardStat.new(30, 100, true),
+		PrisonerCardStat.new(50, 80, 0, true),
+		PrisonerCardStat.new(30, 100, 25, true),
 		25,
 		1,
 		4,

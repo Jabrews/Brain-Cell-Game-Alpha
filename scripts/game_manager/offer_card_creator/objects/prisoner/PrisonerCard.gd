@@ -6,7 +6,7 @@ var strength: PrisonerCardStat
 var intelligence: PrisonerCardStat
 var community: PrisonerCardStat
 
-var defect_rate: int
+var total_defect_rate: int
 var prisoner_picks: int
 var average_lifespan: int
 var alteration : String
@@ -18,7 +18,7 @@ func _init(
 	new_intelligence: PrisonerCardStat,
 	new_community: PrisonerCardStat,
 	
-	new_defect_rate: int = 1,
+	new_total_defect_rate: int = 1,
 	new_prisoner_picks: int = 1,
 	new_average_lifespan: int = 0,
 	new_alteration : String = "",
@@ -31,7 +31,7 @@ func _init(
 	intelligence = new_intelligence
 	community = new_community
 	
-	defect_rate = new_defect_rate
+	total_defect_rate = new_total_defect_rate
 	prisoner_picks = new_prisoner_picks
 	average_lifespan = new_average_lifespan
 	alteration = new_alteration
@@ -44,7 +44,7 @@ func print_card() -> void:
 	print("Strength: ", strength.min_value, "–", strength.max_value)
 	print("Intelligence: ", intelligence.min_value, "–", intelligence.max_value)
 	print("Community: ", community.min_value, "–", community.max_value)
-	print("Defect rate: ", defect_rate)
+	print("Total Defect rate: ", total_defect_rate)
 	print("Prisoner picks: ", prisoner_picks)
 	print("Average lifespan: ", average_lifespan)
 	print("Alteration : ", alteration)

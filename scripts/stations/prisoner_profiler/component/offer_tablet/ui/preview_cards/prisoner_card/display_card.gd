@@ -20,7 +20,7 @@ func _display(prisoner_card : PrisonerOfferCard, ideal_stats : Array[IdealStat])
 	
 	display_stats(prisoner_card, ideal_stats)
 	
-	defect_rate_label.text = str(prisoner_card.defect_rate) + '%'
+	defect_rate_label.text = str(prisoner_card.total_defect_rate) + '%'
 
 	
 func display_stats(

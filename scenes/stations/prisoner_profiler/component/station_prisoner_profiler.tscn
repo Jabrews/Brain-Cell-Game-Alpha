@@ -60,7 +60,7 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="40_kcyeb"]
 [ext_resource type="Texture2D" uid="uid://cs8ct6nglwbs3" path="res://models/breeding_screen/lifespan_next_arrow.png" id="42_1dla4"]
 [ext_resource type="Script" uid="uid://deidct3xrms27" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/exit_btn.gd" id="42_2u1cg"]
-[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/flashing_clean_bar_texture.gdshader" id="42_8hdni"]
+[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/flashing_clean_bar_texture.gdshader" id="42_8hdni"]
 [ext_resource type="AudioStream" uid="uid://c1gvpvtkpjmt5" path="res://sounds/prisoner_profiler/pole_exspand_start_2.mp3" id="47_r1744"]
 [ext_resource type="PackedScene" uid="uid://ucv4wxbydx5d" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/card_showcases/prisoner_showcase.tscn" id="48_s6kcd"]
 [ext_resource type="AudioStream" uid="uid://pw1mpx5378u4" path="res://sounds/prisoner_profiler/door_open_2.mp3" id="48_xrvkk"]
@@ -1630,16 +1630,6 @@ offset_right = 1248.0
 offset_bottom = 440.0
 color = Color(0.14, 0.0070000016, 0, 1)
 
-[node name="CardShowcaseParent" type="Control" parent="OfferUi/OfferBody/CardShowcase" unique_id=1633082963]
-anchors_preset = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 72.0
-offset_bottom = 88.0
-
-[node name="PrisonerShowcase" parent="OfferUi/OfferBody/CardShowcase/CardShowcaseParent" unique_id=1584234701 instance=ExtResource("48_s6kcd")]
-layout_mode = 0
-
 [node name="HintSelectCardLabel" type="Label" parent="OfferUi/OfferBody/CardShowcase" unique_id=1025858822]
 texture_filter = 1
 layout_mode = 0
@@ -1654,12 +1644,22 @@ text = "Select Card To Preview"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="CardShowcaseParent" type="Control" parent="OfferUi/OfferBody/CardShowcase" unique_id=1633082963]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 72.0
+offset_bottom = 88.0
+
+[node name="PrisonerShowcase" parent="OfferUi/OfferBody/CardShowcase/CardShowcaseParent" unique_id=1584234701 instance=ExtResource("48_s6kcd")]
+layout_mode = 0
+
 [node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
 anchors_preset = 0
 offset_left = 992.0
-offset_top = -16.0
+offset_top = -48.0
 offset_right = 1032.0
-offset_bottom = 24.0
+offset_bottom = -8.0
 
 [node name="DefaultTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1076116794]
 anchors_preset = 0

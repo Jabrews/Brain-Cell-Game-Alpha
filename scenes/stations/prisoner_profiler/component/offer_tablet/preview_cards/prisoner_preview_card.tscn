@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="4_kpuda"]
 [ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="5_qnviy"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_y3sct"]
-[ext_resource type="Shader" uid="uid://cnl7vq1hvsafm" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/clean_bar_texture.gdshader" id="7_s4e5r"]
+[ext_resource type="Shader" uid="uid://djbf5wo8siyty" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/preview_cards/prisoner_card/shaders/flashing_clean_bar_texture.gdshader" id="8_pojpf"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="8_v3t05"]
 [ext_resource type="Texture2D" uid="uid://ctxwjvoldy5yt" path="res://models/mutation_symbols/exsplosive.png" id="10_pojpf"]
 
@@ -21,7 +21,7 @@ shader_parameter/scanline_density = 90.0
 shader_parameter/hologram_tint = Color(0.9, 0, 0.04500017, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_14eo8"]
-shader = ExtResource("7_s4e5r")
+shader = ExtResource("8_pojpf")
 shader_parameter/base_value = 0.0
 shader_parameter/base_color = Color(0.63, 0.63, 0, 1)
 shader_parameter/base_opacity = 0.50000002375
@@ -30,6 +30,9 @@ shader_parameter/yellow_max_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
 shader_parameter/yellow_opacity = 0.8710000413725
 shader_parameter/edge_padding = 5.0
+shader_parameter/low_opacity = 0.450000021375
+shader_parameter/high_opacity = 1.0
+shader_parameter/fade_speed = 5.00000023424012
 
 [node name="PrisonerPreviewCard" type="Control" unique_id=2089330]
 layout_mode = 3
@@ -90,10 +93,10 @@ mouse_filter = 2
 modulate = Color(1, 0, 0, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 2.0
-offset_top = -2.0
-offset_right = 32.0
-offset_bottom = 29.0
+offset_left = -20.0
+offset_top = -3.0
+offset_right = 24.0
+offset_bottom = 36.0
 mouse_filter = 2
 texture = ExtResource("5_qnviy")
 expand_mode = 1
@@ -101,13 +104,12 @@ expand_mode = 1
 [node name="DefectRatePercantLabel" type="Label" parent="DefectRate" unique_id=1616998250]
 texture_filter = 1
 layout_mode = 0
-offset_left = 33.0
-offset_top = -1.0
-offset_right = 75.0
-offset_bottom = 28.0
+offset_left = 25.0
+offset_right = 78.0
+offset_bottom = 36.0
 theme_override_colors/font_color = Color(0.6745098, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_y3sct")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 32
 text = "50%"
 vertical_alignment = 1
 
