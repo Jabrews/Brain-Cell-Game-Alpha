@@ -11,19 +11,13 @@ extends Node
 @onready var playback_btn_manager : Node = $PlaybackBtnManager
 @onready var parent_prisoner_showcase : Control = $".."
 
-var test_cell_pool: Array[BrainCell] = [
-	BrainCell.new("Test Cell 1", [], BrainCellStat.new("strength", true, 20.0, 20.0, false), BrainCellStat.new("intelligence", true, 40.0, 0.0, false), BrainCellStat.new("community", true, 60.0, 0.0, false), 0),
-	BrainCell.new("Test Cell 2", [], BrainCellStat.new("strength", true, 70.0, 0.0, false), BrainCellStat.new("intelligence", true, 30.0, 0.0, false), BrainCellStat.new("community", true, 50.0, 25.0, false), 0),
-	BrainCell.new("Test Cell 3", [], BrainCellStat.new("strength", true, 45.0, 0.0, false), BrainCellStat.new("intelligence", true, 80.0, 8.0, false), BrainCellStat.new("community", true, 25.0, 50.0, false), 0)
-]
-
 var prisoner_example : BrainCell
 
 
 var active_screen : String = 'prisoner_example'
 
 func _start(_prisoner_card: OfferCard) -> void:
-	prisoner_example = test_cell_pool.pick_random()
+	prisoner_example = generate_example_prisoner()
 
 	active_screen = "loading"
 	loading_parent.visible = true
@@ -45,17 +39,19 @@ func _toggle_pause(toggle_value: bool) -> void:
 
 
 func _handle_loading_advance() -> void:
-	var prisoner_card: PrisonerOfferCard = parent_prisoner_showcase.loaded_prisoner_card
 
-	if prisoner_card == null or prisoner_example == null:
-		push_error("Cannot show prisoner example: card or example cell is missing.")
-		return
 
 	active_screen = "prisoner_example"
 	loading_parent.visible = false
 	prisoner_example_parent.visible = true
 	advance_light_controller._start()
 	timer_manager._start_prisoner_timer()
+	
+	var prisoner_card: PrisonerOfferCard = parent_prisoner_showcase.loaded_prisoner_card
+
+	if prisoner_card == null : 
+		push_error("Cannot show prisoner example display on screen : card is missing.")
+		return 
 
 	display_prisoner_example._display(prisoner_example, prisoner_card)
 
@@ -67,8 +63,7 @@ func _handle_new_prisoner_advance() -> void:
 	advance_light_controller._stop()
 	timer_manager._start_loading_timer()
 	
-
-	prisoner_example = test_cell_pool.pick_random()
+	prisoner_example = generate_example_prisoner()
 	
 
 
@@ -82,3 +77,18 @@ func _stop() -> void:
 	playback_btn_manager._reset()
 	
 	prisoner_example = null
+
+func generate_example_prisoner() -> BrainCell :
+	
+	var prisoner_card: PrisonerOfferCard = parent_prisoner_showcase.loaded_prisoner_card
+
+	if prisoner_card == null : 
+		push_error("Cannot generate example prisoner : card is missing.")
+		return null
+	
+	
+	var helper_generate_example_prisoner := get_tree().get_first_node_in_group("generate_example_prisoner")
+	
+	return helper_generate_example_prisoner._generate(prisoner_card)
+
+		

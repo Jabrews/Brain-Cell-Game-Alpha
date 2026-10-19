@@ -23,3 +23,6 @@ signal process_new_ivs()
 
 # after round fade to black helper
 signal reset_player_position()
+
+# DEBUG vars
+var debug_prisoner_showcase_show_stat_data : bool = true

@@ -18,13 +18,18 @@
 [ext_resource type="Script" uid="uid://dkndmrb0oiki2" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/component_controllers/advance_light_controller.gd" id="13_utfnr"]
 [ext_resource type="Script" uid="uid://c5d1v7iivwjd3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/component_controllers/display_prisoner_example.gd" id="14_m1u7o"]
 [ext_resource type="Shader" uid="uid://droi4xlekghnq" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/shaders/clean_bar.gdshader" id="16_66hxf"]
-[ext_resource type="Texture2D" uid="uid://2fph03vx6n7g" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_showcase_gen_outline.png" id="16_maaqw"]
+[ext_resource type="Texture2D" uid="uid://2fph03vx6n7g" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/prisoner_showcase_gen_outline.png" id="16_maaqw"]
 [ext_resource type="Script" uid="uid://d382ovu7j1bsf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/playback_btn_manager/playback_btn.gd" id="18_cpxox"]
-[ext_resource type="Texture2D" uid="uid://b4blowfm2iw5u" path="res://models/prisoner_profiler/prisoner_showcase/media_control_start.png" id="18_p8mme"]
-[ext_resource type="Texture2D" uid="uid://dstxm5apy3v1j" path="res://models/prisoner_profiler/prisoner_showcase/Sprite-0004.png" id="19_mp10o"]
+[ext_resource type="Texture2D" uid="uid://b4blowfm2iw5u" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/media_control_start.png" id="18_p8mme"]
+[ext_resource type="Texture2D" uid="uid://dstxm5apy3v1j" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/Sprite-0004.png" id="19_mp10o"]
 [ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="22_s3kq4"]
 [ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="25_5bd5b"]
+[ext_resource type="Texture2D" uid="uid://vwjm6q5s2vqk" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_picks/portrait_bg.png" id="26_5bd5b"]
 [ext_resource type="Script" uid="uid://hn2pqfw7uyq7" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/reusable/detect_hint_rect.gd" id="27_6kinb"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="27_qls8a"]
+[ext_resource type="Texture2D" uid="uid://c1jx71621fqaa" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_picks/prisoner_img.png" id="28_0wore"]
+[ext_resource type="Shader" uid="uid://5g4ipa6ob8r7" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/shaders/pick_symbol.gdshader" id="29_0wore"]
+[ext_resource type="Texture2D" uid="uid://dip7y0i5o04hu" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_picks/pick_symbol.png" id="29_qls8a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5bd5b"]
 atlas = ExtResource("19_mp10o")
@@ -310,6 +315,20 @@ animations = [{
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_66hxf"]
 load_path = "res://.godot/imported/defect_rate.png-b08f0b90deb705d5f0620d490b57daeb.ctex"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa1qv"]
+shader = ExtResource("27_qls8a")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.5610000266475
+shader_parameter/shimmer_strength = 0.0
+shader_parameter/scanline_strength = 0.050000002375
+shader_parameter/scanline_density = 100.0000047025
+shader_parameter/hologram_tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wore"]
+shader = ExtResource("29_0wore")
+shader_parameter/bob_amount = 1.0000000475
+shader_parameter/bob_speed = 5.0
+
 [node name="PrisonerShowcase" type="Control" unique_id=1584234701]
 layout_mode = 3
 anchors_preset = 0
@@ -360,7 +379,7 @@ script = ExtResource("14_m1u7o")
 layout_mode = 0
 offset_right = 1216.0
 offset_bottom = 392.0
-color = Color(0.14, 0.0070000016, 0, 1)
+color = Color(0.21568628, 0.007843138, 0, 1)
 
 [node name="PrisGenerator" type="Control" parent="." unique_id=1335643188]
 anchors_preset = 0
@@ -666,6 +685,48 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_o3brn")
 theme_override_font_sizes/font_size = 20
 text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DebugStatDataLabels" type="Control" parent="PrisGenerator/PrisonerExample" unique_id=453898362]
+anchors_preset = 0
+offset_left = -1.0
+offset_right = 39.0
+offset_bottom = 40.0
+
+[node name="StrengthLabel" type="Label" parent="PrisGenerator/PrisonerExample/DebugStatDataLabels" unique_id=1268021135]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 60.0
+offset_right = 805.0
+offset_bottom = 83.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.66, 0.046199996, 0.056429844, 1)
+text = "Under"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IntelligenceLabel" type="Label" parent="PrisGenerator/PrisonerExample/DebugStatDataLabels" unique_id=36837028]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 144.0
+offset_right = 805.0
+offset_bottom = 167.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.66, 0.046199996, 0.056429844, 1)
+text = "Under"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CommunityLabel" type="Label" parent="PrisGenerator/PrisonerExample/DebugStatDataLabels" unique_id=1316494649]
+layout_mode = 0
+offset_left = 413.0
+offset_top = 224.0
+offset_right = 805.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.66, 0.046199996, 0.056429844, 1)
+text = "Under"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -995,6 +1056,135 @@ theme_override_fonts/font = ExtResource("2_5m33n")
 theme_override_font_sizes/font_size = 18
 text = "50%"
 vertical_alignment = 1
+
+[node name="PrisPicks" type="Control" parent="." unique_id=2123468993]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FrameBG3" type="ColorRect" parent="PrisPicks" unique_id=1416968599]
+layout_mode = 0
+offset_left = 832.0
+offset_right = 1216.0
+offset_bottom = 224.0
+mouse_filter = 2
+color = Color(0.21568628, 0.007843138, 0, 1)
+
+[node name="PicksLabels" type="Control" parent="PrisPicks" unique_id=2056115442]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InBatchLabel" type="Label" parent="PrisPicks/PicksLabels" unique_id=717262784]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 16.0
+offset_right = 1018.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Prisoners In Batch : 4"
+vertical_alignment = 1
+
+[node name="PicksLabel" type="Label" parent="PrisPicks/PicksLabels" unique_id=579900716]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 40.0
+offset_right = 984.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.8745098, 0.44313726, 0.14901961, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Available to Pick : 2"
+vertical_alignment = 1
+
+[node name="PrisonerBackground" type="TextureRect" parent="PrisPicks" unique_id=1938827959]
+texture_filter = 1
+layout_mode = 0
+offset_left = 832.0
+offset_top = 66.0
+offset_right = 1216.0
+offset_bottom = 218.0
+texture = ExtResource("26_5bd5b")
+
+[node name="PrisonerSprites" type="Control" parent="PrisPicks" unique_id=1557959458]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Prisoner1" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=640541036]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(892.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="Prisoner2" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=1181110658]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(980.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="Prisoner3" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=374571157]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(1068.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="Prisoner4" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=524648120]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(1156.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="PickSymbolSprites" type="Control" parent="PrisPicks" unique_id=641243404]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PickSymbol1" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1738106049]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(893, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PickSymbol2" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1248760187]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(980, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PickSymbol3" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=597509687]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(1068, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PickSymbol4" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1927957135]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(1157, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PropertyInfo" type="Control" parent="." unique_id=32122734]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FrameBG3" type="ColorRect" parent="PropertyInfo" unique_id=430690898]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 224.0
+offset_right = 1216.0
+offset_bottom = 384.0
+mouse_filter = 2
+color = Color(0.19050702, 0.0062047835, 6.016344e-09, 1)
 
 [node name="Footer" type="ColorRect" parent="." unique_id=1559449774]
 layout_mode = 0

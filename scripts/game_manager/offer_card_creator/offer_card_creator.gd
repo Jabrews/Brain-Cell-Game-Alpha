@@ -1,52 +1,8 @@
 extends Node
 
-var debug_offer_cards : Array[OfferCard] = [
-	PrisonerOfferCard.new(
-		PrisonerCardStat.new(30, 100, 0, true),
-		PrisonerCardStat.new(50, 80, 25, true),
-		PrisonerCardStat.new(0, 0, false),
-		25,
-		1,
-		3,
-		'',
-		[]
-	),
-	
-	PrisonerOfferCard.new(
-		PrisonerCardStat.new(0, 0, false),
-		PrisonerCardStat.new(50, 80, 50, true),
-		PrisonerCardStat.new(30, 100, 25, true),
-		75,
-		1,
-		4,
-		'exsplosive',
-		[]
-	),
-	
-	ShareholderItemsCard.new(
-		[
-			UseableOfferItem.new(
-				"defect_shot",
-				"Decreases a chosen stat on a cell container by 15 percent, 3 charges total."
-			),		
-			UseableOfferItem.new(
-				"hidden_shot",
-				"Reveal a chosen hidden stat on a cell container, 3 charges total"
-			),
-			UseableOfferItem.new(
-				"ice_cube",
-				"Freezes a cell for one turn. Frozen cells do not age, gain defects, or allow player interaction."
-			),
-		]
-	)
-	
-	
-	
-	
-	
-	
-]
-
+# components
+@onready var create_cards : Node = $CreateCards
+@onready var prisoner_generator : Node = $PrisonerGenerator
 
 
 
@@ -54,6 +10,15 @@ var debug_offer_cards : Array[OfferCard] = [
 func _ready() -> void:
 	GLOfferCardCreatorBus.connect('create_offer_cards', _handle_create_offer_cards)
 
-func _handle_create_offer_cards(_ideal_stats : Array[IdealStat]) :
+func _handle_create_offer_cards(ideal_stats : Array[IdealStat]) :
 	
-	GLOfferCardCreatorBus.emit_signal('recieve_offer_cards', debug_offer_cards)	
+	var offer_cards : Array[OfferCard] = create_cards._create(ideal_stats)
+	
+	## create prisoners
+	for offer_card : OfferCard in offer_cards : 
+		
+		if offer_card.card_type == 'prisoner' : 
+			
+			offer_card.prisoner_cells = prisoner_generator._generate_prisoner_cells(ideal_stats, offer_card)
+	
+	GLOfferCardCreatorBus.emit_signal('recieve_offer_cards', offer_cards)	

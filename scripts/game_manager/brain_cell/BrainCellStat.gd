@@ -7,6 +7,7 @@ var enabled : bool
 var value : float
 var defect : float
 var hidden : bool
+var admin_data : Dictionary
 
 @warning_ignore("shadowed_variable")
 func _init(
@@ -15,12 +16,14 @@ func _init(
 	value : float,
 	defect : float,
 	hidden : bool,
+	admin_data : Dictionary = {}
 ):
 	self.type = type
 	self.enabled = enabled
 	self.value = value
 	self.defect = defect
 	self.hidden = hidden
+	self.admin_data = admin_data
 
 
 func _to_string() -> String:

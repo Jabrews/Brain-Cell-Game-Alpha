@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dstxm5apy3v1j"
-path="res://.godot/imported/Sprite-0004.png-3d96742ea4bc874baff56bded01543d4.ctex"
+uid="uid://c1jx71621fqaa"
+path="res://.godot/imported/prisoner_img.png-c01c6be6d291ca2d08d9a39731406efa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/prisoner_profiler/prisoner_showcase/Sprite-0004.png"
-dest_files=["res://.godot/imported/Sprite-0004.png-3d96742ea4bc874baff56bded01543d4.ctex"]
+source_file="res://models/prisoner_profiler/prisoner_showcase/prisoner_picks/prisoner_img.png"
+dest_files=["res://.godot/imported/prisoner_img.png-c01c6be6d291ca2d08d9a39731406efa.ctex"]
 
 [params]
 
@@ -37,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

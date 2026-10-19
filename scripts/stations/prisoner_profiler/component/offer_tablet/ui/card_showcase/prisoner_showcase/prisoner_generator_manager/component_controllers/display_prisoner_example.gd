@@ -18,6 +18,14 @@ extends Node
 	$"../../../PrisGenerator/PrisonerExample/Community/Disabled",
 ]
 
+# ADMIN STUFF 
+# IGNORE
+@onready var debug_stat_data_labels : Array[Label] = [
+	$"../../../PrisGenerator/PrisonerExample/DebugStatDataLabels/StrengthLabel", 
+	$"../../../PrisGenerator/PrisonerExample/DebugStatDataLabels/IntelligenceLabel", 
+	$"../../../PrisGenerator/PrisonerExample/DebugStatDataLabels/CommunityLabel"
+]
+
 
 func _ready() -> void:
 	for bar: Sprite2D in clean_bars:
@@ -52,11 +60,29 @@ func _display(prisoner_cell: BrainCell, prisoner_card: PrisonerOfferCard) -> voi
 		var clean_bar := clean_bars[index]
 		var defect_bar := defect_bars[index]
 		var disabled_parent := disabled_parents[index]
+		var debug_stat_data_label := debug_stat_data_labels[index]
+		
+
+		
 
 		var stat_enabled: bool = card_stat.enabled
 		disabled_parent.visible = not stat_enabled
 		clean_bar.visible = stat_enabled
 		defect_bar.visible = stat_enabled
+		
+		if GLGameManagerBus.debug_prisoner_showcase_show_stat_data and stat_enabled:
+			debug_stat_data_label.visible = true
+
+			if cell_stat.admin_data.has("defect_gen_case"):
+				debug_stat_data_label.text = str(
+					cell_stat.admin_data["defect_gen_case"]
+				)
+			else:
+				debug_stat_data_label.text = "No defect gen case"
+		else:
+			debug_stat_data_label.visible = false
+					
+		
 
 		if not stat_enabled:
 			continue

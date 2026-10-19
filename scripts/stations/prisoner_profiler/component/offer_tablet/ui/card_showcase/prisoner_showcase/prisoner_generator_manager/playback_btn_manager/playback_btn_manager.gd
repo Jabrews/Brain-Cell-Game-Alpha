@@ -3,8 +3,8 @@ extends Node
 # btn ui components
 @onready var btn_texture_rect : TextureRect = $"../../PrisGenerator/Header/PlaybackBtn/BtnTextureRect"
 # textures
-@onready var pause_texture: Texture = preload("res://models/prisoner_profiler/prisoner_showcase/media_control_stop.png")
-@onready var play_texture: Texture = preload("res://models/prisoner_profiler/prisoner_showcase/media_control_start.png")
+@onready var play_texture: Texture = preload("res://models/prisoner_profiler/prisoner_showcase/pris_generator/media_control_start.png")
+@onready var pause_texture: Texture = preload("res://models/prisoner_profiler/prisoner_showcase/pris_generator/media_control_stop.png")
 # components
 @onready var parent_pris_gen_manager : Node = $".."
 

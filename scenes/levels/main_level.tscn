@@ -36,6 +36,8 @@
 [ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
 [ext_resource type="Script" uid="uid://xn3mt6fb4q2p" path="res://scripts/game_manager/offer_card_creator/offer_card_creator.gd" id="33_lp30k"]
 [ext_resource type="Script" uid="uid://dpxrm4asdg8ty" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/roll_to_exit_mutation_loop.gd" id="34_lp30k"]
+[ext_resource type="Script" uid="uid://ddiunpoqtgbkr" path="res://scripts/game_manager/offer_card_creator/create_cards/create_cards.gd" id="34_r52yi"]
+[ext_resource type="Script" uid="uid://bqm8oly8caocs" path="res://scripts/game_manager/offer_card_creator/prisoner_generator/prisoner_generator.gd" id="35_24n7g"]
 [ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/trigger_mutation_event.gd" id="35_lp30k"]
 [ext_resource type="Script" uid="uid://dppco6rsi6d8d" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/sort_best_cells.gd" id="35_r52yi"]
 [ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
@@ -43,6 +45,8 @@
 [ext_resource type="Script" uid="uid://62h8dj2swe3i" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/get_batch_mutations.gd" id="36_24n7g"]
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
 [ext_resource type="Script" uid="uid://103bbjkr2rsp" path="res://scripts/game_manager/random_mutation_event_trigger/get_valid_possible_mutation_event_choices.gd" id="36_r52yi"]
+[ext_resource type="Script" uid="uid://bcsi3mfci0jys" path="res://scripts/game_manager/offer_card_creator/prisoner_generator/creation_methods/default_prisoner_create.gd" id="36_y36b7"]
+[ext_resource type="Script" uid="uid://u0eylavljq30" path="res://scripts/game_manager/offer_card_creator/prisoner_generator/generate_example_prisoner.gd" id="37_0ycs4"]
 [ext_resource type="Script" uid="uid://dbvt85r7b0cge" path="res://scripts/game_manager/profiler_spare_symbol_generator/profiler_spare_symbol_generator.gd" id="37_1l4rw"]
 [ext_resource type="Script" uid="uid://d2xucncxk5ke6" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_shareholder_items.gd" id="37_ngeto"]
 [ext_resource type="Script" uid="uid://cwmjjbbbap4ly" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/all_hidden_event.gd" id="37_y36b7"]
@@ -52,6 +56,7 @@
 [ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_triggerer/helpers/sickness_cell_container.gd" id="40_l5rsp"]
 [ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_triggerer/helpers/bubble_cell_container.gd" id="41_l5rsp"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
+[ext_resource type="Script" uid="uid://f3k2iugyul8v" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_creation_methods.gd" id="49_dixnm"]
 [ext_resource type="Script" uid="uid://dxdykv2inqkpg" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_event.gd" id="49_lp30k"]
 [ext_resource type="Script" uid="uid://dx6pxqeveqgb3" path="res://scripts/game_manager/entitiy_room_management/entrance_area.gd" id="50_awaeu"]
 [ext_resource type="Script" uid="uid://ctsaigq8188vt" path="res://scripts/game_manager/defect_event_triggerer/helpers/jolt_single_interpreter.gd" id="50_lp30k"]
@@ -604,6 +609,20 @@ script = ExtResource("12_63vgv")
 [node name="OfferCardCreator" type="Node" parent="GameManager" unique_id=1724378018]
 script = ExtResource("33_lp30k")
 
+[node name="CreateCards" type="Node" parent="GameManager/OfferCardCreator" unique_id=1628693899]
+script = ExtResource("34_r52yi")
+
+[node name="PrisonerGenerator" type="Node" parent="GameManager/OfferCardCreator" unique_id=102428307]
+script = ExtResource("35_24n7g")
+
+[node name="CreationMethods" type="Node" parent="GameManager/OfferCardCreator/PrisonerGenerator" unique_id=2005526857]
+
+[node name="DefaultPrisonerCreate" type="Node" parent="GameManager/OfferCardCreator/PrisonerGenerator/CreationMethods" unique_id=1670081117]
+script = ExtResource("36_y36b7")
+
+[node name="GenerateExamplePrisoner" type="Node" parent="GameManager/OfferCardCreator/PrisonerGenerator" unique_id=611578649]
+script = ExtResource("37_0ycs4")
+
 [node name="TriggerMutationEvent" type="Node" parent="GameManager" unique_id=1034953006]
 script = ExtResource("35_lp30k")
 
@@ -638,6 +657,9 @@ script = ExtResource("48_3ujpq")
 
 [node name="IVHelperDefectEvent" type="Node" parent="GameManager/IncrementalValueController" unique_id=973942470]
 script = ExtResource("49_lp30k")
+
+[node name="IVHelperCreationMethods" type="Node" parent="GameManager/IncrementalValueController" unique_id=1651104822]
+script = ExtResource("49_dixnm")
 
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
