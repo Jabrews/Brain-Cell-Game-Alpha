@@ -18,7 +18,9 @@
 [ext_resource type="Script" uid="uid://dkndmrb0oiki2" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/component_controllers/advance_light_controller.gd" id="13_utfnr"]
 [ext_resource type="Script" uid="uid://c5d1v7iivwjd3" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/component_controllers/display_prisoner_example.gd" id="14_m1u7o"]
 [ext_resource type="Shader" uid="uid://droi4xlekghnq" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/shaders/clean_bar.gdshader" id="16_66hxf"]
+[ext_resource type="Texture2D" uid="uid://dihg83ajr73y7" path="res://models/prisoner_profiler/prisoner_showcase/alterations/exsploisive/exsplosive_sprite_frames.png" id="16_ggaiv"]
 [ext_resource type="Texture2D" uid="uid://2fph03vx6n7g" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/prisoner_showcase_gen_outline.png" id="16_maaqw"]
+[ext_resource type="Texture2D" uid="uid://ctxwjvoldy5yt" path="res://models/mutation_symbols/exsplosive.png" id="17_8m6y6"]
 [ext_resource type="Script" uid="uid://d382ovu7j1bsf" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/prisoner_generator_manager/playback_btn_manager/playback_btn.gd" id="18_cpxox"]
 [ext_resource type="Texture2D" uid="uid://b4blowfm2iw5u" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/media_control_start.png" id="18_p8mme"]
 [ext_resource type="Texture2D" uid="uid://dstxm5apy3v1j" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/Sprite-0004.png" id="19_mp10o"]
@@ -35,6 +37,108 @@
 [ext_resource type="Texture2D" uid="uid://cydtifq87um8l" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/defect_rate_hint_pic.png" id="32_jcnst"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="32_kqe5o"]
 [ext_resource type="Texture2D" uid="uid://cowr01w4xyeno" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/another_hint.png" id="33_ec6v4"]
+[ext_resource type="Texture2D" uid="uid://bjpk42msbw3vj" path="res://models/prisoner_profiler/prisoner_showcase/alterations/none/none_img.png" id="36_voe6u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_voe6u"]
+shader = ExtResource("27_qls8a")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.38400001824
+shader_parameter/shimmer_strength = 0.0
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.17000423557501
+shader_parameter/hologram_tint = Color(1, 0.69, 0.69, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb0pj"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(0, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00d3e"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(336, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aceq5"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(672, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8of8"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(1008, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu8hb"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(1344, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic2vf"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(1680, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdvje"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(2016, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prdb6"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(2352, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i15nx"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(2688, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp0vp"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(3024, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2leu7"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(3360, 0, 336, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gfke"]
+atlas = ExtResource("16_ggaiv")
+region = Rect2(3696, 0, 336, 200)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixuf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb0pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00d3e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aceq5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8of8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu8hb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic2vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdvje")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prdb6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i15nx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp0vp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2leu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gfke")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qa1qv"]
 shader = ExtResource("27_qls8a")
@@ -456,6 +560,186 @@ layout_mode = 0
 offset_right = 1216.0
 offset_bottom = 392.0
 color = Color(0.21568628, 0.007843138, 0, 1)
+
+[node name="Alterations" type="Control" parent="." unique_id=1807685428]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Control" parent="Alterations" unique_id=489784051]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PortraitBG" type="ColorRect" parent="Alterations/Background" unique_id=703042028]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 368.0
+offset_bottom = 224.0
+color = Color(0.11, 0.0055000014, 0, 1)
+
+[node name="BodyBG" type="ColorRect" parent="Alterations/Background" unique_id=1833077232]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 208.0
+offset_right = 368.0
+offset_bottom = 376.0
+color = Color(0.072342776, 0.0021118945, 0, 1)
+
+[node name="BodyBG2" type="ColorRect" parent="Alterations/Background" unique_id=1224812119]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 24.0
+offset_bottom = 224.0
+color = Color(0.072342776, 0.0021118945, 0, 1)
+
+[node name="BodyBG3" type="ColorRect" parent="Alterations/Background" unique_id=217593292]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 360.0
+offset_bottom = 24.0
+color = Color(0.072342776, 0.0021118945, 0, 1)
+
+[node name="BodyBG4" type="ColorRect" parent="Alterations/Background" unique_id=2038339196]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 24.0
+offset_right = 368.0
+offset_bottom = 224.0
+color = Color(0.072342776, 0.0021118945, 0, 1)
+
+[node name="None" type="Control" parent="Alterations" unique_id=2043173872]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Portrait" type="Control" parent="Alterations/None" unique_id=2065996474]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PortraitBG" type="TextureRect" parent="Alterations/None/Portrait" unique_id=858968490]
+modulate = Color(1, 1, 1, 0.24313726)
+texture_filter = 1
+material = SubResource("ShaderMaterial_voe6u")
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 360.0
+offset_bottom = 211.0
+texture = ExtResource("36_voe6u")
+expand_mode = 1
+
+[node name="Body" type="Control" parent="Alterations/None" unique_id=1098451811]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeathRatePercantLabel" type="Label" parent="Alterations/None/Body" unique_id=86932227]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 232.0
+offset_right = 360.0
+offset_bottom = 338.24982
+scale = Vector2(1, 1.2800024)
+theme_override_colors/font_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 26
+text = "No Alterations
+Detected"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exsplosive" type="Control" parent="Alterations" unique_id=378478302]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Portrait" type="Control" parent="Alterations/Exsplosive" unique_id=554527906]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PortraitBG" type="AnimatedSprite2D" parent="Alterations/Exsplosive/Portrait" unique_id=2015325229]
+texture_filter = 1
+position = Vector2(192, 115)
+scale = Vector2(1, 0.93)
+sprite_frames = SubResource("SpriteFrames_ixuf4")
+autoplay = "default"
+frame_progress = 0.25369337
+
+[node name="Body" type="Control" parent="Alterations/Exsplosive" unique_id=938444762]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Header" type="Control" parent="Alterations/Exsplosive/Body" unique_id=303136741]
+anchors_preset = 0
+offset_top = -24.0
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="DeathRatePercantLabel" type="Label" parent="Alterations/Exsplosive/Body/Header" unique_id=28288501]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 232.0
+offset_right = 200.0
+offset_bottom = 257.0
+scale = Vector2(1, 1.2800024)
+theme_override_colors/font_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 22
+text = "Exsplosive Mutation"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExsplosiveTextureRect" type="TextureRect" parent="Alterations/Exsplosive/Body/Header" unique_id=555862719]
+texture_filter = 1
+layout_mode = 0
+offset_left = 199.0
+offset_top = 226.0
+offset_right = 231.0
+offset_bottom = 261.0
+mouse_filter = 2
+texture = ExtResource("17_8m6y6")
+
+[node name="DeathRatePercantLabel" type="Label" parent="Alterations/Exsplosive/Body" unique_id=741460534]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 249.0
+offset_right = 468.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+theme_override_constants/line_spacing = -2
+theme_override_constants/paragraph_spacing = 1
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Cells included in batch are very valuable.
+However, they exist on a timer and exsplode
+after a miniute. 
+
+"
+
+[node name="Notes" type="Label" parent="Alterations/Exsplosive/Body" unique_id=2085825291]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 330.0
+offset_right = 295.0
+offset_bottom = 365.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 16
+text = "- mutation does not spread via breeding. 
+- can still used on goal"
 
 [node name="PrisPicks" type="Control" parent="." unique_id=2123468993]
 anchors_preset = 0
@@ -1456,7 +1740,7 @@ texture_filter = 1
 position = Vector2(-176, 32)
 sprite_frames = SubResource("SpriteFrames_keru6")
 autoplay = "default"
-frame_progress = 0.89068997
+frame_progress = 0.51905596
 
 [node name="HintPic2" type="TextureRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=2002670784]
 texture_filter = 1

@@ -1498,7 +1498,7 @@ mesh = SubResource("PlaneMesh_r1744")
 script = ExtResource("3_cvm4e")
 
 [node name="SubViewport" type="SubViewport" parent="OfferTablet/Poles/TabletHolderPole/TabletTV/TvFrontPannel2" unique_id=721241468]
-size = Vector2i(1240, 670)
+size = Vector2i(677, 357)
 render_target_update_mode = 4
 
 [node name="MockOfferTabletUi" parent="OfferTablet/Poles/TabletHolderPole/TabletTV/TvFrontPannel2/SubViewport" unique_id=2052056433 instance=ExtResource("39_bka8w")]

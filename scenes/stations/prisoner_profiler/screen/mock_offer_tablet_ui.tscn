@@ -1,102 +1,71 @@
 [gd_scene format=3 uid="uid://cilrrnnw5ggmd"]
 
-[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_ljcj6"]
-
 [node name="MockOfferTabletUi" type="Node2D" unique_id=2052056433]
+scale = Vector2(0.56, 0.56)
 
-[node name="ExitHeader" type="Control" parent="." unique_id=543945131]
-layout_mode = 3
-anchors_preset = 0
-offset_top = -72.0
-offset_right = 40.0
-offset_bottom = -32.0
+[node name="BG2" type="ColorRect" parent="." unique_id=79818199]
+offset_left = 1.0
+offset_right = 1217.0
+offset_bottom = 640.0
+color = Color(0.18, 0.009000002, 0, 1)
 
-[node name="BG" type="ColorRect" parent="ExitHeader" unique_id=1450352623]
-layout_mode = 0
-offset_top = 72.0
-offset_right = 1248.0
-offset_bottom = 112.0
+[node name="BG" type="ColorRect" parent="." unique_id=5019436]
+offset_top = 601.0
+offset_right = 1216.0
+offset_bottom = 641.0
 color = Color(0.12156863, 0.007843138, 0, 1)
 
-[node name="ExitBtn" type="ColorRect" parent="ExitHeader" unique_id=104060624]
-layout_mode = 0
-offset_left = 1148.0
-offset_top = 76.0
-offset_right = 1220.0
-offset_bottom = 108.0
+[node name="BG3" type="ColorRect" parent="." unique_id=641875472]
+offset_left = 1.0
+offset_right = 1217.0
+offset_bottom = 392.0
+color = Color(0.14, 0.0070000016, 0, 1)
+
+[node name="BG4" type="ColorRect" parent="." unique_id=1530069753]
+offset_left = 1.0
+offset_right = 1217.0
+offset_bottom = 40.0
+color = Color(0.12156863, 0.007843138, 0, 1)
+
+[node name="ExitBtn" type="ColorRect" parent="." unique_id=813733931]
+offset_left = 1121.0
+offset_top = 8.0
+offset_right = 1193.0
+offset_bottom = 40.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
 focus_mode = 2
 
-[node name="ExitLabel" type="Label" parent="ExitHeader/ExitBtn" unique_id=441172955]
-texture_filter = 1
-layout_mode = 0
-offset_right = 72.0
-offset_bottom = 32.0
+[node name="ConfirmBtn" type="ColorRect" parent="." unique_id=1678419399]
+offset_left = 489.0
+offset_top = 609.0
+offset_right = 729.0
+offset_bottom = 632.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_colors/font_color = Color(0.9, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_ljcj6")
-theme_override_font_sizes/font_size = 24
-text = "x"
-horizontal_alignment = 1
-vertical_alignment = 1
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
+focus_mode = 2
 
-[node name="OfferBody" type="Control" parent="." unique_id=1686738368]
-layout_mode = 3
-anchors_preset = 0
-offset_top = -8.0
-offset_right = 40.0
-offset_bottom = 32.0
+[node name="ColorRect" type="ColorRect" parent="." unique_id=201705604]
+offset_left = 97.0
+offset_top = 416.0
+offset_right = 353.0
+offset_bottom = 584.0
+color = Color(0.31762406, 0.023617685, 0, 1)
 
-[node name="BG" type="ColorRect" parent="OfferBody" unique_id=72489187]
-layout_mode = 0
-offset_top = 48.0
-offset_right = 1248.0
-offset_bottom = 688.0
-color = Color(0.18, 0.009000002, 0, 1)
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=534785386]
+offset_left = 865.0
+offset_top = 416.0
+offset_right = 1121.0
+offset_bottom = 584.0
+color = Color(0.31762406, 0.023617685, 0, 1)
 
-[node name="TurnsLeftDisplay" type="Control" parent="OfferBody" unique_id=532377846]
-anchors_preset = 0
-offset_top = -16.0
-offset_right = 40.0
-offset_bottom = 24.0
-
-[node name="ColorRect2" type="ColorRect" parent="OfferBody/TurnsLeftDisplay" unique_id=1808431739]
-layout_mode = 0
-offset_left = 1040.0
-offset_top = 72.0
-offset_right = 1232.0
-offset_bottom = 136.0
-color = Color(0.36078432, 0.019607844, 0, 1)
-
-[node name="Cards" type="Control" parent="." unique_id=1465949043]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CardBg" type="ColorRect" parent="Cards" unique_id=2064796147]
-layout_mode = 0
-offset_left = 64.0
-offset_top = 152.0
-offset_right = 352.0
-offset_bottom = 640.0
-color = Color(0.28, 0, 0.0140000535, 1)
-
-[node name="CardBg2" type="ColorRect" parent="Cards" unique_id=420065671]
-layout_mode = 0
-offset_left = 888.0
-offset_top = 152.0
-offset_right = 1176.0
-offset_bottom = 640.0
-color = Color(0.28, 0, 0.0140000535, 1)
-
-[node name="CardBg3" type="ColorRect" parent="Cards" unique_id=674271014]
-layout_mode = 0
-offset_left = 472.0
-offset_top = 152.0
-offset_right = 760.0
-offset_bottom = 640.0
-color = Color(0.28, 0, 0.0140000535, 1)
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=1569898403]
+offset_left = 481.0
+offset_top = 416.0
+offset_right = 737.0
+offset_bottom = 584.0
+color = Color(0.31762406, 0.023617685, 0, 1)
