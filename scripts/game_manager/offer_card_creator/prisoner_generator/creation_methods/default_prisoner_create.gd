@@ -58,11 +58,19 @@ func _create_stat(
 
 	# The stat's own rate determines the chance of an under-value defect.
 	if randf() >= stat_defect_rate / 100.0:
-		defect_value = _generate_under_defect(clean_value, stat_defect_rate)
 		
-		if GLGameManagerBus.debug_prisoner_showcase_show_stat_data : 		
-			defect_gen_case = 'under'
-		
+		# ZERO DEFECT RATE LOW
+		if stat_defect_rate == 0.0 : 
+			defect_value = _generate_zero_defect(clean_value)
+			if GLGameManagerBus.debug_prisoner_showcase_show_stat_data : 		
+				defect_gen_case = 'zero'
+		# OTEHR DEFECT RATE LOW
+		else :
+			defect_value = _generate_under_defect(clean_value, stat_defect_rate)
+			
+			if GLGameManagerBus.debug_prisoner_showcase_show_stat_data : 		
+				defect_gen_case = 'under'
+			
 	else:
 		var weights := _get_equal_above_weights(total_defect_rate)
 
@@ -113,6 +121,16 @@ func _get_equal_above_weights(total_defect_rate: float) -> Vector2:
 			return Vector2(0.6, 0.4)
 		else:
 			return Vector2(0.4, 0.6)
+
+
+func _generate_zero_defect(_clean_value : float) -> float : 
+	
+# get defect value using ranges
+	var defect_value : float = randf_range(0.0, IVCellCreator.max_stat_value * 0.10)
+	
+	return snappedf(defect_value, 0.1)
+	
+	
 
 
 func _generate_under_defect(clean_value: float, stat_defect_rate : float) -> float:
