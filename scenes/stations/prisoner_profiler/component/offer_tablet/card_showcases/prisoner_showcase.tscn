@@ -30,6 +30,25 @@
 [ext_resource type="Texture2D" uid="uid://c1jx71621fqaa" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_picks/prisoner_img.png" id="28_0wore"]
 [ext_resource type="Shader" uid="uid://5g4ipa6ob8r7" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/shaders/pick_symbol.gdshader" id="29_0wore"]
 [ext_resource type="Texture2D" uid="uid://dip7y0i5o04hu" path="res://models/prisoner_profiler/prisoner_showcase/prisoner_picks/pick_symbol.png" id="29_qls8a"]
+[ext_resource type="Texture2D" uid="uid://dvjlg1boeeqvn" path="res://models/prisoner_profiler/prisoner_card_symbols/average_lifespan.png" id="31_tm4pn"]
+[ext_resource type="Texture2D" uid="uid://cdpinj15j4sk6" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/defect_death_hint_frames.png" id="32_ec6v4"]
+[ext_resource type="Texture2D" uid="uid://cydtifq87um8l" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/defect_rate_hint_pic.png" id="32_jcnst"]
+[ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="32_kqe5o"]
+[ext_resource type="Texture2D" uid="uid://cowr01w4xyeno" path="res://models/prisoner_profiler/prisoner_showcase/pris_generator/another_hint.png" id="33_ec6v4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa1qv"]
+shader = ExtResource("27_qls8a")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.5610000266475
+shader_parameter/shimmer_strength = 0.0
+shader_parameter/scanline_strength = 0.050000002375
+shader_parameter/scanline_density = 100.0000047025
+shader_parameter/hologram_tint = Color(1, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wore"]
+shader = ExtResource("29_0wore")
+shader_parameter/bob_amount = 1.0000000475
+shader_parameter/bob_speed = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5bd5b"]
 atlas = ExtResource("19_mp10o")
@@ -315,19 +334,76 @@ animations = [{
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_66hxf"]
 load_path = "res://.godot/imported/defect_rate.png-b08f0b90deb705d5f0620d490b57daeb.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa1qv"]
-shader = ExtResource("27_qls8a")
-shader_parameter/hologram_enabled = true
-shader_parameter/shimmer_speed = 0.5610000266475
-shader_parameter/shimmer_strength = 0.0
-shader_parameter/scanline_strength = 0.050000002375
-shader_parameter/scanline_density = 100.0000047025
-shader_parameter/hologram_tint = Color(1, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_voe6u"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(0, 0, 120, 56)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wore"]
-shader = ExtResource("29_0wore")
-shader_parameter/bob_amount = 1.0000000475
-shader_parameter/bob_speed = 5.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggaiv"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(120, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8m6y6"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(240, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1of7"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(360, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgfim"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(480, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jfjj5"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(600, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2qex1"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(720, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd5xo"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(840, 0, 120, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0843"]
+atlas = ExtResource("32_ec6v4")
+region = Rect2(960, 0, 120, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_keru6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voe6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggaiv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8m6y6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1of7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgfim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jfjj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2qex1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd5xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0843")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="PrisonerShowcase" type="Control" unique_id=1584234701]
 layout_mode = 3
@@ -380,6 +456,449 @@ layout_mode = 0
 offset_right = 1216.0
 offset_bottom = 392.0
 color = Color(0.21568628, 0.007843138, 0, 1)
+
+[node name="PrisPicks" type="Control" parent="." unique_id=2123468993]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FrameBG3" type="ColorRect" parent="PrisPicks" unique_id=1416968599]
+layout_mode = 0
+offset_left = 832.0
+offset_right = 1216.0
+offset_bottom = 224.0
+mouse_filter = 2
+color = Color(0.21568628, 0.007843138, 0, 1)
+
+[node name="PicksLabels" type="Control" parent="PrisPicks" unique_id=2056115442]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InBatchLabel" type="Label" parent="PrisPicks/PicksLabels" unique_id=717262784]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 16.0
+offset_right = 1018.0
+offset_bottom = 40.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Prisoners In Batch : 4"
+vertical_alignment = 1
+
+[node name="PicksLabel" type="Label" parent="PrisPicks/PicksLabels" unique_id=579900716]
+texture_filter = 1
+layout_mode = 0
+offset_left = 848.0
+offset_top = 40.0
+offset_right = 984.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.8745098, 0.44313726, 0.14901961, 1)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Available to Pick : 2"
+vertical_alignment = 1
+
+[node name="PrisonerBackground" type="TextureRect" parent="PrisPicks" unique_id=1938827959]
+texture_filter = 1
+layout_mode = 0
+offset_left = 832.0
+offset_top = 66.0
+offset_right = 1216.0
+offset_bottom = 218.0
+texture = ExtResource("26_5bd5b")
+
+[node name="PrisonerSprites" type="Control" parent="PrisPicks" unique_id=1557959458]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Prisoner1" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=640541036]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(892.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="Prisoner2" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=1181110658]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(980.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="Prisoner3" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=374571157]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(1068.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="Prisoner4" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=524648120]
+texture_filter = 1
+material = SubResource("ShaderMaterial_qa1qv")
+position = Vector2(1156.2, 143.8)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("28_0wore")
+
+[node name="PickSymbolSprites" type="Control" parent="PrisPicks" unique_id=641243404]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PickSymbol1" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1738106049]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(893, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PickSymbol2" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1248760187]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(980, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PickSymbol3" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=597509687]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(1068, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PickSymbol4" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1927957135]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0wore")
+position = Vector2(1157, 97)
+texture = ExtResource("29_qls8a")
+
+[node name="PropertyInfo" type="Control" parent="." unique_id=32122734]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FrameBG3" type="ColorRect" parent="PropertyInfo" unique_id=430690898]
+layout_mode = 0
+offset_left = 832.0
+offset_top = 224.0
+offset_right = 1216.0
+offset_bottom = 384.0
+mouse_filter = 2
+color = Color(0.19050702, 0.0062047835, 6.016344e-09, 1)
+
+[node name="AverageLifespan" type="Control" parent="PropertyInfo" unique_id=1715499805]
+anchors_preset = 0
+offset_left = 832.0
+offset_top = 238.0
+offset_right = 872.0
+offset_bottom = 278.0
+
+[node name="BG" type="ColorRect" parent="PropertyInfo/AverageLifespan" unique_id=1077116288]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -6.0
+offset_right = 217.0
+offset_bottom = 50.0
+mouse_filter = 2
+color = Color(0.14117648, 0.007843138, 0, 1)
+
+[node name="AverageLifespanSymbol" type="TextureRect" parent="PropertyInfo/AverageLifespan" unique_id=1481023625]
+texture_filter = 1
+layout_mode = 0
+offset_left = 15.0
+offset_top = 3.0
+offset_right = 55.0
+offset_bottom = 43.0
+mouse_filter = 2
+texture = ExtResource("31_tm4pn")
+
+[node name="HeaderLabel" type="Label" parent="PropertyInfo/AverageLifespan" unique_id=880108539]
+texture_filter = 1
+layout_mode = 0
+offset_left = 57.0
+offset_top = -6.0
+offset_right = 196.0
+offset_bottom = 42.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Average Lifespan :"
+vertical_alignment = 1
+
+[node name="AverageLifspanLabel" type="Label" parent="PropertyInfo/AverageLifespan" unique_id=1281108147]
+texture_filter = 1
+layout_mode = 0
+offset_left = 198.0
+offset_top = 7.0
+offset_right = 208.0
+offset_bottom = 36.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 20
+text = "3"
+vertical_alignment = 1
+
+[node name="LifespanHintRect" type="ColorRect" parent="PropertyInfo/AverageLifespan" unique_id=763149375 node_paths=PackedStringArray("hint_parent")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -5.0
+offset_right = 215.0
+offset_bottom = 50.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("27_6kinb")
+hint_parent = NodePath("../LifespanHint")
+
+[node name="LifespanHint" type="Control" parent="PropertyInfo/AverageLifespan" unique_id=1710670471]
+visible = false
+anchors_preset = 0
+offset_left = 63.0
+offset_top = -163.0
+offset_right = 103.0
+offset_bottom = -123.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="PropertyInfo/AverageLifespan/LifespanHint" unique_id=178962644]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 10.0
+offset_right = 193.0
+offset_bottom = 157.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="FakeBorder" type="Control" parent="PropertyInfo/AverageLifespan/LifespanHint" unique_id=1177796855]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="PropertyInfo/AverageLifespan/LifespanHint/FakeBorder" unique_id=942486815]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 157.0
+offset_right = -46.0
+offset_bottom = 213.0
+mouse_filter = 2
+
+[node name="ColorRect4" type="ColorRect" parent="PropertyInfo/AverageLifespan/LifespanHint/FakeBorder" unique_id=589356449]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 213.0
+offset_right = 154.0
+offset_bottom = 214.0
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="PropertyInfo/AverageLifespan/LifespanHint/FakeBorder" unique_id=1893434028]
+layout_mode = 0
+offset_left = 153.0
+offset_top = 157.0
+offset_right = 154.0
+offset_bottom = 213.0
+mouse_filter = 2
+
+[node name="ColorRect5" type="ColorRect" parent="PropertyInfo/AverageLifespan/LifespanHint/FakeBorder" unique_id=1102533239]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 157.0
+offset_right = 154.0
+offset_bottom = 158.0
+mouse_filter = 2
+
+[node name="Labels" type="Control" parent="PropertyInfo/AverageLifespan/LifespanHint" unique_id=1895214229]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = -67.0
+offset_right = 48.0
+offset_bottom = -27.0
+
+[node name="HintLabel" type="Label" parent="PropertyInfo/AverageLifespan/LifespanHint/Labels" unique_id=801339851]
+texture_filter = 1
+layout_mode = 0
+offset_left = -50.0
+offset_top = 85.0
+offset_right = 158.0
+offset_bottom = 206.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Lifespan : Every turn a cell 
+losses a life till it dies. 
+
+This also effects the cells 
+failure chance at some stations
+
+ 
+"
+
+[node name="LifespanLabel" type="Label" parent="PropertyInfo/AverageLifespan/LifespanHint/Labels" unique_id=1602324181]
+texture_filter = 1
+layout_mode = 0
+offset_left = -50.0
+offset_top = 85.0
+offset_right = 158.0
+offset_bottom = 206.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Lifespan : 
+
+ 
+"
+
+[node name="FailureChanceLabel" type="Label" parent="PropertyInfo/AverageLifespan/LifespanHint/Labels" unique_id=1871990853]
+texture_filter = 1
+layout_mode = 0
+offset_left = -50.0
+offset_top = 185.0
+offset_right = 158.0
+offset_bottom = 306.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "failure chance
+
+ 
+"
+
+[node name="BloodType" type="Control" parent="PropertyInfo" unique_id=1399120681]
+anchors_preset = 0
+offset_left = 833.0
+offset_top = 304.0
+offset_right = 873.0
+offset_bottom = 344.0
+
+[node name="BG" type="ColorRect" parent="PropertyInfo/BloodType" unique_id=1776787519]
+layout_mode = 0
+offset_left = 17.0
+offset_top = -6.0
+offset_right = 192.0
+offset_bottom = 50.0
+mouse_filter = 2
+color = Color(0.14117648, 0.007843138, 0, 1)
+
+[node name="BloodtypeSymbol" type="TextureRect" parent="PropertyInfo/BloodType" unique_id=1575200998]
+texture_filter = 1
+layout_mode = 0
+offset_left = 20.0
+offset_top = 7.0
+offset_right = 56.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("32_kqe5o")
+expand_mode = 1
+
+[node name="HeaderLabel" type="Label" parent="PropertyInfo/BloodType" unique_id=965859485]
+texture_filter = 1
+layout_mode = 0
+offset_left = 57.0
+offset_top = -6.0
+offset_right = 196.0
+offset_bottom = 42.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Bloodtype :"
+vertical_alignment = 1
+
+[node name="BloodTypeLabel" type="Label" parent="PropertyInfo/BloodType" unique_id=1727936026]
+texture_filter = 1
+layout_mode = 0
+offset_left = 145.0
+offset_top = 6.0
+offset_right = 194.0
+offset_bottom = 35.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 20
+text = "None"
+vertical_alignment = 1
+
+[node name="BloodTypeHintRect" type="ColorRect" parent="PropertyInfo/BloodType" unique_id=387694770 node_paths=PackedStringArray("hint_parent")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = -5.0
+offset_right = 192.0
+offset_bottom = 50.0
+color = Color(1, 1, 1, 0)
+script = ExtResource("27_6kinb")
+hint_parent = NodePath("../BloodTypeHint")
+
+[node name="BloodTypeHint" type="Control" parent="PropertyInfo/BloodType" unique_id=1718362459]
+visible = false
+anchors_preset = 0
+offset_left = 63.0
+offset_top = -163.0
+offset_right = 103.0
+offset_bottom = -123.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="PropertyInfo/BloodType/BloodTypeHint" unique_id=1577225770]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 10.0
+offset_right = 193.0
+offset_bottom = 157.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="FakeBorder" type="Control" parent="PropertyInfo/BloodType/BloodTypeHint" unique_id=160487215]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="PropertyInfo/BloodType/BloodTypeHint/FakeBorder" unique_id=1027577428]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 157.0
+offset_right = -46.0
+offset_bottom = 213.0
+mouse_filter = 2
+
+[node name="ColorRect4" type="ColorRect" parent="PropertyInfo/BloodType/BloodTypeHint/FakeBorder" unique_id=638486776]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 213.0
+offset_right = 129.0
+offset_bottom = 214.0
+mouse_filter = 2
+
+[node name="ColorRect2" type="ColorRect" parent="PropertyInfo/BloodType/BloodTypeHint/FakeBorder" unique_id=912199343]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 157.0
+offset_right = 130.0
+offset_bottom = 214.0
+mouse_filter = 2
+
+[node name="ColorRect5" type="ColorRect" parent="PropertyInfo/BloodType/BloodTypeHint/FakeBorder" unique_id=1241242510]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 157.0
+offset_right = 129.0
+offset_bottom = 158.0
+mouse_filter = 2
+
+[node name="Labels" type="Control" parent="PropertyInfo/BloodType/BloodTypeHint" unique_id=262530402]
+anchors_preset = 0
+offset_left = 8.0
+offset_top = -67.0
+offset_right = 48.0
+offset_bottom = -27.0
+
+[node name="HintLabel" type="Label" parent="PropertyInfo/BloodType/BloodTypeHint/Labels" unique_id=210942064]
+texture_filter = 1
+layout_mode = 0
+offset_left = -50.0
+offset_top = 85.0
+offset_right = 158.0
+offset_bottom = 206.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Not implented yet..."
 
 [node name="PrisGenerator" type="Control" parent="." unique_id=1335643188]
 anchors_preset = 0
@@ -637,7 +1156,7 @@ offset_bottom = 152.0
 [node name="Bar" type="Sprite2D" parent="PrisGenerator/PrisonerExample/Community" unique_id=1099166839]
 texture_filter = 1
 material = SubResource("ShaderMaterial_o3brn")
-position = Vector2(127.99999, 120)
+position = Vector2(127.99999, 119)
 scale = Vector2(1.2903225, 0.74999976)
 texture = ExtResource("2_jcdp0")
 
@@ -652,9 +1171,9 @@ texture = ExtResource("3_lnr22")
 texture_filter = 1
 layout_mode = 0
 offset_left = -72.0
-offset_top = 79.0
+offset_top = 77.0
 offset_right = 112.0
-offset_bottom = 103.0
+offset_bottom = 101.0
 theme_override_fonts/font = ExtResource("3_o3brn")
 theme_override_font_sizes/font_size = 14
 text = "Community"
@@ -861,29 +1380,159 @@ offset_right = 85.0
 offset_bottom = 121.0
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=1279124760]
+[node name="LeftHint" type="Control" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=780637952]
+anchors_preset = 0
+offset_left = -5.0
+offset_top = -46.0
+offset_right = 35.0
+offset_bottom = -6.0
+
+[node name="BG" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=1279124760]
+layout_mode = 0
+offset_left = -117.0
+offset_top = -46.0
+offset_right = 99.0
+offset_bottom = 202.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.9019608)
+
+[node name="HintLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=1664317094]
+texture_filter = 1
+layout_mode = 0
+offset_left = -109.0
+offset_top = -38.0
+offset_right = 118.0
+offset_bottom = 358.0
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Defect : 
+
+when a stat's defect 
+reaches the max value
+the cell transforms.
+
+defect contributes to 
+failure chance at some 
+stations
+
+Each defect point 
+subtracts one clean point. 
+when contributing to goal
+
+"
+
+[node name="DefectLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=413412560]
+texture_filter = 1
+layout_mode = 0
+offset_left = -109.0
+offset_top = -38.0
+offset_right = 118.0
+offset_bottom = 358.0
+theme_override_colors/font_color = Color(0.99607843, 0, 0, 1)
+theme_override_constants/line_spacing = -6
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Defect : 
+
+"
+
+[node name="FailureChanceLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=750779916]
+texture_filter = 1
+layout_mode = 0
+offset_left = -109.0
+offset_top = 88.0
+offset_right = 118.0
+offset_bottom = 484.0
+theme_override_colors/font_color = Color(0.99607843, 0, 0, 1)
+theme_override_constants/line_spacing = -6
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "failure chance
+"
+
+[node name="HintPic1" type="AnimatedSprite2D" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=761141989]
+texture_filter = 1
+position = Vector2(-176, 32)
+sprite_frames = SubResource("SpriteFrames_keru6")
+autoplay = "default"
+frame_progress = 0.89068997
+
+[node name="HintPic2" type="TextureRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/LeftHint" unique_id=2002670784]
+texture_filter = 1
+layout_mode = 0
+offset_left = -232.0
+offset_top = 144.0
+offset_right = -112.0
+offset_bottom = 200.0
+texture = ExtResource("33_ec6v4")
+
+[node name="RightHint" type="Control" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=1305194015]
+anchors_preset = 0
+offset_left = -69.0
+offset_top = -46.0
+offset_right = -29.0
+offset_bottom = -6.0
+
+[node name="BG" type="ColorRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/RightHint" unique_id=1578316783]
 layout_mode = 0
 offset_left = 179.0
-offset_top = 141.0
-offset_right = 382.0
-offset_bottom = 222.0
+offset_top = -46.0
+offset_right = 399.0
+offset_bottom = 200.0
 mouse_filter = 2
-color = Color(0, 0, 0, 0.80784315)
+color = Color(0, 0, 0, 0.8784314)
 
-[node name="HintLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=1664317094]
+[node name="HintLabel" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/RightHint" unique_id=936167594]
 texture_filter = 1
-custom_minimum_size = Vector2(197, 92)
-custom_maximum_size = Vector2(197, 92)
 layout_mode = 0
-offset_left = 185.0
-offset_top = 149.0
-offset_right = 382.0
-offset_bottom = 241.0
-theme_override_constants/line_spacing = 4
+offset_left = 184.0
+offset_top = -46.0
+offset_right = 384.0
+offset_bottom = 200.0
+theme_override_constants/line_spacing = -3
 theme_override_fonts/font = ExtResource("2_5m33n")
-theme_override_font_sizes/font_size = 17
-text = "Refers to chance of defect equalling or surpassing stats clean value. "
-autowrap_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Defect Rate :
+
+Each prisoner stat has 
+its own defect rate. 
+
+The higher the rate, 
+more likely the defect value 
+is to exceed its clean value.
+
+
+
+
+"
+
+[node name="HintLabel2" type="Label" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/RightHint" unique_id=2021681830]
+texture_filter = 1
+layout_mode = 0
+offset_left = 184.0
+offset_top = -46.0
+offset_right = 384.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("2_5m33n")
+theme_override_font_sizes/font_size = 18
+text = "Defect Rate :
+
+
+
+
+"
+
+[node name="ColorRect" type="TextureRect" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint/RightHint" unique_id=1332500509]
+texture_filter = 1
+layout_mode = 0
+offset_left = 184.0
+offset_top = 112.0
+offset_right = 392.0
+offset_bottom = 192.0
+texture = ExtResource("32_jcnst")
 
 [node name="FakeBorder" type="Control" parent="DefectRateDisplay/TotalDefectRate/DefectRateHint" unique_id=508620516]
 anchors_preset = 0
@@ -1056,135 +1705,6 @@ theme_override_fonts/font = ExtResource("2_5m33n")
 theme_override_font_sizes/font_size = 18
 text = "50%"
 vertical_alignment = 1
-
-[node name="PrisPicks" type="Control" parent="." unique_id=2123468993]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="FrameBG3" type="ColorRect" parent="PrisPicks" unique_id=1416968599]
-layout_mode = 0
-offset_left = 832.0
-offset_right = 1216.0
-offset_bottom = 224.0
-mouse_filter = 2
-color = Color(0.21568628, 0.007843138, 0, 1)
-
-[node name="PicksLabels" type="Control" parent="PrisPicks" unique_id=2056115442]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="InBatchLabel" type="Label" parent="PrisPicks/PicksLabels" unique_id=717262784]
-texture_filter = 1
-layout_mode = 0
-offset_left = 848.0
-offset_top = 16.0
-offset_right = 1018.0
-offset_bottom = 40.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("2_5m33n")
-theme_override_font_sizes/font_size = 18
-text = "Prisoners In Batch : 4"
-vertical_alignment = 1
-
-[node name="PicksLabel" type="Label" parent="PrisPicks/PicksLabels" unique_id=579900716]
-texture_filter = 1
-layout_mode = 0
-offset_left = 848.0
-offset_top = 40.0
-offset_right = 984.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(0.8745098, 0.44313726, 0.14901961, 1)
-theme_override_fonts/font = ExtResource("2_5m33n")
-theme_override_font_sizes/font_size = 18
-text = "Available to Pick : 2"
-vertical_alignment = 1
-
-[node name="PrisonerBackground" type="TextureRect" parent="PrisPicks" unique_id=1938827959]
-texture_filter = 1
-layout_mode = 0
-offset_left = 832.0
-offset_top = 66.0
-offset_right = 1216.0
-offset_bottom = 218.0
-texture = ExtResource("26_5bd5b")
-
-[node name="PrisonerSprites" type="Control" parent="PrisPicks" unique_id=1557959458]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Prisoner1" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=640541036]
-texture_filter = 1
-material = SubResource("ShaderMaterial_qa1qv")
-position = Vector2(892.2, 143.8)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("28_0wore")
-
-[node name="Prisoner2" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=1181110658]
-texture_filter = 1
-material = SubResource("ShaderMaterial_qa1qv")
-position = Vector2(980.2, 143.8)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("28_0wore")
-
-[node name="Prisoner3" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=374571157]
-texture_filter = 1
-material = SubResource("ShaderMaterial_qa1qv")
-position = Vector2(1068.2, 143.8)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("28_0wore")
-
-[node name="Prisoner4" type="Sprite2D" parent="PrisPicks/PrisonerSprites" unique_id=524648120]
-texture_filter = 1
-material = SubResource("ShaderMaterial_qa1qv")
-position = Vector2(1156.2, 143.8)
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("28_0wore")
-
-[node name="PickSymbolSprites" type="Control" parent="PrisPicks" unique_id=641243404]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PickSymbol1" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1738106049]
-texture_filter = 1
-material = SubResource("ShaderMaterial_0wore")
-position = Vector2(893, 97)
-texture = ExtResource("29_qls8a")
-
-[node name="PickSymbol2" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1248760187]
-texture_filter = 1
-material = SubResource("ShaderMaterial_0wore")
-position = Vector2(980, 97)
-texture = ExtResource("29_qls8a")
-
-[node name="PickSymbol3" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=597509687]
-texture_filter = 1
-material = SubResource("ShaderMaterial_0wore")
-position = Vector2(1068, 97)
-texture = ExtResource("29_qls8a")
-
-[node name="PickSymbol4" type="Sprite2D" parent="PrisPicks/PickSymbolSprites" unique_id=1927957135]
-texture_filter = 1
-material = SubResource("ShaderMaterial_0wore")
-position = Vector2(1157, 97)
-texture = ExtResource("29_qls8a")
-
-[node name="PropertyInfo" type="Control" parent="." unique_id=32122734]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="FrameBG3" type="ColorRect" parent="PropertyInfo" unique_id=430690898]
-layout_mode = 0
-offset_left = 832.0
-offset_top = 224.0
-offset_right = 1216.0
-offset_bottom = 384.0
-mouse_filter = 2
-color = Color(0.19050702, 0.0062047835, 6.016344e-09, 1)
 
 [node name="Footer" type="ColorRect" parent="." unique_id=1559449774]
 layout_mode = 0
