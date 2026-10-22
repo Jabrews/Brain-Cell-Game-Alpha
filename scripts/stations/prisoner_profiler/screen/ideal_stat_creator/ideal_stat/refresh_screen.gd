@@ -7,6 +7,8 @@ extends Node
 # lock components
 @onready var locked_bg_rect : ColorRect = $"../StatDisplay/Locked/LockedBG"
 @onready var locked_symbol_sprite : Sprite2D = $"../StatDisplay/Locked/LockedSprite"
+# unreachable components
+@onready var unreachable_bg_rect : ColorRect = $"../StatDisplay/Unreachable/UnreachableBG"
 
 const LOCK_MAX_WIDTH : float = 840.0
 
@@ -37,6 +39,9 @@ func _refresh(ideal_stat : IdealStat) :
 	
 	## set lock bg
 	_load_lock_bg(ideal_stat.lock_max_value)
+	
+	var min_unreachable_value : float = IVPrisonerProfiler.uncreachable_min_value
+	_load_unreachable_bg(min_unreachable_value)
 
 
 func _load_lock_bg(lock_max_value: float) -> void:
@@ -68,7 +73,27 @@ func _load_lock_bg(lock_max_value: float) -> void:
 	locked_symbol_sprite.position.x = (
 		locked_bg_rect.position.x + locked_bg_rect.size.x / 2.0
 	)
-	
-	
-	
+
+
+func _load_unreachable_bg(unreachable_min_value: float) -> void:
+	var max_stat_value: float = IVCellCreator.max_stat_value
+
+	if max_stat_value <= 0.0:
+		push_error("max_stat_value must be greater than 0.")
+		return
+
+	var min_percent: float = clampf(
+		unreachable_min_value / max_stat_value,
+		0.0,
+		1.0
+	)
+	var min_x: float = LOCK_MAX_WIDTH * min_percent
+
+	if min_x >= LOCK_MAX_WIDTH:
+		unreachable_bg_rect.visible = false
+		return
+
+	unreachable_bg_rect.visible = true
+	unreachable_bg_rect.position.x = min_x - 10.0
+	unreachable_bg_rect.size.x = LOCK_MAX_WIDTH - min_x + 10.0
 	

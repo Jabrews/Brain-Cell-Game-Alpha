@@ -73,6 +73,7 @@
 [ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
 [ext_resource type="Script" uid="uid://dl0diaqhemq3n" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/confirm_btn.gd" id="52_lixm1"]
 [ext_resource type="Script" uid="uid://hi6w361jko8o" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/last_turn_parent.gd" id="58_cc40q"]
+[ext_resource type="AudioStream" uid="uid://bul2284wbswgl" path="res://sounds/prisoner_profiler/unreachable_alert.mp3" id="66_eyfig"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -1917,6 +1918,13 @@ max_distance = 20.0
 
 [node name="LockShake" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=906843651]
 stream = ExtResource("30_gvbd7")
+unit_size = 5.0
+pitch_scale = 0.9
+max_distance = 20.0
+
+[node name="UnreachableAlert" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=118253476]
+stream = ExtResource("66_eyfig")
+volume_db = -5.0
 unit_size = 5.0
 pitch_scale = 0.9
 max_distance = 20.0

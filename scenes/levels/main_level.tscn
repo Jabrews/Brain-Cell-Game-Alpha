@@ -40,7 +40,7 @@
 [ext_resource type="Script" uid="uid://bqm8oly8caocs" path="res://scripts/game_manager/offer_card_creator/prisoner_generator/prisoner_generator.gd" id="35_24n7g"]
 [ext_resource type="Script" uid="uid://b5ek23erxkau1" path="res://scripts/game_manager/random_mutation_event_trigger/trigger_mutation_event.gd" id="35_lp30k"]
 [ext_resource type="Script" uid="uid://dppco6rsi6d8d" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/sort_best_cells.gd" id="35_r52yi"]
-[ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_profiler_spare_progression.gd" id="35_w7r6u"]
+[ext_resource type="Script" uid="uid://b3i424haratdn" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_prisoner_profiler.gd" id="35_w7r6u"]
 [ext_resource type="Script" uid="uid://cqi0u48rlfi5b" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_hidden_stats.gd" id="35_wv5kd"]
 [ext_resource type="Script" uid="uid://62h8dj2swe3i" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helpers/get_batch_mutations.gd" id="36_24n7g"]
 [ext_resource type="Script" uid="uid://bkyh33rt7innt" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_cell_stat_creation.gd" id="36_87p7k"]
@@ -661,7 +661,7 @@ script = ExtResource("31_alpj0")
 [node name="IVHelperHiddenStats" type="Node" parent="GameManager/IncrementalValueController" unique_id=235860088]
 script = ExtResource("35_wv5kd")
 
-[node name="IVHelperProfilerSpareProgression" type="Node" parent="GameManager/IncrementalValueController" unique_id=858463651]
+[node name="IVHelperPrisonerProfiler" type="Node" parent="GameManager/IncrementalValueController" unique_id=858463651]
 script = ExtResource("35_w7r6u")
 
 [node name="IVHelperCellStatCreation" type="Node" parent="GameManager/IncrementalValueController" unique_id=634562747]

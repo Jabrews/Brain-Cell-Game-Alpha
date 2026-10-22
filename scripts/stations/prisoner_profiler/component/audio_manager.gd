@@ -6,6 +6,7 @@ extends Node
 @onready var s_increment : AudioStreamPlayer3D = $Increment
 @onready var s_increment_hold : AudioStreamPlayer3D = $IncrementHold
 @onready var s_lock_shake : AudioStreamPlayer3D = $LockShake
+@onready var s_unreachable_alert : AudioStreamPlayer3D = $UnreachableAlert
 @onready var s_on_off_click : AudioStreamPlayer3D = $OnOffClick
 @onready var s_generate : AudioStreamPlayer3D = $Generate
 @onready var s_energy_alert_beep : AudioStreamPlayer3D = $EnergyAlertBeep
@@ -34,6 +35,8 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_increment_hold.play()
 		"lock_shake":
 			s_lock_shake.play()
+		'unreachable_alert' : 
+			s_unreachable_alert.play()
 		"on_off_click":
 			s_on_off_click.play()
 		"generate":

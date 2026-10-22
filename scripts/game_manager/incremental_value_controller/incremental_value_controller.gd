@@ -5,7 +5,7 @@ var last_threshold_piece_index : int = 0
 
 # components
 @onready var iv_helper_hidden_stats : Node = $IVHelperHiddenStats
-@onready var iv_helper_profiler_spare_progression : Node = $IVHelperProfilerSpareProgression
+@onready var iv_helper_prisoner_profiler : Node = $IVHelperPrisonerProfiler
 @onready var iv_helper_cell_stat_creation : Node = $IVHelperCellStatCreation
 @onready var iv_helper_shareholder_items : Node = $IVHelperShareholderItems
 @onready var iv_helper_mutations : Node = $IVHelperMutations
@@ -83,13 +83,7 @@ func handle_round(round : int):
 			IVShareholderOffers.first_item_offer_energy_percant= 80
 			IVShareholderOffers.second_item_offer_energy_percant= 45
 			## PRISONER PROFILER ##
-			IVPrisonerProfiler.stat_increment_amount = 10
-			IVPrisonerProfiler.strength_stat_lock_percant_index = 0
-			IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
-			IVPrisonerProfiler.community_stat_lock_percant_index= 0
-			IVPrisonerProfiler.stat_lock_percantages = [0.10, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.01]
-			#IVPrisonerProfiler.stat_lock_percantages = [0.05, 0.10, 0.25, 0.35, 0.55, 0.68, 0.80, 0.84, 0.92, 0.98, 1.01]
-			IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
+
 			## DEFECT DECREASER ##
 			IVCellDefectDecreaser.station_enabled = false
 			## CELL TRASHCAN ##
@@ -108,7 +102,8 @@ func handle_threshold_piece(round : int) :
 	
 	
 	iv_helper_hidden_stats._update_hidden_stat_values(round, active_goal_piece_index)
-	iv_helper_profiler_spare_progression._update_spare_progression(round, active_goal_piece_index)
+	#iv_helper_profiler_spare_progression._update_spare_progression(round, active_goal_piece_index)
+	iv_helper_prisoner_profiler._update_prisoner_profiler(round, active_goal_piece_index)
 	iv_helper_cell_stat_creation._update_cell_stat_creation(round, active_goal_piece_index)
 	iv_helper_shareholder_items._update_shareholder_items(round, active_goal_piece_index)
 	iv_helper_mutations._update_mutations(round, active_goal_piece_index)
