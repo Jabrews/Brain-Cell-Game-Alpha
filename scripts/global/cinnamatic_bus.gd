@@ -9,6 +9,8 @@ signal toggle_extractor_cinnamatic(toggle_value : bool)
 
 signal toggle_goal_cinnamtic(toggle_value : bool)
 
+signal toggle_offer_picked_cinnamatic(toggle_value : bool)
+
 
 func _ready() -> void:
 	toggle_energy_cinnamatic.connect(_on_toggle_energy_cinnamatic)	

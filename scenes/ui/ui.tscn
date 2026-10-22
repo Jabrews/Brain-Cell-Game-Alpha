@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://33d63f8ania3" path="res://scenes/ui/useable_item_popup.tscn" id="9_uegxj"]
 [ext_resource type="Script" uid="uid://b2qctp8cxtw4f" path="res://scripts/ui/view_offer_tablet.gd" id="10_qhbcy"]
 [ext_resource type="Shader" uid="uid://dt7lkosoh8nsh" path="res://scripts/shaders/hold_display.gdshader" id="10_swkix"]
-[ext_resource type="Script" uid="uid://cjop1t15syvqd" path="res://scripts/ui/sit_in_chair.gd" id="10_y220t"]
 [ext_resource type="Texture2D" uid="uid://drr5m73c47u2f" path="res://models/cursor/holding_btn.png" id="11_hc5d0"]
 [ext_resource type="Script" uid="uid://d53x8j268to" path="res://scripts/ui/hold_display/hold_display.gd" id="12_hc5d0"]
 [ext_resource type="Script" uid="uid://bwy54p8t4ku4o" path="res://scripts/ui/hold_display/update_shader.gd" id="13_n3vwu"]
@@ -21,7 +20,6 @@
 [ext_resource type="Script" uid="uid://divqeid51v8os" path="res://scripts/ui/view_file_cabinet.gd" id="17_mgwkc"]
 [ext_resource type="Script" uid="uid://dn1hbdbmjlyif" path="res://scripts/ui/event_notice_manager/event_notice_manager.gd" id="18_ygedu"]
 [ext_resource type="Script" uid="uid://cefhqwtwh3e2i" path="res://scripts/ui/event_notice_manager/spot.gd" id="19_svq4k"]
-[ext_resource type="Script" uid="uid://cw31gxlbj441f" path="res://scripts/ui/view_demands.gd" id="20_ygedu"]
 [ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
 [ext_resource type="Script" uid="uid://dulxe11r8rej1" path="res://scripts/ui/end_state_screens/game_end.gd" id="22_qmss2"]
 [ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/end_state_screens/retry_btn.gd" id="23_26a3v"]
@@ -84,39 +82,6 @@ offset_left = 483.0
 offset_top = -8.0
 offset_right = 483.0
 offset_bottom = -8.0
-
-[node name="OLD" type="Control" parent="Labels" unique_id=1655333713]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ViewDemands" type="Label" parent="Labels/OLD" unique_id=1289168979]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 392.0
-offset_top = 640.0
-offset_right = 992.0
-offset_bottom = 690.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 50
-text = "View Demands"
-horizontal_alignment = 1
-script = ExtResource("20_ygedu")
-
-[node name="SitInChair" type="Label" parent="Labels/OLD" unique_id=756833370]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = 352.0
-offset_top = 648.0
-offset_right = 952.0
-offset_bottom = 698.0
-theme_override_fonts/font = ExtResource("1_u7n8c")
-theme_override_font_sizes/font_size = 50
-text = "Sit In Chair"
-horizontal_alignment = 1
-script = ExtResource("10_y220t")
 
 [node name="AxeLabelManager" type="Control" parent="Labels" unique_id=513794480]
 anchors_preset = 0

@@ -4,6 +4,7 @@ var prisoner_cells_refrence : Array[BrainCell]
 var collected_cells_refrence : Array[BrainCell]
 
 # connected
+signal create_prisoner_cells(prisoner_cells : Array[BrainCell])
 signal collected_cell_created(cell : BrainCell) # called when brain container initalizes
 signal prisoner_picked_by_player(prisoner_cell : BrainCell)
 signal delete_remaining_prisoners() # called by pris. spawner

@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://coetu5aaafg85" path="res://scenes/stations/station_components/cell_breeding/component/station_cell_breeding.tscn" id="15_0ycs4"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
-[ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable/useable_item_spawn_manager.gd" id="16_44ape"]
+[ext_resource type="PackedScene" uid="uid://dua5i68l5weho" path="res://scenes/useable_item_spawner/useable_item_spawner.tscn" id="17_dixnm"]
 [ext_resource type="PackedScene" uid="uid://dkmet5r7r2ydn" path="res://scenes/mutation_file_cabinet/mutation_file_cabinet.tscn" id="17_j7s3e"]
 [ext_resource type="Script" uid="uid://dho0dsdpmn7e1" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/stats/assemble_helper_create_clean.gd" id="17_m5ih7"]
 [ext_resource type="PackedScene" uid="uid://b4cwkhm8fu843" path="res://debug/station_unhide_mutation/station_unhide_mutation.tscn" id="18_8muua"]
@@ -451,7 +451,7 @@ navigation_mesh = SubResource("NavigationMesh_v2xyd")
 [node name="Charcters" type="Node" parent="." unique_id=1683906565]
 
 [node name="Player" parent="Charcters" unique_id=1124472616 instance=ExtResource("1_h7hv4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.066413, 2, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.933587, 2, -4)
 
 [node name="ContainerParentNode" type="Node" parent="Charcters" unique_id=1909441806]
 
@@ -481,6 +481,23 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 
 [node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=267444250 instance=ExtResource("6_l5rsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.308971, 0, -12.108076)
+
+[node name="PrisonerCinnamatic" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic" parent_id_path=PackedInt32Array(267444250, 1707607200) index="1" unique_id=89762710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 5, -4)
+
+[node name="PrisonerCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/PrisonerCinnamatic" index="0" unique_id=1201928819]
+transform = Transform3D(-2.9802322e-08, -0.2588191, 0.9659258, 3.8567047e-09, 0.9659259, 0.2588191, -0.9999999, 7.450581e-09, -2.9802322e-08, 0, -0.3000002, 4)
+fov = 90.0
+
+[node name="ShareholderItemCinnamatic" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic" parent_id_path=PackedInt32Array(267444250, 1707607200) index="2" unique_id=1501779628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 5, 13)
+
+[node name="ShareholderItemCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/ShareholderItemCinnamatic" index="0" unique_id=1786409267]
+transform = Transform3D(0.2588191, 0.25000006, -0.9330128, -7.7134095e-09, 0.96592593, 0.2588191, 0.9659258, -0.066987306, 0.25000003, 1, -0.3000002, 0)
+fov = 80.0
+
+[node name="IdealTV" parent="Stations/PrisonerStations/PrisonerProfiler/IdealStatCreator/IdealStatsWall/IdealStats/IdealIntelligence" parent_id_path=PackedInt32Array(267444250, 2109596959) index="1" unique_id=1889044433]
+transform = Transform3D(1.0000015, 0, 0, 0, 1, 0, 0, 0, 1.0000015, -0.91664886, 3.3153977, 3.8247938)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
@@ -553,7 +570,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.900001, 0.40000007, 8.5246
 mutations_seen_manager = NodePath("../../GameManager/MutationSeenManager")
 
 [node name="UnhideMutation" parent="Stations" unique_id=1284783246 instance=ExtResource("18_8muua")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4179325, 0, 3.78561)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4179325, 0, -5.21439)
+
+[node name="UseableItemSpawner" parent="Stations" unique_id=949787620 node_paths=PackedStringArray("player") instance=ExtResource("17_dixnm")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 16.8, 1, 11)
+player = NodePath("../../Charcters/Player")
 
 [node name="GameManager" type="Node" parent="." unique_id=389759183]
 script = ExtResource("10_erkku")
@@ -689,6 +710,9 @@ wait_time = 10.0
 
 [node name="InitalDelayTimer" type="Timer" parent="GameManager/DefectEventTriggerer" unique_id=1989671447]
 
+[node name="UseableItemUseManager" type="Node" parent="GameManager" unique_id=428990184]
+script = ExtResource("14_5ru7i")
+
 [node name="EntranceAreasRoom" type="Node" parent="." unique_id=432962381]
 
 [node name="PrisonerRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=1525945135]
@@ -744,16 +768,6 @@ room_type = "interpreter_room"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.0000005)
 shape = SubResource("BoxShape3D_36h02")
 debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
-
-[node name="UseableItemSpawnManager" type="Node" parent="." unique_id=622852825 node_paths=PackedStringArray("player")]
-script = ExtResource("16_44ape")
-player = NodePath("../Charcters/Player")
-
-[node name="SpawnPos" type="Node3D" parent="UseableItemSpawnManager" unique_id=448918086]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, -4)
-
-[node name="UseableItemUseManager" type="Node" parent="UseableItemSpawnManager" unique_id=428990184]
-script = ExtResource("14_5ru7i")
 
 [node name="ShareholderOfferManager" parent="." unique_id=1195344226 instance=ExtResource("38_wv5kd")]
 
@@ -823,3 +837,5 @@ cell_container_parent_node = NodePath("../Charcters/ContainerParentNode")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)
+
+[editable path="Stations/PrisonerStations/PrisonerProfiler"]

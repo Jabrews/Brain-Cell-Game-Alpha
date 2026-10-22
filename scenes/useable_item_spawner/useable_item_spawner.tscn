@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dua5i68l5weho"]
+
+[ext_resource type="Script" uid="uid://ck1ee6agujp2p" path="res://scripts/useable_item_spawner/useable_item_spawner.gd" id="1_dla42"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
+size = Vector3(1.7791748, 2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
+size = Vector3(1.7509766, 2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rks1g"]
+size = Vector3(0.6864624, 1.1913757, 1.6522751)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dla42"]
+size = Vector3(0.65423584, 1.2221375, 1.6522751)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa1qv"]
+albedo_color = Color(0.26657522, 0.2665752, 0.2665752, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8q1dj"]
+material = SubResource("StandardMaterial3D_qa1qv")
+size = Vector3(0.08432007, 0.6727886, 1.5745502)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_keru6"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 5.895996
+
+[node name="UseableItemSpawner" type="Node3D" unique_id=949787620]
+script = ExtResource("1_dla42")
+
+[node name="Mesh" type="Node3D" parent="." unique_id=1510593426]
+
+[node name="Table" type="StaticBody3D" parent="Mesh" unique_id=1514591293]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/Table" unique_id=1164495537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6104126, 0, 0)
+mesh = SubResource("BoxMesh_qa1qv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/Table" unique_id=2123251829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6245117, 0, 0)
+shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="VentEntrace" type="StaticBody3D" parent="Mesh" unique_id=681546011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7045874, 1.6949239, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/VentEntrace" unique_id=1234131649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4340515, -0.13670349, 0)
+mesh = SubResource("BoxMesh_rks1g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh/VentEntrace" unique_id=1205161790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4501648, -0.12132263, 0)
+shape = SubResource("BoxShape3D_dla42")
+
+[node name="Door" type="MeshInstance3D" parent="Mesh/VentEntrace" unique_id=2066826019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09682065, -0.23897505, 0.0037546158)
+mesh = SubResource("BoxMesh_8q1dj")
+
+[node name="VentPole" type="StaticBody3D" parent="Mesh" unique_id=1064542318]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23193192, 3.1706145, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh/VentPole" unique_id=1301927495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9323914, 1.9479978, 0)
+mesh = SubResource("CylinderMesh_keru6")
+
+[node name="SpawnPos" type="Node3D" parent="." unique_id=929659863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5152116, 1.2182587, 0)

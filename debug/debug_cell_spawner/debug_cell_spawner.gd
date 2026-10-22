@@ -7,33 +7,33 @@ extends Node
 
 func _ready() -> void:
 	
-	
+	return	
 	
 	# Cell 1
-	var cell_1: BrainCell = BrainCell.new(
-		"cell_1",
-		[BrainCellMutation.new('airborne', true, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),],
-		BrainCellStat.new("strength", false, 0, 0, false),
-		BrainCellStat.new("intelligence", true, 300, 25, true),
-		BrainCellStat.new("community", true, 125, 0, true),
-		2,
-		false,
-		false,
-	)
+	#var cell_1: BrainCell = BrainCell.new(
+		#"cell_1",
+		#[BrainCellMutation.new('airborne', true, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),],
+		#BrainCellStat.new("strength", false, 0, 0, false),
+		#BrainCellStat.new("intelligence", true, 300, 25, true),
+		#BrainCellStat.new("community", true, 125, 0, true),
+		#2,
+		#false,
+		#false,
+	#)
 	
 	
 		# Cell 1
-	var cell_2: BrainCell = BrainCell.new(
-		"cell_2",
-		#[BrainCellMutation.new('airborne', false, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),],
-		[],
-		BrainCellStat.new("strength", true, 320, 0, true),
-		BrainCellStat.new("intelligence", true, 275, 25, false),
-		BrainCellStat.new("community", true, 125, 0, true),
-		2,
-		false,
-		false,
-	)
+	#var cell_2: BrainCell = BrainCell.new(
+		#"cell_2",
+		##[BrainCellMutation.new('airborne', false, [MutationEvent.new('airborne_fly', 'random_event', 'airborne',0 )]),],
+		#[],
+		#BrainCellStat.new("strength", true, 320, 0, true),
+		#BrainCellStat.new("intelligence", true, 275, 25, false),
+		#BrainCellStat.new("community", true, 125, 0, true),
+		#2,
+		#false,
+		#false,
+	#)
 #
 #
 #
@@ -75,23 +75,23 @@ func _ready() -> void:
 		#false,
 	#)
 	
-	var cells : Array[BrainCell] = []	
+	#var cells : Array[BrainCell] = []	
 	
-	cells.append(cell_1)
+	#cells.append(cell_1)
 	#cells.append(cell_2)
 	#cells.append(cell_3)
 	#cells.append(cell_4)
 	#cells.append(cell_three)
 	
-	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
-	
-	for cell in cells :
-		
-		var cell_container = cell_container_p_s.instantiate()
-
-		cell_container.name = cell.name
-		cell_container.designated_brain_cell = cell
-
-		cell_container_parent_node.add_child(cell_container)
-
-		cell_container.global_position = spawn_pos.global_position
+	#GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
+	#
+	#for cell in cells :
+		#
+		#var cell_container = cell_container_p_s.instantiate()
+#
+		#cell_container.name = cell.name
+		#cell_container.designated_brain_cell = cell
+#
+		#cell_container_parent_node.add_child(cell_container)
+#
+		#cell_container.global_position = spawn_pos.global_position

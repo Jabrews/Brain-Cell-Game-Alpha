@@ -18,8 +18,3 @@ func _update() :
 		out_of_prisoners_label.visible = false
 		pick_num_label.visible = true
 		pick_num_label.text = str(GLPrisonerPicks.prisoners_to_pick)
-
-#
-#func _handle_next_round() :
-	#out_of_prisoners_label.visible = true
-	#pick_num_label.visible = false

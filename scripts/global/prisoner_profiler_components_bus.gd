@@ -2,7 +2,6 @@ extends Node
 
 
 # OLD 
-
 signal station_feedback_requested(feedback_type: String, data: Dictionary)
 
 signal request_new_profiler_spare_icons() 
@@ -12,6 +11,7 @@ signal recieve_profiler_spare_icons(spare_icon_constructors : Array[SpareIconCon
 signal play_sound(sound_type : String)
 signal display_feedback(feedback_type : String, data : Dictionary)
 signal toggle_show_tablet_label(toggle_value : bool)
+
 	
 
 

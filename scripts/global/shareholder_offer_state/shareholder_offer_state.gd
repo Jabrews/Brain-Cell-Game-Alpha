@@ -1,6 +1,9 @@
 extends Node
 
-## ITEM OFFER SIGNALS ##
+# lets shareholder offer manager know to serve card
+signal serve_shareholder_offer_cards(usable_offer_items : Array[UseableOfferItem])
+
+
 # lets useable item spawner know to spawn an item
 signal spawn_item_to_offer(useable_offer_item : UseableOfferItem)
 

@@ -1,5 +1,3 @@
 extends Node
 
-signal apply_mutations_all_hidden()
-
-signal apply_mutation_regular(mutations_in_batch : int)
+signal get_newest_prisoner_cells(prisoner_cells : Array[BrainCell], prisoner_offer_card : PrisonerOfferCard)

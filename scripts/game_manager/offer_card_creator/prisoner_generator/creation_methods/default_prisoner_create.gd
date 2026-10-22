@@ -23,7 +23,7 @@ func _create(prisoner_card: PrisonerOfferCard) -> BrainCell:
 	)
 
 	return BrainCell.new(
-		"Generated Prisoner",
+		GAMENameManager.pick_prisoner_names(),
 		[],
 		strength,
 		intelligence,
@@ -92,6 +92,10 @@ func _create_stat(
 	if GLGameManagerBus.debug_prisoner_showcase_show_stat_data : 
 		admin_data = {'defect_gen_case' : defect_gen_case}
 
+
+	# round defect and clean
+	clean_value = snapped(clean_value, 0.1)
+	defect_value = snapped(defect_value, 0.1)
 
 	return BrainCellStat.new(
 		stat_type,

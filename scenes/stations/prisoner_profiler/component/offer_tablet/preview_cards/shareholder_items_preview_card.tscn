@@ -26,6 +26,7 @@ shader_parameter/scanline_density = 1.0
 shader_parameter/hologram_tint = Color(0.7, 0.9, 1, 1)
 
 [node name="ShareholderItemsPreviewCard" type="Control" unique_id=2079612904]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2

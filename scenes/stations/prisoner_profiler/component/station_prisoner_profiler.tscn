@@ -40,7 +40,7 @@
 [ext_resource type="Script" uid="uid://pmc6282tiht4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/toggle_display_offer_ui.gd" id="22_toge2"]
 [ext_resource type="Script" uid="uid://dpg6xu8puix3a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/display/display_turns_left.gd" id="23_8hdni"]
 [ext_resource type="Script" uid="uid://c76uy3xav4sdo" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/preview_card_creation_factory.gd" id="25_k1kr7"]
-[ext_resource type="Script" uid="uid://hjpwxvy73mnh" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_confirm_btn_pressed.gd" id="26_ghmpk"]
+[ext_resource type="Script" uid="uid://hjpwxvy73mnh" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/handle_confirm/handle_confirm_btn_pressed.gd" id="26_ghmpk"]
 [ext_resource type="Script" uid="uid://ciixhggjkk4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected/refresh_card_showcase.gd" id="26_s6kcd"]
 [ext_resource type="Script" uid="uid://cjehn8fhfr4u1" path="res://scripts/stations/prisoner_profiler/component/ideal_stat_creator/btns/disabled_btn.gd" id="27_dlq5h"]
 [ext_resource type="Script" uid="uid://dxumcj1bvvh4a" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/handle_preview_card_selected/refresh_confirm_btn.gd" id="27_kbi0h"]
@@ -48,10 +48,15 @@
 [ext_resource type="AudioStream" uid="uid://b0gqegcbpjrik" path="res://sounds/prisoner_profiler/cycle_cycle.mp3" id="27_xj4xg"]
 [ext_resource type="Script" uid="uid://bsfx8wu1anhrx" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/card_showcase_creation_factory.gd" id="27_y73jk"]
 [ext_resource type="AudioStream" uid="uid://cle0tgypyrpvx" path="res://sounds/prisoner_profiler/feedback_sound.mp3" id="28_vy86u"]
+[ext_resource type="Script" uid="uid://bqvv5im2o1su4" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/handle_confirm/activate_card_animation.gd" id="29_komy7"]
 [ext_resource type="AudioStream" uid="uid://cd1ew561fh1d3" path="res://sounds/prisoner_profiler/increment.mp3" id="29_uy7hd"]
 [ext_resource type="AudioStream" uid="uid://boiulgfftjxux" path="res://sounds/prisoner_profiler/lock_shake.mp3" id="30_gvbd7"]
 [ext_resource type="AudioStream" uid="uid://1qc1petsn4is" path="res://sounds/prisoner_profiler/on_off_click.mp3" id="31_dlq5h"]
 [ext_resource type="AudioStream" uid="uid://dir6uc32l8eqr" path="res://sounds/prisoner_profiler/generate.mp3" id="32_msnii"]
+[ext_resource type="Script" uid="uid://b2gvjc6ee1ytx" path="res://scripts/stations/prisoner_profiler/component/offer_picked_cinnamatic/offer_picked_cinnamatic.gd" id="32_wnlai"]
+[ext_resource type="Script" uid="uid://bo7i0ap1fedva" path="res://scripts/stations/prisoner_profiler/component/offer_picked_cinnamatic/cinnamatics/turn_cinnamatic.gd" id="33_njhag"]
+[ext_resource type="Script" uid="uid://d4kxunjhebl6a" path="res://scripts/stations/prisoner_profiler/component/offer_picked_cinnamatic/cinnamatics/prisoner_cinnamatic.gd" id="34_x3a54"]
+[ext_resource type="Script" uid="uid://dmp2u4wo7v801" path="res://scripts/stations/prisoner_profiler/component/offer_picked_cinnamatic/cinnamatics/shareholder_item_cinnamatic.gd" id="35_parhg"]
 [ext_resource type="AudioStream" uid="uid://bmno4p7jn24bf" path="res://sounds/prisoner_profiler/energy_alert_beep_sound.mp3" id="35_vy86u"]
 [ext_resource type="AudioStream" uid="uid://byg1fre14pmfr" path="res://sounds/prisoner_profiler/pole_moving.mp3" id="37_rv2o6"]
 [ext_resource type="Script" uid="uid://ddqygffy1viax" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/tablet_interact_area.gd" id="38_2txlu"]
@@ -67,6 +72,7 @@
 [ext_resource type="PackedScene" uid="uid://dfss4n5s3e6en" path="res://scenes/stations/prisoner_profiler/component/offer_tablet/preview_cards/preview_card_hover.tscn" id="49_k1kr7"]
 [ext_resource type="AudioStream" uid="uid://dbaej2s5c18da" path="res://sounds/prisoner_profiler/tablet_start.mp3" id="50_cyrsn"]
 [ext_resource type="Script" uid="uid://dl0diaqhemq3n" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/btns/confirm_btn.gd" id="52_lixm1"]
+[ext_resource type="Script" uid="uid://hi6w361jko8o" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/last_turn_parent.gd" id="58_cc40q"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -565,20 +571,6 @@ shader_parameter/low_opacity = 0.25
 shader_parameter/high_opacity = 1.0
 shader_parameter/fade_speed = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8hdni"]
-shader = ExtResource("42_8hdni")
-shader_parameter/base_value = 0.0
-shader_parameter/base_color = Color(0, 1, 1, 1)
-shader_parameter/base_opacity = 0.35
-shader_parameter/yellow_min_value = 0.0
-shader_parameter/yellow_max_value = 0.0
-shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/yellow_opacity = 0.85
-shader_parameter/edge_padding = 5.0
-shader_parameter/low_opacity = 0.25
-shader_parameter/high_opacity = 1.0
-shader_parameter/fade_speed = 2.0
-
 [node name="PrisonerProfiler" type="Node3D" unique_id=267444250]
 script = ExtResource("1_ckmt1")
 
@@ -667,11 +659,37 @@ script = ExtResource("27_kbi0h")
 [node name="HandleConfirmBtnPressed" type="Node" parent="Logic/OfferTablet" unique_id=362456136]
 script = ExtResource("26_ghmpk")
 
+[node name="ActivateCardAnimation" type="Node" parent="Logic/OfferTablet/HandleConfirmBtnPressed" unique_id=1863807398]
+process_mode = 3
+script = ExtResource("29_komy7")
+
 [node name="PreviewCardCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1648568532]
 script = ExtResource("25_k1kr7")
 
 [node name="CardShowcaseCreationFactory" type="Node" parent="Logic/OfferTablet" unique_id=1005080161]
 script = ExtResource("27_y73jk")
+
+[node name="OfferPickedCinnamatic" type="Node" parent="Logic" unique_id=1707607200]
+script = ExtResource("32_wnlai")
+
+[node name="TurnCinnamatic" type="Node3D" parent="Logic/OfferPickedCinnamatic" unique_id=2009290877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 5, 12)
+script = ExtResource("33_njhag")
+
+[node name="TurnCamera" type="Camera3D" parent="Logic/OfferPickedCinnamatic/TurnCinnamatic" unique_id=528579703]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 1, -0.3000002, 0)
+
+[node name="PrisonerCinnamatic" type="Node3D" parent="Logic/OfferPickedCinnamatic" unique_id=89762710]
+script = ExtResource("34_x3a54")
+
+[node name="PrisonerCamera" type="Camera3D" parent="Logic/OfferPickedCinnamatic/PrisonerCinnamatic" unique_id=1201928819]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 1, -0.3000002, 0)
+
+[node name="ShareholderItemCinnamatic" type="Node3D" parent="Logic/OfferPickedCinnamatic" unique_id=1501779628]
+script = ExtResource("35_parhg")
+
+[node name="ShareholderItemCamera" type="Camera3D" parent="Logic/OfferPickedCinnamatic/ShareholderItemCinnamatic" unique_id=1786409267]
+transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, 1, -0.3000002, 0)
 
 [node name="IdealStatCreator" type="Node3D" parent="." unique_id=673176367]
 
@@ -1720,42 +1738,40 @@ scale = Vector2(1.8749992, 1.4166667)
 texture = ExtResource("42_1dla4")
 
 [node name="LastTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1386474911]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("58_cc40q")
+hover_height = 0.5
 
 [node name="ColorRect2" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=1849445935]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 72.0
-offset_right = 192.0
-offset_bottom = 144.0
-color = Color(0.6217913, 0.36503816, 0.21109548, 1)
+offset_left = -472.0
+offset_top = 64.0
+offset_right = -240.0
+offset_bottom = 93.0
 
 [node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=1887123390]
 texture_filter = 1
-material = SubResource("ShaderMaterial_8hdni")
 layout_mode = 0
-offset_left = 48.0
-offset_top = 72.0
-offset_right = 240.0
-offset_bottom = 148.0
+offset_left = -449.0
+offset_top = 41.0
+offset_right = -257.0
+offset_bottom = 117.0
 theme_override_colors/font_color = Color(1, 0.060000002, 0.060000002, 1)
 theme_override_constants/line_spacing = -7
 theme_override_fonts/font = ExtResource("2_1kfjt")
 theme_override_font_sizes/font_size = 35
-text = "LAST
-TURN"
+text = "LAST TURN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=400354233]
 layout_mode = 0
-offset_left = 88.0
-offset_top = 72.0
-offset_right = 192.0
-offset_bottom = 144.0
+offset_left = -472.0
+offset_top = 64.0
+offset_right = -240.0
+offset_bottom = 93.0
 color = Color(1, 0, 0, 0.37254903)
 
 [node name="PreviewCardsHover" type="Control" parent="OfferUi/OfferBody" unique_id=438485868]

@@ -441,7 +441,7 @@ size = Vector2i(384, 384)
 [node name="ScreenTurnsDisplay" parent="TurnTV/TvFrontPannel/SubViewport" unique_id=683296768 instance=ExtResource("10_mpw3p")]
 
 [node name="TurnLeftLight" type="Node3D" parent="." unique_id=1243577269]
-transform = Transform3D(0.83946717, 0, 0.5434104, 0, 1, 0, -0.5434104, 0, 0.83946717, 5.829857, 0.90389335, -0.5597358)
+transform = Transform3D(0.83946717, 0, 0.5434104, 0, 1, 0, -0.5434104, 0, 0.83946717, 5.829857, 0.18975198, -0.5597358)
 
 [node name="LightMesh1" type="MeshInstance3D" parent="TurnLeftLight" unique_id=1705360375]
 transform = Transform3D(0.9999994, 0, 0, 0, 0.9999993, 0, -2.9802322e-08, 0, 0.9999996, 0, 0, 0)

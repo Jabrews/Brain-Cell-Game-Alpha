@@ -21,12 +21,6 @@ func connect_signals():
 	# spawn item from shareholder 
 	GLShareholderOfferState.connect('spawn_item_to_offer', _handle_spawn_item_to_offer)
 	#GLGameManagerBus.connect('proceed_next_round', _handle_next_round)	
-	
-	
-
-	# next turn signal
-	#GLCellCreatorBus.connect('procc', _handle_next_turn)
-
 
 func spawn_turn_items():
 

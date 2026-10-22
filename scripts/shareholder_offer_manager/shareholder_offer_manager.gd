@@ -16,35 +16,24 @@ extends Node
 
 
 func _ready() -> void:
+	
+	GLShareholderOfferState.connect('serve_shareholder_offer_cards', _handle_serve_shareholder_offer_cards)
+	
 	toggle_display_lock(false)
 	toggle_mouse_filter(false)
 
 
-func serve_item_cards() -> void:
+func _handle_serve_shareholder_offer_cards(useable_offer_items : Array[UseableOfferItem]) -> void:
 	toggle_display_lock(true)
 	toggle_mouse_filter(true)
 
 	serve_item_offer_parent.visible = true
 	s_start.play()
 
-	var item_to_offer_copy = GLShareholderOfferState.items_to_offer.duplicate()
-
-	# get random item for card 1
-	var item_1 = item_to_offer_copy.pick_random()
-	item_to_offer_copy.erase(item_1)
-
-	# get random item for card 2
-	var item_2 = item_to_offer_copy.pick_random()
-	item_to_offer_copy.erase(item_2)
-
-	# get random item for card 3
-	var item_3 = item_to_offer_copy.pick_random()
-	item_to_offer_copy.erase(item_3)
-
 	# set cards
-	item_offer_card_1.update(item_1)
-	item_offer_card_2.update(item_2)
-	item_offer_card_3.update(item_3)
+	item_offer_card_1.update(useable_offer_items[0])
+	item_offer_card_2.update(useable_offer_items[1])
+	item_offer_card_3.update(useable_offer_items[2])
 
 	if GAMEInputTypeDetector.input_type == "controller":
 		item_offer_card_1.grab_focus()

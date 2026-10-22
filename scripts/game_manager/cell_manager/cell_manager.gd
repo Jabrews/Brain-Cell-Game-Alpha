@@ -6,6 +6,7 @@ var collected_cells : Array[BrainCell] = []
 
 
 func _ready() -> void:
+	GLCellManagerBus.connect('create_prisoner_cells', _handle_create_prisoner_cells)
 	GLCellManagerBus.connect('prisoner_picked_by_player', _handle_prisoner_picked_by_player)
 	GLCellManagerBus.connect('collected_cell_created', _handle_collected_cell_created)
 	GLCellManagerBus.connect('delete_remaining_prisoners', _handle_delete_remaining_prisoners)
@@ -174,6 +175,11 @@ func check_collected_cell_dead(collected_cell: BrainCell) -> bool:
 
 
 #### CORE ####
+
+func _handle_create_prisoner_cells(new_prisoner_cells : Array[BrainCell]) : 
+	set_prisoner_cells(new_prisoner_cells)
+
+
 func _handle_prisoner_picked_by_player(prisoner_cell : BrainCell):
 	# delete from prisoners
 	delete_prisoner_cells([prisoner_cell])

@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://hjcxkr087jtq" path="res://scripts/stations/station_components/prisoner_spawner/station_prisoner_spawner.gd" id="1_k6qsw"]
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="3_mubfq"]
 [ext_resource type="PackedScene" uid="uid://d0ugrsflnsudr" path="res://scenes/stations/station_screens/prisoner_spawner/screen_pick_quanity.tscn" id="4_mubfq"]
-[ext_resource type="PackedScene" uid="uid://cj81phy2hwn6n" path="res://scenes/stations/station_screens/prisoner_spawner/screen_mutation_found.tscn" id="5_x5eud"]
 [ext_resource type="Script" uid="uid://cf2h6svscors0" path="res://reusable/modular_scripts/character_spot/character_spot.gd" id="6_1en1e"]
-[ext_resource type="PackedScene" uid="uid://bx7hltqiih6k6" path="res://scenes/stations/station_screens/prisoner_spawner/screen_mutation_quanity_in_batch.tscn" id="6_sb262"]
+[ext_resource type="PackedScene" uid="uid://bx7hltqiih6k6" path="res://scenes/stations/station_screens/prisoner_spawner/screen_alteration_info.tscn" id="6_sb262"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8uoe"]
 size = Vector3(1.2142715, 0.47155762, 7.226013)
@@ -35,15 +34,6 @@ texture_filter = 0
 [sub_resource type="PlaneMesh" id="PlaneMesh_1en1e"]
 material = SubResource("StandardMaterial3D_vasud")
 size = Vector2(1.72, 1.32)
-orientation = 0
-
-[sub_resource type="BoxMesh" id="BoxMesh_mubfq"]
-material = SubResource("StandardMaterial3D_d5xot")
-size = Vector3(0.035, 0.9151074, 3.193242)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_x5eud"]
-material = SubResource("StandardMaterial3D_vasud")
-size = Vector2(3.09, 0.82)
 orientation = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_x5eud"]
@@ -118,41 +108,20 @@ render_target_update_mode = 4
 
 [node name="ScreenPickQuanity" parent="MaxPickQuanityTV/TvFrontPannel/SubViewport" unique_id=2057686912 instance=ExtResource("4_mubfq")]
 
-[node name="MutationInfo" type="Node3D" parent="." unique_id=2043546633]
+[node name="AlterationInfo" type="Node3D" parent="." unique_id=2043546633]
 transform = Transform3D(0.99935234, 0.03598489, 0, -0.03598489, 0.99935234, 0, 0, 0, 1, 0, 0, 0.053566337)
 
-[node name="MutationFound" type="Node3D" parent="MutationInfo" unique_id=116128719]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75665116, 4.968303, 0)
-
-[node name="TvBackPannel" type="MeshInstance3D" parent="MutationInfo/MutationFound" unique_id=1982991401]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27744627, 0.0147070885)
-mesh = SubResource("BoxMesh_mubfq")
-
-[node name="TvFrontPannel" type="MeshInstance3D" parent="MutationInfo/MutationFound" unique_id=158853354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05915284, 0.27256632, 0.015484333)
-mesh = SubResource("PlaneMesh_x5eud")
-script = ExtResource("3_mubfq")
-
-[node name="SubViewport" type="SubViewport" parent="MutationInfo/MutationFound/TvFrontPannel" unique_id=1587711176]
-size = Vector2i(620, 137)
-render_target_update_mode = 4
-
-[node name="ScreenMutationFound" parent="MutationInfo/MutationFound/TvFrontPannel/SubViewport" unique_id=1925796477 instance=ExtResource("5_x5eud")]
-
-[node name="MutationQuanityInBatch" type="Node3D" parent="MutationInfo" unique_id=939926506]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75665116, 3.9608812, 0)
-
-[node name="TvBackPannel" type="MeshInstance3D" parent="MutationInfo/MutationQuanityInBatch" unique_id=1711848411]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.27744627, 0.0002259016)
+[node name="TvBackPannel" type="MeshInstance3D" parent="AlterationInfo" unique_id=1711848411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75665116, 4.2383275, 0.0002259016)
 mesh = SubResource("BoxMesh_x5eud")
 
-[node name="TvFrontPannel" type="MeshInstance3D" parent="MutationInfo/MutationQuanityInBatch" unique_id=342199314]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05915284, 0.27256632, 0.015484333)
+[node name="TvFrontPannel" type="MeshInstance3D" parent="AlterationInfo" unique_id=342199314]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69749826, 4.2334476, 0.015484333)
 mesh = SubResource("PlaneMesh_sb262")
 script = ExtResource("3_mubfq")
 
-[node name="SubViewport" type="SubViewport" parent="MutationInfo/MutationQuanityInBatch/TvFrontPannel" unique_id=1581232979]
+[node name="SubViewport" type="SubViewport" parent="AlterationInfo/TvFrontPannel" unique_id=1581232979]
 size = Vector2i(487, 141)
 render_target_update_mode = 4
 
-[node name="ScreenMutationQuanityInBatch" parent="MutationInfo/MutationQuanityInBatch/TvFrontPannel/SubViewport" unique_id=337484274 instance=ExtResource("6_sb262")]
+[node name="ScreenAlterationInfo" parent="AlterationInfo/TvFrontPannel/SubViewport" unique_id=337484274 instance=ExtResource("6_sb262")]

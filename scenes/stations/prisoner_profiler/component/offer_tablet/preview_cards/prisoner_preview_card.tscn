@@ -35,6 +35,7 @@ shader_parameter/high_opacity = 1.0
 shader_parameter/fade_speed = 5.00000023424012
 
 [node name="PrisonerPreviewCard" type="Control" unique_id=2089330]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
