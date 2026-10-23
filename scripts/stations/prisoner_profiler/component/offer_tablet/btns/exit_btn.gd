@@ -2,6 +2,7 @@ extends ColorRect
 
 # handle components
 @onready var toggle_display_offer_ui : Node = $"../../../Logic/OfferTablet/ToggleDisplayOfferUi"
+@onready var hint_parent : Control = $Hint
 
 
 var hovered : bool = false
@@ -13,11 +14,13 @@ func _ready() -> void:
 	connect('focus_exited', _handle_mouse_exited)
 
 func _handle_mouse_entered() :
+	hint_parent.visible = true
 	hovered = true
 	scale = Vector2(1.05, 1.05)
 	color = Color.LIGHT_GRAY
 
-func _handle_mouse_exited() :
+func _handle_mouse_exited() :	
+	hint_parent.visible = false 
 	hovered = false
 	scale = Vector2(1.0, 1.0)
 	color = Color.WHITE

@@ -2,6 +2,7 @@ extends ColorRect
 
 # handle components
 @onready var handle_display_ui : Node = $"../../../HandleDisplayUi"
+@onready var hint_parent : Control = $Hint
 
 
 var hovered : bool = false
@@ -14,11 +15,13 @@ func _ready() -> void:
 
 func _handle_mouse_entered() :
 	hovered = true
+	hint_parent.visible = true
 	scale = Vector2(1.05, 1.05)
 	color = Color.LIGHT_GRAY
 
 func _handle_mouse_exited() :
 	hovered = false
+	hint_parent.visible = false 
 	scale = Vector2(1.0, 1.0)
 	color = Color.WHITE
 	

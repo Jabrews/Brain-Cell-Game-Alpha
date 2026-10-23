@@ -51,11 +51,13 @@ func _handle_selected() :
 	if border_state == 'selected' : 
 		_reset()
 		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'tablet_unselect')
+		hover_border_rect.visible = true
 	else : 
 		border_state = 'selected' 
 		hover_border_rect.visible = false
 		select_border_rect.visible = true
 		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'tablet_select')
+
 		
 	
 

@@ -16,12 +16,17 @@ func _ready() -> void:
 
 	mouse_entered.connect(_handle_mouse_entered)
 	mouse_exited.connect(_handle_mouse_exited)
+	focus_entered.connect(_handle_mouse_entered)
+	focus_exited.connect(_handle_mouse_exited)
 
 
 func _process(_delta: float) -> void:
-	if hovered and Input.is_action_just_pressed("attack"):
+	if hovered and Input.is_action_just_pressed("attack") :
 		handle_rotate_btns._handle(rotate_btn_direction)
 		_flash_pressed()
+	if hovered and Input.is_action_just_pressed('interact') :
+		handle_rotate_btns._handle(rotate_btn_direction)
+		_flash_pressed()	
 
 
 func _handle_mouse_entered() -> void:
@@ -41,6 +46,9 @@ func _handle_mouse_exited() -> void:
 
 
 func _flash_pressed() -> void:
+	
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'item_showcase_btn_pressed')
+	
 	if press_tween:
 		press_tween.kill()
 

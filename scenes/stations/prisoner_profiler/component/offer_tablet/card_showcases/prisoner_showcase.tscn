@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="2_5m33n"]
 [ext_resource type="Script" uid="uid://d0a7m1xitmlje" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_start.gd" id="2_brnli"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="2_jcdp0"]
+[ext_resource type="Script" uid="uid://dqju4rlyl1hcr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/toggle_focus.gd" id="2_k1of7"]
 [ext_resource type="Script" uid="uid://boqalc7ayv4pr" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/display_helpers/display_pris_picks.gd" id="3_jnpkc"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_lnr22"]
 [ext_resource type="Script" uid="uid://bjwf0d6dang4h" path="res://scripts/stations/prisoner_profiler/component/offer_tablet/ui/card_showcase/prisoner_showcase/handle_stop.gd" id="3_no38u"]
@@ -513,6 +514,9 @@ animations = [{
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_272ed")
+
+[node name="ToggleFocus" type="Node" parent="." unique_id=1416517857]
+script = ExtResource("2_k1of7")
 
 [node name="DisplayHelpers" type="Node" parent="." unique_id=1111325405]
 

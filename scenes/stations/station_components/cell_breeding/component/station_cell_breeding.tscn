@@ -5877,6 +5877,40 @@ text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Hint" type="Control" parent="BreedingUI/ExitHeader/ExitBtn" unique_id=1067839156]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_left = -1148.0
+offset_top = -76.0
+offset_right = -1108.0
+offset_bottom = -36.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="BreedingUI/ExitHeader/ExitBtn/Hint" unique_id=1294614255]
+layout_mode = 0
+offset_left = 1128.0
+offset_top = 112.0
+offset_right = 1248.0
+offset_bottom = 192.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.61960787)
+
+[node name="ExitLabel" type="Label" parent="BreedingUI/ExitHeader/ExitBtn/Hint" unique_id=1388110519]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1129.0
+offset_top = 135.0
+offset_right = 1249.0
+offset_bottom = 167.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 20
+text = "Exit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="ResetBtn" type="Control" parent="BreedingUI/ExitHeader" unique_id=178271941]
 visible = false
 anchors_preset = 0

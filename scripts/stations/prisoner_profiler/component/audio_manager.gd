@@ -25,6 +25,7 @@ extends Node
 @onready var s_turn_alert : AudioStreamPlayer3D = $TabletSounds/TurnAlert
 @onready var s_offer_vent_banging : AudioStreamPlayer3D = $TabletSounds/OfferVentBanging
 @onready var s_offer_vent_open : AudioStreamPlayer3D = $TabletSounds/OfferVentOpen
+@onready var s_item_showcase_btn_pressed : AudioStreamPlayer3D = $TabletSounds/ItemShowcaseBtnPressed
 
 
 
@@ -81,6 +82,8 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_offer_vent_banging.play()
 		'offer_vent_open' : 
 			s_offer_vent_open.play()
+		'item_showcase_btn_pressed' : 
+			s_item_showcase_btn_pressed.play()
 			
 		# pole moving
 		'start_pole_moving' :

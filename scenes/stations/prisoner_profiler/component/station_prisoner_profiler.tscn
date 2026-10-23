@@ -83,6 +83,7 @@
 [ext_resource type="AudioStream" uid="uid://dshxkv8b8lwws" path="res://sounds/prisoner_profiler/tablet_ui/last_turn_beep.mp3" id="81_skxmx"]
 [ext_resource type="AudioStream" uid="uid://bo0q3pe6x8wh" path="res://sounds/prisoner_profiler/tablet_ui/offer_vent_open.mp3" id="82_onjpa"]
 [ext_resource type="AudioStream" uid="uid://binnsg4a63ism" path="res://sounds/prisoner_profiler/tablet_ui/offer_vent_banging.mp3" id="83_fqyua"]
+[ext_resource type="AudioStream" uid="uid://b4mq1vomxm0fb" path="res://sounds/prisoner_profiler/tablet_ui/showcase_shareholder_item_btn_press.mp3" id="84_fqyua"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bl8ty"]
 viewport_path = NodePath("StatCapControlScreens/StrengthCapControlTv3/SubViewport")
@@ -1625,6 +1626,40 @@ text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Hint" type="Control" parent="OfferUi/ExitHeader/ExitBtn" unique_id=1088415817]
+visible = false
+z_index = 1
+anchors_preset = 0
+offset_left = -1148.0
+offset_top = -76.0
+offset_right = -1108.0
+offset_bottom = -36.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="OfferUi/ExitHeader/ExitBtn/Hint" unique_id=448659837]
+layout_mode = 0
+offset_left = 1128.0
+offset_top = 112.0
+offset_right = 1248.0
+offset_bottom = 192.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.61960787)
+
+[node name="ExitLabel" type="Label" parent="OfferUi/ExitHeader/ExitBtn/Hint" unique_id=1707626405]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1129.0
+offset_top = 135.0
+offset_right = 1249.0
+offset_bottom = 167.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 20
+text = "Exit?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Header" type="Label" parent="OfferUi/ExitHeader" unique_id=736163179]
 layout_mode = 0
 offset_left = 40.0
@@ -1802,6 +1837,7 @@ offset_bottom = 447.0
 
 [node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1" index="2" unique_id=1574372299]
 focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../../ExitHeader/ExitBtn")
 focus_neighbor_right = NodePath("../../PreviewCardHover2/DetectArea")
 focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
 focus_mode = 2
@@ -1816,6 +1852,7 @@ corrisponding_card_index = 1
 
 [node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2" index="2" unique_id=1574372299]
 focus_neighbor_left = NodePath("../../PreviewCardHover1/DetectArea")
+focus_neighbor_top = NodePath("../../../../ExitHeader/ExitBtn")
 focus_neighbor_right = NodePath("../../PreviewCardHover3/DetectArea")
 focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
 focus_mode = 2
@@ -1830,6 +1867,7 @@ corrisponding_card_index = 2
 
 [node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3" index="2" unique_id=1574372299]
 focus_neighbor_left = NodePath("../../PreviewCardHover2/DetectArea")
+focus_neighbor_top = NodePath("../../../../ExitHeader/ExitBtn")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
 focus_mode = 2
@@ -2073,6 +2111,11 @@ transform = Transform3D(1, 0, 0, 0, -0.8660254, -0.50000006, 0, 0.50000006, -0.8
 stream = ExtResource("83_fqyua")
 volume_db = 5.0
 unit_size = 5.0
+
+[node name="ItemShowcaseBtnPressed" type="AudioStreamPlayer3D" parent="AudioManager/TabletSounds" unique_id=2055765052]
+process_mode = 3
+stream = ExtResource("84_fqyua")
+max_distance = 25.0
 
 [node name="DeleteMe" type="Node3D" parent="." unique_id=1604480785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901946, 0, 5.0339823)
