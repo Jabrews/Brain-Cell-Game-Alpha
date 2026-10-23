@@ -16,6 +16,15 @@ extends Node
 @onready var s_door_close : AudioStreamPlayer3D = $DoorClose
 @onready var s_tablet_start : AudioStreamPlayer3D = $TabletStart
 @onready var s_pole_moving : AudioStreamPlayer3D = $"../OfferTablet/Poles/TabletHolderPole/PoleMoving"
+@onready var s_open_tablet : AudioStreamPlayer3D =$TabletSounds/OpenTablet
+@onready var s_tablet_select : AudioStreamPlayer3D = $TabletSounds/TabletSelect
+@onready var s_tablet_unselect : AudioStreamPlayer3D =$TabletSounds/TabletUnselect
+@onready var s_confirm_success : AudioStreamPlayer3D = $TabletSounds/ConfirmSuccess
+@onready var s_confirm_failed : AudioStreamPlayer3D = $TabletSounds/ConfirmFailed
+@onready var s_turn_click : AudioStreamPlayer3D = $TabletSounds/TurnClick
+@onready var s_turn_alert : AudioStreamPlayer3D = $TabletSounds/TurnAlert
+@onready var s_offer_vent_banging : AudioStreamPlayer3D = $TabletSounds/OfferVentBanging
+@onready var s_offer_vent_open : AudioStreamPlayer3D = $TabletSounds/OfferVentOpen
 
 
 
@@ -53,6 +62,25 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_door_close.play()
 		'tablet_start' :			
 			s_tablet_start.play()
+		
+		'tablet_open' : 
+			s_open_tablet.play()
+		'tablet_select' :
+			s_tablet_select.play()
+		'tablet_unselect' :
+			s_tablet_unselect.play()
+		'confirm_success' :
+			s_confirm_success.play()
+		'confirm_failed' :
+			s_confirm_failed.play()
+		'turn_click' :
+			s_turn_click.play()
+		'turn_alert' : 
+			s_turn_alert.play()
+		'offer_vent_banging' :		
+			s_offer_vent_banging.play()
+		'offer_vent_open' : 
+			s_offer_vent_open.play()
 			
 		# pole moving
 		'start_pole_moving' :
@@ -64,6 +92,10 @@ func _handle_play_sound(sound_type: String) -> void:
 
 			s_pole_moving.stop()
 			s_pole_moving.volume_db = -5.0
+		
+		
+		
+		
 		_:
 			push_error("Unknown sound type: " + sound_type)
 

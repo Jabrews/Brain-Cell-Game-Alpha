@@ -85,6 +85,7 @@ func _handle(dissolving_cell  : DissolvingCell) -> void:
 	
 	# update incremental values
 	GLGameManagerBus.emit_signal('proceed_next_goal_piece')
+	GLCellManagerBus.emit_signal('delete_cells_for_next_goal_piece')
 	
 	await get_tree().create_timer(5.5).timeout	
 	

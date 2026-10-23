@@ -9,6 +9,7 @@ extends Node
 func _initate(offer_card: OfferCard) -> void:
 	toggle_display_lock(true)
 	GLCinnamaticBus.emit_signal("toggle_offer_picked_cinnamatic", true)
+	GLCellManagerBus.emit_signal('delete_remaining_prisoners')
 
 	var finished: bool = await turn_cinnamatic._initate()
 	if not finished:

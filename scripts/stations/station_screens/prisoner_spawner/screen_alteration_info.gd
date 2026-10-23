@@ -4,6 +4,11 @@ extends Node
 @onready var alteration_label : Label = $AlterationLabel
 @onready var off_rect : ColorRect = $OffRect
 
+func _ready() -> void:
+	GLCellManagerBus.connect('delete_remaining_prisoners', _turn_off)
+	
+
+
 func _update(prisoner_offer_card : PrisonerOfferCard) :
 	
 	var alteration_text : String

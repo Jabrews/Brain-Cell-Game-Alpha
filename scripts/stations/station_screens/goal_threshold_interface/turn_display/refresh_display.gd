@@ -3,6 +3,7 @@ extends Node
 
 # components
 @onready var turns_left_label : Label = $"../CurrentTurnsLeft/TurnsLeftLabel"
+@onready var turn_info_label : Label = $"../CurrentTurnsLeft/TurnInfoLabel"
 
 
 # low turns tween
@@ -33,6 +34,14 @@ func _refresh() -> void:
 	# low turns warning
 	if active_threshold_piece.turns_remaining <= 1:
 		toggle_low_turns_tween(true)
+	
+	if active_threshold_piece.turns_remaining == 1 : 
+		turn_info_label.text = 'Next-to-last turn'
+	elif active_threshold_piece.turns_remaining == 0 : 
+		turn_info_label.text = 'Finale turn'
+	else: 
+		turn_info_label.text = ''
+		
 
 
 func toggle_low_turns_tween(toggle_value : bool) -> void:

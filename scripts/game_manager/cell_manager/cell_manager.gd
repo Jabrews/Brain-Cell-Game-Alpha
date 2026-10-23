@@ -14,7 +14,7 @@ func _ready() -> void:
 	GLCellManagerBus.connect('delete_selected_collected_cell', _handle_delete_selected_collected_cell)
 	GLCellManagerBus.connect('hidden_stat_interpreted', _handle_hidden_stat_interpreted)
 	GLCellManagerBus.connect('cell_container_jolt_increase_cell_defect', _handle_cell_container_jolt_increase_cell_defect)
-	GLCellManagerBus.connect('delete_cells_for_next_round', _handle_delete_cells_for_next_round)
+	GLCellManagerBus.connect('delete_cells_for_next_goal_piece', _handle_delete_cells_for_next_goal_piece)
 	GLGameManagerBus.connect('proceed_next_turn', _handle_proceed_next_turn)
 	GLCellManagerBus.connect('defect_decreaser_used', _handle_defect_decreaser_used)
 	GLCellManagerBus.connect('mutation_frowny_increase_defect', _handle_mutation_frowny_increase_defect)
@@ -290,7 +290,8 @@ func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell,
 	
 		update_collected_cells([selected_cell])
 	
-func _handle_delete_cells_for_next_round() :
+func _handle_delete_cells_for_next_goal_piece() :
+	
 	for cell : BrainCell in collected_cells :	
 		cell.turn_into_flesh_bug = false
 		GLCellManagerBus.emit_signal('cell_changed', cell)

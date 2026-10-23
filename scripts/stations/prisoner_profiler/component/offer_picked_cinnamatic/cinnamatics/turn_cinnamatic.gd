@@ -27,3 +27,9 @@ func _initate() -> bool:
 
 func _proceed_to_next_turn() -> void:
 	GLGameManagerBus.emit_signal("proceed_next_turn")
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'turn_click')
+	
+	var active_goal_threshold : ThresholdPiece = GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
+	if active_goal_threshold.turns_remaining == 0 : 
+		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'turn_alert')
+		

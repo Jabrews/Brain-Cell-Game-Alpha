@@ -12,6 +12,9 @@ func _toggle(toggle_value : bool) :
 	
 	toggle_display_lock(toggle_value)
 	
+	if toggle_value  :
+		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'tablet_open')
+	
 func toggle_display_lock(toggle_value: bool) -> void:
 	
 	if toggle_value:

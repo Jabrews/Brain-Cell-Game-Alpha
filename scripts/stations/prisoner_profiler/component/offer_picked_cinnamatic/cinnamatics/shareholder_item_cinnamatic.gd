@@ -21,6 +21,9 @@ func _ready() -> void:
 
 
 func _initate(shareholder_items_card: ShareholderItemsCard) -> bool:
+	
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'offer_vent_banging')
+	
 	shareholder_item_camera.fov = STARTING_FOV
 	shareholder_item_camera.current = true
 
@@ -33,6 +36,7 @@ func _initate(shareholder_items_card: ShareholderItemsCard) -> bool:
 	)
 	await zoom_tween.finished
 
+	
 	await get_tree().create_timer(BEFORE_OFFER_DELAY).timeout
 
 	_item_spawn_completed = false
@@ -53,6 +57,9 @@ func _initate(shareholder_items_card: ShareholderItemsCard) -> bool:
 func _handle_spawn_item_to_offer(_useable_offer_item: UseableOfferItem) -> void:
 	if _item_spawn_completed:
 		return
+		
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'offer_vent_open')
 
 	_item_spawn_completed = true
 	offer_items_spawned.emit()
+	

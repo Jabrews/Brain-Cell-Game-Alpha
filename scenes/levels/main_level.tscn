@@ -193,6 +193,7 @@ size = Vector3(0.1, 4, 3.0946898)
 size = Vector3(0.1, 4.1984377, 3)
 
 [node name="MainLevel" type="Node3D" unique_id=716844902]
+script = ExtResource("35_w7r6u")
 
 [node name="Enviroment" type="Node" parent="." unique_id=1213802307]
 
@@ -481,23 +482,6 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 
 [node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=267444250 instance=ExtResource("6_l5rsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.308971, 0, -12.108076)
-
-[node name="PrisonerCinnamatic" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic" parent_id_path=PackedInt32Array(267444250, 1707607200) index="1" unique_id=89762710]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 5, -4)
-
-[node name="PrisonerCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/PrisonerCinnamatic" index="0" unique_id=1201928819]
-transform = Transform3D(-2.9802322e-08, -0.2588191, 0.9659258, 3.8567047e-09, 0.9659259, 0.2588191, -0.9999999, 7.450581e-09, -2.9802322e-08, 0, -0.3000002, 4)
-fov = 90.0
-
-[node name="ShareholderItemCinnamatic" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic" parent_id_path=PackedInt32Array(267444250, 1707607200) index="2" unique_id=1501779628]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 5, 13)
-
-[node name="ShareholderItemCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/ShareholderItemCinnamatic" index="0" unique_id=1786409267]
-transform = Transform3D(0.2588191, 0.25000006, -0.9330128, -7.7134095e-09, 0.96592593, 0.2588191, 0.9659258, -0.066987306, 0.25000003, 1, -0.3000002, 0)
-fov = 80.0
-
-[node name="IdealTV" parent="Stations/PrisonerStations/PrisonerProfiler/IdealStatCreator/IdealStatsWall/IdealStats/IdealIntelligence" parent_id_path=PackedInt32Array(267444250, 2109596959) index="1" unique_id=1889044433]
-transform = Transform3D(1.0000015, 0, 0, 0, 1, 0, 0, 0, 1.0000015, -0.91664886, 3.3153977, 3.8247938)
 
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
@@ -837,5 +821,3 @@ cell_container_parent_node = NodePath("../Charcters/ContainerParentNode")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)
-
-[editable path="Stations/PrisonerStations/PrisonerProfiler"]

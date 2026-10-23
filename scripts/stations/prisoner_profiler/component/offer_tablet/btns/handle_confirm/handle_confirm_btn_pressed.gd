@@ -15,7 +15,10 @@ extends Node
 func _handle() -> void:
 	
 	if handle_preview_card_selected.selected_card_index == -1 : 
+		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'confirm_failed')
 		return
+	
+	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'confirm_success')
 		
 	# get sorted preview cards
 	var sorted_preview_cards: Dictionary = _get_sorted_confirmation_preview_cards()
