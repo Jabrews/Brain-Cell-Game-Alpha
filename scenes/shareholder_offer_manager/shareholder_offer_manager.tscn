@@ -15,7 +15,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mvdwn"]
 shader = ExtResource("3_ten8p")
 shader_parameter/blur_amount = 3.0000001425
-shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_strength = 0.6950000330125
 shader_parameter/tint_color = Color(0, 0, 0, 1)
 
 [node name="ShareholderOfferManager" type="Node" unique_id=1195344226]
@@ -30,18 +30,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 1, 1, 0)
+color = Color(1, 1, 1, 0.08627451)
 
 [node name="HeaderLabel" type="Label" parent="." unique_id=1733478266]
-visible = false
 texture_filter = 1
 offset_left = 326.0
-offset_top = 16.0
+offset_top = 104.0
 offset_right = 991.0
-offset_bottom = 51.0
+offset_bottom = 139.0
 theme_override_fonts/font = ExtResource("4_05saj")
 theme_override_font_sizes/font_size = 35
-text = "Shareholder Offer -"
+text = "Item Offer -"
 horizontal_alignment = 1
 vertical_alignment = 1
 

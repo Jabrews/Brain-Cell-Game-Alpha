@@ -15,11 +15,13 @@ var hovered : bool = false
 func _ready() -> void:
 	detect_area.connect('mouse_entered', _handle_mouse_entered)
 	detect_area.connect('mouse_exited', _handle_mouse_exited)
+	detect_area.connect('focus_entered', _handle_mouse_entered)
+	detect_area.connect('focus_exited', _handle_mouse_exited)
 
 
 func _process(_delta: float) -> void: 
 	if hovered :
-		if Input.is_action_just_pressed('attack') : 
+		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact') : 
 			handle_preview_card_selected.handle(corrisponding_card_index)
 
 

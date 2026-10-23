@@ -13,6 +13,8 @@ func _ready() -> void:
 	connect('mouse_exited', _handle_mouse_exited)
 	connect('focus_entered', _handle_mouse_entered)
 	connect('focus_exited', _handle_mouse_exited)
+	
+	_toggle_confirm_btn_active(false)
 
 func _process(_delta: float) -> void:
 	if hovered == true : 

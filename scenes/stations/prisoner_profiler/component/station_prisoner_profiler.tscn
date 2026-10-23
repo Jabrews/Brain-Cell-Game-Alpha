@@ -1569,6 +1569,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+focus_mode = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="BlurBg" type="ColorRect" parent="OfferUi" unique_id=494436698]
@@ -1605,9 +1606,9 @@ offset_top = 76.0
 offset_right = 1220.0
 offset_bottom = 108.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
 focus_mode = 2
 script = ExtResource("42_2u1cg")
 
@@ -1799,6 +1800,12 @@ offset_top = 447.0
 offset_right = 134.0
 offset_bottom = 447.0
 
+[node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1" index="2" unique_id=1574372299]
+focus_neighbor_left = NodePath(".")
+focus_neighbor_right = NodePath("../../PreviewCardHover2/DetectArea")
+focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
+focus_mode = 2
+
 [node name="PreviewCardHover2" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1057547468 instance=ExtResource("49_k1kr7")]
 layout_mode = 0
 offset_left = 515.0
@@ -1807,6 +1814,12 @@ offset_right = 515.0
 offset_bottom = 447.0
 corrisponding_card_index = 1
 
+[node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2" index="2" unique_id=1574372299]
+focus_neighbor_left = NodePath("../../PreviewCardHover1/DetectArea")
+focus_neighbor_right = NodePath("../../PreviewCardHover3/DetectArea")
+focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
+focus_mode = 2
+
 [node name="PreviewCardHover3" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1224023589 instance=ExtResource("49_k1kr7")]
 layout_mode = 0
 offset_left = 894.0
@@ -1814,6 +1827,12 @@ offset_top = 449.0
 offset_right = 894.0
 offset_bottom = 449.0
 corrisponding_card_index = 2
+
+[node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3" index="2" unique_id=1574372299]
+focus_neighbor_left = NodePath("../../PreviewCardHover2/DetectArea")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
+focus_mode = 2
 
 [node name="PreviewCards" type="Control" parent="OfferUi/OfferBody" unique_id=1288358713]
 anchors_preset = 0
@@ -1855,9 +1874,10 @@ offset_top = 72.0
 offset_right = 760.0
 offset_bottom = 104.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_neighbor_top = NodePath(".")
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../OfferBody/PreviewCardsHover/PreviewCardHover2/DetectArea")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
+focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
 script = ExtResource("52_lixm1")
 
@@ -2056,3 +2076,7 @@ unit_size = 5.0
 
 [node name="DeleteMe" type="Node3D" parent="." unique_id=1604480785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901946, 0, 5.0339823)
+
+[editable path="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1"]
+[editable path="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2"]
+[editable path="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3"]
