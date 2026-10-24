@@ -5,6 +5,9 @@ extends ColorRect
 func _ready() -> void:
 	connect('mouse_entered', _handle_mouse_entered)
 	connect('mouse_exited', _handle_mouse_exited)
+	connect('focus_entered', _handle_mouse_entered)
+	connect('focus_exited', _handle_mouse_exited)
+	
 
 func _handle_mouse_entered() : 
 	hint_parent.visible = true

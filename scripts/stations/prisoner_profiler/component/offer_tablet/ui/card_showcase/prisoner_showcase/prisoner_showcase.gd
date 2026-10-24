@@ -3,6 +3,7 @@ extends Control
 # compoents
 @onready var handle_start : Node = $HandleStart
 @onready var handle_stop : Node = $HandleStop
+@onready var toggle_focus : Node = $ToggleFocus
 
 # display helpers
 @onready var display_defect_info : Node = $DisplayHelpers/DisplayDefectInfo
@@ -28,7 +29,11 @@ func _start() :
 		return
 	
 	handle_start._handle(loaded_prisoner_card)
+	
+	toggle_focus._toggle(true)
 
 func _stop() : 
 	
 	handle_stop._handle()
+	
+	toggle_focus._toggle(false)
