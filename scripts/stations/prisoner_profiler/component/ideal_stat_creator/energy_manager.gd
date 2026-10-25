@@ -23,6 +23,7 @@ func compute_max_energy() :
 	# start at 3, because index starts at 0 
 	var total_lock_index : int = 3
 	
+	
 	total_lock_index += IVPrisonerProfiler.strength_stat_lock_percant_index
 	total_lock_index += IVPrisonerProfiler.intelligence_stat_lock_percant_index
 	total_lock_index += IVPrisonerProfiler.community_stat_lock_percant_index

@@ -9,6 +9,7 @@ func _update_prisoner_profiler(round: int, goal_piece: int) -> void:
 		IVPrisonerProfiler.stat_increment_amount = 10
 		IVPrisonerProfiler.stat_lock_percantages = [0.10, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.01]
 		IVPrisonerProfiler.per_stat_increment_energy_decrease = 1
+		IVPrisonerProfiler.per_lock_index_energy_increase = 1
 		
 	elif round == 2:
 		return	

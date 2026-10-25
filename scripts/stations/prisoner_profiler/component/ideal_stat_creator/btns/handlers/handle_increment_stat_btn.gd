@@ -53,48 +53,41 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 	)
 	
 	# deal with one interval before lock
+		
 	var lock_value: float = ideal_stat.lock_max_value
-	
-	# check if it surpasses lock
-	if new_value >= lock_value : 
-		
-		var before_lock_found : bool = false
-		
-		# make sure before this happen that it was acutally behinde the lock
-		if lock_value - increment > current_value :
-			before_lock_found = true
-		 # because we include .15 (the tenth) in stat lock percantages 
-		elif lock_value - increment / 2 > current_value : 
-			before_lock_found = true
-	
-		if before_lock_found : 
-			new_value = ideal_stat.lock_max_value - 1.0
-		
-	## check if attempting to go past lock
-	if new_value >= ideal_stat.lock_max_value : 
-		GLPrisonerProfilerComponentsBus.emit_signal('display_feedback', 'lock_alert', {'stat' : ideal_stat.stat_type})
-		return
-	
-	# deal with one interval before unreachable
-	var unreachable_min_value : float = IVPrisonerProfiler.uncreachable_min_value
-	
-		# check if it surpasses lock
-	if new_value >= unreachable_min_value: 
-		
-		var before_unreachable_found : bool = false
-		
-		# make sure before this happen that it was acutally behinde the lock
-		if unreachable_min_value - increment > current_value :
-			before_unreachable_found = true
-		 # because we include .15 (the tenth) in stat lock percantages 
-		elif unreachable_min_value - increment / 2 > current_value : 
-			before_unreachable_found = true
-	
-		if before_unreachable_found : 
+	var unreachable_min_value: float = IVPrisonerProfiler.uncreachable_min_value
+
+	var lock_active: bool = (
+		lock_value < unreachable_min_value
+		and not is_equal_approx(lock_value, unreachable_min_value)
+	)
+
+	if lock_active:
+		if new_value >= lock_value:
+			var before_lock_found: bool = (
+				lock_value - increment > current_value
+				or lock_value - increment / 2.0 > current_value
+			)
+
+			if before_lock_found:
+				new_value = lock_value - 1.0
+
+		if new_value >= lock_value:
+			GLPrisonerProfilerComponentsBus.emit_signal("display_feedback", "lock_alert", {"stat": ideal_stat.stat_type})
+			return
+
+	# Deal with one interval before the unreachable region.
+	if new_value >= unreachable_min_value:
+		var before_unreachable_found: bool = (
+			unreachable_min_value - increment > current_value
+			or unreachable_min_value - increment / 2.0 > current_value
+		)
+
+		if before_unreachable_found:
 			new_value = unreachable_min_value - 1.0
-	
-	if new_value > unreachable_min_value : 
-		GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'unreachable_alert')
+
+	if new_value > unreachable_min_value:
+		GLPrisonerProfilerComponentsBus.emit_signal("play_sound", "unreachable_alert")
 		return
 	
 	

@@ -35,10 +35,10 @@ extends Node
 
 var active_toggle : bool = true
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') :
-		active_toggle = !active_toggle
-		_toggle(active_toggle)
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed('debug1') :
+		#active_toggle = !active_toggle
+		#_toggle(active_toggle)
 	
 
 

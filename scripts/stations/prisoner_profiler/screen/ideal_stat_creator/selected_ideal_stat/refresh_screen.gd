@@ -44,6 +44,7 @@ func _refresh(
 	_load_unreachable_bg(min_unreachable_value)
 
 
+
 func _load_lock_bg(lock_max_value: float) -> void:
 	var max_stat_value: float = IVCellCreator.max_stat_value
 
@@ -51,28 +52,46 @@ func _load_lock_bg(lock_max_value: float) -> void:
 		push_error("max_stat_value must be greater than 0.")
 		return
 
-	var lock_percent: float = clampf(
-		lock_max_value / max_stat_value,
+	var available_max_value: float = clampf(
+		IVPrisonerProfiler.uncreachable_min_value,
 		0.0,
-		1.0
+		max_stat_value
 	)
-	
-	
-	if lock_max_value == IVCellCreator.max_stat_value : 
+
+	var clamped_lock_value: float = clampf(
+		lock_max_value,
+		0.0,
+		available_max_value
+	)
+
+	# No locked area remains inside the available range.
+	if clamped_lock_value >= available_max_value:
 		locked_bg_rect.visible = false
 		locked_symbol_sprite.visible = false
 		return
-	else : 
-		locked_bg_rect.visible = true 
-		locked_symbol_sprite.visible = true 
 
-	var lock_x: float = LOCK_MAX_WIDTH * lock_percent
+	locked_bg_rect.visible = true
+	locked_symbol_sprite.visible = true
 
-	locked_bg_rect.position.x = lock_x - 10.0
-	locked_bg_rect.size.x = maxf(LOCK_MAX_WIDTH - lock_x, 0.0) + 10.0
+	var lock_x: float = (
+		LOCK_MAX_WIDTH * clamped_lock_value / max_stat_value
+	)
+	var available_end_x: float = (
+		LOCK_MAX_WIDTH * available_max_value / max_stat_value
+	)
+
+	# Match the start of the unreachable background.
+	var unreachable_start_x: float = available_end_x - 10.0
+	var lock_start_x: float = lock_x - 10.0
+
+	locked_bg_rect.position.x = lock_start_x
+	locked_bg_rect.size.x = maxf(
+		unreachable_start_x - lock_start_x,
+		0.0
+	)
 
 	locked_symbol_sprite.position.x = (
-		locked_bg_rect.position.x + locked_bg_rect.size.x / 2.0
+		locked_bg_rect.position.x + locked_bg_rect.size.x * 0.5
 	)
 	
 	

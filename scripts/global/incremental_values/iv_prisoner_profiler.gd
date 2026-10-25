@@ -15,7 +15,7 @@ var community_stat_lock_percant_index : int = 0
 # stat increment
 var stat_increment_amount : float = 10.0
 var per_stat_increment_energy_decrease : int = 1
-var per_lock_index_energy_increase : int = 2
+var per_lock_index_energy_increase : int = 1
 
 # unreachable
 var uncreachable_min_value : float = 0.0
