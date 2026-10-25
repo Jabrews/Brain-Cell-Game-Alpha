@@ -24,9 +24,9 @@ func _get_increased(selected_stat: String, selected_direction: String, main_cell
 	var direction_change: int
 	
 	match selected_direction:
-		"increase":
+		"up":
 			direction_change = 1
-		"decrease":
+		"down":
 			direction_change = -1
 		_:
 			push_error("Invalid selected_direction: " + selected_direction)

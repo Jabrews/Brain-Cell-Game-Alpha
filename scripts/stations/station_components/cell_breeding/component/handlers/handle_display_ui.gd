@@ -26,6 +26,8 @@ func _toggle_display(toggle_value : bool) :
 		# refresh briefly
 		GLBreedingComponetsBus.emit_signal('initate_breeder_refresh')
 		
+		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'open_hologram')
+		
 		# display 
 		display_cell_catalog._display()
 		handle_breeding_box_startup._handle()

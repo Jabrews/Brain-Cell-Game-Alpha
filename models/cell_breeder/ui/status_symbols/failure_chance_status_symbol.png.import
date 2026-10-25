@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://blc6k40bxax8w"
-path="res://.godot/imported/death_chance_status_symbol.png-d3b3fa4d51065cb9bf4e66d808d27c42.ctex"
+path="res://.godot/imported/failure_chance_status_symbol.png-690f54e47c665295f0f62f5f354866a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://models/cell_breeder/ui/status_symbols/death_chance_status_symbol.png"
-dest_files=["res://.godot/imported/death_chance_status_symbol.png-d3b3fa4d51065cb9bf4e66d808d27c42.ctex"]
+source_file="res://models/cell_breeder/ui/status_symbols/failure_chance_status_symbol.png"
+dest_files=["res://.godot/imported/failure_chance_status_symbol.png-690f54e47c665295f0f62f5f354866a1.ctex"]
 
 [params]
 

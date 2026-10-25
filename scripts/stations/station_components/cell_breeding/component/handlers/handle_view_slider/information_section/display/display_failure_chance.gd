@@ -6,29 +6,29 @@ const STAT_TYPES: Array[String] = [
 	"community",
 ]
 
-@onready var total_frame : TextureRect = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance/Frame"
-@onready var total_percant_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/TotalDeathChance/DeathChancePercant"
+@onready var total_frame : TextureRect = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/TotalFailureChance/Frame"
+@onready var total_percant_label : Label =$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/TotalFailureChance/FailureChancePercant"
 @onready var stat_danger_chance_increase_labels : Array[Label] = [
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength/DeathChance",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence/DeathChance",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community/DeathChance"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Strength/FailureChance",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Intelligence/FailureChance",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Community/FailureChance"
 ]
 @onready var stat_danger_pots : Array[TextureRect] =  [
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Strength/Pot",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Intelligence/Pot",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/StatDanger/Community/Pot"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Strength/Pot",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Intelligence/Pot",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Community/Pot"
 ]
-@onready var lifespan_num_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger/LifeNum"
-@onready var lifespan_death_chance_increase_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/LifeSpanDanger/DeathChance"
+@onready var lifespan_num_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/LifeSpanDanger/LifeNum"
+@onready var lifespan_death_chance_increase_label : Label =$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/LifeSpanDanger/FailureChance"
 @onready var hidden_stat_sprites : Array[Sprite2D]=  [
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/StrengthHide",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/IntelligenceHide",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/HiddenStats/CommunityHide"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/HiddenStats/StrengthHide",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/HiddenStats/IntelligenceHide",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/HiddenStats/CommunityHide"
 ]
 @onready var off_blockers : Array[Control] = [
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Strength",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Intelligence",
-	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance/OffDisableLabels/Community"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/OffDisableLabels/Strength",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/OffDisableLabels/Intelligence",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/OffDisableLabels/Community"
 ]
 
 func _ready() -> void:
@@ -47,22 +47,22 @@ func _display(cell : BrainCell) :
 	if not cell : 	
 		return
 	
-	display_total_death_chance(cell)
+	display_total_failure_chance(cell)
 	display_stat_danger(cell)
 	display_hidden_stat(cell)
 	display_off_blockers(cell)
 	display_life_span_danger(cell)
 	
-func display_total_death_chance(cell: BrainCell) -> void:
+func display_total_failure_chance(cell: BrainCell) -> void:
 	
 	# Get death chance as a percentage
-	var total_death_chance: float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
+	var total_failure_chance : float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
 	
 	# Display percentage
-	total_percant_label.text = str(int(total_death_chance)) + "%"
+	total_percant_label.text = str(int(total_failure_chance)) + "%"
 	
 	# Convert 0-100% to 0.0-1.0 for shader
-	var progress: float = total_death_chance / 100.0
+	var progress: float = total_failure_chance / 100.0
 	
 	total_frame.material.set_shader_parameter("progress", progress)
 	

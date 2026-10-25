@@ -2047,7 +2047,8 @@ max_distance = 25.0
 [node name="TabletStart" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=338405497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.8844366, -1.8676758, 0.76534176)
 stream = ExtResource("50_cyrsn")
-max_distance = 25.0
+volume_db = 10.0
+max_distance = 30.0
 
 [node name="TabletSounds" type="Node3D" parent="AudioManager" unique_id=1629770199]
 process_mode = 3

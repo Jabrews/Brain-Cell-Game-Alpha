@@ -4,8 +4,8 @@ func _detect(cell : BrainCell) -> Array[String] :
 	
 	var found_status_symbols : Array[String] = []
 	
-	if detect_near_death(cell) : 	
-		found_status_symbols.append('near_death_alert')
+	if detect_near_failure_chance(cell) : 	
+		found_status_symbols.append('near_failure_chance')
 	
 	if detect_low_lifespan(cell) : 
 		found_status_symbols.append('low_lifespan')
@@ -20,9 +20,9 @@ func _detect(cell : BrainCell) -> Array[String] :
 
 
 	
-func detect_near_death(cell : BrainCell) -> bool :
-	var near_death_chance : float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
-	return near_death_chance >= 50.0
+func detect_near_failure_chance(cell : BrainCell) -> bool :
+	var near_failure_chance : float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
+	return near_failure_chance >= 50.0
 
 func detect_low_lifespan(cell : BrainCell) -> bool : 
 	return cell.life_span == 1

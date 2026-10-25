@@ -6,7 +6,7 @@ extends Node
 @onready var hint_parent_node: Node = $"../../../../../../../../../HintParentNode"
 
 # symbol textures
-@onready var t_near_death_alert: Texture = preload("res://models/cell_breeder/ui/status_symbols/death_chance_status_symbol.png")
+@onready var t_near_failure_chance_alert: Texture = preload("res://models/cell_breeder/ui/status_symbols/failure_chance_status_symbol.png")
 @onready var t_low_lifespan: Texture = preload("res://models/cell_breeder/ui/status_symbols/lifespan_status_symbol.png")
 @onready var t_on_goal_interface: Texture = preload("res://models/cell_breeder/ui/status_symbols/on_goal_status_symbol.png")
 @onready var t_breeder_unavailable: Texture = preload("res://models/cell_breeder/ui/status_symbols/unavaible_status_symbol.png")
@@ -17,12 +17,12 @@ var active_hint: Control
 
 
 @export_enum(
-	"near_death_alert",
+	"near_failure_chance",
 	"low_lifespan",
 	"on_goal_interface",
 	"breeder_unavailable"
 )
-var status: String = "near_death_alert"
+var status: String = "near_failure_chance"
 
 
 func _ready() -> void:
@@ -46,8 +46,8 @@ func _handle_mouse_exited() -> void:
 
 func get_status_texture() -> Texture:
 	match status:
-		"near_death_alert":
-			return t_near_death_alert
+		"near_failure_chance":
+			return t_near_failure_chance_alert
 
 		"low_lifespan":
 			return t_low_lifespan
@@ -63,11 +63,11 @@ func get_status_texture() -> Texture:
 
 func get_hint_text() -> String:
 	match status:
-		"near_death_alert":
-			return "Cell life span low (1). Will die next round."
+		"near_failure_chance":
+			return "Cell has a very high failure rate. operation will likely go wrong"
 
 		"low_lifespan":
-			return "Cell has a low lifespan. Breeding will likely end in the cell's death."
+			return "Cell has a low lifespan (1). will die next round"
 
 		"on_goal_interface":
 			return "This cell is currently contributing to the goal interface."

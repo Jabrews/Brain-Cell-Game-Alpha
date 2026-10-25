@@ -54,7 +54,9 @@
 [ext_resource type="PackedScene" uid="uid://cyugvlr5sgshv" path="res://scenes/shareholder_offer_manager/shareholder_offer_manager.tscn" id="38_wv5kd"]
 [ext_resource type="Script" uid="uid://k2t80vk7gdwv" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutations.gd" id="40_8muua"]
 [ext_resource type="Script" uid="uid://dreue4osc7msv" path="res://scripts/game_manager/defect_event_triggerer/helpers/sickness_cell_container.gd" id="40_l5rsp"]
+[ext_resource type="Script" uid="uid://dqp8xs1nroqcb" path="res://scripts/game_manager/cell_manager/mutation_events.gd" id="41_6ixvf"]
 [ext_resource type="Script" uid="uid://cd5uuojrbqav0" path="res://scripts/game_manager/defect_event_triggerer/helpers/bubble_cell_container.gd" id="41_l5rsp"]
+[ext_resource type="Script" uid="uid://bug5h8j5oh8df" path="res://scripts/game_manager/cell_manager/station_events.gd" id="42_pq8fj"]
 [ext_resource type="Script" uid="uid://cuin1titamcic" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_mutation_event_trigger.gd" id="48_3ujpq"]
 [ext_resource type="Script" uid="uid://f3k2iugyul8v" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_creation_methods.gd" id="49_dixnm"]
 [ext_resource type="Script" uid="uid://dxdykv2inqkpg" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_event.gd" id="49_lp30k"]
@@ -197,7 +199,63 @@ script = ExtResource("35_w7r6u")
 
 [node name="Enviroment" type="Node" parent="." unique_id=1213802307]
 
+[node name="CelingFanManager" type="Node" parent="Enviroment" unique_id=1795027568]
+script = ExtResource("59_ms0m2")
+
+[node name="CeilingFan" parent="Enviroment/CelingFanManager" unique_id=829669894 instance=ExtResource("59_m2qbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 7.2999997, 9.200001)
+room = "main_room"
+
+[node name="CeilingFan2" parent="Enviroment/CelingFanManager" unique_id=1454637000 instance=ExtResource("59_m2qbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.400001, 7.2999997, -0.8999996)
+room = "main_room"
+
+[node name="CeilingFan3" parent="Enviroment/CelingFanManager" unique_id=199999115 instance=ExtResource("59_m2qbd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 7.2999997, -11.499999)
+room = "interpreter_room"
+
+[node name="Doors" type="Node" parent="Enviroment" unique_id=1761693126]
+
+[node name="Doors" type="Node" parent="Enviroment/Doors" unique_id=1392372276]
+
+[node name="Door" parent="Enviroment/Doors/Doors" unique_id=122470095 node_paths=PackedStringArray("door_buttons") instance=ExtResource("57_ms0m2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.969421, 2.7386374, -6.8279524)
+door_buttons = [NodePath("../../Buttons/DoorButton"), NodePath("../../Buttons/DoorButton2")]
+
+[node name="Door2" parent="Enviroment/Doors/Doors" unique_id=1015152428 node_paths=PackedStringArray("door_buttons") instance=ExtResource("57_ms0m2")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.241419, 2.7386374, -0.12162745)
+door_buttons = [NodePath("../../Buttons/DoorButton3"), NodePath("../../Buttons/DoorButton4")]
+
+[node name="Buttons" type="Node" parent="Enviroment/Doors" unique_id=611846348]
+
+[node name="DoorButton" parent="Enviroment/Doors/Buttons" unique_id=660448842 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.747617, 3.319013, -6.2133017)
+corrisponding_door = NodePath("../../Doors/Door")
+
+[node name="DoorButton2" parent="Enviroment/Doors/Buttons" unique_id=2130879618 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.747617, 3.319013, -7.2478313)
+corrisponding_door = NodePath("../../Doors/Door")
+
+[node name="DoorButton3" parent="Enviroment/Doors/Buttons" unique_id=586468438 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.631328, 3.319013, 2.1078765)
+corrisponding_door = NodePath("../../Doors/Door2")
+
+[node name="DoorButton4" parent="Enviroment/Doors/Buttons" unique_id=2110012168 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10.68691, 3.319013, 2.1078765)
+corrisponding_door = NodePath("../../Doors/Door2")
+
+[node name="CellTranferBoxes" type="Node" parent="Enviroment" unique_id=1008437627]
+
+[node name="CellTransferBox" parent="Enviroment/CellTranferBoxes" unique_id=1341135612 node_paths=PackedStringArray("recieving_transfer_box") instance=ExtResource("60_lp30k")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 3, -6.4212165)
+recieving_transfer_box = NodePath("../CellTransferBox2")
+
+[node name="CellTransferBox2" parent="Enviroment/CellTranferBoxes" unique_id=403806246 node_paths=PackedStringArray("recieving_transfer_box") instance=ExtResource("60_lp30k")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 3, -7.0612473)
+recieving_transfer_box = NodePath("../CellTransferBox")
+
 [node name="Walls" type="Node3D" parent="Enviroment" unique_id=2044813324]
+metadata/_edit_lock_ = true
 
 [node name="Wall1" type="StaticBody3D" parent="Enviroment/Walls" unique_id=617063028 groups=["nav_mesh_coll"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.155705, 2.495707, -9.252089)
@@ -381,6 +439,7 @@ mesh = SubResource("BoxMesh_3kcnf")
 shape = SubResource("BoxShape3D_3kcnf")
 
 [node name="DoorTops" type="Node3D" parent="Enviroment" unique_id=1094345203]
+metadata/_edit_lock_ = true
 
 [node name="DoorTop" type="StaticBody3D" parent="Enviroment/DoorTops" unique_id=750844462]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.974996, 5.8, -6.7608805)
@@ -411,6 +470,7 @@ shape = SubResource("BoxShape3D_r52yi")
 [node name="Floor" type="StaticBody3D" parent="Enviroment" unique_id=2117637110 groups=["nav_mesh_coll"]]
 collision_layer = 2
 collision_mask = 0
+metadata/_edit_lock_ = true
 
 [node name="FloorMesh" type="MeshInstance3D" parent="Enviroment/Floor" unique_id=194109205]
 mesh = SubResource("BoxMesh_k57ag")
@@ -425,6 +485,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.489979, 0)
 visible = false
 collision_layer = 2
 collision_mask = 0
+metadata/_edit_lock_ = true
 
 [node name="FloorMesh" type="MeshInstance3D" parent="Enviroment/Ceiling" unique_id=952379611]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19999981, 0)
@@ -436,6 +497,7 @@ shape = SubResource("BoxShape3D_fon25")
 debug_color = Color(0.7096456, 0.4859149, 0, 1)
 
 [node name="Lights" type="Node3D" parent="Enviroment" unique_id=966134524]
+metadata/_edit_lock_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Enviroment/Lights" unique_id=1619563916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
@@ -448,6 +510,63 @@ environment = SubResource("Environment_h7hv4")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="Enviroment" unique_id=456962782]
 visible = false
 navigation_mesh = SubResource("NavigationMesh_v2xyd")
+metadata/_edit_lock_ = true
+
+[node name="EntranceAreasRoom" type="Node" parent="Enviroment" unique_id=432962381]
+
+[node name="PrisonerRoom" type="Node3D" parent="Enviroment/EntranceAreasRoom" unique_id=1525945135]
+
+[node name="Entrance" type="Area3D" parent="Enviroment/EntranceAreasRoom/PrisonerRoom" unique_id=1497302286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1, 1, -1.2)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "prisoner_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/EntranceAreasRoom/PrisonerRoom/Entrance" unique_id=237205008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5337279, 1.45)
+shape = SubResource("BoxShape3D_awaeu")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="MainRoom" type="Node3D" parent="Enviroment/EntranceAreasRoom" unique_id=2034625860]
+
+[node name="Entrance1" type="Area3D" parent="Enviroment/EntranceAreasRoom/MainRoom" unique_id=156977295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3, 1, -1.2)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "main_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/EntranceAreasRoom/MainRoom/Entrance1" unique_id=211465126]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.45)
+shape = SubResource("BoxShape3D_qa1qv")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="Entrance2" type="Area3D" parent="Enviroment/EntranceAreasRoom/MainRoom" unique_id=1766045013]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.7, 1, -5.6)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "main_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/EntranceAreasRoom/MainRoom/Entrance2" unique_id=291887310]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5, 1.2855897)
+shape = SubResource("BoxShape3D_ea07q")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
+
+[node name="InterpreterRoom" type="Node3D" parent="Enviroment/EntranceAreasRoom" unique_id=1988347560]
+
+[node name="Entrance" type="Area3D" parent="Enviroment/EntranceAreasRoom/InterpreterRoom" unique_id=1974331961]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.9999995, 1, -7.7)
+collision_layer = 0
+collision_mask = 517
+script = ExtResource("50_awaeu")
+room_type = "interpreter_room"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/EntranceAreasRoom/InterpreterRoom/Entrance" unique_id=1915261967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.0000005)
+shape = SubResource("BoxShape3D_36h02")
+debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
 
 [node name="Charcters" type="Node" parent="." unique_id=1683906565]
 
@@ -611,6 +730,12 @@ mutation_seen_manager = NodePath("../../../../MutationSeenManager")
 [node name="CellManager" type="Node" parent="GameManager" unique_id=612656315]
 script = ExtResource("12_63vgv")
 
+[node name="MutationEvents" type="Node" parent="GameManager/CellManager" unique_id=383011986]
+script = ExtResource("41_6ixvf")
+
+[node name="StationEvents" type="Node" parent="GameManager/CellManager" unique_id=134067897]
+script = ExtResource("42_pq8fj")
+
 [node name="OfferCardCreator" type="Node" parent="GameManager" unique_id=1724378018]
 script = ExtResource("33_lp30k")
 
@@ -697,118 +822,7 @@ wait_time = 10.0
 [node name="UseableItemUseManager" type="Node" parent="GameManager" unique_id=428990184]
 script = ExtResource("14_5ru7i")
 
-[node name="EntranceAreasRoom" type="Node" parent="." unique_id=432962381]
-
-[node name="PrisonerRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=1525945135]
-
-[node name="Entrance" type="Area3D" parent="EntranceAreasRoom/PrisonerRoom" unique_id=1497302286]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1, 1, -1.2)
-collision_layer = 0
-collision_mask = 517
-script = ExtResource("50_awaeu")
-room_type = "prisoner_room"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/PrisonerRoom/Entrance" unique_id=237205008]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5337279, 1.45)
-shape = SubResource("BoxShape3D_awaeu")
-debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
-
-[node name="MainRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=2034625860]
-
-[node name="Entrance1" type="Area3D" parent="EntranceAreasRoom/MainRoom" unique_id=156977295]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3, 1, -1.2)
-collision_layer = 0
-collision_mask = 517
-script = ExtResource("50_awaeu")
-room_type = "main_room"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/MainRoom/Entrance1" unique_id=211465126]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.45)
-shape = SubResource("BoxShape3D_qa1qv")
-debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
-
-[node name="Entrance2" type="Area3D" parent="EntranceAreasRoom/MainRoom" unique_id=1766045013]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.7, 1, -5.6)
-collision_layer = 0
-collision_mask = 517
-script = ExtResource("50_awaeu")
-room_type = "main_room"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/MainRoom/Entrance2" unique_id=291887310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5, 1.2855897)
-shape = SubResource("BoxShape3D_ea07q")
-debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
-
-[node name="InterpreterRoom" type="Node3D" parent="EntranceAreasRoom" unique_id=1988347560]
-
-[node name="Entrance" type="Area3D" parent="EntranceAreasRoom/InterpreterRoom" unique_id=1974331961]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 7.9999995, 1, -7.7)
-collision_layer = 0
-collision_mask = 517
-script = ExtResource("50_awaeu")
-room_type = "interpreter_room"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EntranceAreasRoom/InterpreterRoom/Entrance" unique_id=1915261967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5500002, 1.5992188, 1.0000005)
-shape = SubResource("BoxShape3D_36h02")
-debug_color = Color(0.8493334, 0, 0.91, 0.85882354)
-
 [node name="ShareholderOfferManager" parent="." unique_id=1195344226 instance=ExtResource("38_wv5kd")]
-
-[node name="CelingFanManager" type="Node" parent="." unique_id=1795027568]
-script = ExtResource("59_ms0m2")
-
-[node name="CeilingFan" parent="CelingFanManager" unique_id=829669894 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9000002, 7.2999997, 9.200001)
-room = "main_room"
-
-[node name="CeilingFan2" parent="CelingFanManager" unique_id=1454637000 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.400001, 7.2999997, -0.8999996)
-room = "main_room"
-
-[node name="CeilingFan3" parent="CelingFanManager" unique_id=199999115 instance=ExtResource("59_m2qbd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8000002, 7.2999997, -11.499999)
-room = "interpreter_room"
-
-[node name="Doors" type="Node" parent="." unique_id=1761693126]
-
-[node name="Doors" type="Node" parent="Doors" unique_id=1392372276]
-
-[node name="Door" parent="Doors/Doors" unique_id=122470095 node_paths=PackedStringArray("door_buttons") instance=ExtResource("57_ms0m2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.969421, 2.7386374, -6.8279524)
-door_buttons = [NodePath("../../Buttons/DoorButton"), NodePath("../../Buttons/DoorButton2")]
-
-[node name="Door2" parent="Doors/Doors" unique_id=1015152428 node_paths=PackedStringArray("door_buttons") instance=ExtResource("57_ms0m2")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.241419, 2.7386374, -0.12162745)
-door_buttons = [NodePath("../../Buttons/DoorButton3"), NodePath("../../Buttons/DoorButton4")]
-
-[node name="Buttons" type="Node" parent="Doors" unique_id=611846348]
-
-[node name="DoorButton" parent="Doors/Buttons" unique_id=660448842 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.747617, 3.319013, -6.2133017)
-corrisponding_door = NodePath("../../Doors/Door")
-
-[node name="DoorButton2" parent="Doors/Buttons" unique_id=2130879618 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 4.747617, 3.319013, -7.2478313)
-corrisponding_door = NodePath("../../Doors/Door")
-
-[node name="DoorButton3" parent="Doors/Buttons" unique_id=586468438 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.631328, 3.319013, 2.1078765)
-corrisponding_door = NodePath("../../Doors/Door2")
-
-[node name="DoorButton4" parent="Doors/Buttons" unique_id=2110012168 node_paths=PackedStringArray("corrisponding_door") instance=ExtResource("58_otmbb")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -10.68691, 3.319013, 2.1078765)
-corrisponding_door = NodePath("../../Doors/Door2")
-
-[node name="CellTranferBoxes" type="Node" parent="." unique_id=1008437627]
-
-[node name="CellTransferBox" parent="CellTranferBoxes" unique_id=1341135612 node_paths=PackedStringArray("recieving_transfer_box") instance=ExtResource("60_lp30k")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, 3, -6.4212165)
-recieving_transfer_box = NodePath("../CellTransferBox2")
-
-[node name="CellTransferBox2" parent="CellTranferBoxes" unique_id=403806246 node_paths=PackedStringArray("recieving_transfer_box") instance=ExtResource("60_lp30k")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 3, -7.0612473)
-recieving_transfer_box = NodePath("../CellTransferBox")
 
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 

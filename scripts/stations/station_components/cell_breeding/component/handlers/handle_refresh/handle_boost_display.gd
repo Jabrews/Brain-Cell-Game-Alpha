@@ -26,13 +26,13 @@ func _handle() :
 		if not right_boost_cell : 
 			reset_boost_display._reset('right')
 	
-	# HACK
-	# re-open to refresh, might have main cell now
-	# get rid of hint
-	if left_boost_cell and left_main_cell : 
-		if handle_boost_display.left_add_main_cell_hint.visible == true : 
-			handle_boost_display._handle('left')
-	
-	if right_boost_cell and right_main_cell : 
-		if handle_boost_display.right_add_main_cell_hint.visible == true : 
-			handle_boost_display._handle('right')
+	## HACK
+	## re-open to refresh, might have main cell now
+	## get rid of hint
+	#if left_boost_cell and left_main_cell : 
+		#if handle_boost_display.left_add_main_cell_hint.visible == true : 
+			#handle_boost_display._handle('left')
+	#
+	#if right_boost_cell and right_main_cell : 
+		#if handle_boost_display.right_add_main_cell_hint.visible == true : 
+			#handle_boost_display._handle('right')

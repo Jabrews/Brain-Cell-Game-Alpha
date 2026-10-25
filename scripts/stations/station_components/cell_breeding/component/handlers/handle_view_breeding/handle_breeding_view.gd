@@ -7,9 +7,9 @@ extends Node
 @onready var display_stats : Node = $Display/DisplayStats
 @onready var display_boost : Node = $Display/DisplayBoost
 @onready var display_stat_symbols : Node = $Display/DisplayStatSymbols
-@onready var display_death_chance : Node = $Display/DisplayDeathChance
+@onready var display_failure_chance : Node = $Display/DisplayFailureChance
 @onready var display_blood_type : Node = $Display/DisplayBloodType
-@onready var display_death_chance_skull : Node = $Display/DisplayDeathChanceSkull
+@onready var display_failure_chance_flash : Node = $Display/DisplayFailureChanceFlash
 
 
 func _ready() -> void:
@@ -47,15 +47,14 @@ func _handle() -> void:
 		display_stat_symbols.hide_symbols()
 	
 	# display death chance
-	var left_death_chance_components : Dictionary = get_side_components._get_death_chance('left')
-	display_death_chance._display(left_main_cell, left_death_chance_components)
+	var left_failure_chance_components : Dictionary = get_side_components._get_failure_chance('left')
+	display_failure_chance._display(left_main_cell, left_failure_chance_components)
 
-	var right_death_chance_components : Dictionary = get_side_components._get_death_chance('right')
-	display_death_chance._display(right_main_cell, right_death_chance_components)
-	
+	var right_failure_chance_components : Dictionary = get_side_components._get_failure_chance('right')
+	display_failure_chance._display(right_main_cell, right_failure_chance_components)
 	
 	# display death chance skull
-	display_death_chance_skull._display(left_main_cell, right_main_cell)
+	display_failure_chance_flash._display(left_main_cell, right_main_cell)
 	
 	# display blood type
 	var left_blood_type_components : Dictionary = get_side_components._get_blood_type('left')

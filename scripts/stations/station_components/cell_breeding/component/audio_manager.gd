@@ -10,6 +10,8 @@ extends Node
 @onready var s_invalid_stat : AudioStreamPlayer3D = $InvalidStat
 @onready var s_boost_confirm : AudioStreamPlayer3D = $BoostConfirm
 @onready var s_breeding_finished : AudioStreamPlayer3D = $BreedingFinishedCharge
+@onready var s_open_hologram : AudioStreamPlayer3D = $OpenHologram
+
 
 
 func _ready() -> void:
@@ -38,6 +40,8 @@ func _handle_breeder_play_sound(sound_type : String) :
 			s_boost_confirm.play()
 		'breeding_finished' : 
 			s_breeding_finished.play()
+		'open_hologram' : 
+			s_open_hologram.play()
 		_ : 
 			push_error('trouble finding breeder sound : ', sound_type)
 			return

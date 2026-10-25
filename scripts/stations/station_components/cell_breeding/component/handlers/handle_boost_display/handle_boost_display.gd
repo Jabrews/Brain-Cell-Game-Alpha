@@ -18,6 +18,8 @@ extends Node
 @onready var display_boost_stats : Node = $DisplayBoostStats
 @onready var display_boost_debuff : Node = $HandleStatSelected/DisplayBoostDebuff
 
+@onready var toggle_focus : Node = $ToggleFocus
+
 # is called from boost box
 func _handle(side : String) :
 	
@@ -25,9 +27,6 @@ func _handle(side : String) :
 	var main_cell : BrainCell
 	var boost_display : Control 
 	var add_a_cell_hint : Control
-	# controller
-	var boost_exit_btn_rect : ColorRect
-	var strength_detect_hover_rect : ColorRect
 	
 	match side : 
 		'left' :
@@ -35,17 +34,11 @@ func _handle(side : String) :
 			main_cell = GLBreedingComponetsBus.breeding_ui_state['left_main']
 			boost_display = left_boost_display
 			add_a_cell_hint = left_add_main_cell_hint
-			# controller
-			boost_exit_btn_rect = left_boost_exit_btn_rect
-			strength_detect_hover_rect = left_strength_detect_hover_rect
 		'right' :
 			boost_cell = GLBreedingComponetsBus.breeding_ui_state['right_boost']
 			main_cell = GLBreedingComponetsBus.breeding_ui_state['right_main']
 			boost_display = right_boost_display 
 			add_a_cell_hint = right_add_main_cell_hint
-			# controller
-			boost_exit_btn_rect = right_boost_exit_btn_rect
-			strength_detect_hover_rect = right_strength_detect_hover_rect
 		_ : 
 			push_error('unable to find corrisponding boost cell on side : ', side)
 			boost_cell = null
@@ -56,14 +49,7 @@ func _handle(side : String) :
 		
 	boost_display.visible = true
 	
-	## CONTROLLER 	
-	if GAMEInputTypeDetector.input_type == 'controller' :
-		await get_tree().process_frame
-		
-		if main_cell : 
-			strength_detect_hover_rect.grab_focus()
-		else : # this is when no main cell text shows up
-			boost_exit_btn_rect.grab_focus()
+
 	
 	display_boost_stats._display(boost_cell, side)
 	
@@ -85,28 +71,25 @@ func _handle(side : String) :
 		add_a_cell_hint.visible = true
 	else : 
 		add_a_cell_hint.visible = false 
+	
+	await get_tree().process_frame
+	toggle_focus._toggle(true, side, main_cell, boost_cell)
 
 func _close_boost_display(side : String) :
 	
 	var boost_display : Control 
-	var boost_btn_rect : TextureRect
 	
 	match side : 
 		'left' :
 			boost_display = left_boost_display
-			boost_btn_rect = left_boost_btn_rect
 		'right' :
 			boost_display = right_boost_display 
-			boost_btn_rect = right_boost_btn_rect
 		_ : 
 			push_error('unable to find corrisponding boost cell on side : ', side)
 			boost_display = null
-			
-			
-	## CONTROLLER 	
-	if GAMEInputTypeDetector.input_type == 'controller' :
-		boost_btn_rect.grab_focus()
 	
+	toggle_focus._toggle(false, side, null, null)
+			
 	boost_display.visible = false
 
 	

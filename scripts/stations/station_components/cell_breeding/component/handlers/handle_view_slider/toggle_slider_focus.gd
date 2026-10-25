@@ -18,7 +18,7 @@ extends Node
 # basic toggle mode components
 @onready var toggle_mode_components : Array[Control] = [
 	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/StatsViewBtn/BG2",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/DeathChangeViewBtn/BG2",
+	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/FailureChanceViewBtn",
 	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/BloodTypeViewBtn/BG2",
 	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/MutationsViewBtn/BG2"
 ]

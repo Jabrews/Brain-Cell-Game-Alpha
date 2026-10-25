@@ -8,12 +8,12 @@ extends Node
 # information components
 @onready var info_stats : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats"
 @onready var info_blood_type : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType"
-@onready var info_death_chance : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/DeathChance"
+@onready var info_failure_chance : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance"
 @onready var info_mutations : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations"
 
 # display components
 @onready var display_stats : Node = $DisplayStats
-@onready var display_death_chance : Node = $DisplayDeathChance
+@onready var display_failure_chance : Node = $DisplayFailureChance
 @onready var display_mutations : Node = $DisplayMutations
 
 
@@ -37,8 +37,8 @@ func _load_info_section_type(active_info_section_type : String, btn_text : Strin
 	match active_info_section_type : 	
 		'stats' : 
 			info_stats.visible = true
-		'death_chance' : 
-			info_death_chance.visible = true
+		'failure_chance' : 
+			info_failure_chance.visible = true
 		'blood_type' : 
 			info_blood_type.visible = true
 		'mutations' : 
@@ -47,12 +47,12 @@ func _load_info_section_type(active_info_section_type : String, btn_text : Strin
 func reset_info(): 
 	info_stats.visible = false
 	info_blood_type.visible = false
-	info_death_chance.visible = false
+	info_failure_chance.visible = false
 	info_mutations.visible = false
 
 func _display_information_section(cell : BrainCell) : 
 	display_stats._display(cell)
-	display_death_chance._display(cell)
+	display_failure_chance._display(cell)
 	display_mutations._display(cell)
 	
 	

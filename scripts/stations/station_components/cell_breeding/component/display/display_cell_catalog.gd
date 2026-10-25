@@ -3,6 +3,7 @@ extends Node
 # components
 @onready var cell_catalog_parent_node : Control  = $"../BreedingUI/CellLoader/CellCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
 @onready var cell_entry_p_s : PackedScene = preload("res://scenes/stations/station_components/cell_breeding/ui/cell_loader/cell_catalog/cell_entry.tscn" )
+@onready var no_cell_found_label : Label = $"../BreedingUI/CellLoader/CellCatalog/NoCellFoundLabel"
 
 
 func _display() :
@@ -16,6 +17,11 @@ func _display() :
 		cell_catalog_parent_node.add_child(entry_instance)
 		
 		entry_instance._load_cell(cell)
+	
+	if len(collected_cells) == 0 : 
+		no_cell_found_label.visible = true
+	else :
+		no_cell_found_label.visible = false
 
 func _reset():
 	for entry : Control in cell_catalog_parent_node.get_children() :
