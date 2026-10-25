@@ -10,7 +10,7 @@ extends Node
 # unreachable components
 @onready var unreachable_bg_rect : ColorRect = $"../StatDisplay/Unreachable/UnreachableBG"
 
-const LOCK_MAX_WIDTH : float = 840.0
+const LOCK_MAX_WIDTH : float = 840.0 
 
 func _ready() -> void:
 	stat_display_bar.material = stat_display_bar.material.duplicate()
@@ -80,8 +80,8 @@ func _load_lock_bg(lock_max_value: float) -> void:
 	)
 
 	# Match the start of the unreachable background.
-	var unreachable_start_x: float = available_end_x - 10.0
-	var lock_start_x: float = lock_x - 10.0
+	var unreachable_start_x: float = available_end_x - 10 # 10
+	var lock_start_x: float = lock_x - 10
 
 	locked_bg_rect.position.x = lock_start_x
 	locked_bg_rect.size.x = maxf(

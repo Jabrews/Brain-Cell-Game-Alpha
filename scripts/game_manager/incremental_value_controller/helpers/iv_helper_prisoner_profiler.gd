@@ -27,6 +27,7 @@ func update_prisoner_profiler(round: int, goal_piece: int) -> void:
 				IVPrisonerProfiler.intelligence_stat_lock_percant_index= 0
 				IVPrisonerProfiler.community_stat_lock_percant_index= 0
 				
+				#IVPrisonerProfiler.uncreachable_min_value = 230
 				IVPrisonerProfiler.uncreachable_min_value = 230
 			
 			2:

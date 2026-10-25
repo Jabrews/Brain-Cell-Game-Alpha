@@ -70,7 +70,7 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 			)
 
 			if before_lock_found:
-				new_value = lock_value - 1.0
+				new_value = lock_value - 5.0 #1
 
 		if new_value >= lock_value:
 			GLPrisonerProfilerComponentsBus.emit_signal("display_feedback", "lock_alert", {"stat": ideal_stat.stat_type})
@@ -84,7 +84,7 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 		)
 
 		if before_unreachable_found:
-			new_value = unreachable_min_value - 1.0
+			new_value = unreachable_min_value - 5.0 #1
 
 	if new_value > unreachable_min_value:
 		GLPrisonerProfilerComponentsBus.emit_signal("play_sound", "unreachable_alert")
@@ -97,8 +97,7 @@ func _handle(increment_direction: String, holding_press: bool = false) -> void:
 		match increment_direction : 
 			'up' :
 				ideal_stat.increments_used += 1
-				
-				# check if we've just surpassed max energy with it all spent
+								# check if we've just surpassed max energy with it all spent
 				# ONLT EXIST IN UP INCREMENT
 				var total_energy_spent : int = energy_manager._get_total_energy_spent()
 				if parent_ideal_stat_creator.total_energy + total_energy_spent == 0 : 
