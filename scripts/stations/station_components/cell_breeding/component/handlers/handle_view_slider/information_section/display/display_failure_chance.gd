@@ -8,7 +8,7 @@ const STAT_TYPES: Array[String] = [
 
 @onready var total_frame : TextureRect = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/TotalFailureChance/Frame"
 @onready var total_percant_label : Label =$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/TotalFailureChance/FailureChancePercant"
-@onready var stat_danger_chance_increase_labels : Array[Label] = [
+@onready var stat_failure_chance_increase_labels : Array[Label] = [
 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Strength/FailureChance",
 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Intelligence/FailureChance",
 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Community/FailureChance"
@@ -19,7 +19,7 @@ const STAT_TYPES: Array[String] = [
 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/StatDanger/Community/Pot"
 ]
 @onready var lifespan_num_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/LifeSpanDanger/LifeNum"
-@onready var lifespan_death_chance_increase_label : Label =$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/LifeSpanDanger/FailureChance"
+@onready var lifespan_failure_chance_increase_label : Label =$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/LifeSpanDanger/FailureChance"
 @onready var hidden_stat_sprites : Array[Sprite2D]=  [
 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/HiddenStats/StrengthHide",
 	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance/HiddenStats/IntelligenceHide",
@@ -37,10 +37,10 @@ func _ready() -> void:
 	for pot : TextureRect in stat_danger_pots : 
 		pot.material = pot.material.duplicate()
 	
-	for stat_chance_increase_label : Label in stat_danger_chance_increase_labels : 
+	for stat_chance_increase_label : Label in stat_failure_chance_increase_labels: 
 		stat_chance_increase_label.text = ''
 	
-	lifespan_death_chance_increase_label.text = ''
+	lifespan_failure_chance_increase_label.text = ''
 
 func _display(cell : BrainCell) : 
 	
@@ -56,7 +56,7 @@ func _display(cell : BrainCell) :
 func display_total_failure_chance(cell: BrainCell) -> void:
 	
 	# Get death chance as a percentage
-	var total_failure_chance : float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
+	var total_failure_chance : float = GAMECellBreeder.failure_chance_helper._get_total_failure_chance(cell, false)
 	
 	# Display percentage
 	total_percant_label.text = str(int(total_failure_chance)) + "%"
@@ -75,9 +75,9 @@ func display_stat_danger(cell : BrainCell) :
 		var stat_type: String = STAT_TYPES[i]
 		var cell_stat: BrainCellStat = cell.get(stat_type)
 		
-		var increase_label : Label = stat_danger_chance_increase_labels[i]			
+		var increase_label : Label = stat_failure_chance_increase_labels[i]			
 		
-		var increase_amount : float = GAMECellBreeder.death_chance_helper.evluate_defect(cell_stat.defect)
+		var increase_amount : float = GAMECellBreeder.failure_chance_helper.evluate_defect(cell_stat.defect)
 		
 		if increase_amount != 0.0 :
 			increase_label.text = '(+' + str(int(increase_amount)) + '%)'
@@ -98,7 +98,7 @@ func display_stat_danger(cell : BrainCell) :
 		var current_defect_value: float = defect_value / max_stat_value
 
 		# Next/increased defect
-		var next_defect_value: float = GAMECellBreeder.death_chance_helper.decrease_old_cell._get_increased_defect_stat(defect_value)
+		var next_defect_value: float = GAMECellBreeder.failure_chance_helper.decrease_old_cell._get_increased_defect_stat(defect_value)
 
 		# Convert next defect to 0.0 -> 1.0
 		var secondary_defect_value: float = next_defect_value / max_stat_value
@@ -139,13 +139,13 @@ func display_life_span_danger(cell : BrainCell) :
 	lifespan_num_label.text = str(cell.life_span)	
 	
 	# death chance label
-	var increase_amount : float = GAMECellBreeder.death_chance_helper.evaluate_lifespan(cell.life_span)
+	var increase_amount : float = GAMECellBreeder.failure_chance_helper.evaluate_lifespan(cell.life_span)
 	
 	if increase_amount != 0.0 :
-		lifespan_death_chance_increase_label.text = '(+' + str(int(increase_amount)) + '%)'
-		lifespan_death_chance_increase_label.add_theme_color_override("font_color", Color.RED)
+		lifespan_failure_chance_increase_label.text = '(+' + str(int(increase_amount)) + '%)'
+		lifespan_failure_chance_increase_label.add_theme_color_override("font_color", Color.RED)
 	else : 
-		lifespan_death_chance_increase_label.text = '(+' + str(int(0)) + '%)'
-		lifespan_death_chance_increase_label.add_theme_color_override("font_color", Color.GRAY)
+		lifespan_failure_chance_increase_label.text = '(+' + str(int(0)) + '%)'
+		lifespan_failure_chance_increase_label.add_theme_color_override("font_color", Color.GRAY)
 		
 	

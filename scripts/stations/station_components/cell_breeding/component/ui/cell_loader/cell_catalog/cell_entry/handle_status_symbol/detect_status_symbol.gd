@@ -21,7 +21,7 @@ func _detect(cell : BrainCell) -> Array[String] :
 
 	
 func detect_near_failure_chance(cell : BrainCell) -> bool :
-	var near_failure_chance : float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
+	var near_failure_chance : float = GAMECellBreeder.failure_chance_helper._get_total_failure_chance(cell, false)
 	return near_failure_chance >= 50.0
 
 func detect_low_lifespan(cell : BrainCell) -> bool : 

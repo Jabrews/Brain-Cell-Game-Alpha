@@ -19,7 +19,7 @@ func _display(cell: BrainCell, components: Dictionary) -> void:
 		failure_chance_parent.visible = true
 		
 		# Get death chance as a percentage
-		var total_failure_chance : float = GAMECellBreeder.death_chance_helper._get_total_death_chance(cell, false)
+		var total_failure_chance : float = GAMECellBreeder.failure_chance_helper._get_total_failure_chance(cell, false)
 		# Display percentage
 		failure_chance_percant_label.text = str(int(total_failure_chance)) + "%"
 		# Convert 0-100% to 0.0-1.0 for shader

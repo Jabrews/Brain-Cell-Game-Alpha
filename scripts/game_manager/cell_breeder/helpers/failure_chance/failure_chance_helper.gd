@@ -17,25 +17,25 @@ extends Node
 	2 : 25.0,
 }
 
-func _get_total_death_chance(cell : BrainCell, allow_hidden_stat : bool) -> float: 
+func _get_total_failure_chance(cell : BrainCell, allow_hidden_stat : bool) -> float: 
 	
-	var death_chance : float = 0.0	
+	var failure_chance : float = 0.0	
 	
 	# lifespan
-	death_chance = evaluate_lifespan(cell.life_span)	
+	failure_chance = evaluate_lifespan(cell.life_span)	
 	
 	# defect 
 	for stat : BrainCellStat in [cell.strength, cell.intelligence, cell.community]:
 		if not stat.hidden or allow_hidden_stat:
 			
 			if not stat.enabled : 
-				death_chance += 0.0
+				failure_chance += 0.0
 			else : 
-				death_chance += evluate_defect(stat.defect)			
+				failure_chance += evluate_defect(stat.defect)			
 	
-	death_chance = clamp(death_chance, 0, 100)
+	failure_chance = clamp(failure_chance, 0, 100)
 	
-	return death_chance
+	return failure_chance
 	
 
 func evaluate_lifespan(life_span : int) -> float :

@@ -112,7 +112,7 @@ func _display_defect_stat(
 		cell_stat.defect / max_value
 	)
 	
-	var new_defect_value : float = GAMECellBreeder.death_chance_helper.decrease_old_cell._get_increased_defect_stat(cell_stat.defect)
+	var new_defect_value : float = GAMECellBreeder.failure_chance_helper.decrease_old_cell._get_increased_defect_stat(cell_stat.defect)
 	
 	defect_bars[index].material.set_shader_parameter(
 		"new_defect_value",
