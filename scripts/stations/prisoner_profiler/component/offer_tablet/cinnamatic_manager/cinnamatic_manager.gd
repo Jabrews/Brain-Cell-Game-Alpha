@@ -16,8 +16,6 @@ func _start_cinnamatic() :
 	
 	toggle_doors_open._toggle(true)
 	
-	GLCinnamaticBus.emit_signal('toggle_energy_cinnamatic', true)
-	
 	await get_tree().create_timer(component_controllers.DOOR_OPEN_AFTER_DELAY + component_controllers.DOOR_OPEN_DURATION ).timeout
 	
 	toggle_pole_exspand._toggle(true)
@@ -27,8 +25,6 @@ func _start_cinnamatic() :
 	toggle_tablet_pole_follow._toggle(true)
 	
 	await get_tree().create_timer(0.5).timeout
-	
-	GLCinnamaticBus.emit_signal('toggle_energy_cinnamatic', false)
 	
 	GLHideUiBus.emit_signal("toggle_hide_ui", false)
 	GLPlayerState.emit_signal('toggle_freeze_player', false)
