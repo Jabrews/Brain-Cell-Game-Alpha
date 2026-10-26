@@ -829,9 +829,8 @@ script = ExtResource("14_5ru7i")
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]
 script = ExtResource("18_44ape")
 
-[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998 node_paths=PackedStringArray("cell_container_parent_node")]
+[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998]
 script = ExtResource("66_y36b7")
-cell_container_parent_node = NodePath("../Charcters/ContainerParentNode")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)

@@ -653,6 +653,7 @@ script = ExtResource("19_h220m")
 script = ExtResource("20_rv2o6")
 
 [node name="ToggleDisplayOfferUi" type="Node" parent="Logic/OfferTablet" unique_id=1410723889]
+process_mode = 3
 script = ExtResource("22_toge2")
 
 [node name="DisplayTurnsLeft" type="Node" parent="Logic/OfferTablet" unique_id=662539169]

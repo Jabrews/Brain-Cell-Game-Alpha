@@ -8,10 +8,20 @@ extends Node
 	$"../../../OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3"
 ]
 
+var showing_offer_ui : bool = false
+
 func _ready() -> void:
 	_toggle(false)
 
+func _process(_delta: float) -> void:
+	if showing_offer_ui : 
+		if Input.is_action_just_pressed('back') : 
+			_toggle(false)
+
+
 func _toggle(toggle_value : bool) :
+	
+	showing_offer_ui = toggle_value
 	
 	offer_ui.visible = toggle_value	
 	

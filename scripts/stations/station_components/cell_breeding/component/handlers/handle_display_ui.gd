@@ -12,14 +12,22 @@ extends Node
 @onready var handle_breeding_box_startup : Node = $"../HandleBreedingBoxStartup"
 @onready var handle_toggle_selected_view_slider : Node = $"../HandleSelectedViewSlider"
 
+var showing_breeding_ui : bool = false
+
 func _ready() -> void:
 	breeding_ui.visible = false
 
+func _process(_delta: float) -> void:
+	if showing_breeding_ui : 
+		if Input.is_action_just_pressed('back') : 
+			_toggle_display(false)
 
 func _toggle_display(toggle_value : bool) :
 	
 	breeding_ui.visible = toggle_value
 	toggle_display_lock(toggle_value)	
+	
+	showing_breeding_ui = toggle_value
 	
 	if toggle_value : 
 		

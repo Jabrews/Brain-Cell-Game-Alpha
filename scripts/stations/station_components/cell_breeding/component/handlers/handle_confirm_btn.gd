@@ -11,22 +11,21 @@ extends Node
 var current_screen : String = 'cell_loader'
 
 func _handle() :  
-	
 
-	
-	
 	if current_screen == 'cell_loader' :
 		
 		display_new_cell_preview._display()
 		
 		current_screen = 'new_cell_preview'
 		
+		GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'confirm_success')
+		
 	elif current_screen == 'new_cell_preview' :
 		
 		finale_breeding_request()
 		
 		current_screen = 'cell_loader'
-
+		
 	
 
 func finale_breeding_request() :

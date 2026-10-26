@@ -85,9 +85,11 @@
 [ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="57_3xmbv"]
 [ext_resource type="Script" uid="uid://b2b2cod3bcuwp" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exit_btn.gd" id="57_odqr3"]
 [ext_resource type="Script" uid="uid://cimxska5kirot" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_display_parent.gd" id="58_4gocy"]
+[ext_resource type="AudioStream" uid="uid://ysg5co0w82u8" path="res://sounds/prisoner_profiler/tablet_ui/confirm_success.mp3" id="58_r6e2r"]
 [ext_resource type="Shader" uid="uid://065in37icekp" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/breeding_defect_bar.gdshader" id="59_elcrl"]
 [ext_resource type="Texture2D" uid="uid://c6aslvaxw0sey" path="res://models/screens/charge_seat/highlight.png" id="59_k6uk6"]
 [ext_resource type="Script" uid="uid://dolcoth8158sp" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_stat_parent.gd" id="59_kn2w5"]
+[ext_resource type="AudioStream" uid="uid://cg48wg6nq6i25" path="res://sounds/prisoner_profiler/tablet_ui/confirm_failed.mp3" id="59_nuagx"]
 [ext_resource type="Script" uid="uid://b5w83ifnr3pk8" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/skull_sprite.gd" id="60_ibnnx"]
 [ext_resource type="Script" uid="uid://b5x3qnh04exuh" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exsplain_hint.gd" id="61_le1xe"]
 [ext_resource type="Script" uid="uid://rtif1cbbm6up" path="res://scripts/stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/direction_btn_parent.gd" id="62_f4qcm"]
@@ -96,7 +98,6 @@
 [ext_resource type="Texture2D" uid="uid://6f5eh66jpqn" path="res://models/breeding_screen/dice_random.png" id="84_elcrl"]
 [ext_resource type="Script" uid="uid://47xp3r1p3is3" path="res://scripts/stations/station_components/cell_breeding/component/ui/interact_footer/interact_footer.gd" id="88_4118e"]
 [ext_resource type="Script" uid="uid://cyrgg7d2r0e5n" path="res://scripts/stations/station_components/cell_breeding/component/ui/interact_footer/back_btn.gd" id="91_8x2mq"]
-[ext_resource type="AudioStream" uid="uid://cd1ew561fh1d3" path="res://sounds/prisoner_profiler/increment.mp3" id="95_debbi"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="95_xf8x4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
@@ -1163,6 +1164,7 @@ script = ExtResource("2_h2s3s")
 script = ExtResource("3_a0emy")
 
 [node name="HandleDisplayUi" type="Node" parent="." unique_id=1530602053]
+process_mode = 3
 script = ExtResource("2_awyxg")
 
 [node name="HandleBreedingBoxStartup" type="Node" parent="." unique_id=2127259538]
@@ -1604,6 +1606,20 @@ stream = ExtResource("53_xf6yj")
 process_mode = 3
 stream = ExtResource("56_oesnn")
 max_distance = 30.0
+
+[node name="ConfirmSuccess" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1436713314]
+process_mode = 3
+stream = ExtResource("58_r6e2r")
+volume_db = 5.0
+unit_size = 5.0
+max_distance = 20.0
+
+[node name="ConfirmFailed" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1404520363]
+process_mode = 3
+stream = ExtResource("59_nuagx")
+unit_size = 5.0
+pitch_scale = 1.43
+max_distance = 20.0
 
 [node name="BredCellSpawner" type="Node3D" parent="." unique_id=1936616184]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4489317, 0.043589592, -7)
@@ -6111,16 +6127,6 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_xf6yj")
 draw_pass_1 = SubResource("QuadMesh_xf8x4")
-
-[node name="Increment" type="AudioStreamPlayer3D" parent="." unique_id=454145287]
-stream = ExtResource("95_debbi")
-unit_size = 5.0
-pitch_scale = 0.8
-
-[node name="Increment2" type="AudioStreamPlayer3D" parent="." unique_id=1170446208]
-stream = ExtResource("95_debbi")
-unit_size = 5.0
-pitch_scale = 0.8
 
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox"]
 [editable path="BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox"]

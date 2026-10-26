@@ -25,6 +25,9 @@ func _process(_delta: float) -> void:
 		if confirm_available : 
 			if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
 				handle_confirm_btn._handle()
+		if not confirm_available :  
+			if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
+				GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'confirm_failed')
 
 
 func _toggle_confirm_available(toggle_value : bool) :
@@ -41,8 +44,9 @@ func _toggle_confirm_available(toggle_value : bool) :
 	
 func _handle_mouse_entered() :
 	
+	hovered = true
+	
 	if confirm_available :	
-		hovered = true
 		
 		background.scale = Vector2(1.2, 1.2)
 		confirm_label.scale = Vector2(1.2, 1.2)
