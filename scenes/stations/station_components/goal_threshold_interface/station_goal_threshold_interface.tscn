@@ -46,7 +46,7 @@ metallic_specular = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_1pok5"]
 material = SubResource("StandardMaterial3D_5ewaq")
-size = Vector3(5.795471, 3.6373024, 0.036132813)
+size = Vector3(6.5, 4.2, 0.036)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_pyerw"]
 viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
@@ -59,7 +59,7 @@ texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_acg5v"]
 material = SubResource("StandardMaterial3D_d5kxe")
-size = Vector2(5.6, 3.4)
+size = Vector2(6.3, 4)
 orientation = 0
 
 [sub_resource type="BoxMesh" id="BoxMesh_jqawa"]
@@ -403,14 +403,14 @@ wait_time = 0.1
 script = ExtResource("5_blton")
 
 [node name="StatThresholdTV" type="Node3D" parent="." unique_id=137975337]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8451097, -0.4506588, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6699224, -0.4506588, 0)
 
 [node name="TVBack" type="MeshInstance3D" parent="StatThresholdTV" unique_id=532275834]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20846558, 1.9578495, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1711235, 1.9578495, 0)
 mesh = SubResource("BoxMesh_1pok5")
 
 [node name="TvFrontPannel" type="MeshInstance3D" parent="StatThresholdTV" unique_id=925848669]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.20977342, 1.9558773, -0.04984951)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.16363847, 1.9558773, -0.04984951)
 mesh = SubResource("PlaneMesh_acg5v")
 script = ExtResource("7_o6ut5")
 
@@ -422,7 +422,7 @@ size = Vector2i(584, 384)
 [node name="ScreenStatThresholdDisplay" parent="StatThresholdTV/TvFrontPannel/SubViewport" unique_id=600951827 instance=ExtResource("9_47arw")]
 
 [node name="TurnTV" type="Node3D" parent="." unique_id=2114533416]
-transform = Transform3D(0.8892358, 0, 0.45744914, 0, 1, 0, -0.45744914, 0, 0.8892358, -2.3479204, -0.80792075, 3.6352024)
+transform = Transform3D(0.8892358, 0, 0.45744914, 0, 1, 0, -0.45744914, 0, 0.8892358, -2.2330534, -0.80792075, 3.6352024)
 
 [node name="TVBack" type="MeshInstance3D" parent="TurnTV" unique_id=689070404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.165192, 2.4278457, 1.1920929e-06)
@@ -441,7 +441,7 @@ size = Vector2i(384, 384)
 [node name="ScreenTurnsDisplay" parent="TurnTV/TvFrontPannel/SubViewport" unique_id=683296768 instance=ExtResource("10_mpw3p")]
 
 [node name="TurnLeftLight" type="Node3D" parent="." unique_id=1243577269]
-transform = Transform3D(0.83946717, 0, 0.5434104, 0, 1, 0, -0.5434104, 0, 0.83946717, 5.829857, 0.18975198, -0.5597358)
+transform = Transform3D(0.83946717, 0, 0.5434104, 0, 1, 0, -0.5434104, 0, 0.83946717, 6.119912, 0.18975198, -0.5597358)
 
 [node name="LightMesh1" type="MeshInstance3D" parent="TurnLeftLight" unique_id=1705360375]
 transform = Transform3D(0.9999994, 0, 0, 0, 0.9999993, 0, -2.9802322e-08, 0, 0.9999996, 0, 0, 0)
@@ -824,4 +824,4 @@ mesh = SubResource("BoxMesh_qa1qv")
 
 [node name="CinnamticCamera" type="Camera3D" parent="." unique_id=579600439]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.6130452, 1.5723739, -5.1759453)
-fov = 80.0
+fov = 100.0

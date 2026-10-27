@@ -141,6 +141,8 @@ func _handle_next_turn() -> void:
 func _handle_extract_btn_pressed() -> void:
 	
 
+	
+
 	# Cannot extract while the elevator is occupied.
 	if innactive:
 		return
@@ -174,8 +176,9 @@ func initate_extractor(
 	lids: Array[MeshInstance3D],
 	elevators: Array[StaticBody3D]
 ) -> void:
+	
+	extractor_button.remove_from_group('interactable')
 
-	extractor_button.set_collision_mask_value(6, false)
 
 	camera.current = true
 	camera.fov = STARTING_FOV
@@ -250,7 +253,7 @@ func initate_extractor(
 
 	camera.current = false
 	
-	extractor_button.set_collision_mask_value(6, true)
+	extractor_button.add_to_group('interactable')
 
 
 ### LIDS #############################################################

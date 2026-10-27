@@ -602,6 +602,9 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 [node name="PrisonerProfiler" parent="Stations/PrisonerStations" unique_id=267444250 instance=ExtResource("6_l5rsp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.308971, 0, -12.108076)
 
+[node name="TurnCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/TurnCinnamatic" parent_id_path=PackedInt32Array(267444250, 2009290877) index="0" unique_id=528579703]
+fov = 70.0
+
 [node name="ContainerStations" type="Node" parent="Stations" unique_id=1050254963]
 
 [node name="CellTrashCan" parent="Stations/ContainerStations" unique_id=995289130 instance=ExtResource("9_kb5nk")]
@@ -834,3 +837,8 @@ script = ExtResource("66_y36b7")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)
+
+[editable path="Stations/PrisonerStations/PrisonerProfiler"]
+[editable path="Stations/PrisonerStations/PrisonerProfiler/OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1"]
+[editable path="Stations/PrisonerStations/PrisonerProfiler/OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2"]
+[editable path="Stations/PrisonerStations/PrisonerProfiler/OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3"]
