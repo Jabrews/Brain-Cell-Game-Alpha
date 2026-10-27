@@ -3,6 +3,7 @@ extends Node
 @onready var tablet_holder_pole: StaticBody3D = \
 	$"../../../../../OfferTablet/Poles/TabletHolderPole"
 @onready var component_controllers: Node = $".."
+@onready var tablet_interact_area : Area3D = $"../../../../../OfferTablet/Poles/TabletHolderPole/TabletInteractArea"
 
 var pole_follow: bool = false
 var player_reference: CharacterBody3D
@@ -23,6 +24,9 @@ func _toggle(toggle_value: bool) -> void:
 		player_reference = GLPlayerState.player_refrence
 		await get_tree().create_timer(0.5).timeout
 		GLPrisonerProfilerComponentsBus.emit_signal("play_sound", "tablet_start")
+		
+		tablet_interact_area.set_collision_layer_value(18, true)
+		
 	else:
 		tablet_holder_pole.global_basis = original_global_basis
 		player_reference = null

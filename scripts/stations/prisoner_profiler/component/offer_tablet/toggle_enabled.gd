@@ -17,12 +17,12 @@ func _toggle(toggle_value : bool) :
 		
 		parent_offer_tablet._start()
 		
-		tablet_interact_area.set_collision_layer_value(18, true)
-		
+
 	
 	else : 
 		cinnamatic_manager._end_cinnamatic()
 		
+		# set true prioly in tablet_pole_follow comp. controller
 		tablet_interact_area.set_collision_layer_value(18, false)
 		
 		for preview_card : Node in parent_preview_cards.get_children() : 

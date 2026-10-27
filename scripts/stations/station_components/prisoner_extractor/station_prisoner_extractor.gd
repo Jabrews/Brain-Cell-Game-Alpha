@@ -3,6 +3,7 @@ extends Node
 
 # Components
 @onready var camera: Camera3D = $Camera3D
+@onready var extractor_button  : StaticBody3D = $Extractor/ExtractorBtn/Button
 
 # elevator
 @onready var elevator_lid_left: MeshInstance3D = $Table/ElevatorLidLeft
@@ -138,6 +139,7 @@ func _handle_next_turn() -> void:
 
 
 func _handle_extract_btn_pressed() -> void:
+	
 
 	# Cannot extract while the elevator is occupied.
 	if innactive:
@@ -172,6 +174,8 @@ func initate_extractor(
 	lids: Array[MeshInstance3D],
 	elevators: Array[StaticBody3D]
 ) -> void:
+
+	extractor_button.set_collision_mask_value(6, false)
 
 	camera.current = true
 	camera.fov = STARTING_FOV
@@ -245,6 +249,8 @@ func initate_extractor(
 	GLHideUiBus.emit_signal('toggle_hide_ui', false)	
 
 	camera.current = false
+	
+	extractor_button.set_collision_mask_value(6, true)
 
 
 ### LIDS #############################################################
