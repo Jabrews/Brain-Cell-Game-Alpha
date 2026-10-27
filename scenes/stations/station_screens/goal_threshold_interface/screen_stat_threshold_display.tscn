@@ -30,13 +30,6 @@
 [ext_resource type="Shader" uid="uid://8alueq6obkxe" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/shaders/defect_bar_defect_ignored.gdshader" id="23_nv3my"]
 [ext_resource type="Script" uid="uid://c4b4vfqxh22ju" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/float_parent.gd" id="29_i8e7w"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
-shader = ExtResource("1_6c3qd")
-shader_parameter/line_opacity = 0.12
-shader_parameter/line_thickness = 1.0
-shader_parameter/line_spacing = 4.0
-shader_parameter/scroll_speed = 0.2
-
 [sub_resource type="Shader" id="Shader_dak4g"]
 code = "shader_type canvas_item;
 
@@ -151,211 +144,29 @@ shader_parameter/progress_color = Color(0.87, 0, 0, 1)
 shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 shader_parameter/mask_tolerance = 0.1
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_40ur5"]
-shader = ExtResource("16_my6kx")
-shader_parameter/current_value = 1.0
-shader_parameter/dissolve_value = 0.298000014155
-shader_parameter/defect_value = 0.0350000016625
-shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
-shader_parameter/orange_color = Color(1, 0.8, 0.05, 1)
-shader_parameter/stripe_color = Color(1, 0.01666665, 0, 1)
-shader_parameter/blip_color = Color(0, 0, 0, 1)
-shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
-shader_parameter/mask_tolerance = 0.1
-shader_parameter/flash_speed = 3.0
-shader_parameter/defect_flash_speed = 0.0
-shader_parameter/stripe_density = 12.54
-shader_parameter/blip_width = 0.002000000095
-
-[sub_resource type="Shader" id="Shader_wx24v"]
-code = "shader_type canvas_item;
-
-uniform float current_value : hint_range(0.0, 1.0) = 0.8;
-uniform float dissolve_value : hint_range(0.0, 1.0) = 0.3;
-uniform float defect_value : hint_range(0.0, 1.0) = 0.1;
-
-uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
-uniform vec4 orange_color : source_color = vec4(1.0, 0.5, 0.0, 1.0);
-uniform vec4 stripe_color : source_color = vec4(0.4, 0.0, 0.0, 1.0);
-uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
-
-uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
-
-uniform float flash_speed = 3.0;
-uniform float defect_flash_speed = 7.0;
-uniform float stripe_density = 80.0;
-uniform float blip_width = 0.01;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE, UV);
-	vec4 result = tex;
-
-	bool on_bar = tex.a > 0.0
-		&& distance(tex.rgb, mask_color.rgb) <= mask_tolerance;
-
-	if (on_bar) {
-		float dissolve_start = max(current_value - dissolve_value, 0.0);
-		float defect_end = min(dissolve_start + defect_value, current_value);
-
-		if (UV.x <= current_value) {
-			result.rgb = red_color.rgb;
-		}
-
-		// Flashing orange: the intended dissolve area.
-		if (UV.x >= dissolve_start && UV.x <= current_value) {
-			float flash = sin(TIME * flash_speed) * 0.5 + 0.5;
-			result.rgb = mix(
-				result.rgb,
-				orange_color.rgb,
-				mix(0.2, 0.8, flash)
-			);
-		}
-
-		// Faster flashing stripes: the amount defect blocks.
-		if (UV.x >= dissolve_start && UV.x <= defect_end) {
-			float stripes = step(
-				0.5,
-				fract((UV.x + UV.y) * stripe_density)
-			);
-			float flash = sin(TIME * defect_flash_speed) * 0.5 + 0.5;
-			result.rgb = mix(
-				result.rgb,
-				stripe_color.rgb,
-				stripes * mix(0.45, 0.9, flash)
-			);
-		}
-
-		if (abs(UV.x - current_value) <= blip_width) {
-			result.rgb = blip_color.rgb;
-		}
-	}
-
-	COLOR = result;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i8e7w"]
-shader = SubResource("Shader_wx24v")
-shader_parameter/current_value = 1.0
-shader_parameter/dissolve_value = 0.298000014155
-shader_parameter/defect_value = 0.0350000016625
-shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
-shader_parameter/orange_color = Color(1, 0.8, 0.05, 1)
-shader_parameter/stripe_color = Color(1, 0.01666665, 0, 1)
-shader_parameter/blip_color = Color(0, 0, 0, 1)
-shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
-shader_parameter/mask_tolerance = 0.1
-shader_parameter/flash_speed = 3.0
-shader_parameter/defect_flash_speed = 0.0
-shader_parameter/stripe_density = 12.54
-shader_parameter/blip_width = 0.002000000095
-
-[sub_resource type="Shader" id="Shader_nv3my"]
-code = "shader_type canvas_item;
-
-uniform float current_value : hint_range(0.0, 1.0) = 0.8;
-uniform float dissolve_value : hint_range(0.0, 1.0) = 0.3;
-uniform float defect_value : hint_range(0.0, 1.0) = 0.1;
-
-uniform vec4 red_color : source_color = vec4(0.7, 0.0, 0.0, 1.0);
-uniform vec4 orange_color : source_color = vec4(1.0, 0.5, 0.0, 1.0);
-uniform vec4 stripe_color : source_color = vec4(0.4, 0.0, 0.0, 1.0);
-uniform vec4 blip_color : source_color = vec4(1.0, 0.85, 0.55, 1.0);
-
-uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
-
-uniform float flash_speed = 3.0;
-uniform float defect_flash_speed = 7.0;
-uniform float stripe_density = 80.0;
-uniform float blip_width = 0.01;
-
-void fragment() {
-	vec4 tex = texture(TEXTURE, UV);
-	vec4 result = tex;
-
-	bool on_bar = tex.a > 0.0
-		&& distance(tex.rgb, mask_color.rgb) <= mask_tolerance;
-
-	if (on_bar) {
-		float dissolve_start = max(current_value - dissolve_value, 0.0);
-		float defect_end = min(dissolve_start + defect_value, current_value);
-
-		if (UV.x <= current_value) {
-			result.rgb = red_color.rgb;
-		}
-
-		// Flashing orange: the intended dissolve area.
-		if (UV.x >= dissolve_start && UV.x <= current_value) {
-			float flash = sin(TIME * flash_speed) * 0.5 + 0.5;
-			result.rgb = mix(
-				result.rgb,
-				orange_color.rgb,
-				mix(0.2, 0.8, flash)
-			);
-		}
-
-		// Faster flashing stripes: the amount defect blocks.
-		if (UV.x >= dissolve_start && UV.x <= defect_end) {
-			float stripes = step(
-				0.5,
-				fract((UV.x + UV.y) * stripe_density)
-			);
-			float flash = sin(TIME * defect_flash_speed) * 0.5 + 0.5;
-			result.rgb = mix(
-				result.rgb,
-				stripe_color.rgb,
-				stripes * mix(0.45, 0.9, flash)
-			);
-		}
-
-		if (abs(UV.x - current_value) <= blip_width) {
-			result.rgb = blip_color.rgb;
-		}
-	}
-
-	COLOR = result;
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wx24v"]
-shader = SubResource("Shader_nv3my")
-shader_parameter/current_value = 1.0
-shader_parameter/dissolve_value = 0.298000014155
-shader_parameter/defect_value = 0.0350000016625
-shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
-shader_parameter/orange_color = Color(1, 0.8, 0.05, 1)
-shader_parameter/stripe_color = Color(1, 0.01666665, 0, 1)
-shader_parameter/blip_color = Color(0, 0, 0, 1)
-shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
-shader_parameter/mask_tolerance = 0.1
-shader_parameter/flash_speed = 3.0
-shader_parameter/defect_flash_speed = 0.0
-shader_parameter/stripe_density = 12.54
-shader_parameter/blip_width = 0.002000000095
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
 shader = ExtResource("21_l3qeo")
-shader_parameter/prisoner_value = 0.5250000249375
-shader_parameter/flash_value = 0.350000016625
+shader_parameter/prisoner_value = 0.4690000222775
+shader_parameter/flash_value = 0.3050000144875
 shader_parameter/mask_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 shader_parameter/mask_tolerance = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/flash_color = Color(1, 0.14509805, 0, 1)
-shader_parameter/flash_speed = 3.0
+shader_parameter/flash_color = Color(1, 0, 0, 1)
+shader_parameter/flash_speed = 5.0000002375
 shader_parameter/edge_padding = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eudqh"]
 shader = ExtResource("23_nv3my")
-shader_parameter/defect_value = 0.350000016625
+shader_parameter/defect_value = 0.3070000145825
 shader_parameter/mask_color = Color(0.5529412, 0.5294118, 0.56078434, 1)
 shader_parameter/mask_tolerance = 0.1
 shader_parameter/defect_color = Color(0.8, 0, 0, 1)
-shader_parameter/flash_speed = 3.0
-shader_parameter/low_opacity = 0.4330000205675
+shader_parameter/flash_speed = 5.0000002375
+shader_parameter/low_opacity = 0.19200000912
 shader_parameter/high_opacity = 1.0
 shader_parameter/edge_padding = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_l3qeo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3i512"]
 shader = ExtResource("21_40ur5")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
 shader_parameter/duration = 2.0
@@ -364,8 +175,31 @@ shader_parameter/distortion_speed = 2.0
 shader_parameter/noise_texture = ExtResource("22_my6kx")
 shader_parameter/noise_scale = 1.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nv3my"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t5ml4"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_40ur5"]
+shader = ExtResource("16_my6kx")
+shader_parameter/current_value = 0.8510000404225
+shader_parameter/dissolve_value = 0.5670000269325
+shader_parameter/defect_value = 0.3710000176225
+shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
+shader_parameter/stripe_color = Color(1, 1, 0, 1)
+shader_parameter/yellow_color = Color(0.8509804, 0.58431375, 0.007843138, 1)
+shader_parameter/blip_color = Color(0, 0, 0, 1)
+shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
+shader_parameter/mask_tolerance = 0.1
+shader_parameter/defect_flash_speed = 0.0
+shader_parameter/stripe_density = 8.0
+shader_parameter/blip_width = 0.002000000095
+shader_parameter/low_stripe_opacity = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
+shader = ExtResource("1_6c3qd")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w7rbg"]
 atlas = ExtResource("15_kegbq")
@@ -573,11 +407,6 @@ offset_right = 584.0
 offset_bottom = 384.0
 color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
 
-[node name="ScanLines" type="ColorRect" parent="." unique_id=557957891]
-material = SubResource("ShaderMaterial_vau7t")
-offset_right = 584.0
-offset_bottom = 384.0
-
 [node name="Stats" type="Control" parent="." unique_id=388877193]
 layout_mode = 3
 anchors_preset = 0
@@ -614,6 +443,7 @@ texture = ExtResource("4_352qn")
 script = ExtResource("8_v4hsa")
 
 [node name="PercantLabel" type="Label" parent="Stats/Strength/ProgressCircle" unique_id=868884737]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.312
@@ -723,6 +553,7 @@ texture = ExtResource("4_352qn")
 script = ExtResource("8_v4hsa")
 
 [node name="PercantLabel" type="Label" parent="Stats/Intelligence/ProgressCircle" unique_id=1241458902]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.312
@@ -833,6 +664,7 @@ texture = ExtResource("4_352qn")
 script = ExtResource("8_v4hsa")
 
 [node name="PercantLabel" type="Label" parent="Stats/Community/ProgressCircle" unique_id=1145155738]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.312
@@ -913,33 +745,562 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="AcceptCell" type="Control" parent="." unique_id=795334077]
+[node name="AcceptCell" type="Control" parent="." unique_id=1539764947]
 visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StatBG" type="ColorRect" parent="AcceptCell" unique_id=673416693]
-layout_mode = 0
-offset_right = 432.0
-offset_bottom = 384.0
-color = Color(0.22, 0, 0, 1)
+[node name="DefectIgnored" type="Control" parent="AcceptCell" unique_id=1054804066]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="DefectBG" type="ColorRect" parent="AcceptCell" unique_id=82061772]
+[node name="Backgrounds" type="Control" parent="AcceptCell/DefectIgnored" unique_id=795697003]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_lock_ = true
+
+[node name="DefectIgnoredBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds" unique_id=1152351040]
 layout_mode = 0
-offset_left = 432.0
+offset_left = 320.0
 offset_right = 584.0
-offset_bottom = 384.0
+offset_bottom = 382.0
 color = Color(0.12, 0, 0, 1)
 
-[node name="Stats" type="Control" parent="AcceptCell" unique_id=1236786442]
+[node name="Header" type="Control" parent="AcceptCell/DefectIgnored/Backgrounds" unique_id=2103206340]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeaderBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Header" unique_id=741529562]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 584.0
+offset_bottom = 40.0
+color = Color(0.24, 0.007199993, 0.007199993, 1)
+
+[node name="Columns" type="Control" parent="AcceptCell/DefectIgnored/Backgrounds" unique_id=1736921658]
+anchors_preset = 0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="Col1" type="Control" parent="AcceptCell/DefectIgnored/Backgrounds/Columns" unique_id=523587282]
+anchors_preset = 0
+offset_top = 6.0
+offset_right = 40.0
+offset_bottom = 46.0
+
+[node name="DarkBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col1" unique_id=2121692252]
+layout_mode = 0
+offset_left = 320.0
+offset_top = -14.0
+offset_right = 584.0
+offset_bottom = 130.0
+color = Color(0.15453714, 0.0045628585, 0.004558689, 1)
+
+[node name="BarBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col1" unique_id=1961598548]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 112.0
+color = Color(0.28, 0.014000003, 0.014000003, 1)
+
+[node name="PercantBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col1" unique_id=2000003044]
+layout_mode = 0
+offset_left = 329.0
+offset_top = 40.0
+offset_right = 443.0
+offset_bottom = 112.0
+color = Color(0.28, 0.014000003, 0.014000003, 1)
+
+[node name="Col2" type="Control" parent="AcceptCell/DefectIgnored/Backgrounds/Columns" unique_id=1238341975]
+anchors_preset = 0
+offset_top = 98.0
+offset_right = 40.0
+offset_bottom = 138.0
+
+[node name="DarkBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col2" unique_id=230532048]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 584.0
+offset_bottom = 127.0
+color = Color(0.15453714, 0.0045628585, 0.004558689, 1)
+
+[node name="BarBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col2" unique_id=679694187]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 112.0
+color = Color(0.28, 0.014000003, 0.014000003, 1)
+
+[node name="PercantBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col2" unique_id=1055474973]
+layout_mode = 0
+offset_left = 329.0
+offset_top = 40.0
+offset_right = 443.0
+offset_bottom = 112.0
+color = Color(0.28, 0.014000003, 0.014000003, 1)
+
+[node name="Col3" type="Control" parent="AcceptCell/DefectIgnored/Backgrounds/Columns" unique_id=206162196]
+anchors_preset = 0
+offset_top = 192.0
+offset_right = 40.0
+offset_bottom = 232.0
+
+[node name="DarkBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col3" unique_id=1711799605]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 32.0
+offset_right = 584.0
+offset_bottom = 184.0
+color = Color(0.15453714, 0.0045628585, 0.004558689, 1)
+
+[node name="BarBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col3" unique_id=920756003]
+layout_mode = 0
+offset_left = 456.0
+offset_top = 40.0
+offset_right = 576.0
+offset_bottom = 112.0
+color = Color(0.28, 0.014000003, 0.014000003, 1)
+
+[node name="PercantBG" type="ColorRect" parent="AcceptCell/DefectIgnored/Backgrounds/Columns/Col3" unique_id=1181721122]
+layout_mode = 0
+offset_left = 329.0
+offset_top = 40.0
+offset_right = 443.0
+offset_bottom = 112.0
+color = Color(0.28, 0.014000003, 0.014000003, 1)
+
+[node name="Header" type="Control" parent="AcceptCell/DefectIgnored" unique_id=519491467]
+anchors_preset = 0
+offset_left = 7.0
+offset_top = -1.0
+offset_right = 47.0
+offset_bottom = 39.0
+
+[node name="DefectSymbol" type="Sprite2D" parent="AcceptCell/DefectIgnored/Header" unique_id=1059412723]
+texture_filter = 1
+position = Vector2(369, 21)
+scale = Vector2(0.33333308, 0.33333334)
+texture = ExtResource("16_plfpx")
+
+[node name="DefectIgnoredHeader" type="Label" parent="AcceptCell/DefectIgnored/Header" unique_id=2054906139]
+texture_filter = 1
+layout_mode = 0
+offset_left = 393.0
+offset_top = 8.0
+offset_right = 527.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -5
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 23
+text = "Defect Ignored"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Strength" type="Control" parent="AcceptCell/DefectIgnored" unique_id=954887141]
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 38.0
+
+[node name="Default" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=457599051]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Strength/Default" unique_id=1264459237]
+texture_filter = 1
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 128.0
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 50
+text = "98%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Strength/Default" unique_id=1477007852]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -40.0
+offset_right = 32.0
+
+[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Default/Stats" unique_id=1475702453]
+texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(523, 127.5)
+scale = Vector2(1.0599997, 1.2499995)
+texture = ExtResource("20_xrr3f")
+
+[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Default/Stats" unique_id=620821365]
+texture_filter = 1
+material = SubResource("ShaderMaterial_eudqh")
+position = Vector2(523, 141)
+scale = Vector2(1.0600003, 0.50000024)
+texture = ExtResource("20_xrr3f")
+
+[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=1874648295]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HiddenLabel" type="Label" parent="AcceptCell/DefectIgnored/Strength/Hidden" unique_id=871431076]
+texture_filter = 1
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 32
+text = "Hidden"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Hidden" unique_id=574220436]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_3i512")
+position = Vector2(516, 94)
+scale = Vector2(0.33015868, 0.9999999)
+texture = SubResource("CompressedTexture2D_t5ml4")
+
+[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=906557040]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OffLabel" type="Label" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=514497663]
+texture_filter = 1
+layout_mode = 0
+offset_left = 333.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 32
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=1783172246]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 112.0
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="OffLabel2" type="Label" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=1690956002]
+texture_filter = 1
+layout_mode = 0
+offset_left = 464.0
+offset_top = 71.0
+offset_right = 567.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="AcceptCell/DefectIgnored" unique_id=1913315115]
+anchors_preset = 0
+offset_top = 88.0
+offset_right = 40.0
+offset_bottom = 128.0
+
+[node name="Default" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=343247390]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/Default" unique_id=392567662]
+texture_filter = 1
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 128.0
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 50
+text = "98%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Intelligence/Default" unique_id=1367939796]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -40.0
+offset_right = 32.0
+
+[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Default/Stats" unique_id=1516077352]
+texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(523, 127.5)
+scale = Vector2(1.0599997, 1.2499995)
+texture = ExtResource("20_xrr3f")
+
+[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Default/Stats" unique_id=27969813]
+texture_filter = 1
+material = SubResource("ShaderMaterial_eudqh")
+position = Vector2(523, 141)
+scale = Vector2(1.0600003, 0.50000024)
+texture = ExtResource("20_xrr3f")
+
+[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=1558927266]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HiddenLabel" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/Hidden" unique_id=1761137063]
+texture_filter = 1
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 32
+text = "Hidden"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Hidden" unique_id=1351184211]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_3i512")
+position = Vector2(516, 94)
+scale = Vector2(0.33015868, 0.9999999)
+texture = SubResource("CompressedTexture2D_t5ml4")
+
+[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=1035681315]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OffLabel" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=961386839]
+texture_filter = 1
+layout_mode = 0
+offset_left = 333.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 32
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=1890472665]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 112.0
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="OffLabel2" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=1783602317]
+texture_filter = 1
+layout_mode = 0
+offset_left = 464.0
+offset_top = 71.0
+offset_right = 567.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="AcceptCell/DefectIgnored" unique_id=721807005]
+anchors_preset = 0
+offset_top = 184.0
+offset_right = 40.0
+offset_bottom = 224.0
+
+[node name="Default" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=949865482]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Community/Default" unique_id=1676548461]
+texture_filter = 1
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 128.0
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 50
+text = "98%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Community/Default" unique_id=1409851869]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -40.0
+offset_right = 32.0
+
+[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Default/Stats" unique_id=730522187]
+texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(523, 127.5)
+scale = Vector2(1.0599997, 1.2499995)
+texture = ExtResource("20_xrr3f")
+
+[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Default/Stats" unique_id=52594714]
+texture_filter = 1
+material = SubResource("ShaderMaterial_eudqh")
+position = Vector2(523, 141)
+scale = Vector2(1.0600003, 0.50000024)
+texture = ExtResource("20_xrr3f")
+
+[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=1915551042]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HiddenLabel" type="Label" parent="AcceptCell/DefectIgnored/Community/Hidden" unique_id=1087992290]
+texture_filter = 1
+layout_mode = 0
+offset_left = 336.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 32
+text = "Hidden"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Hidden" unique_id=2065817152]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_3i512")
+position = Vector2(516, 94)
+scale = Vector2(0.33015868, 0.9999999)
+texture = SubResource("CompressedTexture2D_t5ml4")
+
+[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=357786968]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OffLabel" type="Label" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=1396814343]
+texture_filter = 1
+layout_mode = 0
+offset_left = 333.0
+offset_top = 56.0
+offset_right = 440.0
+offset_bottom = 129.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 32
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=1602237628]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 72.0
+offset_right = 568.0
+offset_bottom = 112.0
+color = Color(0.22670749, 0.22670749, 0.22670746, 1)
+
+[node name="OffLabel2" type="Label" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=1140590326]
+texture_filter = 1
+layout_mode = 0
+offset_left = 464.0
+offset_top = 71.0
+offset_right = 567.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 30
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="AcceptCell" unique_id=2075643071]
 anchors_preset = 0
 offset_left = 72.0
 offset_right = 112.0
 offset_bottom = 40.0
 
-[node name="Strength" type="Control" parent="AcceptCell/Stats" unique_id=41442280]
+[node name="Backgrounds" type="Control" parent="AcceptCell/Stats" unique_id=1639740701]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatBG" type="ColorRect" parent="AcceptCell/Stats/Backgrounds" unique_id=289499804]
+layout_mode = 0
+offset_left = -72.0
+offset_right = 248.0
+offset_bottom = 384.0
+color = Color(0.22, 0, 0, 1)
+
+[node name="HeaderBG" type="ColorRect" parent="AcceptCell/Stats/Backgrounds" unique_id=1484035644]
+layout_mode = 0
+offset_left = -72.0
+offset_right = 248.0
+offset_bottom = 40.0
+color = Color(0.15294118, 0.003921569, 0.003921569, 1)
+
+[node name="AroundBorders" type="Control" parent="AcceptCell/Stats/Backgrounds" unique_id=1698823614]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AroundBorders1" type="ColorRect" parent="AcceptCell/Stats/Backgrounds/AroundBorders" unique_id=287825973]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 40.0
+offset_right = -64.0
+offset_bottom = 384.0
+color = Color(0.15294118, 0.003921569, 0.003921569, 1)
+
+[node name="AroundBorders3" type="ColorRect" parent="AcceptCell/Stats/Backgrounds/AroundBorders" unique_id=1227777385]
+layout_mode = 0
+offset_left = -64.0
+offset_top = 312.0
+offset_right = 249.0
+offset_bottom = 384.0
+color = Color(0.15294118, 0.003921569, 0.003921569, 1)
+
+[node name="Strength" type="Control" parent="AcceptCell/Stats" unique_id=1919750058]
 layout_mode = 1
 anchor_left = -3.4
 anchor_top = -1.2
@@ -949,631 +1310,335 @@ offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Strength" unique_id=658992085]
+[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Strength" unique_id=998903041]
 texture_filter = 1
 material = SubResource("ShaderMaterial_40ur5")
-position = Vector2(288, 124)
-scale = Vector2(1.363924, 1.421875)
+position = Vector2(232, 136)
+scale = Vector2(0.9620252, 1.0859376)
 texture = ExtResource("16_3l4dx")
 
-[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Strength" unique_id=412282237]
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Strength" unique_id=1756734498]
 texture_filter = 1
 layout_mode = 0
-offset_left = 72.0
-offset_top = 88.0
-offset_right = 488.0
-offset_bottom = 104.0
+offset_left = 80.0
+offset_top = 104.0
+offset_right = 376.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("9_plfpx")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 text = "Strength"
-horizontal_alignment = 1
 
-[node name="Disabled" type="Control" parent="AcceptCell/Stats/Strength" unique_id=1593014799]
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Strength" unique_id=1556341937]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Strength/Disabled" unique_id=644931361]
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Strength/Disabled" unique_id=1903477872]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 104.0
-offset_right = 488.0
-offset_bottom = 152.0
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 378.0
+offset_bottom = 155.0
 color = Color(0, 0, 0, 1)
 
-[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Strength/Disabled" unique_id=447622214]
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Strength/Disabled" unique_id=1364162731]
 texture_filter = 1
 layout_mode = 0
 offset_left = 72.0
-offset_top = 104.0
-offset_right = 488.0
-offset_bottom = 152.0
+offset_top = 121.0
+offset_right = 374.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_plfpx")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intelligence" type="Control" parent="AcceptCell/Stats" unique_id=767641120]
+[node name="Intelligence" type="Control" parent="AcceptCell/Stats" unique_id=250698527]
 layout_mode = 1
 anchor_left = -3.4
-anchor_top = 1.4
+anchor_top = 1.2
 anchor_right = -3.4
-anchor_bottom = 1.4
+anchor_bottom = 1.2
+offset_top = -3.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 37.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Intelligence" unique_id=466382837]
+[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Intelligence" unique_id=1473933376]
 texture_filter = 1
-material = SubResource("ShaderMaterial_i8e7w")
-position = Vector2(277, 124)
-scale = Vector2(1.363924, 1.421875)
+material = SubResource("ShaderMaterial_40ur5")
+position = Vector2(219, 136)
+scale = Vector2(0.9620252, 1.0859376)
 texture = ExtResource("17_ps5e4")
 
-[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Intelligence" unique_id=572579508]
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Intelligence" unique_id=692526352]
 texture_filter = 1
 layout_mode = 0
-offset_left = 72.0
-offset_top = 88.0
-offset_right = 488.0
-offset_bottom = 104.0
+offset_left = 80.0
+offset_top = 104.0
+offset_right = 376.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("9_plfpx")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 text = "Intelligence"
-horizontal_alignment = 1
 
-[node name="Disabled" type="Control" parent="AcceptCell/Stats/Intelligence" unique_id=1060327601]
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Intelligence" unique_id=1127600933]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=1111720413]
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=132521983]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 104.0
-offset_right = 488.0
-offset_bottom = 152.0
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 378.0
+offset_bottom = 155.0
 color = Color(0, 0, 0, 1)
 
-[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=2094426848]
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Intelligence/Disabled" unique_id=48285071]
 texture_filter = 1
 layout_mode = 0
 offset_left = 72.0
-offset_top = 104.0
-offset_right = 488.0
-offset_bottom = 152.0
+offset_top = 121.0
+offset_right = 374.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_plfpx")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="Control" parent="AcceptCell/Stats" unique_id=212040180]
+[node name="Community" type="Control" parent="AcceptCell/Stats" unique_id=126327839]
 layout_mode = 1
 anchor_left = -3.4
-anchor_top = 3.8
+anchor_top = 3.4
 anchor_right = -3.4
-anchor_bottom = 3.8
+anchor_bottom = 3.4
 offset_right = 40.0
 offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
-[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Community" unique_id=682528239]
+[node name="Bar" type="Sprite2D" parent="AcceptCell/Stats/Community" unique_id=259602334]
 texture_filter = 1
-material = SubResource("ShaderMaterial_wx24v")
-position = Vector2(276, 124)
-scale = Vector2(1.363924, 1.421875)
+material = SubResource("ShaderMaterial_40ur5")
+position = Vector2(202, 136)
+scale = Vector2(0.96202534, 1.0859376)
 texture = ExtResource("18_rm1ek")
 
-[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Community" unique_id=290938754]
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Stats/Community" unique_id=190534612]
 texture_filter = 1
 layout_mode = 0
-offset_left = 72.0
-offset_top = 88.0
-offset_right = 488.0
-offset_bottom = 104.0
+offset_left = 80.0
+offset_top = 104.0
+offset_right = 376.0
+offset_bottom = 120.0
 theme_override_fonts/font = ExtResource("9_plfpx")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 14
 text = "Community"
-horizontal_alignment = 1
 
-[node name="Disabled" type="Control" parent="AcceptCell/Stats/Community" unique_id=439100775]
+[node name="Disabled" type="Control" parent="AcceptCell/Stats/Community" unique_id=634911911]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Community/Disabled" unique_id=1367352335]
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Stats/Community/Disabled" unique_id=1234743132]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 104.0
-offset_right = 488.0
-offset_bottom = 152.0
+offset_left = 80.0
+offset_top = 120.0
+offset_right = 378.0
+offset_bottom = 155.0
 color = Color(0, 0, 0, 1)
 
-[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Community/Disabled" unique_id=802572241]
+[node name="OffLabel" type="Label" parent="AcceptCell/Stats/Community/Disabled" unique_id=2020407291]
 texture_filter = 1
 layout_mode = 0
 offset_left = 72.0
-offset_top = 104.0
-offset_right = 488.0
-offset_bottom = 152.0
+offset_top = 121.0
+offset_right = 374.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_plfpx")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DefectIgnored" type="Control" parent="AcceptCell" unique_id=941482644]
+[node name="Header" type="Control" parent="AcceptCell/Stats" unique_id=1994651434]
 anchors_preset = 0
-offset_right = 40.0
+offset_left = -368.0
+offset_right = -328.0
 offset_bottom = 40.0
 
-[node name="DecreaseIgnoredHeader" type="Control" parent="AcceptCell/DefectIgnored" unique_id=725848128]
-anchors_preset = 0
-offset_left = 189.0
-offset_top = 50.0
-offset_right = 229.0
-offset_bottom = 90.0
-
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/DecreaseIgnoredHeader" unique_id=1910943332]
-layout_mode = 0
-offset_left = 246.0
-offset_top = -47.0
-offset_right = 392.0
-color = Color(0.19, 0, 0, 1)
-
-[node name="DefectSymbol" type="Sprite2D" parent="AcceptCell/DefectIgnored/DecreaseIgnoredHeader" unique_id=2074700220]
-modulate = Color(1, 0, 0, 1)
-texture_filter = 1
-position = Vector2(283.56253, -22.5)
-scale = Vector2(0.4593753, 0.45833334)
-texture = ExtResource("16_plfpx")
-
-[node name="DefectIgnoredHeader" type="Label" parent="AcceptCell/DefectIgnored/DecreaseIgnoredHeader" unique_id=1873144658]
+[node name="DissolvingContributionLabel" type="Label" parent="AcceptCell/Stats/Header" unique_id=1050143966]
 texture_filter = 1
 layout_mode = 0
-offset_left = 310.00003
-offset_top = -47.999996
-offset_right = 393.00003
-offset_bottom = -0.9999962
-theme_override_colors/font_color = Color(0.79, 0.059776668, 0.0474, 1)
+offset_left = 304.0
+offset_top = 7.0
+offset_right = 602.0
+offset_bottom = 33.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -5
 theme_override_fonts/font = ExtResource("6_v4hsa")
 theme_override_font_sizes/font_size = 23
-text = "Defect 
-Ignored"
-
-[node name="Strength" type="Control" parent="AcceptCell/DefectIgnored" unique_id=831405949]
-anchors_preset = 0
-offset_left = -16.0
-offset_top = -8.0
-offset_right = 24.0
-offset_bottom = 32.0
-
-[node name="IgnoredPercant" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=608291309]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=286419613]
-layout_mode = 0
-offset_left = 470.0
-offset_top = 70.0
-offset_right = 581.0
-offset_bottom = 102.0
-
-[node name="BG1" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=1078374668]
-layout_mode = 0
-offset_left = 471.0
-offset_top = 71.0
-offset_right = 580.0
-offset_bottom = 101.0
-color = Color(0.23, 0, 0, 1)
-
-[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=84592480]
-texture_filter = 1
-layout_mode = 0
-offset_left = 475.0
-offset_top = 66.0
-offset_right = 581.0
-offset_bottom = 106.0
-theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
-theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 35
-text = "98%"
-horizontal_alignment = 1
-
-[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=321722905]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 80.0
-offset_right = 470.0
-offset_bottom = 83.0
-
-[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant" unique_id=299070165]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats" unique_id=1953046372]
-texture_filter = 1
-material = SubResource("ShaderMaterial_t5il4")
-position = Vector2(526, 110.00001)
-scale = Vector2(1.1199998, 0.833333)
-texture = ExtResource("20_xrr3f")
-
-[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats" unique_id=454397489]
-texture_filter = 1
-material = SubResource("ShaderMaterial_eudqh")
-position = Vector2(526, 119)
-scale = Vector2(1.12, 0.49999958)
-texture = ExtResource("20_xrr3f")
-
-[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=524680440]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=465694894]
-layout_mode = 0
-offset_left = 481.0
-offset_top = 67.0
-offset_right = 578.0
-offset_bottom = 105.0
-color = Color(0.23, 0.23, 0.23, 1)
-
-[node name="DisabledLabel" type="Label" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=604227037]
-texture_filter = 1
-layout_mode = 0
-offset_left = 480.0
-offset_top = 68.0
-offset_right = 581.0
-offset_bottom = 105.0
-theme_override_colors/font_color = Color(1, 0.01666665, 0, 1)
-theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 25
-text = "Disabled"
+text = "Dissolving Contribution"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Strength/Disabled" unique_id=774954809]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 80.0
-offset_right = 481.0
-offset_bottom = 82.0
-color = Color(0.23137255, 0.23137255, 0.23137255, 1)
-
-[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Strength" unique_id=1080157406]
-visible = false
+[node name="Footer" type="Control" parent="AcceptCell" unique_id=129876483]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Hidden" unique_id=1005782641]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_l3qeo")
-position = Vector2(525.75, 96)
-scale = Vector2(0.35714287, 1.35)
-texture = SubResource("CompressedTexture2D_nv3my")
-
-[node name="StrengthHide2" type="Sprite2D" parent="AcceptCell/DefectIgnored/Strength/Hidden" unique_id=2027525043]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_l3qeo")
-position = Vector2(459, 81.5)
-scale = Vector2(0.06984128, 0.07499993)
-texture = SubResource("CompressedTexture2D_nv3my")
-
-[node name="Intelligence" type="Control" parent="AcceptCell/DefectIgnored" unique_id=1987756250]
+[node name="AreYouSureFooter" type="Control" parent="AcceptCell/Footer" unique_id=1662556030]
 anchors_preset = 0
-offset_left = -16.0
-offset_top = 96.0
-offset_right = 24.0
-offset_bottom = 136.0
-
-[node name="IgnoredPercant" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=2122810937]
-anchors_preset = 0
-offset_right = 40.0
+offset_left = -56.0
+offset_right = -16.0
 offset_bottom = 40.0
 
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=793437845]
+[node name="DefectBG" type="ColorRect" parent="AcceptCell/Footer/AreYouSureFooter" unique_id=802291249]
 layout_mode = 0
-offset_left = 470.0
-offset_top = 70.0
-offset_right = 581.0
-offset_bottom = 102.0
-
-[node name="BG1" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=1140112407]
-layout_mode = 0
-offset_left = 471.0
-offset_top = 71.0
-offset_right = 580.0
-offset_bottom = 101.0
-color = Color(0.23, 0, 0, 1)
-
-[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=1181106744]
-texture_filter = 1
-layout_mode = 0
-offset_left = 475.0
-offset_top = 66.0
-offset_right = 581.0
-offset_bottom = 106.0
-theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
-theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 35
-text = "98%"
-horizontal_alignment = 1
-
-[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=1605987810]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 80.0
-offset_right = 470.0
-offset_bottom = 83.0
-
-[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant" unique_id=2032204107]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats" unique_id=2038283869]
-texture_filter = 1
-material = SubResource("ShaderMaterial_t5il4")
-position = Vector2(526, 110.00001)
-scale = Vector2(1.1199998, 0.833333)
-texture = ExtResource("20_xrr3f")
-
-[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats" unique_id=1839188309]
-texture_filter = 1
-material = SubResource("ShaderMaterial_eudqh")
-position = Vector2(526, 119)
-scale = Vector2(1.12, 0.49999958)
-texture = ExtResource("20_xrr3f")
-
-[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=1906956212]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=499627643]
-layout_mode = 0
-offset_left = 481.0
-offset_top = 67.0
-offset_right = 578.0
-offset_bottom = 105.0
-color = Color(0.23, 0.23, 0.23, 1)
-
-[node name="DisabledLabel" type="Label" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=231872870]
-texture_filter = 1
-layout_mode = 0
-offset_left = 480.0
-offset_top = 68.0
-offset_right = 581.0
-offset_bottom = 105.0
-theme_override_colors/font_color = Color(1, 0.01666665, 0, 1)
-theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 25
-text = "Disabled"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Intelligence/Disabled" unique_id=308287738]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 80.0
-offset_right = 481.0
-offset_bottom = 82.0
-color = Color(0.23137255, 0.23137255, 0.23137255, 1)
-
-[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Intelligence" unique_id=353096265]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Hidden" unique_id=1622494103]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_l3qeo")
-position = Vector2(525.75, 96)
-scale = Vector2(0.35714287, 1.35)
-texture = SubResource("CompressedTexture2D_nv3my")
-
-[node name="StrengthHide2" type="Sprite2D" parent="AcceptCell/DefectIgnored/Intelligence/Hidden" unique_id=150146253]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_l3qeo")
-position = Vector2(459, 81.5)
-scale = Vector2(0.06984128, 0.07499993)
-texture = SubResource("CompressedTexture2D_nv3my")
-
-[node name="Community" type="Control" parent="AcceptCell/DefectIgnored" unique_id=2033982768]
-anchors_preset = 0
-offset_left = -16.0
-offset_top = 192.0
-offset_right = 24.0
-offset_bottom = 232.0
-
-[node name="IgnoredPercant" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=981527079]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=64341742]
-layout_mode = 0
-offset_left = 470.0
-offset_top = 70.0
-offset_right = 581.0
-offset_bottom = 102.0
-
-[node name="BG1" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=578803419]
-layout_mode = 0
-offset_left = 471.0
-offset_top = 71.0
-offset_right = 580.0
-offset_bottom = 101.0
-color = Color(0.23, 0, 0, 1)
-
-[node name="IgnoredPercant" type="Label" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=269828280]
-texture_filter = 1
-layout_mode = 0
-offset_left = 475.0
-offset_top = 66.0
-offset_right = 581.0
-offset_bottom = 106.0
-theme_override_colors/font_color = Color(1, 0.075666666, 0.060000002, 1)
-theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 35
-text = "98%"
-horizontal_alignment = 1
-
-[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=879321256]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 80.0
-offset_right = 470.0
-offset_bottom = 83.0
-
-[node name="Stats" type="Control" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant" unique_id=1332662600]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CleanBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats" unique_id=1158114956]
-texture_filter = 1
-material = SubResource("ShaderMaterial_t5il4")
-position = Vector2(526, 110.00001)
-scale = Vector2(1.1199998, 0.833333)
-texture = ExtResource("20_xrr3f")
-
-[node name="DefectBar" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats" unique_id=213824481]
-texture_filter = 1
-material = SubResource("ShaderMaterial_eudqh")
-position = Vector2(526, 119)
-scale = Vector2(1.12, 0.49999958)
-texture = ExtResource("20_xrr3f")
-
-[node name="Disabled" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=751249234]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG2" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=800184828]
-layout_mode = 0
-offset_left = 481.0
-offset_top = 67.0
-offset_right = 578.0
-offset_bottom = 105.0
-color = Color(0.23, 0.23, 0.23, 1)
-
-[node name="DisabledLabel" type="Label" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=1033983209]
-texture_filter = 1
-layout_mode = 0
-offset_left = 480.0
-offset_top = 68.0
-offset_right = 581.0
-offset_bottom = 105.0
-theme_override_colors/font_color = Color(1, 0.01666665, 0, 1)
-theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 25
-text = "Disabled"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="WhiteLine" type="ColorRect" parent="AcceptCell/DefectIgnored/Community/Disabled" unique_id=680338374]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 80.0
-offset_right = 481.0
-offset_bottom = 82.0
-color = Color(0.23137255, 0.23137255, 0.23137255, 1)
-
-[node name="Hidden" type="Control" parent="AcceptCell/DefectIgnored/Community" unique_id=1574632849]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StrengthHide" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Hidden" unique_id=1178439015]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_l3qeo")
-position = Vector2(525.75, 96)
-scale = Vector2(0.35714287, 1.35)
-texture = SubResource("CompressedTexture2D_nv3my")
-
-[node name="StrengthHide2" type="Sprite2D" parent="AcceptCell/DefectIgnored/Community/Hidden" unique_id=96404352]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_l3qeo")
-position = Vector2(459, 81.5)
-scale = Vector2(0.06984128, 0.07499993)
-texture = SubResource("CompressedTexture2D_nv3my")
-
-[node name="AreYouSureFooter" type="Control" parent="AcceptCell" unique_id=802309249]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DefectBG" type="ColorRect" parent="AcceptCell/AreYouSureFooter" unique_id=1389942635]
-layout_mode = 0
-offset_top = 320.0
-offset_right = 584.0
+offset_left = 384.0
+offset_top = 319.0
+offset_right = 632.0
 offset_bottom = 384.0
 color = Color(0.07, 0, 0, 1)
 
-[node name="AreYouSureLabel" type="Label" parent="AcceptCell/AreYouSureFooter" unique_id=1901786418]
+[node name="ConfirmBG" type="ColorRect" parent="AcceptCell/Footer/AreYouSureFooter" unique_id=765651199]
+layout_mode = 0
+offset_left = 552.0
+offset_top = 338.0
+offset_right = 628.0
+offset_bottom = 362.0
+color = Color(0.0128400065, 0.12, 0.0072000003, 1)
+
+[node name="DenyBG" type="ColorRect" parent="AcceptCell/Footer/AreYouSureFooter" unique_id=1782754010]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 338.0
+offset_right = 452.0
+offset_bottom = 364.0
+color = Color(0.27773535, 0.00763678, 0.0058311247, 1)
+
+[node name="AreYouSureLabel" type="Label" parent="AcceptCell/Footer/AreYouSureFooter" unique_id=1450875454]
 texture_filter = 1
 layout_mode = 0
-offset_left = 8.0
-offset_top = 320.0
-offset_right = 580.0
-offset_bottom = 381.0
+offset_left = 455.0
+offset_top = 321.0
+offset_right = 559.0
+offset_bottom = 399.0
 theme_override_colors/font_color = Color(1, 0.07450981, 0.05882353, 1)
+theme_override_constants/line_spacing = -5
 theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 23
-text = "Are You Sure You Wish To Sacrifice
-This Cell ?"
+theme_override_font_sizes/font_size = 20
+text = "Are you 
+sure?
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DenyLabel" type="Label" parent="AcceptCell/AreYouSureFooter" unique_id=363106490]
+[node name="DenyLabel" type="Label" parent="AcceptCell/Footer/AreYouSureFooter" unique_id=1626050069]
 texture_filter = 1
 layout_mode = 0
-offset_left = -216.0
-offset_top = 320.0
-offset_right = 356.0
-offset_bottom = 381.0
+offset_left = 384.0
+offset_top = 319.0
+offset_right = 464.0
+offset_bottom = 380.0
 theme_override_colors/font_color = Color(0.71, 0.05372333, 0.042600002, 1)
 theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 24
 text = "Deny"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConfirmLabel" type="Label" parent="AcceptCell/AreYouSureFooter" unique_id=1159652967]
+[node name="ConfirmLabel" type="Label" parent="AcceptCell/Footer/AreYouSureFooter" unique_id=1301228421]
 texture_filter = 1
 layout_mode = 0
-offset_left = 232.0
+offset_left = 552.0
 offset_top = 320.0
-offset_right = 804.0
+offset_right = 632.0
 offset_bottom = 381.0
 theme_override_colors/font_color = Color(0.09309005, 0.87, 0.0522, 1)
 theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 31
+theme_override_font_sizes/font_size = 24
 text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TriadBonous" type="Control" parent="AcceptCell/Footer" unique_id=1570398669]
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="AcceptCell/Footer/TriadBonous" unique_id=2040734918]
+layout_mode = 0
+offset_top = 319.0
+offset_right = 312.0
+offset_bottom = 384.0
+color = Color(0.07058824, 0, 0, 1)
+
+[node name="AllStatBonusLabel" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=213998987]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 320.0
+offset_right = 127.0
+offset_bottom = 384.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -4
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 20
+text = "All Stats 
+Disslove
+Bonus"
+vertical_alignment = 1
+
+[node name="Plus25Label" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=943112188]
+texture_filter = 1
+layout_mode = 0
+offset_left = 100.0
+offset_top = 325.0
+offset_right = 173.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(0.2530139, 0.44700027, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 30
+text = "+25% "
+horizontal_alignment = 1
+
+[node name="PerStatLabel" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=2068010687]
+texture_filter = 1
+layout_mode = 0
+offset_left = 102.0
+offset_top = 350.0
+offset_right = 169.0
+offset_bottom = 374.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 20
+text = "per stat"
+horizontal_alignment = 1
+
+[node name="AppliedLabel" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=1277272261]
+texture_filter = 1
+layout_mode = 0
+offset_left = 198.0
+offset_top = 320.0
+offset_right = 310.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(0.44404316, 0.7564612, 7.70092e-07, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 34
+text = "Applied"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1674,3 +1739,9 @@ texture_filter = 1
 position = Vector2(288, 232)
 scale = Vector2(13.676471, 7.611111)
 texture = ExtResource("8_w7rbg")
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=557957891]
+visible = false
+material = SubResource("ShaderMaterial_vau7t")
+offset_right = 584.0
+offset_bottom = 384.0

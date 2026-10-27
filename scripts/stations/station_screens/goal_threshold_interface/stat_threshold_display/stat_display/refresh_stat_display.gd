@@ -41,7 +41,15 @@ func _ready() -> void:
 func _refresh(dissolving_cell: DissolvingCell) -> void:
 	
 	if dissolving_cell == null:
-		return
+		
+		var active_threshold_piece :ThresholdPiece = GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
+		
+		dissolving_cell = DissolvingCell.new(
+			null, # corrisponding cell
+			DissolvingStat.new('strength', 0, 0, active_threshold_piece.strength),
+			DissolvingStat.new('intelligence', 0, 0, active_threshold_piece.intelligence), # (value/amount to decrease, defect)
+			DissolvingStat.new('community', 0, 0, active_threshold_piece.community),
+		)
 	
 	var dissolving_stats: Array[DissolvingStat] = [
 		dissolving_cell.strength_dissolving_stat,

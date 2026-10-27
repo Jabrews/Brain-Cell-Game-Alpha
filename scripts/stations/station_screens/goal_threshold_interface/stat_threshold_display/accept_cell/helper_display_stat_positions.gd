@@ -5,9 +5,9 @@ extends Node
 @onready var t_large_bar : Texture = preload("res://models/goal_threshold/bars_accept_cell/BarLarge.png")
 
 # bar positions
-const SMALL_BAR_POS_X: float = 276.0
-const MEDIUM_BAR_POS_X: float = 277.0
-const LARGE_BAR_POS_X: float = 288.0
+const SMALL_BAR_POS_X: float = 202.0
+const MEDIUM_BAR_POS_X: float = 219.0
+const LARGE_BAR_POS_X: float = 232.0
 
 
 func _display( threshold_stat : ThresholdStat, bar : Sprite2D) -> void:

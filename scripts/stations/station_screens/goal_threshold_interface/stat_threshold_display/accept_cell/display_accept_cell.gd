@@ -1,115 +1,121 @@
 extends Node
 
-# components
-@onready var accept_cell_parent : Control = $"../AcceptCell"
-@onready var helper_display_stat_positions : Node = $HelperDisplayStatPositions
+# Components
+@onready var accept_cell_parent: Control = $"../AcceptCell"
+@onready var helper_display_stat_positions: Node = $HelperDisplayStatPositions
 
-# visual components
-@onready var threshold_bars : Array[Sprite2D] = [
-	$"../AcceptCell/Stats/Strength/Bar", $"../AcceptCell/Stats/Intelligence/Bar", $"../AcceptCell/Stats/Community/Bar"
-]
-@onready var threshold_disabled_parents : Array[Control] = [
-	$"../AcceptCell/Stats/Strength/Disabled", $"../AcceptCell/Stats/Intelligence/Disabled", $"../AcceptCell/Stats/Community/Disabled"
-]
-
-@onready var defect_ignored_percant_labels : Array[Label] = [
-	$"../AcceptCell/DefectIgnored/Strength/IgnoredPercant/IgnoredPercant",
-	$"../AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/IgnoredPercant",
-	$"../AcceptCell/DefectIgnored/Community/IgnoredPercant/IgnoredPercant",
-]
-@onready var defect_ignored_percant_parent :Array[Control] = [
-	$"../AcceptCell/DefectIgnored/Strength/IgnoredPercant",
-	$"../AcceptCell/DefectIgnored/Intelligence/IgnoredPercant",
-	$"../AcceptCell/DefectIgnored/Community/IgnoredPercant",
-	
-]
-@onready var defect_ignored_clean_bars : Array[Sprite2D] = [
-	$"../AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats/CleanBar",
-	$"../AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats/CleanBar",
-	$"../AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats/CleanBar",
-]
-@onready var defect_ignored_defect_bars : Array[Sprite2D] = [
-	$"../AcceptCell/DefectIgnored/Strength/IgnoredPercant/Stats/DefectBar",
-	$"../AcceptCell/DefectIgnored/Intelligence/IgnoredPercant/Stats/DefectBar",
-	$"../AcceptCell/DefectIgnored/Community/IgnoredPercant/Stats/DefectBar",
+# Threshold stats
+@onready var threshold_bars: Array[Sprite2D] = [
+	$"../AcceptCell/Stats/Strength/Bar",
+	$"../AcceptCell/Stats/Intelligence/Bar",
+	$"../AcceptCell/Stats/Community/Bar"
 ]
 
-
-@onready var defect_ignored_disabled_parents : Array[Control] = [
-	$"../AcceptCell/DefectIgnored/Strength/Disabled",
-	$"../AcceptCell/DefectIgnored/Intelligence/Disabled",
-	$"../AcceptCell/DefectIgnored/Community/Disabled"
+@onready var threshold_disabled_parents: Array[Control] = [
+	$"../AcceptCell/Stats/Strength/Disabled",
+	$"../AcceptCell/Stats/Intelligence/Disabled",
+	$"../AcceptCell/Stats/Community/Disabled"
 ]
-@onready var defect_ignored_hidden_parents : Array[Control] = [
+
+# Defect-ignored state parents
+@onready var d_i_default_parents: Array[Control] = [
+	$"../AcceptCell/DefectIgnored/Strength/Default",
+	$"../AcceptCell/DefectIgnored/Intelligence/Default",
+	$"../AcceptCell/DefectIgnored/Community/Default"
+]
+
+@onready var d_i_hidden_parents: Array[Control] = [
 	$"../AcceptCell/DefectIgnored/Strength/Hidden",
 	$"../AcceptCell/DefectIgnored/Intelligence/Hidden",
 	$"../AcceptCell/DefectIgnored/Community/Hidden"
 ]
 
+@onready var d_i_disabled_parents: Array[Control] = [
+	$"../AcceptCell/DefectIgnored/Strength/Disabled",
+	$"../AcceptCell/DefectIgnored/Intelligence/Disabled",
+	$"../AcceptCell/DefectIgnored/Community/Disabled"
+]
+
+# Defect-ignored default-state components
+@onready var d_i_ignored_percent_labels: Array[Label] = [
+	$"../AcceptCell/DefectIgnored/Strength/Default/IgnoredPercant",
+	$"../AcceptCell/DefectIgnored/Intelligence/Default/IgnoredPercant",
+	$"../AcceptCell/DefectIgnored/Community/Default/IgnoredPercant"
+]
+
+@onready var d_i_clean_bars: Array[Sprite2D] = [
+	$"../AcceptCell/DefectIgnored/Strength/Default/Stats/CleanBar",
+	$"../AcceptCell/DefectIgnored/Intelligence/Default/Stats/CleanBar",
+	$"../AcceptCell/DefectIgnored/Community/Default/Stats/CleanBar"
+]
+
+@onready var d_i_defect_bars: Array[Sprite2D] = [
+	$"../AcceptCell/DefectIgnored/Strength/Default/Stats/DefectBar",
+	$"../AcceptCell/DefectIgnored/Intelligence/Default/Stats/DefectBar",
+	$"../AcceptCell/DefectIgnored/Community/Default/Stats/DefectBar"
+]
+
+var ignored_label_warning_tweens: Dictionary = {}
+
 
 func _ready() -> void:
-	for threshold_bar : Sprite2D in threshold_bars :
+	for threshold_bar: Sprite2D in threshold_bars:
 		threshold_bar.material = threshold_bar.material.duplicate()
-	
-	for clean_bar : Sprite2D in defect_ignored_clean_bars :
+
+	for clean_bar: Sprite2D in d_i_clean_bars:
 		clean_bar.material = clean_bar.material.duplicate()
-		
-	for defect_bar : Sprite2D in defect_ignored_defect_bars:
+
+	for defect_bar: Sprite2D in d_i_defect_bars:
 		defect_bar.material = defect_bar.material.duplicate()
 
 
-#### SHOW ####
+#### Show ####
 
-func show_accept_cell_screen(elevator_cell : BrainCell) :
-	
-	if not elevator_cell :
-		push_error('attempting to show accept cell screen without cell')
+func show_accept_cell_screen(elevator_cell: BrainCell) -> void:
+	if not elevator_cell:
+		push_error("Attempted to show accept-cell screen without a cell.")
 		return
-	
-	
-	var stats : Array[BrainCellStat] = []
-	stats.append(elevator_cell.strength)
-	stats.append(elevator_cell.intelligence)
-	stats.append(elevator_cell.community)
-	
-	var curr_threshold_piece : ThresholdPiece = GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
-	
-	for stat_index in stats.size():
+
+	var stats: Array[BrainCellStat] = [
+		elevator_cell.strength,
+		elevator_cell.intelligence,
+		elevator_cell.community
+	]
+
+	var threshold_piece: ThresholdPiece = (
+		GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
+	)
+
+	for stat_index: int in range(stats.size()):
 		var stat: BrainCellStat = stats[stat_index]
-		var threshold_stat: ThresholdStat = curr_threshold_piece.get_stat(stat.type)
+		var threshold_stat: ThresholdStat = threshold_piece.get_stat(stat.type)
 
 		if threshold_stat == null:
 			continue
 
-		# Threshold display
 		var threshold_bar: Sprite2D = threshold_bars[stat_index]
 		var threshold_disabled_parent: Control = threshold_disabled_parents[stat_index]
-		
-		# load proper threshold bar postions
+
 		helper_display_stat_positions._display(threshold_stat, threshold_bar)
 
-		# Defect ignored display
-		var ignored_percent_label: Label = defect_ignored_percant_labels[stat_index]
-		var ignored_clean_bar: Sprite2D = defect_ignored_clean_bars[stat_index]
-		var ignored_defect_bar: Sprite2D = defect_ignored_defect_bars[stat_index]
-		var ignored_disabled_parent: Control = defect_ignored_disabled_parents[stat_index]
-		var ignored_hidden_parent: Control = defect_ignored_hidden_parents[stat_index]
-		var ignored_percant_parent : Control = defect_ignored_percant_parent[stat_index]
-		
+		_display_threshold_bars(
+			stat,
+			threshold_stat,
+			threshold_bar,
+			threshold_disabled_parent
+		)
 
-		# load correct postion of bar
-		_display_threshold_bars(stat, threshold_stat, threshold_bar, threshold_disabled_parent)
-		
-		_display_defect_ignored_percant(stat, threshold_stat, ignored_percent_label, ignored_percant_parent, ignored_disabled_parent, ignored_hidden_parent)
-		
-		_display_defect_ignored_bars(stat, threshold_stat, ignored_clean_bar, ignored_defect_bar)
-		
-		
-		
-	
-	
-	
-	
+		_display_defect_ignored(
+			stat,
+			threshold_stat,
+			d_i_default_parents[stat_index],
+			d_i_hidden_parents[stat_index],
+			d_i_disabled_parents[stat_index],
+			d_i_ignored_percent_labels[stat_index],
+			d_i_clean_bars[stat_index],
+			d_i_defect_bars[stat_index]
+		)
+
 	accept_cell_parent.visible = true
 
 
@@ -117,12 +123,8 @@ func _display_threshold_bars(
 	stat: BrainCellStat,
 	threshold_stat: ThresholdStat,
 	threshold_bar: Sprite2D,
-	threshold_disabled_parent: Control,
+	threshold_disabled_parent: Control
 ) -> void:
-	
-	var amount_to_decrease : float = max(0, stat.value - stat.defect)
-	var defect_ignore : float = stat.defect
-	
 	var material: ShaderMaterial = threshold_bar.material
 
 	threshold_disabled_parent.visible = threshold_stat.disabled
@@ -137,121 +139,125 @@ func _display_threshold_bars(
 	if threshold_stat.disabled or max_value <= 0.0:
 		return
 
-	var current_value: float = maxf(threshold_stat.current_value, 0.0)
-
-	# Always show the threshold's current value.
-	material.set_shader_parameter(
-		"current_value",
-		clampf(current_value / max_value, 0.0, 1.0)
+	var current_value: float = clampf(
+		threshold_stat.current_value,
+		0.0,
+		max_value
 	)
 
-	# Hidden or disabled cell stats should not reveal a preview.
+	material.set_shader_parameter(
+		"current_value",
+		current_value / max_value
+	)
+
 	if not stat.enabled or stat.hidden:
 		return
 
-	var full_amount: float = maxf(amount_to_decrease, 0.0)
-	var usable_amount: float = maxf(
-		full_amount - maxf(defect_ignore, 0.0),
-		0.0
+	# The contribution is the raw stat value; defect is striped within it.
+	var visible_contribution: float = minf(
+		maxf(stat.value, 0.0),
+		current_value
 	)
-
-	# Only show amounts that affect the remaining threshold.
-	var visible_full_amount: float = minf(full_amount, current_value)
-	var visible_usable_amount: float = minf(usable_amount, current_value)
-	var visible_blocked_amount: float = (
-		visible_full_amount - visible_usable_amount
+	var visible_defect: float = minf(
+		maxf(stat.defect, 0.0),
+		visible_contribution
 	)
 
 	material.set_shader_parameter(
 		"dissolve_value",
-		visible_full_amount / max_value
+		visible_contribution / max_value
 	)
-
 	material.set_shader_parameter(
 		"defect_value",
-		visible_blocked_amount / max_value
+		visible_defect / max_value
 	)
-	
 
-func _display_defect_ignored_percant(
-	stat : BrainCellStat,
-	threshold_stat : ThresholdStat,
-	ignored_percent_label : Label,
-	ignored_percant_parent : Control,
-	ignored_disabled_parent : Control,
-	ignored_hidden_parent : Control
-) :
-	
-	ignored_percent_label.visible = false
-	ignored_percant_parent.visible = false
-	ignored_disabled_parent.visible = false
-	ignored_hidden_parent.visible = false
-	
-	if stat.enabled == false or threshold_stat.disabled:
-		ignored_disabled_parent.visible  = true
+
+func _display_defect_ignored(
+	stat: BrainCellStat,
+	threshold_stat: ThresholdStat,
+	default_parent: Control,
+	hidden_parent: Control,
+	disabled_parent: Control,
+	ignored_percent_label: Label,
+	clean_bar: Sprite2D,
+	defect_bar: Sprite2D
+) -> void:
+	_stop_ignored_label_warning(ignored_percent_label)
+
+	# Hide all states first so only one can be shown.
+	default_parent.visible = false
+	hidden_parent.visible = false
+	disabled_parent.visible = false
+
+	# A disabled threshold shows none of the defect-ignored states.
+	if threshold_stat.disabled:
 		return
-		
-	if stat.hidden :
-		ignored_hidden_parent.visible = true
+
+	if not stat.enabled:
+		disabled_parent.visible = true
 		return
-		
-	ignored_percant_parent.visible = true
-	ignored_percent_label.visible = true
 
-	var percentage: float = 100.0
+	if stat.hidden:
+		hidden_parent.visible = true
+		return
 
+	default_parent.visible = true
+
+	var ignored_percent: float = 0.0
 	if stat.value > 0.0:
-		percentage = clampf(
-			float(stat.defect) / float(stat.value) * 100.0,
+		ignored_percent = clampf(
+			stat.defect / stat.value * 100.0,
 			0.0,
 			100.0
 		)
 
-	ignored_percent_label.text = "%.1f%%" % percentage
-	
+	ignored_percent_label.text = str(int(ignored_percent)) + "%"
 
-func _display_defect_ignored_bars(
-	stat : BrainCellStat,
-	threshold_stat : ThresholdStat,
-	ignored_clean_bar : Sprite2D,
-	ignored_defect_bar : Sprite2D
-) :
-	ignored_clean_bar.visible = false
-	ignored_defect_bar.visible = false
-	
-	if stat.hidden or stat.enabled == false or threshold_stat.disabled:
+	if ignored_percent > 75.0:
+		_start_ignored_label_warning(ignored_percent_label)
+
+	var max_value: float = IVCellCreator.max_stat_value
+	if max_value <= 0.0:
+		push_error("max_stat_value must be greater than 0.")
 		return
-	
-	ignored_clean_bar.visible = true
-	ignored_defect_bar.visible = true
-	
-	var max_value : float = IVCellCreator.max_stat_value
-	
-	# prisoner value
-	
-	var prisoner_value : float = stat.value / max_value
-		
-	ignored_clean_bar.material.set_shader_parameter("prisoner_value", prisoner_value)
-	
-	# flash + defect value
-	
-	var defect_value : float = stat.defect / max_value
-	
-	ignored_defect_bar.material.set_shader_parameter("defect_value", defect_value)
-	
-	ignored_clean_bar.material.set_shader_parameter("flash_value", defect_value)
-	
-	
-	
-	
 
-	
-		
+	var prisoner_value: float = clampf(stat.value / max_value, 0.0, 1.0)
+	var defect_value: float = clampf(stat.defect / max_value, 0.0, 1.0)
+
+	clean_bar.material.set_shader_parameter("prisoner_value", prisoner_value)
+	clean_bar.material.set_shader_parameter("flash_value", defect_value)
+	defect_bar.material.set_shader_parameter("defect_value", defect_value)
 
 
+func _start_ignored_label_warning(label: Label) -> void:
+	label.pivot_offset = label.size * 0.5
+
+	var tween: Tween = create_tween().set_loops()
+	ignored_label_warning_tweens[label] = tween
+
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_IN_OUT)
+
+	tween.tween_property(label, "modulate:a", 0.25, 0.25)
+	tween.parallel().tween_property(label, "scale", Vector2(1.2, 1.2), 0.25)
+
+	tween.tween_property(label, "modulate:a", 1.0, 0.25)
+	tween.parallel().tween_property(label, "scale", Vector2.ONE, 0.25)
 
 
-#### HIDE #####
+func _stop_ignored_label_warning(label: Label) -> void:
+	var tween: Tween = ignored_label_warning_tweens.get(label)
 
-func hide_accept_cell_screen() :
+	if tween and tween.is_running():
+		tween.kill()
+
+	ignored_label_warning_tweens.erase(label)
+	label.modulate.a = 1.0
+	label.scale = Vector2.ONE
+
+
+#### Hide ####
+
+func hide_accept_cell_screen() -> void:
 	accept_cell_parent.visible = false
