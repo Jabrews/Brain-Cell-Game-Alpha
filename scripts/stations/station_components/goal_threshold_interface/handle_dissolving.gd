@@ -9,7 +9,6 @@ extends Node
 
 var valid_dissolving_stats: Array[DissolvingStat] = []
 
-
 func _ready() -> void:
 	dissolve_delay_timer.connect(
 		"timeout",

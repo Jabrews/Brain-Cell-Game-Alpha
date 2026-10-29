@@ -8,9 +8,9 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,
-			ThresholdStat.new("small", 100, 100, false, false),   # strength
-			ThresholdStat.new("small", 100, 100, false, false),   # intelligence
-			ThresholdStat.new("medium", 0, 0, true, false)   # community
+			ThresholdStat.new('strength', "small", 100, 100, false, false),   # strength
+			ThresholdStat.new('intelligence', "small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new('community', "medium", 0, 0, true, false)   # community
 		),
 		
 		2: ThresholdPiece.new(
@@ -18,9 +18,9 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,
-			ThresholdStat.new("small", 10, 10, false, false),   # strength
-			ThresholdStat.new("small", 10, 10, false, false),   # intelligence
-			ThresholdStat.new("medium", 0, 0, true, false)   # community
+			ThresholdStat.new('strength', "small", 100, 100, false, false),   # strength
+			ThresholdStat.new('intelligence', "small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new('community', "medium", 0, 0, true, false)   # community
 		),
 		
 		3: ThresholdPiece.new(
@@ -28,18 +28,18 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,
-			ThresholdStat.new("small", 10, 10, false, false),   # strength
-			ThresholdStat.new("small", 10, 10, false, false),   # intelligence
-			ThresholdStat.new("medium", 0, 0, true, false)   # community
+			ThresholdStat.new('strength', "small", 100, 100, false, false),   # strength
+			ThresholdStat.new('intelligence', "small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new('community', "medium", 0, 0, true, false)   # community
 		),
 		4: ThresholdPiece.new(
 			4,   # total turns
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,
-			ThresholdStat.new("small", 10, 10, false, false),   # strength
-			ThresholdStat.new("small", 10, 10, false, false),   # intelligence
-			ThresholdStat.new("medium", 0, 0, true, false)   # community
+			ThresholdStat.new('strength', "small", 100, 100, false, false),   # strength
+			ThresholdStat.new('intelligence', "small", 100, 100, false, false),   # intelligence
+			ThresholdStat.new('community', "medium", 0, 0, true, false)   # community
 		),
 	},
 )

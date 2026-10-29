@@ -48,6 +48,9 @@ func get_stat(stat_type: String) -> ThresholdStat:
 			push_error("Unknown threshold stat: " + stat_type)
 			return null
 
+func get_stats() -> Array[ThresholdStat] :
+	return [strength, intelligence, community]
+
 func print_info() -> void:
 	print("------ THRESHOLD PIECE ------")
 	print("Total Turns: ", total_turns)

@@ -46,9 +46,9 @@ func _refresh(dissolving_cell: DissolvingCell) -> void:
 		
 		dissolving_cell = DissolvingCell.new(
 			null, # corrisponding cell
-			DissolvingStat.new('strength', 0, 0, active_threshold_piece.strength),
-			DissolvingStat.new('intelligence', 0, 0, active_threshold_piece.intelligence), # (value/amount to decrease, defect)
-			DissolvingStat.new('community', 0, 0, active_threshold_piece.community),
+			DissolvingStat.new('strength', 0, 0, active_threshold_piece.strength, true),
+			DissolvingStat.new('intelligence', 0, 0, active_threshold_piece.intelligence, true), # (value/amount to decrease, defect)
+			DissolvingStat.new('community', 0, 0, active_threshold_piece.community, true),
 		)
 	
 	var dissolving_stats: Array[DissolvingStat] = [
