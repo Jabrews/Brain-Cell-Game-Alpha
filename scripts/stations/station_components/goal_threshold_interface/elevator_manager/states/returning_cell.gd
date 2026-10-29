@@ -27,7 +27,7 @@ func _start_state(cell_on_elevator : Node3D) :
 	
 	await get_tree().create_timer(1.5).timeout
 	
-	GLCellManagerBus.emit_signal('toggle_lock_cell_pickup', cell_on_elevator.designated_brain_cell.name, false)
+	
 	
 	
 

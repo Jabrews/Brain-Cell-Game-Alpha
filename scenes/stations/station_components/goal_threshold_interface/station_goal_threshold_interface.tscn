@@ -34,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://bysy8sy01504f" path="res://sounds/goal_threshold_interface/piece_complete.mp3" id="27_bh7dn"]
 [ext_resource type="AudioStream" uid="uid://fuxnapkk0atd" path="res://sounds/goal_threshold_interface/next_goal.mp3" id="28_uirr1"]
 [ext_resource type="Texture2D" uid="uid://cip1wi7osp6in" path="res://models/goal_threshold/goal_tube/goal_tube_test_3_goal_tube_glass_uv.png" id="29_so02y"]
+[ext_resource type="Script" uid="uid://byw3dw60kkju6" path="res://scripts/stations/station_components/goal_threshold_interface/unfreeze_cell_area.gd" id="29_y722u"]
 [ext_resource type="Shader" uid="uid://dufn2osgn0x3g" path="res://scripts/stations/station_components/goal_threshold_interface/shaders/goal_tube.gdshader" id="31_4ao0c"]
 [ext_resource type="Script" uid="uid://ds6dm6swqy1wo" path="res://scripts/stations/station_components/goal_threshold_interface/bubble_manager/bubble_manager.gd" id="32_ss54k"]
 [ext_resource type="Texture2D" uid="uid://cjqyqkje88g1l" path="res://models/goal_threshold/goal_tube/water_texture.png" id="32_xftj8"]
@@ -206,6 +207,9 @@ height = 0.2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
 size = Vector3(0.9242983, 1.7741089, 0.8970108)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mallj"]
+size = Vector3(2.0690918, 0.24658203, 1.989502)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdbui"]
 resource_name = "GoalTubeGlass"
@@ -580,6 +584,16 @@ collision_mask = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/DetectCellArea" unique_id=77567078]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.012140274, 0.02355969, 0.025396943)
 shape = SubResource("BoxShape3D_qa1qv")
+
+[node name="UnfreezeCellArea" type="Area3D" parent="Elevator" unique_id=1893168411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.150721, 0)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("29_y722u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Elevator/UnfreezeCellArea" unique_id=902021944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08679199, -0.37670898, -0.008910894)
+shape = SubResource("BoxShape3D_mallj")
 
 [node name="GoalTube" type="Node3D" parent="." unique_id=2146691242]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8426752, -0.30756295, -2.301221)

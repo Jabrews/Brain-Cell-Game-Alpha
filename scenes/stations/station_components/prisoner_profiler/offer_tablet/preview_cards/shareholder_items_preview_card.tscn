@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://b2k2i2i0qiau"]
+
+[ext_resource type="Script" uid="uid://1hf7gj21ubxp" path="res://scripts/stations/station_components/prisoner_profiler/offer_tablet/ui/preview_cards/shareholder_items_card/shareholder_items_card.gd" id="1_sgpgh"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="1_vg5li"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_5ql3v"]
+[ext_resource type="Texture2D" uid="uid://berqcmgeuh6fq" path="res://models/share_holder_offer_card/item_defect.png" id="3_5ql3v"]
+[ext_resource type="Script" uid="uid://j36py2ihdjpc" path="res://scripts/stations/station_components/prisoner_profiler/offer_tablet/ui/preview_cards/shareholder_items_card/items_possible_shuffle.gd" id="3_ls1ad"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_bkmuf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bkmuf"]
+shader = ExtResource("1_vg5li")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.2000000095
+shader_parameter/shimmer_strength = 0.0
+shader_parameter/scanline_strength = 0.0570000027075
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(0.9, 0, 0.04500017, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25l4v"]
+shader = ExtResource("1_vg5li")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 0.50000002375
+shader_parameter/shimmer_strength = 0.050000002375
+shader_parameter/scanline_strength = 0.0
+shader_parameter/scanline_density = 1.0
+shader_parameter/hologram_tint = Color(0.7, 0.9, 1, 1)
+
+[node name="ShareholderItemsPreviewCard" type="Control" unique_id=2079612904]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_sgpgh")
+
+[node name="CardBg2" type="ColorRect" parent="." unique_id=1684709569]
+material = SubResource("ShaderMaterial_bkmuf")
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 184.0
+mouse_filter = 2
+color = Color(0.28, 0, 0.0140000535, 1)
+
+[node name="CardHeader" type="Control" parent="." unique_id=1990681385]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="CardBg" type="ColorRect" parent="CardHeader" unique_id=1273815431]
+layout_mode = 0
+offset_right = 264.0
+offset_bottom = 24.0
+mouse_filter = 2
+color = Color(0.14901961, 0, 0.007843138, 1)
+
+[node name="CardType" type="Label" parent="CardHeader" unique_id=155937491]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 189.0
+offset_bottom = 25.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_5ql3v")
+theme_override_font_sizes/font_size = 12
+text = "Item Request"
+vertical_alignment = 1
+
+[node name="ItemsPossible" type="Control" parent="." unique_id=243535715]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("3_ls1ad")
+
+[node name="BG" type="ColorRect" parent="ItemsPossible" unique_id=1707559946]
+material = SubResource("ShaderMaterial_25l4v")
+layout_mode = 0
+offset_left = 136.0
+offset_top = 29.0
+offset_right = 259.0
+offset_bottom = 137.0
+mouse_filter = 2
+color = Color(0.5121864, 0.09364457, 0.07563921, 1)
+
+[node name="OldItemPossibleRect" type="TextureRect" parent="ItemsPossible" unique_id=1801562267]
+texture_filter = 1
+layout_mode = 0
+offset_left = 138.0
+offset_top = 31.0
+offset_right = 257.0
+offset_bottom = 134.0
+mouse_filter = 2
+texture = ExtResource("3_5ql3v")
+expand_mode = 1
+
+[node name="NewItemPossibleRect" type="TextureRect" parent="ItemsPossible" unique_id=95625323]
+texture_filter = 1
+layout_mode = 0
+offset_left = 138.0
+offset_top = 32.0
+offset_right = 257.0
+offset_bottom = 135.0
+mouse_filter = 2
+texture = ExtResource("3_5ql3v")
+expand_mode = 1
+
+[node name="BodyLabel" type="Label" parent="." unique_id=174252498]
+texture_filter = 1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 25.0
+offset_right = 254.0
+offset_bottom = 136.0
+theme_override_constants/line_spacing = 3
+theme_override_fonts/font = ExtResource("4_bkmuf")
+theme_override_font_sizes/font_size = 22
+text = "Pick one 
+random piece 
+of labware"
+vertical_alignment = 1
+
+[node name="BodyLabel2" type="Label" parent="." unique_id=1067421450]
+texture_filter = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 104.0
+offset_right = 259.0
+offset_bottom = 215.0
+theme_override_colors/font_color = Color(0.73, 0, 0, 1)
+theme_override_constants/line_spacing = -3
+theme_override_fonts/font = ExtResource("4_bkmuf")
+theme_override_font_sizes/font_size = 18
+text = "Note : select card to view list 
+of possible items"
+horizontal_alignment = 1
+vertical_alignment = 1
