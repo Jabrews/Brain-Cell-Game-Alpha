@@ -182,7 +182,7 @@ offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 82.0
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Strength/Off" unique_id=175961331]
 layout_mode = 0
@@ -249,7 +249,7 @@ offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 82.0
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Intelligence/Off" unique_id=1105423812]
 layout_mode = 0
@@ -316,7 +316,7 @@ offset_top = 62.0
 offset_right = 117.0
 offset_bottom = 81.0
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Community/Off" unique_id=1879928252]
 layout_mode = 0

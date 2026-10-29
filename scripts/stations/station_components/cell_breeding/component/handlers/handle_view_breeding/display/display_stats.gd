@@ -13,7 +13,7 @@ var cell_name_label: Label
 var clean_bars: Array[Sprite2D]
 var defect_bars: Array[Sprite2D]
 var hidden_sprites: Array[Sprite2D]
-var off_labels: Array[Label]
+var off_parents : Array[Control]
 
 
 func _display(cell: BrainCell, components: Dictionary) -> void:
@@ -26,7 +26,7 @@ func _display(cell: BrainCell, components: Dictionary) -> void:
 	clean_bars = components["clean_bars"]
 	defect_bars = components["defect_bars"]
 	hidden_sprites = components["hidden_sprites"]
-	off_labels = components["off_labels"]
+	off_parents = components["off_parents"]
 	
 	if cell:
 		no_cell_loaded_label.visible = false
@@ -79,7 +79,7 @@ func load_stat_bars(cell: BrainCell) -> void:
 
 
 func _display_disabled_stat(index: int) -> void:
-	off_labels[index].visible = true
+	off_parents[index].visible = true
 	
 	defect_bars[index].visible = false
 	clean_bars[index].modulate.a = 0.4
@@ -87,7 +87,7 @@ func _display_disabled_stat(index: int) -> void:
 
 
 func _display_enabled_stat(index: int) -> void:
-	off_labels[index].visible = false
+	off_parents[index].visible = false
 	
 	defect_bars[index].visible = true
 	clean_bars[index].modulate.a = 1.0

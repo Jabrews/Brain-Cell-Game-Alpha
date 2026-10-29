@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b4i7m2bbr5t00" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/accept_cell/display_accept_cell.gd" id="3_wx24v"]
 [ext_resource type="Texture2D" uid="uid://4c5ca0yci1u6" path="res://models/goal_threshold/goal_threshold_circle.png" id="4_352qn"]
 [ext_resource type="Script" uid="uid://dkpnlkc5o1tav" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/accept_cell/helper_display_stat_positions.gd" id="4_eudqh"]
+[ext_resource type="Script" uid="uid://b36eyjucv18we" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/accept_cell/helper_display_boost_valid.gd" id="5_dysca"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_v4hsa"]
 [ext_resource type="Texture2D" uid="uid://ch6xuojgv7ju7" path="res://models/door/warning.png" id="7_kegbq"]
 [ext_resource type="Script" uid="uid://byt707vfcvvuf" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/stat_display/progress_circle.gd" id="8_v4hsa"]
@@ -28,7 +29,9 @@
 [ext_resource type="Shader" uid="uid://cj1uxfdnp7kay" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/shaders/clean_bar_defect_ignored.gdshader" id="21_l3qeo"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="22_my6kx"]
 [ext_resource type="Shader" uid="uid://8alueq6obkxe" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/shaders/defect_bar_defect_ignored.gdshader" id="23_nv3my"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="27_sednb"]
 [ext_resource type="Script" uid="uid://c4b4vfqxh22ju" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/float_parent.gd" id="29_i8e7w"]
+[ext_resource type="Texture2D" uid="uid://c87dyek62j74i" path="res://models/file_cabinet/exit_btn.png" id="29_shus4"]
 
 [sub_resource type="Shader" id="Shader_dak4g"]
 code = "shader_type canvas_item;
@@ -193,6 +196,15 @@ shader_parameter/defect_flash_speed = 0.0
 shader_parameter/stripe_density = 8.0
 shader_parameter/blip_width = 0.002000000095
 shader_parameter/low_stripe_opacity = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ofdm"]
+shader = ExtResource("27_sednb")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 1.0000000475
+shader_parameter/shimmer_strength = 0.15
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(0.7, 0.9, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
 shader = ExtResource("1_6c3qd")
@@ -395,6 +407,9 @@ script = ExtResource("3_wx24v")
 
 [node name="HelperDisplayStatPositions" type="Node" parent="DisplayAcceptCell" unique_id=161303361]
 script = ExtResource("4_eudqh")
+
+[node name="HelperDisplayBoostValid" type="Node" parent="DisplayAcceptCell" unique_id=44381110]
+script = ExtResource("5_dysca")
 
 [node name="RefreshStatDisplay" type="Node" parent="." unique_id=908792165]
 script = ExtResource("1_x2m6x")
@@ -746,7 +761,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AcceptCell" type="Control" parent="." unique_id=1539764947]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1627,20 +1641,296 @@ theme_override_font_sizes/font_size = 20
 text = "per stat"
 horizontal_alignment = 1
 
-[node name="AppliedLabel" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=1277272261]
+[node name="CheckMark" type="Control" parent="AcceptCell/Footer/TriadBonous" unique_id=2055405077]
+anchors_preset = 0
+offset_left = -70.0
+offset_top = 48.0
+offset_right = -30.0
+offset_bottom = 88.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/CheckMark" unique_id=1423189788]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 318.0
+offset_right = 137.0
+offset_bottom = 331.0
+color = Color(0.44313726, 0.75686276, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/CheckMark" unique_id=1692409123]
+modulate = Color(0.25490198, 0.44705883, 0, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 198.0
-offset_top = 320.0
-offset_right = 310.0
-offset_bottom = 380.0
+offset_left = 125.0
+offset_top = 317.0
+offset_right = 136.0
+offset_bottom = 332.0
+texture = ExtResource("8_w7rbg")
+expand_mode = 1
+
+[node name="AppliedParent" type="Control" parent="AcceptCell/Footer/TriadBonous" unique_id=1129668753]
+visible = false
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 4.0
+offset_right = 41.0
+offset_bottom = 44.0
+
+[node name="AppliedLabel" type="Label" parent="AcceptCell/Footer/TriadBonous/AppliedParent" unique_id=1277272261]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6ofdm")
+layout_mode = 0
+offset_left = 200.0
+offset_top = 316.0
+offset_right = 312.0
+offset_bottom = 376.0
+pivot_offset = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(0.44404316, 0.7564612, 7.70092e-07, 1)
 theme_override_constants/line_spacing = -20
 theme_override_fonts/font = ExtResource("6_v4hsa")
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 24
 text = "Applied"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/AppliedParent" unique_id=1590804940]
+layout_mode = 0
+offset_left = 201.0
+offset_top = 337.0
+offset_right = 218.0
+offset_bottom = 354.0
+color = Color(0.44313726, 0.75686276, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/AppliedParent" unique_id=766633956]
+modulate = Color(0.25490198, 0.44705883, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 202.0
+offset_top = 336.0
+offset_right = 217.0
+offset_bottom = 355.0
+texture = ExtResource("8_w7rbg")
+expand_mode = 1
+
+[node name="FailedParent" type="Control" parent="AcceptCell/Footer/TriadBonous" unique_id=1235011790]
+anchors_preset = 0
+offset_left = 6.0
+offset_right = 46.0
+offset_bottom = 40.0
+
+[node name="AppliedLabel2" type="Label" parent="AcceptCell/Footer/TriadBonous/FailedParent" unique_id=519009839]
+texture_filter = 1
+layout_mode = 0
+offset_left = 187.0
+offset_top = 320.0
+offset_right = 314.0
+offset_bottom = 380.0
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.76, 0, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 22
+text = "Inapplicable"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/FailedParent" unique_id=679448675]
+layout_mode = 0
+offset_left = 179.0
+offset_top = 341.0
+offset_right = 196.0
+offset_bottom = 358.0
+color = Color(1, 0, 0, 1)
+
+[node name="InvalidSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/FailedParent" unique_id=2091601044]
+modulate = Color(0.42, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 180.0
+offset_top = 342.0
+offset_right = 195.0
+offset_bottom = 357.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
+
+[node name="BonusSymbols" type="Control" parent="AcceptCell" unique_id=1503876940]
+anchors_preset = 0
+offset_left = 8.0
+offset_right = 48.0
+offset_bottom = 40.0
+
+[node name="CheckmarkSymbols" type="Control" parent="AcceptCell/BonusSymbols" unique_id=1743932106]
+anchors_preset = 0
+offset_left = -8.0
+offset_right = 32.0
+offset_bottom = 40.0
+
+[node name="StrengthCheckMark" type="Control" parent="AcceptCell/BonusSymbols/CheckmarkSymbols" unique_id=468906651]
+visible = false
+anchors_preset = 0
+offset_left = 6.0
+offset_top = -261.0
+offset_right = 46.0
+offset_bottom = -221.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/BonusSymbols/CheckmarkSymbols/StrengthCheckMark" unique_id=931777930]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 314.0
+offset_right = 141.0
+offset_bottom = 331.0
+color = Color(0.44313726, 0.75686276, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/BonusSymbols/CheckmarkSymbols/StrengthCheckMark" unique_id=758823528]
+modulate = Color(0.25490198, 0.44705883, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 313.0
+offset_right = 140.0
+offset_bottom = 332.0
+texture = ExtResource("8_w7rbg")
+expand_mode = 1
+
+[node name="IntelligenceCheckMark" type="Control" parent="AcceptCell/BonusSymbols/CheckmarkSymbols" unique_id=336970765]
+visible = false
+anchors_preset = 0
+offset_left = 61.0
+offset_top = -168.0
+offset_right = 101.0
+offset_bottom = -128.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/BonusSymbols/CheckmarkSymbols/IntelligenceCheckMark" unique_id=1863695693]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 314.0
+offset_right = 141.0
+offset_bottom = 331.0
+color = Color(0.44313726, 0.75686276, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/BonusSymbols/CheckmarkSymbols/IntelligenceCheckMark" unique_id=2039331953]
+modulate = Color(0.25490198, 0.44705883, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 313.0
+offset_right = 140.0
+offset_bottom = 332.0
+texture = ExtResource("8_w7rbg")
+expand_mode = 1
+
+[node name="CommunityCheckMark" type="Control" parent="AcceptCell/BonusSymbols/CheckmarkSymbols" unique_id=2085493005]
+visible = false
+anchors_preset = 0
+offset_left = 20.0
+offset_top = -77.0
+offset_right = 60.0
+offset_bottom = -37.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/BonusSymbols/CheckmarkSymbols/CommunityCheckMark" unique_id=237355486]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 314.0
+offset_right = 141.0
+offset_bottom = 331.0
+color = Color(0.44313726, 0.75686276, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/BonusSymbols/CheckmarkSymbols/CommunityCheckMark" unique_id=884644837]
+modulate = Color(0.25490198, 0.44705883, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 125.0
+offset_top = 313.0
+offset_right = 140.0
+offset_bottom = 332.0
+texture = ExtResource("8_w7rbg")
+expand_mode = 1
+
+[node name="InvalidSymbols" type="Control" parent="AcceptCell/BonusSymbols" unique_id=243509691]
+anchors_preset = 0
+offset_left = -8.0
+offset_right = 32.0
+offset_bottom = 40.0
+
+[node name="StrengthInvalid" type="Control" parent="AcceptCell/BonusSymbols/InvalidSymbols" unique_id=1654676864]
+visible = false
+anchors_preset = 0
+offset_left = 6.0
+offset_top = -261.0
+offset_right = 46.0
+offset_bottom = -221.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/BonusSymbols/InvalidSymbols/StrengthInvalid" unique_id=188167860]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 314.0
+offset_right = 141.0
+offset_bottom = 331.0
+color = Color(1, 0, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/BonusSymbols/InvalidSymbols/StrengthInvalid" unique_id=1911381132]
+modulate = Color(0.47, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 127.0
+offset_top = 317.0
+offset_right = 138.0
+offset_bottom = 328.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
+
+[node name="IntelligenceInvalid" type="Control" parent="AcceptCell/BonusSymbols/InvalidSymbols" unique_id=653118077]
+visible = false
+anchors_preset = 0
+offset_left = 61.0
+offset_top = -168.0
+offset_right = 101.0
+offset_bottom = -128.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/BonusSymbols/InvalidSymbols/IntelligenceInvalid" unique_id=481179447]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 314.0
+offset_right = 141.0
+offset_bottom = 331.0
+color = Color(1, 0, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/BonusSymbols/InvalidSymbols/IntelligenceInvalid" unique_id=766531265]
+modulate = Color(0.47, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 127.0
+offset_top = 317.0
+offset_right = 138.0
+offset_bottom = 328.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
+
+[node name="CommunityInvalid" type="Control" parent="AcceptCell/BonusSymbols/InvalidSymbols" unique_id=25590030]
+visible = false
+anchors_preset = 0
+offset_left = 20.0
+offset_top = -77.0
+offset_right = 60.0
+offset_bottom = -37.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/BonusSymbols/InvalidSymbols/CommunityInvalid" unique_id=779716961]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 314.0
+offset_right = 141.0
+offset_bottom = 331.0
+color = Color(1, 0, 0, 1)
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/BonusSymbols/InvalidSymbols/CommunityInvalid" unique_id=1162976155]
+modulate = Color(0.47, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 127.0
+offset_top = 317.0
+offset_right = 138.0
+offset_bottom = 328.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
 
 [node name="LoadingNextPiece" type="Control" parent="." unique_id=1237327283]
 visible = false

@@ -121,7 +121,7 @@ offset_top = 55.0
 offset_right = 101.0
 offset_bottom = 75.0
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
 
 [node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Strength/Off" unique_id=959092716]
 layout_mode = 0
@@ -195,7 +195,7 @@ offset_top = 55.0
 offset_right = 101.0
 offset_bottom = 75.0
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
 
 [node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=263685071]
 layout_mode = 0
@@ -269,7 +269,7 @@ offset_top = 55.0
 offset_right = 101.0
 offset_bottom = 75.0
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
 
 [node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1643654796]
 layout_mode = 0

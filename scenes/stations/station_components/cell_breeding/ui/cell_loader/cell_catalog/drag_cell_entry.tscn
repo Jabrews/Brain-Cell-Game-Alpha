@@ -124,7 +124,7 @@ offset_right = 88.0
 offset_bottom = 66.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.21230483, 0.21230483, 0.21230483, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Strength/Off" unique_id=1673957313]
 layout_mode = 0
@@ -201,7 +201,7 @@ offset_right = 88.0
 offset_bottom = 66.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.21230483, 0.21230483, 0.21230483, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Intelligence/Off" unique_id=1905251593]
 layout_mode = 0
@@ -278,7 +278,7 @@ offset_right = 88.0
 offset_bottom = 66.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
-color = Color(0.09, 0.09, 0.09, 1)
+color = Color(0.21230483, 0.21230483, 0.21230483, 1)
 
 [node name="Label" type="Label" parent="StatDisplay/Community/Off" unique_id=664368084]
 layout_mode = 0

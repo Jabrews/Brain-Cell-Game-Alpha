@@ -19,10 +19,10 @@ extends Node
 	$"../StatDisplay/ProgressLabels/CurrValueLabels/IntelligenceCurrLabel",
 	$"../StatDisplay/ProgressLabels/CurrValueLabels/CommunityCurrLabel"
 ]
-@onready var off_disable_labels : Array[Label] = [
-	$"../StatDisplay/OffDisableLabels/StrengthOffLabel",
-	$"../StatDisplay/OffDisableLabels/IntelligenceOffLabel",
-	$"../StatDisplay/OffDisableLabels/CommunityOffLabel"
+@onready var disable_parents : Array[Control] = [
+	$"../StatDisplay/DisabledParents/StrengthDisabled",
+	$"../StatDisplay/DisabledParents/IntelligenceDisabled",
+	$"../StatDisplay/DisabledParents/CommunityDisabled"
 ]
 @onready var defect_bars : Array[TextureProgressBar] = [
 	$"../StatDisplay/DefectBars/DefectStrengthBar",
@@ -72,8 +72,8 @@ func _reset(disable_progress_labels : bool) :
 		sprite.modulate.a = 1.0
 	for label : Label in progress_bar_stat_labels :
 		label.modulate.a = 1.0
-	for label : Label in off_disable_labels :
-		label.visible = false
+	for disable_parent : Control in disable_parents:
+		disable_parent.visible = false
 	if not disable_progress_labels :			
 		for label : Label in curr_value_labels :
 			label.visible = true

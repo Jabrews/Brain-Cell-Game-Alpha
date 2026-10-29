@@ -1869,20 +1869,6 @@ offset_top = -8.0
 offset_right = 40.0
 offset_bottom = 32.0
 
-[node name="CellName" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=1996517045]
-texture_filter = 1
-layout_mode = 0
-offset_left = 16.0
-offset_top = 6.0
-offset_right = 336.0
-offset_bottom = 79.0
-theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 19
-text = "None
-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Strength" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=472389808]
 anchors_preset = 0
 offset_top = -8.0
@@ -1924,18 +1910,30 @@ position = Vector2(176, 100.25)
 scale = Vector2(0.91428566, 1.3125)
 texture = SubResource("CompressedTexture2D_enf6v")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=1745622019]
+[node name="DisabledParent" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength" unique_id=1458833160]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DisabledParent" unique_id=869254799]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 74.0
+offset_right = 321.0
+offset_bottom = 126.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DisabledParent" unique_id=1960207129]
 texture_filter = 1
 layout_mode = 0
-offset_left = 92.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 103.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 307.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1981,18 +1979,30 @@ position = Vector2(176, 100.25)
 scale = Vector2(0.91428566, 1.3125)
 texture = SubResource("CompressedTexture2D_enf6v")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=419902876]
+[node name="DisabledParent" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence" unique_id=1441822475]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DisabledParent" unique_id=1878667418]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 74.0
+offset_right = 321.0
+offset_bottom = 126.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DisabledParent" unique_id=1021829030]
 texture_filter = 1
 layout_mode = 0
-offset_left = 92.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 103.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 307.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2038,19 +2048,45 @@ position = Vector2(176, 100.25)
 scale = Vector2(0.91428566, 1.3125)
 texture = SubResource("CompressedTexture2D_enf6v")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=33203398]
+[node name="DisabledParent" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community" unique_id=421261324]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DisabledParent" unique_id=1598693883]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 74.0
+offset_right = 321.0
+offset_bottom = 126.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DisabledParent" unique_id=565728255]
 texture_filter = 1
 layout_mode = 0
-offset_left = 92.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 103.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 307.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CellName" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay" unique_id=2031266519]
+texture_filter = 1
+layout_mode = 0
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 334.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("5_kwfm5")
+theme_override_font_sizes/font_size = 19
+text = "None
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2139,13 +2175,13 @@ offset_top = -8.0
 offset_right = 40.0
 offset_bottom = 32.0
 
-[node name="CellName" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1114197558]
+[node name="CellName" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay" unique_id=1139098311]
 texture_filter = 1
 layout_mode = 0
-offset_left = 16.0
-offset_top = 6.0
-offset_right = 336.0
-offset_bottom = 79.0
+offset_left = 14.0
+offset_top = 13.0
+offset_right = 334.0
+offset_bottom = 54.0
 theme_override_fonts/font = ExtResource("5_kwfm5")
 theme_override_font_sizes/font_size = 19
 text = "None
@@ -2194,18 +2230,30 @@ position = Vector2(176, 100.25)
 scale = Vector2(0.91428566, 1.3125)
 texture = SubResource("CompressedTexture2D_enf6v")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1304295398]
+[node name="DisabledParent" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength" unique_id=1818004176]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DisabledParent" unique_id=1061795191]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 74.0
+offset_right = 321.0
+offset_bottom = 126.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DisabledParent" unique_id=1251958590]
 texture_filter = 1
 layout_mode = 0
-offset_left = 92.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 103.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 307.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2251,18 +2299,30 @@ position = Vector2(176, 100.25)
 scale = Vector2(0.91428566, 1.3125)
 texture = SubResource("CompressedTexture2D_enf6v")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=1850857029]
+[node name="DisabledParent" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence" unique_id=866715246]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DisabledParent" unique_id=1193396451]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 74.0
+offset_right = 321.0
+offset_bottom = 126.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DisabledParent" unique_id=1386442278]
 texture_filter = 1
 layout_mode = 0
-offset_left = 92.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 103.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 307.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2308,18 +2368,30 @@ position = Vector2(176, 100.25)
 scale = Vector2(0.91428566, 1.3125)
 texture = SubResource("CompressedTexture2D_enf6v")
 
-[node name="OffLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=1805231218]
+[node name="DisabledParent" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community" unique_id=1899048732]
 visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DisabledParent" unique_id=714360129]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 74.0
+offset_right = 321.0
+offset_bottom = 126.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DisabledParent" unique_id=2037496712]
 texture_filter = 1
 layout_mode = 0
-offset_left = 92.0
-offset_top = 80.0
-offset_right = 260.0
-offset_bottom = 103.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 43.0
+offset_top = 74.0
+offset_right = 307.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_kwfm5")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2682,6 +2754,7 @@ offset_right = 40.0
 offset_bottom = 36.0
 
 [node name="LeftBoostDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BoostDisplays" unique_id=2136869072]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -3507,6 +3580,7 @@ theme_override_font_sizes/font_size = 20
 text = "boost cell"
 
 [node name="RightBoostDisplay" type="Control" parent="BreedingUI/CellLoader/BreedingView/BoostDisplays" unique_id=420405524]
+visible = false
 anchors_preset = 0
 offset_left = 376.0
 offset_right = 416.0

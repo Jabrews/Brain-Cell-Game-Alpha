@@ -16,10 +16,10 @@ extends Node
 	$"../StatDisplay/ProgressLabels/CurrValueLabels/IntelligenceCurrLabel",
 	$"../StatDisplay/ProgressLabels/CurrValueLabels/CommunityCurrLabel"
 ]
-@onready var off_disable_labels : Array[Label] = [
-	$"../StatDisplay/OffDisableLabels/StrengthOffLabel",
-	$"../StatDisplay/OffDisableLabels/IntelligenceOffLabel",
-	$"../StatDisplay/OffDisableLabels/CommunityOffLabel"
+@onready var off_disable_parents : Array[Control] = [
+	$"../StatDisplay/DisabledParents/StrengthDisabled",
+	$"../StatDisplay/DisabledParents/IntelligenceDisabled",
+	$"../StatDisplay/DisabledParents/CommunityDisabled"
 ]
 
 func _handle(cell_stats_dic) :
@@ -41,25 +41,25 @@ func remove_cell_disabled_stat(
 			"strength" :
 				progress_bar_sprites[0].modulate.a = 0.1
 				progress_bar_sprites[0].material.set_shader_parameter("prisoner_value", 0)
-				progress_bar_stat_labels[0].modulate.a = 0.1
+				progress_bar_stat_labels[0].modulate.a = 0.4
 				curr_value_labels[0].visible = false
-				off_disable_labels[0].visible = true
+				off_disable_parents[0].visible = true
 				cell_stats_dic.erase(key)
 
 			"intelligence" :
 				progress_bar_sprites[1].modulate.a = 0.1
 				progress_bar_sprites[1].material.set_shader_parameter("prisoner_value", 0)
-				progress_bar_stat_labels[1].modulate.a = 0.1
+				progress_bar_stat_labels[1].modulate.a = 0.3
 				curr_value_labels[1].visible = false 
-				off_disable_labels[1].visible = true
+				off_disable_parents[1].visible = true
 				cell_stats_dic.erase(key)
 
 			"community" :
 				progress_bar_sprites[2].modulate.a = 0.1
 				progress_bar_sprites[2].material.set_shader_parameter("prisoner_value", 0)
-				progress_bar_stat_labels[2].modulate.a = 0.1
+				progress_bar_stat_labels[2].modulate.a = 0.3
 				curr_value_labels[2].visible = false 
-				off_disable_labels[2].visible = true
+				off_disable_parents[2].visible = true
 				cell_stats_dic.erase(key)
 
 	return cell_stats_dic

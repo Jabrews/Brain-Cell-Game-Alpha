@@ -107,22 +107,23 @@ metadata/_edit_use_anchors_ = true
 
 [node name="CellName" type="Label" parent="StatDisplay" unique_id=179676983]
 layout_mode = 0
-offset_left = 142.0
-offset_top = -2.0
-offset_right = 316.0
-offset_bottom = 41.0
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 479.0
+offset_bottom = 50.0
 theme_override_fonts/font = ExtResource("3_jqv5s")
 theme_override_font_sizes/font_size = 20
 text = "None
 "
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CellLifeSpan" type="Label" parent="StatDisplay" unique_id=323910199]
 layout_mode = 0
 offset_left = 299.0
-offset_top = -2.0
+offset_top = 10.0
 offset_right = 473.0
-offset_bottom = 44.97059
+offset_bottom = 56.97059
 theme_override_fonts/font = ExtResource("3_jqv5s")
 theme_override_font_sizes/font_size = 12
 text = " Lifespan - 4
@@ -397,53 +398,89 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OffDisableLabels" type="Control" parent="StatDisplay" unique_id=2132381243]
+[node name="DisabledParents" type="Control" parent="StatDisplay" unique_id=2132381243]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="StrengthOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=320228149]
-visible = false
+[node name="StrengthDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=930173538]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StatDisplay/DisabledParents/StrengthDisabled" unique_id=655568846]
 layout_mode = 0
-offset_left = 219.0
-offset_top = 57.0
-offset_right = 387.0
-offset_bottom = 80.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 148.0
+offset_top = 54.0
+offset_right = 458.0
+offset_bottom = 96.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="OffLabel" type="Label" parent="StatDisplay/DisabledParents/StrengthDisabled" unique_id=148233355]
+texture_filter = 1
+layout_mode = 0
+offset_left = 153.0
+offset_top = 60.0
+offset_right = 455.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_jqv5s")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 24
 text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IntelligenceOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=67840532]
-visible = false
+[node name="IntelligenceDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=1779568769]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StatDisplay/DisabledParents/IntelligenceDisabled" unique_id=710578023]
 layout_mode = 0
-offset_left = 219.0
-offset_top = 132.0
-offset_right = 387.0
-offset_bottom = 155.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 148.0
+offset_top = 54.0
+offset_right = 458.0
+offset_bottom = 96.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="OffLabel" type="Label" parent="StatDisplay/DisabledParents/IntelligenceDisabled" unique_id=1229886011]
+texture_filter = 1
+layout_mode = 0
+offset_left = 153.0
+offset_top = 60.0
+offset_right = 455.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_jqv5s")
-theme_override_font_sizes/font_size = 11
-text = "off"
+theme_override_font_sizes/font_size = 24
+text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CommunityOffLabel" type="Label" parent="StatDisplay/OffDisableLabels" unique_id=618707826]
-visible = false
+[node name="CommunityDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=1013981188]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="StatDisplay/DisabledParents/CommunityDisabled" unique_id=1215116115]
 layout_mode = 0
-offset_left = 219.0
-offset_top = 210.0
-offset_right = 387.0
-offset_bottom = 233.0
-scale = Vector2(1, 1.2399988)
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+offset_left = 148.0
+offset_top = 54.0
+offset_right = 458.0
+offset_bottom = 96.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="OffLabel" type="Label" parent="StatDisplay/DisabledParents/CommunityDisabled" unique_id=1454372576]
+texture_filter = 1
+layout_mode = 0
+offset_left = 153.0
+offset_top = 60.0
+offset_right = 455.0
+offset_bottom = 92.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_jqv5s")
-theme_override_font_sizes/font_size = 11
-text = "off"
+theme_override_font_sizes/font_size = 24
+text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -6,7 +6,7 @@ extends Node
 
 var dissolving_cell : DissolvingCell
 
-func _create_inital_dissolving_cell(active_threshold_piece : ThresholdPiece) : 
+func _create_inital_dissolving_cell(active_threshold_piece : ThresholdPiece) :
 	
 	dissolving_cell = DissolvingCell.new(
 		null, # corrisponding cell
@@ -19,7 +19,7 @@ func _create_inital_dissolving_cell(active_threshold_piece : ThresholdPiece) :
 
 func _create_dissolving_cell(elevator_cell_container: CharacterBody3D) :
 	
-	if not elevator_cell_container: 
+	if not elevator_cell_container:
 		push_error('trying to create dissolve cell without elevator cell')
 		return
 	
@@ -43,9 +43,9 @@ func _create_dissolving_cell(elevator_cell_container: CharacterBody3D) :
 	)
 	
 	## ALL STAT BONUS ##
-	var all_stat_bonus_active : bool = decide_all_stat_bonus(dissolving_cell)	
+	var all_stat_bonus_active : bool = decide_all_stat_bonus(dissolving_cell)
 	
-	if all_stat_bonus_active : 
+	if all_stat_bonus_active :
 		dissolving_cell = apply_all_stat_bonus()
 	####################
 
@@ -67,7 +67,8 @@ func decide_all_stat_bonus(dissolve_cell: DissolvingCell) -> bool:
 
 	## get included threshold stats ##
 	for threshold_stat in active_threshold_piece.get_stats():
-		if not threshold_stat.disabled:
+		# stat isnt disabled or completed
+		if not threshold_stat.disabled or threshold_stat.finished:
 			threshold_stats_included.append(threshold_stat.type)
 
 	if threshold_stats_included.is_empty():
@@ -89,7 +90,7 @@ func decide_all_stat_bonus(dissolve_cell: DissolvingCell) -> bool:
 			return false
 		
 		# if stat is hidden or disabled includes this
-		if not corresponding_dissolve_stat.dissolve_valid : 
+		if not corresponding_dissolve_stat.dissolve_valid :
 			return false
 
 		# finale check to verify this stat is valud
@@ -99,27 +100,27 @@ func decide_all_stat_bonus(dissolve_cell: DissolvingCell) -> bool:
 	return true
 		
 	
-func apply_all_stat_bonus() -> DissolvingCell : 
+func apply_all_stat_bonus() -> DissolvingCell :
 	
-	dissolving_cell.all_stats_bonus = true	
+	dissolving_cell.all_stats_bonus = true
 	
 	var strength_stat : DissolvingStat = dissolving_cell.strength_dissolving_stat
 	var intelligence_stat : DissolvingStat = dissolving_cell.intelligence_dissolving_stat
 	var community_stat : DissolvingStat= dissolving_cell.community_dissolving_stat
 	
-	if strength_stat.amount_to_decrease > strength_stat.defect_ignore : 
+	if strength_stat.amount_to_decrease > strength_stat.defect_ignore :
 		
-		if strength_stat.dissolve_valid : 
+		if strength_stat.dissolve_valid :
 			strength_stat.amount_to_decrease += strength_stat.amount_to_decrease * 1.0
 		
-	if intelligence_stat.amount_to_decrease > intelligence_stat.defect_ignore : 
+	if intelligence_stat.amount_to_decrease > intelligence_stat.defect_ignore :
 		
-		if intelligence_stat.dissolve_valid : 
+		if intelligence_stat.dissolve_valid :
 			intelligence_stat.amount_to_decrease += intelligence_stat.amount_to_decrease * 1.0
 	
-	if community_stat.amount_to_decrease > community_stat.defect_ignore : 
+	if community_stat.amount_to_decrease > community_stat.defect_ignore :
 		
-		if community_stat.dissolve_valid : 
+		if community_stat.dissolve_valid :
 			community_stat.amount_to_decrease += community_stat.amount_to_decrease * 1.0
 		
 	return dissolving_cell

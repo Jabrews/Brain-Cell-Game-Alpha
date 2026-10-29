@@ -2,7 +2,9 @@ extends Node
 
 # Components
 @onready var accept_cell_parent: Control = $"../AcceptCell"
+# helpers
 @onready var helper_display_stat_positions: Node = $HelperDisplayStatPositions
+@onready var helper_display_boost_valid : Node = $HelperDisplayBoostValid
 
 # Threshold stats
 @onready var threshold_bars: Array[Sprite2D] = [
@@ -85,6 +87,10 @@ func show_accept_cell_screen(elevator_cell: BrainCell) -> void:
 	var threshold_piece: ThresholdPiece = (
 		GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
 	)
+	
+	helper_display_boost_valid._display_validity_label(threshold_piece, elevator_cell)
+	
+		
 
 	for stat_index: int in range(stats.size()):
 		var stat: BrainCellStat = stats[stat_index]
@@ -97,6 +103,7 @@ func show_accept_cell_screen(elevator_cell: BrainCell) -> void:
 		var threshold_disabled_parent: Control = threshold_disabled_parents[stat_index]
 
 		helper_display_stat_positions._display(threshold_stat, threshold_bar)
+		helper_display_boost_valid._display_stat_type_symbol(threshold_stat, stat)
 
 		_display_threshold_bars(
 			stat,
@@ -191,7 +198,7 @@ func _display_defect_ignored(
 	disabled_parent.visible = false
 
 	# A disabled threshold shows none of the defect-ignored states.
-	if threshold_stat.disabled:
+	if threshold_stat.disabled or threshold_stat.finished:
 		return
 
 	if not stat.enabled:

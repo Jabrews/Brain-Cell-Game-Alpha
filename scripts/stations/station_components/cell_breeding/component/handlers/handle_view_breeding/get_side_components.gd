@@ -26,10 +26,10 @@ extends Node
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/HiddenSprite"
 ]
 
-@onready var l_off_labels : Array[Label] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/OffLabel",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/OffLabel",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/OffLabel"
+@onready var l_off_parents : Array[Control] = [
+	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DisabledParent",
+	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DisabledParent",
+	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DisabledParent"
 ]
 
 
@@ -57,10 +57,10 @@ extends Node
 	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/HiddenSprite"
 ]
 
-@onready var r_off_labels : Array[Label] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/OffLabel",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/OffLabel",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/OffLabel"
+@onready var r_off_parents : Array[Control] = [
+	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DisabledParent",
+	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DisabledParent",
+	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DisabledParent"
 ]
 
 ## failure chance
@@ -115,7 +115,7 @@ func _get_stat(side: String) -> Dictionary:
 				"clean_bars": l_clean_bars,
 				"defect_bars": l_defect_bars,
 				"hidden_sprites": l_hidden_sprites,
-				"off_labels": l_off_labels
+				'off_parents' : l_off_parents,
 			}
 		
 		"right":
@@ -127,7 +127,7 @@ func _get_stat(side: String) -> Dictionary:
 				"clean_bars": r_clean_bars,
 				"defect_bars": r_defect_bars,
 				"hidden_sprites": r_hidden_sprites,
-				"off_labels": r_off_labels
+				'off_parents' : r_off_parents,
 			}
 		
 		_:
