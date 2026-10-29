@@ -23,6 +23,7 @@
 [ext_resource type="Shader" uid="uid://c8l3dppygpvfr" path="res://scripts/stations/station_components/goal_threshold_interface/shaders/threshold_stat.gdshader" id="16_my6kx"]
 [ext_resource type="Texture2D" uid="uid://chyb1sra7gn6f" path="res://models/screens/prisoner_profiler_symbols/defect.png" id="16_plfpx"]
 [ext_resource type="Texture2D" uid="uid://dh8gukj1683r4" path="res://models/goal_threshold/bars_accept_cell/BarMedium.png" id="17_ps5e4"]
+[ext_resource type="Script" uid="uid://crva3i2mvt1pc" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/stat_display/bonus_active.gd" id="18_dysca"]
 [ext_resource type="Texture2D" uid="uid://cnnr44l8f0irk" path="res://models/goal_threshold/bars_accept_cell/BarSmall.png" id="18_rm1ek"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="20_xrr3f"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="21_40ur5"]
@@ -147,6 +148,15 @@ shader_parameter/progress_color = Color(0.87, 0, 0, 1)
 shader_parameter/mask_color = Color(0.12156863, 0.12156863, 0.12156863, 1)
 shader_parameter/mask_tolerance = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ofdm"]
+shader = ExtResource("27_sednb")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 1.0000000475
+shader_parameter/shimmer_strength = 0.15
+shader_parameter/scanline_strength = 0.08
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(0.7, 0.9, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
 shader = ExtResource("21_l3qeo")
 shader_parameter/prisoner_value = 0.4690000222775
@@ -196,15 +206,6 @@ shader_parameter/defect_flash_speed = 0.0
 shader_parameter/stripe_density = 8.0
 shader_parameter/blip_width = 0.002000000095
 shader_parameter/low_stripe_opacity = 0.15
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ofdm"]
-shader = ExtResource("27_sednb")
-shader_parameter/hologram_enabled = true
-shader_parameter/shimmer_speed = 1.0000000475
-shader_parameter/shimmer_strength = 0.15
-shader_parameter/scanline_strength = 0.08
-shader_parameter/scanline_density = 90.0
-shader_parameter/hologram_tint = Color(0.7, 0.9, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vau7t"]
 shader = ExtResource("1_6c3qd")
@@ -760,7 +761,67 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="BonusActive" type="Control" parent="Stats" unique_id=870078473]
+visible = false
+anchors_preset = 0
+offset_left = 24.0
+offset_right = 64.0
+offset_bottom = 40.0
+script = ExtResource("18_dysca")
+
+[node name="ColorRect" type="ColorRect" parent="Stats/BonusActive" unique_id=1396900897]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 8.0
+offset_right = 480.0
+offset_bottom = 51.0
+color = Color(0.0595, 0.07, 0, 1)
+
+[node name="StatTypeLabel" type="Label" parent="Stats/BonusActive" unique_id=1552001177]
+texture_filter = 1
+material = SubResource("ShaderMaterial_6ofdm")
+layout_mode = 0
+offset_left = 272.0
+offset_top = 8.0
+offset_right = 432.0
+offset_bottom = 48.0
+theme_override_colors/font_color = Color(0.5666666, 1, 0, 1)
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 22
+text = "Boost Active"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Plus25Label" type="Label" parent="Stats/BonusActive" unique_id=910418197]
+texture_filter = 1
+layout_mode = 0
+offset_left = 408.0
+offset_top = 10.0
+offset_right = 481.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.2530139, 0.44700027, 0, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 22
+text = "+25% "
+horizontal_alignment = 1
+
+[node name="PerStatLabel" type="Label" parent="Stats/BonusActive" unique_id=1145931794]
+texture_filter = 1
+layout_mode = 0
+offset_left = 412.0
+offset_top = 27.0
+offset_right = 479.0
+offset_bottom = 51.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -20
+theme_override_fonts/font = ExtResource("6_v4hsa")
+theme_override_font_sizes/font_size = 16
+text = "per stat"
+horizontal_alignment = 1
+
 [node name="AcceptCell" type="Control" parent="." unique_id=1539764947]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -1590,12 +1651,28 @@ offset_left = 8.0
 offset_right = 48.0
 offset_bottom = 40.0
 
+[node name="BG3" type="ColorRect" parent="AcceptCell/Footer/TriadBonous" unique_id=1977092352]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 320.0
+offset_right = 312.0
+offset_bottom = 384.0
+color = Color(0.13, 0, 0, 1)
+
 [node name="BG" type="ColorRect" parent="AcceptCell/Footer/TriadBonous" unique_id=2040734918]
 layout_mode = 0
 offset_top = 319.0
-offset_right = 312.0
+offset_right = 176.0
 offset_bottom = 384.0
 color = Color(0.07058824, 0, 0, 1)
+
+[node name="BG2" type="ColorRect" parent="AcceptCell/Footer/TriadBonous" unique_id=75368408]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 358.0
+offset_right = 312.0
+offset_bottom = 384.0
+color = Color(0.11, 0.077, 0.077, 1)
 
 [node name="AllStatBonusLabel" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=213998987]
 texture_filter = 1
@@ -1616,9 +1693,9 @@ vertical_alignment = 1
 [node name="Plus25Label" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=943112188]
 texture_filter = 1
 layout_mode = 0
-offset_left = 100.0
+offset_left = 88.0
 offset_top = 325.0
-offset_right = 173.0
+offset_right = 161.0
 offset_bottom = 381.0
 theme_override_colors/font_color = Color(0.2530139, 0.44700027, 0, 1)
 theme_override_constants/line_spacing = -20
@@ -1630,9 +1707,9 @@ horizontal_alignment = 1
 [node name="PerStatLabel" type="Label" parent="AcceptCell/Footer/TriadBonous" unique_id=2068010687]
 texture_filter = 1
 layout_mode = 0
-offset_left = 102.0
+offset_left = 90.0
 offset_top = 350.0
-offset_right = 169.0
+offset_right = 157.0
 offset_bottom = 374.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -20
@@ -1670,10 +1747,9 @@ expand_mode = 1
 [node name="AppliedParent" type="Control" parent="AcceptCell/Footer/TriadBonous" unique_id=1129668753]
 visible = false
 anchors_preset = 0
-offset_left = 1.0
-offset_top = 4.0
-offset_right = 41.0
-offset_bottom = 44.0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 64.0
 
 [node name="AppliedLabel" type="Label" parent="AcceptCell/Footer/TriadBonous/AppliedParent" unique_id=1277272261]
 texture_filter = 1
@@ -1712,10 +1788,12 @@ texture = ExtResource("8_w7rbg")
 expand_mode = 1
 
 [node name="FailedParent" type="Control" parent="AcceptCell/Footer/TriadBonous" unique_id=1235011790]
+visible = false
 anchors_preset = 0
 offset_left = 6.0
+offset_top = 20.0
 offset_right = 46.0
-offset_bottom = 40.0
+offset_bottom = 60.0
 
 [node name="AppliedLabel2" type="Label" parent="AcceptCell/Footer/TriadBonous/FailedParent" unique_id=519009839]
 texture_filter = 1
@@ -1751,6 +1829,179 @@ offset_right = 195.0
 offset_bottom = 357.0
 texture = ExtResource("29_shus4")
 expand_mode = 1
+
+[node name="SymbolHintParent" type="Control" parent="AcceptCell/Footer/TriadBonous" unique_id=49746011]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent" unique_id=349971570]
+anchors_preset = 0
+offset_left = -4.0
+offset_top = -1.0
+offset_right = 36.0
+offset_bottom = 39.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Strength" unique_id=911376530]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 321.0
+offset_right = 225.0
+offset_bottom = 359.0
+color = Color(0.18780664, 0.1418907, 0.14188409, 1)
+
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Strength" unique_id=519224679]
+texture_filter = 1
+layout_mode = 0
+offset_left = 185.0
+offset_top = 325.0
+offset_right = 221.0
+offset_bottom = 341.0
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 12
+text = "str"
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Strength" unique_id=103789398]
+visible = false
+modulate = Color(0.50433326, 0.89, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 189.0
+offset_top = 336.0
+offset_right = 215.0
+offset_bottom = 358.0
+texture = ExtResource("8_w7rbg")
+
+[node name="InvalidSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Strength" unique_id=1451584943]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 195.0
+offset_top = 338.0
+offset_right = 212.0
+offset_bottom = 356.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
+
+[node name="Intelligence" type="Control" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent" unique_id=1141248928]
+anchors_preset = 0
+offset_left = 41.0
+offset_top = -1.0
+offset_right = 81.0
+offset_bottom = 39.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Intelligence" unique_id=1071340096]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 321.0
+offset_right = 226.0
+offset_bottom = 359.0
+color = Color(0.18780664, 0.1418907, 0.14188409, 1)
+
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Intelligence" unique_id=275442855]
+texture_filter = 1
+layout_mode = 0
+offset_left = 185.0
+offset_top = 325.0
+offset_right = 221.0
+offset_bottom = 341.0
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 12
+text = "int"
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Intelligence" unique_id=1583775280]
+visible = false
+modulate = Color(0.50433326, 0.89, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 189.0
+offset_top = 336.0
+offset_right = 215.0
+offset_bottom = 358.0
+texture = ExtResource("8_w7rbg")
+
+[node name="InvalidSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Intelligence" unique_id=610112626]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 195.0
+offset_top = 338.0
+offset_right = 212.0
+offset_bottom = 356.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
+
+[node name="Community" type="Control" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent" unique_id=954340727]
+anchors_preset = 0
+offset_left = 87.0
+offset_top = -1.0
+offset_right = 127.0
+offset_bottom = 39.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Community" unique_id=552667094]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 321.0
+offset_right = 225.0
+offset_bottom = 359.0
+color = Color(0.18780664, 0.1418907, 0.14188409, 1)
+
+[node name="StatTypeLabel" type="Label" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Community" unique_id=1000316506]
+texture_filter = 1
+layout_mode = 0
+offset_left = 185.0
+offset_top = 325.0
+offset_right = 221.0
+offset_bottom = 341.0
+theme_override_fonts/font = ExtResource("9_plfpx")
+theme_override_font_sizes/font_size = 12
+text = "com"
+
+[node name="CheckMarkSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Community" unique_id=770550890]
+visible = false
+modulate = Color(0.50433326, 0.89, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 189.0
+offset_top = 336.0
+offset_right = 215.0
+offset_bottom = 358.0
+texture = ExtResource("8_w7rbg")
+
+[node name="InvalidSymbol" type="TextureRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/Community" unique_id=1451401358]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 195.0
+offset_top = 338.0
+offset_right = 212.0
+offset_bottom = 356.0
+texture = ExtResource("29_shus4")
+expand_mode = 1
+
+[node name="BGLines" type="Control" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent" unique_id=861113512]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/BGLines" unique_id=46951581]
+layout_mode = 0
+offset_left = 265.0
+offset_top = 318.0
+offset_right = 267.0
+offset_bottom = 358.0
+color = Color(0.15294118, 0.003921569, 0.003921569, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="AcceptCell/Footer/TriadBonous/SymbolHintParent/BGLines" unique_id=1349010595]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 318.0
+offset_right = 222.0
+offset_bottom = 358.0
+color = Color(0.15294118, 0.003921569, 0.003921569, 1)
 
 [node name="BonusSymbols" type="Control" parent="AcceptCell" unique_id=1503876940]
 anchors_preset = 0

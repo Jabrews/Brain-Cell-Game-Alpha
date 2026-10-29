@@ -1,49 +1,76 @@
 extends Node
 
-# stat type symbols components
-@onready var checkmark_symbols : Array[Control] = [
+# Main stat symbols
+@onready var checkmark_symbols: Array[Control] = [
 	$"../../AcceptCell/BonusSymbols/CheckmarkSymbols/StrengthCheckMark",
 	$"../../AcceptCell/BonusSymbols/CheckmarkSymbols/IntelligenceCheckMark",
 	$"../../AcceptCell/BonusSymbols/CheckmarkSymbols/CommunityCheckMark"
 ]
-@onready var invalid_symbols : Array[Control] = [
+
+@onready var invalid_symbols: Array[Control] = [
 	$"../../AcceptCell/BonusSymbols/InvalidSymbols/StrengthInvalid",
 	$"../../AcceptCell/BonusSymbols/InvalidSymbols/IntelligenceInvalid",
 	$"../../AcceptCell/BonusSymbols/InvalidSymbols/CommunityInvalid"
 ]
 
-# bonus parent components
-@onready var applied_parent : Control = $"../../AcceptCell/Footer/TriadBonous/AppliedParent"
-@onready var failed_parent : Control = $"../../AcceptCell/Footer/TriadBonous/FailedParent"
+# Footer hint symbols
+@onready var symbol_hint_checkmark_symbols: Array[TextureRect] = [
+	$"../../AcceptCell/Footer/TriadBonous/SymbolHintParent/Strength/CheckMarkSymbol",
+	$"../../AcceptCell/Footer/TriadBonous/SymbolHintParent/Intelligence/CheckMarkSymbol",
+	$"../../AcceptCell/Footer/TriadBonous/SymbolHintParent/Community/CheckMarkSymbol"
+]
 
-var stats : Array[String] = ['strength', 'intelligence', 'community']
+@onready var symbol_hint_invalid_symbols: Array[TextureRect] = [
+	$"../../AcceptCell/Footer/TriadBonous/SymbolHintParent/Strength/InvalidSymbol",
+	$"../../AcceptCell/Footer/TriadBonous/SymbolHintParent/Intelligence/InvalidSymbol",
+	$"../../AcceptCell/Footer/TriadBonous/SymbolHintParent/Community/InvalidSymbol"
+]
 
-func _display_stat_type_symbol(threshold_stat : ThresholdStat, elevator_cell_stat : BrainCellStat) : 
-	
-	var stat_index : int = stats.find(elevator_cell_stat.type)
-	
-	# get corrisponding symbols
-	var checkmark_symbol : Control = checkmark_symbols[stat_index]
-	var invalid_symbol : Control = invalid_symbols[stat_index]
-	
+# Bonus status parents
+@onready var applied_parent: Control = $"../../AcceptCell/Footer/TriadBonous/AppliedParent"
+@onready var failed_parent: Control = $"../../AcceptCell/Footer/TriadBonous/FailedParent"
+
+var stats: Array[String] = [
+	"strength",
+	"intelligence",
+	"community"
+]
+
+
+func _display_stat_type_symbol(
+	threshold_stat: ThresholdStat,
+	elevator_cell_stat: BrainCellStat
+) -> void:
+	var stat_index: int = stats.find(elevator_cell_stat.type)
+
+	if stat_index == -1:
+		push_warning("Unknown stat type: " + elevator_cell_stat.type)
+		return
+
+	var checkmark_symbol: Control = checkmark_symbols[stat_index]
+	var invalid_symbol: Control = invalid_symbols[stat_index]
+	var hint_checkmark: TextureRect = symbol_hint_checkmark_symbols[stat_index]
+	var hint_invalid: TextureRect = symbol_hint_invalid_symbols[stat_index]
+
+	# Hide all symbols before deciding which ones to show.
 	checkmark_symbol.visible = false
 	invalid_symbol.visible = false
-	
-	if threshold_stat.disabled or threshold_stat.finished: 
+	hint_checkmark.visible = false
+	hint_invalid.visible = false
+
+	# Disabled or completed threshold stats don't show a symbol.
+	if threshold_stat.disabled or threshold_stat.finished:
 		return
-	
-	# stat disabled or hidden
-	if not elevator_cell_stat.enabled or elevator_cell_stat.hidden : 
+
+	var stat_is_valid: bool = _is_stat_valid_for_bonus(elevator_cell_stat)
+
+	if stat_is_valid:
+		checkmark_symbol.visible = true
+		hint_checkmark.visible = true
+	else:
 		invalid_symbol.visible = true
-		return
-	
-	# amount_to_decrease / defect ignore
-	if elevator_cell_stat.value <= elevator_cell_stat.defect : 
-		invalid_symbol.visible = true
-		return
-	
-	checkmark_symbol.visible = true
-	
+		hint_invalid.visible = true
+
 
 func _display_validity_label(
 	threshold_piece: ThresholdPiece,

@@ -28,6 +28,8 @@ extends Node
 # helper components
 @onready var helper_display_stat_postions: Node = $HelperDisplayStatPostions
 
+@onready var bonus_active_parent : Control = $"../Stats/BonusActive"
+
 
 func _ready() -> void:
 	
@@ -50,6 +52,12 @@ func _refresh(dissolving_cell: DissolvingCell) -> void:
 			DissolvingStat.new('intelligence', 0, 0, active_threshold_piece.intelligence, true), # (value/amount to decrease, defect)
 			DissolvingStat.new('community', 0, 0, active_threshold_piece.community, true),
 		)
+	
+	# TODO HERE
+	if dissolving_cell.all_stats_bonus : 
+		bonus_active_parent._toggle_enabled(true)
+	else : 
+		bonus_active_parent._toggle_enabled(false)
 	
 	var dissolving_stats: Array[DissolvingStat] = [
 		dissolving_cell.strength_dissolving_stat,

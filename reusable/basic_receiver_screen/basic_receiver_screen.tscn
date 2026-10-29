@@ -404,6 +404,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="StrengthDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=930173538]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -431,9 +432,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IntelligenceDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=1779568769]
+visible = false
 anchors_preset = 0
+offset_top = 76.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 116.0
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/DisabledParents/IntelligenceDisabled" unique_id=710578023]
 layout_mode = 0
@@ -458,9 +461,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CommunityDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=1013981188]
+visible = false
 anchors_preset = 0
+offset_top = 153.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 193.0
 
 [node name="ColorRect" type="ColorRect" parent="StatDisplay/DisabledParents/CommunityDisabled" unique_id=1215116115]
 layout_mode = 0

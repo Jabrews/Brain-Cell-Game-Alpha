@@ -47,6 +47,7 @@ func _create_dissolving_cell(elevator_cell_container: CharacterBody3D) :
 	
 	if all_stat_bonus_active :
 		dissolving_cell = apply_all_stat_bonus()
+		
 	####################
 
 	handle_dissolving._refresh()
