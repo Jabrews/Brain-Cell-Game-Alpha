@@ -35,6 +35,8 @@
 [ext_resource type="AudioStream" uid="uid://w647yulxe8lj" path="res://sounds/goal_threshold_interface/old/emergency_start_2.mp3" id="32_10pim"]
 [ext_resource type="AudioStream" uid="uid://rfwq70y3qt6t" path="res://sounds/goal_threshold_interface/old/tick_sound.mp3" id="32_nt8su"]
 [ext_resource type="AudioStream" uid="uid://ng0hu2ohefo1" path="res://sounds/goal_threshold_interface/old/emergency_end_2.mp3" id="34_pbtrp"]
+[ext_resource type="AudioStream" uid="uid://bbf2v0tmn5mui" path="res://sounds/player_local_sounds/defect_scraps/scrap_increment.mp3" id="36_kxlma"]
+[ext_resource type="AudioStream" uid="uid://tpyrxwdw6kbi" path="res://sounds/player_local_sounds/defect_scraps/scrap_finished.mp3" id="37_ieypo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 height = 3.5
@@ -253,6 +255,13 @@ pitch_scale = 0.8
 [node name="EmergencyEnd" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=1938153511]
 stream = ExtResource("34_pbtrp")
 volume_db = 20.0
+
+[node name="DefectScrapIncrement" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=31070761]
+stream = ExtResource("36_kxlma")
+
+[node name="DefectScrapFinished" type="AudioStreamPlayer3D" parent="PlayerLocalSounds" unique_id=260454239]
+stream = ExtResource("37_ieypo")
+pitch_scale = 1.5
 
 [connection signal="body_entered" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_entered"]
 [connection signal="body_exited" from="CameraPivot/Camera3D/PlayerAxe/hurt_box" to="CameraPivot/Camera3D/PlayerAxe" method="_on_hurt_box_body_exited"]

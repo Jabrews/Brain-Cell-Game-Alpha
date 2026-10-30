@@ -25,7 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dh8gukj1683r4" path="res://models/goal_threshold/bars_accept_cell/BarMedium.png" id="17_ps5e4"]
 [ext_resource type="Script" uid="uid://crva3i2mvt1pc" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/stat_display/bonus_active.gd" id="18_dysca"]
 [ext_resource type="Texture2D" uid="uid://cnnr44l8f0irk" path="res://models/goal_threshold/bars_accept_cell/BarSmall.png" id="18_rm1ek"]
-[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="20_xrr3f"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="20_xrr3f"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="21_40ur5"]
 [ext_resource type="Shader" uid="uid://cj1uxfdnp7kay" path="res://scripts/stations/station_screens/goal_threshold_interface/stat_threshold_display/shaders/clean_bar_defect_ignored.gdshader" id="21_l3qeo"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="22_my6kx"]

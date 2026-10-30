@@ -82,7 +82,7 @@
 [ext_resource type="AudioStream" uid="uid://y6pew2qpgpk3" path="res://sounds/prisoner_profiler/cycle_select.mp3" id="48_8vhvh"]
 [ext_resource type="AudioStream" uid="uid://cxh4fexnvvpp6" path="res://sounds/station_cell_breeder/breeding_finished_charge.mp3" id="53_xf6yj"]
 [ext_resource type="AudioStream" uid="uid://b8sg4xwjoxqpo" path="res://sounds/prisoner_profiler/tablet_ui/ui_enter.mp3" id="56_oesnn"]
-[ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="57_3xmbv"]
+[ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="57_3xmbv"]
 [ext_resource type="Script" uid="uid://b2b2cod3bcuwp" path="res://scripts/work_stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/exit_btn.gd" id="57_odqr3"]
 [ext_resource type="Script" uid="uid://cimxska5kirot" path="res://scripts/work_stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/boost_display/boost_display_parent.gd" id="58_4gocy"]
 [ext_resource type="AudioStream" uid="uid://ysg5co0w82u8" path="res://sounds/prisoner_profiler/tablet_ui/confirm_success.mp3" id="58_r6e2r"]

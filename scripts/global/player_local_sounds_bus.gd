@@ -15,3 +15,5 @@ signal scissors_used()
 signal emergency_start()
 signal emergency_end()
 signal tick_sound()
+
+signal play_sound(type : String)

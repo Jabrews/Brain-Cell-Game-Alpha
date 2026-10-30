@@ -72,6 +72,8 @@ GLGoalThresholdManagerBus="*uid://dkrjpskp7jc7e"
 GLEndStateScreenBus="*uid://cnxm41ewax8eh"
 GLOfferCardCreatorBus="*uid://b423k08nifw4i"
 IVDefaultPrisonerCreate="*uid://dohccdqipydkl"
+GLWorkstationBus="*uid://4jk84yj4aod2"
+GLDefectScrapsBus="*uid://dvggc2vnjl3pu"
 
 [debug]
 

@@ -22,7 +22,7 @@ func _init(
 	amount_to_decrease = new_amount_to_decrease
 	defect_ignore = new_defect_ignore
 	corresponding_threshold_stat = new_corresponding_threshold_stat
-	dissolve_valid = new_amount_to_decrease
+	dissolve_valid = new_dissolve_valid
 
 
 func print_info() -> void:

@@ -2,11 +2,11 @@ extends Node
 
 @onready var parent_ideal_stat_creator: Node = $".."
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed('debug1') :
-		print('strength lock index : ', IVPrisonerProfiler.strength_stat_lock_percant_index)
-		print('int lock index : ', IVPrisonerProfiler.intelligence_stat_lock_percant_index)
-		print('com lock index : ', IVPrisonerProfiler.community_stat_lock_percant_index)
+#func _process(_delta: float) -> void:
+	#if Input.is_action_just_pressed('debug1') :
+		#print('strength lock index : ', IVPrisonerProfiler.strength_stat_lock_percant_index)
+		#print('int lock index : ', IVPrisonerProfiler.intelligence_stat_lock_percant_index)
+		#print('com lock index : ', IVPrisonerProfiler.community_stat_lock_percant_index)
 		#_initate_new_stat_locks()
 		#var str_ideal_stat : IdealStat = parent_ideal_stat_creator.strength_ideal_stat
 		#print('strength lock max value : ', str_ideal_stat.lock_max_value)

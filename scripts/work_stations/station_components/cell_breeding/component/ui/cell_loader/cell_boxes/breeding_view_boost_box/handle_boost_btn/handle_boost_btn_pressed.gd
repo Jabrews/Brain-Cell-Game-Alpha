@@ -1,8 +1,8 @@
 extends Node
 
 # visual components
-@onready var t_inactive : Texture = preload("res://models/cell_breeder/ui/cell_reciever_box/boost_btn_inactive.png" )
-@onready var t_default : Texture = preload("res://models/cell_breeder/ui/cell_reciever_box/boost_btn_default.png" )
+@onready var t_inactive : Texture = preload("res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/boost_btn_inactive.png")
+@onready var t_default : Texture = preload("res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/boost_btn_default.png")
 
 
 @onready var boost_btn : TextureRect = $"../BoostBtn/BoostBtn"

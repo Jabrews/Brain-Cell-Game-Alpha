@@ -16,6 +16,11 @@ extends Node
 @onready var s_emergency_start : AudioStreamPlayer3D = $EmergencyStart
 @onready var s_emergency_end : AudioStreamPlayer3D = $EmergencyEnd
 @onready var s_tick_sound : AudioStreamPlayer3D = $TickSound
+@onready var s_defect_scrap_increment : AudioStreamPlayer3D = $DefectScrapIncrement
+
+# defect scrap
+@onready var defect_scrap_increment : AudioStreamPlayer3D = $DefectScrapIncrement
+@onready var defect_scrap_finished : AudioStreamPlayer3D = $DefectScrapFinished
 
 
 
@@ -47,6 +52,8 @@ func _ready() -> void:
 	GLPlayerLocalSoundsBus.connect('emergency_start' , _handle_emergency_start)
 	GLPlayerLocalSoundsBus.connect('emergency_end', _handle_emergency_end)
 	GLPlayerLocalSoundsBus.connect('tick_sound', _handle_tick_sound)
+	
+	GLPlayerLocalSoundsBus.connect('play_sound', _handle_play_sound)
 
 
 func _handle_sound_btn_press_failed() -> void:
@@ -106,3 +113,12 @@ func play_sound(sound_player : AudioStreamPlayer3D) -> void:
 	# restart sound cleanly
 	sound_player.stop()
 	sound_player.play()
+
+func _handle_play_sound(type : String) : 
+	
+	match type : 
+		'defect_scrap_increment' : 
+			defect_scrap_increment.play()
+		'defect_scrap_finished' :
+			defect_scrap_finished.play()
+		

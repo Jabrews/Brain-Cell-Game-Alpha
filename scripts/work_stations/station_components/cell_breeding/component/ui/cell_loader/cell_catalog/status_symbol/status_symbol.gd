@@ -6,10 +6,10 @@ extends Node
 @onready var hint_parent_node: Node = $"../../../../../../../../../HintParentNode"
 
 # symbol textures
-@onready var t_near_failure_chance_alert: Texture = preload("res://models/cell_breeder/ui/status_symbols/failure_chance_status_symbol.png")
-@onready var t_low_lifespan: Texture = preload("res://models/cell_breeder/ui/status_symbols/lifespan_status_symbol.png")
-@onready var t_on_goal_interface: Texture = preload("res://models/cell_breeder/ui/status_symbols/on_goal_status_symbol.png")
-@onready var t_breeder_unavailable: Texture = preload("res://models/cell_breeder/ui/status_symbols/unavaible_status_symbol.png")
+@onready var t_near_failure_chance_alert: Texture = preload( "res://models/workstations/breeder/cell_breeder/ui/status_symbols/failure_chance_status_symbol.png")
+@onready var t_low_lifespan: Texture = preload("res://models/workstations/breeder/cell_breeder/ui/status_symbols/lifespan_status_symbol.png")
+@onready var t_on_goal_interface: Texture = preload("res://models/workstations/breeder/cell_breeder/ui/status_symbols/on_goal_status_symbol.png")
+@onready var t_breeder_unavailable: Texture = preload("res://models/workstations/breeder/cell_breeder/ui/status_symbols/unavaible_status_symbol.png")
 
 # hint creation
 var status_symbol_hint_p_s: PackedScene = preload("res://scenes/work_stations/station_components/cell_breeding/ui/cell_loader/cell_catalog/status_symbol_hint.tscn")
