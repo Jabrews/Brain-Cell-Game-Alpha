@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dydn51vl306li"]
 
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="1_k8iiq"]
-[ext_resource type="Script" uid="uid://dtfh2pvr4223r" path="res://scripts/work_stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/view_btn/view_btn.gd" id="1_pq2ga"]
+[ext_resource type="Script" uid="uid://dtfh2pvr4223r" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/breeder_view/selected_view_slider/view_btn/view_btn.gd" id="1_pq2ga"]
 
 [node name="ViewBtn" type="Control" unique_id=2005525320]
 layout_mode = 3

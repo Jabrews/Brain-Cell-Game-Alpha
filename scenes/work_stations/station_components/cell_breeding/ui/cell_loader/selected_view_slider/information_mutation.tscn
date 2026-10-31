@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://jf8yuwi5j7bf"]
 
-[ext_resource type="Script" uid="uid://bvc2j4ygs2p71" path="res://scripts/work_stations/station_components/cell_breeding/component/ui/cell_loader/breeder_view/selected_view_slider/information_mutation/information_mutation.gd" id="1_d5wlc"]
+[ext_resource type="Script" uid="uid://bvc2j4ygs2p71" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/breeder_view/selected_view_slider/information_mutation/information_mutation.gd" id="1_d5wlc"]
 [ext_resource type="Texture2D" uid="uid://cjnkhlkl7scb" path="res://models/scissors_popup/mutations_highlight.png" id="1_hure0"]
 [ext_resource type="Texture2D" uid="uid://d3s4vfcskv45" path="res://models/mutation_display/question_mark.png" id="2_d5wlc"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_uh682"]

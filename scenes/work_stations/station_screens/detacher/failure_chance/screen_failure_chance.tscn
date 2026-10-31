@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://bynmqk2gx28br"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ieoup"]
+[ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="2_5qjps"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_m41xj"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="4_v0hom"]
+[ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="5_q2ips"]
+[ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="6_q2ips"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_mh647"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l60re"]
+shader = ExtResource("1_ieoup")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[node name="ScreenFailureChance" type="Node2D" unique_id=2043401613]
+
+[node name="Bg" type="ColorRect" parent="." unique_id=1311519754]
+offset_right = 384.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1975928190]
+material = SubResource("ShaderMaterial_l60re")
+offset_top = -1.0
+offset_right = 384.0
+offset_bottom = 384.0
+
+[node name="FailureChance" type="Control" parent="." unique_id=552790960]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Header" type="Control" parent="FailureChance" unique_id=298276334]
+anchors_preset = 0
+offset_left = -152.0
+offset_top = -312.0
+offset_right = -112.0
+offset_bottom = -272.0
+
+[node name="Bg" type="ColorRect" parent="FailureChance/Header" unique_id=612578709]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 312.0
+offset_right = 536.0
+offset_bottom = 432.0
+color = Color(0.22897819, 1.2032687e-07, 4.2114408e-08, 1)
+
+[node name="FailureChanceSymbol" type="TextureRect" parent="FailureChance/Header" unique_id=1752398947]
+process_mode = 3
+texture_filter = 1
+layout_mode = 0
+offset_left = 304.0
+offset_top = 344.0
+offset_right = 389.0
+offset_bottom = 423.0
+pivot_offset = Vector2(24, 28)
+texture = ExtResource("2_5qjps")
+
+[node name="FailureChanceHeader" type="Label" parent="FailureChance/Header" unique_id=404387561]
+texture_filter = 1
+layout_mode = 0
+offset_left = 192.0
+offset_top = 320.0
+offset_right = 500.0
+offset_bottom = 344.0
+theme_override_fonts/font = ExtResource("3_m41xj")
+theme_override_font_sizes/font_size = 22
+text = "Failure Chance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectBar" type="Control" parent="FailureChance" unique_id=81936029]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = -21.0
+offset_right = 53.0
+offset_bottom = 19.0
+
+[node name="Bg" type="ColorRect" parent="FailureChance/DefectBar" unique_id=1617049898]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 272.0
+offset_right = 336.0
+offset_bottom = 344.0
+color = Color(0.22897819, 1.2032687e-07, 4.2114408e-08, 1)
+
+[node name="DefectStrengthBar" type="TextureProgressBar" parent="FailureChance/DefectBar" unique_id=924377206]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 92.0
+offset_top = 279.0
+offset_right = 324.0
+offset_bottom = 403.99902
+scale = Vector2(1, 0.32000244)
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_v0hom")
+texture_progress = ExtResource("5_q2ips")
+
+[node name="TextureRect" type="TextureRect" parent="FailureChance/DefectBar" unique_id=1619503935]
+modulate = Color(1, 0.35000002, 0.4366666, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 36.0
+offset_top = 280.0
+offset_right = 84.0
+offset_bottom = 336.0
+texture = ExtResource("6_q2ips")
+
+[node name="HeaderLabel" type="Label" parent="FailureChance" unique_id=833621153]
+texture_filter = 1
+layout_mode = 0
+offset_left = -20.0
+offset_top = 104.0
+offset_right = 427.0
+offset_bottom = 304.0
+theme_override_colors/font_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("7_mh647")
+theme_override_font_sizes/font_size = 100
+text = "25%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Disabled" type="Control" parent="." unique_id=838888732]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="Disabled" unique_id=870481376]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 384.0
+color = Color(0, 0, 0, 1)

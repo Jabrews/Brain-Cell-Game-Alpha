@@ -29,6 +29,7 @@
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
 [ext_resource type="Script" uid="uid://hndem18jdi0y" path="res://scripts/game_manager/entitiy_room_management/entity_room_management.gd" id="20_ea07q"]
 [ext_resource type="Script" uid="uid://bxx34i2lndwh7" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/reduce_hidden_quanity.gd" id="20_wv5kd"]
+[ext_resource type="PackedScene" uid="uid://ofgrgb0ndico" path="res://scenes/work_stations/station_components/detacher/component/station_deatcher.tscn" id="21_pq8fj"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
@@ -893,11 +894,13 @@ corrisponding_door = NodePath("../Door")
 
 [node name="CellTransferBoxes" type="Node3D" parent="Enviroment" unique_id=949436690]
 
-[node name="CellTransferBox" parent="Enviroment/CellTransferBoxes" unique_id=455242328 instance=ExtResource("60_lp30k")]
+[node name="CellTransferBox" parent="Enviroment/CellTransferBoxes" unique_id=455242328 node_paths=PackedStringArray("recieving_transfer_box") instance=ExtResource("60_lp30k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.820232, 2.8, 16.058767)
+recieving_transfer_box = NodePath("../CellTransferBox2")
 
-[node name="CellTransferBox2" parent="Enviroment/CellTransferBoxes" unique_id=103455572 instance=ExtResource("60_lp30k")]
+[node name="CellTransferBox2" parent="Enviroment/CellTransferBoxes" unique_id=103455572 node_paths=PackedStringArray("recieving_transfer_box") instance=ExtResource("60_lp30k")]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -24.280203, 2.8, 16.058767)
+recieving_transfer_box = NodePath("../CellTransferBox")
 
 [node name="Lights" type="Node3D" parent="Enviroment" unique_id=966134524]
 
@@ -1026,7 +1029,7 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.398603, 0, 30.766571)
 
 [node name="TurnCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/TurnCinnamatic" parent_id_path=PackedInt32Array(267444250, 2009290877) index="0" unique_id=528579703]
-transform = Transform3D(0.86521614, 0, 0.50139916, 0, 1, 0, -0.50139916, 0, 0.86521614, -20.584196, -0.09244251, -22.057476)
+transform = Transform3D(0.86521614, 0, 0.50139916, 0, 1, 0, -0.50139916, 0, 0.86521614, -22.552004, -0.09244251, -22.057476)
 
 [node name="PrisonerCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/PrisonerCinnamatic" parent_id_path=PackedInt32Array(267444250, 89762710) index="0" unique_id=1201928819]
 transform = Transform3D(-1, -4.2342023e-09, 3.0703415e-08, 3.856705e-09, 0.9659258, 0.2588191, -3.0753114e-08, 0.2588191, -0.9659258, 8, -0.3000002, 33.978767)
@@ -1123,6 +1126,9 @@ mesh = SubResource("ArrayMesh_k7qrp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/WorkStations/Table/TableShort/TableShort" unique_id=1197538482]
 shape = SubResource("ConcavePolygonShape3D_klp60")
+
+[node name="StationDeatcher" parent="Stations/WorkStations" unique_id=1456525256 instance=ExtResource("21_pq8fj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.79823804, 2.2952938, -2.9050539)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.445799, 3.0319495, 24.183794)
