@@ -6,8 +6,8 @@ extends Node
 	$"../../../../../OfferTablet/Poles/TabletHolderPole"
 @onready var component_controllers : Node = $".."
 
-const MAIN_POLE_EXPANDED_POS: Vector3 = Vector3(-1.497, 3.367, 5.084)
-const TABLET_POLE_EXPANDED_POS: Vector3 = Vector3(-1.497, 3.379, 5.084)
+const MAIN_POLE_EXPANDED_POS: Vector3 = Vector3(-1.497, 4.400, 5.084)
+const TABLET_POLE_EXPANDED_POS: Vector3 = Vector3(-1.497, 4.400, 5.084)
 
 const MAIN_POLE_REST_POS: Vector3 = Vector3(-1.497, 8.822, 5.084)
 const TABLET_POLE_REST_POS: Vector3 = Vector3(-1.497, 8.834, 5.084)

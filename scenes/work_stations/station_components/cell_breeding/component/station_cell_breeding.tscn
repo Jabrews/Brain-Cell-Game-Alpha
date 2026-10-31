@@ -1626,13 +1626,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4489317, 0.043589592, -7)
 script = SubResource("GDScript_4118e")
 
 [node name="SpawnPos" type="Node3D" parent="BredCellSpawner" unique_id=1924445703]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36666393, 0)
 
 [node name="MeshBottom" type="MeshInstance3D" parent="BredCellSpawner" unique_id=945909082]
 mesh = SubResource("SphereMesh_elcrl")
 
 [node name="TopCube" type="StaticBody3D" parent="BredCellSpawner" unique_id=862367520]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.366664, 0)
 
 [node name="MeshTop" type="MeshInstance3D" parent="BredCellSpawner/TopCube" unique_id=1107160743]
 mesh = SubResource("BoxMesh_h2s3s")

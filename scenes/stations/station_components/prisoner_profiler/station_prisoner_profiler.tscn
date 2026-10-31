@@ -1498,6 +1498,7 @@ render_target_update_mode = 4
 
 [node name="Poles" type="Node3D" parent="OfferTablet" unique_id=961028572]
 process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1084757, 0)
 
 [node name="MainPole2" type="MeshInstance3D" parent="OfferTablet/Poles" unique_id=153077138]
 process_mode = 3
@@ -1552,6 +1553,7 @@ script = ExtResource("38_2txlu")
 shape = SubResource("BoxShape3D_kcyeb")
 
 [node name="FoldingDoorMeshes" type="Node3D" parent="OfferTablet" unique_id=130677836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1084757, 0)
 
 [node name="BlackExspanse" type="MeshInstance3D" parent="OfferTablet/FoldingDoorMeshes" unique_id=335262890]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4969839, 7.5044975, 5.0839825)

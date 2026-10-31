@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 @onready var ceiling_fans : Array[Node3D]= [
 	$CeilingFan, $CeilingFan2, $CeilingFan3
