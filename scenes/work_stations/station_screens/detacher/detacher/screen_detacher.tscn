@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://7s2fsw3loheu"]
 
+[ext_resource type="Script" uid="uid://cna06dahld27m" path="res://scripts/work_stations/station_screens/detacher/detacher/screen_detacher.gd" id="1_m8s1a"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_qll7q"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_slyes"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="3_4pwo1"]
@@ -40,6 +41,7 @@ shader_parameter/noise_scale = 1.0
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [node name="ScreenDetacher" type="Node2D" unique_id=1915142973]
+script = ExtResource("1_m8s1a")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=769449215]
 offset_right = 448.0

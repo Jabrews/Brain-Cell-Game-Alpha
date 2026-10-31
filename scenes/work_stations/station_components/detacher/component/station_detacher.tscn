@@ -1,12 +1,25 @@
 [gd_scene format=3 uid="uid://ofgrgb0ndico"]
 
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_er1cf"]
+[ext_resource type="Script" uid="uid://cln563j53brel" path="res://scripts/work_stations/station_components/detacher/station_detacher.gd" id="1_n07v2"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="2_c1c4q"]
+[ext_resource type="Script" uid="uid://cb76sh8u07ylh" path="res://scripts/work_stations/station_components/detacher/handle_failure_rate_enabled.gd" id="2_fahmf"]
 [ext_resource type="PackedScene" uid="uid://7s2fsw3loheu" path="res://scenes/work_stations/station_screens/detacher/detacher/screen_detacher.tscn" id="2_t6gb7"]
+[ext_resource type="Script" uid="uid://bawme76x8f7hh" path="res://scripts/work_stations/station_components/detacher/handle_station_enabled.gd" id="2_xgw8y"]
 [ext_resource type="PackedScene" uid="uid://dektktp2bec4g" path="res://scenes/hoverable_mesh_scenes/deatcher_confirm_btn.tscn" id="3_4u8ja"]
 [ext_resource type="PackedScene" uid="uid://bynmqk2gx28br" path="res://scenes/work_stations/station_screens/detacher/failure_chance/screen_failure_chance.tscn" id="3_nqfy0"]
+[ext_resource type="Script" uid="uid://wld4sygd8hn2" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_cycle_stat_btn.gd" id="3_vrdhj"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_f42uy"]
+[ext_resource type="Script" uid="uid://cqv0r1reu2xep" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_confirm_btn.gd" id="4_o0044"]
 [ext_resource type="PackedScene" uid="uid://dpm5kwk44k1bf" path="res://scenes/hoverable_mesh_scenes/deatcher_cycle_btn.tscn" id="5_4u8ja"]
+[ext_resource type="Script" uid="uid://d2rrp5l34k770" path="res://scripts/work_stations/station_components/detacher/light_manager.gd" id="5_7nfmu"]
+[ext_resource type="Script" uid="uid://c2syln8x6ylrj" path="res://scripts/work_stations/station_components/detacher/refresh_displays.gd" id="6_ald4e"]
+[ext_resource type="Script" uid="uid://cexvgbfqry4n6" path="res://scripts/work_stations/station_components/detacher/init/init_fail_detach.gd" id="7_xgw8y"]
+[ext_resource type="Script" uid="uid://druhck52r42r1" path="res://scripts/work_stations/station_components/detacher/btns/confirm_btn.gd" id="8_7nfmu"]
+[ext_resource type="Script" uid="uid://vnw8kmtdp4dh" path="res://scripts/work_stations/station_components/detacher/init/init_success_detach.gd" id="8_uvxnj"]
+[ext_resource type="Script" uid="uid://edf0golf2spt" path="res://scripts/work_stations/station_components/detacher/compute_failure_chance.gd" id="10_uvxnj"]
+[ext_resource type="Script" uid="uid://bm0jhrklg60cc" path="res://scripts/work_stations/station_components/detacher/load_cell_panel.gd" id="11_uvxnj"]
+[ext_resource type="Script" uid="uid://c7ivtfauiof3j" path="res://scripts/work_stations/station_components/detacher/btns/cycle_stat_btn.gd" id="12_ald4e"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8y5g0"]
 size = Vector3(1.4290893, 0.40073243, 1.4282539)
@@ -110,7 +123,41 @@ size = Vector3(0.165271, 0.1496704, 0.023046881)
 [sub_resource type="BoxShape3D" id="BoxShape3D_f42uy"]
 size = Vector3(0.16631469, 0.14939575, 0.023046881)
 
-[node name="StationDeatcher" type="Node3D" unique_id=1456525256]
+[node name="StationDetacher" type="Node3D" unique_id=1456525256]
+script = ExtResource("1_n07v2")
+
+[node name="Logic" type="Node" parent="." unique_id=936376296]
+
+[node name="HandleStationEnabled" type="Node" parent="Logic" unique_id=36364616]
+script = ExtResource("2_xgw8y")
+
+[node name="HandleFailureRateEnabled" type="Node" parent="Logic" unique_id=1965360283]
+script = ExtResource("2_fahmf")
+
+[node name="BtnHandlers" type="Node" parent="Logic" unique_id=939745214]
+
+[node name="HandleCycleStatBtn" type="Node" parent="Logic/BtnHandlers" unique_id=2059906344]
+script = ExtResource("3_vrdhj")
+
+[node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=491027833]
+script = ExtResource("4_o0044")
+
+[node name="LightManager" type="Node" parent="Logic" unique_id=248835391]
+script = ExtResource("5_7nfmu")
+
+[node name="RefreshDisplays" type="Node" parent="Logic" unique_id=1224801358]
+script = ExtResource("6_ald4e")
+
+[node name="InitHelpers" type="Node" parent="Logic" unique_id=1517151637]
+
+[node name="InitFailDetach" type="Node" parent="Logic/InitHelpers" unique_id=1454413677]
+script = ExtResource("7_xgw8y")
+
+[node name="InitSuccessDetach" type="Node" parent="Logic/InitHelpers" unique_id=616213964]
+script = ExtResource("8_uvxnj")
+
+[node name="ComputerFailureChance" type="Node" parent="Logic" unique_id=1205910926]
+script = ExtResource("10_uvxnj")
 
 [node name="LoadCellPanel" type="Node3D" parent="." unique_id=489836933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04719603, 0.22518694, 0)
@@ -129,6 +176,7 @@ shape = SubResource("BoxShape3D_er1cf")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10116026, 0)
 collision_layer = 0
 collision_mask = 4
+script = ExtResource("11_uvxnj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel/Panel" unique_id=1767314409]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.091854095, 0)
@@ -145,18 +193,18 @@ mesh = SubResource("CylinderMesh_7w0js")
 shape = SubResource("CylinderShape3D_c1c4q")
 debug_color = Color(0, 0.6, 0.69803923, 1)
 
-[node name="LightManager" type="StaticBody3D" parent="LoadCellPanel/Panel" unique_id=275040676]
+[node name="Light" type="StaticBody3D" parent="LoadCellPanel/Panel" unique_id=275040676]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.70030445, -0.124715626, 0)
 collision_layer = 2
 collision_mask = 0
 
-[node name="LightMesh" type="MeshInstance3D" parent="LoadCellPanel/Panel/LightManager" unique_id=1226645432]
+[node name="LightMesh" type="MeshInstance3D" parent="LoadCellPanel/Panel/Light" unique_id=1226645432]
 mesh = SubResource("SphereMesh_4u8ja")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel/Panel/LightManager" unique_id=1487376804]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel/Panel/Light" unique_id=1487376804]
 shape = SubResource("SphereShape3D_f42uy")
 
-[node name="Light" type="SpotLight3D" parent="LoadCellPanel/Panel/LightManager" unique_id=668461421]
+[node name="Light" type="SpotLight3D" parent="LoadCellPanel/Panel/Light" unique_id=668461421]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)
 visible = false
 light_color = Color(0.97, 0.44619998, 0.44619998, 1)
@@ -236,6 +284,7 @@ shape = SubResource("BoxShape3D_qa1qv")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9271703, 0.021170422, 0.29110897)
 collision_layer = 0
 collision_mask = 32
+script = ExtResource("8_7nfmu")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/ConfirmBtn" unique_id=1250279290]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06733376, -0.00399781, 0)
@@ -273,6 +322,7 @@ uppercase = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9271703, 0.021170422, -0.15864076)
 collision_layer = 0
 collision_mask = 32
+script = ExtResource("12_ald4e")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/CycleUpBtn" unique_id=2002517841]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21575284, -0.0057678297, 0)
@@ -310,6 +360,8 @@ uppercase = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9271703, 0.021170422, 0.04476942)
 collision_layer = 0
 collision_mask = 32
+script = ExtResource("12_ald4e")
+direction = -1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/CycleDownBtn" unique_id=1746956796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21575284, -0.0057678297, 0)

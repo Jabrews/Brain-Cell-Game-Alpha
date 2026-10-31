@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bynmqk2gx28br"]
 
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ieoup"]
+[ext_resource type="Script" uid="uid://bcvu3vsvrbi4w" path="res://scripts/work_stations/station_screens/detacher/failure_chance/screen_failure_chance.gd" id="1_j6sov"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="2_5qjps"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_m41xj"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="4_v0hom"]
@@ -16,6 +17,7 @@ shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
 [node name="ScreenFailureChance" type="Node2D" unique_id=2043401613]
+script = ExtResource("1_j6sov")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1311519754]
 offset_right = 384.0
