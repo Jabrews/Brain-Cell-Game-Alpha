@@ -68,6 +68,7 @@
 [ext_resource type="PackedScene" uid="uid://c5qtndnhvffsn" path="res://scenes/door/door_button.tscn" id="58_otmbb"]
 [ext_resource type="PackedScene" uid="uid://csxul1ta0njxi" path="res://scenes/ceiling_fan/ceiling_fan.tscn" id="59_m2qbd"]
 [ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
+[ext_resource type="Script" uid="uid://8f64c6pk6gue" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_workstations_core.gd" id="59_u13vf"]
 [ext_resource type="PackedScene" uid="uid://dmms6n7t5qxwv" path="res://scenes/cell_transfer_box/cell_transfer_box.tscn" id="60_lp30k"]
 [ext_resource type="Script" uid="uid://nb3vghviy4u6" path="res://debug/debug_cell_spawner/debug_cell_spawner.gd" id="66_y36b7"]
 
@@ -1255,6 +1256,9 @@ script = ExtResource("49_lp30k")
 [node name="IVHelperCreationMethods" type="Node" parent="GameManager/IncrementalValueController" unique_id=1651104822]
 script = ExtResource("49_dixnm")
 
+[node name="IVHelperWorkstationsCore" type="Node" parent="GameManager/IncrementalValueController" unique_id=559464259]
+script = ExtResource("59_u13vf")
+
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")
 
@@ -1293,8 +1297,9 @@ script = ExtResource("14_5ru7i")
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]
 script = ExtResource("18_44ape")
 
-[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998]
+[node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998 node_paths=PackedStringArray("cell_container_parent_node")]
 script = ExtResource("66_y36b7")
+cell_container_parent_node = NodePath("../Charcters/ContainerParentNode")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)

@@ -41,13 +41,13 @@ func _display(cell_1: BrainCell, cell_2: BrainCell) -> void:
 	var right_chance: float = 0.0
 
 	if cell_1:
-		left_chance = GAMECellBreeder.failure_chance_helper._get_total_failure_chance(
+		left_chance = GAMEFailureChance.breeder_helper._get_total_failure_chance(
 			cell_1,
 			false
 		)
 
 	if cell_2:
-		right_chance = GAMECellBreeder.failure_chance_helper._get_total_failure_chance(
+		right_chance = GAMEFailureChance.breeder_helper._get_total_failure_chance(
 			cell_2,
 			false
 		)

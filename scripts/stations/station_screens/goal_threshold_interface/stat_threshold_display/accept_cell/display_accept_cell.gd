@@ -2,9 +2,10 @@ extends Node
 
 # Components
 @onready var accept_cell_parent: Control = $"../AcceptCell"
-# helpers
+
+# Helpers
 @onready var helper_display_stat_positions: Node = $HelperDisplayStatPositions
-@onready var helper_display_boost_valid : Node = $HelperDisplayBoostValid
+@onready var helper_display_boost_valid: Node = $HelperDisplayBoostValid
 
 # Threshold stats
 @onready var threshold_bars: Array[Sprite2D] = [
@@ -87,10 +88,11 @@ func show_accept_cell_screen(elevator_cell: BrainCell) -> void:
 	var threshold_piece: ThresholdPiece = (
 		GLGoalThresholdManagerBus.active_goal_threshold.get_active_piece()
 	)
-	
-	helper_display_boost_valid._display_validity_label(threshold_piece, elevator_cell)
-	
-		
+
+	helper_display_boost_valid._display_validity_label(
+		threshold_piece,
+		elevator_cell
+	)
 
 	for stat_index: int in range(stats.size()):
 		var stat: BrainCellStat = stats[stat_index]
@@ -160,19 +162,19 @@ func _display_threshold_bars(
 	if not stat.enabled or stat.hidden:
 		return
 
-	# The contribution is the raw stat value; defect is striped within it.
-	var visible_contribution: float = minf(
-		maxf(stat.value, 0.0),
-		current_value
-	)
-	var visible_defect: float = minf(
-		maxf(stat.defect, 0.0),
-		visible_contribution
-	)
+	# Show the total amount contributing toward the threshold.
+	# Only the defective portion beyond the valid stat is striped.
+	var raw_value: float = maxf(stat.value, 0.0)
+	var defect_amount: float = clampf(stat.defect, 0.0, raw_value)
+
+	var valid_value: float = raw_value - defect_amount
+	var visible_total: float = minf(raw_value, current_value)
+	var visible_valid: float = minf(valid_value, current_value)
+	var visible_defect: float = maxf(visible_total - visible_valid, 0.0)
 
 	material.set_shader_parameter(
 		"dissolve_value",
-		visible_contribution / max_value
+		visible_total / max_value
 	)
 	material.set_shader_parameter(
 		"defect_value",
@@ -197,7 +199,7 @@ func _display_defect_ignored(
 	hidden_parent.visible = false
 	disabled_parent.visible = false
 
-	# A disabled threshold shows none of the defect-ignored states.
+	# A disabled or finished threshold shows none of the defect-ignored states.
 	if threshold_stat.disabled or threshold_stat.finished:
 		return
 

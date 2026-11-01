@@ -1,11 +1,34 @@
 extends Area3D
 
+# components
+@onready var station_detacher : Node3D = $"../.."
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
+	connect('body_entered', _handle_body_entered)
 
+func _handle_body_entered(body : Node3D) : 
+	
+	if not station_detacher.enabled : 
+		return
+	
+	if body.is_in_group('brain_cell_container') : 
+		
+		# prevent over-riding
+		if station_detacher.loaded_cell_container :
+			return 
+		
+		else : 
+			station_detacher._recieve_cell_container(body)
+		
+		
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _handle_body_exited(body : Node3D) : 
+	
+	if not station_detacher.enabled : 
+		return
+	
+	if station_detacher.loaded_cell_container == body : 	
+		station_detacher._removed_cell_container(body)
+	

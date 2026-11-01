@@ -1,8 +1,5 @@
 extends Node
 
-# helper componentns
-@onready var decrease_old_cell : Node = $DecreaseOldCell
-
 @export var life_span_increase: Dictionary[int, float] = {
 	5 : 0,
 	4 : 0,

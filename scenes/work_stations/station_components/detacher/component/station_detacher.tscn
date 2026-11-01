@@ -8,16 +8,16 @@
 [ext_resource type="Script" uid="uid://bawme76x8f7hh" path="res://scripts/work_stations/station_components/detacher/handle_station_enabled.gd" id="2_xgw8y"]
 [ext_resource type="PackedScene" uid="uid://dektktp2bec4g" path="res://scenes/hoverable_mesh_scenes/deatcher_confirm_btn.tscn" id="3_4u8ja"]
 [ext_resource type="PackedScene" uid="uid://bynmqk2gx28br" path="res://scenes/work_stations/station_screens/detacher/failure_chance/screen_failure_chance.tscn" id="3_nqfy0"]
-[ext_resource type="Script" uid="uid://wld4sygd8hn2" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_cycle_stat_btn.gd" id="3_vrdhj"]
+[ext_resource type="Script" uid="uid://wld4sygd8hn2" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_cycle_stat_btn/handle_cycle_stat_btn.gd" id="3_vrdhj"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_f42uy"]
 [ext_resource type="Script" uid="uid://cqv0r1reu2xep" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_confirm_btn.gd" id="4_o0044"]
 [ext_resource type="PackedScene" uid="uid://dpm5kwk44k1bf" path="res://scenes/hoverable_mesh_scenes/deatcher_cycle_btn.tscn" id="5_4u8ja"]
 [ext_resource type="Script" uid="uid://d2rrp5l34k770" path="res://scripts/work_stations/station_components/detacher/light_manager.gd" id="5_7nfmu"]
 [ext_resource type="Script" uid="uid://c2syln8x6ylrj" path="res://scripts/work_stations/station_components/detacher/refresh_displays.gd" id="6_ald4e"]
+[ext_resource type="Script" uid="uid://b6lgtd3500wax" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_cycle_stat_btn/compute_validity.gd" id="6_b1lgg"]
 [ext_resource type="Script" uid="uid://cexvgbfqry4n6" path="res://scripts/work_stations/station_components/detacher/init/init_fail_detach.gd" id="7_xgw8y"]
 [ext_resource type="Script" uid="uid://druhck52r42r1" path="res://scripts/work_stations/station_components/detacher/btns/confirm_btn.gd" id="8_7nfmu"]
 [ext_resource type="Script" uid="uid://vnw8kmtdp4dh" path="res://scripts/work_stations/station_components/detacher/init/init_success_detach.gd" id="8_uvxnj"]
-[ext_resource type="Script" uid="uid://edf0golf2spt" path="res://scripts/work_stations/station_components/detacher/compute_failure_chance.gd" id="10_uvxnj"]
 [ext_resource type="Script" uid="uid://bm0jhrklg60cc" path="res://scripts/work_stations/station_components/detacher/load_cell_panel.gd" id="11_uvxnj"]
 [ext_resource type="Script" uid="uid://c7ivtfauiof3j" path="res://scripts/work_stations/station_components/detacher/btns/cycle_stat_btn.gd" id="12_ald4e"]
 
@@ -139,6 +139,9 @@ script = ExtResource("2_fahmf")
 [node name="HandleCycleStatBtn" type="Node" parent="Logic/BtnHandlers" unique_id=2059906344]
 script = ExtResource("3_vrdhj")
 
+[node name="ComputeValidity" type="Node" parent="Logic/BtnHandlers/HandleCycleStatBtn" unique_id=1224210093]
+script = ExtResource("6_b1lgg")
+
 [node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=491027833]
 script = ExtResource("4_o0044")
 
@@ -155,9 +158,6 @@ script = ExtResource("7_xgw8y")
 
 [node name="InitSuccessDetach" type="Node" parent="Logic/InitHelpers" unique_id=616213964]
 script = ExtResource("8_uvxnj")
-
-[node name="ComputerFailureChance" type="Node" parent="Logic" unique_id=1205910926]
-script = ExtResource("10_uvxnj")
 
 [node name="LoadCellPanel" type="Node3D" parent="." unique_id=489836933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04719603, 0.22518694, 0)
@@ -323,6 +323,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("12_ald4e")
+direction = -1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/CycleUpBtn" unique_id=2002517841]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21575284, -0.0057678297, 0)
@@ -361,7 +362,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("12_ald4e")
-direction = -1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/CycleDownBtn" unique_id=1746956796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21575284, -0.0057678297, 0)

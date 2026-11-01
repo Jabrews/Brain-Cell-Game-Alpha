@@ -1,23 +1,25 @@
 extends Node
-#
-#@onready var cell_container_p_s : PackedScene = preload("res://scenes/characters/cell_container/cell_container.tscn")
-#@onready var spawn_pos : Node3D =$SpawnPos
-#@export var cell_container_parent_node : Node
-#
-#
-#func _ready() -> void:
-	#
-	## Cell 1
-	#var cell_1: BrainCell = BrainCell.new(
-		#"cell_1",
-		#[],
-		#BrainCellStat.new("strength", true, 30, 200, false),
-		#BrainCellStat.new("intelligence", true, 75, 250, false),
-		#BrainCellStat.new("community", true, 200, 200, false),
-		#2,
-		#false,
-		#false,
-	#)
+
+@onready var cell_container_p_s : PackedScene = preload("res://scenes/characters/cell_container/cell_container.tscn")
+@onready var spawn_pos : Node3D =$SpawnPos
+@export var cell_container_parent_node : Node
+
+
+func _ready() -> void:
+	
+	return
+	
+	# Cell 1
+	var cell_1: BrainCell = BrainCell.new(
+		"cell_1",
+		[],
+		BrainCellStat.new("strength", true, 30, 200, false),
+		BrainCellStat.new("intelligence", true, 75, 250, false),
+		BrainCellStat.new("community", true, 200, 200, false),
+		2,
+		false,
+		false,
+	)
 	#
 	#
 		 ##Cell 1
@@ -127,10 +129,10 @@ extends Node
 		#false,
 	#)
 	#
-	#var cells : Array[BrainCell] = []	
+	var cells : Array[BrainCell] = []	
 	#
 	#
-	##cells.append(cell_1)
+	cells.append(cell_1)
 	##cells.append(cell_2)
 	#cells.append(cell_3)
 	##cells.append(cell_4)
@@ -143,16 +145,16 @@ extends Node
 	#
 	##cells.append(cell_4)
 	##cells.append(cell_three)
-	#
-	##GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
-	#
-	#for cell in cells :
-		#
-		#var cell_container = cell_container_p_s.instantiate()
-#
-		#cell_container.name = cell.name
-		#cell_container.designated_brain_cell = cell
-#
-		#cell_container_parent_node.add_child(cell_container)
-#
-		#cell_container.global_position = spawn_pos.global_position
+	
+	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
+	
+	for cell in cells :
+		
+		var cell_container = cell_container_p_s.instantiate()
+
+		cell_container.name = cell.name
+		cell_container.designated_brain_cell = cell
+
+		cell_container_parent_node.add_child(cell_container)
+
+		cell_container.global_position = spawn_pos.global_position

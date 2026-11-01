@@ -55,7 +55,6 @@ offset_right = 448.0
 offset_bottom = 576.0
 
 [node name="Stats" type="Control" parent="." unique_id=2083152958]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -129,7 +128,7 @@ offset_top = 56.0
 offset_right = 40.0
 offset_bottom = 96.0
 
-[node name="DefectStrengthBar" type="TextureProgressBar" parent="Stats/Strength" unique_id=1495135834]
+[node name="DefectBar" type="TextureProgressBar" parent="Stats/Strength" unique_id=1495135834]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
@@ -144,7 +143,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("3_4pwo1")
 texture_progress = ExtResource("4_dip0c")
 
-[node name="StrengthBar" type="Sprite2D" parent="Stats/Strength" unique_id=1250214331]
+[node name="Bar" type="Sprite2D" parent="Stats/Strength" unique_id=1250214331]
 texture_filter = 1
 material = SubResource("ShaderMaterial_36yyv")
 position = Vector2(224, 73)
@@ -192,6 +191,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HiddenParent" type="Control" parent="Stats/Strength" unique_id=831720418]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -205,6 +205,7 @@ scale = Vector2(1.2190477, 1.3000001)
 texture = SubResource("CompressedTexture2D_tt2wt")
 
 [node name="ActiveBorder" type="TextureRect" parent="Stats/Strength" unique_id=519935798]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
@@ -219,7 +220,7 @@ offset_top = 192.0
 offset_right = 40.0
 offset_bottom = 232.0
 
-[node name="DefectStrengthBar" type="TextureProgressBar" parent="Stats/Intelligence" unique_id=2034303750]
+[node name="DefectBar" type="TextureProgressBar" parent="Stats/Intelligence" unique_id=2034303750]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
@@ -234,7 +235,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("3_4pwo1")
 texture_progress = ExtResource("4_dip0c")
 
-[node name="StrengthBar" type="Sprite2D" parent="Stats/Intelligence" unique_id=387168620]
+[node name="Bar" type="Sprite2D" parent="Stats/Intelligence" unique_id=387168620]
 texture_filter = 1
 material = SubResource("ShaderMaterial_36yyv")
 position = Vector2(224, 73)
@@ -282,6 +283,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HiddenParent" type="Control" parent="Stats/Intelligence" unique_id=1637624088]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -310,7 +312,7 @@ offset_top = 328.0
 offset_right = 40.0
 offset_bottom = 368.0
 
-[node name="DefectStrengthBar" type="TextureProgressBar" parent="Stats/Community" unique_id=597588240]
+[node name="DefectBar" type="TextureProgressBar" parent="Stats/Community" unique_id=597588240]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.225
@@ -325,7 +327,7 @@ nine_patch_stretch = true
 texture_under = ExtResource("3_4pwo1")
 texture_progress = ExtResource("4_dip0c")
 
-[node name="StrengthBar" type="Sprite2D" parent="Stats/Community" unique_id=264371481]
+[node name="Bar" type="Sprite2D" parent="Stats/Community" unique_id=264371481]
 texture_filter = 1
 material = SubResource("ShaderMaterial_36yyv")
 position = Vector2(224, 73)
@@ -373,6 +375,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HiddenParent" type="Control" parent="Stats/Community" unique_id=1575393031]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -396,6 +399,7 @@ offset_bottom = 120.0
 texture = ExtResource("9_7eota")
 
 [node name="AddACell" type="Control" parent="." unique_id=1230722002]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

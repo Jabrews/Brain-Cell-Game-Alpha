@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bciihfhk2v0ep"]
+
+[ext_resource type="Script" uid="uid://dctsmh0mi1yif" path="res://scripts/global/game_manager/failure_chance/failure_chance.gd" id="1_drhmg"]
+[ext_resource type="Script" uid="uid://cy527sgx1qh46" path="res://scripts/global/game_manager/failure_chance/breeder_helper.gd" id="2_lhjq4"]
+[ext_resource type="Script" uid="uid://b87bo5ifuk3ai" path="res://scripts/global/game_manager/failure_chance/detacher_helper.gd" id="3_uofxi"]
+
+[node name="FailureChance" type="Node" unique_id=1761084391]
+script = ExtResource("1_drhmg")
+
+[node name="BreederHelper" type="Node" parent="." unique_id=2109989497]
+script = ExtResource("2_lhjq4")
+
+[node name="DetacherHelper" type="Node" parent="." unique_id=1340257135]
+script = ExtResource("3_uofxi")

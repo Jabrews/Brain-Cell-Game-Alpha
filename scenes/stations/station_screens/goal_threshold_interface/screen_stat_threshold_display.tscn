@@ -193,16 +193,18 @@ load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_40ur5"]
 shader = ExtResource("16_my6kx")
-shader_parameter/current_value = 0.8510000404225
-shader_parameter/dissolve_value = 0.5670000269325
-shader_parameter/defect_value = 0.3710000176225
+shader_parameter/current_value = 0.8
+shader_parameter/dissolve_value = 0.3
+shader_parameter/defect_value = 0.1
 shader_parameter/red_color = Color(0.65, 0.02, 0.02, 1)
-shader_parameter/stripe_color = Color(1, 1, 0, 1)
+shader_parameter/stripe_color = Color(1, 0, 0, 1)
 shader_parameter/yellow_color = Color(0.8509804, 0.58431375, 0.007843138, 1)
 shader_parameter/blip_color = Color(0, 0, 0, 1)
 shader_parameter/mask_color = Color(0.8784314, 0.8784314, 0.8784314, 1)
 shader_parameter/mask_tolerance = 0.1
 shader_parameter/defect_flash_speed = 0.0
+shader_parameter/yellow_flash_speed = 5.0
+shader_parameter/yellow_flash_amount = 0.35
 shader_parameter/stripe_density = 8.0
 shader_parameter/blip_width = 0.002000000095
 shader_parameter/low_stripe_opacity = 0.15
@@ -821,7 +823,6 @@ text = "per stat"
 horizontal_alignment = 1
 
 [node name="AcceptCell" type="Control" parent="." unique_id=1539764947]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

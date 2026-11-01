@@ -1,11 +1,17 @@
 extends Node
 
+@onready var parent_station_detacher : Node3D = $"../.."
+@onready var refresh_displays : Node = $"../RefreshDisplays"
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	pass # Replace with function body.
+	GLGameManagerBus.connect('process_new_ivs', _handle_process_new_ivs)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _handle_process_new_ivs() :
+	if GLWorkstationBus.detacher_enabled == true  : 
+	
+		if parent_station_detacher.enabled == false : 
+			
+			parent_station_detacher.enabled = true
+			refresh_displays._refresh()
+		

@@ -13,6 +13,9 @@ uniform vec4 mask_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 uniform float mask_tolerance : hint_range(0.0, 1.0) = 0.1;
 
 uniform float defect_flash_speed = 7.0;
+uniform float yellow_flash_speed = 5.0;
+uniform float yellow_flash_amount : hint_range(0.0, 1.0) = 0.35;
+
 uniform float stripe_density = 80.0;
 uniform float blip_width = 0.01;
 uniform float low_stripe_opacity : hint_range(0.0, 1.0) = 0.15;
@@ -35,7 +38,7 @@ void fragment() {
 			result.rgb = red_color.rgb;
 		}
 
-		// Striped defect portion.
+		// Flashing striped defect portion.
 		if (UV.x >= dissolve_start && UV.x <= defect_end) {
 			float stripes = step(
 				0.5,
@@ -51,10 +54,17 @@ void fragment() {
 				stripes * stripe_opacity
 			);
 		}
-		// Usable contribution beside the defect stripes.
+		// Flashing usable contribution.
 		else if (UV.x > defect_end && UV.x <= current_value
 				&& UV.x >= dissolve_start) {
-			result.rgb = yellow_color.rgb;
+			float yellow_pulse = sin(TIME * yellow_flash_speed) * 0.5 + 0.5;
+			float brightness = mix(
+				1.0 - yellow_flash_amount,
+				1.0,
+				yellow_pulse
+			);
+
+			result.rgb = yellow_color.rgb * brightness;
 		}
 
 		// Blip at the current threshold value.

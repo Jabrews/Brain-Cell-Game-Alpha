@@ -74,6 +74,7 @@ GLOfferCardCreatorBus="*uid://b423k08nifw4i"
 IVDefaultPrisonerCreate="*uid://dohccdqipydkl"
 GLWorkstationBus="*uid://4jk84yj4aod2"
 GLDefectScrapsBus="*uid://dvggc2vnjl3pu"
+GAMEFailureChance="*uid://bciihfhk2v0ep"
 
 [debug]
 

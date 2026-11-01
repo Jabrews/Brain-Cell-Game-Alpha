@@ -56,7 +56,7 @@ func _display(cell : BrainCell) :
 func display_total_failure_chance(cell: BrainCell) -> void:
 	
 	# Get death chance as a percentage
-	var total_failure_chance : float = GAMECellBreeder.failure_chance_helper._get_total_failure_chance(cell, false)
+	var total_failure_chance : float = GAMEFailureChance.breeder_helper._get_total_failure_chance(cell, false)
 	
 	# Display percentage
 	total_percant_label.text = str(int(total_failure_chance)) + "%"
@@ -77,7 +77,7 @@ func display_stat_danger(cell : BrainCell) :
 		
 		var increase_label : Label = stat_failure_chance_increase_labels[i]			
 		
-		var increase_amount : float = GAMECellBreeder.failure_chance_helper.evluate_defect(cell_stat.defect)
+		var increase_amount : float = GAMEFailureChance.breeder_helper.evluate_defect(cell_stat.defect)
 		
 		if increase_amount != 0.0 :
 			increase_label.text = '(+' + str(int(increase_amount)) + '%)'
@@ -98,7 +98,7 @@ func display_stat_danger(cell : BrainCell) :
 		var current_defect_value: float = defect_value / max_stat_value
 
 		# Next/increased defect
-		var next_defect_value: float = GAMECellBreeder.failure_chance_helper.decrease_old_cell._get_increased_defect_stat(defect_value)
+		var next_defect_value: float = GAMECellBreeder.decrease_old_cell._get_increased_defect_stat(defect_value)
 
 		# Convert next defect to 0.0 -> 1.0
 		var secondary_defect_value: float = next_defect_value / max_stat_value
@@ -139,7 +139,7 @@ func display_life_span_danger(cell : BrainCell) :
 	lifespan_num_label.text = str(cell.life_span)	
 	
 	# death chance label
-	var increase_amount : float = GAMECellBreeder.failure_chance_helper.evaluate_lifespan(cell.life_span)
+	var increase_amount : float = GAMEFailureChance.breeder_helper.evaluate_lifespan(cell.life_span)
 	
 	if increase_amount != 0.0 :
 		lifespan_failure_chance_increase_label.text = '(+' + str(int(increase_amount)) + '%)'
