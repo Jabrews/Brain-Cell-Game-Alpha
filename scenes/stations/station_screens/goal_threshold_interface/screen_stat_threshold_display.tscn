@@ -823,6 +823,7 @@ text = "per stat"
 horizontal_alignment = 1
 
 [node name="AcceptCell" type="Control" parent="." unique_id=1539764947]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

@@ -121,6 +121,8 @@ func _finish_dissolving_cell(dissolving_cell: DissolvingCell) -> void:
 
 	if helper_dissolve_cell.dissolving_cell == dissolving_cell:
 		helper_dissolve_cell.dissolving_cell = null
-
+	
 	# Always leave the dissolve state, even if there is no corresponding cell.
 	elevator_manager._dissolving_cell_finished()
+	
+	helper_refresh_displays._refresh()

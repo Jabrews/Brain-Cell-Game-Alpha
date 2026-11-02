@@ -61,8 +61,6 @@ func _handle_body_exited(body: Node3D) -> void:
 	parent_station.set_panel_cell(seat_type, null)
 
 
-	print('toggle false')
-
 	main_light_manager._toggle_light(false)
 
 

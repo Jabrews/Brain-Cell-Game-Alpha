@@ -7,15 +7,14 @@ extends Node
 
 func _ready() -> void:
 	
-	return
 	
 	# Cell 1
 	var cell_1: BrainCell = BrainCell.new(
 		"cell_1",
 		[],
-		BrainCellStat.new("strength", true, 30, 200, false),
-		BrainCellStat.new("intelligence", true, 75, 250, false),
-		BrainCellStat.new("community", true, 200, 200, false),
+		BrainCellStat.new("strength", true, 100, 0, false),
+		BrainCellStat.new("intelligence", true, 100, 100, false),
+		BrainCellStat.new("community", true, 100, 250, false),
 		2,
 		false,
 		false,
