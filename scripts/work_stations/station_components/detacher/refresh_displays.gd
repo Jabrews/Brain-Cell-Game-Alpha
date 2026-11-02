@@ -12,7 +12,6 @@ func _refresh() :
 	var stat_selected_index : int = parent_station_detacher.stat_selected_index 
 	var selected_stat : String = parent_station_detacher.selected_stat
 	var stat_valid : bool = parent_station_detacher.stat_valid
-	var failure_rate : int = parent_station_detacher.failure_rate
 #	
 	var loaded_cell : BrainCell = parent_station_detacher._get_loaded_cell()
 	
@@ -23,8 +22,12 @@ func _refresh() :
 		stat_valid,
 	) 
 	
+	var failure_rate : int = parent_station_detacher.failure_rate
+	var cell_just_added : bool = parent_station_detacher.cell_just_added 
+	
 	screen_failure_chance._refresh(
 		enabled,
+		cell_just_added,
 		loaded_cell,
 		stat_valid,
 		selected_stat,

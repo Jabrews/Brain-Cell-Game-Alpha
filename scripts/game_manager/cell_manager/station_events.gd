@@ -57,7 +57,11 @@ func _handle_hidden_stat_interpreted(selected_cell : BrainCell, selected_stat : 
 		'community' :
 			selected_cell.community.hidden = false
 		
-	parent_manager.update_collected_cells([selected_cell])
+	# hack but whatevea
+	# i even named it right ig
+	var array_of_cell : Array[BrainCell] = [selected_cell]
+		
+	parent_manager.update_collected_cells(array_of_cell)
 
 func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell, increase_amount : float) :
 	

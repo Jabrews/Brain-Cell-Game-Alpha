@@ -400,7 +400,6 @@ offset_bottom = 120.0
 texture = ExtResource("9_7eota")
 
 [node name="AddACell" type="Control" parent="." unique_id=1230722002]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -409,16 +408,16 @@ offset_bottom = 40.0
 [node name="HeaderLabel" type="Label" parent="AddACell" unique_id=1218270981]
 texture_filter = 1
 layout_mode = 0
-offset_top = 16.0
-offset_right = 447.0
-offset_bottom = 216.0
+offset_left = 7.0
+offset_top = 12.0
+offset_right = 454.0
+offset_bottom = 212.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = 15
 theme_override_fonts/font = ExtResource("2_slyes")
-theme_override_font_sizes/font_size = 26
-text = "Place Cell
-On Panel
-to Initate
-Deatacher"
+theme_override_font_sizes/font_size = 50
+text = "Stat
+Detacher"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -432,6 +431,7 @@ offset_bottom = 520.0
 texture = ExtResource("10_36yyv")
 
 [node name="Disabled" type="Control" parent="." unique_id=698075478]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

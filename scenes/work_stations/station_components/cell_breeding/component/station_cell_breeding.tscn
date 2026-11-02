@@ -1295,6 +1295,7 @@ mesh = SubResource("ArrayMesh_8kvbb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tables/MainTable" unique_id=1930902399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.348053, 1.0170288, 1.0229876)
 shape = SubResource("BoxShape3D_qa1qv")
+metadata/_edit_lock_ = true
 
 [node name="BoostTableLeft" type="StaticBody3D" parent="Tables" unique_id=792535582 groups=["nav_mesh_coll"]]
 transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0.320845, 2.8513463, 2.7678661)

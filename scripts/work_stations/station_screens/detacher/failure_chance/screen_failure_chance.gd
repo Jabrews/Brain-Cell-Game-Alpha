@@ -1,14 +1,20 @@
 extends Node
 
+
 ## Parent components
 @onready var failure_chance_parent: Control = $FailureChance
 @onready var disabled_parent: Control = $Disabled
 @onready var stat_invalid_parent: Control = $StatInvalid
+@onready var hint_cycle_btns_parent : Control = $HintCycleBtns
 
 ## Failure chance components
 @onready var defect_bar: TextureProgressBar = $FailureChance/DefectBar/DefectBar
 @onready var failure_chance_percent_label: Label = $FailureChance/PercantLabel
 @onready var loading_parent: Control = $Loading
+
+# cycle btn parent helper
+@onready var toggle_hint_cycle_btn_anim : Node = $HintCycleBtns/ToggleCycleBtnAnim
+
 
 ## Failure chance warning
 var label_original_position: Vector2
@@ -27,24 +33,36 @@ const TIER_TWO_SCALE: Vector2 = Vector2(1.25, 1.25)
 const TIER_TWO_SCALE_SPEED: float = 5.0
 
 
+
 func _ready() -> void:
 	label_original_position = failure_chance_percent_label.position
 	failure_chance_percent_label.pivot_offset = (
 		failure_chance_percent_label.size / 2.0
 	)
+	
+	disabled_parent.visible = true
 
 
 func _refresh(
 	enabled: bool,
+	cell_just_added : bool,
 	loaded_cell: BrainCell,
 	stat_valid: bool,
 	selected_stat: String,
 	failure_rate: int
 ) -> void:
+	
 	failure_chance_parent.visible = false
 	disabled_parent.visible = false
 	stat_invalid_parent.visible = false
 	loading_parent.visible = false
+	hint_cycle_btns_parent.visible = false 	# reset hint also
+	toggle_hint_cycle_btn_anim._toggle(true)
+	
+	if cell_just_added : 
+		hint_cycle_btns_parent.visible = true
+		toggle_hint_cycle_btn_anim._toggle(true)
+		return
 
 	# Stop any warning animation before refreshing the display.
 	_set_tier_one_warning_visible(false)

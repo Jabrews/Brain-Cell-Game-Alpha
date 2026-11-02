@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cbdt3vrc6627w" path="res://models/prisoner_profiler/prisoner_card_symbols/defect_rate.png" id="6_q2ips"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="7_mh647"]
 [ext_resource type="Texture2D" uid="uid://cej254njdeqsu" path="res://models/hidden_interpreter/loading_icon_frames.png" id="9_4sgoh"]
+[ext_resource type="Script" uid="uid://b8fv8yoq013rw" path="res://scripts/work_stations/station_screens/detacher/failure_chance/toggle_cycle_btn_anim.gd" id="11_xxugy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l60re"]
 shader = ExtResource("1_ieoup")
@@ -222,6 +223,7 @@ offset_right = 384.0
 offset_bottom = 384.0
 
 [node name="FailureChance" type="Control" parent="." unique_id=552790960]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -324,7 +326,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Disabled" type="Control" parent="." unique_id=838888732]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -409,5 +410,119 @@ offset_bottom = 345.0
 theme_override_fonts/font = ExtResource("7_mh647")
 theme_override_font_sizes/font_size = 50
 text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintCycleBtns" type="Control" parent="." unique_id=2128903886]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ToggleCycleBtnAnim" type="Node" parent="HintCycleBtns" unique_id=1106522054]
+script = ExtResource("11_xxugy")
+
+[node name="Bg" type="ColorRect" parent="HintCycleBtns" unique_id=2091778185]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="HintCycleBtns" unique_id=1127432441]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 40.0
+offset_right = 317.0
+offset_bottom = 157.0
+theme_override_constants/line_spacing = -14
+theme_override_fonts/font = ExtResource("7_mh647")
+theme_override_font_sizes/font_size = 60
+text = "Select stat
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderLabel2" type="Label" parent="HintCycleBtns" unique_id=552967542]
+texture_filter = 1
+layout_mode = 0
+offset_left = 64.0
+offset_top = 72.0
+offset_right = 322.0
+offset_bottom = 194.0
+theme_override_constants/line_spacing = -14
+theme_override_fonts/font = ExtResource("7_mh647")
+theme_override_font_sizes/font_size = 60
+text = "to detach"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonUp" type="Control" parent="HintCycleBtns" unique_id=1808372086]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = -13.0
+offset_right = 44.0
+offset_bottom = 27.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+
+[node name="ColorRect" type="ColorRect" parent="HintCycleBtns/ButtonUp" unique_id=705018699]
+modulate = Color(0.8, 0.8, 0.8, 1)
+layout_mode = 0
+offset_left = 56.0
+offset_top = 216.0
+offset_right = 168.0
+offset_bottom = 328.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0, 0.5372549, 1, 1)
+
+[node name="UpLabel" type="Label" parent="HintCycleBtns/ButtonUp" unique_id=949507720]
+texture_filter = 1
+layout_mode = 0
+offset_left = -17.0
+offset_top = 207.0
+offset_right = 241.0
+offset_bottom = 329.0
+rotation = 1.5707964
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -14
+theme_override_fonts/font = ExtResource("7_mh647")
+theme_override_font_sizes/font_size = 100
+text = "<"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonDown" type="Control" parent="HintCycleBtns" unique_id=1437227329]
+anchors_preset = 0
+offset_left = 157.0
+offset_top = -13.0
+offset_right = 197.0
+offset_bottom = 27.0
+pivot_offset = Vector2(0.5, 0.5)
+
+[node name="ColorRect" type="ColorRect" parent="HintCycleBtns/ButtonDown" unique_id=275187378]
+modulate = Color(0.8, 0.8, 0.8, 1)
+layout_mode = 0
+offset_left = 56.0
+offset_top = 216.0
+offset_right = 168.0
+offset_bottom = 328.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+color = Color(0, 0.5372549, 1, 1)
+
+[node name="DownLabel" type="Label" parent="HintCycleBtns/ButtonDown" unique_id=1820462654]
+texture_filter = 1
+layout_mode = 0
+offset_left = -17.0
+offset_top = 211.0
+offset_right = 241.0
+offset_bottom = 333.0
+rotation = 4.712389
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -14
+theme_override_fonts/font = ExtResource("7_mh647")
+theme_override_font_sizes/font_size = 100
+text = "<"
 horizontal_alignment = 1
 vertical_alignment = 1

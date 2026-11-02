@@ -205,13 +205,13 @@ mesh = SubResource("SphereMesh_4u8ja")
 shape = SubResource("SphereShape3D_f42uy")
 
 [node name="Light" type="SpotLight3D" parent="LoadCellPanel/Panel/Light" unique_id=668461421]
-transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 0, 0, 0)
-visible = false
-light_color = Color(0.97, 0.44619998, 0.44619998, 1)
+transform = Transform3D(-1.6292068e-07, 0, -1, 0, 1, 0, 1, 0, -1.6292068e-07, -0.15012693, 0, -2.7514878e-05)
+light_color = Color(0.97, 0, 0, 1)
 light_energy = 0.2
+light_indirect_energy = 0.0
 spot_range = 0.2
-spot_attenuation = 4.8
-spot_angle = 18.95
+spot_attenuation = 1.73
+spot_angle = 28.55
 
 [node name="DeatcherTV" type="Node3D" parent="." unique_id=609359801]
 transform = Transform3D(-0.35229734, 0, 0.9358881, 0, 1, 0, -0.9358881, 0, -0.35229734, 4.1764197, -0.80792075, 1.5853349)
