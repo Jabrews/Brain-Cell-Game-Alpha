@@ -22,6 +22,10 @@ func _refresh() :
 		stat_valid,
 	) 
 	
+	# DEBUG failure rate turned off
+	if not parent_station_detacher.failure_rate_enabled  :
+		return
+	
 	var failure_rate : int = parent_station_detacher.failure_rate
 	var cell_just_added : bool = parent_station_detacher.cell_just_added 
 	

@@ -414,6 +414,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="HintCycleBtns" type="Control" parent="." unique_id=2128903886]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

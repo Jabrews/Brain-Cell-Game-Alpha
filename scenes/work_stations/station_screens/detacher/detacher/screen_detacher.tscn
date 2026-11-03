@@ -400,6 +400,7 @@ offset_bottom = 120.0
 texture = ExtResource("9_7eota")
 
 [node name="AddACell" type="Control" parent="." unique_id=1230722002]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -431,7 +432,6 @@ offset_bottom = 520.0
 texture = ExtResource("10_36yyv")
 
 [node name="Disabled" type="Control" parent="." unique_id=698075478]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0

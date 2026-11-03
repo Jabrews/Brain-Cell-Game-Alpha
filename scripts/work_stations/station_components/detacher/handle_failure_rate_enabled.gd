@@ -1,11 +1,24 @@
 extends Node
 
+# components
+@onready var parent_station_detacher : Node3D = $"../.."
+@onready var failure_chance_tv_parent : Node3D = $"../../FailureChanceTV"
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	GLGameManagerBus.connect('process_new_ivs', _handle_process_new_ivs)
 
+func _handle_process_new_ivs() :
+	
+	parent_station_detacher.failure_rate_enabled = GLWorkstationBus.detacher_failure_enabled 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	if not GLWorkstationBus.detacher_failure_enabled : 
+		failure_chance_tv_parent.visible = false
+	
+	else : 
+		failure_chance_tv_parent.visible = true 
+	
+
+	
+	
+	
+		

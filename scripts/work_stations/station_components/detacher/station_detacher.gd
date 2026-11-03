@@ -5,6 +5,8 @@ extends Node
 @onready var light_manager : Node = $Logic/LightManager
 
 var enabled : bool = false 
+var failure_rate_enabled : bool  = false
+
 var loaded_cell_container : CharacterBody3D = null
 var cell_just_added : bool = false # for failure chance screen
 
@@ -12,6 +14,8 @@ var stat_selected_index : int = -1
 var selected_stat : String = 'none'
 var stat_valid : bool = false
 var failure_rate : int = 0
+
+
 
 func _ready() -> void:
 	refresh_displays._refresh()

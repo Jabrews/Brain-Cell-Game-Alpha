@@ -60,6 +60,4 @@ func _handle(direction : int) :
 		else : 
 			parent_station_detacher.failure_rate = 0.0
 		
-		# TODO valaidity and failure rate
-
 	refresh_displays._refresh()

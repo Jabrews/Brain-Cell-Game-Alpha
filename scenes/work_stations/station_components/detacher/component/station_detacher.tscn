@@ -15,9 +15,9 @@
 [ext_resource type="Script" uid="uid://d2rrp5l34k770" path="res://scripts/work_stations/station_components/detacher/light_manager.gd" id="5_7nfmu"]
 [ext_resource type="Script" uid="uid://c2syln8x6ylrj" path="res://scripts/work_stations/station_components/detacher/refresh_displays.gd" id="6_ald4e"]
 [ext_resource type="Script" uid="uid://b6lgtd3500wax" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_cycle_stat_btn/compute_validity.gd" id="6_b1lgg"]
-[ext_resource type="Script" uid="uid://cexvgbfqry4n6" path="res://scripts/work_stations/station_components/detacher/init/init_fail_detach.gd" id="7_xgw8y"]
+[ext_resource type="Script" uid="uid://cexvgbfqry4n6" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_confirm_btn/init_fail_detach.gd" id="7_xgw8y"]
 [ext_resource type="Script" uid="uid://druhck52r42r1" path="res://scripts/work_stations/station_components/detacher/btns/confirm_btn.gd" id="8_7nfmu"]
-[ext_resource type="Script" uid="uid://vnw8kmtdp4dh" path="res://scripts/work_stations/station_components/detacher/init/init_success_detach.gd" id="8_uvxnj"]
+[ext_resource type="Script" uid="uid://vnw8kmtdp4dh" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_confirm_btn/init_success_detach.gd" id="8_uvxnj"]
 [ext_resource type="Script" uid="uid://bm0jhrklg60cc" path="res://scripts/work_stations/station_components/detacher/load_cell_panel.gd" id="11_uvxnj"]
 [ext_resource type="Script" uid="uid://c7ivtfauiof3j" path="res://scripts/work_stations/station_components/detacher/btns/cycle_stat_btn.gd" id="12_ald4e"]
 
@@ -145,19 +145,17 @@ script = ExtResource("6_b1lgg")
 [node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=491027833]
 script = ExtResource("4_o0044")
 
+[node name="InitFailDetach" type="Node" parent="Logic/BtnHandlers/HandleConfirmBtn" unique_id=1454413677]
+script = ExtResource("7_xgw8y")
+
+[node name="InitSuccessDetach" type="Node" parent="Logic/BtnHandlers/HandleConfirmBtn" unique_id=616213964]
+script = ExtResource("8_uvxnj")
+
 [node name="LightManager" type="Node" parent="Logic" unique_id=248835391]
 script = ExtResource("5_7nfmu")
 
 [node name="RefreshDisplays" type="Node" parent="Logic" unique_id=1224801358]
 script = ExtResource("6_ald4e")
-
-[node name="InitHelpers" type="Node" parent="Logic" unique_id=1517151637]
-
-[node name="InitFailDetach" type="Node" parent="Logic/InitHelpers" unique_id=1454413677]
-script = ExtResource("7_xgw8y")
-
-[node name="InitSuccessDetach" type="Node" parent="Logic/InitHelpers" unique_id=616213964]
-script = ExtResource("8_uvxnj")
 
 [node name="LoadCellPanel" type="Node3D" parent="." unique_id=489836933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04719603, 0.22518694, 0)
