@@ -6,6 +6,8 @@ extends Node
 @onready var disabled_parent: Control = $Disabled
 @onready var stat_invalid_parent: Control = $StatInvalid
 @onready var hint_cycle_btns_parent : Control = $HintCycleBtns
+@onready var detach_success_parent : Control = $DetachSuccess
+@onready var detach_failed_parent : Control = $DetachFailed
 
 ## Failure chance components
 @onready var defect_bar: TextureProgressBar = $FailureChance/DefectBar/DefectBar
@@ -41,6 +43,9 @@ func _ready() -> void:
 	)
 	
 	disabled_parent.visible = true
+	
+	GLDetacherComponentBus.connect('show_success_screen', _handle_show_success_screen)
+	GLDetacherComponentBus.connect('show_failed_screen', _handle_show_failed_screen)
 
 
 func _refresh(
@@ -185,3 +190,13 @@ func _create_warning_tween(
 	)
 
 	return tween
+
+func _handle_show_success_screen() : 
+	detach_success_parent.visible = true
+	await get_tree().create_timer(4.0).timeout
+	detach_success_parent.visible = false 
+
+func _handle_show_failed_screen() :
+	detach_failed_parent.visible = true
+	await get_tree().create_timer(4.0).timeout
+	detach_failed_parent.visible = false 

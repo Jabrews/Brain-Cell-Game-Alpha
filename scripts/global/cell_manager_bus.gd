@@ -41,4 +41,7 @@ signal cells_updated()
 ### DEBUG ###
 signal debug_unhide_collected_cell_mutation(selected_cell : BrainCell)
 signal debug_create_collected_cells(cells : Array[BrainCell])
+
+## Cell Container
+signal scale_cell(cell_name : String)
 signal toggle_lock_cell_pickup(cell_name : String, toggle_value : bool)

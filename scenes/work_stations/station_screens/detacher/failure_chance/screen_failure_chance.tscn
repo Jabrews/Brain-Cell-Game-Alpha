@@ -527,3 +527,59 @@ theme_override_font_sizes/font_size = 100
 text = "<"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DetachSuccess" type="Control" parent="." unique_id=1394673653]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="DetachSuccess" unique_id=95937274]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="HeaderLabel2" type="Label" parent="DetachSuccess" unique_id=291903345]
+texture_filter = 1
+layout_mode = 0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 414.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(0.54901963, 1, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_m41xj")
+theme_override_font_sizes/font_size = 40
+text = "Success"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetachFailed" type="Control" parent="." unique_id=736854171]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="DetachFailed" unique_id=1018198742]
+layout_mode = 0
+offset_right = 384.0
+offset_bottom = 384.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="HeaderLabel2" type="Label" parent="DetachFailed" unique_id=462883401]
+texture_filter = 1
+layout_mode = 0
+offset_left = -24.0
+offset_top = -8.0
+offset_right = 414.0
+offset_bottom = 380.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_m41xj")
+theme_override_font_sizes/font_size = 40
+text = "Failed"
+horizontal_alignment = 1
+vertical_alignment = 1

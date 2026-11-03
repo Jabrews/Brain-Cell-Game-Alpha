@@ -18,7 +18,7 @@ func _handle(direction : int) :
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed') 
 		return
 	
-	GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_success')
+	GLDetacherComponentBus.emit_signal('play_sound', 'cycle')
 	
 	# no longer need to show just added screen on failure chance screen
 	# hacky but it works
@@ -52,8 +52,10 @@ func _handle(direction : int) :
 		
 		if stat_valid : 
 			light_manager._set_light_mode('green')
+			GLDetacherComponentBus.emit_signal('play_sound', 'valid')
 		else : 
 			light_manager._set_light_mode('red')
+			GLDetacherComponentBus.emit_signal('play_sound', 'invalid')
 		
 		if parent_station_detacher.stat_valid :
 			parent_station_detacher.failure_rate = GAMEFailureChance.detacher_helper._get_stat_failure_chance(loaded_cell, cycle_values[next_stat_selected_index])

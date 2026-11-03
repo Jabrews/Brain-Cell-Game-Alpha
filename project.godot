@@ -75,6 +75,7 @@ IVDefaultPrisonerCreate="*uid://dohccdqipydkl"
 GLWorkstationBus="*uid://4jk84yj4aod2"
 GLDefectScrapsBus="*uid://dvggc2vnjl3pu"
 GAMEFailureChance="*uid://bciihfhk2v0ep"
+GLDetacherComponentBus="*uid://c1x7wy51rggsu"
 
 [debug]
 

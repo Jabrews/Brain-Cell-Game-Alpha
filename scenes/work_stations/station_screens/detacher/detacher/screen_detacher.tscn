@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_7eota"]
 [ext_resource type="Texture2D" uid="uid://dbipe678hhloo" path="res://models/workstations/detacher/selected_stat_border.png" id="9_7eota"]
 [ext_resource type="Texture2D" uid="uid://b2cfjr8vrxvj8" path="res://models/workstations/detacher/tutorial_img-export.png" id="10_36yyv"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="12_tt2wt"]
+[ext_resource type="Script" uid="uid://bhqkk32c5ql51" path="res://scripts/work_stations/station_screens/detacher/failure_chance/not_added_to_jar_parent.gd" id="13_wxcw4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_slyes"]
 shader = ExtResource("1_qll7q")
@@ -454,5 +456,153 @@ theme_override_fonts/font = ExtResource("2_slyes")
 theme_override_font_sizes/font_size = 40
 text = "Detacher
 Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetachSuccess" type="Control" parent="." unique_id=189761853]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="DetachSuccess" unique_id=5306916]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 576.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="DetachSuccess" unique_id=462146988]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = -35.0
+offset_right = 445.0
+offset_bottom = 353.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_slyes")
+theme_override_font_sizes/font_size = 50
+text = "
+Detach"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderLabel2" type="Label" parent="DetachSuccess" unique_id=2143525312]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 66.0
+offset_right = 445.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(0.54901963, 1, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_slyes")
+theme_override_font_sizes/font_size = 50
+text = "Success"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderLabel3" type="Label" parent="DetachSuccess" unique_id=823281663]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 283.0
+offset_right = 443.0
+offset_bottom = 421.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("12_tt2wt")
+theme_override_font_sizes/font_size = 50
+text = "removed stat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DetachFailed" type="Control" parent="." unique_id=1800569714]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="DetachFailed" unique_id=1556790903]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 576.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="DetachFailed" unique_id=1195703402]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = -35.0
+offset_right = 445.0
+offset_bottom = 353.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_slyes")
+theme_override_font_sizes/font_size = 50
+text = "
+Detach"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderLabel2" type="Label" parent="DetachFailed" unique_id=800844810]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 66.0
+offset_right = 445.0
+offset_bottom = 454.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_slyes")
+theme_override_font_sizes/font_size = 50
+text = "Failed"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderLabel3" type="Label" parent="DetachFailed" unique_id=1801505131]
+texture_filter = 1
+layout_mode = 0
+offset_left = 7.0
+offset_top = 255.0
+offset_right = 445.0
+offset_bottom = 393.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("12_tt2wt")
+theme_override_font_sizes/font_size = 50
+text = "removed stat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NotAddedToJarParent" type="Control" parent="DetachFailed" unique_id=1315021467]
+anchors_preset = 0
+offset_top = -71.0
+offset_right = 40.0
+offset_bottom = -31.0
+script = ExtResource("13_wxcw4")
+
+[node name="Bg2" type="ColorRect" parent="DetachFailed/NotAddedToJarParent" unique_id=335639409]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 453.0
+offset_right = 391.0
+offset_bottom = 517.0
+color = Color(0.7262234, 2.695322e-06, 2.8878452e-07, 1)
+
+[node name="HeaderLabel4" type="Label" parent="DetachFailed/NotAddedToJarParent" unique_id=1976086626]
+texture_filter = 1
+layout_mode = 0
+offset_left = 6.0
+offset_top = 415.0
+offset_right = 444.0
+offset_bottom = 553.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -11
+theme_override_fonts/font = ExtResource("12_tt2wt")
+theme_override_font_sizes/font_size = 50
+text = "not added to jar"
 horizontal_alignment = 1
 vertical_alignment = 1

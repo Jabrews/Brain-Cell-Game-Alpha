@@ -1,8 +1,9 @@
 extends Node
 
 # componentd
-@onready var parent_station_detacher : Node3D = $"../../../.."
+@onready var parent_station_detacher : Node3D =$"../../.."
 @onready var init_success_detach : Node = $InitSuccessDetach
+@onready var init_fail_detach : Node = $InitFailDetach
 
 func _handle() : 
 	
@@ -27,11 +28,11 @@ func _handle() :
 	
 	var ran_num = randi_range(0, 100)
 	
-	# failed 
-	if ran_num <= failure_rate : 
-		# TODO FIX we tell it what to do depending on what range it existied inside of	
+	
+	# failed (make sure its enabled)
+	if ran_num <= failure_rate and parent_station_detacher.failure_rate_enabled : 
 		
-		init_success_detach._success(
+		init_fail_detach._failed(
 			loaded_cell,
 			selected_stat,
 		)
@@ -43,7 +44,7 @@ func _handle() :
 			selected_stat,
 		)
 	
-	
+	GLDetacherComponentBus.emit_signal('play_sound', 'finished')
 	
 	
 

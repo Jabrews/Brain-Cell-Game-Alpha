@@ -20,6 +20,12 @@
 [ext_resource type="Script" uid="uid://vnw8kmtdp4dh" path="res://scripts/work_stations/station_components/detacher/btns/handlers/handle_confirm_btn/init_success_detach.gd" id="8_uvxnj"]
 [ext_resource type="Script" uid="uid://bm0jhrklg60cc" path="res://scripts/work_stations/station_components/detacher/load_cell_panel.gd" id="11_uvxnj"]
 [ext_resource type="Script" uid="uid://c7ivtfauiof3j" path="res://scripts/work_stations/station_components/detacher/btns/cycle_stat_btn.gd" id="12_ald4e"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="21_b1lgg"]
+[ext_resource type="AudioStream" uid="uid://br22qlp21p4cm" path="res://sounds/detacher/cycle_stat.mp3" id="21_bpr4u"]
+[ext_resource type="Script" uid="uid://b214p7ar4d55o" path="res://scripts/work_stations/station_components/detacher/audio_manager.gd" id="21_ia481"]
+[ext_resource type="AudioStream" uid="uid://bb1lics6esexx" path="res://sounds/detacher/invalid_selected.mp3" id="22_ia481"]
+[ext_resource type="AudioStream" uid="uid://dpqxyaaeht4vg" path="res://sounds/detacher/valid_selected_2.mp3" id="23_bpr4u"]
+[ext_resource type="AudioStream" uid="uid://cxh4fexnvvpp6" path="res://sounds/station_cell_breeder/breeding_finished_charge.mp3" id="25_c7gnc"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8y5g0"]
 size = Vector3(1.4290893, 0.40073243, 1.4282539)
@@ -122,6 +128,52 @@ size = Vector3(0.165271, 0.1496704, 0.023046881)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f42uy"]
 size = Vector3(0.16631469, 0.14939575, 0.023046881)
+
+[sub_resource type="Curve" id="Curve_4llmk"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xf8x4"]
+curve = SubResource("Curve_4llmk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4g2ry"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_xf8x4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpr4u"]
+transparency = 1
+albedo_color = Color(0.083333254, 1, 0, 1)
+albedo_texture = ExtResource("21_b1lgg")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ia481"]
+material = SubResource("StandardMaterial3D_bpr4u")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1lgg"]
+transparency = 1
+albedo_color = Color(1, 0, 0.016666412, 1)
+albedo_texture = ExtResource("21_b1lgg")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4llmk"]
+material = SubResource("StandardMaterial3D_b1lgg")
+size = Vector2(0.2, 0.2)
 
 [node name="StationDetacher" type="Node3D" unique_id=1456525256]
 script = ExtResource("1_n07v2")
@@ -392,3 +444,48 @@ font = ExtResource("4_f42uy")
 font_size = 28
 outline_size = 0
 uppercase = true
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=1324913732]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8762748, 0)
+script = ExtResource("21_ia481")
+
+[node name="CycleStat" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1272488961]
+stream = ExtResource("21_bpr4u")
+volume_db = -10.0
+
+[node name="InvalidSelected" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1097461357]
+stream = ExtResource("22_ia481")
+volume_db = -20.0
+
+[node name="ValidSelected" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=865411894]
+stream = ExtResource("23_bpr4u")
+volume_db = -10.0
+
+[node name="FinishedCharge" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=685684892]
+stream = ExtResource("25_c7gnc")
+volume_db = -5.0
+
+[node name="Particles" type="Node3D" parent="." unique_id=350278961]
+
+[node name="SuccessParticles" type="GPUParticles3D" parent="Particles" unique_id=1142636164]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 10
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4g2ry")
+draw_pass_1 = SubResource("QuadMesh_ia481")
+
+[node name="FailedParticles" type="GPUParticles3D" parent="Particles" unique_id=660498643]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 10
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4g2ry")
+draw_pass_1 = SubResource("QuadMesh_4llmk")
+
+[node name="FloatingLabelSpawnPos" type="Node3D" parent="." unique_id=1185210641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.234201, 0)
