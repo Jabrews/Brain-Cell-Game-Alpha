@@ -4,6 +4,7 @@ extends Control
 @onready var btn_bg: ColorRect = $ColorRect
 @onready var reset_label: Label = $ResetLabel
 @onready var hint: Control = $Hint
+@onready var handle_display_ui : Node = $"../../../HandleDisplayUi"
 
 # components
 @onready var handle_reset_btn : Node  = $"../../../HandleResetBtn"
@@ -52,6 +53,10 @@ func _toggle_active(toggle_value: bool) -> void:
 		hover_tween.kill()
 
 	if toggle_value:
+		
+		# dont play sound if ui not active
+		if not handle_display_ui.showing_breeding_ui  :
+			return
 
 		GLBreedingComponetsBus.emit_signal(
 			"breeder_play_sound",

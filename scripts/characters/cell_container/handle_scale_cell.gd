@@ -1,6 +1,8 @@
 extends Node
 
-@onready var parent_cell_container: CharacterBody3D = $".."
+# components
+@onready var parent_cell_container : CharacterBody3D = $".."
+@onready var cell_container_mesh : MeshInstance3D = $"../MeshInstance3D"
 
 @export var scale_multiplier: float = 1.25
 @export var scale_up_duration: float = 0.12
@@ -12,7 +14,7 @@ var scale_tween: Tween
 
 
 func _ready() -> void:
-	original_scale = parent_cell_container.scale
+	original_scale = cell_container_mesh.scale
 	GLCellManagerBus.connect("scale_cell", _handel_scale_cell)
 
 
@@ -25,7 +27,7 @@ func _handel_scale_cell(cell_name: String) -> void:
 	if scale_tween:
 		scale_tween.kill()
 
-	parent_cell_container.scale = original_scale
+	cell_container_mesh.scale = original_scale
 
 	scale_tween = create_tween()
 	scale_tween.set_trans(Tween.TRANS_SINE)
@@ -33,13 +35,13 @@ func _handel_scale_cell(cell_name: String) -> void:
 
 	for i in range(repeat_count):
 		scale_tween.tween_property(
-			parent_cell_container,
+			cell_container_mesh,
 			"scale",
 			original_scale * scale_multiplier,
 			scale_up_duration
 		)
 		scale_tween.tween_property(
-			parent_cell_container,
+			cell_container_mesh,
 			"scale",
 			original_scale,
 			scale_down_duration
