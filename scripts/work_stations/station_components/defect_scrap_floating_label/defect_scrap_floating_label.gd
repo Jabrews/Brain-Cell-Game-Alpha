@@ -9,7 +9,7 @@ extends Node3D
 
 @export var time_alive: float = 5.0
 const FLOAT_DISTANCE: float = 1.0
-const FADE_START_PERCENT: float = 1.0
+const FADE_START_PERCENT: float = 0.7
 
 
 func start(increase_amount : int) -> void:

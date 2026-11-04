@@ -175,6 +175,17 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_b1lgg")
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7gnc"]
+albedo_color = Color(1, 0.06999999, 0.06999999, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c7gnc"]
+material = SubResource("StandardMaterial3D_c7gnc")
+size = Vector3(0.3395996, 0.5401683, 0.26405907)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4x7nc"]
+material = SubResource("StandardMaterial3D_c7gnc")
+size = Vector3(0.3395996, 0.54444075, 0.26405907)
+
 [node name="StationDetacher" type="Node3D" unique_id=1456525256]
 script = ExtResource("1_n07v2")
 
@@ -264,7 +275,7 @@ spot_attenuation = 1.73
 spot_angle = 28.55
 
 [node name="DeatcherTV" type="Node3D" parent="." unique_id=609359801]
-transform = Transform3D(-0.35229734, 0, 0.9358881, 0, 1, 0, -0.9358881, 0, -0.35229734, 4.1764197, -0.80792075, 1.5853349)
+transform = Transform3D(-0.3522974, 0, 0.9358881, 0, 1, 0, -0.9358881, 0, -0.3522974, 4.255922, -0.80792075, 1.5554079)
 
 [node name="TVPole" type="StaticBody3D" parent="DeatcherTV" unique_id=1609119061]
 transform = Transform3D(0.8892358, 0, -0.45744914, 0, 1, 0, 0.45744914, 0, 0.8892358, 4.250383, 1.4829161, -3.3807898)
@@ -296,7 +307,7 @@ size = Vector2i(448, 576)
 [node name="ScreenDetacher" parent="DeatcherTV/TvFrontPannel/SubViewport" unique_id=1915142973 instance=ExtResource("2_t6gb7")]
 
 [node name="FailureChanceTV" type="Node3D" parent="." unique_id=806201168]
-transform = Transform3D(-0.35229737, 0, 0.9358882, 0, 1, 0, -0.9358882, 0, -0.35229737, 3.8515017, -0.82112694, 0.7392988)
+transform = Transform3D(-0.3522974, 0, 0.9358881, 0, 1, 0, -0.9358881, 0, -0.3522974, 3.9310036, -0.82112694, 0.70937186)
 
 [node name="TVBack" type="MeshInstance3D" parent="FailureChanceTV" unique_id=1813614166]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19497, 1.8367782, -3.4543881)
@@ -489,3 +500,14 @@ draw_pass_1 = SubResource("QuadMesh_4llmk")
 
 [node name="FloatingLabelSpawnPos" type="Node3D" parent="." unique_id=1185210641]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.234201, 0)
+
+[node name="PipeBlockOut" type="Node3D" parent="." unique_id=1189772527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0425632, -0.611843, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="PipeBlockOut" unique_id=697418312]
+transform = Transform3D(4.371139e-08, -4.371139e-08, -1, -1, 0, -4.3711392e-08, 3.5527137e-15, 1, -4.371138e-08, 0.07294309, 0.71737313, 1.0017036)
+mesh = SubResource("BoxMesh_c7gnc")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="PipeBlockOut" unique_id=228663604]
+transform = Transform3D(2.990851e-08, -5.4100393e-08, -1, -0.9609498, 0.27672285, -4.3711395e-08, 0.27672285, 0.9609498, -4.371138e-08, 0.072943054, 0.78151137, 1.4823833)
+mesh = SubResource("BoxMesh_4x7nc")

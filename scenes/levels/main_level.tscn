@@ -1106,7 +1106,7 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.1
 [node name="WorkStations" type="Node" parent="Stations" unique_id=1874796333]
 
 [node name="Table" type="Node3D" parent="Stations/WorkStations" unique_id=1582858527]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.826952, 1.0148163, -5.833307)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.4452715, 1.0148163, -5.833307)
 
 [node name="Cabinet" type="MeshInstance3D" parent="Stations/WorkStations/Table" unique_id=482934227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5567617, -1, -6.9166675)
@@ -1131,7 +1131,7 @@ mesh = SubResource("ArrayMesh_k7qrp")
 shape = SubResource("ConcavePolygonShape3D_klp60")
 
 [node name="StationDeatcher" parent="Stations/WorkStations" unique_id=1456525256 instance=ExtResource("21_pq8fj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.79823804, 2.2952938, -2.9050539)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45824265, 2.2952938, -7.885661)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.445799, 3.0319495, 24.183794)
