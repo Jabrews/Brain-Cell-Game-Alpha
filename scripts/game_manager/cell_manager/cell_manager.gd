@@ -209,6 +209,7 @@ func _handle_collected_cell_changed(cell: BrainCell) -> void:
 
 
 func _handle_proceed_next_turn() -> void:
+	
 	# Clear the breeder-unavailable flag.
 	for cell in collected_cells:
 		cell.breeder_unavaible = false

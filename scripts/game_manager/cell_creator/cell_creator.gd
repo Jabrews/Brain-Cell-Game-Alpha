@@ -23,7 +23,6 @@ func handle_create_prisoners( cell_constructor : CellConstructor) -> void:
 	
 	current_cell_constructor = cell_constructor
 	
-	GLGameManagerBus.emit_signal('proceed_next_turn')	
 	
 	# decide prisoner picks quanity			
 	GLPrisonerPicks.prisoners_to_pick = cell_constructor.prisoner_picks

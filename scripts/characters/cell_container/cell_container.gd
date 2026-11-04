@@ -8,6 +8,7 @@ var designated_brain_cell : BrainCell
 @onready var mutation_manager : Node = $MutationManager
 @onready var cell_defect_event_manager : Node = $CellDefectEventManager
 @onready var container_mesh : MeshInstance3D = $MeshInstance3D
+@onready var cell_name_label : Label3D = $CellNameLabel
 
 # state machine
 @onready var state_machine : Node = $StateMachine
@@ -43,6 +44,8 @@ func _ready() -> void:
 	
 	stat_display._handle_brain_cell_recieved(designated_brain_cell)
 	
+	cell_name_label._load_name(designated_brain_cell.name)
+	
 	GLCellManagerBus.emit_signal('collected_cell_created', designated_brain_cell)
 	
 	# des. cell changing listeners
@@ -52,7 +55,6 @@ func _ready() -> void:
 	
 	# update constant mutations
 	mutation_manager._mutations_refresh(designated_brain_cell.mutations)
-	
 	
 	check_for_cell_dead_on_start()
 

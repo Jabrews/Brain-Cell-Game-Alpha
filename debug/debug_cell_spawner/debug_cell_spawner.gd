@@ -145,8 +145,6 @@ func _ready() -> void:
 	##cells.append(cell_4)
 	##cells.append(cell_three)
 	
-	GLCellManagerBus.emit_signal('debug_create_collected_cells', cells)
-	
 	for cell in cells :
 		
 		var cell_container = cell_container_p_s.instantiate()

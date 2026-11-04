@@ -6,6 +6,7 @@ extends  Node
 @onready var life_span_label : Label = $"../StatDisplay/StatMesh/SubViewport/BasicRecieverScreen/StatDisplay/CellLifeSpan"
 @onready var stat_display_mesh : MeshInstance3D = $"../StatDisplay/StatMesh"
 @onready var lifespan_change_sound : AudioStreamPlayer3D = $"../Sounds/LifespanAge"
+@onready var cell_name_label : Label3D = $"../CellNameLabel"
 
 var last_lifespan : int = 0
 var designated_brain_cell : BrainCell
@@ -34,6 +35,9 @@ func _handle_cell_changed(changed_brain_cell : BrainCell) -> void:
 				play_life_span_changed_effect()
 				shake_life_span_label()
 				lifespan_change_sound.play()
+		
+		if changed_brain_cell.life_span <= 1 : 
+			cell_name_label._toggle_flash(true)
 
 func play_life_span_changed_effect() -> void:
 

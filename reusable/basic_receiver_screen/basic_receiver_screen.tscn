@@ -108,9 +108,9 @@ metadata/_edit_use_anchors_ = true
 [node name="CellName" type="Label" parent="StatDisplay" unique_id=179676983]
 layout_mode = 0
 offset_left = 4.0
-offset_top = 7.0
+offset_top = -14.0
 offset_right = 479.0
-offset_bottom = 50.0
+offset_bottom = 46.0
 theme_override_fonts/font = ExtResource("3_jqv5s")
 theme_override_font_sizes/font_size = 20
 text = "None
@@ -121,9 +121,9 @@ vertical_alignment = 1
 [node name="CellLifeSpan" type="Label" parent="StatDisplay" unique_id=323910199]
 layout_mode = 0
 offset_left = 299.0
-offset_top = 10.0
+offset_top = 6.0
 offset_right = 473.0
-offset_bottom = 56.97059
+offset_bottom = 52.97059
 theme_override_fonts/font = ExtResource("3_jqv5s")
 theme_override_font_sizes/font_size = 12
 text = " Lifespan - 4
@@ -132,8 +132,9 @@ horizontal_alignment = 1
 
 [node name="DefectBars" type="Control" parent="StatDisplay" unique_id=1530602115]
 anchors_preset = 0
+offset_top = -10.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 
 [node name="DefectStrengthBar" type="TextureProgressBar" parent="StatDisplay/DefectBars" unique_id=2033451502]
 layout_mode = 1
@@ -182,6 +183,8 @@ texture_progress = ExtResource("8_ekdri")
 
 [node name="ProgressBars" type="Control" parent="StatDisplay" unique_id=1467444573]
 anchors_preset = 0
+offset_top = -10.0
+offset_bottom = -10.0
 
 [node name="StrengthBar" type="Sprite2D" parent="StatDisplay/ProgressBars" unique_id=1261779286]
 texture_filter = 1
@@ -240,8 +243,9 @@ text = "Community"
 
 [node name="ProgressLabels" type="Control" parent="StatDisplay" unique_id=960681084]
 anchors_preset = 0
+offset_top = -10.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 
 [node name="MinMaxLabels" type="Control" parent="StatDisplay/ProgressLabels" unique_id=1252939053]
 anchors_preset = 0
@@ -400,8 +404,9 @@ vertical_alignment = 1
 
 [node name="DisabledParents" type="Control" parent="StatDisplay" unique_id=2132381243]
 anchors_preset = 0
+offset_top = -10.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 
 [node name="StrengthDisabled" type="Control" parent="StatDisplay/DisabledParents" unique_id=930173538]
 visible = false
@@ -491,8 +496,9 @@ vertical_alignment = 1
 
 [node name="HideStats" type="Control" parent="StatDisplay" unique_id=2014924575]
 anchors_preset = 0
+offset_top = -10.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 30.0
 
 [node name="StrengthHide" type="Sprite2D" parent="StatDisplay/HideStats" unique_id=787634540]
 visible = false

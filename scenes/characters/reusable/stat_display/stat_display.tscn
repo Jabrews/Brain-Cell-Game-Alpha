@@ -16,7 +16,7 @@ albedo_texture = SubResource("ViewportTexture_7ckj6")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_bmjmf"]
 material = SubResource("StandardMaterial3D_mw4ch")
-size = Vector2(1.4, 1.2)
+size = Vector2(1.8, 1.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8yf24"]
 size = Vector3(0.8, 0.8, 0.8)

@@ -4,7 +4,6 @@ extends Area3D
 @onready var handle_display_ui : Node = $"../../HandleDisplayUi"
 
 
-
 func _toggle_hologram_hint(toggle_value: bool) -> void:
 	GLBreedingComponetsBus.emit_signal('toggle_show_view_breeder_label', toggle_value)
 

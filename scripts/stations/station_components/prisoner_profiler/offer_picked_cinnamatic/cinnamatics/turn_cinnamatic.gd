@@ -26,6 +26,7 @@ func _initate() -> bool:
 
 
 func _proceed_to_next_turn() -> void:
+	
 	GLGameManagerBus.emit_signal("proceed_next_turn")
 	GLPrisonerProfilerComponentsBus.emit_signal('play_sound', 'turn_click')
 	

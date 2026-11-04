@@ -7,6 +7,7 @@ extends Node
 var player_ray_cast : RayCast3D
 @onready var picked_up_sound : AudioStreamPlayer3D = $"../../Sounds/CellPickedUp"
 @onready var dropped_sound : AudioStreamPlayer3D = $"../../Sounds/CellDropped"
+@onready var cell_name_label : Label3D = $"../../CellNameLabel"
 
 
 @export var pickup_speed: float = 20.0
@@ -26,6 +27,7 @@ func state_start() -> void:
 	# hide stat display
 	
 	stat_display.toggle_cell_picked_up(true)
+	cell_name_label._toggle_cell_picked_up(true)
 	
 	stat_display.visible = false
 	picked_up_sound.play()
@@ -208,5 +210,6 @@ func state_end() -> void:
 	
 	parent_cell_container.cell_defect_event_manager._handle_cell_picked_up(false)
 	stat_display.toggle_cell_picked_up(false)
+	cell_name_label._toggle_cell_picked_up(false)
 	
 	GLBreedingComponetsBus.emit_signal('toggle_cell_picked_up', false, parent_cell_container.designated_brain_cell.name)
