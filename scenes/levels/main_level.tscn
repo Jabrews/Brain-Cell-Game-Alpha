@@ -31,6 +31,7 @@
 [ext_resource type="Script" uid="uid://bxx34i2lndwh7" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/reduce_hidden_quanity.gd" id="20_wv5kd"]
 [ext_resource type="PackedScene" uid="uid://ofgrgb0ndico" path="res://scenes/work_stations/station_components/detacher/component/station_detacher.tscn" id="21_pq8fj"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
+[ext_resource type="PackedScene" uid="uid://bs175gbdg5t8m" path="res://scenes/work_stations/station_components/jar/jar.tscn" id="22_k7qrp"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
@@ -382,6 +383,12 @@ shadow_mesh = SubResource("ArrayMesh_tqaxy")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_klp60"]
 data = PackedVector3Array(-2.4999998, 0, 1.9000001, -2.4999998, 2.2, -3.1000004, -2.4999998, 2.2, 1.9000001, -2.4999998, 0, 1.9000001, -2.4999998, 0, -3.1000004, -2.4999998, 2.2, -3.1000004, -2.4999998, 0, -3.1000004, -0.5, 2.2, -3.1000004, -2.4999998, 2.2, -3.1000004, -2.4999998, 0, -3.1000004, -0.5, 0, -3.1000004, -0.5, 2.2, -3.1000004, -0.5, 0, -3.1000004, -0.5, 2.2, 1.9000001, -0.5, 2.2, -3.1000004, -0.5, 0, -3.1000004, -0.5, 0, 1.9000001, -0.5, 2.2, 1.9000001, -0.5, 0, 1.9000001, -2.4999998, 2.2, 1.9000001, -0.5, 2.2, 1.9000001, -0.5, 0, 1.9000001, -2.4999998, 0, 1.9000001, -2.4999998, 2.2, 1.9000001, -2.4999998, 0, -3.1000004, -0.5, 0, 1.9000001, -0.5, 0, -3.1000004, -2.4999998, 0, -3.1000004, -2.4999998, 0, 1.9000001, -0.5, 0, 1.9000001, -0.5, 2.2, -3.1000004, -2.4999998, 2.2, 1.9000001, -2.4999998, 2.2, -3.1000004, -0.5, 2.2, -3.1000004, -0.5, 2.2, 1.9000001, -2.4999998, 2.2, 1.9000001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
+size = Vector3(9.040466, 2.1706543, 1.9847412)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7spnw"]
+size = Vector3(1.9917908, 2.1706543, 3.0325623)
 
 [node name="MainLevel" type="Node3D" unique_id=716844902]
 script = ExtResource("35_w7r6u")
@@ -1130,8 +1137,25 @@ mesh = SubResource("ArrayMesh_k7qrp")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/WorkStations/Table/TableShort/TableShort" unique_id=1197538482]
 shape = SubResource("ConcavePolygonShape3D_klp60")
 
+[node name="TableBody" type="StaticBody3D" parent="Stations/WorkStations/Table" unique_id=1705550873]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stations/WorkStations/Table/TableBody" unique_id=365724783]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5397749, 0.12438965, -5.9862723)
+shape = SubResource("BoxShape3D_keru6")
+debug_color = Color(0.87180597, 0.19160527, 0.7208411, 0.41960785)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Stations/WorkStations/Table/TableBody" unique_id=1853546825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0641127, 0.12438965, -8.486105)
+shape = SubResource("BoxShape3D_7spnw")
+debug_color = Color(0.87180597, 0.19160527, 0.7208411, 0.41960785)
+
 [node name="StationDeatcher" parent="Stations/WorkStations" unique_id=1456525256 instance=ExtResource("21_pq8fj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45824265, 2.2952938, -7.885661)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45824265, 2.2952938, -7.5724373)
+
+[node name="Jar" parent="Stations/WorkStations" unique_id=419356855 instance=ExtResource("22_k7qrp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65115714, 3.0106783, -5.426569)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.445799, 3.0319495, 24.183794)

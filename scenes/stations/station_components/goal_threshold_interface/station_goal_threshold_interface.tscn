@@ -35,9 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://fuxnapkk0atd" path="res://sounds/goal_threshold_interface/next_goal.mp3" id="28_uirr1"]
 [ext_resource type="Texture2D" uid="uid://cip1wi7osp6in" path="res://models/goal_threshold/goal_tube/goal_tube_test_3_goal_tube_glass_uv.png" id="29_so02y"]
 [ext_resource type="Script" uid="uid://byw3dw60kkju6" path="res://scripts/stations/station_components/goal_threshold_interface/unfreeze_cell_area.gd" id="29_y722u"]
-[ext_resource type="Shader" uid="uid://dufn2osgn0x3g" path="res://scripts/stations/station_components/goal_threshold_interface/shaders/goal_tube.gdshader" id="31_4ao0c"]
 [ext_resource type="Script" uid="uid://ds6dm6swqy1wo" path="res://scripts/stations/station_components/goal_threshold_interface/bubble_manager/bubble_manager.gd" id="32_ss54k"]
-[ext_resource type="Texture2D" uid="uid://cjqyqkje88g1l" path="res://models/goal_threshold/goal_tube/water_texture.png" id="32_xftj8"]
 [ext_resource type="Script" uid="uid://b32k2vx547ht8" path="res://scripts/stations/station_components/goal_threshold_interface/tube_progress_manager.gd" id="33_ss54k"]
 [ext_resource type="Texture2D" uid="uid://c6nbx0befmbkv" path="res://models/mouse_cursor/mouse_cursor.png" id="33_tgn27"]
 
@@ -308,10 +306,73 @@ _surfaces = [{
 "vertex_data": PackedByteArray("Si4AAP//AAAAAP//29UAAEou/////wAAAAAAANvVAAC00f//////n///AADb1f+ftNEAAP///5//////29X/n7TRAAD//wCASi7/////AIC00f////8AgEouAAD//wCAAAAAANvVAAAAAP///38AAAAA///b1QAAAAAAAP9/AAAAAAAAIyoAAAAA//8jKgAA//8AAP9//7//////29X/v///////f/+///8AANvV/7//////Iyr/v///AAAjKv+/Si4AAAAAAAAAAP//IyoAAAAAAAAjKgAASi7//wAAAAC00f//AAD/3///AAAjKv/f/////yMq/9+00QAAAAD/37TRAAAAAAAASi7//wAAAABKLgAAAAAAALTR//8AAAAAglr/f4Ja/3+CWv9/glr/f/9/AAD/fwAA/38AAP9/AAD/f////3////9/////f////z//f/8//3//P/9//z//f/8//3//P/9//38AAP9/AAD/fwAA/38AAP9/AAD/fwAA//98pf//fKX//3yl//98pf9/AAD/fwAA/38AAP9/AAD///9/////f////3////9/")
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xftj8"]
+[sub_resource type="Shader" id="Shader_y2iqo"]
+code = "shader_type spatial;
+render_mode blend_mix, cull_disabled, shadows_disabled, unshaded;
+
+uniform sampler2D water_texture : source_color, repeat_enable;
+
+uniform vec4 red_color : source_color = vec4(0.75, 0.08, 0.04, 1.0);
+uniform vec4 yellow_color : source_color = vec4(0.9, 0.72, 0.08, 1.0);
+
+uniform float opacity : hint_range(0.0, 1.0) = 0.45;
+uniform float yellow_fill : hint_range(0.0, 1.0) = 0.0;
+
+uniform float bottom_y = 0.0;
+uniform float top_y = 2.0;
+uniform float edge_softness : hint_range(0.0, 0.5) = 0.05;
+
+uniform float texture_scale = 1.0;
+uniform float scroll_speed = 0.08;
+uniform float texture_strength : hint_range(0.0, 1.0) = 0.25;
+
+varying float local_y;
+
+void vertex() {
+	local_y = VERTEX.y;
+}
+
+void fragment() {
+	// Scroll two copies of the texture in different directions.
+	vec2 uv_a = UV * texture_scale
+		+ vec2(TIME * scroll_speed, TIME * scroll_speed * 0.35);
+
+	vec2 uv_b = UV * texture_scale * 1.37
+		+ vec2(-TIME * scroll_speed * 0.47, TIME * scroll_speed * 0.63);
+
+	float detail = (
+		texture(water_texture, uv_a).r
+		+ texture(water_texture, uv_b).r
+	) * 0.5;
+
+	// Yellow rises from bottom_y toward top_y.
+	float yellow_line = mix(bottom_y, top_y, yellow_fill);
+	float red_amount = smoothstep(
+		yellow_line - edge_softness,
+		yellow_line + edge_softness,
+		local_y
+	);
+
+	vec3 tint = mix(yellow_color.rgb, red_color.rgb, red_amount);
+	float texture_shading = mix(0.8, 1.2, detail);
+
+	vec3 pattern = mix(
+		texture(water_texture, uv_a).rgb,
+		texture(water_texture, uv_b).rgb,
+		0.5
+	);
+
+	ALBEDO = tint * mix(vec3(1.0), pattern, texture_strength);
+	ALPHA = opacity;
+}"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mallj"]
+load_path = "res://.godot/imported/water_texture.png-2d41795ae3e92e0aa139a99a663064d9.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mallj"]
 render_priority = 1
-shader = ExtResource("31_4ao0c")
-shader_parameter/water_texture = ExtResource("32_xftj8")
+shader = SubResource("Shader_y2iqo")
+shader_parameter/water_texture = SubResource("CompressedTexture2D_mallj")
 shader_parameter/red_color = Color(1, 0.03333336, 0, 1)
 shader_parameter/yellow_color = Color(0.9, 0.84540004, 0.08099998, 1)
 shader_parameter/opacity = 0.70000003325
@@ -322,6 +383,9 @@ shader_parameter/edge_softness = 0.10000000475
 shader_parameter/texture_scale = 5.0
 shader_parameter/scroll_speed = 0.1
 shader_parameter/texture_strength = 0.850000040375
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_keru6"]
+size = Vector3(2.659912, 5.4284973, 2.439392)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dwg3o"]
 albedo_color = Color(0.2627451, 0.6313726, 0.13725491, 1)
@@ -612,7 +676,7 @@ mesh = SubResource("ArrayMesh_ss54k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.9774306, 0)
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_tgn27")
-surface_material_override/0 = SubResource("ShaderMaterial_xftj8")
+surface_material_override/0 = SubResource("ShaderMaterial_mallj")
 
 [node name="BubbleManager" type="Node3D" parent="GoalTube" unique_id=1730361071]
 script = ExtResource("32_ss54k")
@@ -757,6 +821,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04217601, -1.8255781, -0.2
 script = ExtResource("33_ss54k")
 
 [node name="UpdateDelayTimer" type="Timer" parent="GoalTube/TubeProgressManager" unique_id=1330813170]
+
+[node name="TubeBody" type="StaticBody3D" parent="GoalTube" unique_id=1011768888]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GoalTube/TubeBody" unique_id=1926992907]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03186035, 0.028060913, -0.0039978027)
+shape = SubResource("BoxShape3D_keru6")
 
 [node name="ConfirmDenyBtns" type="Node3D" parent="." unique_id=655171215]
 

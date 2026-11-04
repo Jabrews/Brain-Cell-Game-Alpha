@@ -32,7 +32,14 @@ func _handle() :
 	# failed (make sure its enabled)
 	if ran_num <= failure_rate and parent_station_detacher.failure_rate_enabled : 
 		
-		init_fail_detach._failed(
+		# NOTE
+		# ADD BACK FAIL STATE
+		#init_fail_detach._failed(
+			#loaded_cell,
+			#selected_stat,
+		#)
+		
+		init_success_detach._success(
 			loaded_cell,
 			selected_stat,
 		)

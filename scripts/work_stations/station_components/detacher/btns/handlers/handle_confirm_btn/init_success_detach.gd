@@ -24,11 +24,11 @@ func _success(loaded_cell : BrainCell, selected_stat_type : String) :
 	
 	var jar_item_stat : JarCellStat = JarCellStat.new(selected_stat)
 	
-	if len(GLWorkstationBus.jar_items) >= 4 : 
+	if len(GLJarComponentBus.jar_items) >= 4 : 
 		print_debug('should deal with jar being over filled, let user know')
 		return
 	else  :
-		GLWorkstationBus.jar_items.append(jar_item_stat)
+		GLJarComponentBus.emit_signal('add_jar_item', jar_item_stat)
 	
 	## get rid of enabled stat on cell and update
 	

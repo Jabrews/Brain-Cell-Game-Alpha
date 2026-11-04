@@ -49,11 +49,11 @@ height = 0.05
 height = 0.05
 radius = 0.7
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47xdj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c7gnc"]
 metallic_specular = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_4u8ja"]
-material = SubResource("StandardMaterial3D_47xdj")
+material = SubResource("StandardMaterial3D_c7gnc")
 radius = 0.05
 height = 0.1
 
