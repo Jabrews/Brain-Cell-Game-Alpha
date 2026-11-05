@@ -29,9 +29,10 @@
 [ext_resource type="Script" uid="uid://c8pkmawjyoqkg" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/assemble_helper_hidden.gd" id="19_rjaw8"]
 [ext_resource type="Script" uid="uid://hndem18jdi0y" path="res://scripts/game_manager/entitiy_room_management/entity_room_management.gd" id="20_ea07q"]
 [ext_resource type="Script" uid="uid://bxx34i2lndwh7" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/reduce_hidden_quanity.gd" id="20_wv5kd"]
-[ext_resource type="PackedScene" uid="uid://ofgrgb0ndico" path="res://scenes/work_stations/station_components/detacher/component/station_detacher.tscn" id="21_pq8fj"]
+[ext_resource type="PackedScene" uid="uid://ofgrgb0ndico" path="res://scenes/work_stations/station_components/detacher/station_detacher.tscn" id="21_pq8fj"]
 [ext_resource type="Script" uid="uid://b41xpxdsy0vba" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/hidden/plant_hidden_bombs.gd" id="21_w7r6u"]
 [ext_resource type="PackedScene" uid="uid://bs175gbdg5t8m" path="res://scenes/work_stations/station_components/jar/jar.tscn" id="22_k7qrp"]
+[ext_resource type="PackedScene" uid="uid://csiw6008eqnv2" path="res://scenes/work_stations/station_components/attacher/station_attacher.tscn" id="23_klp60"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
@@ -274,6 +275,17 @@ background_color = Color(0.025363795, 0.025363805, 0.02536378, 1)
 ambient_light_color = Color(0.20110431, 0.21357447, 0.074715756, 1)
 fog_light_color = Color(0.10628634, 0.11559991, 0.025737353, 1)
 fog_density = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_klp60"]
+albedo_color = Color(1, 0.43, 0.43, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_keru6"]
+material = SubResource("StandardMaterial3D_klp60")
+size = Vector3(1.4, 0.0048828125, 1.563147)
+
+[sub_resource type="BoxMesh" id="BoxMesh_btccn"]
+material = SubResource("StandardMaterial3D_klp60")
+size = Vector3(2.7261155, 0.0048828125, 1.6394837)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04ag1"]
 albedo_color = Color(0.44313726, 0.4627451, 0.47058824, 1)
@@ -1115,6 +1127,21 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9.1
 [node name="Table" type="Node3D" parent="Stations/WorkStations" unique_id=1582858527]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.4452715, 1.0148163, -5.833307)
 
+[node name="TableTops" type="Node3D" parent="Stations/WorkStations/Table" unique_id=277240559]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-07, 1.2020957, -6.3129687)
+
+[node name="TableTop1" type="MeshInstance3D" parent="Stations/WorkStations/Table/TableTops" unique_id=676507439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.099999905, 0, 0.49296266)
+mesh = SubResource("BoxMesh_keru6")
+
+[node name="TableTop2" type="MeshInstance3D" parent="Stations/WorkStations/Table/TableTops" unique_id=1204200453]
+transform = Transform3D(0.98615474, 0, 0.1658278, 0, 1, 0, -0.1658278, 0, 0.98615474, 2.790608, 0, 0.3601241)
+mesh = SubResource("BoxMesh_btccn")
+
+[node name="TableTop3" type="MeshInstance3D" parent="Stations/WorkStations/Table/TableTops" unique_id=1138091647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.384944, 0, 0.36012387)
+mesh = SubResource("BoxMesh_btccn")
+
 [node name="Cabinet" type="MeshInstance3D" parent="Stations/WorkStations/Table" unique_id=482934227]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5567617, -1, -6.9166675)
 mesh = SubResource("ArrayMesh_6ixvf")
@@ -1152,10 +1179,13 @@ shape = SubResource("BoxShape3D_7spnw")
 debug_color = Color(0.87180597, 0.19160527, 0.7208411, 0.41960785)
 
 [node name="StationDeatcher" parent="Stations/WorkStations" unique_id=1456525256 instance=ExtResource("21_pq8fj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45824265, 2.2952938, -7.5724373)
+transform = Transform3D(0.99016005, 0, 0.13993952, 0, 1, 0, -0.13993952, 0, 0.99016005, 0.7256248, 2.2952938, -7.9616704)
 
 [node name="Jar" parent="Stations/WorkStations" unique_id=419356855 instance=ExtResource("22_k7qrp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65115714, 3.0106783, -5.426569)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65115714, 3.0106783, -5.934514)
+
+[node name="StationAttacher" parent="Stations/WorkStations" unique_id=348530824 instance=ExtResource("23_klp60")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5467347, 2.0116425, -2.7250283)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.445799, 3.0319495, 24.183794)

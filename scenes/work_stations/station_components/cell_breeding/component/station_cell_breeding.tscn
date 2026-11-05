@@ -215,13 +215,13 @@ material = SubResource("StandardMaterial3D_5un1r")
 radius = 0.1
 height = 0.2
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnhlu"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jy82q"]
 transparency = 1
 albedo_color = Color(0.25882354, 1, 1, 0.09411765)
 metallic_specular = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_qa1qv"]
-material = SubResource("StandardMaterial3D_wnhlu")
+material = SubResource("StandardMaterial3D_jy82q")
 size = Vector3(0.046875, 1.8056641, 2.3426514)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wnhlu"]

@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cdv5schqpo0vj" path="res://models/blood_noise/3_blood_display.png" id="5_0dwhk"]
 [ext_resource type="Script" uid="uid://k6vv5m6k3iw4" path="res://scripts/ui/axe_label_manager.gd" id="6_khplb"]
 [ext_resource type="Script" uid="uid://bn73xwmm170ls" path="res://scripts/ui/blood_overlay.gd" id="6_pfayw"]
+[ext_resource type="Script" uid="uid://cshcil0vkw4l" path="res://scripts/ui/view_attacher_label.gd" id="8_272wc"]
 [ext_resource type="Texture2D" uid="uid://dyc4q2f7pd5lq" path="res://models/cursor/cursor.png" id="8_jcn1r"]
 [ext_resource type="PackedScene" uid="uid://bjrgxfg6kh0d1" path="res://scenes/ui/InputBtn.tscn" id="8_vnqvi"]
 [ext_resource type="Script" uid="uid://c4lwsm1lq7bw4" path="res://scripts/ui/player_cursor.gd" id="9_4kltc"]
@@ -267,6 +268,43 @@ text = "Press      To View Offer Tablet"
 horizontal_alignment = 1
 
 [node name="InputBtn" parent="Labels/ViewOfferTablet" unique_id=1359138110 instance=ExtResource("8_vnqvi")]
+layout_mode = 0
+offset_left = 483.0
+offset_top = -8.0
+offset_right = 483.0
+offset_bottom = -8.0
+
+[node name="ViewAttacher" type="Control" parent="Labels" unique_id=205956453]
+visible = false
+texture_filter = 1
+anchors_preset = 0
+offset_left = 29.0
+offset_top = 664.0
+offset_right = 1293.0
+offset_bottom = 714.0
+script = ExtResource("8_272wc")
+
+[node name="BG" type="ColorRect" parent="Labels/ViewAttacher" unique_id=1338524894]
+layout_mode = 0
+offset_left = 344.0
+offset_top = -16.0
+offset_right = 917.0
+offset_bottom = 48.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="ViewCabinetLabel" type="Label" parent="Labels/ViewAttacher" unique_id=82531607]
+texture_filter = 1
+layout_mode = 0
+offset_left = 360.0
+offset_top = -8.0
+offset_right = 894.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 50
+text = "Press      To View Attacher"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="Labels/ViewAttacher" unique_id=942182045 instance=ExtResource("8_vnqvi")]
 layout_mode = 0
 offset_left = 483.0
 offset_top = -8.0
