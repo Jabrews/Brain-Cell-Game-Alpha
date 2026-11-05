@@ -7,10 +7,8 @@
 [ext_resource type="Script" uid="uid://ctjbxr0yrj803" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_info_manager.gd" id="4_6rfj8"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_hnska"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="4_o7oe2"]
-[ext_resource type="Shader" uid="uid://bhfglemkyi0fr" path="res://scripts/shaders/cell_breeder/breeding_with_charge_progress_bar.gdshader" id="8_b0ynj"]
-[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="9_g3225"]
-[ext_resource type="Shader" uid="uid://065in37icekp" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/breeder_view/breeding_defect_bar.gdshader" id="10_jqydl"]
-[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="11_rtcm8"]
+[ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="8_0is3u"]
+[ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat/main_stat.tscn" id="9_etud5"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="12_g038m"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="13_etud5"]
 [ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="14_i7vey"]
@@ -71,41 +69,6 @@ shader = ExtResource("4_o7oe2")
 shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g038m"]
-shader = ExtResource("8_b0ynj")
-shader_parameter/prisoner_value = 0.0
-shader_parameter/charge_value = 0.0
-shader_parameter/yellow_color = Color(1, 1, 0, 1)
-shader_parameter/charge_color_a = Color(1, 1, 0, 0.38431373)
-shader_parameter/charge_color_b = Color(0.47779226, 0.31845894, 0.07635339, 0.3254902)
-shader_parameter/charge_opacity = 0.85
-shader_parameter/stripe_amount = 28.0
-shader_parameter/stripe_slant = 0.8
-shader_parameter/edge_padding = 5.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_etud5"]
-shader = ExtResource("10_jqydl")
-shader_parameter/prior_defect_value = 0.0
-shader_parameter/new_defect_value = 0.0
-shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
-shader_parameter/new_defect_color = Color(1, 0, 0, 1)
-shader_parameter/flash_defect_color = Color(1, 0.7, 0.7, 1)
-shader_parameter/overlap_opacity = 0.3
-shader_parameter/flash_speed = 3.0
-shader_parameter/edge_padding = 5.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h8037"]
-shader = ExtResource("12_g038m")
-shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
-shader_parameter/duration = 2.0
-shader_parameter/distortion_strength = 0.02
-shader_parameter/distortion_speed = 2.0
-shader_parameter/noise_texture = ExtResource("13_etud5")
-shader_parameter/noise_scale = 1.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i7vey"]
-load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nlaba"]
 shader = ExtResource("12_g038m")
@@ -484,49 +447,22 @@ localize_numeral_system = false
 layout_direction = 3
 follow_focus = true
 horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
 
 [node name="GridContainerLeft" type="GridContainer" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer" unique_id=1795349295]
 propagate_maximum_size = false
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(20, 10)
+offset_transform_position = Vector2(32.095, 29.75)
 offset_transform_pivot_ratio = Vector2(0, 0)
 layout_direction = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 150
 
-[node name="StatJarItem" type="Control" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=349064464]
+[node name="StatJarItem" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=85706654 instance=ExtResource("8_0is3u")]
 layout_mode = 2
 
-[node name="BG" type="ColorRect" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem" unique_id=399191021]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 264.0
-offset_bottom = 112.0
-color = Color(0.13682577, 0.13682574, 0.13682571, 1)
-
-[node name="Stat" type="Control" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem" unique_id=1845497815]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CleanBar" type="ColorRect" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem/Stat" unique_id=1857621525]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 248.0
-offset_bottom = 56.0
-color = Color(0.9843137, 0.9529412, 0.26666668, 1)
-
-[node name="DefectBar" type="ColorRect" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem/Stat" unique_id=2123076914]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 72.0
-offset_right = 248.0
-offset_bottom = 96.0
-color = Color(0.9843137, 0, 0, 1)
+[node name="StatJarItem2" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1641075461 instance=ExtResource("8_0is3u")]
+layout_mode = 2
 
 [node name="SpareItemIGNORE" type="Control" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1060395158]
 layout_mode = 2
@@ -553,91 +489,38 @@ offset_bottom = 40.0
 
 [node name="Stats" type="Control" parent="AttacherUI/StatMainView" unique_id=2114991243]
 anchors_preset = 0
+offset_top = 8.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 48.0
 
-[node name="Strength" type="Control" parent="AttacherUI/StatMainView/Stats" unique_id=1939019605]
-anchors_preset = 0
+[node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=1022081741 instance=ExtResource("9_etud5")]
+layout_mode = 1
 offset_left = 352.0
-offset_top = 16.0
-offset_right = 392.0
-offset_bottom = 56.0
+offset_top = 24.0
+offset_right = 352.0
+offset_bottom = 24.0
 
-[node name="CleanBar" type="Sprite2D" parent="AttacherUI/StatMainView/Stats/Strength" unique_id=1008743616]
-texture_filter = 1
-material = SubResource("ShaderMaterial_g038m")
-position = Vector2(448.00003, 112)
-scale = Vector2(2.167742, 1.2)
-texture = ExtResource("9_g3225")
+[node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=916439849 instance=ExtResource("9_etud5")]
+layout_mode = 1
+offset_left = 352.0
+offset_top = 192.0
+offset_right = 352.0
+offset_bottom = 192.0
+stat_type = "intelligence"
 
-[node name="DefectBar" type="Sprite2D" parent="AttacherUI/StatMainView/Stats/Strength" unique_id=1180626424]
-texture_filter = 1
-material = SubResource("ShaderMaterial_etud5")
-position = Vector2(448, 155)
-scale = Vector2(2.1677418, 0.8000005)
-texture = ExtResource("11_rtcm8")
-
-[node name="StatTypeLabel" type="Label" parent="AttacherUI/StatMainView/Stats/Strength" unique_id=1397568136]
-texture_filter = 1
-layout_mode = 0
-offset_left = 112.0
-offset_top = 60.0
-offset_right = 784.0
-offset_bottom = 85.0
-theme_override_fonts/font = ExtResource("3_3now3")
-theme_override_font_sizes/font_size = 24
-text = "Strength"
-horizontal_alignment = 1
-
-[node name="HiddenSprite" type="Sprite2D" parent="AttacherUI/StatMainView/Stats/Strength" unique_id=91819107]
+[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Intelligence" index="5" unique_id=1991748357]
 visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_h8037")
-position = Vector2(448, 134.875)
-scale = Vector2(2.1333332, 2.45625)
-texture = SubResource("CompressedTexture2D_i7vey")
 
-[node name="DisabledParent" type="Control" parent="AttacherUI/StatMainView/Stats/Strength" unique_id=763594740]
+[node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=565042045 instance=ExtResource("9_etud5")]
+layout_mode = 1
+offset_left = 352.0
+offset_top = 360.0
+offset_right = 352.0
+offset_bottom = 360.0
+stat_type = "community"
+
+[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Community" index="5" unique_id=1991748357]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/Stats/Strength/DisabledParent" unique_id=64845805]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 88.0
-offset_right = 784.0
-offset_bottom = 184.0
-color = Color(0.19793725, 0.19793722, 0.19793728, 1)
-
-[node name="StatTypeLabel" type="Label" parent="AttacherUI/StatMainView/Stats/Strength/DisabledParent" unique_id=929639455]
-texture_filter = 1
-layout_mode = 0
-offset_left = 112.0
-offset_top = 88.0
-offset_right = 784.0
-offset_bottom = 184.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3now3")
-theme_override_font_sizes/font_size = 40
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="SelectedDisplay" type="Control" parent="AttacherUI/StatMainView/Stats/Strength" unique_id=1635706500]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/Stats/Strength/SelectedDisplay" unique_id=1458785798]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 48.0
-offset_right = 816.0
-offset_bottom = 184.0
-color = Color(1, 1, 1, 0.44705883)
 
 [node name="PanelBox" type="Control" parent="AttacherUI/StatMainView" unique_id=492975276]
 anchors_preset = 0
@@ -991,3 +874,6 @@ theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 20
 text = "Add A Cell by dragging it onto the box. "
 autowrap_mode = 2
+
+[editable path="AttacherUI/StatMainView/Stats/Intelligence"]
+[editable path="AttacherUI/StatMainView/Stats/Community"]

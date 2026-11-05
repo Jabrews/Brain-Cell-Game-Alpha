@@ -1,0 +1,316 @@
+[gd_scene format=3 uid="uid://5tj1b8dtcyqo"]
+
+[ext_resource type="Script" uid="uid://bojesvyjstorn" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/main_stat.gd" id="1_ldi56"]
+[ext_resource type="Shader" uid="uid://bhfglemkyi0fr" path="res://scripts/shaders/cell_breeder/breeding_with_charge_progress_bar.gdshader" id="2_j5yyy"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="3_akjod"]
+[ext_resource type="Shader" uid="uid://065in37icekp" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/breeder_view/breeding_defect_bar.gdshader" id="4_wuljk"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="5_0v3mp"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_v5sw5"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_nvyjg"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_27yhk"]
+[ext_resource type="Texture2D" uid="uid://cldhuwugg4mor" path="res://models/workstations/attacher/ui/main_stat/main_stat_drag_border.png" id="9_akjod"]
+[ext_resource type="Texture2D" uid="uid://s47uh5ij28vk" path="res://models/workstations/attacher/ui/main_stat/stat_replacement.png" id="10_wuljk"]
+[ext_resource type="Texture2D" uid="uid://dfats72eq4xho" path="res://models/workstations/attacher/ui/main_stat/state_replacement_border.png" id="11_0v3mp"]
+[ext_resource type="Texture2D" uid="uid://tgvuths5n8u8" path="res://models/workstations/attacher/ui/main_stat/stat_replacement_remove_btn_hover.png" id="12_me3ov"]
+[ext_resource type="Texture2D" uid="uid://dhdyp8jvlnirq" path="res://models/workstations/attacher/ui/main_stat/stat_replacement_remove_btn_bg.png" id="12_nvyjg"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="12_v5sw5"]
+[ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_27yhk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_me3ov"]
+shader = ExtResource("2_j5yyy")
+shader_parameter/prisoner_value = 0.0
+shader_parameter/charge_value = 0.0
+shader_parameter/yellow_color = Color(1, 1, 0, 1)
+shader_parameter/charge_color_a = Color(1, 1, 0, 0.38431373)
+shader_parameter/charge_color_b = Color(0.47779226, 0.31845894, 0.07635339, 0.3254902)
+shader_parameter/charge_opacity = 0.85
+shader_parameter/stripe_amount = 28.0
+shader_parameter/stripe_slant = 0.8
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6w4d"]
+shader = ExtResource("4_wuljk")
+shader_parameter/prior_defect_value = 0.0
+shader_parameter/new_defect_value = 0.0
+shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
+shader_parameter/new_defect_color = Color(1, 0, 0, 1)
+shader_parameter/flash_defect_color = Color(1, 0.7, 0.7, 1)
+shader_parameter/overlap_opacity = 0.3
+shader_parameter/flash_speed = 3.0
+shader_parameter/edge_padding = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q4pjm"]
+shader = ExtResource("7_nvyjg")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("8_27yhk")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kkbmc"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="Shader" id="Shader_akjod"]
+code = "shader_type canvas_item;
+
+uniform float low_opacity : hint_range(0.0, 1.0) = 0.2;
+uniform float high_opacity : hint_range(0.0, 1.0) = 1.0;
+uniform float blink_speed : hint_range(0.1, 5.0) = 1.0;
+
+void fragment() {
+	COLOR = texture(TEXTURE, UV) * COLOR;
+
+	float pulse = (sin(TIME * blink_speed * TAU) + 1.0) * 0.5;
+	COLOR.a *= mix(low_opacity, high_opacity, pulse);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etud5"]
+shader = SubResource("Shader_akjod")
+shader_parameter/low_opacity = 0.0
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 2.08500009577762
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_27yhk"]
+
+[node name="MainStat" type="Control" unique_id=1022081741]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ldi56")
+
+[node name="CleanBar" type="Sprite2D" parent="." unique_id=596683566]
+texture_filter = 1
+material = SubResource("ShaderMaterial_me3ov")
+position = Vector2(448.00003, 104)
+scale = Vector2(2.167742, 1.2)
+texture = ExtResource("3_akjod")
+
+[node name="DefectBar" type="Sprite2D" parent="." unique_id=200272736]
+texture_filter = 1
+material = SubResource("ShaderMaterial_x6w4d")
+position = Vector2(448, 147)
+scale = Vector2(2.1677418, 0.8000005)
+texture = ExtResource("5_0v3mp")
+
+[node name="HiddenSprite" type="Sprite2D" parent="." unique_id=2143687653]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_q4pjm")
+position = Vector2(448, 120.375)
+scale = Vector2(2.1333332, 2.1312501)
+texture = SubResource("CompressedTexture2D_kkbmc")
+
+[node name="DisabledParent" type="Control" parent="." unique_id=823633059]
+visible = false
+anchors_preset = 0
+offset_top = -8.0
+offset_right = 40.0
+offset_bottom = 32.0
+
+[node name="ColorRect" type="ColorRect" parent="DisabledParent" unique_id=1574999420]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 88.0
+offset_right = 784.0
+offset_bottom = 171.0
+color = Color(0.19793725, 0.19793722, 0.19793728, 1)
+
+[node name="StatTypeLabel" type="Label" parent="DisabledParent" unique_id=1412857769]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 88.0
+offset_right = 784.0
+offset_bottom = 184.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_v5sw5")
+theme_override_font_sizes/font_size = 40
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DragBorders" type="Control" parent="." unique_id=1858617193]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DragValidBorder" type="TextureRect" parent="DragBorders" unique_id=825567562]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 104.0
+offset_top = 40.0
+offset_right = 792.0
+offset_bottom = 176.0
+texture = ExtResource("9_akjod")
+
+[node name="DragInvalidBorder" type="TextureRect" parent="DragBorders" unique_id=2095548141]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_etud5")
+layout_mode = 0
+offset_left = 104.0
+offset_top = 40.0
+offset_right = 792.0
+offset_bottom = 176.0
+texture = ExtResource("9_akjod")
+
+[node name="StatReplacement" type="Control" parent="." unique_id=1991748357]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="TextureRect" parent="StatReplacement" unique_id=1097167581]
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 32.0
+offset_right = 800.0
+offset_bottom = 179.0
+texture = ExtResource("10_wuljk")
+
+[node name="CleanBar" type="Sprite2D" parent="StatReplacement" unique_id=10498321]
+texture_filter = 1
+material = SubResource("ShaderMaterial_me3ov")
+position = Vector2(448.00003, 104)
+scale = Vector2(2.167742, 1.2)
+texture = ExtResource("3_akjod")
+
+[node name="DefectBar" type="Sprite2D" parent="StatReplacement" unique_id=1741917679]
+texture_filter = 1
+material = SubResource("ShaderMaterial_x6w4d")
+position = Vector2(448, 147)
+scale = Vector2(2.1677418, 0.8000005)
+texture = ExtResource("5_0v3mp")
+
+[node name="Borders" type="Control" parent="StatReplacement" unique_id=1433640305]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DragInvalidBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1097614048]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_etud5")
+layout_mode = 0
+offset_left = 96.0
+offset_top = 31.0
+offset_right = 808.0
+offset_bottom = 185.0
+texture = ExtResource("11_0v3mp")
+
+[node name="HoverBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1591141681]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 96.0
+offset_top = 31.0
+offset_right = 808.0
+offset_bottom = 185.0
+texture = ExtResource("11_0v3mp")
+
+[node name="RemoveBtn" type="Control" parent="StatReplacement" unique_id=1053657968]
+anchors_preset = 0
+offset_left = -3.0
+offset_top = 6.0
+offset_right = 37.0
+offset_bottom = 46.0
+
+[node name="HoverBorder" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1777106761]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = 767.0
+offset_top = 33.0
+offset_right = 791.2857
+offset_bottom = 58.0
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("12_me3ov")
+
+[node name="ColorRect" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1914596848]
+texture_filter = 1
+layout_mode = 0
+offset_left = 769.0
+offset_top = 35.0
+offset_right = 790.71423
+offset_bottom = 57.0
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("12_nvyjg")
+
+[node name="StatTypeLabel" type="Label" parent="StatReplacement/RemoveBtn" unique_id=1684702184]
+texture_filter = 1
+layout_mode = 0
+offset_left = 774.0
+offset_top = 16.0
+offset_right = 800.0
+offset_bottom = 73.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 50
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PenalityFailureRate" type="Control" parent="StatReplacement" unique_id=956468451]
+anchors_preset = 0
+offset_left = -40.0
+offset_top = 1.0
+offset_bottom = 41.0
+
+[node name="HoverBorder" type="ColorRect" parent="StatReplacement/PenalityFailureRate" unique_id=1496486291]
+layout_mode = 0
+offset_left = 607.0
+offset_top = 39.0
+offset_right = 732.0
+offset_bottom = 84.0
+
+[node name="BG" type="ColorRect" parent="StatReplacement/PenalityFailureRate" unique_id=1804117146]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 40.0
+offset_right = 731.0
+offset_bottom = 83.0
+color = Color(0.08235294, 0.08235294, 0.08235294, 1)
+
+[node name="TextureRect" type="TextureRect" parent="StatReplacement/PenalityFailureRate" unique_id=1571754041]
+texture_filter = 1
+material = SubResource("ShaderMaterial_27yhk")
+layout_mode = 0
+offset_left = 610.0
+offset_top = 43.0
+offset_right = 649.0
+offset_bottom = 78.0
+texture = ExtResource("14_27yhk")
+expand_mode = 1
+
+[node name="PercantLabel" type="Label" parent="StatReplacement/PenalityFailureRate" unique_id=304929911]
+texture_filter = 1
+layout_mode = 0
+offset_left = 652.0
+offset_top = 43.0
+offset_right = 731.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 30
+text = "(+15%)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatTypeLabel" type="Label" parent="." unique_id=782768649]
+texture_filter = 1
+layout_mode = 0
+offset_left = 111.999985
+offset_top = 43.999992
+offset_right = 784.0
+offset_bottom = 68.99999
+rotation = 0.005975986
+theme_override_fonts/font = ExtResource("6_v5sw5")
+theme_override_font_sizes/font_size = 24
+text = "Strength"
+horizontal_alignment = 1

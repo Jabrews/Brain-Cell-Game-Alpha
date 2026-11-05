@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://bti6itix1cyjs"]
+
+[ext_resource type="Script" uid="uid://p57dux1n2tpu" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.gd" id="1_vjayo"]
+[ext_resource type="Texture2D" uid="uid://bhrpdp3mtysqi" path="res://models/workstations/attacher/ui/stat_jar_item/stat_jar_item_bg_2.png" id="2_wako6"]
+[ext_resource type="Texture2D" uid="uid://d7wdkldrsdt2" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_bg.png" id="3_qv3fk"]
+[ext_resource type="Texture2D" uid="uid://cf5xw8y52bmfh" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_progress.png" id="4_vqo6a"]
+[ext_resource type="Texture2D" uid="uid://cjtun5xvxe1gs" path="res://models/workstations/attacher/ui/stat_jar_item/defect_bar_bg.png" id="5_joqgs"]
+[ext_resource type="Texture2D" uid="uid://dh0l7jiycnqcw" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/defect_bar_progress.png" id="6_qv3fk"]
+[ext_resource type="Texture2D" uid="uid://d0lwp14ga5b03" path="res://models/workstations/attacher/ui/stat_jar_item/borders/hover_border.png" id="7_joqgs"]
+[ext_resource type="Texture2D" uid="uid://dq10lsmkmtvv0" path="res://models/workstations/attacher/ui/stat_jar_item/borders/dragging_border.png" id="8_y5awx"]
+[ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="9_dmepp"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_mepgx"]
+[ext_resource type="Texture2D" uid="uid://cxm8h1h7q3uw" path="res://models/workstations/attacher/ui/stat_jar_item/borders/on_main_stat_bodert.png" id="9_wako6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mepgx"]
+shader = ExtResource("9_dmepp")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 1.0
+
+[node name="StatJarItem" type="Control" unique_id=85706654]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vjayo")
+
+[node name="BG" type="TextureRect" parent="." unique_id=934185104]
+texture_filter = 1
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 104.0
+mouse_filter = 2
+texture = ExtResource("2_wako6")
+
+[node name="Stat" type="Control" parent="." unique_id=892789481]
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -13.0
+offset_right = 32.0
+offset_bottom = 27.0
+
+[node name="CleanBar2" type="TextureProgressBar" parent="Stat" unique_id=234379772]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 248.0
+offset_bottom = 64.0
+mouse_filter = 2
+value = 75.0
+texture_under = ExtResource("3_qv3fk")
+texture_progress = ExtResource("4_vqo6a")
+
+[node name="DefectBar2" type="TextureProgressBar" parent="Stat" unique_id=1844571556]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 248.0
+offset_bottom = 88.0
+mouse_filter = 2
+value = 50.0
+texture_under = ExtResource("5_joqgs")
+texture_progress = ExtResource("6_qv3fk")
+
+[node name="OutsideBorders" type="Control" parent="." unique_id=1599376766]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HoverBorder" type="TextureRect" parent="OutsideBorders" unique_id=319170544]
+visible = false
+modulate = Color(1, 1, 1, 0.6862745)
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 259.0
+offset_bottom = 107.0
+mouse_filter = 2
+texture = ExtResource("7_joqgs")
+
+[node name="DraggingBorder" type="TextureRect" parent="OutsideBorders" unique_id=1259131959]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = -2.0
+offset_right = 259.0
+offset_bottom = 107.0
+mouse_filter = 2
+texture = ExtResource("8_y5awx")
+
+[node name="InsideBorders" type="Control" parent="." unique_id=470455449]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="OnMainStatBorder" type="TextureRect" parent="InsideBorders" unique_id=206893234]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 104.0
+mouse_filter = 2
+texture = ExtResource("9_wako6")
+
+[node name="JustAddedLabel" type="Label" parent="." unique_id=1083667667]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_mepgx")
+layout_mode = 0
+offset_top = -32.0
+offset_right = 256.0
+offset_bottom = 3.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("9_mepgx")
+theme_override_font_sizes/font_size = 30
+text = "New Jar Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeleteBtn" type="Control" parent="." unique_id=134672474]
+anchors_preset = 0
+offset_left = -5.0
+offset_top = 7.0
+offset_right = 35.0
+offset_bottom = 47.0
+
+[node name="HoverBorder" type="ColorRect" parent="DeleteBtn" unique_id=155582108]
+visible = false
+layout_mode = 0
+offset_left = 100.0
+offset_top = 71.0
+offset_right = 166.0
+offset_bottom = 92.0
+
+[node name="BG" type="ColorRect" parent="DeleteBtn" unique_id=1492626540]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 72.0
+offset_right = 165.0
+offset_bottom = 91.0
+color = Color(0.36, 0, 0, 1)
+
+[node name="JustAddedLabel" type="Label" parent="DeleteBtn" unique_id=1908048594]
+oversampling_with_scale = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 109.0
+offset_top = 65.0
+offset_right = 160.0
+offset_bottom = 100.0
+theme_override_colors/font_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
+theme_override_fonts/font = ExtResource("9_mepgx")
+theme_override_font_sizes/font_size = 20
+text = "Delete"
+horizontal_alignment = 1
+vertical_alignment = 1
