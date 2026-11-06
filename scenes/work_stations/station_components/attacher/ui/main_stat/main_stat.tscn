@@ -14,7 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://tgvuths5n8u8" path="res://models/workstations/attacher/ui/main_stat/stat_replacement_remove_btn_hover.png" id="12_me3ov"]
 [ext_resource type="Texture2D" uid="uid://dhdyp8jvlnirq" path="res://models/workstations/attacher/ui/main_stat/stat_replacement_remove_btn_bg.png" id="12_nvyjg"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="12_v5sw5"]
+[ext_resource type="Script" uid="uid://cspne0gcbpnhg" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/remove_btn.gd" id="12_x6w4d"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_27yhk"]
+[ext_resource type="Script" uid="uid://di62jwar64jii" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/penality_failure_rate.gd" id="16_q4pjm"]
+[ext_resource type="Texture2D" uid="uid://bsqxjsflgphxd" path="res://models/workstations/attacher/ui/main_stat/pentality_hint_sprite.png" id="18_kkbmc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_me3ov"]
 shader = ExtResource("2_j5yyy")
@@ -174,6 +177,16 @@ offset_right = 800.0
 offset_bottom = 179.0
 texture = ExtResource("10_wuljk")
 
+[node name="LightBorder" type="TextureRect" parent="StatReplacement" unique_id=83616511]
+modulate = Color(0.34, 0.34, 0.34, 0.60784316)
+texture_filter = 1
+layout_mode = 0
+offset_left = 93.0
+offset_top = 30.0
+offset_right = 809.0
+offset_bottom = 187.0
+texture = ExtResource("11_0v3mp")
+
 [node name="CleanBar" type="Sprite2D" parent="StatReplacement" unique_id=10498321]
 texture_filter = 1
 material = SubResource("ShaderMaterial_me3ov")
@@ -220,6 +233,8 @@ offset_left = -3.0
 offset_top = 6.0
 offset_right = 37.0
 offset_bottom = 46.0
+mouse_filter = 2
+script = ExtResource("12_x6w4d")
 
 [node name="HoverBorder" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1777106761]
 visible = false
@@ -230,9 +245,10 @@ offset_top = 33.0
 offset_right = 791.2857
 offset_bottom = 58.0
 scale = Vector2(1.4, 1.4)
+mouse_filter = 2
 texture = ExtResource("12_me3ov")
 
-[node name="ColorRect" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1914596848]
+[node name="BtnBG" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1914596848]
 texture_filter = 1
 layout_mode = 0
 offset_left = 769.0
@@ -240,9 +256,10 @@ offset_top = 35.0
 offset_right = 790.71423
 offset_bottom = 57.0
 scale = Vector2(1.4, 1.4)
+mouse_filter = 0
 texture = ExtResource("12_nvyjg")
 
-[node name="StatTypeLabel" type="Label" parent="StatReplacement/RemoveBtn" unique_id=1684702184]
+[node name="XLabel" type="Label" parent="StatReplacement/RemoveBtn" unique_id=1684702184]
 texture_filter = 1
 layout_mode = 0
 offset_left = 774.0
@@ -256,18 +273,53 @@ text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RemoveHint" type="Control" parent="StatReplacement/RemoveBtn" unique_id=720332898]
+visible = false
+anchors_preset = 0
+offset_left = 19.0
+offset_top = -6.0
+offset_right = 59.0
+offset_bottom = 34.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatReplacement/RemoveBtn/RemoveHint" unique_id=1103695185]
+layout_mode = 0
+offset_left = 696.0
+offset_top = -8.0
+offset_right = 832.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintLabel" type="Label" parent="StatReplacement/RemoveBtn/RemoveHint" unique_id=1923619002]
+texture_filter = 1
+layout_mode = 0
+offset_left = 696.0
+offset_right = 837.0
+offset_bottom = 56.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 20
+text = "Remove Stat"
+horizontal_alignment = 1
+
 [node name="PenalityFailureRate" type="Control" parent="StatReplacement" unique_id=956468451]
 anchors_preset = 0
-offset_left = -40.0
+offset_left = 28.0
 offset_top = 1.0
+offset_right = 68.0
 offset_bottom = 41.0
+mouse_filter = 2
+script = ExtResource("16_q4pjm")
 
 [node name="HoverBorder" type="ColorRect" parent="StatReplacement/PenalityFailureRate" unique_id=1496486291]
+visible = false
 layout_mode = 0
 offset_left = 607.0
 offset_top = 39.0
 offset_right = 732.0
 offset_bottom = 84.0
+mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="StatReplacement/PenalityFailureRate" unique_id=1804117146]
 layout_mode = 0
@@ -285,6 +337,7 @@ offset_left = 610.0
 offset_top = 43.0
 offset_right = 649.0
 offset_bottom = 78.0
+mouse_filter = 2
 texture = ExtResource("14_27yhk")
 expand_mode = 1
 
@@ -301,6 +354,98 @@ theme_override_font_sizes/font_size = 30
 text = "(+15%)"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PenalityHint" type="Control" parent="StatReplacement/PenalityFailureRate" unique_id=1959037692]
+anchors_preset = 0
+offset_left = -425.0
+offset_top = 21.0
+offset_right = -385.0
+offset_bottom = 61.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=2012542818]
+z_index = 1
+layout_mode = 0
+offset_left = 796.0
+offset_top = -8.0
+offset_right = 1033.0
+offset_bottom = 192.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.88235295)
+
+[node name="HintLabel" type="Label" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=1577709381]
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 820.0
+offset_top = -5.0
+offset_right = 1014.0
+offset_bottom = 116.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 18
+text = "overiding existing stat, 
++15% failure chance.
+
+prevent this by overiding 
+an disabled stat instead."
+
+[node name="FailureChanceLabel" type="Label" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=77157016]
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 820.0
+offset_top = 20.0
+offset_right = 1014.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 18
+text = "+15% failure chance.
+
+"
+
+[node name="ColorRect" type="TextureRect" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=1638661560]
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 836.0
+offset_top = 118.0
+offset_right = 1024.0
+offset_bottom = 188.0
+mouse_filter = 2
+texture = ExtResource("18_kkbmc")
+
+[node name="AlreadyOccupiedHint" type="Control" parent="StatReplacement" unique_id=2134895470]
+visible = false
+anchors_preset = 0
+offset_left = 96.0
+offset_top = -144.0
+offset_right = 136.0
+offset_bottom = -104.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatReplacement/AlreadyOccupiedHint" unique_id=1106539064]
+layout_mode = 0
+offset_left = 129.0
+offset_top = 139.0
+offset_right = 577.0
+offset_bottom = 179.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintLabel" type="Label" parent="StatReplacement/AlreadyOccupiedHint" unique_id=409199994]
+texture_filter = 1
+layout_mode = 0
+offset_left = 136.0
+offset_top = 144.0
+offset_right = 640.0
+offset_bottom = 200.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 24
+text = "Already occupied. Remove existing stat first."
 
 [node name="StatTypeLabel" type="Label" parent="." unique_id=782768649]
 texture_filter = 1

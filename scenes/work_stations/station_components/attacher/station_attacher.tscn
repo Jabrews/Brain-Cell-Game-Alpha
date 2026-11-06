@@ -496,9 +496,9 @@ offset_bottom = 48.0
 [node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=1022081741 instance=ExtResource("9_etud5")]
 layout_mode = 1
 offset_left = 352.0
-offset_top = 24.0
+offset_top = 16.0
 offset_right = 352.0
-offset_bottom = 24.0
+offset_bottom = 16.0
 
 [node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=916439849 instance=ExtResource("9_etud5")]
 layout_mode = 1
@@ -508,19 +508,13 @@ offset_right = 352.0
 offset_bottom = 192.0
 stat_type = "intelligence"
 
-[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Intelligence" index="5" unique_id=1991748357]
-visible = false
-
 [node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=565042045 instance=ExtResource("9_etud5")]
 layout_mode = 1
 offset_left = 352.0
-offset_top = 360.0
+offset_top = 368.0
 offset_right = 352.0
-offset_bottom = 360.0
+offset_bottom = 368.0
 stat_type = "community"
-
-[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Community" index="5" unique_id=1991748357]
-visible = false
 
 [node name="PanelBox" type="Control" parent="AttacherUI/StatMainView" unique_id=492975276]
 anchors_preset = 0
