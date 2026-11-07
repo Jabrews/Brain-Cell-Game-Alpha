@@ -23,6 +23,10 @@ func _toggle_display(toggle_value : bool) :
 	
 	if toggle_value : 
 		refresh_catalog._refresh()
+		
+		# just stops new item visual early (jar & hologram)
+		GLAttacherComponentBus.emit_signal('opened_attacher')
+		
 		return
 	
 	if not toggle_value : 

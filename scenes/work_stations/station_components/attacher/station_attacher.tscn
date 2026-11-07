@@ -171,44 +171,6 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kgviq"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="Shader" id="Shader_h8037"]
-code = "shader_type canvas_item;
-
-uniform float blur_amount : hint_range(0.0, 10.0) = 3.0;
-uniform float tint_strength : hint_range(0.0, 1.0) = 0.0;
-uniform vec4 tint_color : source_color = vec4(0.0, 0.0, 0.0, 0.0);
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-
-void fragment() {
-	vec2 screen_uv = SCREEN_UV;
-	vec2 pixel_size = SCREEN_PIXEL_SIZE * blur_amount;
-
-	vec4 blur_color = vec4(0.0);
-
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2(-1.0, -1.0));
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 0.0, -1.0));
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 1.0, -1.0));
-
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2(-1.0,  0.0));
-	blur_color += texture(SCREEN_TEXTURE, screen_uv);
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 1.0,  0.0));
-
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2(-1.0,  1.0));
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 0.0,  1.0));
-	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 1.0,  1.0));
-
-	blur_color /= 9.0;
-
-	COLOR = mix(blur_color, tint_color, tint_strength);
-}
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7vey"]
-shader = SubResource("Shader_h8037")
-shader_parameter/blur_amount = 4.1650001978375
-shader_parameter/tint_strength = 0.9150000434625
-shader_parameter/tint_color = Color(0, 0, 0, 0.84313726)
-
 [node name="StationAttacher" type="Node3D" unique_id=348530824]
 script = ExtResource("1_skoqb")
 
@@ -331,7 +293,7 @@ uppercase = true
 line_spacing = 10.0
 
 [node name="AutoResetDelayTimer" type="Timer" parent="Hologram/HologramInfoManager" unique_id=1024934402]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="BlinkInfoTimer" type="Timer" parent="Hologram/HologramInfoManager" unique_id=469487995]
@@ -355,7 +317,6 @@ offset_right = 1240.0
 offset_bottom = 680.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
 [node name="BG" type="ColorRect" parent="AttacherUI" unique_id=1323164688]
@@ -1148,22 +1109,6 @@ text = "(+ 15% )"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NoCellLoadedLabel2" type="Label" parent="AttacherUI/StatMainView" unique_id=22011542]
-texture_filter = 1
-layout_mode = 0
-offset_left = 860.99994
-offset_top = 577.99994
-offset_right = 1069.0
-offset_bottom = 632.99994
-rotation = 0.005975986
-theme_override_colors/font_color = Color(1, 1, 1, 0.5058824)
-theme_override_fonts/font = ExtResource("3_3now3")
-theme_override_font_sizes/font_size = 26
-text = "No Cell
-Loaded"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="JarItemCatalog" type="Control" parent="AttacherUI" unique_id=1388359665]
 anchors_preset = 0
 offset_top = -2.0
@@ -1262,19 +1207,15 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI/DeleteModal" unique_id=1758180851]
-material = SubResource("ShaderMaterial_i7vey")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 8.0
-offset_right = 1208.0
-offset_bottom = 672.0
+offset_right = 1240.0
+offset_bottom = 680.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
+color = Color(0, 0, 0, 0.39215687)
 
 [node name="BG" type="ColorRect" parent="AttacherUI/DeleteModal" unique_id=616640349]
 layout_mode = 0
@@ -1282,7 +1223,7 @@ offset_left = 384.0
 offset_top = 192.0
 offset_right = 896.0
 offset_bottom = 472.0
-color = Color(0.20181602, 3.1585806e-08, 1.2032688e-08, 1)
+color = Color(0.28815985, 0, 0, 1)
 
 [node name="HeaderLabel" type="Label" parent="AttacherUI/DeleteModal" unique_id=750791310]
 texture_filter = 1

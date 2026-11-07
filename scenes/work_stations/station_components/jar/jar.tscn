@@ -413,6 +413,7 @@ radius = 0.05
 height = 0.1
 
 [node name="Jar" type="Node3D" unique_id=419356855]
+process_mode = 3
 script = ExtResource("1_gugrt")
 
 [node name="RefreshJarItems" type="Node" parent="." unique_id=1068031247]
@@ -550,7 +551,7 @@ mesh = SubResource("BoxMesh_ixuf4")
 wait_time = 0.5
 
 [node name="BorderFlashDurationTimer" type="Timer" parent="JarItems/MeshInstance3D" unique_id=1771811271]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="JarItems" unique_id=544849447]
@@ -567,7 +568,7 @@ mesh = SubResource("BoxMesh_ixuf4")
 wait_time = 0.5
 
 [node name="BorderFlashDurationTimer" type="Timer" parent="JarItems/MeshInstance3D2" unique_id=175576080]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="JarItems" unique_id=125360448]
@@ -584,7 +585,7 @@ mesh = SubResource("BoxMesh_ixuf4")
 wait_time = 0.5
 
 [node name="BorderFlashDurationTimer" type="Timer" parent="JarItems/MeshInstance3D3" unique_id=1077438239]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="JarItems" unique_id=746624577]
@@ -601,7 +602,7 @@ mesh = SubResource("BoxMesh_ixuf4")
 wait_time = 0.5
 
 [node name="BorderFlashDurationTimer" type="Timer" parent="JarItems/MeshInstance3D4" unique_id=2118403825]
-wait_time = 5.0
+wait_time = 10.0
 one_shot = true
 
 [node name="JarLabels" type="Node3D" parent="." unique_id=1705392796]
@@ -655,4 +656,4 @@ spot_angle = 28.55
 wait_time = 0.5
 
 [node name="LightFlashDurationTimer" type="Timer" parent="Light" unique_id=938879136]
-wait_time = 5.0
+wait_time = 10.0

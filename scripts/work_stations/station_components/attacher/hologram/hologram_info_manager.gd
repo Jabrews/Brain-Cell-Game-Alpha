@@ -14,6 +14,7 @@ var _current_info: Node3D
 
 func _ready() -> void:
 	GLJarComponentBus.add_jar_item.connect(_handle_add_jar_item)
+	GLAttacherComponentBus.connect('opened_attacher', _handle_opened_attacher)
 
 	auto_reset_delay_timer.timeout.connect(_handle_auto_reset_delay_timeout)
 	blink_info_timer.timeout.connect(_handle_blink_info_timeout)
@@ -60,4 +61,7 @@ func _handle_blink_info_timeout() -> void:
 
 
 func _handle_auto_reset_delay_timeout() -> void:
+	reset_info()
+
+func _handle_opened_attacher() -> void :
 	reset_info()

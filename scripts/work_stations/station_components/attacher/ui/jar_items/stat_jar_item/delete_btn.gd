@@ -21,8 +21,10 @@ func _process(_delta: float) -> void:
 func _on_mouse_entered() -> void:
 	hover_border.visible = true
 	delete_hint.visible = true
+	hovered = true
 
 
 func _on_mouse_exited() -> void:
 	hover_border.visible = false 
 	delete_hint.visible = false 
+	hovered = false 

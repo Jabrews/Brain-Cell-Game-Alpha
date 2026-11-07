@@ -15,16 +15,11 @@ const LIGHT_OFF_COLOR: Color = Color.WHITE_SMOKE
 var _light_is_on: bool = false
 var _light_mesh_material: StandardMaterial3D
 
-
-func _process(_delta: float) -> void: 
-	if Input.is_action_just_pressed('debug1') :
-		var index : int = 1
-		GLJarComponentBus.emit_signal('remove_jar_item', GLJarComponentBus.jar_items[index])
-		
-
 func _ready() -> void:
 	GLJarComponentBus.add_jar_item.connect(_handle_add_jar_item)
 	GLJarComponentBus.remove_jar_item.connect(_handle_remove_jar_item)
+	
+	GLAttacherComponentBus.connect('opened_attacher', _handle_opened_attacher)
 
 	light_flash_timer.timeout.connect(_handle_light_flash_timer)
 	light_flash_duration_timer.timeout.connect(_handle_light_flash_duration_timeout)
@@ -87,3 +82,8 @@ func _set_light_state(is_on: bool) -> void:
 	if _light_mesh_material != null:
 		_light_mesh_material.albedo_color = color
 #################
+
+func _handle_opened_attacher() : 
+	light_flash_timer.stop()
+	_set_light_state(false)
+	refresh_jar_items._refresh()

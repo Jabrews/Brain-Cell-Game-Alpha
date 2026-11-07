@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if hovered : 
-		if Input.is_action_just_pressed('interact') : 
+		if Input.is_action_just_pressed('attack') : 
 			handle_modal_btn._handle(btn_type)
 
 func _handle_mouse_entered():
