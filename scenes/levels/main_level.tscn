@@ -406,6 +406,7 @@ size = Vector3(1.9917908, 2.1706543, 3.0325623)
 script = ExtResource("35_w7r6u")
 
 [node name="Enviroment" type="Node3D" parent="." unique_id=1633246349]
+metadata/_edit_lock_ = true
 
 [node name="Floors" type="Node3D" parent="Enviroment" unique_id=561591992]
 
@@ -1349,6 +1350,7 @@ script = ExtResource("14_5ru7i")
 [node name="UI" parent="." unique_id=885223017 instance=ExtResource("14_c0gn3")]
 
 [node name="DEBUG" type="Node" parent="." unique_id=882007240]
+process_mode = 3
 script = ExtResource("18_44ape")
 
 [node name="DebugCellSpawner" type="Node" parent="." unique_id=1826205998 node_paths=PackedStringArray("cell_container_parent_node")]

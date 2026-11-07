@@ -10,7 +10,7 @@ func _ready() -> void:
 	bg.connect('mouse_exited', _handle_mouse_exited)
 
 func _handle_mouse_entered() :
-	hover_border.visible = true
+	hover_border.visible= true
 	penality_hint.visible = true
 	
 func _handle_mouse_exited() :

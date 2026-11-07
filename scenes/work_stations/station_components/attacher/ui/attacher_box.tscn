@@ -1,0 +1,407 @@
+[gd_scene format=3 uid="uid://dykbleuu1m5tn"]
+
+[ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="1_ulj6j"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_dkowt"]
+[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_lvflg"]
+[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/defect_bar.png" id="4_njp74"]
+[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="5_lp117"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_b5aw3"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_cd5ex"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_hpskw"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_b4mt6"]
+[ext_resource type="Script" uid="uid://baudyhn1sooh8" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_main_box/unavailable_lock.gd" id="10_kusca"]
+[ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="11_hn58l"]
+[ext_resource type="Texture2D" uid="uid://b0japhu6uvgga" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_outside_border.png" id="12_dkowt"]
+[ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_njp74"]
+[ext_resource type="Texture2D" uid="uid://djnps8v8tsxbm" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png" id="13_lvflg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qqmty"]
+shader = ExtResource("7_cd5ex")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("8_hpskw")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5wpcx"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lp117"]
+shader = ExtResource("12_njp74")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 2.08200009563512
+
+[node name="AttacherBox" type="Control" unique_id=55611311]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="DisplayBackground" type="TextureRect" parent="." unique_id=1701365652]
+texture_filter = 1
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 88.0
+focus_mode = 2
+texture = ExtResource("1_ulj6j")
+
+[node name="MockCellEntry" type="Control" parent="." unique_id=103081918]
+visible = false
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 40.0
+offset_bottom = 41.0
+mouse_filter = 2
+
+[node name="StatDisplay" type="Control" parent="MockCellEntry" unique_id=489980296]
+anchors_preset = 0
+offset_left = -9.0
+offset_top = -33.0
+offset_right = 31.0
+offset_bottom = 7.0
+mouse_filter = 2
+
+[node name="Strength" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1160735192]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 12.0
+offset_right = 44.0
+offset_bottom = 52.0
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Strength" unique_id=138379241]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 88.0
+offset_bottom = 61.0
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_dkowt")
+texture_progress = ExtResource("3_lvflg")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Strength" unique_id=1534326462]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = 88.0
+offset_bottom = 64.85715
+scale = Vector2(1, 1.4)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_njp74")
+texture_progress = ExtResource("5_lp117")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Strength" unique_id=1637809248]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Strength/Off" unique_id=1410732756]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 88.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Strength/Off" unique_id=57482286]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 57.0
+offset_right = 87.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_b5aw3")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Strength" unique_id=261258354]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_qqmty")
+position = Vector2(50, 61)
+scale = Vector2(0.24126984, 0.3)
+texture = SubResource("CompressedTexture2D_5wpcx")
+
+[node name="Intelligence" type="Control" parent="MockCellEntry/StatDisplay" unique_id=1566809957]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 31.0
+offset_right = 44.0
+offset_bottom = 71.0
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=1558376449]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 88.0
+offset_bottom = 61.0
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_dkowt")
+texture_progress = ExtResource("3_lvflg")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=755580156]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = 88.0
+offset_bottom = 64.85715
+scale = Vector2(1, 1.4)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_njp74")
+texture_progress = ExtResource("5_lp117")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=613158891]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=1237312180]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 88.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Intelligence/Off" unique_id=352971937]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 57.0
+offset_right = 87.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_b5aw3")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Intelligence" unique_id=429623186]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_qqmty")
+position = Vector2(50, 61)
+scale = Vector2(0.24126984, 0.3)
+texture = SubResource("CompressedTexture2D_5wpcx")
+
+[node name="Community" type="Control" parent="MockCellEntry/StatDisplay" unique_id=956780217]
+anchors_preset = 0
+offset_left = 4.0
+offset_top = 49.0
+offset_right = 44.0
+offset_bottom = 89.0
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1666846703]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 88.0
+offset_bottom = 61.0
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_dkowt")
+texture_progress = ExtResource("3_lvflg")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/Community" unique_id=1413640783]
+texture_filter = 1
+layout_mode = 0
+offset_left = 12.0
+offset_top = 62.0
+offset_right = 88.0
+offset_bottom = 64.85715
+scale = Vector2(1, 1.4)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_njp74")
+texture_progress = ExtResource("5_lp117")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/Community" unique_id=375737603]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=1863436612]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 88.0
+offset_bottom = 66.0
+mouse_filter = 2
+color = Color(0.2231029, 0.2231029, 0.22310284, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/Community/Off" unique_id=771771047]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 57.0
+offset_right = 87.0
+offset_bottom = 64.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_b5aw3")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="Sprite2D" parent="MockCellEntry/StatDisplay/Community" unique_id=1169693903]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_qqmty")
+position = Vector2(50, 61)
+scale = Vector2(0.24126984, 0.3)
+texture = SubResource("CompressedTexture2D_5wpcx")
+
+[node name="CellName" type="Label" parent="MockCellEntry" unique_id=1621821003]
+texture_filter = 1
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 87.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("9_b4mt6")
+theme_override_font_sizes/font_size = 16
+text = "Billy Bob Jr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnavaibleLock" type="Control" parent="MockCellEntry" unique_id=1227410418]
+visible = false
+anchors_preset = 0
+offset_top = -3.0
+offset_right = 40.0
+offset_bottom = 37.0
+script = ExtResource("10_kusca")
+
+[node name="BG" type="ColorRect" parent="MockCellEntry/UnavaibleLock" unique_id=320625165]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 86.0
+offset_bottom = 88.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6156863)
+
+[node name="Hint" type="Control" parent="MockCellEntry/UnavaibleLock" unique_id=1870772541]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = 21.0
+offset_top = 1.0
+offset_right = 61.0
+offset_bottom = 41.0
+
+[node name="BG" type="ColorRect" parent="MockCellEntry/UnavaibleLock/Hint" unique_id=1955275985]
+layout_mode = 0
+offset_left = -54.0
+offset_top = -78.0
+offset_right = 117.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="MockCellEntry/UnavaibleLock/Hint" unique_id=276898334]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = -48.0
+offset_top = -70.0
+offset_right = 166.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_b4mt6")
+theme_override_font_sizes/font_size = 20
+text = "Cell cannot breed anymore this turn"
+autowrap_mode = 2
+
+[node name="LockRect" type="TextureRect" parent="MockCellEntry/UnavaibleLock" unique_id=1111567013]
+texture_filter = 1
+layout_mode = 0
+offset_left = 26.0
+offset_top = 30.0
+offset_right = 66.0
+offset_bottom = 62.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("11_hn58l")
+
+[node name="AddACellHint" type="Control" parent="." unique_id=1170831626]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 67.0
+offset_right = 80.0
+offset_bottom = 107.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AddACellHint" unique_id=137983988]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -78.0
+offset_right = 280.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="AddACellHint" unique_id=2099828112]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = 61.0
+offset_top = -71.0
+offset_right = 275.0
+offset_bottom = -18.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_b4mt6")
+theme_override_font_sizes/font_size = 20
+text = "Must physically place cell container on station panel"
+autowrap_mode = 2
+
+[node name="SelectedBorder" type="TextureRect" parent="." unique_id=494509849]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_lp117")
+layout_mode = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+texture = ExtResource("12_dkowt")
+
+[node name="OnBorder" type="TextureRect" parent="." unique_id=1285901610]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("13_lvflg")

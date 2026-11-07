@@ -22,7 +22,7 @@ func _success(loaded_cell : BrainCell, selected_stat_type : String) :
 	
 	### add to jar state
 	
-	var jar_item_stat : JarCellStat = JarCellStat.new(selected_stat)
+	var jar_item_stat : StatJarItem = StatJarItem.new(selected_stat)
 	
 	if len(GLJarComponentBus.jar_items) >= 4 : 
 		print_debug('should deal with jar being over filled, let user know')

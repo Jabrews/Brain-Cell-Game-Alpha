@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://cbys0nr33jhn5" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/cell_catalog/cell_entry/display_cell_entry.gd" id="2_5ic05"]
 [ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="3_0f5c7"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_4o2rb"]
-[ext_resource type="Texture2D" uid="uid://b2wldd2pms7ag" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/borders/inside/cell_entry_inside_border.png" id="3_asdwg"]
+[ext_resource type="Texture2D" uid="uid://bl6aota0bxyf8" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/borders/inside/cell_entry_inside_border.png" id="3_asdwg"]
 [ext_resource type="Script" uid="uid://csrwajcw7iwp8" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/handle_status_symbols.gd" id="3_gbaeh"]
 [ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="4_7it5b"]
 [ext_resource type="Script" uid="uid://cdwdm4qibx2jg" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/cell_catalog/cell_entry/handle_status_symbol/detect_status_symbol.gd" id="4_gbaeh"]
@@ -35,7 +35,6 @@ shader_parameter/noise_scale = 1.0
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_asdwg"]
-load_path = "res://.godot/imported/cell_entry_inside_border.png-71ccfcd3b5922cb00d6ce458b1b2a12b.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yiebt"]
 shader = ExtResource("18_3ckio")
@@ -400,7 +399,7 @@ offset_left = -5.0
 offset_top = 3.0
 offset_right = 141.0
 offset_bottom = 149.0
-texture = SubResource("CompressedTexture2D_asdwg")
+texture = ExtResource("3_asdwg")
 
 [node name="OutsideBorderEffects" type="Control" parent="." unique_id=1059161179]
 anchors_preset = 0

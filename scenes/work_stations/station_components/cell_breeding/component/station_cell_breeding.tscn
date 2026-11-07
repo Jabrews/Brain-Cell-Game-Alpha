@@ -684,14 +684,64 @@ shader_parameter/stripe_amount = 28.0
 shader_parameter/stripe_slant = 0.8
 shader_parameter/edge_padding = 5.0
 
+[sub_resource type="Shader" id="Shader_vp6qb"]
+code = "shader_type canvas_item;
+
+uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
+uniform vec4 fill_color : source_color = vec4(1.0);
+
+uniform float tolerance : hint_range(0.0, 1.0) = 0.05;
+uniform float progress : hint_range(0.0, 1.0) = 0.0;
+
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Find pixels matching the selected color
+	float difference = distance(tex.rgb, target_color.rgb);
+
+	float target_mask = 1.0 - smoothstep(
+		0.0,
+		tolerance,
+		difference
+	);
+
+	// Perimeter position
+	float perimeter;
+
+	if (UV.y < 0.5 && UV.x < 0.5) {
+		perimeter = UV.x * 0.5;
+	}
+	else if (UV.y < 0.5) {
+		perimeter = 0.25 + UV.y * 0.5;
+	}
+	else if (UV.x > 0.5) {
+		perimeter = 0.5 + (1.0 - UV.x) * 0.5;
+	}
+	else {
+		perimeter = 0.75 + (1.0 - UV.y) * 0.5;
+	}
+
+	// Has the white fill reached this pixel?
+	float fill_mask = step(perimeter, progress);
+
+	// Selected color is transparent until the fill reaches it
+	float alpha = tex.a * (1.0 - target_mask);
+	alpha += target_mask * fill_mask;
+
+	vec3 final_color = mix(tex.rgb, fill_color.rgb, target_mask * fill_mask);
+
+	COLOR = vec4(final_color, alpha);
+}"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yqqxt"]
-shader = SubResource("Shader_872qu")
+shader = SubResource("Shader_vp6qb")
 shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/progress = 0.0
 
-[sub_resource type="Shader" id="Shader_8x2mq"]
+[sub_resource type="Shader" id="Shader_vwfuw"]
 code = "shader_type canvas_item;
 
 uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
@@ -757,7 +807,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k7gp0"]
-shader = SubResource("Shader_8x2mq")
+shader = SubResource("Shader_vwfuw")
 shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/current_value = 0.0
@@ -2100,6 +2150,7 @@ offset_right = 72.0
 offset_bottom = 512.0
 
 [node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=352617208]
+visible = false
 layout_mode = 0
 offset_left = -16.0
 offset_top = -470.0

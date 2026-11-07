@@ -11,6 +11,7 @@
 [ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="9_dmepp"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_mepgx"]
 [ext_resource type="Texture2D" uid="uid://cxm8h1h7q3uw" path="res://models/workstations/attacher/ui/stat_jar_item/borders/on_main_stat_bodert.png" id="9_wako6"]
+[ext_resource type="Script" uid="uid://d0je2wvivueti" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/delete_btn.gd" id="12_hocb0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mepgx"]
 shader = ExtResource("9_dmepp")
@@ -25,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_vjayo")
 
 [node name="BG" type="TextureRect" parent="." unique_id=934185104]
@@ -32,7 +34,7 @@ texture_filter = 1
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 104.0
-mouse_filter = 2
+mouse_filter = 0
 texture = ExtResource("2_wako6")
 
 [node name="Stat" type="Control" parent="." unique_id=892789481]
@@ -41,6 +43,7 @@ offset_left = -8.0
 offset_top = -13.0
 offset_right = 32.0
 offset_bottom = 27.0
+mouse_filter = 2
 
 [node name="CleanBar2" type="TextureProgressBar" parent="Stat" unique_id=234379772]
 texture_filter = 1
@@ -70,6 +73,7 @@ texture_progress = ExtResource("6_qv3fk")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="HoverBorder" type="TextureRect" parent="OutsideBorders" unique_id=319170544]
 visible = false
@@ -98,6 +102,7 @@ texture = ExtResource("8_y5awx")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="OnMainStatBorder" type="TextureRect" parent="InsideBorders" unique_id=206893234]
 visible = false
@@ -113,50 +118,86 @@ visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_mepgx")
 layout_mode = 0
-offset_top = -32.0
+offset_top = 72.0
 offset_right = 256.0
-offset_bottom = 3.0
+offset_bottom = 107.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("9_mepgx")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 24
 text = "New Jar Item"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeleteBtn" type="Control" parent="." unique_id=134672474]
 anchors_preset = 0
-offset_left = -5.0
-offset_top = 7.0
-offset_right = 35.0
-offset_bottom = 47.0
+offset_left = 239.0
+offset_right = 260.0
+offset_bottom = 21.0
+script = ExtResource("12_hocb0")
 
 [node name="HoverBorder" type="ColorRect" parent="DeleteBtn" unique_id=155582108]
 visible = false
 layout_mode = 0
-offset_left = 100.0
-offset_top = 71.0
-offset_right = 166.0
-offset_bottom = 92.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 22.0
+offset_bottom = 22.0
+mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="DeleteBtn" unique_id=1492626540]
 layout_mode = 0
-offset_left = 101.0
-offset_top = 72.0
-offset_right = 165.0
-offset_bottom = 91.0
+offset_right = 21.0
+offset_bottom = 21.0
+mouse_filter = 2
 color = Color(0.36, 0, 0, 1)
 
-[node name="JustAddedLabel" type="Label" parent="DeleteBtn" unique_id=1908048594]
+[node name="X" type="Label" parent="DeleteBtn" unique_id=1908048594]
 oversampling_with_scale = 1
 texture_filter = 1
 layout_mode = 0
-offset_left = 109.0
-offset_top = 65.0
-offset_right = 160.0
-offset_bottom = 100.0
+offset_left = -13.0
+offset_top = -11.0
+offset_right = 38.0
+offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
 theme_override_fonts/font = ExtResource("9_mepgx")
-theme_override_font_sizes/font_size = 20
-text = "Delete"
+theme_override_font_sizes/font_size = 30
+text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DeleteHint" type="Control" parent="DeleteBtn" unique_id=1356310452]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = -137.0
+offset_top = -6.0
+offset_right = -97.0
+offset_bottom = 34.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="DeleteBtn/DeleteHint" unique_id=1396280678]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -6.0
+offset_right = 136.0
+offset_bottom = 40.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintLabel" type="Label" parent="DeleteBtn/DeleteHint" unique_id=1874601504]
+texture_filter = 1
+layout_mode = 0
+offset_left = -14.0
+offset_top = -5.0
+offset_right = 135.0
+offset_bottom = 38.0
+theme_override_constants/line_spacing = 1
+theme_override_fonts/font = ExtResource("9_mepgx")
+theme_override_font_sizes/font_size = 20
+text = "Delete Jar Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="DeleteBtn" to="DeleteBtn" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="DeleteBtn" to="DeleteBtn" method="_on_mouse_exited"]

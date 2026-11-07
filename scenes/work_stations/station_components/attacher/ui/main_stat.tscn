@@ -356,19 +356,20 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PenalityHint" type="Control" parent="StatReplacement/PenalityFailureRate" unique_id=1959037692]
+visible = false
 anchors_preset = 0
-offset_left = -425.0
-offset_top = 21.0
-offset_right = -385.0
-offset_bottom = 61.0
+offset_left = -404.0
+offset_top = 48.0
+offset_right = -364.0
+offset_bottom = 88.0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=2012542818]
 z_index = 1
 layout_mode = 0
-offset_left = 796.0
+offset_left = 806.0
 offset_top = -8.0
-offset_right = 1033.0
+offset_right = 1012.0
 offset_bottom = 192.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.88235295)
@@ -377,9 +378,9 @@ color = Color(0, 0, 0, 0.88235295)
 z_index = 1
 texture_filter = 1
 layout_mode = 0
-offset_left = 820.0
+offset_left = 813.0
 offset_top = -5.0
-offset_right = 1014.0
+offset_right = 1007.0
 offset_bottom = 116.0
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
@@ -394,9 +395,9 @@ an disabled stat instead."
 z_index = 1
 texture_filter = 1
 layout_mode = 0
-offset_left = 820.0
+offset_left = 813.0
 offset_top = 20.0
-offset_right = 1014.0
+offset_right = 1007.0
 offset_bottom = 91.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_constants/line_spacing = 4
@@ -410,10 +411,10 @@ text = "+15% failure chance.
 z_index = 1
 texture_filter = 1
 layout_mode = 0
-offset_left = 836.0
-offset_top = 118.0
-offset_right = 1024.0
-offset_bottom = 188.0
+offset_left = 811.0
+offset_top = 122.0
+offset_right = 999.0
+offset_bottom = 192.0
 mouse_filter = 2
 texture = ExtResource("18_kkbmc")
 

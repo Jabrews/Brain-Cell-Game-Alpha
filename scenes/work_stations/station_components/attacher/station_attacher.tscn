@@ -3,21 +3,28 @@
 [ext_resource type="Script" uid="uid://bfrjqyu22fxje" path="res://scripts/work_stations/station_components/attacher/station_attacher.gd" id="1_skoqb"]
 [ext_resource type="Script" uid="uid://ccpcfnrsnytk5" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_interact_area.gd" id="2_aeklq"]
 [ext_resource type="Script" uid="uid://cu88vtv0yt28o" path="res://scripts/work_stations/station_components/attacher/handle_display_ui.gd" id="2_hnska"]
+[ext_resource type="Script" uid="uid://8ant78glsplj" path="res://scripts/work_stations/station_components/attacher/btn_handlers/handle_modal_btn.gd" id="3_0is3u"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_3now3"]
+[ext_resource type="Script" uid="uid://css5feiqekww6" path="res://scripts/work_stations/station_components/attacher/btn_handlers/handle_jar_delete_btn.gd" id="3_h8037"]
 [ext_resource type="Script" uid="uid://ctjbxr0yrj803" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_info_manager.gd" id="4_6rfj8"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_hnska"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="4_o7oe2"]
+[ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
+[ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
 [ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="8_0is3u"]
-[ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat/main_stat.tscn" id="9_etud5"]
-[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="12_g038m"]
-[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="13_etud5"]
-[ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="14_i7vey"]
-[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="15_0is3u"]
-[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="16_o7iqc"]
-[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/defect_bar.png" id="17_kgviq"]
-[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="18_eqm75"]
-[ext_resource type="Script" uid="uid://baudyhn1sooh8" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/cell_boxes/breeding_view_main_box/unavailable_lock.gd" id="19_ape52"]
-[ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="20_htfow"]
+[ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat.tscn" id="9_etud5"]
+[ext_resource type="PackedScene" uid="uid://dykbleuu1m5tn" path="res://scenes/work_stations/station_components/attacher/ui/attacher_box.tscn" id="10_51xr3"]
+[ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
+[ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
+[ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/blood_type_view.gd" id="11_g3225"]
+[ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_g3225"]
+[ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
+[ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/failure_chance_view.gd" id="14_h8037"]
+[ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_jqydl"]
+[ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="15_etud5"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
+[ext_resource type="Script" uid="uid://t42dy4low8hq" path="res://scripts/work_stations/station_components/attacher/delete_modal/modal_btn.gd" id="20_i7vey"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -70,17 +77,136 @@ shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nlaba"]
-shader = ExtResource("12_g038m")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0ynj"]
+shader = ExtResource("12_g3225")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 1.0
+
+[sub_resource type="Shader" id="Shader_8x2mq"]
+code = "shader_type canvas_item;
+
+uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
+uniform float tolerance : hint_range(0.0, 1.0) = 0.05;
+
+uniform float current_value : hint_range(0.0, 1.0) = 0.5;
+uniform float secondary_value : hint_range(0.0, 1.0) = 0.7;
+
+uniform vec4 current_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+uniform vec4 secondary_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
+
+uniform float pulse_speed : hint_range(0.1, 10.0) = 2.0;
+
+
+void fragment() {
+	vec4 tex = texture(TEXTURE, UV);
+
+	// Detect the selected grey color
+	float difference = distance(tex.rgb, target_color.rgb);
+
+	float target_mask = 1.0 - smoothstep(
+		0.0,
+		tolerance,
+		difference
+	);
+
+	// Fill from bottom to top
+	float height = 1.0 - UV.y;
+
+	float current_mask = step(height, current_value);
+	float secondary_mask = step(height, secondary_value);
+
+	// Pulsing opacity for secondary value
+	float pulse = (sin(TIME * pulse_speed * 3.14159) + 1.0) / 2.0;
+	float secondary_alpha = mix(0.25, 0.75, pulse);
+
+	// Selected grey is transparent by default
+	vec4 result = tex;
+
+	if (target_mask > 0.0) {
+		result.a = 0.0;
+	}
+
+	// Secondary fill
+	if (secondary_mask > 0.0) {
+		result = mix(
+			result,
+			vec4(secondary_color.rgb, secondary_alpha),
+			target_mask
+		);
+	}
+
+	// Current fill
+	if (current_mask > 0.0) {
+		result = mix(
+			result,
+			current_color,
+			target_mask
+		);
+	}
+
+	COLOR = result;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0is3u"]
+shader = SubResource("Shader_8x2mq")
+shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
+shader_parameter/tolerance = 0.05
+shader_parameter/current_value = 0.0
+shader_parameter/secondary_value = 0.0
+shader_parameter/current_color = Color(0.85882354, 0.09803922, 0.20392157, 1)
+shader_parameter/secondary_color = Color(0.58654827, 0.04177396, 0.12359213, 1)
+shader_parameter/pulse_speed = 1.72100007848762
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7iqc"]
+shader = ExtResource("16_h8037")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
 shader_parameter/duration = 2.0
 shader_parameter/distortion_strength = 0.02
 shader_parameter/distortion_speed = 2.0
-shader_parameter/noise_texture = ExtResource("13_etud5")
+shader_parameter/noise_texture = ExtResource("17_i7vey")
 shader_parameter/noise_scale = 1.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gk0sq"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kgviq"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="Shader" id="Shader_h8037"]
+code = "shader_type canvas_item;
+
+uniform float blur_amount : hint_range(0.0, 10.0) = 3.0;
+uniform float tint_strength : hint_range(0.0, 1.0) = 0.0;
+uniform vec4 tint_color : source_color = vec4(0.0, 0.0, 0.0, 0.0);
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+
+void fragment() {
+	vec2 screen_uv = SCREEN_UV;
+	vec2 pixel_size = SCREEN_PIXEL_SIZE * blur_amount;
+
+	vec4 blur_color = vec4(0.0);
+
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2(-1.0, -1.0));
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 0.0, -1.0));
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 1.0, -1.0));
+
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2(-1.0,  0.0));
+	blur_color += texture(SCREEN_TEXTURE, screen_uv);
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 1.0,  0.0));
+
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2(-1.0,  1.0));
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 0.0,  1.0));
+	blur_color += texture(SCREEN_TEXTURE, screen_uv + pixel_size * vec2( 1.0,  1.0));
+
+	blur_color /= 9.0;
+
+	COLOR = mix(blur_color, tint_color, tint_strength);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7vey"]
+shader = SubResource("Shader_h8037")
+shader_parameter/blur_amount = 4.1650001978375
+shader_parameter/tint_strength = 0.9150000434625
+shader_parameter/tint_color = Color(0, 0, 0, 0.84313726)
 
 [node name="StationAttacher" type="Node3D" unique_id=348530824]
 script = ExtResource("1_skoqb")
@@ -90,6 +216,20 @@ script = ExtResource("1_skoqb")
 [node name="HandleDisplayUi" type="Node" parent="Logic" unique_id=831061143]
 process_mode = 3
 script = ExtResource("2_hnska")
+
+[node name="BtnHandlers" type="Node" parent="Logic" unique_id=1308234060]
+
+[node name="HandleModalBtn" type="Node" parent="Logic/BtnHandlers" unique_id=87990515]
+script = ExtResource("3_0is3u")
+
+[node name="HandleJarDeleteBtn" type="Node" parent="Logic/BtnHandlers" unique_id=1053196863]
+script = ExtResource("3_h8037")
+
+[node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=98271224]
+script = ExtResource("5_o7iqc")
+
+[node name="HandleExitBtn" type="Node" parent="Logic/BtnHandlers" unique_id=58584897]
+script = ExtResource("6_eqm75")
 
 [node name="LoadCellPanel" type="Node3D" parent="." unique_id=2122120786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04719603, 0.22518694, 0)
@@ -191,10 +331,12 @@ one_shot = true
 wait_time = 0.5
 
 [node name="AttacherUI" type="Control" parent="." unique_id=1371673270]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+focus_mode = 2
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI" unique_id=1202290427]
 material = SubResource("ShaderMaterial_6rfj8")
@@ -236,6 +378,7 @@ offset_left = 608.0
 offset_top = 669.0
 offset_right = 648.0
 offset_bottom = 709.0
+script = ExtResource("10_kgviq")
 
 [node name="BtnBg" type="ColorRect" parent="AttacherUI/InteractFooter/ConfirmBtn" unique_id=83177985]
 layout_mode = 0
@@ -268,17 +411,17 @@ vertical_alignment = 1
 visible = false
 z_index = 2
 anchors_preset = 0
-offset_left = 37.0
-offset_top = 7.0
-offset_right = 77.0
-offset_bottom = 47.0
+offset_left = 56.0
+offset_top = 3.0
+offset_right = 96.0
+offset_bottom = 43.0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="AttacherUI/InteractFooter/ConfirmBtn/Hint" unique_id=676153698]
 layout_mode = 0
 offset_left = 58.0
-offset_top = -110.0
-offset_right = 261.0
+offset_top = -52.0
+offset_right = 211.0
 offset_bottom = -6.0
 color = Color(0, 0, 0, 0.80784315)
 
@@ -287,14 +430,14 @@ texture_filter = 1
 custom_minimum_size = Vector2(197, 92)
 custom_maximum_size = Vector2(197, 92)
 layout_mode = 0
-offset_left = 64.0
-offset_top = -102.0
-offset_right = 261.0
-offset_bottom = -10.0
+offset_left = 67.0
+offset_top = -44.0
+offset_right = 264.0
+offset_bottom = 48.0
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 20
-text = "Missing main breeding cells in panel"
+text = "put correct text"
 autowrap_mode = 2
 
 [node name="ExitHeader" type="Control" parent="AttacherUI" unique_id=1794361857]
@@ -318,10 +461,7 @@ offset_top = 76.0
 offset_right = 1220.0
 offset_bottom = 108.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn")
-focus_mode = 2
+script = ExtResource("13_ape52")
 
 [node name="ExitLabel" type="Label" parent="AttacherUI/ExitHeader/ExitBtn" unique_id=1571850069]
 texture_filter = 1
@@ -385,15 +525,649 @@ text = "cell Attacher"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="JarItemCatalog" type="Control" parent="AttacherUI" unique_id=1388359665]
+[node name="StatMainView" type="Control" parent="AttacherUI" unique_id=413693852]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="AttacherUI/StatMainView" unique_id=1894267124]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 56.0
+offset_right = 1184.0
+offset_bottom = 552.0
+color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
+
+[node name="NoCellLoadedLabel" type="Label" parent="AttacherUI/StatMainView" unique_id=216895957]
+texture_filter = 1
+layout_mode = 0
+offset_left = 416.0
+offset_top = 56.0
+offset_right = 1184.0
+offset_bottom = 552.0
+theme_override_constants/line_spacing = 22
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 30
+text = "Place Cell On Panel
+To Begin Attaching 
+Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats" type="Control" parent="AttacherUI/StatMainView" unique_id=2114991243]
+visible = false
+anchors_preset = 0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=1022081741 instance=ExtResource("9_etud5")]
+layout_mode = 1
+offset_left = 352.0
+offset_top = 24.0
+offset_right = 352.0
+offset_bottom = 24.0
+
+[node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=916439849 instance=ExtResource("9_etud5")]
+layout_mode = 1
+offset_left = 352.0
+offset_top = 192.0
+offset_right = 352.0
+offset_bottom = 192.0
+stat_type = "intelligence"
+
+[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Intelligence" index="5" unique_id=1991748357]
+visible = false
+
+[node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=565042045 instance=ExtResource("9_etud5")]
+layout_mode = 1
+offset_left = 352.0
+offset_top = 360.0
+offset_right = 352.0
+offset_bottom = 360.0
+stat_type = "community"
+
+[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Community" index="5" unique_id=1991748357]
+visible = false
+
+[node name="AttacherBox" parent="AttacherUI/StatMainView" unique_id=55611311 instance=ExtResource("10_51xr3")]
+layout_mode = 0
+offset_left = 760.0
+offset_top = 560.0
+offset_right = 760.0
+offset_bottom = 560.0
+
+[node name="BloodTypeView" type="Control" parent="AttacherUI/StatMainView" unique_id=2004171066]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("11_g3225")
+
+[node name="HoverBG" type="ColorRect" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=17225684]
+visible = false
+layout_mode = 0
+offset_left = 527.0
+offset_top = 559.0
+offset_right = 704.0
+offset_bottom = 657.0
+mouse_filter = 2
+
+[node name="DropInvalidBG" type="ColorRect" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=896582186]
+visible = false
+material = SubResource("ShaderMaterial_b0ynj")
+layout_mode = 0
+offset_left = 527.0
+offset_top = 559.0
+offset_right = 704.0
+offset_bottom = 657.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=2038202650]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 560.0
+offset_right = 703.0
+offset_bottom = 656.0
+color = Color(0.14117648, 0.007843138, 0, 1)
+
+[node name="HeaderLabel" type="Label" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=2085373813]
+texture_filter = 1
+layout_mode = 0
+offset_left = 528.0
+offset_top = 560.0
+offset_right = 704.0
+offset_bottom = 581.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 24
+text = "Bloodtype :"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BloodtypeSymbol" type="TextureRect" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=296656778]
+texture_filter = 1
+layout_mode = 0
+offset_left = 561.0
+offset_top = 600.0
+offset_right = 605.0
+offset_bottom = 641.0
+mouse_filter = 2
+texture = ExtResource("11_b0ynj")
+expand_mode = 1
+
+[node name="BloodTypeLabel" type="Label" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=102297100]
+modulate = Color(0.808011, 0.105516136, 0.17244221, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 601.0
+offset_top = 601.0
+offset_right = 660.0
+offset_bottom = 636.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 30
+text = "None"
+vertical_alignment = 1
+
+[node name="BloodTypeHint" type="Control" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=363668421]
+visible = false
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 400.0
+offset_right = 576.0
+offset_bottom = 440.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/BloodTypeView/BloodTypeHint" unique_id=1594690639]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 112.0
+offset_right = 162.0
+offset_bottom = 157.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6862745)
+
+[node name="HintLabel" type="Label" parent="AttacherUI/StatMainView/BloodTypeView/BloodTypeHint" unique_id=1083160196]
+texture_filter = 1
+layout_mode = 0
+offset_left = 15.0
+offset_top = 122.0
+offset_right = 158.0
+offset_bottom = 143.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 18
+text = "Not implented yet..."
+
+[node name="FailureChanceView" type="Control" parent="AttacherUI/StatMainView" unique_id=1884564620]
+visible = false
+anchors_preset = 0
+offset_left = 376.0
+offset_right = 416.0
+offset_bottom = 40.0
+script = ExtResource("14_h8037")
+
+[node name="HoverBG" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=2004887354]
+visible = false
+layout_mode = 0
+offset_left = 532.0
+offset_top = 556.0
+offset_right = 744.0
+offset_bottom = 658.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=1257134997]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 557.0
+offset_right = 743.0
+offset_bottom = 606.0
+color = Color(0.12173364, 0.006105286, 9.024516e-09, 1)
+
+[node name="BG2" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=985257613]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 606.0
+offset_right = 743.0
+offset_bottom = 657.0
+mouse_filter = 2
+color = Color(0.16989866, 0.014017411, 0, 1)
+
+[node name="HeaderLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=2020926456]
+texture_filter = 1
+layout_mode = 0
+offset_left = 570.0
+offset_top = 563.0
+offset_right = 746.0
+offset_bottom = 595.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 28
+text = "Failure Chance"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FailureChanceSymbol" type="TextureRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=1735715090]
+texture_filter = 1
+layout_mode = 0
+offset_left = 543.0
+offset_top = 566.0
+offset_right = 576.0
+offset_bottom = 598.0
+mouse_filter = 2
+texture = ExtResource("14_jqydl")
+expand_mode = 1
+
+[node name="FailurePercantLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=1038957198]
+modulate = Color(0.808011, 0.105516136, 0.17244221, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = 543.0
+offset_top = 594.0
+offset_right = 737.0
+offset_bottom = 651.0
+scale = Vector2(1, 1.2800024)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 46
+text = "25%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FailureChanceHint" type="Control" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=349484912]
+visible = false
+anchors_preset = 0
+offset_left = 648.0
+offset_top = 400.0
+offset_right = 688.0
+offset_bottom = 440.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=866887105]
+layout_mode = 0
+offset_left = -160.0
+offset_top = -16.0
+offset_right = 144.0
+offset_bottom = 155.0
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6862745)
+
+[node name="StatDanger" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=882801652]
+anchors_preset = 0
+offset_left = -167.0
+offset_top = -340.0
+offset_right = -127.0
+offset_bottom = -300.0
+mouse_filter = 2
+
+[node name="Strength" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger" unique_id=1134935178]
+anchors_preset = 0
+offset_left = -68.0
+offset_right = -28.0
+offset_bottom = 40.0
+
+[node name="Pot" type="TextureRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength" unique_id=1553145916]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0is3u")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("15_etud5")
+
+[node name="Label" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength" unique_id=1105196766]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 339.0
+offset_right = 240.0
+offset_bottom = 362.0
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 15
+text = "Str."
+
+[node name="FailureChance" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength" unique_id=931226213]
+texture_filter = 1
+layout_mode = 0
+offset_left = 171.0
+offset_top = 332.0
+offset_right = 236.0
+offset_bottom = 356.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Intelligence" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger" unique_id=993493626]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 26.0
+offset_right = -28.0
+offset_bottom = 66.0
+
+[node name="Pot" type="TextureRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence" unique_id=915760714]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0is3u")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("15_etud5")
+
+[node name="Label" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence" unique_id=1796835647]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 256.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 15
+text = "Int."
+
+[node name="FailureChance" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence" unique_id=911084372]
+texture_filter = 1
+layout_mode = 0
+offset_left = 171.0
+offset_top = 333.0
+offset_right = 299.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="Community" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger" unique_id=1255933458]
+anchors_preset = 0
+offset_left = -68.0
+offset_top = 52.0
+offset_right = -28.0
+offset_bottom = 92.0
+
+[node name="Pot" type="TextureRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community" unique_id=1108281596]
+texture_filter = 1
+material = SubResource("ShaderMaterial_0is3u")
+layout_mode = 0
+offset_left = 84.0
+offset_top = 336.0
+offset_right = 108.0
+offset_bottom = 357.0
+texture = ExtResource("15_etud5")
+
+[node name="Label" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community" unique_id=762631097]
+texture_filter = 1
+layout_mode = 0
+offset_left = 112.0
+offset_top = 341.0
+offset_right = 240.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 15
+text = "Com."
+
+[node name="FailureChance" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community" unique_id=213819522]
+texture_filter = 1
+layout_mode = 0
+offset_left = 171.0
+offset_top = 333.0
+offset_right = 299.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 20
+text = "(+ 15% )"
+
+[node name="LifeSpanDanger" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1541434946]
+anchors_preset = 0
+offset_left = -167.0
+offset_top = -340.0
+offset_right = -127.0
+offset_bottom = -300.0
+mouse_filter = 2
+
+[node name="HeaderLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger" unique_id=1130007958]
+layout_mode = 0
+offset_left = 186.0
+offset_top = 340.0
+offset_right = 309.0
+offset_bottom = 363.0
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 14
+text = "Lifespan"
+horizontal_alignment = 1
+
+[node name="LifeNum" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger" unique_id=1380099983]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 352.0
+offset_right = 304.0
+offset_bottom = 384.0
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 20
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FailureChance" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger" unique_id=5972185]
+texture_filter = 1
+layout_mode = 0
+offset_left = 183.0
+offset_top = 382.0
+offset_right = 311.0
+offset_bottom = 405.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 23
+text = "(+ 15% )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HiddenStats" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1007500389]
+anchors_preset = 0
+offset_left = -159.0
+offset_top = -364.0
+offset_right = -119.0
+offset_bottom = -324.0
+mouse_filter = 2
+
+[node name="StrengthHide" type="Sprite2D" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats" unique_id=945727716]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_o7iqc")
+position = Vector2(83.000046, 370.18747)
+scale = Vector2(0.47619042, 0.5406245)
+texture = SubResource("CompressedTexture2D_kgviq")
+
+[node name="IntelligenceHide" type="Sprite2D" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats" unique_id=1568979108]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_o7iqc")
+position = Vector2(83.00001, 396.09375)
+scale = Vector2(0.47619033, 0.5453126)
+texture = SubResource("CompressedTexture2D_kgviq")
+
+[node name="CommunityHide" type="Sprite2D" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats" unique_id=1231117692]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_o7iqc")
+position = Vector2(82.99998, 422.09375)
+scale = Vector2(0.4761902, 0.5453126)
+texture = SubResource("CompressedTexture2D_kgviq")
+
+[node name="OffDisableLabels" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1710868746]
+anchors_preset = 0
+offset_left = -159.0
+offset_top = -364.0
+offset_right = -119.0
+offset_bottom = -324.0
+mouse_filter = 2
+
+[node name="Strength" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels" unique_id=1704475707]
+visible = false
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 24.0
+offset_right = 10.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Strength" unique_id=1708206998]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 188.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Strength" unique_id=74363216]
+texture_filter = 1
+layout_mode = 0
+offset_left = 35.0
+offset_top = 333.0
+offset_right = 188.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels" unique_id=1047292098]
+visible = false
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 51.0
+offset_right = 10.0
+offset_bottom = 91.0
+
+[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Intelligence" unique_id=536995741]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 189.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Intelligence" unique_id=1855670259]
+texture_filter = 1
+layout_mode = 0
+offset_left = 36.0
+offset_top = 333.0
+offset_right = 188.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels" unique_id=1117132829]
+visible = false
+anchors_preset = 0
+offset_left = -30.0
+offset_top = 78.0
+offset_right = 10.0
+offset_bottom = 118.0
+
+[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Community" unique_id=869273299]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 334.0
+offset_right = 189.0
+offset_bottom = 359.0
+color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
+
+[node name="StrengthOffLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Community" unique_id=400606700]
+texture_filter = 1
+layout_mode = 0
+offset_left = 39.0
+offset_top = 333.0
+offset_right = 188.0
+offset_bottom = 356.0
+scale = Vector2(1, 1.2399988)
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 12
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=143594331]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -4.0
+offset_right = 13.0
+offset_bottom = 69.0
+mouse_filter = 2
+color = Color(1, 0.1254902, 0, 1)
+
+[node name="Penality" type="Control" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1241969895]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/Penality" unique_id=288398049]
+texture_filter = 1
+layout_mode = 0
+offset_left = -158.0
+offset_top = 81.0
+offset_right = 144.0
+offset_bottom = 110.0
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 25
+text = "Overide Stat Penality"
+horizontal_alignment = 1
+
+[node name="FailureChance" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/Penality" unique_id=1442845033]
+texture_filter = 1
+layout_mode = 0
+offset_left = -77.0
+offset_top = 111.0
+offset_right = 51.0
+offset_bottom = 137.0
+theme_override_colors/font_color = Color(1, 0.1254902, 0, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 23
+text = "(+ 15% )"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoCellLoadedLabel2" type="Label" parent="AttacherUI/StatMainView" unique_id=22011542]
+texture_filter = 1
+layout_mode = 0
+offset_left = 860.99994
+offset_top = 577.99994
+offset_right = 1069.0
+offset_bottom = 632.99994
+rotation = 0.005975986
+theme_override_colors/font_color = Color(1, 1, 1, 0.5058824)
+theme_override_fonts/font = ExtResource("3_3now3")
+theme_override_font_sizes/font_size = 26
+text = "No Cell
+Loaded"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JarItemCatalog" type="Control" parent="AttacherUI" unique_id=1388359665]
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 40.0
+offset_bottom = 38.0
 
 [node name="CatalogHeader" type="Control" parent="AttacherUI/JarItemCatalog" unique_id=1156320961]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="AttacherUI/JarItemCatalog/CatalogHeader" unique_id=1703123236]
 layout_mode = 0
@@ -421,39 +1195,40 @@ layout_mode = 0
 offset_left = 32.0
 offset_top = 80.0
 offset_right = 352.0
-offset_bottom = 664.0
-mouse_filter = 1
+offset_bottom = 666.0
+mouse_filter = 2
 color = Color(0.2, 0, 0.010000038, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="AttacherUI/JarItemCatalog" unique_id=193858534]
-custom_minimum_size = Vector2(320, 580)
-custom_maximum_size = Vector2(320, 580)
 clip_contents = true
 layout_mode = 0
 offset_left = 32.0
 offset_top = 80.0
 offset_right = 352.0
-offset_bottom = 660.0
+offset_bottom = 666.0
 layout_direction = 2
+mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AttacherUI/JarItemCatalog/CenterContainer" unique_id=1858382718]
 process_mode = 3
-custom_minimum_size = Vector2(320, 580)
-custom_maximum_size = Vector2(320, 580)
+custom_minimum_size = Vector2(320, 586)
+custom_maximum_size = Vector2(320, 586)
 layout_mode = 2
-offset_transform_enabled = true
-offset_transform_position = Vector2(3, 0)
+offset_transform_position = Vector2(11.235, 4.29)
 localize_numeral_system = false
 layout_direction = 3
+mouse_filter = 2
 follow_focus = true
 horizontal_scroll_mode = 0
 
 [node name="GridContainerLeft" type="GridContainer" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer" unique_id=1795349295]
+custom_maximum_size = Vector2(320, 586)
 propagate_maximum_size = false
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(32.095, 29.75)
+offset_transform_position = Vector2(36.475, 18.76)
 offset_transform_pivot_ratio = Vector2(0, 0)
+offset_transform_visual_only = false
 layout_direction = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 150
@@ -464,7 +1239,10 @@ layout_mode = 2
 [node name="StatJarItem2" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1641075461 instance=ExtResource("8_0is3u")]
 layout_mode = 2
 
-[node name="SpareItemIGNORE" type="Control" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1060395158]
+[node name="StatJarItem3" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=618895040 instance=ExtResource("8_0is3u")]
+layout_mode = 2
+
+[node name="StatJarItem4" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=472842751 instance=ExtResource("8_0is3u")]
 layout_mode = 2
 
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/JarItemCatalog" unique_id=879242795]
@@ -482,392 +1260,143 @@ Found"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatMainView" type="Control" parent="AttacherUI" unique_id=413693852]
+[node name="DeleteModal" type="Control" parent="AttacherUI" unique_id=291084153]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Stats" type="Control" parent="AttacherUI/StatMainView" unique_id=2114991243]
-anchors_preset = 0
+[node name="BlurBg" type="ColorRect" parent="AttacherUI/DeleteModal" unique_id=1758180851]
+material = SubResource("ShaderMaterial_i7vey")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
 offset_top = 8.0
-offset_right = 40.0
-offset_bottom = 48.0
+offset_right = 1208.0
+offset_bottom = 672.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
 
-[node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=1022081741 instance=ExtResource("9_etud5")]
-layout_mode = 1
-offset_left = 352.0
-offset_top = 16.0
-offset_right = 352.0
-offset_bottom = 16.0
-
-[node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=916439849 instance=ExtResource("9_etud5")]
-layout_mode = 1
-offset_left = 352.0
+[node name="BG" type="ColorRect" parent="AttacherUI/DeleteModal" unique_id=616640349]
+layout_mode = 0
+offset_left = 384.0
 offset_top = 192.0
-offset_right = 352.0
-offset_bottom = 192.0
-stat_type = "intelligence"
+offset_right = 896.0
+offset_bottom = 472.0
+color = Color(0.20181602, 3.1585806e-08, 1.2032688e-08, 1)
 
-[node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=565042045 instance=ExtResource("9_etud5")]
-layout_mode = 1
-offset_left = 352.0
-offset_top = 368.0
-offset_right = 352.0
-offset_bottom = 368.0
-stat_type = "community"
-
-[node name="PanelBox" type="Control" parent="AttacherUI/StatMainView" unique_id=492975276]
-anchors_preset = 0
-offset_left = 752.0
-offset_top = 568.0
-offset_right = 792.0
-offset_bottom = 608.0
-
-[node name="DisplayBackground" type="TextureRect" parent="AttacherUI/StatMainView/PanelBox" unique_id=1058918465]
+[node name="HeaderLabel" type="Label" parent="AttacherUI/DeleteModal" unique_id=750791310]
 texture_filter = 1
 layout_mode = 0
-offset_right = 88.0
-offset_bottom = 88.0
-focus_mode = 2
-texture = ExtResource("14_i7vey")
-
-[node name="MockCellEntry" type="Control" parent="AttacherUI/StatMainView/PanelBox" unique_id=1314728781]
-visible = false
-anchors_preset = 0
-offset_top = 1.0
-offset_right = 40.0
-offset_bottom = 41.0
-mouse_filter = 2
-
-[node name="StatDisplay" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry" unique_id=231326441]
-anchors_preset = 0
-offset_left = -9.0
-offset_top = -33.0
-offset_right = 31.0
-offset_bottom = 7.0
-mouse_filter = 2
-
-[node name="Strength" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay" unique_id=1714772542]
-anchors_preset = 0
-offset_left = 4.0
-offset_top = 12.0
-offset_right = 44.0
-offset_bottom = 52.0
-mouse_filter = 2
-
-[node name="CleanBar" type="TextureProgressBar" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Strength" unique_id=1733474794]
-texture_filter = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 88.0
-offset_bottom = 61.0
-mouse_filter = 2
-value = 75.0
-nine_patch_stretch = true
-texture_under = ExtResource("15_0is3u")
-texture_progress = ExtResource("16_o7iqc")
-
-[node name="DefectBar" type="TextureProgressBar" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Strength" unique_id=1333653303]
-texture_filter = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 62.0
-offset_right = 88.0
-offset_bottom = 64.85715
-scale = Vector2(1, 1.4)
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("17_kgviq")
-texture_progress = ExtResource("18_eqm75")
-
-[node name="Off" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Strength" unique_id=1558915829]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Strength/Off" unique_id=258605276]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 88.0
-offset_bottom = 66.0
-mouse_filter = 2
-color = Color(0.2231029, 0.2231029, 0.22310284, 1)
-
-[node name="Label" type="Label" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Strength/Off" unique_id=2009939776]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 57.0
-offset_right = 87.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3now3")
-theme_override_font_sizes/font_size = 6
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hide" type="Sprite2D" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Strength" unique_id=1236822019]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_nlaba")
-position = Vector2(50, 61)
-scale = Vector2(0.24126984, 0.3)
-texture = SubResource("CompressedTexture2D_gk0sq")
-
-[node name="Intelligence" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay" unique_id=2116211034]
-anchors_preset = 0
-offset_left = 4.0
-offset_top = 31.0
-offset_right = 44.0
-offset_bottom = 71.0
-mouse_filter = 2
-
-[node name="CleanBar" type="TextureProgressBar" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Intelligence" unique_id=661855829]
-texture_filter = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 88.0
-offset_bottom = 61.0
-mouse_filter = 2
-value = 75.0
-nine_patch_stretch = true
-texture_under = ExtResource("15_0is3u")
-texture_progress = ExtResource("16_o7iqc")
-
-[node name="DefectBar" type="TextureProgressBar" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Intelligence" unique_id=775539322]
-texture_filter = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 62.0
-offset_right = 88.0
-offset_bottom = 64.85715
-scale = Vector2(1, 1.4)
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("17_kgviq")
-texture_progress = ExtResource("18_eqm75")
-
-[node name="Off" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Intelligence" unique_id=1182392231]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Intelligence/Off" unique_id=1444082485]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 88.0
-offset_bottom = 66.0
-mouse_filter = 2
-color = Color(0.2231029, 0.2231029, 0.22310284, 1)
-
-[node name="Label" type="Label" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Intelligence/Off" unique_id=711472438]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 57.0
-offset_right = 87.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3now3")
-theme_override_font_sizes/font_size = 6
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hide" type="Sprite2D" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Intelligence" unique_id=255612725]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_nlaba")
-position = Vector2(50, 61)
-scale = Vector2(0.24126984, 0.3)
-texture = SubResource("CompressedTexture2D_gk0sq")
-
-[node name="Community" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay" unique_id=1661126948]
-anchors_preset = 0
-offset_left = 4.0
-offset_top = 49.0
-offset_right = 44.0
-offset_bottom = 89.0
-mouse_filter = 2
-
-[node name="CleanBar" type="TextureProgressBar" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Community" unique_id=1232061634]
-texture_filter = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 88.0
-offset_bottom = 61.0
-mouse_filter = 2
-value = 75.0
-nine_patch_stretch = true
-texture_under = ExtResource("15_0is3u")
-texture_progress = ExtResource("16_o7iqc")
-
-[node name="DefectBar" type="TextureProgressBar" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Community" unique_id=369530258]
-texture_filter = 1
-layout_mode = 0
-offset_left = 12.0
-offset_top = 62.0
-offset_right = 88.0
-offset_bottom = 64.85715
-scale = Vector2(1, 1.4)
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("17_kgviq")
-texture_progress = ExtResource("18_eqm75")
-
-[node name="Off" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Community" unique_id=316552913]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Community/Off" unique_id=679859708]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 88.0
-offset_bottom = 66.0
-mouse_filter = 2
-color = Color(0.2231029, 0.2231029, 0.22310284, 1)
-
-[node name="Label" type="Label" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Community/Off" unique_id=2072399197]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 57.0
-offset_right = 87.0
-offset_bottom = 64.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_3now3")
-theme_override_font_sizes/font_size = 6
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hide" type="Sprite2D" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/StatDisplay/Community" unique_id=1767650489]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_nlaba")
-position = Vector2(50, 61)
-scale = Vector2(0.24126984, 0.3)
-texture = SubResource("CompressedTexture2D_gk0sq")
-
-[node name="CellName" type="Label" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry" unique_id=1779922974]
-texture_filter = 1
-layout_mode = 0
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 87.0
-offset_bottom = 28.0
+offset_left = 256.0
+offset_top = 208.0
+offset_right = 1024.0
+offset_bottom = 265.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 16
-text = "Billy Bob Jr"
+theme_override_font_sizes/font_size = 50
+text = "Delete Jar Item ? "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UnavaibleLock" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry" unique_id=1617297762]
-visible = false
-anchors_preset = 0
-offset_top = -3.0
-offset_right = 40.0
-offset_bottom = 37.0
-script = ExtResource("19_ape52")
-
-[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/UnavaibleLock" unique_id=2045054430]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 6.0
-offset_right = 86.0
-offset_bottom = 88.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.6156863)
-
-[node name="Hint" type="Control" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/UnavaibleLock" unique_id=1791615017]
-visible = false
-z_index = 2
-anchors_preset = 0
-offset_left = 21.0
-offset_top = 1.0
-offset_right = 61.0
-offset_bottom = 41.0
-
-[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/UnavaibleLock/Hint" unique_id=2120812403]
-layout_mode = 0
-offset_left = -54.0
-offset_top = -78.0
-offset_right = 117.0
-offset_bottom = -6.0
-color = Color(0, 0, 0, 0.80784315)
-
-[node name="HintText" type="Label" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/UnavaibleLock/Hint" unique_id=837026061]
+[node name="WarningLabel" type="Label" parent="AttacherUI/DeleteModal" unique_id=860327927]
 texture_filter = 1
-custom_minimum_size = Vector2(214, 53)
-custom_maximum_size = Vector2(214, 53)
 layout_mode = 0
-offset_left = -48.0
-offset_top = -70.0
-offset_right = 166.0
-offset_bottom = -17.0
-theme_override_constants/line_spacing = 4
+offset_left = 256.0
+offset_top = 256.0
+offset_right = 1024.0
+offset_bottom = 313.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 20
-text = "Cell cannot breed anymore this turn"
-autowrap_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Warning : This cannot be undone"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="LockRect" type="TextureRect" parent="AttacherUI/StatMainView/PanelBox/MockCellEntry/UnavaibleLock" unique_id=1432956662]
-texture_filter = 1
-layout_mode = 0
-offset_left = 26.0
-offset_top = 30.0
-offset_right = 66.0
-offset_bottom = 62.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-texture = ExtResource("20_htfow")
-
-[node name="AddACellHint" type="Control" parent="AttacherUI/StatMainView/PanelBox" unique_id=2010767378]
-visible = false
-z_index = 2
+[node name="ConfirmBtn" type="Control" parent="AttacherUI/DeleteModal" unique_id=552246131]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="BG" type="ColorRect" parent="AttacherUI/StatMainView/PanelBox/AddACellHint" unique_id=2090969339]
-layout_mode = 0
-offset_left = 58.0
-offset_top = -78.0
-offset_right = 261.0
-offset_bottom = -6.0
-color = Color(0, 0, 0, 0.80784315)
-
-[node name="HintText" type="Label" parent="AttacherUI/StatMainView/PanelBox/AddACellHint" unique_id=1930911897]
-texture_filter = 1
-custom_minimum_size = Vector2(214, 53)
-custom_maximum_size = Vector2(214, 53)
-layout_mode = 0
 offset_left = 64.0
-offset_top = -70.0
-offset_right = 278.0
-offset_bottom = -17.0
-theme_override_constants/line_spacing = 4
+offset_top = 336.0
+offset_right = 104.0
+offset_bottom = 376.0
+mouse_filter = 2
+script = ExtResource("20_i7vey")
+
+[node name="HoverBorder" type="ColorRect" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=1471822375]
+visible = false
+layout_mode = 0
+offset_left = 607.0
+offset_top = 39.0
+offset_right = 732.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=1428271062]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 40.0
+offset_right = 731.0
+offset_bottom = 83.0
+color = Color(0.08235294, 1, 0.08235294, 1)
+
+[node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=277747331]
+texture_filter = 1
+layout_mode = 0
+offset_left = 608.0
+offset_top = 43.0
+offset_right = 728.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 20
-text = "Add A Cell by dragging it onto the box. "
-autowrap_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Confirm"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DenyBtn" type="Control" parent="AttacherUI/DeleteModal" unique_id=398914387]
+anchors_preset = 0
+offset_left = -112.0
+offset_top = 336.0
+offset_right = -72.0
+offset_bottom = 376.0
+mouse_filter = 2
+script = ExtResource("20_i7vey")
+btn_type = "deny"
+
+[node name="HoverBorder" type="ColorRect" parent="AttacherUI/DeleteModal/DenyBtn" unique_id=1028561421]
+visible = false
+layout_mode = 0
+offset_left = 607.0
+offset_top = 39.0
+offset_right = 732.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/DeleteModal/DenyBtn" unique_id=1473761548]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 40.0
+offset_right = 731.0
+offset_bottom = 83.0
+color = Color(1, 0.07999998, 0.07999998, 1)
+
+[node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/DenyBtn" unique_id=1144376525]
+texture_filter = 1
+layout_mode = 0
+offset_left = 608.0
+offset_top = 43.0
+offset_right = 728.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 30
+text = "Deny"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [editable path="AttacherUI/StatMainView/Stats/Intelligence"]
 [editable path="AttacherUI/StatMainView/Stats/Community"]

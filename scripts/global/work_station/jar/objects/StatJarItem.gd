@@ -1,5 +1,6 @@
 extends JarItem 
-class_name JarCellStat
+
+class_name StatJarItem
 
 var corrisponding_stat : BrainCellStat
 
