@@ -2,6 +2,7 @@ extends Node
 
 # components
 @onready var attacher_ui : Control = $"../../AttacherUI"
+@onready var refresh_catalog : Node = $"../RefreshCatalog"
 
 var showing_attacher_ui : bool = false
 
@@ -21,6 +22,7 @@ func _toggle_display(toggle_value : bool) :
 	showing_attacher_ui= toggle_value
 	
 	if toggle_value : 
+		refresh_catalog._refresh()
 		return
 	
 	if not toggle_value : 

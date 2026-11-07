@@ -2,29 +2,30 @@
 
 [ext_resource type="Script" uid="uid://bfrjqyu22fxje" path="res://scripts/work_stations/station_components/attacher/station_attacher.gd" id="1_skoqb"]
 [ext_resource type="Script" uid="uid://ccpcfnrsnytk5" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_interact_area.gd" id="2_aeklq"]
-[ext_resource type="Script" uid="uid://cu88vtv0yt28o" path="res://scripts/work_stations/station_components/attacher/handle_display_ui.gd" id="2_hnska"]
-[ext_resource type="Script" uid="uid://8ant78glsplj" path="res://scripts/work_stations/station_components/attacher/btn_handlers/handle_modal_btn.gd" id="3_0is3u"]
+[ext_resource type="Script" uid="uid://cu88vtv0yt28o" path="res://scripts/work_stations/station_components/attacher/logic/handle_display_ui.gd" id="2_hnska"]
+[ext_resource type="Script" uid="uid://8ant78glsplj" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/handle_modal_btn.gd" id="3_0is3u"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_3now3"]
-[ext_resource type="Script" uid="uid://css5feiqekww6" path="res://scripts/work_stations/station_components/attacher/btn_handlers/handle_jar_delete_btn.gd" id="3_h8037"]
+[ext_resource type="Script" uid="uid://css5feiqekww6" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/handle_jar_delete_btn.gd" id="3_h8037"]
+[ext_resource type="Script" uid="uid://c3jyju8pjfyqj" path="res://scripts/work_stations/station_components/attacher/logic/refresh_catalog/refresh_catalog.gd" id="3_htfow"]
 [ext_resource type="Script" uid="uid://ctjbxr0yrj803" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_info_manager.gd" id="4_6rfj8"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_hnska"]
+[ext_resource type="Script" uid="uid://cj40grciqhhdg" path="res://scripts/work_stations/station_components/attacher/logic/refresh_catalog/sort_used_jar_items.gd" id="4_htfow"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="4_o7oe2"]
-[ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
-[ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
-[ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="8_0is3u"]
+[ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
+[ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
 [ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat.tscn" id="9_etud5"]
 [ext_resource type="PackedScene" uid="uid://dykbleuu1m5tn" path="res://scenes/work_stations/station_components/attacher/ui/attacher_box.tscn" id="10_51xr3"]
-[ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
+[ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
-[ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/blood_type_view.gd" id="11_g3225"]
+[ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/ui/blood_type_view.gd" id="11_g3225"]
 [ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_g3225"]
-[ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
-[ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/failure_chance_view.gd" id="14_h8037"]
+[ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
+[ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/ui/failure_chance_view.gd" id="14_h8037"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_jqydl"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="15_etud5"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
-[ext_resource type="Script" uid="uid://t42dy4low8hq" path="res://scripts/work_stations/station_components/attacher/delete_modal/modal_btn.gd" id="20_i7vey"]
+[ext_resource type="Script" uid="uid://t42dy4low8hq" path="res://scripts/work_stations/station_components/attacher/ui/delete_modal/modal_btn.gd" id="20_i7vey"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -217,6 +218,12 @@ script = ExtResource("1_skoqb")
 process_mode = 3
 script = ExtResource("2_hnska")
 
+[node name="RefreshCatalog" type="Node" parent="Logic" unique_id=95676563]
+script = ExtResource("3_htfow")
+
+[node name="SortUsedJarItems" type="Node" parent="Logic/RefreshCatalog" unique_id=1696792642]
+script = ExtResource("4_htfow")
+
 [node name="BtnHandlers" type="Node" parent="Logic" unique_id=1308234060]
 
 [node name="HandleModalBtn" type="Node" parent="Logic/BtnHandlers" unique_id=87990515]
@@ -324,7 +331,7 @@ uppercase = true
 line_spacing = 10.0
 
 [node name="AutoResetDelayTimer" type="Timer" parent="Hologram/HologramInfoManager" unique_id=1024934402]
-wait_time = 10.0
+wait_time = 5.0
 one_shot = true
 
 [node name="BlinkInfoTimer" type="Timer" parent="Hologram/HologramInfoManager" unique_id=469487995]
@@ -1232,18 +1239,6 @@ offset_transform_visual_only = false
 layout_direction = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 150
-
-[node name="StatJarItem" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=85706654 instance=ExtResource("8_0is3u")]
-layout_mode = 2
-
-[node name="StatJarItem2" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=1641075461 instance=ExtResource("8_0is3u")]
-layout_mode = 2
-
-[node name="StatJarItem3" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=618895040 instance=ExtResource("8_0is3u")]
-layout_mode = 2
-
-[node name="StatJarItem4" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=472842751 instance=ExtResource("8_0is3u")]
-layout_mode = 2
 
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/JarItemCatalog" unique_id=879242795]
 visible = false

@@ -8,7 +8,7 @@ func _init(
 	new_corrisponding_stat : BrainCellStat
 ) -> void:
 	
-	super('cell_stat')
+	super('stat')
 	
 	corrisponding_stat = new_corrisponding_stat
 	
