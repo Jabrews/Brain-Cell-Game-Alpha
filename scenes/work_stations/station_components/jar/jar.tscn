@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://dg2yfbyc1dwss" path="res://scripts/work_stations/station_components/jar/refresh_jar_items.gd" id="2_wsyel"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_ne187"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_gugrt"]
+[ext_resource type="Script" uid="uid://bjknh031ays7n" path="res://scripts/work_stations/station_components/jar/sound_manager.gd" id="7_oc75s"]
+[ext_resource type="AudioStream" uid="uid://bxjx0ycre22mf" path="res://sounds/jar/jar_item_added.mp3" id="8_ykmyh"]
+[ext_resource type="AudioStream" uid="uid://cixnlfk6lre1e" path="res://sounds/jar/jar_item_removed.mp3" id="9_ax3m6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5mhkd"]
 resource_name = "Grey"
@@ -539,7 +542,6 @@ shape = SubResource("BoxShape3D_qa1qv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="JarItems" unique_id=1832597469]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.32920837, 0.06515184, 0.30056027)
-visible = false
 mesh = SubResource("BoxMesh_keru6")
 script = ExtResource("2_l3o15")
 
@@ -657,3 +659,15 @@ wait_time = 0.5
 
 [node name="LightFlashDurationTimer" type="Timer" parent="Light" unique_id=938879136]
 wait_time = 10.0
+
+[node name="SoundManager" type="Node3D" parent="." unique_id=1745527992]
+process_mode = 3
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_oc75s")
+
+[node name="ItemAdded" type="AudioStreamPlayer3D" parent="SoundManager" unique_id=1111838473]
+stream = ExtResource("8_ykmyh")
+volume_db = 5.0
+
+[node name="ItemRemoved" type="AudioStreamPlayer3D" parent="SoundManager" unique_id=1853164778]
+stream = ExtResource("9_ax3m6")
