@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bti6itix1cyjs"]
 
 [ext_resource type="Script" uid="uid://p57dux1n2tpu" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.gd" id="1_vjayo"]
+[ext_resource type="Script" uid="uid://b0trj5ixrcw15" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/handle_input.gd" id="2_hocb0"]
 [ext_resource type="Texture2D" uid="uid://bhrpdp3mtysqi" path="res://models/workstations/attacher/ui/stat_jar_item/stat_jar_item_bg_2.png" id="2_wako6"]
 [ext_resource type="Texture2D" uid="uid://d7wdkldrsdt2" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_bg.png" id="3_qv3fk"]
 [ext_resource type="Texture2D" uid="uid://cf5xw8y52bmfh" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_progress.png" id="4_vqo6a"]
@@ -19,14 +20,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_right = NodePath("DeleteBtn")
+focus_mode = 2
 mouse_filter = 1
 script = ExtResource("1_vjayo")
+
+[node name="HandleInput" type="Node" parent="." unique_id=2087878489]
+script = ExtResource("2_hocb0")
 
 [node name="BG" type="TextureRect" parent="." unique_id=934185104]
 texture_filter = 1
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 104.0
+focus_neighbor_right = NodePath("../DeleteBtn")
+focus_mode = 2
 mouse_filter = 0
 texture = ExtResource("2_wako6")
 
@@ -63,7 +71,6 @@ texture_under = ExtResource("5_joqgs")
 texture_progress = ExtResource("6_qv3fk")
 
 [node name="OutsideBorders" type="Control" parent="." unique_id=1599376766]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -108,10 +115,14 @@ mouse_filter = 2
 texture = ExtResource("9_wako6")
 
 [node name="DeleteBtn" type="Control" parent="." unique_id=134672474]
+z_index = 1
 anchors_preset = 0
-offset_left = 239.0
-offset_right = 260.0
-offset_bottom = 21.0
+offset_left = 227.0
+offset_top = 6.0
+offset_right = 248.0
+offset_bottom = 27.0
+focus_neighbor_left = NodePath("../BG")
+focus_mode = 2
 script = ExtResource("12_hocb0")
 
 [node name="HoverBorder" type="ColorRect" parent="DeleteBtn" unique_id=155582108]
