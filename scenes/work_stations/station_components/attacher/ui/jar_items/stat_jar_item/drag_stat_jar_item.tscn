@@ -47,7 +47,7 @@ offset_right = 22.0
 offset_bottom = 27.0
 mouse_filter = 2
 
-[node name="CleanBar2" type="TextureProgressBar" parent="Stat" unique_id=1062411916]
+[node name="CleanBar" type="TextureProgressBar" parent="Stat" unique_id=1062411916]
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0
@@ -59,7 +59,7 @@ value = 75.0
 texture_under = ExtResource("2_qy1jh")
 texture_progress = ExtResource("3_imlap")
 
-[node name="DefectBar2" type="TextureProgressBar" parent="Stat" unique_id=2081908252]
+[node name="DefectBar" type="TextureProgressBar" parent="Stat" unique_id=2081908252]
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0

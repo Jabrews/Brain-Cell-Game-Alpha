@@ -11,6 +11,7 @@ extends Node
 func _success(loaded_cell : BrainCell, selected_stat_type : String) :
 	
 	var selected_stat : BrainCellStat = loaded_cell.get_stat(selected_stat_type)
+	var duplicate_stat : BrainCellStat = selected_stat._copy()
 	
 	if not selected_stat : 
 		push_error('unable to find selected stat for type : ', selected_stat_type )
@@ -22,7 +23,7 @@ func _success(loaded_cell : BrainCell, selected_stat_type : String) :
 	
 	### add to jar state
 	
-	var jar_item_stat : StatJarItem = StatJarItem.new(selected_stat)
+	var jar_item_stat : StatJarItem = StatJarItem.new(duplicate_stat)
 	
 	if len(GLJarComponentBus.jar_items) >= 4 : 
 		print_debug('should deal with jar being over filled, let user know')

@@ -5,8 +5,6 @@ extends Control
 @onready var dragging_border : TextureRect = $DraggingBorder
 #@onready var handle_drop : Node = $HandleDrop
 
-@onready var display_background : ColorRect = $DisplayBackground
-
 var loaded_jar_item: JarItem 
 
 var mode : String = ''

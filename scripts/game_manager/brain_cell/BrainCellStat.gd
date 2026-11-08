@@ -25,6 +25,16 @@ func _init(
 	self.hidden = hidden
 	self.admin_data = admin_data
 
+func _copy() -> BrainCellStat : 
+	return BrainCellStat.new(
+		type,
+		enabled,
+		value,
+		defect,
+		hidden,
+		admin_data
+	)
+
 
 func _to_string() -> String:
 	return "[Stat] %s | enabled: %s | value: %s | defect: %s | hidden: %s" % [

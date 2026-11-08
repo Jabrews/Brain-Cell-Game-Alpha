@@ -5,6 +5,7 @@ extends Node
 @onready var hover_border: TextureRect = $OutsideBorders/HoverBorder
 @onready var dragging_border: TextureRect = $OutsideBorders/DraggingBorder
 @onready var delete_btn: Control = $DeleteBtn
+@onready var display_stat_jar_item : Node = $DisplayStatJarItem
 
 var corrisponding_stat_jar_item: StatJarItem
 
@@ -30,6 +31,7 @@ func _process(_delta: float) -> void:
 
 func _start(stat_jar_item: StatJarItem) -> void:
 	corrisponding_stat_jar_item = stat_jar_item
+	display_stat_jar_item._display(corrisponding_stat_jar_item)
 
 
 func _item_used() -> void:

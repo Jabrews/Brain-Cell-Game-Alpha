@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bhrpdp3mtysqi" path="res://models/workstations/attacher/ui/stat_jar_item/stat_jar_item_bg_2.png" id="2_wako6"]
 [ext_resource type="Script" uid="uid://c3f5qbjw5oehf" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/handle_input/create_drag_jar_item.gd" id="3_2jjyj"]
 [ext_resource type="Texture2D" uid="uid://d7wdkldrsdt2" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_bg.png" id="3_qv3fk"]
+[ext_resource type="Script" uid="uid://bbdsy30r6bpc" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/display_stat_jar_item.gd" id="4_6vqf8"]
 [ext_resource type="Texture2D" uid="uid://cf5xw8y52bmfh" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_progress.png" id="4_vqo6a"]
 [ext_resource type="Texture2D" uid="uid://cjtun5xvxe1gs" path="res://models/workstations/attacher/ui/stat_jar_item/defect_bar_bg.png" id="5_joqgs"]
 [ext_resource type="Texture2D" uid="uid://dh0l7jiycnqcw" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/defect_bar_progress.png" id="6_qv3fk"]
@@ -35,6 +36,11 @@ script = ExtResource("3_2jjyj")
 [node name="HoldingDetectTimer" type="Timer" parent="HandleInput" unique_id=834314318]
 wait_time = 0.2
 
+[node name="DisplayStatJarItem" type="Node" parent="." unique_id=1319352061]
+script = ExtResource("4_6vqf8")
+
+[node name="Node" type="Node" parent="." unique_id=1847029089]
+
 [node name="BG" type="TextureRect" parent="." unique_id=934185104]
 texture_filter = 1
 layout_mode = 0
@@ -53,7 +59,7 @@ offset_right = 32.0
 offset_bottom = 27.0
 mouse_filter = 2
 
-[node name="CleanBar2" type="TextureProgressBar" parent="Stat" unique_id=234379772]
+[node name="CleanBar" type="TextureProgressBar" parent="Stat" unique_id=234379772]
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0
@@ -65,7 +71,7 @@ value = 75.0
 texture_under = ExtResource("3_qv3fk")
 texture_progress = ExtResource("4_vqo6a")
 
-[node name="DefectBar2" type="TextureProgressBar" parent="Stat" unique_id=1844571556]
+[node name="DefectBar" type="TextureProgressBar" parent="Stat" unique_id=1844571556]
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0
@@ -122,7 +128,6 @@ mouse_filter = 2
 texture = ExtResource("9_wako6")
 
 [node name="DeleteBtn" type="Control" parent="." unique_id=134672474]
-z_index = 1
 anchors_preset = 0
 offset_left = 227.0
 offset_top = 6.0
@@ -165,7 +170,6 @@ vertical_alignment = 1
 
 [node name="DeleteHint" type="Control" parent="DeleteBtn" unique_id=1356310452]
 visible = false
-z_index = 2
 anchors_preset = 0
 offset_left = -137.0
 offset_top = -6.0
