@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://2h40jmqb4kiy"]
+
+[ext_resource type="Script" uid="uid://blg4mghsr2mea" path="res://scripts/work_stations/station_components/attacher/ui/drag_jar_items/drag_stat_jar_item/drag_stat_jar_item.gd" id="1_imlap"]
+[ext_resource type="Script" uid="uid://chj2tvayeok2e" path="res://scripts/work_stations/station_components/attacher/ui/drag_jar_items/drag_stat_jar_item/display_stat_jar_item.gd" id="1_qy1jh"]
+[ext_resource type="Texture2D" uid="uid://d7wdkldrsdt2" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_bg.png" id="2_qy1jh"]
+[ext_resource type="Texture2D" uid="uid://cf5xw8y52bmfh" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_progress.png" id="3_imlap"]
+[ext_resource type="Texture2D" uid="uid://cjtun5xvxe1gs" path="res://models/workstations/attacher/ui/stat_jar_item/defect_bar_bg.png" id="4_3imvs"]
+[ext_resource type="Texture2D" uid="uid://dh0l7jiycnqcw" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/defect_bar_progress.png" id="5_1duaq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_p50fw"]
+load_path = "res://.godot/imported/stat_jar_item_bg_2.png-c68eec744904f09ac72eb13ded587805.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1f1mj"]
+load_path = "res://.godot/imported/dragging_border.png-62a8b6211261df1cd08f5cb467818fd4.ctex"
+
+[node name="DragStatJarItem" type="Control" unique_id=1829644630]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = -1.0
+offset_bottom = -4.0
+script = ExtResource("1_imlap")
+
+[node name="DisplayStatJarItem" type="Node" parent="." unique_id=141420734]
+script = ExtResource("1_qy1jh")
+
+[node name="PLACEHOLDERHandleDrop" type="Node" parent="." unique_id=1190661215]
+
+[node name="BG" type="TextureRect" parent="." unique_id=291266478]
+texture_filter = 1
+layout_mode = 0
+offset_top = 3.0
+offset_right = 237.0
+offset_bottom = 84.0
+focus_neighbor_right = NodePath("../DeleteBtn")
+focus_mode = 2
+mouse_filter = 0
+texture = SubResource("CompressedTexture2D_p50fw")
+expand_mode = 1
+
+[node name="Stat" type="Control" parent="." unique_id=1447885755]
+anchors_preset = 0
+offset_left = -18.0
+offset_top = -13.0
+offset_right = 22.0
+offset_bottom = 27.0
+mouse_filter = 2
+
+[node name="CleanBar2" type="TextureProgressBar" parent="Stat" unique_id=1062411916]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 248.0
+offset_bottom = 64.0
+mouse_filter = 2
+value = 75.0
+texture_under = ExtResource("2_qy1jh")
+texture_progress = ExtResource("3_imlap")
+
+[node name="DefectBar2" type="TextureProgressBar" parent="Stat" unique_id=2081908252]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 64.0
+offset_right = 248.0
+offset_bottom = 88.0
+mouse_filter = 2
+value = 50.0
+texture_under = ExtResource("4_3imvs")
+texture_progress = ExtResource("5_1duaq")
+
+[node name="DraggingBorder" type="TextureRect" parent="." unique_id=926039288]
+texture_filter = 1
+layout_mode = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 240.0
+offset_bottom = 86.0
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_1f1mj")
+expand_mode = 1

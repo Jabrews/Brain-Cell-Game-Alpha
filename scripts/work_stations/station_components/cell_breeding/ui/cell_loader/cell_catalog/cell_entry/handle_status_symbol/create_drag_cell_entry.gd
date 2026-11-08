@@ -6,8 +6,6 @@ extends Node
 
 var current_drag_cell_entry : Control
 
-
-
 func _create(cell : BrainCell): 
 	
 	if not current_drag_cell_entry : 

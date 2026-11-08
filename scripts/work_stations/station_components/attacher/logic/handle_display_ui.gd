@@ -12,7 +12,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if attacher_ui: 
 		if Input.is_action_just_pressed('back') : 
-			_toggle_display(false)
+			if showing_attacher_ui : 
+				_toggle_display(false)
 
 func _toggle_display(toggle_value : bool) :
 	

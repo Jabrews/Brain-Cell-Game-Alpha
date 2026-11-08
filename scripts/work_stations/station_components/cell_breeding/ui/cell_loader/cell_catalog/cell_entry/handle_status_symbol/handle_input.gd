@@ -35,7 +35,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("attack") or Input.is_action_just_released('interact'):
 		
 		if holding and not dragging:
-			print("normal click")
+			pass
+			#print("normal click")
 
 		_reset_hold()
 

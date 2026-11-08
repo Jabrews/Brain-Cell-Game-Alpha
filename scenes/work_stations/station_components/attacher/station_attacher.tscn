@@ -26,6 +26,7 @@
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
 [ext_resource type="Script" uid="uid://t42dy4low8hq" path="res://scripts/work_stations/station_components/attacher/ui/delete_modal/modal_btn.gd" id="20_i7vey"]
+[ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="26_nlaba"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -306,6 +307,8 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 focus_mode = 2
+
+[node name="ParentDragNode" type="Node" parent="AttacherUI" unique_id=1154640678]
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI" unique_id=1202290427]
 material = SubResource("ShaderMaterial_6rfj8")
@@ -1185,6 +1188,9 @@ layout_direction = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 150
 
+[node name="StatJarItem" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=85706654 instance=ExtResource("26_nlaba")]
+layout_mode = 2
+
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/JarItemCatalog" unique_id=879242795]
 visible = false
 layout_mode = 0
@@ -1336,3 +1342,4 @@ vertical_alignment = 1
 
 [editable path="AttacherUI/StatMainView/Stats/Intelligence"]
 [editable path="AttacherUI/StatMainView/Stats/Community"]
+[editable path="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem"]
