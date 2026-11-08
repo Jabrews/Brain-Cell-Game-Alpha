@@ -1,41 +1,28 @@
 extends Node
 
-@onready var delete_modal : Control = $"../../../AttacherUI/DeleteModal"
-@onready var refresh_catalog : Node = $"../../RefreshCatalog"
-@onready var handle_display_ui : Node = $"../../HandleDisplayUi"
+# components
+@onready var refresh_catalog: Node = $"../../RefreshCatalog"
+@onready var handle_display_ui: Node = $"../../HandleDisplayUi"
+@onready var delete_modal_manager : Node = $"../../DeleteModalManager"
 
-var showing_delete_modal : bool = false
-var saved_jar_item : JarItem 
+var saved_jar_item: JarItem
 
-func _handle(jar_item : JarItem) :
-	
-	
-	delete_modal.visible = true
-	showing_delete_modal = true
-	
+func _handle(jar_item: JarItem) -> void:
 	saved_jar_item = jar_item
+	delete_modal_manager._toggle_modal(true)
+	
 
-func _handle_modal_btn_pressed(btn_type : String) :
-	
-	if btn_type == 'confirm' :	
-		GLJarComponentBus.emit_signal('remove_jar_item', saved_jar_item)
+
+func _handle_modal_btn_pressed(btn_type: String) -> void:
+	var confirmed: bool = btn_type == "confirm"
+
+	if confirmed:
+		GLJarComponentBus.emit_signal("remove_jar_item", saved_jar_item)
 		refresh_catalog._refresh()
-	
-	delete_modal.visible = false 
-	showing_delete_modal = false 
+
 	saved_jar_item = null
-	
-	if btn_type == 'confirm' : 	
+	delete_modal_manager._toggle_modal(false)
+
+	if confirmed:
 		await get_tree().process_frame
 		handle_display_ui._toggle_display(false)
-	
-	
-	
-	
-
-
-
-	
-	
-	
-	

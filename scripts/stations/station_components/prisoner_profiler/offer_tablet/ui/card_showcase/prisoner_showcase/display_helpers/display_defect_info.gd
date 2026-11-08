@@ -28,6 +28,7 @@ func _display(prisoner_card: PrisonerOfferCard) -> void:
 
 	for index in range(stats.size()):
 		var stat := stats[index]
+		@warning_ignore("incompatible_ternary")
 		var rate: int = stat.defect_rate if stat.enabled else 0
 		stat_defect_rate_labels[index].text = str(rate) + "%"
 

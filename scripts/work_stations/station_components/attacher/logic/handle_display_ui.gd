@@ -3,6 +3,7 @@ extends Node
 # components
 @onready var attacher_ui : Control = $"../../AttacherUI"
 @onready var refresh_catalog : Node = $"../RefreshCatalog"
+@onready var delete_modal_manager : Node = $"../DeleteModalManager"
 
 var showing_attacher_ui : bool = false
 
@@ -32,6 +33,7 @@ func _toggle_display(toggle_value : bool) :
 	
 	if not toggle_value : 
 		GLAttacherComponentBus.emit_signal('toggle_show_view_attacher_label', true)
+		delete_modal_manager._toggle_modal(false)
 		return
 		
 	

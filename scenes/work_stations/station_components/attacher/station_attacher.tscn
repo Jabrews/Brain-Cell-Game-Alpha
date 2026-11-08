@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bfrjqyu22fxje" path="res://scripts/work_stations/station_components/attacher/station_attacher.gd" id="1_skoqb"]
 [ext_resource type="Script" uid="uid://ccpcfnrsnytk5" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_interact_area.gd" id="2_aeklq"]
 [ext_resource type="Script" uid="uid://cu88vtv0yt28o" path="res://scripts/work_stations/station_components/attacher/logic/handle_display_ui.gd" id="2_hnska"]
-[ext_resource type="Script" uid="uid://8ant78glsplj" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/handle_modal_btn.gd" id="3_0is3u"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_3now3"]
 [ext_resource type="Script" uid="uid://css5feiqekww6" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/handle_jar_delete_btn.gd" id="3_h8037"]
 [ext_resource type="Script" uid="uid://c3jyju8pjfyqj" path="res://scripts/work_stations/station_components/attacher/logic/refresh_catalog/refresh_catalog.gd" id="3_htfow"]
@@ -14,6 +13,7 @@
 [ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
 [ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
 [ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat.tscn" id="9_etud5"]
+[ext_resource type="Script" uid="uid://x8lr6nt4br42" path="res://scripts/work_stations/station_components/attacher/logic/delete_modal_manager.gd" id="9_gk0sq"]
 [ext_resource type="PackedScene" uid="uid://dykbleuu1m5tn" path="res://scenes/work_stations/station_components/attacher/ui/attacher_box.tscn" id="10_51xr3"]
 [ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
@@ -189,9 +189,6 @@ script = ExtResource("4_htfow")
 
 [node name="BtnHandlers" type="Node" parent="Logic" unique_id=1308234060]
 
-[node name="HandleModalBtn" type="Node" parent="Logic/BtnHandlers" unique_id=87990515]
-script = ExtResource("3_0is3u")
-
 [node name="HandleJarDeleteBtn" type="Node" parent="Logic/BtnHandlers" unique_id=1053196863]
 script = ExtResource("3_h8037")
 
@@ -200,6 +197,9 @@ script = ExtResource("5_o7iqc")
 
 [node name="HandleExitBtn" type="Node" parent="Logic/BtnHandlers" unique_id=58584897]
 script = ExtResource("6_eqm75")
+
+[node name="DeleteModalManager" type="Node" parent="Logic" unique_id=838943613]
+script = ExtResource("9_gk0sq")
 
 [node name="LoadCellPanel" type="Node3D" parent="." unique_id=2122120786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04719603, 0.22518694, 0)
@@ -1259,46 +1259,6 @@ text = "Warning : This cannot be undone"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConfirmBtn" type="Control" parent="AttacherUI/DeleteModal" unique_id=552246131]
-anchors_preset = 0
-offset_left = 64.0
-offset_top = 336.0
-offset_right = 104.0
-offset_bottom = 376.0
-mouse_filter = 2
-script = ExtResource("20_i7vey")
-
-[node name="HoverBorder" type="ColorRect" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=1471822375]
-visible = false
-layout_mode = 0
-offset_left = 607.0
-offset_top = 39.0
-offset_right = 732.0
-offset_bottom = 84.0
-mouse_filter = 2
-
-[node name="BG" type="ColorRect" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=1428271062]
-layout_mode = 0
-offset_left = 608.0
-offset_top = 40.0
-offset_right = 731.0
-offset_bottom = 83.0
-color = Color(0.08235294, 1, 0.08235294, 1)
-
-[node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=277747331]
-texture_filter = 1
-layout_mode = 0
-offset_left = 608.0
-offset_top = 43.0
-offset_right = 728.0
-offset_bottom = 78.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 30
-text = "Confirm"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="DenyBtn" type="Control" parent="AttacherUI/DeleteModal" unique_id=398914387]
 anchors_preset = 0
 offset_left = -112.0
@@ -1324,6 +1284,10 @@ offset_left = 608.0
 offset_top = 40.0
 offset_right = 731.0
 offset_bottom = 83.0
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../ConfirmBtn/BG")
+focus_neighbor_bottom = NodePath(".")
 color = Color(1, 0.07999998, 0.07999998, 1)
 
 [node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/DenyBtn" unique_id=1144376525]
@@ -1337,6 +1301,50 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 30
 text = "Deny"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmBtn" type="Control" parent="AttacherUI/DeleteModal" unique_id=552246131]
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 336.0
+offset_right = 104.0
+offset_bottom = 376.0
+mouse_filter = 2
+script = ExtResource("20_i7vey")
+
+[node name="HoverBorder" type="ColorRect" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=1471822375]
+visible = false
+layout_mode = 0
+offset_left = 607.0
+offset_top = 39.0
+offset_right = 732.0
+offset_bottom = 84.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=1428271062]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 40.0
+offset_right = 731.0
+offset_bottom = 83.0
+focus_neighbor_left = NodePath("../../DenyBtn/BG")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../DenyBtn/BG")
+focus_neighbor_bottom = NodePath(".")
+color = Color(0.08235294, 1, 0.08235294, 1)
+
+[node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=277747331]
+texture_filter = 1
+layout_mode = 0
+offset_left = 608.0
+offset_top = 43.0
+offset_right = 728.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 30
+text = "Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -29,9 +29,13 @@ func _process(_delta: float) -> void:
 	var active: bool = hovered or has_focus()
 
 	if active:
-		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("interact"):
+		if Input.is_action_just_pressed("attack") :
 			var jar_item: StatJarItem = parent_stat_jar_item.corrisponding_stat_jar_item
 			handle_delete_jar_btn._handle(jar_item)
+		if Input.is_action_just_pressed("interact"):
+			var jar_item: StatJarItem = parent_stat_jar_item.corrisponding_stat_jar_item
+			handle_delete_jar_btn._handle(jar_item)
+		
 
 
 func _deferred_update() -> void:
