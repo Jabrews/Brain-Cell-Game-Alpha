@@ -54,7 +54,6 @@ func _update_incremental_values() :
 		last_threshold_piece_index = current_threshold_piece_index		
 		
 		GLGameManagerBus.emit_signal('process_new_ivs')
-	
 		
 
 @warning_ignore("shadowed_global_identifier")

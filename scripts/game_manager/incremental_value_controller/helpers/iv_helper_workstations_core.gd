@@ -18,14 +18,17 @@ func update_workstations_core(round: int, goal_piece: int) -> void:
 				# breeder
 				GLWorkstationBus.breeder_enabled = true 
 				# attacher
+				GLWorkstationBus.attacher_enabled = true
+				GLWorkstationBus.attacher_failure_enabled = true
+				# detacher
+				GLWorkstationBus.detacher_enabled = true 
+				GLWorkstationBus.detacher_failure_enabled = true 
+			2 : 
+				# breeder
+				GLWorkstationBus.breeder_enabled = true 
+				# attacher
 				GLWorkstationBus.attacher_enabled = true 
 				GLWorkstationBus.attacher_failure_enabled = true 
 				# detacher
 				GLWorkstationBus.detacher_enabled = true
 				GLWorkstationBus.detacher_failure_enabled = true
-			2 : 
-				GLWorkstationBus.breeder_enabled = true 
-				GLWorkstationBus.attacher_enabled = true 
-				GLWorkstationBus.detacher_enabled = true 
-				GLWorkstationBus.attacher_failure_enabled = true 
-				GLWorkstationBus.detacher_failure_enabled = true 

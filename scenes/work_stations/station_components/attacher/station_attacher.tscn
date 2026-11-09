@@ -2,20 +2,26 @@
 
 [ext_resource type="Script" uid="uid://bfrjqyu22fxje" path="res://scripts/work_stations/station_components/attacher/station_attacher.gd" id="1_skoqb"]
 [ext_resource type="Script" uid="uid://ccpcfnrsnytk5" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_interact_area.gd" id="2_aeklq"]
+[ext_resource type="Script" uid="uid://ccpi1jevvnwu2" path="res://scripts/work_stations/station_components/attacher/logic/handle_station_enabled.gd" id="2_ck8ig"]
 [ext_resource type="Script" uid="uid://cu88vtv0yt28o" path="res://scripts/work_stations/station_components/attacher/logic/handle_display_ui.gd" id="2_hnska"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="3_3now3"]
+[ext_resource type="Script" uid="uid://b0end8jtkn20o" path="res://scripts/work_stations/station_components/attacher/logic/handle_failure_rate_enabled.gd" id="3_13c2h"]
+[ext_resource type="Script" uid="uid://lr88d0641y3b" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_ui.gd" id="3_d6gq3"]
 [ext_resource type="Script" uid="uid://css5feiqekww6" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/handle_jar_delete_btn.gd" id="3_h8037"]
-[ext_resource type="Script" uid="uid://c3jyju8pjfyqj" path="res://scripts/work_stations/station_components/attacher/logic/refresh_catalog/refresh_catalog.gd" id="3_htfow"]
+[ext_resource type="Script" uid="uid://c3jyju8pjfyqj" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_catalog/refresh_catalog.gd" id="3_htfow"]
 [ext_resource type="Script" uid="uid://ctjbxr0yrj803" path="res://scripts/work_stations/station_components/attacher/hologram/hologram_info_manager.gd" id="4_6rfj8"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_hnska"]
-[ext_resource type="Script" uid="uid://cj40grciqhhdg" path="res://scripts/work_stations/station_components/attacher/logic/refresh_catalog/sort_used_jar_items.gd" id="4_htfow"]
+[ext_resource type="Script" uid="uid://cj40grciqhhdg" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_catalog/sort_used_jar_items.gd" id="4_htfow"]
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="4_o7oe2"]
+[ext_resource type="Script" uid="uid://c713tugot4f3f" path="res://scripts/work_stations/station_components/attacher/logic/light_manager.gd" id="5_gk0sq"]
 [ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
+[ext_resource type="Script" uid="uid://dwcdimr0gg268" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_main_stats.gd" id="5_rebul"]
 [ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
 [ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat.tscn" id="9_etud5"]
 [ext_resource type="Script" uid="uid://x8lr6nt4br42" path="res://scripts/work_stations/station_components/attacher/logic/delete_modal_manager.gd" id="9_gk0sq"]
 [ext_resource type="PackedScene" uid="uid://dykbleuu1m5tn" path="res://scenes/work_stations/station_components/attacher/ui/attacher_box.tscn" id="10_51xr3"]
 [ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
+[ext_resource type="Script" uid="uid://c61v8hjryt7yr" path="res://scripts/work_stations/station_components/attacher/load_cell_panel/load_cell_panel.gd" id="11_14fq8"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
 [ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/ui/blood_type_view.gd" id="11_g3225"]
 [ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_g3225"]
@@ -177,15 +183,30 @@ script = ExtResource("1_skoqb")
 
 [node name="Logic" type="Node" parent="." unique_id=1317893962]
 
+[node name="HandleStationEnabled" type="Node" parent="Logic" unique_id=1458748800]
+script = ExtResource("2_ck8ig")
+
+[node name="HandleFailureRateEnabled" type="Node" parent="Logic" unique_id=636248719]
+script = ExtResource("3_13c2h")
+
 [node name="HandleDisplayUi" type="Node" parent="Logic" unique_id=831061143]
 process_mode = 3
 script = ExtResource("2_hnska")
 
-[node name="RefreshCatalog" type="Node" parent="Logic" unique_id=95676563]
+[node name="RefreshUi" type="Node" parent="Logic" unique_id=193966324]
+script = ExtResource("3_d6gq3")
+
+[node name="RefreshCatalog" type="Node" parent="Logic/RefreshUi" unique_id=95676563]
 script = ExtResource("3_htfow")
 
-[node name="SortUsedJarItems" type="Node" parent="Logic/RefreshCatalog" unique_id=1696792642]
+[node name="SortUsedJarItems" type="Node" parent="Logic/RefreshUi/RefreshCatalog" unique_id=1696792642]
 script = ExtResource("4_htfow")
+
+[node name="RefreshMainStats" type="Node" parent="Logic/RefreshUi" unique_id=1988068325]
+script = ExtResource("5_rebul")
+
+[node name="LightManager" type="Node" parent="Logic" unique_id=12700507]
+script = ExtResource("5_gk0sq")
 
 [node name="BtnHandlers" type="Node" parent="Logic" unique_id=1308234060]
 
@@ -219,6 +240,7 @@ shape = SubResource("BoxShape3D_brpw0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10116026, 0)
 collision_layer = 0
 collision_mask = 4
+script = ExtResource("11_14fq8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel/Panel" unique_id=2025809697]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15911102, 0.091854095, 0.0007572174)
@@ -251,7 +273,7 @@ shape = SubResource("SphereShape3D_5dj1m")
 [node name="Light" type="SpotLight3D" parent="LoadCellPanel/Panel/Light" unique_id=968689863]
 transform = Transform3D(-1.6292068e-07, 0, -1, 0, 1, 0, 1, 0, -1.6292068e-07, -0.15012693, 0, -2.7514878e-05)
 light_color = Color(0.97, 0, 0, 1)
-light_energy = 0.2
+light_energy = 0.0
 light_indirect_energy = 0.0
 spot_range = 0.2
 spot_attenuation = 1.73
@@ -259,6 +281,18 @@ spot_angle = 17.0
 
 [node name="Hologram" type="Node3D" parent="." unique_id=1590059910]
 transform = Transform3D(0.9409067, 0.33866593, 0, -0.33866593, 0.9409067, 0, 0, 0, 1, -0.9718087, -2.2513676, -1.1352271)
+
+[node name="DisabledLabel" type="Label3D" parent="Hologram" unique_id=928198155]
+transform = Transform3D(-0.0009372004, -0.26271957, -0.9648719, 0.003441814, 0.9648662, -0.2627212, 0.9999937, -0.0035671317, -4.1458748e-08, -0.44416392, 3.2607973, -0.21852732)
+visible = false
+texture_filter = 1
+text = "Attacher
+Disabled"
+font = ExtResource("3_3now3")
+font_size = 26
+outline_size = 0
+uppercase = true
+line_spacing = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Hologram" unique_id=2140173641]
 transform = Transform3D(0.96753657, -0.25273097, 0, 0.25273097, 0.96753657, 0, 0, 0, 1, -0.41621178, 3.2457094, -0.23110962)
@@ -509,13 +543,19 @@ offset_right = 1184.0
 offset_bottom = 552.0
 color = Color(0.24231154, 3.1585806e-08, 5.4147094e-08, 1)
 
-[node name="NoCellLoadedLabel" type="Label" parent="AttacherUI/StatMainView" unique_id=216895957]
+[node name="Stats" type="Control" parent="AttacherUI/StatMainView" unique_id=2114991243]
+anchors_preset = 0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="NoCellLoadedLabel" type="Label" parent="AttacherUI/StatMainView/Stats" unique_id=216895957]
 texture_filter = 1
 layout_mode = 0
 offset_left = 416.0
-offset_top = 56.0
+offset_top = 48.0
 offset_right = 1184.0
-offset_bottom = 552.0
+offset_bottom = 544.0
 theme_override_constants/line_spacing = 22
 theme_override_fonts/font = ExtResource("3_3now3")
 theme_override_font_sizes/font_size = 30
@@ -525,41 +565,31 @@ Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Stats" type="Control" parent="AttacherUI/StatMainView" unique_id=2114991243]
-visible = false
-anchors_preset = 0
-offset_top = 8.0
-offset_right = 40.0
-offset_bottom = 48.0
-
 [node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=1022081741 instance=ExtResource("9_etud5")]
+visible = false
 layout_mode = 1
-offset_left = 352.0
+offset_left = 448.0
 offset_top = 24.0
-offset_right = 352.0
+offset_right = 448.0
 offset_bottom = 24.0
 
-[node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=916439849 instance=ExtResource("9_etud5")]
-layout_mode = 1
-offset_left = 352.0
-offset_top = 192.0
-offset_right = 352.0
-offset_bottom = 192.0
+[node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=1685997172 instance=ExtResource("9_etud5")]
+visible = false
+layout_mode = 0
+offset_left = 448.0
+offset_top = 184.0
+offset_right = 448.0
+offset_bottom = 184.0
 stat_type = "intelligence"
 
-[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Intelligence" index="5" unique_id=1991748357]
+[node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=614629783 instance=ExtResource("9_etud5")]
 visible = false
-
-[node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=565042045 instance=ExtResource("9_etud5")]
-layout_mode = 1
-offset_left = 352.0
-offset_top = 360.0
-offset_right = 352.0
-offset_bottom = 360.0
+layout_mode = 0
+offset_left = 448.0
+offset_top = 352.0
+offset_right = 448.0
+offset_bottom = 352.0
 stat_type = "community"
-
-[node name="StatReplacement" parent="AttacherUI/StatMainView/Stats/Community" index="5" unique_id=1991748357]
-visible = false
 
 [node name="AttacherBox" parent="AttacherUI/StatMainView" unique_id=55611311 instance=ExtResource("10_51xr3")]
 layout_mode = 0
@@ -1348,6 +1378,4 @@ text = "Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[editable path="AttacherUI/StatMainView/Stats/Intelligence"]
-[editable path="AttacherUI/StatMainView/Stats/Community"]
 [editable path="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem"]

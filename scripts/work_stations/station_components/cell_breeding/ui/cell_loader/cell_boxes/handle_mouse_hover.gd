@@ -84,8 +84,13 @@ func _update_visuals() -> void:
 	# otherwise ALWAYS show selected border
 	selected_border.visible = true
 
-	# empty box hint
-	if not is_main_box and not is_selected_view_box:
+	
+	# main box empty hint
+	if is_main_box : 	
+		add_a_cell_hint.visible = true
+	
+	# boost box empty hint
+	if not is_main_box and not is_selected_view_box : 	
 		if parent_box.side == "right":
 			add_a_cell_hint.position = Vector2(-256.0, 24.0)
 

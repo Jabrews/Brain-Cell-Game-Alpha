@@ -2,8 +2,8 @@ extends Node
 
 # components
 @onready var attacher_ui : Control = $"../../AttacherUI"
-@onready var refresh_catalog : Node = $"../RefreshCatalog"
 @onready var delete_modal_manager : Node = $"../DeleteModalManager"
+@onready var refresh_ui : Node = $"../RefreshUi"
 
 var showing_attacher_ui : bool = false
 
@@ -24,7 +24,8 @@ func _toggle_display(toggle_value : bool) :
 	showing_attacher_ui= toggle_value
 	
 	if toggle_value : 
-		refresh_catalog._refresh()
+		
+		refresh_ui._refresh()
 		
 		# just stops new item visual early (jar & hologram)
 		GLAttacherComponentBus.emit_signal('opened_attacher')

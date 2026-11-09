@@ -1,5 +1,8 @@
 extends Node
 
+# components
+@onready var parent_station_attacher : Node3D = $"../.."
+
 # Info components
 @onready var item_added_to_jar: Node3D = $ItemAddedToJar
 
@@ -28,6 +31,11 @@ func _handle_add_jar_item(_jar_item: JarItem) -> void:
 
 
 func display_info(info_type: String) -> void:
+	
+	# prevent showing message when disabled
+	if not parent_station_attacher.enabled :
+		return
+	
 	auto_reset_delay_timer.stop()
 	reset_info()
 

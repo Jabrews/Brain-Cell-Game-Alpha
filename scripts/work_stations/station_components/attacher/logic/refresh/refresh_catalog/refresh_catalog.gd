@@ -5,8 +5,8 @@ extends Node
 @onready var stat_jar_item_p_s: PackedScene = preload("res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn")
 
 # components
-@onready var parent_grid_container: GridContainer = $"../../AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
-@onready var no_jar_items_found_label : Label = $"../../AttacherUI/JarItemCatalog/NoJarItemsFoundLabel"
+@onready var parent_grid_container: GridContainer = $"../../../AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
+@onready var no_jar_items_found_label : Label = $"../../../AttacherUI/JarItemCatalog/NoJarItemsFoundLabel"
 
 # helper components
 @onready var sort_used_jar_items: Node = $SortUsedJarItems
