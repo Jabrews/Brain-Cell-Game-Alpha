@@ -349,7 +349,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 focus_mode = 2
 
-[node name="ParentDragNode" type="Node" parent="AttacherUI" unique_id=1154640678]
+[node name="ParentStatItemDragNode" type="Node" parent="AttacherUI" unique_id=1154640678]
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI" unique_id=1202290427]
 material = SubResource("ShaderMaterial_6rfj8")
@@ -1249,18 +1249,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DeleteModal" type="Control" parent="AttacherUI" unique_id=291084153]
+process_mode = 3
 visible = false
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 716.0
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI/DeleteModal" unique_id=1758180851]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1240.0
-offset_bottom = 680.0
+offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)

@@ -1,68 +1,92 @@
-extends Node
+extends Control
 
 # components
 @onready var bg: TextureRect = $BG
 @onready var hover_border: TextureRect = $OutsideBorders/HoverBorder
 @onready var dragging_border: TextureRect = $OutsideBorders/DraggingBorder
 @onready var delete_btn: Control = $DeleteBtn
-@onready var display_stat_jar_item : Node = $DisplayStatJarItem
+@onready var display_stat_jar_item: Node = $DisplayStatJarItem
+
+# used components
+@onready var on_main_stat_border: TextureRect = $InsideBorders/OnMainStatBorder
 
 var corrisponding_stat_jar_item: StatJarItem
 
+var is_finished: bool = false
+var dragging: bool = false
+
 
 func _ready() -> void:
-	bg.mouse_entered.connect(_update_visuals)
-	bg.mouse_exited.connect(_deferred_update)
-	bg.focus_entered.connect(_update_visuals)
-	bg.focus_exited.connect(_deferred_update)
+	for control in [bg, delete_btn]:
+		control.mouse_entered.connect(_handle_enter)
+		control.mouse_exited.connect(_handle_exit)
+		control.focus_entered.connect(_handle_enter)
+		control.focus_exited.connect(_handle_exit)
 
-	delete_btn.mouse_entered.connect(_update_visuals)
-	delete_btn.mouse_exited.connect(_deferred_update)
-	delete_btn.focus_entered.connect(_update_visuals)
-	delete_btn.focus_exited.connect(_deferred_update)
-
-	_update_visuals()
-
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("console_debug"):
-		bg.grab_focus()
+	delete_btn.visible = true
+	hover_border.visible = false
+	dragging_border.visible = false
 
 
 func _start(stat_jar_item: StatJarItem) -> void:
 	corrisponding_stat_jar_item = stat_jar_item
-	display_stat_jar_item._display(corrisponding_stat_jar_item)
+	is_finished = false
+
+	on_main_stat_border.visible = false
+	display_stat_jar_item._display(stat_jar_item)
 
 
 func _item_used() -> void:
-	pass
+	is_finished = true
+	on_main_stat_border.visible = true
+	delete_btn.visible = false
+
+	hover_border.visible = false
+	dragging_border.visible = false
+	delete_btn._update_visuals()
 
 
-func _deferred_update() -> void:
-	call_deferred("_update_visuals")
+func _handle_enter() -> void:
+	if is_finished or dragging:
+		return
+
+	hover_border.visible = true
 
 
-func _update_visuals() -> void:
-	var hovered_control: Control = get_viewport().gui_get_hovered_control()
+func _handle_exit() -> void:
+	call_deferred("_check_exit")
 
-	var is_hovered: bool = (
-		hovered_control == bg
-		or hovered_control == delete_btn
-		or (
-			hovered_control != null
-			and (
-				bg.is_ancestor_of(hovered_control)
-				or delete_btn.is_ancestor_of(hovered_control)
-			)
-		)
+
+func _check_exit() -> void:
+	if _is_mouse_over(bg) or _is_mouse_over(delete_btn):
+		return
+
+	if bg.has_focus() or delete_btn.has_focus():
+		return
+
+	hover_border.visible = false
+
+
+func _is_mouse_over(control: Control) -> bool:
+	return control.get_global_rect().has_point(
+		control.get_global_mouse_position()
 	)
 
-	var is_focused: bool = (
-		bg.has_focus()
-		or delete_btn.has_focus()
-	)
 
-	var active: bool = is_hovered or is_focused
+func _set_dragging(value: bool) -> void:
+	dragging = value
 
-	hover_border.visible = active
-	delete_btn.visible = active
+	dragging_border.visible = value
+	hover_border.visible = false
+
+	delete_btn._update_visuals()
+
+
+func _can_drag() -> bool:
+	if is_finished or dragging:
+		return false
+
+	if _is_mouse_over(delete_btn) or delete_btn.has_focus():
+		return false
+
+	return _is_mouse_over(bg) or bg.has_focus()

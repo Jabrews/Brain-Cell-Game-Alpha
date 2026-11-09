@@ -61,9 +61,9 @@ mouse_filter = 2
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0
-offset_top = 24.0
+offset_top = 35.0
 offset_right = 248.0
-offset_bottom = 64.0
+offset_bottom = 75.0
 mouse_filter = 2
 value = 75.0
 texture_under = ExtResource("3_qv3fk")
@@ -73,9 +73,9 @@ texture_progress = ExtResource("4_vqo6a")
 texture_filter = 1
 layout_mode = 0
 offset_left = 24.0
-offset_top = 64.0
+offset_top = 75.0
 offset_right = 248.0
-offset_bottom = 88.0
+offset_bottom = 99.0
 mouse_filter = 2
 value = 50.0
 texture_under = ExtResource("5_joqgs")
@@ -111,26 +111,25 @@ mouse_filter = 2
 texture = ExtResource("8_y5awx")
 
 [node name="InsideBorders" type="Control" parent="." unique_id=470455449]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="OnMainStatBorder" type="TextureRect" parent="InsideBorders" unique_id=206893234]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_right = 256.0
 offset_bottom = 104.0
-mouse_filter = 2
 texture = ExtResource("9_wako6")
 
 [node name="DeleteBtn" type="Control" parent="." unique_id=134672474]
 anchors_preset = 0
-offset_left = 227.0
-offset_top = 6.0
-offset_right = 248.0
-offset_bottom = 27.0
+offset_left = 230.0
+offset_top = 5.0
+offset_right = 251.0
+offset_bottom = 26.0
 focus_neighbor_left = NodePath("../BG")
 focus_mode = 2
 script = ExtResource("12_hocb0")
@@ -138,16 +137,17 @@ script = ExtResource("12_hocb0")
 [node name="HoverBorder" type="ColorRect" parent="DeleteBtn" unique_id=155582108]
 visible = false
 layout_mode = 0
-offset_left = -1.0
+offset_left = 2.0
 offset_top = -1.0
-offset_right = 22.0
-offset_bottom = 22.0
+offset_right = 21.0
+offset_bottom = 18.0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="DeleteBtn" unique_id=1492626540]
 layout_mode = 0
-offset_right = 21.0
-offset_bottom = 21.0
+offset_left = 3.0
+offset_right = 20.0
+offset_bottom = 17.0
 mouse_filter = 2
 color = Color(0.36, 0, 0, 1)
 
@@ -161,7 +161,7 @@ offset_right = 38.0
 offset_bottom = 24.0
 theme_override_colors/font_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
 theme_override_fonts/font = ExtResource("9_mepgx")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 26
 text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1

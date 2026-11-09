@@ -7,8 +7,6 @@ extends Node
 @onready var blink_selected_border_timer : Timer = $BlinkSelectedBorder
 @onready var already_occupied_hint : Control = $"../AlreadyOccupiedHint"
 
-var hovered: bool = false
-
 @export var is_boost_box : bool = false
 
 func _ready() -> void:
@@ -16,25 +14,15 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	var currently_hovered: bool = false
 	
 	for child in parent_box.drag_cell_entry_parent_node.get_children():
 		if child is Control:
 			if display_background.get_global_rect().intersects(
 				child.display_background.get_global_rect()
 			):
-				currently_hovered = true
-				break
-	
-	# hover started
-	if currently_hovered and not hovered:
-		hovered = true
-		_handle_hover_on()
-	
-	# hover ended
-	elif not currently_hovered and hovered:
-		hovered = false
-		_handle_hover_off()
+				_handle_hover_on()
+			else : 
+				_handle_hover_off()
 
 
 func _handle_hover_on() -> void:

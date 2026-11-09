@@ -1,8 +1,7 @@
 extends Node
 
 # components
-@onready var parent_drag_node : Node = $"../../../../../../../ParentDragNode"
-# TODO
+@onready var parent_drag_node : Node = $"../../../../../../../ParentStatItemDragNode"
 @onready var drag_stat_jar_item: PackedScene = preload("res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/drag_stat_jar_item.tscn")
 
 var current_drag_jar_item : Control

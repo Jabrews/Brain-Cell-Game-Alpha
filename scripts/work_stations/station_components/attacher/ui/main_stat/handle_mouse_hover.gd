@@ -2,10 +2,11 @@ extends Node
 
 # components
 @onready var parent_main_stat : Control = $".."
+# default
 @onready var default_detect_rect : ColorRect = $"../DefaultDetectRect"
-# border components
 @onready var drag_valid_border : TextureRect = $"../DragBorders/DragValidBorder"
 @onready var drag_invalid_border : TextureRect = $"../DragBorders/DragInvalidBorder"
+# no replacement hover needed
 # hint parents
 @onready var drag_a_jar_item_hint : Control = $"../HoverHints/DragAJarItemHint"
 @onready var stat_unable_to_drag_hint : Control = $"../HoverHints/StatUnableToDragHint"
@@ -19,8 +20,9 @@ func _ready() -> void:
 func _handle_mouse_entered() :
 	
 	if parent_main_stat.main_stat_enabled : 
-		drag_a_jar_item_hint.visible = true
-		drag_valid_border.visible = true
+		if not parent_main_stat.replacement_stat_jar_item :
+			drag_a_jar_item_hint.visible = true
+			drag_valid_border.visible = true
 	else : 
 		stat_unable_to_drag_hint.visible = true
 		drag_invalid_border.visible = true

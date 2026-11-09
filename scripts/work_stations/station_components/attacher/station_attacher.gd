@@ -35,7 +35,10 @@ func _removed_cell_container(_cell_container : CharacterBody3D) :
 
 func reset_state() :
 	loaded_cell_container = null
-	pass
+	
+	# reset replacement state
+	for key in GLAttacherComponentBus.main_stat_replacement_state:
+		GLAttacherComponentBus.main_stat_replacement_state[key] = null
 
 func _get_loaded_cell() -> BrainCell : 
 	if loaded_cell_container : 

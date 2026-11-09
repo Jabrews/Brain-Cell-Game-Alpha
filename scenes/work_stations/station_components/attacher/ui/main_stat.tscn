@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="3_akjod"]
 [ext_resource type="Texture2D" uid="uid://crgcramouxxsm" path="res://models/screens/progress_bar/progress_bar_over.png" id="3_fe102"]
 [ext_resource type="Script" uid="uid://cttony7t1geh1" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/display_default_stats.gd" id="3_gs8ik"]
+[ext_resource type="Script" uid="uid://dsvysxyekujqa" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/handle_drag_hover.gd" id="4_gs8ik"]
+[ext_resource type="Script" uid="uid://crk6qlq0ay4kn" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/display_replacement.gd" id="4_whjcn"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="5_0v3mp"]
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="5_fe102"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_v5sw5"]
@@ -65,6 +67,12 @@ script = ExtResource("2_p4dk6")
 
 [node name="DisplayDefaultStats" type="Node" parent="." unique_id=620223929]
 script = ExtResource("3_gs8ik")
+
+[node name="DisplayReplacement" type="Node" parent="." unique_id=1801932955]
+script = ExtResource("4_whjcn")
+
+[node name="HandleDragHover" type="Node" parent="." unique_id=1444675245]
+script = ExtResource("4_gs8ik")
 
 [node name="CleanBar" type="TextureProgressBar" parent="." unique_id=1642687427]
 texture_filter = 1
@@ -184,8 +192,10 @@ texture = ExtResource("10_wuljk")
 modulate = Color(0.34, 0.34, 0.34, 0.60784316)
 texture_filter = 1
 layout_mode = 0
-offset_right = 716.0
-offset_bottom = 157.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 713.0
+offset_bottom = 154.0
 texture = ExtResource("11_0v3mp")
 
 [node name="CleanBar" type="TextureProgressBar" parent="StatReplacement" unique_id=1355659975]
@@ -289,10 +299,10 @@ vertical_alignment = 1
 [node name="RemoveHint" type="Control" parent="StatReplacement/RemoveBtn" unique_id=720332898]
 visible = false
 anchors_preset = 0
-offset_left = 36.0
-offset_top = -1.0
-offset_right = 76.0
-offset_bottom = 39.0
+offset_left = -53.0
+offset_top = -39.0
+offset_right = -13.0
+offset_bottom = 1.0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="StatReplacement/RemoveBtn/RemoveHint" unique_id=1103695185]
@@ -314,6 +324,7 @@ text = "Remove Stat"
 horizontal_alignment = 1
 
 [node name="PenalityFailureRate" type="Control" parent="StatReplacement" unique_id=956468451]
+visible = false
 anchors_preset = 0
 offset_left = 533.0
 offset_top = 8.0
@@ -438,9 +449,10 @@ horizontal_alignment = 1
 
 [node name="DefaultDetectRect" type="ColorRect" parent="." unique_id=1856000600]
 layout_mode = 0
-offset_top = 32.0
-offset_right = 712.0
-offset_bottom = 184.0
+offset_left = 18.0
+offset_top = 46.0
+offset_right = 690.0
+offset_bottom = 169.0
 color = Color(1, 1, 1, 0)
 
 [node name="HoverHints" type="Control" parent="." unique_id=266524606]
