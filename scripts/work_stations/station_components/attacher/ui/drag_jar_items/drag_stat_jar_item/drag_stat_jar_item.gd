@@ -3,9 +3,9 @@ extends Control
 # components
 @onready var display_stat_jar_item : Node = $DisplayStatJarItem
 @onready var dragging_border : TextureRect = $DraggingBorder
-#@onready var handle_drop : Node = $HandleDrop
+@onready var handle_drop : Node = $HandleDrop
 
-var loaded_jar_item: JarItem 
+var loaded_stat_jar_item: StatJarItem
 
 var mode : String = ''
 
@@ -38,11 +38,11 @@ func _process(_delta: float) -> void:
 	
 	
 # when created
-func _load_jar_item(jar_item: JarItem) :
+func _load_jar_item(stat_jar_item: StatJarItem) :
 	
-	loaded_jar_item = jar_item
+	loaded_stat_jar_item = stat_jar_item
 	
-	display_stat_jar_item._display(loaded_jar_item)
+	display_stat_jar_item._display(loaded_stat_jar_item)
 	
 	dragging_border.visible = true
 	
@@ -58,9 +58,7 @@ func _delete() :
 	
 	await scale_tween.finished
 	
-	# TODO HANDLE DROP
-	#handle_drop._handle()
-	
+	handle_drop._handle()
 
 	
 	self.queue_free()

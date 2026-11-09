@@ -17,10 +17,12 @@
 [ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
 [ext_resource type="Script" uid="uid://dwcdimr0gg268" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_main_stats.gd" id="5_rebul"]
 [ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
+[ext_resource type="Script" uid="uid://cpoc0i6wwf01c" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_blood_type_view.gd" id="9_13c2h"]
 [ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat.tscn" id="9_etud5"]
 [ext_resource type="Script" uid="uid://x8lr6nt4br42" path="res://scripts/work_stations/station_components/attacher/logic/delete_modal_manager.gd" id="9_gk0sq"]
 [ext_resource type="PackedScene" uid="uid://dykbleuu1m5tn" path="res://scenes/work_stations/station_components/attacher/ui/attacher_box.tscn" id="10_51xr3"]
 [ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
+[ext_resource type="Script" uid="uid://cv5x6x2yjcew8" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance_view.gd" id="10_pw8sq"]
 [ext_resource type="Script" uid="uid://c61v8hjryt7yr" path="res://scripts/work_stations/station_components/attacher/load_cell_panel/load_cell_panel.gd" id="11_14fq8"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
 [ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/ui/blood_type_view.gd" id="11_g3225"]
@@ -32,7 +34,6 @@
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
 [ext_resource type="Script" uid="uid://t42dy4low8hq" path="res://scripts/work_stations/station_components/attacher/ui/delete_modal/modal_btn.gd" id="20_i7vey"]
-[ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="26_nlaba"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -204,6 +205,12 @@ script = ExtResource("4_htfow")
 
 [node name="RefreshMainStats" type="Node" parent="Logic/RefreshUi" unique_id=1988068325]
 script = ExtResource("5_rebul")
+
+[node name="RefreshBloodTypeView" type="Node" parent="Logic/RefreshUi" unique_id=948235190]
+script = ExtResource("9_13c2h")
+
+[node name="RefreshFailureChanceView" type="Node" parent="Logic/RefreshUi" unique_id=195056363]
+script = ExtResource("10_pw8sq")
 
 [node name="LightManager" type="Node" parent="Logic" unique_id=12700507]
 script = ExtResource("5_gk0sq")
@@ -565,7 +572,7 @@ Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=1022081741 instance=ExtResource("9_etud5")]
+[node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=803002430 instance=ExtResource("9_etud5")]
 visible = false
 layout_mode = 1
 offset_left = 448.0
@@ -702,7 +709,6 @@ theme_override_font_sizes/font_size = 18
 text = "Not implented yet..."
 
 [node name="FailureChanceView" type="Control" parent="AttacherUI/StatMainView" unique_id=1884564620]
-visible = false
 anchors_preset = 0
 offset_left = 376.0
 offset_right = 416.0
@@ -724,6 +730,7 @@ offset_left = 533.0
 offset_top = 557.0
 offset_right = 743.0
 offset_bottom = 606.0
+mouse_filter = 2
 color = Color(0.12173364, 0.006105286, 9.024516e-09, 1)
 
 [node name="BG2" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=985257613]
@@ -1142,6 +1149,14 @@ text = "(+ 15% )"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DetectRect" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=312763380]
+layout_mode = 0
+offset_left = 533.0
+offset_top = 557.0
+offset_right = 743.0
+offset_bottom = 658.0
+color = Color(1, 1, 1, 0)
+
 [node name="JarItemCatalog" type="Control" parent="AttacherUI" unique_id=1388359665]
 anchors_preset = 0
 offset_top = -2.0
@@ -1217,9 +1232,6 @@ offset_transform_visual_only = false
 layout_direction = 2
 theme_override_constants/h_separation = 0
 theme_override_constants/v_separation = 150
-
-[node name="StatJarItem" parent="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft" unique_id=85706654 instance=ExtResource("26_nlaba")]
-layout_mode = 2
 
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/JarItemCatalog" unique_id=879242795]
 visible = false
@@ -1377,5 +1389,3 @@ theme_override_font_sizes/font_size = 30
 text = "Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[editable path="AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft/StatJarItem"]

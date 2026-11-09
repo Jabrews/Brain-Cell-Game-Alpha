@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://blg4mghsr2mea" path="res://scripts/work_stations/station_components/attacher/ui/drag_jar_items/drag_stat_jar_item/drag_stat_jar_item.gd" id="1_imlap"]
 [ext_resource type="Script" uid="uid://chj2tvayeok2e" path="res://scripts/work_stations/station_components/attacher/ui/drag_jar_items/drag_stat_jar_item/display_stat_jar_item.gd" id="1_qy1jh"]
 [ext_resource type="Texture2D" uid="uid://d7wdkldrsdt2" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_bg.png" id="2_qy1jh"]
+[ext_resource type="Script" uid="uid://dwayaf7dph0tu" path="res://scripts/work_stations/station_components/attacher/ui/drag_jar_items/drag_stat_jar_item/handle_drop.gd" id="3_3imvs"]
 [ext_resource type="Texture2D" uid="uid://cf5xw8y52bmfh" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_progress.png" id="3_imlap"]
 [ext_resource type="Texture2D" uid="uid://cjtun5xvxe1gs" path="res://models/workstations/attacher/ui/stat_jar_item/defect_bar_bg.png" id="4_3imvs"]
 [ext_resource type="Texture2D" uid="uid://dh0l7jiycnqcw" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/defect_bar_progress.png" id="5_1duaq"]
@@ -25,9 +26,10 @@ script = ExtResource("1_imlap")
 [node name="DisplayStatJarItem" type="Node" parent="." unique_id=141420734]
 script = ExtResource("1_qy1jh")
 
-[node name="PLACEHOLDERHandleDrop" type="Node" parent="." unique_id=1190661215]
+[node name="HandleDrop" type="Node" parent="." unique_id=1190661215]
+script = ExtResource("3_3imvs")
 
-[node name="BG" type="TextureRect" parent="." unique_id=291266478]
+[node name="DisplayBG" type="TextureRect" parent="." unique_id=291266478]
 texture_filter = 1
 layout_mode = 0
 offset_top = 3.0

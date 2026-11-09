@@ -3,6 +3,7 @@ extends Node
 # components
 @onready var light_manager : Node = $Logic/LightManager
 @onready var refresh_ui : Node = $Logic/RefreshUi
+@onready var attacher_box : Control =$AttacherUI/StatMainView/AttacherBox
 
 var enabled : bool = false 
 var loaded_cell_container : CharacterBody3D
@@ -13,6 +14,9 @@ func _recieve_cell_container(cell_container : CharacterBody3D) :
 	
 	loaded_cell_container = cell_container	
 	
+	# load cell into box
+	attacher_box._load_cell(_get_loaded_cell())
+	
 	refresh_ui._refresh()
 	
 	light_manager._set_light_mode('green')
@@ -21,6 +25,9 @@ func _recieve_cell_container(cell_container : CharacterBody3D) :
 func _removed_cell_container(_cell_container : CharacterBody3D) : 
 	
 	reset_state()
+	
+	# load cell into box
+	attacher_box._load_cell(null)
 	
 	refresh_ui._refresh()
 	
