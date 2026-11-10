@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://cldlvvbnt3qvk" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/handle_mouse_hover.gd" id="2_p4dk6"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="3_akjod"]
 [ext_resource type="Texture2D" uid="uid://crgcramouxxsm" path="res://models/screens/progress_bar/progress_bar_over.png" id="3_fe102"]
-[ext_resource type="Script" uid="uid://cttony7t1geh1" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/display_default_stats.gd" id="3_gs8ik"]
+[ext_resource type="Script" uid="uid://cttony7t1geh1" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/display/display_default_stats.gd" id="3_gs8ik"]
 [ext_resource type="Script" uid="uid://dsvysxyekujqa" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/handle_drag_hover.gd" id="4_gs8ik"]
-[ext_resource type="Script" uid="uid://crk6qlq0ay4kn" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/display_replacement.gd" id="4_whjcn"]
+[ext_resource type="Script" uid="uid://crk6qlq0ay4kn" path="res://scripts/work_stations/station_components/attacher/ui/main_stat/display/display_replacement.gd" id="4_whjcn"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="5_0v3mp"]
 [ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="5_fe102"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_v5sw5"]
@@ -166,6 +166,17 @@ texture = ExtResource("9_akjod")
 visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_etud5")
+layout_mode = 0
+offset_left = 9.0
+offset_top = 37.0
+offset_right = 697.0
+offset_bottom = 173.0
+mouse_filter = 2
+texture = ExtResource("9_akjod")
+
+[node name="MouseHoverBorder" type="TextureRect" parent="DragBorders" unique_id=1529592920]
+visible = false
+texture_filter = 1
 layout_mode = 0
 offset_left = 9.0
 offset_top = 37.0
@@ -520,10 +531,10 @@ horizontal_alignment = 1
 visible = false
 z_index = 1
 anchors_preset = 0
-offset_left = 134.0
-offset_top = -10.0
-offset_right = 174.0
-offset_bottom = 30.0
+offset_left = 118.0
+offset_top = -52.0
+offset_right = 158.0
+offset_bottom = -12.0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="HoverHints/StatUnableToDragHint" unique_id=1301981674]
@@ -545,25 +556,6 @@ theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = " Unable to accept replacement. hidden stat found"
-
-[node name="BG2" type="ColorRect" parent="HoverHints/StatUnableToDragHint" unique_id=87767163]
-layout_mode = 0
-offset_left = 50.0
-offset_right = 394.0
-offset_bottom = 40.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.80784315)
-
-[node name="HintLabel2" type="Label" parent="HoverHints/StatUnableToDragHint" unique_id=1781486246]
-texture_filter = 1
-layout_mode = 0
-offset_right = 450.0
-offset_bottom = 56.0
-theme_override_constants/line_spacing = 4
-theme_override_fonts/font = ExtResource("12_v5sw5")
-theme_override_font_sizes/font_size = 24
-text = "Drag a, Stat Jar item, to replace."
-horizontal_alignment = 1
 
 [node name="UnableLabel" type="Label" parent="HoverHints/StatUnableToDragHint" unique_id=750437004]
 texture_filter = 1

@@ -14,6 +14,16 @@
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_mepgx"]
 [ext_resource type="Texture2D" uid="uid://cxm8h1h7q3uw" path="res://models/workstations/attacher/ui/stat_jar_item/borders/on_main_stat_bodert.png" id="9_wako6"]
 [ext_resource type="Script" uid="uid://d0je2wvivueti" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/delete_btn.gd" id="12_hocb0"]
+[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="15_eln88"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_huima"]
+shader = ExtResource("15_eln88")
+shader_parameter/hologram_enabled = true
+shader_parameter/shimmer_speed = 1.0000000475
+shader_parameter/shimmer_strength = 0.150000007125
+shader_parameter/scanline_strength = 0.0
+shader_parameter/scanline_density = 90.0
+shader_parameter/hologram_tint = Color(1, 0.89444786, 0.8743369, 1)
 
 [node name="StatJarItem" type="Control" unique_id=85706654]
 layout_mode = 3
@@ -89,7 +99,7 @@ mouse_filter = 2
 
 [node name="HoverBorder" type="TextureRect" parent="OutsideBorders" unique_id=319170544]
 visible = false
-modulate = Color(1, 1, 1, 0.6862745)
+modulate = Color(1, 1, 1, 0.39215687)
 texture_filter = 1
 layout_mode = 0
 offset_left = -3.0
@@ -197,6 +207,20 @@ theme_override_font_sizes/font_size = 20
 text = "Delete Jar Item"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CurrentPlacedStatLabel" type="Label" parent="." unique_id=213312251]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_huima")
+layout_mode = 0
+offset_left = 6.0
+offset_top = -20.0
+offset_right = 159.0
+offset_bottom = 5.000004
+mouse_filter = 0
+theme_override_fonts/font = ExtResource("9_mepgx")
+theme_override_font_sizes/font_size = 20
+text = "Placed on Strength"
 
 [connection signal="mouse_entered" from="DeleteBtn" to="DeleteBtn" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="DeleteBtn" to="DeleteBtn" method="_on_mouse_exited"]

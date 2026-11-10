@@ -8,6 +8,12 @@ var main_stat_replacement_state : Dictionary[String, StatJarItem] = {
 	'intelligence' : null,
 	'community' : null,
 }
+
+var main_stat_replacement_failure_penality : Dictionary[String, bool] = {
+	'strength' : false,
+	'intelligence' :  false,
+	'community' : false,
+}
 # called when dropping jar item into property (main stat)
 # lets it know to refresh catalog
 signal jar_item_from_catalog_used()

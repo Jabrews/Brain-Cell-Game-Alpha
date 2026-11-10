@@ -41,8 +41,7 @@ func _reset_hold() -> void:
 	holding = false
 	holding_detect_timer.stop()
 
-	if dragging:
-		create_drag_jar_item._delete()
+	create_drag_jar_item._delete()
 
 	dragging = false
 	parent_jar_item._set_dragging(false)

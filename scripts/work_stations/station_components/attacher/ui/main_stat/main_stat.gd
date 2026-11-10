@@ -14,7 +14,9 @@ extends Node
 
 var main_stat_enabled : bool = false
 
+var loaded_cell_stat : BrainCellStat 
 var replacement_stat_jar_item : StatJarItem 
+
 
 func _ready() -> void:
 	stat_type_label.text = str(stat_type)
@@ -45,6 +47,10 @@ func _display(loaded_cell : BrainCell) :
 	
 	display_default_stats._display(cell_stat)
 	display_replacement._display(replacement_stat_jar_item)
+	
+	loaded_cell_stat = cell_stat
+	
+	
 
 	
 func _handle_stat_jar_item_dropped(stat_jar_item : StatJarItem) :
@@ -52,6 +58,7 @@ func _handle_stat_jar_item_dropped(stat_jar_item : StatJarItem) :
 	# cannot load cases, invalid main stat (hidden) or already has replacement
 	if not main_stat_enabled or replacement_stat_jar_item: 
 		return
+		
 	else :
 		replacement_stat_jar_item = stat_jar_item		
 		

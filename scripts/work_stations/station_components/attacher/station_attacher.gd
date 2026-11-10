@@ -39,6 +39,9 @@ func reset_state() :
 	# reset replacement state
 	for key in GLAttacherComponentBus.main_stat_replacement_state:
 		GLAttacherComponentBus.main_stat_replacement_state[key] = null
+		
+	for key in GLAttacherComponentBus.main_stat_replacement_failure_penality:
+		GLAttacherComponentBus.main_stat_replacement_failure_penality[key] = false
 
 func _get_loaded_cell() -> BrainCell : 
 	if loaded_cell_container : 

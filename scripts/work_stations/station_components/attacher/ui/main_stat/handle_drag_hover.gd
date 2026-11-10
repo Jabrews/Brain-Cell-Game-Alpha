@@ -1,11 +1,10 @@
-
 extends Node
 
 # components
 @onready var parent_main_stat: Control = $".."
 
 # default
-@onready var default_detect_rect : ColorRect =$"../DefaultDetectRect"
+@onready var default_detect_rect: ColorRect = $"../DefaultDetectRect"
 @onready var drag_valid_border: TextureRect = $"../DragBorders/DragValidBorder"
 @onready var drag_invalid_border: TextureRect = $"../DragBorders/DragInvalidBorder"
 
@@ -21,7 +20,7 @@ extends Node
 
 
 func _process(_delta: float) -> void:
-	#var currently_hovered: bool = false
+	var currently_hovered: bool = false
 
 	var detect_rect: Rect2 = default_detect_rect.get_global_rect().grow(
 		stat_drop_radius
@@ -33,12 +32,19 @@ func _process(_delta: float) -> void:
 			var drag_center: Vector2 = drag_rect.get_center()
 
 			if detect_rect.has_point(drag_center):
-				_handle_hover_on()
-				
-			else : 
-				_handle_hover_off()
+				currently_hovered = true
+				break
+
+	if currently_hovered:
+		_handle_hover_on()
+	else:
+		_handle_hover_off()
+
 
 func _handle_hover_on() -> void:
+	# Reset previous effects
+	_handle_hover_off()
+
 	if not parent_main_stat.main_stat_enabled:
 		drag_invalid_border.visible = true
 		stat_unable_to_drag_hint.visible = true

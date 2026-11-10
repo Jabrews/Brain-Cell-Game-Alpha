@@ -4,6 +4,8 @@ extends Node
 @onready var stat_replacement_parent : Control = $"../StatReplacement"
 @onready var clean_bar : TextureProgressBar = $"../StatReplacement/CleanBar"
 @onready var defect_bar : TextureProgressBar = $"../StatReplacement/DefectBar"
+@onready var penality_failure_rate : Control = $"../StatReplacement/PenalityFailureRate"
+@onready var parent_main_stat : Control = $".."
 
 
 func _display(replacement_stat_jar_item : StatJarItem) :
@@ -30,5 +32,13 @@ func _display(replacement_stat_jar_item : StatJarItem) :
 	
 	clean_bar.value = cell_stat.value
 	defect_bar.value = cell_stat.defect
+	
+	# failure penality
+	var loaded_cell_stat : BrainCellStat = parent_main_stat.loaded_cell_stat 
+	
+	if loaded_cell_stat.enabled : 
+		penality_failure_rate.visible = true
+	else :
+		penality_failure_rate.visible = false 
 	
 	

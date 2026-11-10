@@ -1226,12 +1226,12 @@ custom_maximum_size = Vector2(320, 586)
 propagate_maximum_size = false
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(36.475, 18.76)
+offset_transform_position = Vector2(36.475, 30)
 offset_transform_pivot_ratio = Vector2(0, 0)
 offset_transform_visual_only = false
 layout_direction = 2
 theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 150
+theme_override_constants/v_separation = 140
 
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/JarItemCatalog" unique_id=879242795]
 visible = false
