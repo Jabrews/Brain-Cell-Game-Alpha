@@ -4,6 +4,9 @@ extends Control
 @onready var delete_btn_bg: ColorRect = $BG
 @onready var hover_border: ColorRect = $HoverBorder
 @onready var delete_hint: Control = $DeleteHint
+# stop focus components
+@onready var parent_bg : TextureRect =$"../BG"
+
 
 # parent
 @onready var parent_stat_jar_item: Control = $".."
@@ -22,14 +25,12 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if parent_stat_jar_item.is_finished or parent_stat_jar_item.dragging:
+	if parent_stat_jar_item.is_used or parent_stat_jar_item.dragging:
 		return
 
 	if _is_active():
 		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("interact"):
-			handle_delete_jar_btn._handle(
-				parent_stat_jar_item.corrisponding_stat_jar_item
-			)
+			_handle_btn_pressed()
 
 
 func _is_active() -> bool:
@@ -37,10 +38,29 @@ func _is_active() -> bool:
 
 
 func _update_visuals() -> void:
+	
 	var active: bool = _is_active()
+	
 
-	if parent_stat_jar_item.is_finished or parent_stat_jar_item.dragging:
+	if parent_stat_jar_item.is_used or parent_stat_jar_item.dragging:
 		active = false
 
 	hover_border.visible = active
 	delete_hint.visible = active
+
+func _handle_btn_pressed() -> void : 
+	
+	if GLAttacherComponentBus.showing_delete_modal : 
+		return
+	
+	handle_delete_jar_btn._handle(
+	parent_stat_jar_item.corrisponding_stat_jar_item
+	)
+	
+	await get_tree().process_frame
+	
+	self.release_focus()
+	parent_bg.release_focus()
+	
+	_update_visuals()
+	

@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if parent_jar_item.is_finished:
+	if parent_jar_item.is_used:
 		return
 
 	if parent_jar_item._can_drag():

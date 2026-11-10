@@ -1254,6 +1254,12 @@ visible = false
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 716.0
+focus_neighbor_left = NodePath("DenyBtn/BG")
+focus_neighbor_top = NodePath("DenyBtn/BG")
+focus_neighbor_right = NodePath("DenyBtn/BG")
+focus_neighbor_bottom = NodePath("DenyBtn/BG")
+focus_next = NodePath("DenyBtn/BG")
+focus_previous = NodePath("DenyBtn/BG")
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI/DeleteModal" unique_id=1758180851]
 layout_mode = 1
@@ -1330,6 +1336,8 @@ focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../../ConfirmBtn/BG")
 focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 color = Color(1, 0.07999998, 0.07999998, 1)
 
 [node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/DenyBtn" unique_id=1144376525]
@@ -1374,6 +1382,8 @@ focus_neighbor_left = NodePath("../../DenyBtn/BG")
 focus_neighbor_top = NodePath(".")
 focus_neighbor_right = NodePath("../../DenyBtn/BG")
 focus_neighbor_bottom = NodePath(".")
+focus_next = NodePath(".")
+focus_previous = NodePath(".")
 color = Color(0.08235294, 1, 0.08235294, 1)
 
 [node name="BtnLabel" type="Label" parent="AttacherUI/DeleteModal/ConfirmBtn" unique_id=277747331]

@@ -12,7 +12,7 @@ extends Control
 
 var corrisponding_stat_jar_item: StatJarItem
 
-var is_finished: bool = false
+var is_used: bool = false
 var dragging: bool = false
 
 
@@ -30,14 +30,15 @@ func _ready() -> void:
 
 func _start(stat_jar_item: StatJarItem) -> void:
 	corrisponding_stat_jar_item = stat_jar_item
-	is_finished = false
+	is_used = false
 
 	on_main_stat_border.visible = false
 	display_stat_jar_item._display(stat_jar_item)
 
 
+# when jar item dropped on main statgg
 func _item_used() -> void:
-	is_finished = true
+	is_used = true
 	on_main_stat_border.visible = true
 	delete_btn.visible = false
 
@@ -47,7 +48,7 @@ func _item_used() -> void:
 
 
 func _handle_enter() -> void:
-	if is_finished or dragging:
+	if is_used or dragging:
 		return
 
 	hover_border.visible = true
@@ -83,10 +84,13 @@ func _set_dragging(value: bool) -> void:
 
 
 func _can_drag() -> bool:
-	if is_finished or dragging:
+	if is_used or dragging:
 		return false
 
 	if _is_mouse_over(delete_btn) or delete_btn.has_focus():
+		return false
+	
+	if GLAttacherComponentBus.showing_delete_modal : 
 		return false
 
 	return _is_mouse_over(bg) or bg.has_focus()
