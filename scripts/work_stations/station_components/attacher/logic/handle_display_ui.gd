@@ -27,6 +27,8 @@ func _toggle_display(toggle_value : bool) :
 		
 		refresh_ui._refresh()
 		
+		GLAttacherComponentBus.emit_signal('play_sound', 'enter_ui')
+		
 		# just stops new item visual early (jar & hologram)
 		GLAttacherComponentBus.emit_signal('opened_attacher')
 		

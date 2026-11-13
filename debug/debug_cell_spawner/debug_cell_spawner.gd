@@ -14,7 +14,7 @@ func _ready() -> void:
 		[],
 		BrainCellStat.new("strength", true, 100, 0, true),
 		BrainCellStat.new("intelligence", true, 100, 100, false),
-		BrainCellStat.new("community", true, 100, 100, false),
+		BrainCellStat.new("community", true, 100, 275, false),
 		2,
 		false,
 		false,

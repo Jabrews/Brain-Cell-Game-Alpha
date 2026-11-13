@@ -26,3 +26,5 @@ signal simulation_ended()
 
 # showing sucess or failed on hologram screen
 signal hologram_show_result(success : bool)
+
+signal play_sound(sound_type : String)

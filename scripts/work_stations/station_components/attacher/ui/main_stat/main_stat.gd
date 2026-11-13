@@ -57,9 +57,14 @@ func _handle_stat_jar_item_dropped(stat_jar_item : StatJarItem) :
 	
 	# cannot load cases, invalid main stat (hidden) or already has replacement
 	if not main_stat_enabled or replacement_stat_jar_item: 
+		GLAttacherComponentBus.emit_signal('play_sound', 'drop_failed')
+		
 		return
 		
 	else :
+		
+		GLAttacherComponentBus.emit_signal('play_sound', 'drop_success')
+		
 		replacement_stat_jar_item = stat_jar_item		
 		
 		GLAttacherComponentBus.main_stat_replacement_state[stat_type] = replacement_stat_jar_item		

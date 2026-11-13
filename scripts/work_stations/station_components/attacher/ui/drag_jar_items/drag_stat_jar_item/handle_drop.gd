@@ -42,6 +42,7 @@ func _handle() -> void:
 
 	# invalid drop
 	else:
+		GLAttacherComponentBus.emit_signal('play_sound', 'dropped')
 		pass
 
 

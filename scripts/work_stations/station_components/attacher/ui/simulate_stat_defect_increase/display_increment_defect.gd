@@ -81,7 +81,10 @@ func _display(defect_amount_to_increase: Dictionary[String, int]) -> void:
 	remaining_increases = defect_amount_to_increase.duplicate()
 
 	increment_stat_timer.wait_time = increment_interval
-
+	
+	GLAttacherComponentBus.emit_signal('play_sound', 'loop_beep_start')	
+	
+	
 	if _all_increases_finished():
 		_finish_after_reveals(display_session)
 	else:
@@ -120,6 +123,10 @@ func _all_increases_finished() -> bool:
 	for stat_type in stats:
 		if remaining_increases.get(stat_type, 0) > 0:
 			return false
+			
+			
+	GLAttacherComponentBus.emit_signal('play_sound', 'loop_beep_stop')			
+			
 
 	return true
 
@@ -130,6 +137,9 @@ func _display_burst(index: int) -> void:
 	var burst_imminent_label: Label = burst_imminent_labels[index]
 
 	burst_imminent_label.visible = false
+
+	# Play hidden stat sound before revealing
+	GLAttacherComponentBus.emit_signal('play_sound', 'burst_warning_hidden_stat')
 
 	# Reveal burst warning
 	var burst_tween: Tween = create_tween()
@@ -148,6 +158,11 @@ func _display_burst(index: int) -> void:
 
 	flesh_tween.tween_interval(
 		burst_reveal_duration + flesh_bug_delay
+	)
+
+	# Play bug sound when bug starts appearing
+	flesh_tween.tween_callback(
+		func(): GLAttacherComponentBus.emit_signal('play_sound', 'burst_warning_bug')
 	)
 
 	flesh_tween.tween_property(

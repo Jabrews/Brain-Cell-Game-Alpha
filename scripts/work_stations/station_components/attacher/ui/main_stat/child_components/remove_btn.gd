@@ -28,6 +28,9 @@ func handle_button_pressed()  :
 		
 		# force refresh
 		GLAttacherComponentBus.emit_signal('jar_item_from_catalog_used')
+		
+		GLAttacherComponentBus.emit_signal('play_sound', 'item_removed')
+		
 	else : 
 		push_error('attempted to remove replacement stat, no jar item connected. on : ', stat_type)
 		return

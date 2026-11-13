@@ -27,16 +27,45 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	if failure_rate <= 50:
 		increase_amount = round(IVCellCreator.max_stat_value * 0.15 * 10.0) / 10.0
 
+		var used_stats: Array[String] = []
+		var fallback_count: int = 0
+
+		# First pass: apply increases to valid replaced stats
 		for stat_type in stats:
 			var stat_replacement_item: StatJarItem = main_stat_replacement_state[stat_type]
 			var cell_stat: BrainCellStat = new_cell.get_stat(stat_type)
 
+			if not stat_replacement_item:
+				continue
+
 			if cell_stat.enabled:
-				if stat_replacement_item:
-					cell_stat.defect = minf(
-						cell_stat.defect + increase_amount,
-						IVCellCreator.max_stat_value
-					)
+				cell_stat.defect = minf(
+					cell_stat.defect + increase_amount,
+					IVCellCreator.max_stat_value
+				)
+
+				used_stats.append(stat_type)
+			else:
+				fallback_count += 1
+
+		# Second pass: redirect increases from disabled stats
+		for i in range(fallback_count):
+			for stat_type in stats:
+				if stat_type in used_stats:
+					continue
+
+				var cell_stat: BrainCellStat = new_cell.get_stat(stat_type)
+
+				if not cell_stat.enabled:
+					continue
+
+				cell_stat.defect = minf(
+					cell_stat.defect + increase_amount,
+					IVCellCreator.max_stat_value
+				)
+
+				used_stats.append(stat_type)
+				break
 
 	# > 50% : increase defects on all enabled stats
 	else:
@@ -63,10 +92,11 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	
 	# refresh. I dont want to show anything
 	refresh_ui._refresh()
-	
 
 	# Simulate defect increase visually
 	simulate_stat_defect_increase._start(old_cell, new_cell)
+	
+	GLAttacherComponentBus.emit_signal('play_sound', 'confirm_failed')
 	
 	# hacky but lazy
 	GLCellManagerBus.emit_signal('scale_cell', old_cell.name)
