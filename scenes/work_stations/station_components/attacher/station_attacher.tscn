@@ -31,8 +31,10 @@
 [ext_resource type="Script" uid="uid://dfj6lkavugomp" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance/refresh_total_failure_chance.gd" id="12_huima"]
 [ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
 [ext_resource type="Script" uid="uid://b0ik3ub2lrkp0" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_confirm_btn.gd" id="13_dv0vc"]
+[ext_resource type="Script" uid="uid://mayn23yousve" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/refresh_focus.gd" id="14_bc6uw"]
 [ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/ui/failure_chance_view.gd" id="14_h8037"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_jqydl"]
+[ext_resource type="Script" uid="uid://bjwftbuutyras" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/refresh_jar_items.gd" id="15_3rwfr"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="15_etud5"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
@@ -289,6 +291,12 @@ moderate_movement = 5.0
 
 [node name="RefreshConfirmBtn" type="Node" parent="Logic/RefreshUi" unique_id=1243445449]
 script = ExtResource("13_dv0vc")
+
+[node name="RefreshFocus" type="Node" parent="Logic/RefreshUi" unique_id=1417051456]
+script = ExtResource("14_bc6uw")
+
+[node name="RefreshJarItems" type="Node" parent="Logic/RefreshUi/RefreshFocus" unique_id=1860530474]
+script = ExtResource("15_3rwfr")
 
 [node name="LightManager" type="Node" parent="Logic" unique_id=12700507]
 script = ExtResource("5_gk0sq")
@@ -585,7 +593,8 @@ offset_top = 5.0
 offset_right = 279.0
 offset_bottom = 35.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_neighbor_top = NodePath("../../../CellLoader/SelectedViewSlider/SlideHandle/SlideBg")
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath("../../../StatMainView/AttacherBox/DisplayBackground")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
@@ -658,6 +667,10 @@ offset_top = 76.0
 offset_right = 1220.0
 offset_bottom = 108.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_mode = 2
 script = ExtResource("13_ape52")
 
 [node name="ExitLabel" type="Label" parent="AttacherUI/ExitHeader/ExitBtn" unique_id=1571850069]
@@ -783,12 +796,33 @@ offset_right = 448.0
 offset_bottom = 352.0
 stat_type = "community"
 
+[node name="BtnBG" parent="AttacherUI/StatMainView/Stats/Community/StatReplacement/RemoveBtn" parent_id_path=PackedInt32Array(614629783, 1053657968) index="1" unique_id=1914596848]
+focus_neighbor_bottom = NodePath("../../../../../AttacherBox/DisplayBackground")
+
+[node name="BG" parent="AttacherUI/StatMainView/Stats/Community/StatReplacement/PenalityFailureRate" parent_id_path=PackedInt32Array(614629783, 956468451) index="1" unique_id=1804117146]
+focus_neighbor_bottom = NodePath("../../../../../AttacherBox/DisplayBackground")
+
+[node name="DefaultDetectRect" parent="AttacherUI/StatMainView/Stats/Community" index="11" unique_id=1856000600]
+focus_neighbor_bottom = NodePath("../../../AttacherBox/DisplayBackground")
+
 [node name="AttacherBox" parent="AttacherUI/StatMainView" unique_id=55611311 instance=ExtResource("10_51xr3")]
 layout_mode = 0
 offset_left = 760.0
 offset_top = 560.0
 offset_right = 760.0
 offset_bottom = 560.0
+mouse_filter = 2
+
+[node name="DisplayBackground" parent="AttacherUI/StatMainView/AttacherBox" index="2" unique_id=1701365652]
+focus_neighbor_left = NodePath("../../BloodTypeView/BG")
+focus_neighbor_right = NodePath("../../FailureChanceView/DetectRect")
+focus_neighbor_bottom = NodePath("../../../InteractFooter/ConfirmBtn/BtnBg")
+
+[node name="BG" parent="AttacherUI/StatMainView/AttacherBox/AddACellHint" parent_id_path=PackedInt32Array(55611311, 1170831626) index="0" unique_id=137983988]
+mouse_filter = 2
+
+[node name="HintRect" parent="AttacherUI/StatMainView/AttacherBox/AddACellHint" parent_id_path=PackedInt32Array(55611311, 1170831626) index="2" unique_id=1426054006]
+mouse_filter = 2
 
 [node name="BloodTypeView" type="Control" parent="AttacherUI/StatMainView" unique_id=2004171066]
 visible = false
@@ -822,6 +856,8 @@ offset_left = 528.0
 offset_top = 560.0
 offset_right = 703.0
 offset_bottom = 656.0
+focus_neighbor_right = NodePath("../../AttacherBox/DisplayBackground")
+focus_mode = 2
 color = Color(0.14117648, 0.007843138, 0, 1)
 
 [node name="HeaderLabel" type="Label" parent="AttacherUI/StatMainView/BloodTypeView" unique_id=2085373813]
@@ -899,6 +935,7 @@ anchors_preset = 0
 offset_left = 376.0
 offset_right = 416.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("14_h8037")
 
 [node name="HoverBG" type="ColorRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=2004887354]
@@ -1341,6 +1378,9 @@ offset_left = 533.0
 offset_top = 557.0
 offset_right = 743.0
 offset_bottom = 658.0
+focus_neighbor_left = NodePath("../../AttacherBox/DisplayBackground")
+focus_neighbor_right = NodePath("../../AttacherBox/DisplayBackground")
+focus_mode = 2
 color = Color(1, 1, 1, 0)
 
 [node name="JarItemCatalog" type="Control" parent="AttacherUI" unique_id=1388359665]
@@ -1587,6 +1627,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SimulateStatDefectIncrease" parent="AttacherUI" unique_id=850044189 instance=ExtResource("29_blnlb")]
+visible = false
 layout_mode = 0
 offset_top = 7.0
 offset_bottom = 7.0
+
+[editable path="AttacherUI/StatMainView/Stats/Community"]
+[editable path="AttacherUI/StatMainView/AttacherBox"]

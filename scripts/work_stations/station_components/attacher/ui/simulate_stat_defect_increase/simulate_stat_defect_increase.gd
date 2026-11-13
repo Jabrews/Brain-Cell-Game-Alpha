@@ -3,6 +3,7 @@ extends Control
 @onready var attacher_bars : Control = $AttacherBars
 @onready var evaluate_inital : Node = $EvaluateInital
 @onready var display_increment_defect : Node = $DisplayIncrementDefect
+@onready var input_blocker : ColorRect = $InputBlocker
 
 
 func _ready() -> void:
@@ -21,6 +22,8 @@ func _start(old_cell : BrainCell, new_cell : BrainCell) :
 	
 	visible = true
 	
+	input_blocker.grab_focus()
+	
 	display_increment_defect._display(defect_amount_to_increase)
 
 func _end() :
@@ -30,4 +33,11 @@ func _end() :
 	# mouse stuff
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	input_blocker.release_focus()
+	
+	GLAttacherComponentBus.emit_signal('reset_ui_focus')
+	
 	GLAttacherComponentBus.emit_signal('simulation_ended')
+	
+
+	

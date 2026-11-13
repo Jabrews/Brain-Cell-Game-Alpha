@@ -31,6 +31,9 @@ func handle_button_pressed()  :
 		
 		GLAttacherComponentBus.emit_signal('play_sound', 'item_removed')
 		
+		GLAttacherComponentBus.emit_signal('reset_ui_focus')
+		
+		
 	else : 
 		push_error('attempted to remove replacement stat, no jar item connected. on : ', stat_type)
 		return

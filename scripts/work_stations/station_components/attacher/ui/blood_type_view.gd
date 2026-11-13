@@ -8,6 +8,8 @@ extends Node
 func _ready() -> void:
 	bg.connect('mouse_entered', _handle_mouse_entered)
 	bg.connect('mouse_exited', _handle_mouse_exited)
+	bg.connect('focus_entered', _handle_mouse_entered)
+	bg.connect('focus_exited', _handle_mouse_exited)
 
 func _handle_mouse_entered() :
 	hover_bg.visible = true

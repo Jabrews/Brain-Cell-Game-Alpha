@@ -9,11 +9,16 @@ var hovered : bool = false
 func _ready() -> void:
 	mouse_entered.connect(_handle_mouse_entered)
 	mouse_exited.connect(_handle_mouse_exited)
+	focus_entered.connect(_handle_mouse_entered)
+	focus_exited.connect(_handle_mouse_exited)
 
 func _process(_delta: float) -> void:
 	if hovered:
-		if Input.is_action_just_pressed('attack') :
+		if Input.is_action_just_pressed('attack') : 
 			handle_exit_btn._handle()
+		if Input.is_action_just_pressed('interact') :
+			handle_exit_btn._handle()
+			
 
 func _handle_mouse_entered() -> void:
 	hovered = true

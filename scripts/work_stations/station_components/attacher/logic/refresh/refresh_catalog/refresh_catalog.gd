@@ -24,9 +24,15 @@ func _refresh() -> void:
 	var used_jar_items: Array[JarItem] = sorted_items["used"]
 	var unused_jar_items: Array[JarItem] = sorted_items["unused"]
 	
+
+	
 	# deal with no items found label
 	if len(used_jar_items) == 0 and len(unused_jar_items) == 0 : 	
 		no_jar_items_found_label.visible = true 
+		
+		
+		return
+		
 	else : 
 		no_jar_items_found_label.visible = false 
 	
@@ -55,3 +61,5 @@ func _refresh() -> void:
 		# mark used items
 		if jar_item in used_jar_items:
 			jar_item_instance._item_used()
+			
+			

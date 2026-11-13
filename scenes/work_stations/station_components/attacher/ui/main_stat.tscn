@@ -290,6 +290,7 @@ offset_top = 1.9999999
 offset_right = 23.714233
 offset_bottom = 24.0
 scale = Vector2(1.4, 1.4)
+focus_mode = 2
 mouse_filter = 0
 texture = ExtResource("12_nvyjg")
 
@@ -357,6 +358,7 @@ mouse_filter = 2
 layout_mode = 0
 offset_right = 123.0
 offset_bottom = 43.0
+focus_mode = 2
 color = Color(0.08235294, 0.08235294, 0.08235294, 1)
 
 [node name="TextureRect" type="TextureRect" parent="StatReplacement/PenalityFailureRate" unique_id=1571754041]
@@ -464,6 +466,7 @@ offset_left = 18.0
 offset_top = 46.0
 offset_right = 690.0
 offset_bottom = 169.0
+focus_mode = 2
 color = Color(1, 1, 1, 0)
 
 [node name="HoverHints" type="Control" parent="." unique_id=266524606]

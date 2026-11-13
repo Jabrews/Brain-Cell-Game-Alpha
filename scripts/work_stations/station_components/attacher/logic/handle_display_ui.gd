@@ -9,6 +9,8 @@ var showing_attacher_ui : bool = false
 
 func _ready() -> void:
 	attacher_ui.visible = false
+	
+	GLAttacherComponentBus.connect('reset_ui_focus', _handle_reset_ui_focus)
 
 func _process(_delta: float) -> void:
 	if attacher_ui: 
@@ -54,3 +56,8 @@ func toggle_display_lock(toggle_value: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false
 		GLPlayerState.emit_signal('lock_player_position', false)
+
+func _handle_reset_ui_focus() :
+	await get_tree().process_frame
+	
+	attacher_ui.grab_focus()

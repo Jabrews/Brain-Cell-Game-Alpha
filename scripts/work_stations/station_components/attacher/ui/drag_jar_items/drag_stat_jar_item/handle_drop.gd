@@ -44,6 +44,9 @@ func _handle() -> void:
 	else:
 		GLAttacherComponentBus.emit_signal('play_sound', 'dropped')
 		pass
+	
+	GLAttacherComponentBus.emit_signal('reset_ui_focus')	
+	
 
 
 func _get_increased_rect(control: Control, radius: float) -> Rect2:

@@ -27,6 +27,9 @@ func _ready() -> void:
 	delete_btn.visible = true
 	hover_border.visible = false
 	dragging_border.visible = false
+	
+	# set exit btn right focus to first stat
+	
 
 
 func _start(stat_jar_item: StatJarItem) -> void:

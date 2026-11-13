@@ -28,3 +28,5 @@ signal simulation_ended()
 signal hologram_show_result(success : bool)
 
 signal play_sound(sound_type : String)
+
+signal reset_ui_focus()
