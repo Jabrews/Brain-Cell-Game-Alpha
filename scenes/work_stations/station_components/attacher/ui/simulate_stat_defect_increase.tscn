@@ -1,0 +1,429 @@
+[gd_scene format=3 uid="uid://dliuf44b813ax"]
+
+[ext_resource type="Script" uid="uid://cmeksauwgcgkp" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/simulate_stat_defect_increase.gd" id="1_d1lmi"]
+[ext_resource type="Script" uid="uid://p6xldeccrvsk" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/evaluate_inital.gd" id="3_d1lmi"]
+[ext_resource type="Script" uid="uid://b7wtuarpupnuo" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/display_increment_defect.gd" id="4_wbdv3"]
+[ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="5_42q2l"]
+[ext_resource type="Texture2D" uid="uid://crgcramouxxsm" path="res://models/screens/progress_bar/progress_bar_over.png" id="6_k2tfl"]
+[ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="7_f4i3p"]
+[ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="8_xd53j"]
+[ext_resource type="Shader" uid="uid://boogud2qfndqo" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/shaders/appear_and_shimmer.gdshader" id="9_42q2l"]
+[ext_resource type="Texture2D" uid="uid://d2we6qopwf1ow" path="res://models/flesh_bug_motif/flesh_bug_motif.png" id="10_qlcrg"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="10_wbdv3"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="11_3e1tp"]
+[ext_resource type="Texture2D" uid="uid://bvfex8h6dqc3h" path="res://models/flesh_bug_motif/flesh_bug_noise.png" id="11_t1ueb"]
+[ext_resource type="Texture2D" uid="uid://dmgtlgx4x3y3c" path="res://models/flesh_bug_motif/bug_symbol_1.png" id="12_ipbvd"]
+[ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_xm1dx"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="13_42q2l"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="14_42q2l"]
+[ext_resource type="Script" uid="uid://bd2peu55fydah" path="res://reusable/modular_scripts/floating_label/floating_label_2d.gd" id="14_f4i3p"]
+[ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="15_k2tfl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
+shader = ExtResource("10_wbdv3")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("11_3e1tp")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2vjkk"]
+load_path = "res://.godot/imported/hidden_stat_noise_texture.png-6eed0a4b3ae40770f13e39c2d56faf7b.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8g4u"]
+shader = ExtResource("9_42q2l")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_2vjkk")
+shader_parameter/reveal_progress = 0.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/edge_softness = 0.03
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jdpk0"]
+shader = ExtResource("9_42q2l")
+shader_parameter/noise_texture = ExtResource("11_t1ueb")
+shader_parameter/reveal_progress = 0.0
+shader_parameter/noise_scale = 1.0
+shader_parameter/edge_softness = 0.03
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_08onx"]
+shader = ExtResource("12_xm1dx")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 2.00000009174012
+
+[node name="SimulateStatDefectIncrease" type="Control" unique_id=850044189]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_d1lmi")
+
+[node name="AttacherBars" type="Control" parent="." unique_id=61164935]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="AttacherBars" unique_id=161862884]
+anchors_preset = 0
+offset_left = 448.0
+offset_top = 16.0
+offset_right = 488.0
+offset_bottom = 56.0
+
+[node name="CleanBar" type="TextureProgressBar" parent="AttacherBars/Strength" unique_id=52709828]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 18.0
+offset_top = 79.0
+offset_right = 690.0
+offset_bottom = 235.24881
+scale = Vector2(1, 0.32000244)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_42q2l")
+texture_progress = ExtResource("6_k2tfl")
+
+[node name="DefectBar" type="TextureProgressBar" parent="AttacherBars/Strength" unique_id=1965197289]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 17.0
+offset_top = 136.0
+offset_right = 689.0
+offset_bottom = 235.99924
+scale = Vector2(1, 0.32000244)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_f4i3p")
+texture_progress = ExtResource("8_xd53j")
+
+[node name="HiddenSprite" type="Sprite2D" parent="AttacherBars/Strength" unique_id=126145949]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(356, 132)
+scale = Vector2(2.15873, 2.2)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="BurstWarningParent" type="Control" parent="AttacherBars/Strength" unique_id=795928534]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HiddenSprite" type="Sprite2D" parent="AttacherBars/Strength/BurstWarningParent" unique_id=174274509]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_p8g4u")
+position = Vector2(356, 132)
+scale = Vector2(2.15873, 2.2)
+texture = ExtResource("10_qlcrg")
+
+[node name="FleshBug" type="Sprite2D" parent="AttacherBars/Strength/BurstWarningParent" unique_id=854795481]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_jdpk0")
+position = Vector2(356.23016, 116.70002)
+scale = Vector2(2.1731143, 1.7687491)
+texture = ExtResource("12_ipbvd")
+
+[node name="BurstImminentLabel" type="Label" parent="AttacherBars/Strength/BurstWarningParent" unique_id=758911785]
+visible = false
+material = SubResource("ShaderMaterial_08onx")
+layout_mode = 0
+offset_left = 24.0
+offset_top = 136.0
+offset_right = 688.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_42q2l")
+theme_override_font_sizes/font_size = 26
+text = "Transform imminent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="AttacherBars" unique_id=360526931]
+anchors_preset = 0
+offset_left = 448.0
+offset_top = 176.0
+offset_right = 488.0
+offset_bottom = 216.0
+
+[node name="CleanBar" type="TextureProgressBar" parent="AttacherBars/Intelligence" unique_id=1481090286]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 18.0
+offset_top = 79.0
+offset_right = 690.0
+offset_bottom = 235.24881
+scale = Vector2(1, 0.32000244)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_42q2l")
+texture_progress = ExtResource("6_k2tfl")
+
+[node name="DefectBar" type="TextureProgressBar" parent="AttacherBars/Intelligence" unique_id=1418434741]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 17.0
+offset_top = 136.0
+offset_right = 689.0
+offset_bottom = 235.99924
+scale = Vector2(1, 0.32000244)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_f4i3p")
+texture_progress = ExtResource("8_xd53j")
+
+[node name="HiddenSprite" type="Sprite2D" parent="AttacherBars/Intelligence" unique_id=1901274649]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(356, 132)
+scale = Vector2(2.15873, 2.2)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="BurstWarningParent" type="Control" parent="AttacherBars/Intelligence" unique_id=173686682]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HiddenSprite" type="Sprite2D" parent="AttacherBars/Intelligence/BurstWarningParent" unique_id=991600564]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_p8g4u")
+position = Vector2(356, 132)
+scale = Vector2(2.15873, 2.2)
+texture = ExtResource("10_qlcrg")
+
+[node name="FleshBug" type="Sprite2D" parent="AttacherBars/Intelligence/BurstWarningParent" unique_id=1428356930]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_jdpk0")
+position = Vector2(356.23016, 116.70002)
+scale = Vector2(2.1731143, 1.7687491)
+texture = ExtResource("12_ipbvd")
+
+[node name="BurstImminentLabel" type="Label" parent="AttacherBars/Intelligence/BurstWarningParent" unique_id=984336272]
+visible = false
+material = SubResource("ShaderMaterial_08onx")
+layout_mode = 0
+offset_left = 24.0
+offset_top = 136.0
+offset_right = 688.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_42q2l")
+theme_override_font_sizes/font_size = 26
+text = "Transform imminent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="AttacherBars" unique_id=524647331]
+anchors_preset = 0
+offset_left = 448.0
+offset_top = 344.0
+offset_right = 488.0
+offset_bottom = 384.0
+
+[node name="CleanBar" type="TextureProgressBar" parent="AttacherBars/Community" unique_id=944201404]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 18.0
+offset_top = 79.0
+offset_right = 690.0
+offset_bottom = 235.24881
+scale = Vector2(1, 0.32000244)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_42q2l")
+texture_progress = ExtResource("6_k2tfl")
+
+[node name="DefectBar" type="TextureProgressBar" parent="AttacherBars/Community" unique_id=544986654]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.225
+anchor_bottom = 0.225
+offset_left = 17.0
+offset_top = 136.0
+offset_right = 689.0
+offset_bottom = 235.99924
+scale = Vector2(1, 0.32000244)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_f4i3p")
+texture_progress = ExtResource("8_xd53j")
+
+[node name="HiddenSprite" type="Sprite2D" parent="AttacherBars/Community" unique_id=1957263602]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_t5il4")
+position = Vector2(356, 132)
+scale = Vector2(2.15873, 2.2)
+texture = SubResource("CompressedTexture2D_tqrwa")
+
+[node name="BurstWarningParent" type="Control" parent="AttacherBars/Community" unique_id=1854201203]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HiddenSprite" type="Sprite2D" parent="AttacherBars/Community/BurstWarningParent" unique_id=191041244]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_p8g4u")
+position = Vector2(356, 132)
+scale = Vector2(2.15873, 2.2)
+texture = ExtResource("10_qlcrg")
+
+[node name="FleshBug" type="Sprite2D" parent="AttacherBars/Community/BurstWarningParent" unique_id=1575580752]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_jdpk0")
+position = Vector2(356.23016, 116.70002)
+scale = Vector2(2.1731143, 1.7687491)
+texture = ExtResource("12_ipbvd")
+
+[node name="BurstImminentLabel" type="Label" parent="AttacherBars/Community/BurstWarningParent" unique_id=220616497]
+visible = false
+material = SubResource("ShaderMaterial_08onx")
+layout_mode = 0
+offset_left = 24.0
+offset_top = 136.0
+offset_right = 688.0
+offset_bottom = 171.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_42q2l")
+theme_override_font_sizes/font_size = 26
+text = "Transform imminent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="Control" parent="AttacherBars" unique_id=849242593]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BG" type="ColorRect" parent="AttacherBars/Background" unique_id=750468295]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 720.0
+color = Color(0.07450981, 0, 0, 1)
+
+[node name="BG2" type="ColorRect" parent="AttacherBars/Background" unique_id=1106454056]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 544.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.07450981, 0, 0, 1)
+
+[node name="BG3" type="ColorRect" parent="AttacherBars/Background" unique_id=1987462241]
+layout_mode = 0
+offset_left = 1160.0
+offset_right = 1280.0
+offset_bottom = 544.0
+color = Color(0.07450981, 0, 0, 1)
+
+[node name="BG4" type="ColorRect" parent="AttacherBars/Background" unique_id=951493382]
+layout_mode = 0
+offset_left = 448.0
+offset_right = 1160.0
+offset_bottom = 56.0
+color = Color(0.07450981, 0, 0, 1)
+
+[node name="FailedParent" type="Control" parent="AttacherBars" unique_id=1524469176]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = 200.0
+offset_right = 384.0
+offset_bottom = 512.0
+script = ExtResource("14_f4i3p")
+
+[node name="FailedLabel" type="Label" parent="AttacherBars/FailedParent" unique_id=1384298979]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 72.0
+offset_right = 148.0
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_42q2l")
+theme_override_font_sizes/font_size = 50
+text = "FAILED"
+
+[node name="FailureChanceSymbol" type="TextureRect" parent="AttacherBars/FailedParent" unique_id=232863569]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -192.0
+offset_right = 90.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("15_k2tfl")
+expand_mode = 1
+
+[node name="FailedLabel2" type="Label" parent="AttacherBars/FailedParent" unique_id=831881473]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -184.0
+offset_top = 336.0
+offset_right = 176.0
+offset_bottom = 386.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_42q2l")
+theme_override_font_sizes/font_size = 28
+text = "returning Jar Stat Item..."
+horizontal_alignment = 1
+
+[node name="EvaluateInital" type="Node" parent="." unique_id=199764143]
+script = ExtResource("3_d1lmi")
+
+[node name="DisplayIncrementDefect" type="Node" parent="." unique_id=1075210140]
+script = ExtResource("4_wbdv3")
+
+[node name="IncrementStatTimer" type="Timer" parent="DisplayIncrementDefect" unique_id=1951111409]
+
+[node name="InputBlocker" type="ColorRect" parent="." unique_id=904639761]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(1, 1, 1, 0)

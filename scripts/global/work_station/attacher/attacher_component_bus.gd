@@ -20,3 +20,9 @@ signal jar_item_from_catalog_used()
 
 # used for drag and delete modal logic. kinda HACK
 var showing_delete_modal : bool = false
+
+# for simulate stat defect increase
+signal simulation_ended()
+
+# showing sucess or failed on hologram screen
+signal hologram_show_result(success : bool)

@@ -1,11 +1,18 @@
 extends Node
 
+# components
+@onready var parent_station_attacher : Node3D = $"../.."
+@onready var failure_chance_parent : Control = $"../../AttacherUI/StatMainView/FailureChanceView"
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	GLGameManagerBus.connect('process_new_ivs', _handle_process_new_ivs)
 
+func _handle_process_new_ivs() :
+	
+	parent_station_attacher.failure_rate_enabled = GLWorkstationBus.attacher_failure_enabled
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
+	
+	
+		

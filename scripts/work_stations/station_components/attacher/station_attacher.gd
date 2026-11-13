@@ -4,9 +4,13 @@ extends Node
 @onready var light_manager : Node = $Logic/LightManager
 @onready var refresh_ui : Node = $Logic/RefreshUi
 @onready var attacher_box : Control =$AttacherUI/StatMainView/AttacherBox
+@onready var compute_failure_penality : Node = $Logic/ComputeFailurePenality
 
 var enabled : bool = false 
+var failure_rate_enabled : bool = true
 var loaded_cell_container : CharacterBody3D
+
+var failure_rate : int = 0
 
 
 func _recieve_cell_container(cell_container : CharacterBody3D) : 
@@ -16,6 +20,9 @@ func _recieve_cell_container(cell_container : CharacterBody3D) :
 	
 	# load cell into box
 	attacher_box._load_cell(_get_loaded_cell())
+	
+	if failure_rate_enabled : 
+		compute_failure_penality._compute()
 	
 	refresh_ui._refresh()
 	

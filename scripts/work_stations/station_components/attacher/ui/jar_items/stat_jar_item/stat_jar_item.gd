@@ -33,7 +33,6 @@ func _start(stat_jar_item: StatJarItem) -> void:
 	corrisponding_stat_jar_item = stat_jar_item
 	
 	is_used = false
-	current_placed_stat_label.visible = false
 
 	on_main_stat_border.visible = false
 	display_stat_jar_item._display(stat_jar_item)

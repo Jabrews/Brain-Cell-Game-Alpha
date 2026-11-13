@@ -1,7 +1,7 @@
 extends ColorRect
 
 # components
-@onready var handle_exit_btn : Node = $"../../../Logic/BtnHandlers/HandleExitBtn"
+@onready var handle_exit_btn : Node =$"../../../Logic/BtnHandlers/HandleExitBtn"
 @onready var hint_parent : Control = $Hint
 
 var hovered : bool = false

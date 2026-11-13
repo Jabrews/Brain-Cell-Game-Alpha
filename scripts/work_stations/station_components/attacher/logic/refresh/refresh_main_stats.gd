@@ -33,8 +33,8 @@ func _refresh() :
 			
 			# load visuals according to cell and state
 			main_stat_parent._display(loaded_cell)
-
-	
-	
+		
+		
+		
 	
 	

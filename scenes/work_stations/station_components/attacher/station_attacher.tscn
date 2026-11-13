@@ -15,6 +15,7 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="4_o7oe2"]
 [ext_resource type="Script" uid="uid://c713tugot4f3f" path="res://scripts/work_stations/station_components/attacher/logic/light_manager.gd" id="5_gk0sq"]
 [ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
+[ext_resource type="Script" uid="uid://dfyytapuktsd4" path="res://scripts/work_stations/station_components/attacher/logic/compute_failure_penality.gd" id="5_pw8sq"]
 [ext_resource type="Script" uid="uid://dwcdimr0gg268" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_main_stats.gd" id="5_rebul"]
 [ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
 [ext_resource type="Script" uid="uid://cpoc0i6wwf01c" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_blood_type_view.gd" id="9_13c2h"]
@@ -22,18 +23,24 @@
 [ext_resource type="Script" uid="uid://x8lr6nt4br42" path="res://scripts/work_stations/station_components/attacher/logic/delete_modal_manager.gd" id="9_gk0sq"]
 [ext_resource type="PackedScene" uid="uid://dykbleuu1m5tn" path="res://scenes/work_stations/station_components/attacher/ui/attacher_box.tscn" id="10_51xr3"]
 [ext_resource type="Script" uid="uid://comicvjoy7d83" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/confirm_btn.gd" id="10_kgviq"]
-[ext_resource type="Script" uid="uid://cv5x6x2yjcew8" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance_view.gd" id="10_pw8sq"]
+[ext_resource type="Script" uid="uid://cv5x6x2yjcew8" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance/refresh_failure_chance_view.gd" id="10_pw8sq"]
 [ext_resource type="Script" uid="uid://c61v8hjryt7yr" path="res://scripts/work_stations/station_components/attacher/load_cell_panel/load_cell_panel.gd" id="11_14fq8"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
 [ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/ui/blood_type_view.gd" id="11_g3225"]
 [ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_g3225"]
+[ext_resource type="Script" uid="uid://dfj6lkavugomp" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance/refresh_total_failure_chance.gd" id="12_huima"]
 [ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
+[ext_resource type="Script" uid="uid://b0ik3ub2lrkp0" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_confirm_btn.gd" id="13_dv0vc"]
 [ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/ui/failure_chance_view.gd" id="14_h8037"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_jqydl"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="15_etud5"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
+[ext_resource type="Script" uid="uid://bkgbvjcffiv2i" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/init/init_fail_detach.gd" id="17_wt6cs"]
+[ext_resource type="Script" uid="uid://bcyf4rqpgwy0n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/init/init_success_detach.gd" id="18_blnlb"]
 [ext_resource type="Script" uid="uid://t42dy4low8hq" path="res://scripts/work_stations/station_components/attacher/ui/delete_modal/modal_btn.gd" id="20_i7vey"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="25_6587d"]
+[ext_resource type="PackedScene" uid="uid://dliuf44b813ax" path="res://scenes/work_stations/station_components/attacher/ui/simulate_stat_defect_increase.tscn" id="29_blnlb"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -79,6 +86,52 @@ size = Vector3(0.044, 1.0572109, 1.4100952)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hnska"]
 size = Vector3(0.044, 1.0572109, 1.4100952)
+
+[sub_resource type="Curve" id="Curve_xiop7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xf8x4"]
+curve = SubResource("Curve_xiop7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_g88h4"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_xf8x4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpr4u"]
+transparency = 1
+albedo_color = Color(0.083333254, 1, 0, 1)
+albedo_texture = ExtResource("25_6587d")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_hm3b7"]
+material = SubResource("StandardMaterial3D_bpr4u")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1lgg"]
+transparency = 1
+albedo_color = Color(1, 0, 0.016666412, 1)
+albedo_texture = ExtResource("25_6587d")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_r0bqg"]
+material = SubResource("StandardMaterial3D_b1lgg")
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6rfj8"]
 shader = ExtResource("4_o7oe2")
@@ -194,6 +247,9 @@ script = ExtResource("3_13c2h")
 process_mode = 3
 script = ExtResource("2_hnska")
 
+[node name="ComputeFailurePenality" type="Node" parent="Logic" unique_id=569670349]
+script = ExtResource("5_pw8sq")
+
 [node name="RefreshUi" type="Node" parent="Logic" unique_id=193966324]
 script = ExtResource("3_d6gq3")
 
@@ -212,6 +268,14 @@ script = ExtResource("9_13c2h")
 [node name="RefreshFailureChanceView" type="Node" parent="Logic/RefreshUi" unique_id=195056363]
 script = ExtResource("10_pw8sq")
 
+[node name="RefreshTotalFailureChance" type="Node" parent="Logic/RefreshUi/RefreshFailureChanceView" unique_id=137910846]
+process_mode = 3
+script = ExtResource("12_huima")
+moderate_movement = 5.0
+
+[node name="RefreshConfirmBtn" type="Node" parent="Logic/RefreshUi" unique_id=1243445449]
+script = ExtResource("13_dv0vc")
+
 [node name="LightManager" type="Node" parent="Logic" unique_id=12700507]
 script = ExtResource("5_gk0sq")
 
@@ -222,6 +286,12 @@ script = ExtResource("3_h8037")
 
 [node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=98271224]
 script = ExtResource("5_o7iqc")
+
+[node name="InitSuccessDetach" type="Node" parent="Logic/BtnHandlers/HandleConfirmBtn" unique_id=328445081]
+script = ExtResource("18_blnlb")
+
+[node name="InitFailDetach" type="Node" parent="Logic/BtnHandlers/HandleConfirmBtn" unique_id=1114355254]
+script = ExtResource("17_wt6cs")
 
 [node name="HandleExitBtn" type="Node" parent="Logic/BtnHandlers" unique_id=58584897]
 script = ExtResource("6_eqm75")
@@ -341,6 +411,58 @@ one_shot = true
 [node name="BlinkInfoTimer" type="Timer" parent="Hologram/HologramInfoManager" unique_id=469487995]
 wait_time = 0.5
 
+[node name="Succes" type="Node3D" parent="Hologram/HologramInfoManager" unique_id=1048278452]
+visible = false
+
+[node name="SuccessLabel" type="Label3D" parent="Hologram/HologramInfoManager/Succes" unique_id=1326851710]
+transform = Transform3D(1.0000001, -1.7931685e-05, 0.0003571791, -1.7923769e-05, 0.99497426, 0.10012969, -0.00035717947, -0.10012967, 0.99497455, 0, 0, -0.6898923)
+texture_filter = 1
+modulate = Color(0, 1, 0, 1)
+text = "Success"
+font = ExtResource("3_3now3")
+font_size = 26
+outline_size = 0
+uppercase = true
+line_spacing = 10.0
+
+[node name="Fail" type="Node3D" parent="Hologram/HologramInfoManager" unique_id=2096754832]
+
+[node name="FailedLabel" type="Label3D" parent="Hologram/HologramInfoManager/Fail" unique_id=493338254]
+transform = Transform3D(1.0000001, -1.7931685e-05, 0.0003571791, -1.7923769e-05, 0.99497426, 0.10012969, -0.00035717947, -0.10012967, 0.99497455, 0, 0, -0.6898923)
+texture_filter = 1
+modulate = Color(1, 0, 0, 1)
+text = "Failed"
+font = ExtResource("3_3now3")
+font_size = 26
+outline_size = 0
+uppercase = true
+line_spacing = 10.0
+
+[node name="Particles" type="Node3D" parent="." unique_id=887678756]
+
+[node name="SuccessParticles" type="GPUParticles3D" parent="Particles" unique_id=567639802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 10
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g88h4")
+draw_pass_1 = SubResource("QuadMesh_hm3b7")
+
+[node name="FailedParticles" type="GPUParticles3D" parent="Particles" unique_id=1935896454]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 10
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_g88h4")
+draw_pass_1 = SubResource("QuadMesh_r0bqg")
+
+[node name="FloatingLabelSpawnPos" type="Node3D" parent="." unique_id=452658630]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2426848, 0)
+
 [node name="AttacherUI" type="Control" parent="." unique_id=1371673270]
 process_mode = 3
 layout_mode = 3
@@ -431,26 +553,25 @@ mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="AttacherUI/InteractFooter/ConfirmBtn/Hint" unique_id=676153698]
 layout_mode = 0
-offset_left = 58.0
+offset_left = 56.0
 offset_top = -52.0
-offset_right = 211.0
+offset_right = 224.0
 offset_bottom = -6.0
 color = Color(0, 0, 0, 0.80784315)
 
 [node name="HintText" type="Label" parent="AttacherUI/InteractFooter/ConfirmBtn/Hint" unique_id=360373446]
 texture_filter = 1
-custom_minimum_size = Vector2(197, 92)
-custom_maximum_size = Vector2(197, 92)
 layout_mode = 0
-offset_left = 67.0
-offset_top = -44.0
-offset_right = 264.0
-offset_bottom = 48.0
+offset_left = 56.0
+offset_top = -48.0
+offset_right = 224.0
+offset_bottom = -8.0
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 20
-text = "put correct text"
-autowrap_mode = 2
+text = "confirm new cell"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ExitHeader" type="Control" parent="AttacherUI" unique_id=1794361857]
 anchors_preset = 0
@@ -709,6 +830,7 @@ theme_override_font_sizes/font_size = 18
 text = "Not implented yet..."
 
 [node name="FailureChanceView" type="Control" parent="AttacherUI/StatMainView" unique_id=1884564620]
+visible = false
 anchors_preset = 0
 offset_left = 376.0
 offset_right = 416.0
@@ -759,25 +881,25 @@ vertical_alignment = 1
 [node name="FailureChanceSymbol" type="TextureRect" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=1735715090]
 texture_filter = 1
 layout_mode = 0
-offset_left = 543.0
+offset_left = 539.0
 offset_top = 566.0
-offset_right = 576.0
+offset_right = 572.0
 offset_bottom = 598.0
 mouse_filter = 2
 texture = ExtResource("14_jqydl")
 expand_mode = 1
 
-[node name="FailurePercantLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=1038957198]
+[node name="TotalChanceLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView" unique_id=1038957198]
 modulate = Color(0.808011, 0.105516136, 0.17244221, 1)
 texture_filter = 1
 layout_mode = 0
-offset_left = 543.0
-offset_top = 594.0
-offset_right = 737.0
-offset_bottom = 651.0
-scale = Vector2(1, 1.2800024)
+offset_left = 547.0
+offset_top = 601.0
+offset_right = 741.0
+offset_bottom = 663.0
+pivot_offset = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 55
 text = "25%"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1135,7 +1257,7 @@ theme_override_font_sizes/font_size = 25
 text = "Overide Stat Penality"
 horizontal_alignment = 1
 
-[node name="FailureChance" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/Penality" unique_id=1442845033]
+[node name="PenalityLabel" type="Label" parent="AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/Penality" unique_id=1442845033]
 texture_filter = 1
 layout_mode = 0
 offset_left = -77.0
@@ -1399,3 +1521,8 @@ theme_override_font_sizes/font_size = 30
 text = "Confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SimulateStatDefectIncrease" parent="AttacherUI" unique_id=850044189 instance=ExtResource("29_blnlb")]
+layout_mode = 0
+offset_top = 7.0
+offset_bottom = 7.0

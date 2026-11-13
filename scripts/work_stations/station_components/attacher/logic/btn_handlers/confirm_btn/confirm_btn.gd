@@ -20,8 +20,10 @@ func _handle_mouse_entered() :
 	bg.scale = Vector2(1.05, 1.05)
 	bg.color = Color.LIGHT_GRAY
 	hint_parent.visible = true
+	hovered = true
 
 func _handle_mouse_exited() :
 	bg.scale = Vector2(1.00, 1.00)
 	bg.color = Color.WHITE
 	hint_parent.visible = false
+	hovered = false

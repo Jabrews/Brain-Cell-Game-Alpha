@@ -37,6 +37,10 @@ func _display(replacement_stat_jar_item : StatJarItem) :
 	var loaded_cell_stat : BrainCellStat = parent_main_stat.loaded_cell_stat 
 	
 	if loaded_cell_stat.enabled : 
+		
+		if not GLWorkstationBus.attacher_failure_enabled : 		
+			return
+			
 		penality_failure_rate.visible = true
 	else :
 		penality_failure_rate.visible = false 
