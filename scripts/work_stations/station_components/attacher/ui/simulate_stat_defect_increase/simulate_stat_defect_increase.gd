@@ -1,5 +1,6 @@
 extends Control 
 
+# components
 @onready var attacher_bars : Control = $AttacherBars
 @onready var evaluate_inital : Node = $EvaluateInital
 @onready var display_increment_defect : Node = $DisplayIncrementDefect

@@ -93,6 +93,15 @@ func _copy_stat(stat: BrainCellStat) -> BrainCellStat:
 		stat.hidden,
 	)
 
+func _check_death() -> bool : 
+	if strength.defect >= IVCellCreator.max_stat_value :
+		return true
+	elif intelligence.defect >= IVCellCreator.max_stat_value :
+		return true
+	elif community.defect >= IVCellCreator.max_stat_value :
+		return true
+	else : 
+		return false
 
 func _to_string() -> String:
 	return "%s | can breed: %s" % [

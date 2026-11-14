@@ -66,6 +66,3 @@ func sort_cells(collected_cells: Array[BrainCell]) -> Array[BrainCell]:
 	)
 	
 	return collected_cells
-
-
-	

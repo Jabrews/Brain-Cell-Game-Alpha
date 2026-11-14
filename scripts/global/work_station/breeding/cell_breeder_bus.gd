@@ -9,5 +9,7 @@ signal player_breeded_cells(
 	boost_left_stat : String,
 	boost_right_stat : String,
 	boost_left_direction : String,
-	boost_right_direction : String
+	boost_right_direction : String,
+	left_failure : bool,
+	right_failure : bool,
 ) 

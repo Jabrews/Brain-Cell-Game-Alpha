@@ -32,7 +32,6 @@ func _ready() -> void:
 			#'prisoner_room'
 		#)
 	#)
-
 			
 func _handle_delete_selected_collected_cell(brain_cell : BrainCell) :
 	for room_profile : EntityRoomProfile in GLEntityRoomManagementBus.entity_room_profiles:
@@ -56,7 +55,7 @@ func _handle_entity_changed_room(target_entity_name : String, new_room_name : St
 			room_profile.room_name = new_room_name
 	
 	
-func _handle_cell_breeded(_cell_1, _cell_2, new_cell : BrainCell, _cell_3, _cell_4_, _kill_cell_1, _kill_cell_2) : 
+func _handle_cell_breeded(_cell_1, _cell_2, new_cell : BrainCell, _cell_3, _cell_4_) : 
 	GLEntityRoomManagementBus.entity_room_profiles.append(
 		EntityRoomProfile.new(
 			'cell_container',

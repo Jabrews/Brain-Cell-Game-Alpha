@@ -31,12 +31,12 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2vjkk"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f4i3p"]
 load_path = "res://.godot/imported/hidden_stat_noise_texture.png-6eed0a4b3ae40770f13e39c2d56faf7b.ctex"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p8g4u"]
 shader = ExtResource("9_42q2l")
-shader_parameter/noise_texture = SubResource("CompressedTexture2D_2vjkk")
+shader_parameter/noise_texture = SubResource("CompressedTexture2D_f4i3p")
 shader_parameter/reveal_progress = 0.0
 shader_parameter/noise_scale = 4.0
 shader_parameter/edge_softness = 0.03
@@ -60,10 +60,116 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_d1lmi")
 
+[node name="EvaluateInital" type="Node" parent="." unique_id=199764143]
+script = ExtResource("3_d1lmi")
+
+[node name="DisplayIncrementDefect" type="Node" parent="." unique_id=1075210140]
+script = ExtResource("4_wbdv3")
+
+[node name="IncrementStatTimer" type="Timer" parent="DisplayIncrementDefect" unique_id=1951111409]
+
+[node name="Background" type="Control" parent="." unique_id=849242593]
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 39.0
+offset_bottom = 42.0
+
+[node name="BG" type="ColorRect" parent="Background" unique_id=750468295]
+layout_mode = 0
+offset_top = -2.0
+offset_right = 448.0
+offset_bottom = 720.0
+color = Color(0.07, 0, 0, 0.9019608)
+
+[node name="BG2" type="ColorRect" parent="Background" unique_id=1106454056]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 544.0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.07, 0, 0, 0.9019608)
+
+[node name="BG3" type="ColorRect" parent="Background" unique_id=1987462241]
+layout_mode = 0
+offset_left = 1160.0
+offset_right = 1280.0
+offset_bottom = 544.0
+color = Color(0.07, 0, 0, 0.9019608)
+
+[node name="BG4" type="ColorRect" parent="Background" unique_id=951493382]
+layout_mode = 0
+offset_left = 448.0
+offset_top = -2.0
+offset_right = 1160.0
+offset_bottom = 56.0
+color = Color(0.07058824, 0, 0, 0.9019608)
+
+[node name="FailedParent" type="Control" parent="." unique_id=1524469176]
+anchors_preset = 0
+offset_left = 31.0
+offset_top = 202.0
+offset_right = 383.0
+offset_bottom = 514.0
+script = ExtResource("14_f4i3p")
+
+[node name="FailedLabel" type="Label" parent="FailedParent" unique_id=1384298979]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 72.0
+offset_right = 148.0
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("14_42q2l")
+theme_override_font_sizes/font_size = 50
+text = "FAILED"
+
+[node name="FailureChanceSymbol" type="TextureRect" parent="FailedParent" unique_id=232863569]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -192.0
+offset_right = 90.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("15_k2tfl")
+expand_mode = 1
+
+[node name="FailedLabel2" type="Label" parent="FailedParent" unique_id=831881473]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -184.0
+offset_top = 336.0
+offset_right = 176.0
+offset_bottom = 386.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_42q2l")
+theme_override_font_sizes/font_size = 28
+text = "returning Jar Stat Item..."
+horizontal_alignment = 1
+
 [node name="AttacherBars" type="Control" parent="." unique_id=61164935]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 39.0
+offset_bottom = 42.0
 
 [node name="Strength" type="Control" parent="AttacherBars" unique_id=161862884]
 anchors_preset = 0
@@ -322,106 +428,6 @@ text = "Transform imminent"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Background" type="Control" parent="AttacherBars" unique_id=849242593]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG" type="ColorRect" parent="AttacherBars/Background" unique_id=750468295]
-layout_mode = 0
-offset_right = 448.0
-offset_bottom = 720.0
-color = Color(0.07450981, 0, 0, 1)
-
-[node name="BG2" type="ColorRect" parent="AttacherBars/Background" unique_id=1106454056]
-layout_mode = 0
-offset_left = 448.0
-offset_top = 544.0
-offset_right = 1280.0
-offset_bottom = 720.0
-color = Color(0.07450981, 0, 0, 1)
-
-[node name="BG3" type="ColorRect" parent="AttacherBars/Background" unique_id=1987462241]
-layout_mode = 0
-offset_left = 1160.0
-offset_right = 1280.0
-offset_bottom = 544.0
-color = Color(0.07450981, 0, 0, 1)
-
-[node name="BG4" type="ColorRect" parent="AttacherBars/Background" unique_id=951493382]
-layout_mode = 0
-offset_left = 448.0
-offset_right = 1160.0
-offset_bottom = 56.0
-color = Color(0.07450981, 0, 0, 1)
-
-[node name="FailedParent" type="Control" parent="AttacherBars" unique_id=1524469176]
-anchors_preset = 0
-offset_left = 32.0
-offset_top = 200.0
-offset_right = 384.0
-offset_bottom = 512.0
-script = ExtResource("14_f4i3p")
-
-[node name="FailedLabel" type="Label" parent="AttacherBars/FailedParent" unique_id=1384298979]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -152.0
-offset_top = 72.0
-offset_right = 148.0
-offset_bottom = 122.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 50
-text = "FAILED"
-
-[node name="FailureChanceSymbol" type="TextureRect" parent="AttacherBars/FailedParent" unique_id=232863569]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -90.0
-offset_top = -192.0
-offset_right = 90.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-texture = ExtResource("15_k2tfl")
-expand_mode = 1
-
-[node name="FailedLabel2" type="Label" parent="AttacherBars/FailedParent" unique_id=831881473]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -184.0
-offset_top = 336.0
-offset_right = 176.0
-offset_bottom = 386.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("13_42q2l")
-theme_override_font_sizes/font_size = 28
-text = "returning Jar Stat Item..."
-horizontal_alignment = 1
-
-[node name="EvaluateInital" type="Node" parent="." unique_id=199764143]
-script = ExtResource("3_d1lmi")
-
-[node name="DisplayIncrementDefect" type="Node" parent="." unique_id=1075210140]
-script = ExtResource("4_wbdv3")
-
-[node name="IncrementStatTimer" type="Timer" parent="DisplayIncrementDefect" unique_id=1951111409]
-
 [node name="InputBlocker" type="ColorRect" parent="." unique_id=904639761]
 layout_mode = 0
 offset_right = 1280.0
@@ -434,3 +440,4 @@ focus_next = NodePath(".")
 focus_previous = NodePath(".")
 focus_mode = 2
 color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true

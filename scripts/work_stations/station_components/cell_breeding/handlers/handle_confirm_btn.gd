@@ -6,9 +6,16 @@ extends Node
 @onready var display_new_cell_preview : Node = $"../DisplayNewCellPreview"
 @onready var left_finsihed_particle : GPUParticles3D = $"../BreedingParticle/LeftFinishedParticle"
 @onready var right_finsihed_particle : GPUParticles3D = $"../BreedingParticle/RightFinishedParticle"
-
+@onready var simulate_stat : Control = $"../BreedingUI/SimulateStatDefectIncrease"
 
 var current_screen : String = 'cell_loader'
+
+var left_failure : bool = false
+var right_failure  : bool = false
+
+func _ready() -> void:
+	GLBreedingComponetsBus.connect('simulation_ended', _handle_simulation_ended)
+
 
 func _handle() :  
 
@@ -28,7 +35,33 @@ func _handle() :
 		
 	
 
-func finale_breeding_request() :
+
+func finale_breeding_request() -> void:
+
+	# Decide failure chance for each side
+	var main_left_cell: BrainCell = parent_station.left_main_cell
+	var main_right_cell: BrainCell = parent_station.right_main_cell
+
+	var main_left_failure_chance: int = GAMEFailureChance.breeder_helper._get_total_failure_chance(main_left_cell, true)
+	var main_right_failure_chance: int = GAMEFailureChance.breeder_helper._get_total_failure_chance(main_right_cell, true)
+
+	# Calculate failures independently
+	left_failure = randi_range(1, 100) <= main_left_failure_chance
+	right_failure = randi_range(1, 100) <= main_right_failure_chance
+
+	display_new_cell_preview._close()
+
+	# Start simulation
+	simulate_stat._start(
+		main_left_cell,
+		main_right_cell,
+		left_failure,
+		right_failure,
+	)
+	
+
+	
+func _handle_simulation_ended() :
 	
 	var main_left_cell : BrainCell = parent_station.left_main_cell
 	var main_right_cell : BrainCell = parent_station.right_main_cell
@@ -48,7 +81,10 @@ func finale_breeding_request() :
 		boost_right_stat,
 		boost_left_direction,
 		boost_right_direction,
+		left_failure,
+		right_failure
 	)
+	
 	
 	# close
 	handle_display_ui._toggle_display(false)
@@ -61,6 +97,9 @@ func finale_breeding_request() :
 	# reset ui cells
 	for key in GLBreedingComponetsBus.breeding_ui_state : 
 		GLBreedingComponetsBus.breeding_ui_state[key] = null
+	
+	left_failure = false
+	right_failure = false
 	
 	
 	

@@ -8,6 +8,7 @@ extends Node
 @onready var increase_cell_charge_helper : Node = $IncreaseCellChargeHelper
 @onready var mutation_helper : Node = $MutationHelper
 @onready var decrease_old_cell : Node = $DecreaseOldCell
+@onready var decrease_failed_cell : Node = $DecreaseFailedCell
 
 func _ready() -> void:
 	connect_signals()
@@ -36,6 +37,9 @@ func _handle_player_breeded_cells(
 	boost_right_stat: String,
 	boost_left_direction: String,
 	boost_right_direction: String,
+	left_failure : bool,
+	right_failure : bool,
+	
 ) -> void:
 	var updated_boost_left_cell: BrainCell = null
 	var updated_boost_right_cell: BrainCell = null
@@ -94,40 +98,27 @@ func _handle_player_breeded_cells(
 	main_left_cell.breeder_unavaible = true
 	main_right_cell.breeder_unavaible = true
 		
+	# apply org decrease
+	main_left_cell = decrease_old_cell._decrease(main_left_cell)
+	# apply second decrease if failed
+	if left_failure : 
+		main_left_cell = decrease_failed_cell._decrease(main_left_cell)
+	# remove all mutations
+	main_left_cell.mutations = []
 	
-	# check death chance of cell 1 & 2
-	var cell_1_death_chance : float = GAMEFailureChance.breeder_helper._get_total_failure_chance(main_left_cell, true)
-	var cell_2_death_chance : float = GAMEFailureChance.breeder_helper._get_total_failure_chance(main_right_cell, true)
 	
-	var kill_old_1 : bool = false
-	var kill_old_2 : bool = false
+	main_right_cell = decrease_old_cell._decrease(main_right_cell)
+	if right_failure : 
+		main_right_cell = decrease_failed_cell._decrease(main_right_cell)
+	main_right_cell.mutations = []
 	
-	# roll to kill old cells
-	var ran_num_1 : int = randi_range(0, 100)
-	if cell_1_death_chance >= ran_num_1 :
-		kill_old_1 = true
-		
-	var ran_num_2 : int = randi_range(0, 100)
-	if cell_2_death_chance >= ran_num_2 :
-		kill_old_2 = true
 	
-	# if we dont kill old cell, apply decrease
-	if not kill_old_1 :
-		main_left_cell = decrease_old_cell._decrease(main_left_cell)
-		main_left_cell.mutations = []
-	if not kill_old_2 : 
-		main_right_cell = decrease_old_cell._decrease(main_right_cell)
-		main_right_cell.mutations = []
-		
-	GLCellManagerBus.emit_signal(
-		"cell_breeded",
+	GLCellManagerBus.emit_signal("cell_breeded",
 		main_left_cell,
 		main_right_cell,
 		new_cell,
 		updated_boost_left_cell,
 		updated_boost_right_cell,
-		kill_old_1,
-		kill_old_2,
 	)
 
 

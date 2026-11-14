@@ -18,18 +18,16 @@ func _handle_cell_breeded(
 	_new_cell: BrainCell, # unused. cell char creates
 	boost_cell_1: BrainCell,
 	boost_cell_2: BrainCell,
-	kill_old_1: bool,
-	kill_old_2: bool
 ) -> void:
 	var cells_to_delete: Array[BrainCell] = []
 	var cells_to_update: Array[BrainCell] = []
 
-	if kill_old_1:
+	if old_cell_1._check_death() : 
 		cells_to_delete.append(old_cell_1)
 	else:
 		cells_to_update.append(old_cell_1)
-
-	if kill_old_2:
+		
+	if old_cell_2._check_death() : 
 		cells_to_delete.append(old_cell_2)
 	else:
 		cells_to_update.append(old_cell_2)

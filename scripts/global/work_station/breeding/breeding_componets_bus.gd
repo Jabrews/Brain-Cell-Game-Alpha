@@ -31,6 +31,11 @@ signal refresh_stat_display()
 # wanted cell panel flashing
 signal toggle_cell_picked_up(toggle_value : bool, cell_name : String)
 
+# simulation
+signal reset_ui_focus()
+signal simulation_ended()
+
+
 
 var breeding_ui_state: Dictionary[String, BrainCell] = {
 	'left_main' : null,

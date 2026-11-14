@@ -20,7 +20,7 @@ extends Node
 
 @onready var hidden_sprites : Array[Sprite2D] = [
 	$"../AttacherBars/Strength/HiddenSprite",
-	$"../AttacherBars/Intelligence/HiddenSprite", 
+	$"../AttacherBars/Intelligence/HiddenSprite",
 	$"../AttacherBars/Community/HiddenSprite"
 ]
 
@@ -60,9 +60,9 @@ func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, i
 		# display old cell stats
 		stat_parent.visible = true
 		
-		if new_stat.hidden : 
+		if new_stat.hidden :
 			hidden_sprite.visible = true
-		else : 
+		else :
 			hidden_sprite.visible = false
 
 		var max_value: float = IVCellCreator.max_stat_value

@@ -34,8 +34,8 @@ func _ready() -> void:
 func _handle_add_jar_item(_jar_item: JarItem) -> void:
 	display_info("item_added_to_jar")
 
-func _handle_hologram_show_result(success : bool) : 
-	if success : 
+func _handle_hologram_show_result(is_success : bool) : 
+	if is_success: 
 		display_info('success')
 	else : 
 		display_info('fail')

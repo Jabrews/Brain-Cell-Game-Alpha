@@ -99,6 +99,7 @@
 [ext_resource type="Script" uid="uid://47xp3r1p3is3" path="res://scripts/work_stations/station_components/cell_breeding/ui/interact_footer/interact_footer.gd" id="88_4118e"]
 [ext_resource type="Script" uid="uid://cyrgg7d2r0e5n" path="res://scripts/work_stations/station_components/cell_breeding/ui/interact_footer/back_btn.gd" id="91_8x2mq"]
 [ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="95_xf8x4"]
+[ext_resource type="PackedScene" uid="uid://p0kmkkwvfcyv" path="res://scenes/work_stations/station_components/cell_breeding/ui/simulate_stat_defect_increase.tscn" id="99_vwfuw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iu3ap"]
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
@@ -245,8 +246,6 @@ func _handle_cell_breeded(
 		new_cell : BrainCell,
 		_boost_left_cell, 
 		_boost_right_cell,
-		_kill_cell_1,
-		_kill_cell_2,
 	) : 
 		
 	create_cell_container_instance(new_cell)
@@ -2150,13 +2149,12 @@ offset_right = 72.0
 offset_bottom = 512.0
 
 [node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=352617208]
-visible = false
 layout_mode = 0
 offset_left = -16.0
 offset_top = -470.0
 offset_right = 304.0
 offset_bottom = -192.0
-color = Color(0, 0, 0, 0.7647059)
+color = Color(0, 0, 0, 0.8666667)
 
 [node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=640251323]
 texture_filter = 1
@@ -2462,7 +2460,7 @@ offset_left = -16.0
 offset_top = -470.0
 offset_right = 304.0
 offset_bottom = -192.0
-color = Color(0, 0, 0, 0.7647059)
+color = Color(0, 0, 0, 0.8666667)
 
 [node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=1093499463]
 texture_filter = 1
@@ -6231,6 +6229,10 @@ theme_override_font_sizes/font_size = 20
 text = "cell Breeder"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SimulateStatDefectIncrease" parent="BreedingUI" unique_id=136885255 instance=ExtResource("99_vwfuw")]
+visible = false
+layout_mode = 1
 
 [node name="BreedingParticle" type="Node3D" parent="." unique_id=1176477517]
 

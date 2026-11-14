@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dmoj2134jdcus" path="res://scripts/global/game_manager/cell_breeder/helpers/increase_cell_charge_helper.gd" id="5_ujhtg"]
 [ext_resource type="Script" uid="uid://bwx4vapm0mvo" path="res://scripts/global/game_manager/cell_breeder/helpers/reduced_cell_charge_helper.gd" id="6_6pqdc"]
 [ext_resource type="Script" uid="uid://c30frgp0m2v26" path="res://scripts/global/game_manager/cell_breeder/helpers/decrease_old_cell.gd" id="9_hjnoq"]
+[ext_resource type="Script" uid="uid://bxbtkvdukd01h" path="res://scripts/global/game_manager/cell_breeder/helpers/decrease_failed_cell.gd" id="9_rmw21"]
 
 [node name="CellBreeder" type="Node" unique_id=1798622159]
 script = ExtResource("1_78xhs")
@@ -32,3 +33,6 @@ script = ExtResource("6_6pqdc")
 
 [node name="DecreaseOldCell" type="Node" parent="." unique_id=1209528481]
 script = ExtResource("9_hjnoq")
+
+[node name="DecreaseFailedCell" type="Node" parent="." unique_id=1014111169]
+script = ExtResource("9_rmw21")

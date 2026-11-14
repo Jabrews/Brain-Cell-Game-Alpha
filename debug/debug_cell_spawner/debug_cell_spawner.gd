@@ -14,7 +14,7 @@ func _ready() -> void:
 		[],
 		BrainCellStat.new("strength", true, 100, 0, true),
 		BrainCellStat.new("intelligence", true, 100, 100, false),
-		BrainCellStat.new("community", true, 100, 275, false),
+		BrainCellStat.new("community", true, 100, 200, false),
 		2,
 		false,
 		false,
@@ -22,16 +22,16 @@ func _ready() -> void:
 	#
 	#
 		 ##Cell 1
-	#var cell_2: BrainCell = BrainCell.new(
-		#"cell_2",
-		#[],
-		#BrainCellStat.new("strength", true, 0, 200, false),
-		#BrainCellStat.new("intelligence", true, 75, 250, false),
-		#BrainCellStat.new("community", true, 150, 200, false),
-		#2,
-		#false,
-		#false,
-	#)
+	var cell_2: BrainCell = BrainCell.new(
+		"cell_2",
+		[],
+		BrainCellStat.new("strength", true, 60, 100, false),
+		BrainCellStat.new("intelligence", true, 75, 100, false),
+		BrainCellStat.new("community", true, 150, 100, false),
+		2,
+		false,
+		false,
+	)
 ##
 ##
 ##
@@ -132,7 +132,7 @@ func _ready() -> void:
 	#
 	#
 	cells.append(cell_1)
-	##cells.append(cell_2)
+	cells.append(cell_2)
 	#cells.append(cell_3)
 	##cells.append(cell_4)
 	##cells.append(cell_5)

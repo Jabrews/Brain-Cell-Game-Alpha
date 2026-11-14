@@ -771,7 +771,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Strength" parent="AttacherUI/StatMainView/Stats" unique_id=803002430 instance=ExtResource("9_etud5")]
-visible = false
 layout_mode = 1
 offset_left = 448.0
 offset_top = 24.0
@@ -779,7 +778,6 @@ offset_right = 448.0
 offset_bottom = 24.0
 
 [node name="Intelligence" parent="AttacherUI/StatMainView/Stats" unique_id=1685997172 instance=ExtResource("9_etud5")]
-visible = false
 layout_mode = 0
 offset_left = 448.0
 offset_top = 184.0
@@ -788,7 +786,6 @@ offset_bottom = 184.0
 stat_type = "intelligence"
 
 [node name="Community" parent="AttacherUI/StatMainView/Stats" unique_id=614629783 instance=ExtResource("9_etud5")]
-visible = false
 layout_mode = 0
 offset_left = 448.0
 offset_top = 352.0
@@ -1627,10 +1624,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SimulateStatDefectIncrease" parent="AttacherUI" unique_id=850044189 instance=ExtResource("29_blnlb")]
-visible = false
 layout_mode = 0
-offset_top = 7.0
-offset_bottom = 7.0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 1.0
+offset_bottom = 5.0
 
 [editable path="AttacherUI/StatMainView/Stats/Community"]
 [editable path="AttacherUI/StatMainView/AttacherBox"]
