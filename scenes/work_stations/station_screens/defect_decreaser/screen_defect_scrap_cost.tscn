@@ -1,0 +1,159 @@
+[gd_scene format=3 uid="uid://ckulavxw02oef"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ycbqa"]
+[ext_resource type="Texture2D" uid="uid://brg3s5lav3s1h" path="res://models/workstations/defect_scraps_ui/defect_scrap_icon.png" id="2_k68at"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_srcxh"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="4_sn3tc"]
+[ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="5_00edc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srcxh"]
+shader = ExtResource("1_ycbqa")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sn3tc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4i14"]
+shader = ExtResource("5_00edc")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00edc"]
+shader = ExtResource("5_00edc")
+shader_parameter/low_opacity = 0.2
+shader_parameter/high_opacity = 1.0
+shader_parameter/blink_speed = 1.0
+
+[node name="ScreenDefectScrapCost" type="Control" unique_id=1633584348]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Bg" type="ColorRect" parent="." unique_id=736738728]
+layout_mode = 0
+offset_right = 352.0
+offset_bottom = 256.0
+color = Color(0.085573874, 3.4593977e-08, 6.016344e-09, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1417959230]
+material = SubResource("ShaderMaterial_srcxh")
+layout_mode = 0
+offset_top = -1.0
+offset_right = 352.0
+offset_bottom = 256.0
+
+[node name="Cost" type="Control" parent="." unique_id=1385251116]
+visible = false
+anchors_preset = 0
+offset_left = -48.0
+offset_top = 24.0
+offset_right = -8.0
+offset_bottom = 64.0
+
+[node name="Bg" type="ColorRect" parent="Cost" unique_id=1049496175]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 352.0
+offset_bottom = 80.0
+color = Color(0.15912643, 1.662015e-07, 6.617978e-08, 1)
+
+[node name="Bg2" type="ColorRect" parent="Cost" unique_id=140010808]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 80.0
+offset_right = 352.0
+offset_bottom = 160.0
+color = Color(0.20861596, 9.214783e-05, 5.0453058e-05, 1)
+
+[node name="HeaderLabel" type="Label" parent="Cost" unique_id=459600804]
+texture_filter = 1
+layout_mode = 0
+offset_left = 109.0
+offset_top = 14.0
+offset_right = 349.0
+offset_bottom = 74.0
+theme_override_fonts/font = ExtResource("2_srcxh")
+theme_override_font_sizes/font_size = 60
+text = "Cost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefectScrapSprite" type="Sprite2D" parent="Cost" unique_id=1732019064]
+texture_filter = 1
+position = Vector2(273, 116.00001)
+scale = Vector2(1.8500003, 1.775)
+texture = ExtResource("2_k68at")
+
+[node name="CostLabel" type="Label" parent="Cost" unique_id=1972442820]
+texture_filter = 1
+layout_mode = 0
+offset_left = 144.0
+offset_top = 73.0
+offset_right = 238.0
+offset_bottom = 163.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_sn3tc")
+theme_override_font_sizes/font_size = 80
+text = "-10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PerStatCostParent" type="Control" parent="Cost" unique_id=986312145]
+material = SubResource("ShaderMaterial_sn3tc")
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FlavorLabel" type="Label" parent="Cost/PerStatCostParent" unique_id=1157629895]
+texture_filter = 1
+material = SubResource("ShaderMaterial_y4i14")
+layout_mode = 0
+offset_left = 96.0
+offset_top = 160.0
+offset_right = 352.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_sn3tc")
+theme_override_font_sizes/font_size = 30
+text = "5 scraps per stat"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PerStatCostLabel" type="Label" parent="Cost/PerStatCostParent" unique_id=844310330]
+texture_filter = 1
+material = SubResource("ShaderMaterial_y4i14")
+layout_mode = 0
+offset_left = 121.0
+offset_top = 160.0
+offset_right = 133.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_sn3tc")
+theme_override_font_sizes/font_size = 30
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NoDefectToDecrease" type="Control" parent="." unique_id=576254405]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="NoDefectToDecrease" unique_id=1250460930]
+texture_filter = 1
+material = SubResource("ShaderMaterial_00edc")
+layout_mode = 0
+offset_left = 6.0
+offset_right = 358.0
+offset_bottom = 256.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -14
+theme_override_fonts/font = ExtResource("4_sn3tc")
+theme_override_font_sizes/font_size = 80
+text = "No Defect
+Detected"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://n8bje52ey4ot"]
 
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_kcafu"]
-[ext_resource type="PackedScene" uid="uid://bynmqk2gx28br" path="res://scenes/work_stations/station_screens/detacher/failure_chance/screen_failure_chance.tscn" id="2_hr54e"]
-[ext_resource type="Script" uid="uid://druhck52r42r1" path="res://scripts/work_stations/station_components/detacher/btns/confirm_btn.gd" id="3_tngbe"]
+[ext_resource type="Script" uid="uid://c7iddi6c283jj" path="res://scripts/work_stations/station_components/defect_decreaser/station_defect_decreaser.gd" id="1_pd8dd"]
+[ext_resource type="PackedScene" uid="uid://bc27s7lcuhqrb" path="res://scenes/work_stations/station_screens/defect_decreaser/screen_defect_decreaser.tscn" id="2_tngbe"]
+[ext_resource type="PackedScene" uid="uid://ckulavxw02oef" path="res://scenes/work_stations/station_screens/defect_decreaser/screen_defect_scrap_cost.tscn" id="3_pd8dd"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_pd8dd"]
 [ext_resource type="PackedScene" uid="uid://dektktp2bec4g" path="res://scenes/hoverable_mesh_scenes/deatcher_confirm_btn.tscn" id="5_u0adj"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_fb2y5"]
+[ext_resource type="Script" uid="uid://djcf5eawwu15k" path="res://scripts/work_stations/station_components/defect_decreaser/load_cell_panel.gd" id="8_u0adj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j1581"]
 size = Vector3(1.3, 1.4239258, 1.0539062)
@@ -90,6 +92,9 @@ height = 0.07
 radius = 0.1
 
 [node name="StationDefectDecreaser" type="Node3D" unique_id=1755230454]
+script = ExtResource("1_pd8dd")
+
+[node name="Logic" type="Node" parent="." unique_id=431363541]
 
 [node name="DefectDecreaserTV" type="Node3D" parent="." unique_id=1019778884]
 
@@ -113,36 +118,36 @@ script = ExtResource("1_kcafu")
 [node name="SubViewport" type="SubViewport" parent="DefectDecreaserTV/TvFrontPannel" unique_id=1854176973]
 disable_3d = true
 canvas_item_default_texture_filter = 0
-size = Vector2i(384, 384)
+size = Vector2i(448, 449)
 
-[node name="ScreenFailureChance" parent="DefectDecreaserTV/TvFrontPannel/SubViewport" unique_id=2043401613 instance=ExtResource("2_hr54e")]
+[node name="ScreenDefectDecreaser" parent="DefectDecreaserTV/TvFrontPannel/SubViewport" unique_id=12213183 instance=ExtResource("2_tngbe")]
 
-[node name="DefectScrapNeededTV" type="Node3D" parent="." unique_id=2146895958]
+[node name="DefectScrapCostTV" type="Node3D" parent="." unique_id=2146895958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4302598, 0)
 
-[node name="TVBody" type="StaticBody3D" parent="DefectScrapNeededTV" unique_id=1977600910]
+[node name="TVBody" type="StaticBody3D" parent="DefectScrapCostTV" unique_id=1977600910]
 collision_layer = 2
 collision_mask = 0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="DefectScrapNeededTV/TVBody" unique_id=873081351]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DefectScrapCostTV/TVBody" unique_id=873081351]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42128527, 0.004724115)
 mesh = SubResource("BoxMesh_tngbe")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="DefectScrapNeededTV/TVBody" unique_id=28529889]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DefectScrapCostTV/TVBody" unique_id=28529889]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.47392577)
 shape = SubResource("BoxShape3D_pd8dd")
 
-[node name="TvFrontPannel" type="MeshInstance3D" parent="DefectScrapNeededTV" unique_id=2024095496]
+[node name="TvFrontPannel" type="MeshInstance3D" parent="DefectScrapCostTV" unique_id=2024095496]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, -0.4205569, 0.047646344)
 mesh = SubResource("PlaneMesh_u0adj")
 script = ExtResource("1_kcafu")
 
-[node name="SubViewport" type="SubViewport" parent="DefectScrapNeededTV/TvFrontPannel" unique_id=863189054]
+[node name="SubViewport" type="SubViewport" parent="DefectScrapCostTV/TvFrontPannel" unique_id=863189054]
 disable_3d = true
 canvas_item_default_texture_filter = 0
-size = Vector2i(384, 384)
+size = Vector2i(352, 256)
 
-[node name="ScreenFailureChance" parent="DefectScrapNeededTV/TvFrontPannel/SubViewport" unique_id=1519344412 instance=ExtResource("2_hr54e")]
+[node name="ScreenDefectScrapCost" parent="DefectScrapCostTV/TvFrontPannel/SubViewport" unique_id=68112384 instance=ExtResource("3_pd8dd")]
 
 [node name="ButtonInterface" type="Node3D" parent="." unique_id=1724493675]
 transform = Transform3D(-4.371139e-08, 0, 1, -0.6427876, 0.76604444, -2.8097137e-08, -0.76604444, -0.6427876, -3.3484866e-08, -0.2, -1.2610612, -0.4672045)
@@ -164,7 +169,6 @@ shape = SubResource("BoxShape3D_kfv87")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9271703, 0.021170422, 0.29110897)
 collision_layer = 0
 collision_mask = 32
-script = ExtResource("3_tngbe")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/ConfirmBtn" unique_id=2064997795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06733376, -0.00399781, 0)
@@ -216,6 +220,7 @@ shape = SubResource("BoxShape3D_u0adj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10116026, 0)
 collision_layer = 0
 collision_mask = 4
+script = ExtResource("8_u0adj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LoadCellPanel/Panel" unique_id=288261994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0010910034, -0.17878452, 0.007598877)

@@ -454,8 +454,7 @@ offset_bottom = 568.0
 theme_override_constants/line_spacing = 20
 theme_override_fonts/font = ExtResource("2_slyes")
 theme_override_font_sizes/font_size = 40
-text = "Detacher
-Disabled"
+text = "Disabled"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,0 +1,337 @@
+[gd_scene format=3 uid="uid://bc27s7lcuhqrb"]
+
+[ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_alleo"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_eu7ex"]
+[ext_resource type="Texture2D" uid="uid://x8n84vfev8i4" path="res://models/workstations/defect_decreaser/bar.png" id="3_05n4q"]
+[ext_resource type="Shader" uid="uid://blbfcy5k2khe0" path="res://scripts/work_stations/station_screens/defect_decreaser/defect_decreaser/shaders/clean_stat_bar.gdshader" id="3_gfi1d"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="3_ggler"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="4_05n4q"]
+[ext_resource type="Shader" uid="uid://bh7x3pdkvtrkk" path="res://scripts/work_stations/station_screens/defect_decreaser/defect_decreaser/shaders/defect_stat_bar.gdshader" id="5_7sobt"]
+[ext_resource type="Texture2D" uid="uid://dmalqu1h0d5vu" path="res://models/workstations/defect_decreaser/hint_1.png" id="9_8j7q2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t678s"]
+shader = ExtResource("1_alleo")
+shader_parameter/line_opacity = 0.12
+shader_parameter/line_thickness = 1.0
+shader_parameter/line_spacing = 4.0
+shader_parameter/scroll_speed = 0.2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_05n4q"]
+shader = ExtResource("3_gfi1d")
+shader_parameter/progress = 0.4510000214225
+shader_parameter/fill_color = Color(1, 1, 0.07034409, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7sobt"]
+shader = ExtResource("5_7sobt")
+shader_parameter/progress = 1.0
+shader_parameter/new_value = 0.7790000370025
+shader_parameter/fill_color = Color(1, 0, 0, 1)
+shader_parameter/hologram_color = Color(0.8, 1, 0.25, 1)
+shader_parameter/hologram_opacity = 1.0
+shader_parameter/noise_strength = 0.3
+shader_parameter/scanline_density = 10.0
+shader_parameter/animation_speed = 0.6000000285
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gfi1d"]
+shader = ExtResource("3_ggler")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("4_05n4q")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7sobt"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[node name="ScreenDefectDecreaser" type="Control" unique_id=12213183]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Bg" type="ColorRect" parent="." unique_id=972472931]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 448.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="ScanLines" type="ColorRect" parent="." unique_id=1882433635]
+material = SubResource("ShaderMaterial_t678s")
+layout_mode = 0
+offset_top = -1.0
+offset_right = 448.0
+offset_bottom = 448.0
+
+[node name="Stats" type="Control" parent="." unique_id=361825593]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Strength" type="Control" parent="Stats" unique_id=1847085048]
+anchors_preset = 0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 48.0
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Strength" unique_id=599638876]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 208.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 22
+text = "Str."
+vertical_alignment = 1
+
+[node name="CleanBar" type="TextureRect" parent="Stats/Strength" unique_id=968135813]
+material = SubResource("ShaderMaterial_05n4q")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 80.0
+texture = ExtResource("3_05n4q")
+
+[node name="DefectBar" type="TextureRect" parent="Stats/Strength" unique_id=958380533]
+material = SubResource("ShaderMaterial_7sobt")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 416.0
+offset_bottom = 112.0
+texture = ExtResource("3_05n4q")
+
+[node name="HiddenSprite" type="Sprite2D" parent="Stats/Strength" unique_id=617144697]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_gfi1d")
+position = Vector2(223.99998, 80)
+scale = Vector2(1.2190475, 1.6)
+texture = SubResource("CompressedTexture2D_7sobt")
+
+[node name="Disabled" type="Control" parent="Stats/Strength" unique_id=1919117655]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Stats/Strength/Disabled" unique_id=2005190613]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 112.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="OffLabel" type="Label" parent="Stats/Strength/Disabled" unique_id=160039325]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 24
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="Stats" unique_id=381139292]
+anchors_preset = 0
+offset_top = 152.0
+offset_right = 40.0
+offset_bottom = 192.0
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Intelligence" unique_id=148148237]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 208.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 22
+text = "Int."
+vertical_alignment = 1
+
+[node name="CleanBar" type="TextureRect" parent="Stats/Intelligence" unique_id=646605889]
+material = SubResource("ShaderMaterial_05n4q")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 80.0
+texture = ExtResource("3_05n4q")
+
+[node name="DefectBar" type="TextureRect" parent="Stats/Intelligence" unique_id=232559499]
+material = SubResource("ShaderMaterial_7sobt")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 416.0
+offset_bottom = 112.0
+texture = ExtResource("3_05n4q")
+
+[node name="HiddenSprite" type="Sprite2D" parent="Stats/Intelligence" unique_id=1078941994]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_gfi1d")
+position = Vector2(223.99998, 80)
+scale = Vector2(1.2190475, 1.6)
+texture = SubResource("CompressedTexture2D_7sobt")
+
+[node name="Disabled" type="Control" parent="Stats/Intelligence" unique_id=1839299567]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Stats/Intelligence/Disabled" unique_id=1244693718]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 112.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="OffLabel" type="Label" parent="Stats/Intelligence/Disabled" unique_id=2138144259]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 24
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="Stats" unique_id=650826481]
+anchors_preset = 0
+offset_top = 304.0
+offset_right = 40.0
+offset_bottom = 344.0
+
+[node name="StatTypeLabel" type="Label" parent="Stats/Community" unique_id=30675302]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 208.0
+offset_bottom = 46.0
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 22
+text = "Com."
+vertical_alignment = 1
+
+[node name="CleanBar" type="TextureRect" parent="Stats/Community" unique_id=1435913725]
+material = SubResource("ShaderMaterial_05n4q")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 80.0
+texture = ExtResource("3_05n4q")
+
+[node name="DefectBar" type="TextureRect" parent="Stats/Community" unique_id=379978610]
+material = SubResource("ShaderMaterial_7sobt")
+layout_mode = 0
+offset_left = 32.0
+offset_top = 80.0
+offset_right = 416.0
+offset_bottom = 112.0
+texture = ExtResource("3_05n4q")
+
+[node name="HiddenSprite" type="Sprite2D" parent="Stats/Community" unique_id=287486799]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_gfi1d")
+position = Vector2(223.99998, 80)
+scale = Vector2(1.2190475, 1.6)
+texture = SubResource("CompressedTexture2D_7sobt")
+
+[node name="Disabled" type="Control" parent="Stats/Community" unique_id=35796954]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Stats/Community/Disabled" unique_id=1894077113]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 112.0
+color = Color(0.16206557, 0.1620656, 0.16206557, 1)
+
+[node name="OffLabel" type="Label" parent="Stats/Community/Disabled" unique_id=929545682]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 48.0
+offset_right = 416.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 24
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlaceCell" type="Control" parent="." unique_id=1294385455]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StationLabel" type="Label" parent="PlaceCell" unique_id=254855522]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_right = 455.0
+offset_bottom = 200.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 40
+text = "Defect
+Decreaser"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Sprite2D" parent="PlaceCell" unique_id=125753724]
+texture_filter = 1
+position = Vector2(224, 288)
+scale = Vector2(4.264706, 4.2647057)
+texture = ExtResource("9_8j7q2")
+
+[node name="Disabled" type="Control" parent="." unique_id=1390333959]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="Disabled" unique_id=2007666943]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 448.0
+color = Color(0, 0, 0, 1)
+
+[node name="HeaderLabel" type="Label" parent="Disabled" unique_id=112240107]
+texture_filter = 1
+layout_mode = 0
+offset_top = 8.0
+offset_right = 447.0
+offset_bottom = 448.0
+theme_override_constants/line_spacing = 20
+theme_override_fonts/font = ExtResource("2_eu7ex")
+theme_override_font_sizes/font_size = 40
+text = "Disabled"
+horizontal_alignment = 1
+vertical_alignment = 1
