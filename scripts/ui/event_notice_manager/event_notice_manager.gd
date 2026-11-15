@@ -53,6 +53,7 @@ func _create_event_notice(event_notice: EventNotice) -> void:
 
 	valid_spot.spot_is_occupied = true
 	valid_spot.add_child(event_instance)
+	event_instance._start(event_notice.data)
 
 	event_instance.position = Vector2.ZERO
 

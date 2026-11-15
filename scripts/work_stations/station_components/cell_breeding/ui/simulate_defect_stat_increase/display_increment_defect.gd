@@ -125,8 +125,8 @@ func _display(
 
 	increment_stat_timer.wait_time = maxf(increment_interval, 0.001)
 
-	GLAttacherComponentBus.emit_signal(
-		"play_sound",
+	GLBreedingComponetsBus.emit_signal(
+		"breeder_play_sound",
 		"loop_beep_start"
 	)
 
@@ -241,8 +241,8 @@ func _begin_finish() -> void:
 
 	finishing = true
 
-	GLAttacherComponentBus.emit_signal(
-		"play_sound",
+	GLBreedingComponetsBus.emit_signal(
+		"breeder_play_sound",
 		"loop_beep_stop"
 	)
 
@@ -267,8 +267,8 @@ func _display_burst(side: String, index: int) -> void:
 	burst_imminent_label.visible = false
 
 	# Play warning sound
-	GLAttacherComponentBus.emit_signal(
-		"play_sound",
+	GLBreedingComponetsBus.emit_signal(
+		"breeder_play_sound",
 		"burst_warning_hidden_stat"
 	)
 
@@ -294,8 +294,8 @@ func _display_burst(side: String, index: int) -> void:
 	# Play bug sound
 	flesh_tween.tween_callback(
 		func():
-			GLAttacherComponentBus.emit_signal(
-				"play_sound",
+			GLBreedingComponetsBus.emit_signal(
+				"breeder_play_sound",
 				"burst_warning_bug"
 			)
 	)

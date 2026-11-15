@@ -71,10 +71,14 @@ func state_start() :
 
 func create_flesh_slug():
 	
+	var cell_name : String = cell_container_parent.designated_brain_cell.name
 	
 	# prevent spawining flesh slug if dying on breeder
 	if not cell_container_parent.spawn_flesh_bug_on_death  :
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('cell_death_event', '', {'spawn_flesh_bug' : false, 'cell_name' : cell_name}, 0.5))		
 		return
+		
+	GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('cell_death_event', '', {'spawn_flesh_bug' : true, 'cell_name' : cell_name}, 0.5))		
 	
 	
 	var flesh_slug = flesh_slug_instance.instantiate()
@@ -82,3 +86,4 @@ func create_flesh_slug():
 	flesh_bug_parent_node.add_child(flesh_slug)
 
 	flesh_slug.global_position = cell_container_parent.global_position
+	

@@ -78,13 +78,13 @@ metallic_specular = 0.0
 material = SubResource("StandardMaterial3D_5ewaq")
 size = Vector3(0.8922119, 1.4571533, 0.036132813)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_7w0js"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_37ex4"]
 viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d5kxe"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_7w0js")
+albedo_texture = SubResource("ViewportTexture_37ex4")
 texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c1c4q"]
@@ -96,8 +96,17 @@ orientation = 0
 material = SubResource("StandardMaterial3D_5ewaq")
 size = Vector3(0.7546692, 0.71920776, 0.036132813)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_7w0js"]
+viewport_path = NodePath("PrisonerCreateLimitTv/TvFrontPannel/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7l0w8"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_7w0js")
+texture_filter = 0
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_71mwu"]
-material = SubResource("StandardMaterial3D_d5kxe")
+material = SubResource("StandardMaterial3D_7l0w8")
 size = Vector2(0.7, 0.67)
 orientation = 0
 
@@ -264,7 +273,7 @@ spot_attenuation = 1.73
 spot_angle = 28.55
 
 [node name="DeatcherTV" type="Node3D" parent="." unique_id=609359801]
-transform = Transform3D(-0.3522974, 0, 0.9358881, 0, 1, 0, -0.9358881, 0, -0.3522974, 4.255922, -0.80792075, 1.5554079)
+transform = Transform3D(-0.7025331, 0, 0.71165097, 0, 1, 0, -0.71165097, 0, -0.7025331, 5.266672, -0.80792075, -0.6268474)
 
 [node name="TVPole" type="StaticBody3D" parent="DeatcherTV" unique_id=1609119061]
 transform = Transform3D(0.8892358, 0, -0.45744914, 0, 1, 0, 0.45744914, 0, 0.8892358, 4.250383, 1.4829161, -3.3807898)
@@ -296,7 +305,7 @@ size = Vector2i(448, 576)
 [node name="ScreenDetacher" parent="DeatcherTV/TvFrontPannel/SubViewport" unique_id=1915142973 instance=ExtResource("2_t6gb7")]
 
 [node name="FailureChanceTV" type="Node3D" parent="." unique_id=806201168]
-transform = Transform3D(-0.3522974, 0, 0.9358881, 0, 1, 0, -0.9358881, 0, -0.3522974, 3.9310036, -0.82112694, 0.70937186)
+transform = Transform3D(-0.7025331, 0, 0.71165097, 0, 1, 0, -0.71165097, 0, -0.7025331, 4.6257014, -0.82112694, -1.2675537)
 
 [node name="TVBack" type="MeshInstance3D" parent="FailureChanceTV" unique_id=1813614166]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.19497, 1.8367782, -3.4543881)

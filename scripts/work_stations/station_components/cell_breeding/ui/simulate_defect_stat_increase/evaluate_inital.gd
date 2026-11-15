@@ -48,6 +48,10 @@ extends Node
 @onready var l_failed_parent : Control = $"../FailedParents/FailedParentLeft"
 @onready var r_failed_parent : Control = $"../FailedParents/FailedParentRight"
 
+# cell name labels
+@onready var l_cell_name_label : Label = $"../BreederBars/Left/CellNameLabel"
+@onready var r_cell_name_label : Label = $"../BreederBars/Right/CellNameLabel"
+
 
 var stats: Array[String] = [
 	"strength",
@@ -75,6 +79,9 @@ func _evaluate(
 	
 	l_failed_parent.visible = new_left_failure
 	r_failed_parent.visible = new_right_failure 
+	
+	l_cell_name_label.text = new_main_left_cell.name
+	r_cell_name_label.text = new_main_right_cell.name
 	
 
 	var l_defect_amount_to_increase: Dictionary[String, int] = {

@@ -2,9 +2,9 @@
 extends Node
 
 # visual components
-@onready var defect_bars: Array[TextureProgressBar] = [
-	$"../AttacherBars/Strength/DefectBar",
-	$"../AttacherBars/Intelligence/DefectBar",
+@onready var defect_bars: Array[Sprite2D] = [
+	$"../AttacherBars/Strength/DefectBar", 
+	$"../AttacherBars/Intelligence/DefectBar", 
 	$"../AttacherBars/Community/DefectBar"
 ]
 
@@ -99,11 +99,26 @@ func _handle_increment_stat_timeout() -> void:
 		if remaining <= 0:
 			continue
 
-		var defect_bar: TextureProgressBar = defect_bars[index]
 
-		# Increase defect by 1
-		var next_value: float = defect_bar.value + 1.0
-		defect_bar.value = next_value
+		var defect_bar: Sprite2D = defect_bars[index]
+		var material: ShaderMaterial = defect_bar.material as ShaderMaterial
+		var max_value: float = float(IVCellCreator.max_stat_value)
+
+		# Read current prior defect
+		var prior_value: float = float(
+			material.get_shader_parameter("prior_defect_value")
+		) * max_value
+
+		# Increase prior defect by 1
+		var next_value: float = minf(
+			prior_value + 1.0,
+			max_value
+		)
+
+		material.set_shader_parameter(
+			"prior_defect_value",
+			next_value / max_value
+		)
 
 		remaining_increases[stat_type] = remaining - 1
 

@@ -12,9 +12,9 @@ extends Node
 	$"../AttacherBars/Community/CleanBar"
 ]
 
-@onready var defect_bars: Array[TextureProgressBar] = [
-	$"../AttacherBars/Strength/DefectBar",
-	$"../AttacherBars/Intelligence/DefectBar",
+@onready var defect_bars: Array[Sprite2D] = [
+	$"../AttacherBars/Strength/DefectBar", 
+	$"../AttacherBars/Intelligence/DefectBar", 
 	$"../AttacherBars/Community/DefectBar"
 ]
 
@@ -25,6 +25,11 @@ extends Node
 ]
 
 var stats: Array[String] = ['strength', 'intelligence', 'community']
+
+func _ready() -> void:
+	for defect_bar in defect_bars : 
+		defect_bar.material = defect_bar.material.duplicate()
+		
 
 
 func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, int]:
@@ -45,7 +50,7 @@ func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, i
 		# get components
 		var stat_parent: Control = stat_parents[curr_index]
 		var clean_bar: TextureProgressBar = clean_bars[curr_index]
-		var defect_bar: TextureProgressBar = defect_bars[curr_index]
+		var defect_bar: Sprite2D = defect_bars[curr_index]
 		var hidden_sprite : Sprite2D = hidden_sprites[curr_index]
 
 		# calculate defect difference
@@ -67,11 +72,21 @@ func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, i
 
 		var max_value: float = IVCellCreator.max_stat_value
 
+		# set clean bar value
 		clean_bar.max_value = max_value
-		defect_bar.max_value = max_value
-
 		clean_bar.value = old_stat.value
-		defect_bar.value = old_stat.defect
+		# set defect bar valie
+		
+		defect_bar.material.set_shader_parameter(
+			"prior_defect_value",
+			old_stat.defect / max_value
+		)
+		
+		defect_bar.material.set_shader_parameter(
+			"new_defect_value",
+			new_stat.defect / max_value
+		)
+			
 
 		# Store amount to animate
 		defect_amount_to_increase[stat_type] = defect_increase

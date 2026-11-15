@@ -13,6 +13,8 @@ func _start(
 	new_right_failure: bool,
 ) -> void:
 
+	GLBreedingComponetsBus.emit_signal('breeder_play_sound', 'confirm_failed')
+
 	# Mouse stuff
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	Input.warp_mouse(Vector2(viewport_size.x - 1, 1))

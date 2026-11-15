@@ -10,13 +10,18 @@ extends Node
 @onready var progress_dial: TextureRect = $ProgressDial
 @onready var increment_progress_timer: Timer = $IncrementProgress
 @onready var whoosh_sound : AudioStreamPlayer2D = $WhooshSound
+# cell death event
+@onready var parent_spawned_flesh_bug : Control = $SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug
+@onready var parent_default_death : Control = $SpecialBodyStyles/CellDeathEvent/DefaultDeath
+@onready var bug_death_event_label : Label = $SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug/BugDeathEventLabel
+@onready var default_death_event_label : Label = $SpecialBodyStyles/CellDeathEvent/DefaultDeath/DefaultDeathEventLabel
 
 var designated_event_notice: EventNotice
 
 var is_finishing: bool = false
 
 
-func _ready() -> void:
+func _start(data : Dictionary) -> void : 
 	
 	#GLGameManagerBus.connect('process_next_round', _handle_next_round)	
 	
@@ -29,7 +34,21 @@ func _ready() -> void:
 	load_style._load(event_type)
 
 	header_label.text = get_header_text_from_type(event_type)
-	body_label.text = designated_event_notice.event_body_text
+	
+	## death event body (custom)
+	if event_type == 'cell_death_event' : 
+		
+		body_label.visible = false
+		
+		if data['spawn_flesh_bug'] == true: 
+			parent_spawned_flesh_bug.visible = true
+			bug_death_event_label.text = data['cell_name'] + ",\nhas died"
+		else : 
+			parent_default_death.visible = true
+			default_death_event_label.text = 'Cell Container, ' + data['cell_name'] + "\nHas Died"
+	## default body text
+	else : 
+		body_label.text = designated_event_notice.event_body_text
 
 	increment_progress_timer.timeout.connect(
 		_handle_increment_progress_timer_timeout
@@ -55,12 +74,16 @@ func get_header_text_from_type(event_type: String) -> String:
 
 		"mutation_event":
 			return "Mutation Event\nDetected"
-
+		
 		"age_warning":
 			return "Cell Lifespan\nWarning"
 		
 		'turn_warning': 
 			return "DANGER Turn\nWarning"
+		
+		'cell_death_event' : 
+			return "ALERT CELL DEATH"
+		
 
 		"default":
 			return "New Event\nDetected"
@@ -85,6 +108,9 @@ func get_wait_time_from_type(event_type : String) -> float:
 			return 0.5
 		
 		"turn_warning" : 
+			return 1.0
+		
+		'cell_death_event' : 
 			return 1.0
 
 		"default":
