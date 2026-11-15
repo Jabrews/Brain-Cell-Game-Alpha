@@ -73,6 +73,7 @@
 [ext_resource type="Script" uid="uid://dntte7wtrvdy3" path="res://scripts/ceiling_fan/ceiling_fan_manager.gd" id="59_ms0m2"]
 [ext_resource type="Script" uid="uid://8f64c6pk6gue" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_workstations_core.gd" id="59_u13vf"]
 [ext_resource type="PackedScene" uid="uid://dmms6n7t5qxwv" path="res://scenes/cell_transfer_box/cell_transfer_box.tscn" id="60_lp30k"]
+[ext_resource type="Script" uid="uid://b3o6fmp6rr1y2" path="res://scripts/game_manager/incremental_value_controller/helpers/iv_helper_defect_decreaser.gd" id="63_o2eno"]
 [ext_resource type="Script" uid="uid://nb3vghviy4u6" path="res://debug/debug_cell_spawner/debug_cell_spawner.gd" id="66_y36b7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k57ag"]
@@ -1320,6 +1321,9 @@ script = ExtResource("49_dixnm")
 
 [node name="IVHelperWorkstationsCore" type="Node" parent="GameManager/IncrementalValueController" unique_id=559464259]
 script = ExtResource("59_u13vf")
+
+[node name="IVHelperDefectDecreaser" type="Node" parent="GameManager/IncrementalValueController" unique_id=1389265987]
+script = ExtResource("63_o2eno")
 
 [node name="ProfilerSpareSymbolGenerator" type="Node" parent="GameManager" unique_id=1523404149]
 script = ExtResource("37_1l4rw")

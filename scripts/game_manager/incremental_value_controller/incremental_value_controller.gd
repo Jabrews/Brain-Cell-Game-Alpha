@@ -13,6 +13,7 @@ var last_threshold_piece_index : int = 0
 @onready var iv_helper_defect_event : Node = $IVHelperDefectEvent
 @onready var iv_helper_creation_methods : Node = $IVHelperCreationMethods
 @onready var iv_helper_workstations_core : Node = $IVHelperWorkstationsCore
+@onready var iv_helper_defect_decreaser : Node = $IVHelperDefectDecreaser
 
 
 func _ready() -> void:
@@ -83,9 +84,6 @@ func handle_round(round : int):
 			IVShareholderOffers.first_item_offer_energy_percant= 80
 			IVShareholderOffers.second_item_offer_energy_percant= 45
 			## PRISONER PROFILER ##
-
-			## DEFECT DECREASER ##
-			IVCellDefectDecreaser.station_enabled = false
 			## CELL TRASHCAN ##
 			IVCellTrashcan.max_capaicty = 9
 			
@@ -111,5 +109,6 @@ func handle_threshold_piece(round : int) :
 	iv_helper_defect_event._update_defect_events(round, active_goal_piece_index)
 	iv_helper_creation_methods._update_creation_methods(round, active_goal_piece_index)
 	iv_helper_workstations_core._update_workstations_core(round, active_goal_piece_index)
+	iv_helper_defect_decreaser._update_defect_decreaser(round, active_goal_piece_index)
 	
 	

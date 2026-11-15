@@ -23,6 +23,8 @@ func update_workstations_core(round: int, goal_piece: int) -> void:
 				# detacher
 				GLWorkstationBus.detacher_enabled = true 
 				GLWorkstationBus.detacher_failure_enabled = true 
+				# defect decreaser
+				GLWorkstationBus.defect_decreaser_enabled = true
 			2 : 
 				# breeder
 				GLWorkstationBus.breeder_enabled = true 
@@ -32,3 +34,5 @@ func update_workstations_core(round: int, goal_piece: int) -> void:
 				# detacher
 				GLWorkstationBus.detacher_enabled = true
 				GLWorkstationBus.detacher_failure_enabled = true
+				# defect decreaser
+				GLWorkstationBus.defect_decreaser_enabled= true

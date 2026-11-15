@@ -1,8 +1,7 @@
 extends Area3D
 
 # components
-@onready var station_defect_decreaser : Node3D = $"."
-
+@onready var station_defect_decreaser : Node3D = $"../.."
 
 func _ready() -> void:
 	connect('body_entered', _handle_body_entered)

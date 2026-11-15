@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://ckulavxw02oef"]
 
+[ext_resource type="Script" uid="uid://dhcqp1nj64a5" path="res://scripts/work_stations/station_screens/defect_decreaser/defect_scrap_cost/screen_defect_scrap_cost.gd" id="1_y4i14"]
 [ext_resource type="Shader" uid="uid://ue2roqi7o4v0" path="res://scripts/shaders/scan_lines.gdshader" id="1_ycbqa"]
 [ext_resource type="Texture2D" uid="uid://brg3s5lav3s1h" path="res://models/workstations/defect_scraps_ui/defect_scrap_icon.png" id="2_k68at"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="2_srcxh"]
@@ -13,29 +14,28 @@ shader_parameter/line_thickness = 1.0
 shader_parameter/line_spacing = 4.0
 shader_parameter/scroll_speed = 0.2
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sn3tc"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y4i14"]
 shader = ExtResource("5_00edc")
 shader_parameter/low_opacity = 0.2
 shader_parameter/high_opacity = 1.0
 shader_parameter/blink_speed = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_00edc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ryujl"]
 shader = ExtResource("5_00edc")
 shader_parameter/low_opacity = 0.2
 shader_parameter/high_opacity = 1.0
-shader_parameter/blink_speed = 1.0
+shader_parameter/blink_speed = 2.12500009767762
 
 [node name="ScreenDefectScrapCost" type="Control" unique_id=1633584348]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_y4i14")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=736738728]
 layout_mode = 0
 offset_right = 352.0
 offset_bottom = 256.0
-color = Color(0.085573874, 3.4593977e-08, 6.016344e-09, 1)
+color = Color(0.32156864, 0, 0, 1)
 
 [node name="ScanLines" type="ColorRect" parent="." unique_id=1417959230]
 material = SubResource("ShaderMaterial_srcxh")
@@ -45,7 +45,6 @@ offset_right = 352.0
 offset_bottom = 256.0
 
 [node name="Cost" type="Control" parent="." unique_id=1385251116]
-visible = false
 anchors_preset = 0
 offset_left = -48.0
 offset_top = 24.0
@@ -100,13 +99,7 @@ text = "-10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PerStatCostParent" type="Control" parent="Cost" unique_id=986312145]
-material = SubResource("ShaderMaterial_sn3tc")
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="FlavorLabel" type="Label" parent="Cost/PerStatCostParent" unique_id=1157629895]
+[node name="PerStatCostLabel" type="Label" parent="Cost" unique_id=1157629895]
 texture_filter = 1
 material = SubResource("ShaderMaterial_y4i14")
 layout_mode = 0
@@ -121,39 +114,64 @@ text = "5 scraps per stat"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PerStatCostLabel" type="Label" parent="Cost/PerStatCostParent" unique_id=844310330]
-texture_filter = 1
-material = SubResource("ShaderMaterial_y4i14")
-layout_mode = 0
-offset_left = 121.0
-offset_top = 160.0
-offset_right = 133.0
-offset_bottom = 216.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_sn3tc")
-theme_override_font_sizes/font_size = 30
-text = "5"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NoDefectToDecrease" type="Control" parent="." unique_id=576254405]
+[node name="InsufficientParent" type="Control" parent="." unique_id=1626255649]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="NoDefectToDecrease" unique_id=1250460930]
-texture_filter = 1
-material = SubResource("ShaderMaterial_00edc")
+[node name="Bg" type="ColorRect" parent="InsufficientParent" unique_id=191003845]
 layout_mode = 0
-offset_left = 6.0
-offset_right = 358.0
-offset_bottom = 256.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/line_spacing = -14
-theme_override_fonts/font = ExtResource("4_sn3tc")
-theme_override_font_sizes/font_size = 80
-text = "No Defect
-Detected"
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 344.0
+offset_bottom = 248.0
+color = Color(0.19489294, 1.17318706e-07, 1.8049032e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="InsufficientParent" unique_id=557824110]
+texture_filter = 1
+material = SubResource("ShaderMaterial_ryujl")
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 344.0
+offset_bottom = 133.0
+scale = Vector2(1, 1.9199998)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("2_srcxh")
+theme_override_font_sizes/font_size = 23
+text = "Insufficient
+Defect Scraps"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SuccessParent" type="Control" parent="." unique_id=1949644049]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Bg" type="ColorRect" parent="SuccessParent" unique_id=99490428]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 344.0
+offset_bottom = 248.0
+color = Color(0.19489294, 1.17318706e-07, 1.8049032e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="SuccessParent" unique_id=641098277]
+texture_filter = 1
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 344.0
+offset_bottom = 133.0
+scale = Vector2(1, 1.9199998)
+theme_override_colors/font_color = Color(0.23333335, 1, 0, 1)
+theme_override_constants/line_spacing = 12
+theme_override_fonts/font = ExtResource("2_srcxh")
+theme_override_font_sizes/font_size = 37
+text = "Success"
 horizontal_alignment = 1
 vertical_alignment = 1

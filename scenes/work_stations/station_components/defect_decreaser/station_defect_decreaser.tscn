@@ -2,12 +2,23 @@
 
 [ext_resource type="Script" uid="uid://dphjv581bjcat" path="res://reusable/modular_scripts/tv_mesh/tv_mesh.gd" id="1_kcafu"]
 [ext_resource type="Script" uid="uid://c7iddi6c283jj" path="res://scripts/work_stations/station_components/defect_decreaser/station_defect_decreaser.gd" id="1_pd8dd"]
+[ext_resource type="Script" uid="uid://bxj6fcbrr4ou3" path="res://scripts/work_stations/station_components/defect_decreaser/logic/handle_station_enabled.gd" id="2_c0kgc"]
+[ext_resource type="Script" uid="uid://5yyna0kfdwcf" path="res://scripts/work_stations/station_components/defect_decreaser/logic/light_manager.gd" id="2_fb2y5"]
 [ext_resource type="PackedScene" uid="uid://bc27s7lcuhqrb" path="res://scenes/work_stations/station_screens/defect_decreaser/screen_defect_decreaser.tscn" id="2_tngbe"]
+[ext_resource type="Script" uid="uid://coc2cbtcwatcn" path="res://scripts/work_stations/station_components/defect_decreaser/logic/compute_reduction_context.gd" id="3_j7gr8"]
 [ext_resource type="PackedScene" uid="uid://ckulavxw02oef" path="res://scenes/work_stations/station_screens/defect_decreaser/screen_defect_scrap_cost.tscn" id="3_pd8dd"]
+[ext_resource type="Script" uid="uid://chfyhisy3cdff" path="res://scripts/work_stations/station_components/defect_decreaser/logic/refresh_displays.gd" id="4_kfv87"]
 [ext_resource type="Script" uid="uid://du01f7k6w0oi5" path="res://reusable/hoverable/hoverable/hoverable_mesh.gd" id="4_pd8dd"]
 [ext_resource type="PackedScene" uid="uid://dektktp2bec4g" path="res://scenes/hoverable_mesh_scenes/deatcher_confirm_btn.tscn" id="5_u0adj"]
+[ext_resource type="Script" uid="uid://da4rsbrff7ynl" path="res://scripts/work_stations/station_components/defect_decreaser/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="6_7pjcp"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="6_fb2y5"]
 [ext_resource type="Script" uid="uid://djcf5eawwu15k" path="res://scripts/work_stations/station_components/defect_decreaser/load_cell_panel.gd" id="8_u0adj"]
+[ext_resource type="Script" uid="uid://m67i6mv1hv2k" path="res://scripts/work_stations/station_components/defect_decreaser/logic/btn_handlers/confirm_btn/confirm_btn.gd" id="10_qbvgm"]
+[ext_resource type="Script" uid="uid://bindts3b25nbo" path="res://scripts/work_stations/station_components/defect_decreaser/audio_manager.gd" id="15_ojdcq"]
+[ext_resource type="Texture2D" uid="uid://cbee3wei0u3hw" path="res://models/particles/exsplosion_sprite.png" id="15_pfeu8"]
+[ext_resource type="AudioStream" uid="uid://cxh4fexnvvpp6" path="res://sounds/station_cell_breeder/breeding_finished_charge.mp3" id="16_m0ti0"]
+[ext_resource type="AudioStream" uid="uid://bb1lics6esexx" path="res://sounds/detacher/invalid_selected.mp3" id="17_eqclb"]
+[ext_resource type="AudioStream" uid="uid://b83ks5nc4a3oa" path="res://sounds/defect_decreaser/invalid_cell.mp3" id="18_v5omu"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_j1581"]
 size = Vector3(1.3, 1.4239258, 1.0539062)
@@ -91,10 +102,58 @@ height = 0.07
 [sub_resource type="SphereShape3D" id="SphereShape3D_7pjcp"]
 radius = 0.1
 
+[sub_resource type="Curve" id="Curve_ojdcq"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xf8x4"]
+curve = SubResource("Curve_ojdcq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_m0ti0"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 1, 0)
+scale_curve = SubResource("CurveTexture_xf8x4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpr4u"]
+transparency = 1
+albedo_color = Color(0.083333254, 1, 0, 1)
+albedo_texture = ExtResource("15_pfeu8")
+texture_filter = 0
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_eqclb"]
+material = SubResource("StandardMaterial3D_bpr4u")
+size = Vector2(0.2, 0.2)
+
 [node name="StationDefectDecreaser" type="Node3D" unique_id=1755230454]
 script = ExtResource("1_pd8dd")
 
 [node name="Logic" type="Node" parent="." unique_id=431363541]
+
+[node name="HandleStationEnabled" type="Node" parent="Logic" unique_id=1924300324]
+script = ExtResource("2_c0kgc")
+
+[node name="LightManager" type="Node" parent="Logic" unique_id=1997659210]
+script = ExtResource("2_fb2y5")
+
+[node name="ComputeReductionContext" type="Node" parent="Logic" unique_id=821673596]
+script = ExtResource("3_j7gr8")
+
+[node name="RefreshDisplays" type="Node" parent="Logic" unique_id=638869283]
+script = ExtResource("4_kfv87")
+
+[node name="BtnHandlers" type="Node" parent="Logic" unique_id=2095676258]
+
+[node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=596524830]
+script = ExtResource("6_7pjcp")
 
 [node name="DefectDecreaserTV" type="Node3D" parent="." unique_id=1019778884]
 
@@ -169,6 +228,7 @@ shape = SubResource("BoxShape3D_kfv87")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.9271703, 0.021170422, 0.29110897)
 collision_layer = 0
 collision_mask = 32
+script = ExtResource("10_qbvgm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="ButtonInterface/ConfirmBtn" unique_id=2064997795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06733376, -0.00399781, 0)
@@ -256,4 +316,30 @@ light_energy = 0.2
 light_indirect_energy = 0.0
 spot_range = 0.2
 spot_attenuation = 1.73
-spot_angle = 28.55
+spot_angle = 16.9
+
+[node name="AudioManager" type="Node3D" parent="." unique_id=37331535]
+script = ExtResource("15_ojdcq")
+
+[node name="FinishedCharge" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=36799822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+stream = ExtResource("16_m0ti0")
+volume_db = -10.0
+unit_size = 6.0
+
+[node name="InsufficentFunds" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1912465425]
+stream = ExtResource("17_eqclb")
+volume_db = -12.0
+
+[node name="InvalidCell" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1705183499]
+stream = ExtResource("18_v5omu")
+
+[node name="SuccessParticles" type="GPUParticles3D" parent="." unique_id=1701002052]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8000001, 0, -0.4)
+emitting = false
+amount = 10
+lifetime = 1.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_m0ti0")
+draw_pass_1 = SubResource("QuadMesh_eqclb")

@@ -74,7 +74,7 @@ func _handle_cell_container_jolt_increase_cell_defect(selected_cell : BrainCell,
 	
 func _handle_defect_decreaser_used(selected_brain_cell : BrainCell) :
 
-	var decrease_amount = IVCellDefectDecreaser.decrease_amount
+	var decrease_amount = IVDefectDecreaser.decrease_amount
 
 	selected_brain_cell.strength.defect = max( 0.0, selected_brain_cell.strength.defect - decrease_amount)
 
@@ -82,4 +82,5 @@ func _handle_defect_decreaser_used(selected_brain_cell : BrainCell) :
 
 	selected_brain_cell.community.defect = max( 0.0, selected_brain_cell.community.defect - decrease_amount)
 
-	parent_manager.update_collected_cells([selected_brain_cell])
+	var selected_cell_array : Array[BrainCell] = [selected_brain_cell]
+	parent_manager.update_collected_cells(selected_cell_array)

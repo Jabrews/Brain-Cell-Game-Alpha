@@ -80,6 +80,8 @@ func copy() -> BrainCell:
 
 	return copied_cell
 
+func _get_stats() -> Array[BrainCellStat] : 
+	return [strength, intelligence, community]
 
 func _copy_stat(stat: BrainCellStat) -> BrainCellStat:
 	if stat == null:

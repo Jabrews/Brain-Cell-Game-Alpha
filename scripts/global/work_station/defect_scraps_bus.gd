@@ -1,6 +1,6 @@
 extends Node
 
-var curr_defect_scraps: int = 0
+var curr_defect_scraps: int = 50
 
 signal defect_scraps_changed(new_defect_scraps: int)
 signal update_ui_scraps_changed(new_defect_scraps: int, old_defect_scraps: int)
