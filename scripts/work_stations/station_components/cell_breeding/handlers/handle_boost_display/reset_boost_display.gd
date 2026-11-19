@@ -2,9 +2,9 @@ extends Node
 
 # components
 @onready var get_side_boost_components : Node = $"../GetSideBoostComponents"
-@onready var parent_station : Node3D = $"../.."
-@onready var handle_charge_direction : Node = $"../HandleChargeDirection"
-@onready var display_validity_label : Node = $"../DisplayValidityLabel"
+@onready var parent_station : Node3D = $"../../.."
+@onready var handle_charge_direction : Node = $"../../../HandleChargeDirection"
+@onready var display_validity_label : Node = $"../../../DisplayValidityLabel"
 
 
 var stat_parents : Array[Control]

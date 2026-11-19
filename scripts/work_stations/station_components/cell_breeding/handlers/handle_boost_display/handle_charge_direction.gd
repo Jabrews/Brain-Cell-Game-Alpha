@@ -1,9 +1,9 @@
 extends Node
 
 # components
-@onready var get_side_boost_components : Node = $"../GetSideBoostComponents"
-@onready var parent_station : Node3D = $"../.."
-@onready var display_validity_label : Node = $"../DisplayValidityLabel"
+@onready var get_side_boost_components : Node = $"../../GetSideBoostComponents"
+@onready var parent_station : Node3D = $"../../.."
+@onready var display_validity_label : Node = $"../../DisplayValidityLabel"
 
 
 func _toggle_available(side : String, toggle_value : bool) :

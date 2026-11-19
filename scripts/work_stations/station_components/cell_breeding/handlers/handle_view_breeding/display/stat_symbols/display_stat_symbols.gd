@@ -6,19 +6,20 @@ extends Node
 
 # visual components
 @onready var up_arrows : Array[Sprite2D] = [
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpStrength", 
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpIntelligence", 
-		$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpCommunity"
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpStrength", 
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpIntelligence", 
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowUp/UpCommunity"
+		
 ]
 @onready var down_arrows : Array[Sprite2D] = [
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownStrength",
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownIntelligence",
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownCommunity"
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownStrength",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownIntelligence",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/ArrowDown/DownCommunity"
 ]
 @onready var hidden_question_mark_sprites : Array[Sprite2D] = [
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionStrength",
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionIntelligence", 
-	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionCommunity"
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionStrength",
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionIntelligence", 
+	$"../../../../BreedingUI/CellLoader/BreedingView/StatDisplay/QuestionMark/QuestionCommunity"
 ]
 
 

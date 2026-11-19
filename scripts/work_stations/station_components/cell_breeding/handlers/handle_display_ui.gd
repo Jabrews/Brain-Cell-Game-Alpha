@@ -1,16 +1,16 @@
 extends Node
 
 # components
-@onready var breeding_ui : Control = $"../BreedingUI"
-@onready var selected_view_box : Control = $"../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
+@onready var breeding_ui : Control = $"../../BreedingUI"
+@onready var selected_view_box : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
 
 # display helpers
-@onready var display_cell_catalog : Node = $"../DisplayCellCatalog"
-@onready var display_new_cell_preview : Node = $"../DisplayNewCellPreview"
+@onready var display_cell_catalog : Node = $"../../DisplayCellCatalog"
+@onready var display_new_cell_preview : Node = $"../../DisplayNewCellPreview"
 
 # handler helpers
-@onready var handle_breeding_box_startup : Node = $"../HandleBreedingBoxStartup"
-@onready var handle_toggle_selected_view_slider : Node = $"../HandleSelectedViewSlider"
+@onready var handle_breeding_box_startup : Node = $"../../HandleBreedingBoxStartup"
+@onready var handle_toggle_selected_view_slider : Node = $"../../HandleSelectedViewSlider"
 
 var showing_breeding_ui : bool = false
 

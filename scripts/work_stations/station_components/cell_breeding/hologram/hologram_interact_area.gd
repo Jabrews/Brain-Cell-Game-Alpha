@@ -1,7 +1,7 @@
 extends Area3D
 
 # handle component
-@onready var handle_display_ui : Node = $"../../HandleDisplayUi"
+@onready var handle_display_ui : Node = $"../../Logic/HandleDisplayUi"
 
 
 func _toggle_hologram_hint(toggle_value: bool) -> void:

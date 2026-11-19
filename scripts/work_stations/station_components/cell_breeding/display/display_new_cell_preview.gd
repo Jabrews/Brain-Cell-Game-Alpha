@@ -1,37 +1,37 @@
 extends Node
 
 # components
-@onready var parent_new_cell_display : Control = $"../BreedingUI/NewCellDisplay"
-@onready var parent_cell_loader_display : Control = $"../BreedingUI/CellLoader"
-@onready var interact_footer : Control = $"../BreedingUI/InteractFooter"
-@onready var handle_confirm_btn : Node = $"../HandleConfirmBtn"
+@onready var parent_new_cell_display : Control = $"../../BreedingUI/NewCellDisplay"
+@onready var parent_cell_loader_display : Control = $"../../BreedingUI/CellLoader"
+@onready var interact_footer : Control = $"../../BreedingUI/InteractFooter"
+@onready var handle_confirm_btn : Node = $"../../HandleConfirmBtn"
 
 # visual components
 @onready var progress_bars : Array[Sprite2D] = [
-	$"../BreedingUI/NewCellDisplay/NewCell/ProgressBars/StrengthBar", 
-	$"../BreedingUI/NewCellDisplay/NewCell/ProgressBars/IntelligenceBar", 
-	$"../BreedingUI/NewCellDisplay/NewCell/ProgressBars/CommunityBar"
+	$"../../BreedingUI/NewCellDisplay/NewCell/ProgressBars/StrengthBar",
+	$"../../BreedingUI/NewCellDisplay/NewCell/ProgressBars/IntelligenceBar", 
+	$"../../BreedingUI/NewCellDisplay/NewCell/ProgressBars/CommunityBar"
 ]
 
 @onready var defect_bars : Array[Sprite2D] = [
-	$"../BreedingUI/NewCellDisplay/NewCell/DefectBars/StrengthDefect",
-	$"../BreedingUI/NewCellDisplay/NewCell/DefectBars/IntelligenceDefect",
-	$"../BreedingUI/NewCellDisplay/NewCell/DefectBars/CommunityDefect"
+	$"../../BreedingUI/NewCellDisplay/NewCell/DefectBars/StrengthDefect",
+	$"../../BreedingUI/NewCellDisplay/NewCell/DefectBars/IntelligenceDefect",
+	$"../../BreedingUI/NewCellDisplay/NewCell/DefectBars/CommunityDefect"
 ]
 
 @onready var off_display_labels : Array[Label] = [
-	$"../BreedingUI/NewCellDisplay/NewCell/OffDisableLabels/StrengthOffLabel", 
-	$"../BreedingUI/NewCellDisplay/NewCell/OffDisableLabels/IntelligenceOffLabel", 
-	$"../BreedingUI/NewCellDisplay/NewCell/OffDisableLabels/CommunityOffLabel"
+	$"../../BreedingUI/NewCellDisplay/NewCell/OffDisableLabels/StrengthOffLabel", 
+	$"../../BreedingUI/NewCellDisplay/NewCell/OffDisableLabels/IntelligenceOffLabel", 
+	$"../../BreedingUI/NewCellDisplay/NewCell/OffDisableLabels/CommunityOffLabel"
 ]
 
 @onready var hide_stat_sprites : Array[Sprite2D] = [
-	$"../BreedingUI/NewCellDisplay/NewCell/HideStats/StrengthHide", 
-	$"../BreedingUI/NewCellDisplay/NewCell/HideStats/IntelligenceHide", 
-	$"../BreedingUI/NewCellDisplay/NewCell/HideStats/CommunityHide"
+	$"../../BreedingUI/NewCellDisplay/NewCell/HideStats/StrengthHide", 
+	$"../../BreedingUI/NewCellDisplay/NewCell/HideStats/IntelligenceHide", 
+	$"../../BreedingUI/NewCellDisplay/NewCell/HideStats/CommunityHide"
 ]
 
-@onready var confirm_btn_bg : ColorRect = $"../BreedingUI/InteractFooter/ConfirmBtn/BtnBg"
+@onready var confirm_btn_bg : ColorRect = $"../../BreedingUI/InteractFooter/ConfirmBtn/BtnBg"
 
 
 var stat_types : Array[String] = [

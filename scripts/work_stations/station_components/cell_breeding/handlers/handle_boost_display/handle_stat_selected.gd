@@ -7,10 +7,10 @@ var stats : Array[String] = [
 ]
 
 # components
-@onready var get_side_boost_components : Node = $"../GetSideBoostComponents"
-@onready var parent_station : Node3D = $"../.."
-@onready var handle_charge_direction : Node = $"../HandleChargeDirection"
-@onready var display_validity_label : Node = $"../DisplayValidityLabel"
+@onready var get_side_boost_components : Node = $"../../GetSideBoostComponents"
+@onready var parent_station : Node3D = $"../../.."
+@onready var handle_charge_direction : Node = $"../../HandleChargeDirection"
+@onready var display_validity_label : Node = $"../../DisplayValidityLabel"
 @onready var display_boost_debuff : Node= $DisplayBoostDebuff
 
 var stat_parents : Array[Control]

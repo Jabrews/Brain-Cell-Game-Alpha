@@ -1,15 +1,15 @@
 extends Node
 
 # components
-@onready var unloaded_hint : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationUnloadedHint"
-@onready var information_section : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection"
-@onready var information_type_label : Label = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/InformationTypeLabel"
+@onready var unloaded_hint : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationUnloadedHint"
+@onready var information_section : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection"
+@onready var information_type_label : Label = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/InformationTypeLabel"
 
 # information components
-@onready var info_stats : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats"
-@onready var info_blood_type : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType"
-@onready var info_failure_chance : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance"
-@onready var info_mutations : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations"
+@onready var info_stats : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/Stats"
+@onready var info_blood_type : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/BloodType"
+@onready var info_failure_chance : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/FailureChance"
+@onready var info_mutations : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/InformationSection/Information/InformationMutations"
 
 # display components
 @onready var display_stats : Node = $DisplayStats

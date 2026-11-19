@@ -1,0 +1,551 @@
+[gd_scene format=3 uid="uid://vsno4f2mfvsd"]
+
+[ext_resource type="Texture2D" uid="uid://bbq0iqani557l" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_box_bg.png" id="1_udgyn"]
+[ext_resource type="Texture2D" uid="uid://c5v26q3qb3med" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg.png" id="2_1o5aj"]
+[ext_resource type="Texture2D" uid="uid://dvdj533q14klp" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/clean_bar_bg_progress.png" id="3_nse0e"]
+[ext_resource type="Texture2D" uid="uid://1fqqslkpsu1a" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/defect_bar.png" id="4_2et0c"]
+[ext_resource type="Texture2D" uid="uid://bffxxxjm5fop3" path="res://models/workstations/breeder/cell_breeder/ui/cell_entry/defect_bar_progress.png" id="5_a414v"]
+[ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="6_liccq"]
+[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="7_ujqyt"]
+[ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="8_vkjq4"]
+[ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_4as0s"]
+[ext_resource type="Texture2D" uid="uid://dlepkdxieutfu" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/lock_without_bg1.png" id="11_dsrpd"]
+[ext_resource type="Texture2D" uid="uid://b0japhu6uvgga" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_outside_border.png" id="12_7lnud"]
+[ext_resource type="Texture2D" uid="uid://djnps8v8tsxbm" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/cell_reciever_inside_border.png" id="13_nrgx6"]
+[ext_resource type="Shader" uid="uid://cipi4en6gmg2i" path="res://scenes/work_stations/station_components/cell_breeding/ui/cell_loader/cell_boxes/wanted_box_flash_texture.gdshader" id="14_sqft6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_us7o3"]
+shader = ExtResource("7_ujqyt")
+shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
+shader_parameter/duration = 2.0
+shader_parameter/distortion_strength = 0.02
+shader_parameter/distortion_speed = 2.0
+shader_parameter/noise_texture = ExtResource("8_vkjq4")
+shader_parameter/noise_scale = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kaxbg"]
+load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tnek1"]
+shader = ExtResource("14_sqft6")
+shader_parameter/low_color = Color(0.43, 0, 0, 0)
+shader_parameter/high_color = Color(0.77, 0, 0, 0.38431373)
+shader_parameter/flash_speed = 3.0000001392401203
+shader_parameter/opacity = 1.0
+
+[node name="BreederBox" type="Control" unique_id=1288658771]
+custom_minimum_size = Vector2(104, 104)
+layout_mode = 3
+anchor_right = 0.081
+anchor_bottom = 0.14400001
+offset_right = 0.3199997
+offset_bottom = 0.31999207
+
+[node name="DisplayBackground" type="TextureRect" parent="." unique_id=489050902]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+texture = ExtResource("1_udgyn")
+expand_mode = 1
+
+[node name="MockCellEntry" type="VBoxContainer" parent="." unique_id=760405258]
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="CellName" type="Control" parent="MockCellEntry" unique_id=1053861289]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="CellName" type="Label" parent="MockCellEntry/CellName" unique_id=696071301]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -9.5
+offset_right = 34.5
+offset_bottom = 9.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+offset_transform_position = Vector2(0, 4)
+theme_override_fonts/font = ExtResource("9_4as0s")
+theme_override_font_sizes/font_size = 20
+text = "Billy Bob Jr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatDisplay" type="Control" parent="MockCellEntry" unique_id=1698667193]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="StatDisplay" type="VBoxContainer" parent="MockCellEntry/StatDisplay" unique_id=856154254]
+custom_maximum_size = Vector2(143.224, 109)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.032
+anchor_right = 0.96800005
+anchor_bottom = 1.0
+offset_left = -0.008000135
+offset_right = 0.0079956055
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 9
+
+[node name="Strength" type="Control" parent="MockCellEntry/StatDisplay/StatDisplay" unique_id=1447165095]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MockCellEntry/StatDisplay/StatDisplay/Strength" unique_id=584225019]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/StatDisplay/Strength/VBoxContainer" unique_id=1646325534]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 6)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+nine_patch_stretch = true
+texture_under = ExtResource("2_1o5aj")
+texture_progress = ExtResource("3_nse0e")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/StatDisplay/Strength/VBoxContainer" unique_id=1132361775]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 4)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_2et0c")
+texture_progress = ExtResource("5_a414v")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/StatDisplay/Strength" unique_id=1555168033]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/StatDisplay/Strength/Off" unique_id=1974604722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15487596, 0.154876, 0.1548759, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/StatDisplay/Strength/Off" unique_id=507944486]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_liccq")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="TextureRect" parent="MockCellEntry/StatDisplay/StatDisplay/Strength" unique_id=1886654905]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_us7o3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_kaxbg")
+expand_mode = 1
+
+[node name="Intellignece" type="Control" parent="MockCellEntry/StatDisplay/StatDisplay" unique_id=1879405487]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece" unique_id=1322814956]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece/VBoxContainer" unique_id=940666808]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 6)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+nine_patch_stretch = true
+texture_under = ExtResource("2_1o5aj")
+texture_progress = ExtResource("3_nse0e")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece/VBoxContainer" unique_id=1821087776]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 4)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_2et0c")
+texture_progress = ExtResource("5_a414v")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece" unique_id=669493266]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece/Off" unique_id=119129113]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15487596, 0.154876, 0.1548759, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece/Off" unique_id=756447712]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_liccq")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="TextureRect" parent="MockCellEntry/StatDisplay/StatDisplay/Intellignece" unique_id=1973040685]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_us7o3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_kaxbg")
+expand_mode = 1
+
+[node name="Community" type="Control" parent="MockCellEntry/StatDisplay/StatDisplay" unique_id=674782018]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MockCellEntry/StatDisplay/StatDisplay/Community" unique_id=739941826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 1
+
+[node name="CleanBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/StatDisplay/Community/VBoxContainer" unique_id=1333486985]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 6)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+nine_patch_stretch = true
+texture_under = ExtResource("2_1o5aj")
+texture_progress = ExtResource("3_nse0e")
+
+[node name="DefectBar" type="TextureProgressBar" parent="MockCellEntry/StatDisplay/StatDisplay/Community/VBoxContainer" unique_id=583415631]
+texture_filter = 1
+custom_minimum_size = Vector2(80, 4)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("4_2et0c")
+texture_progress = ExtResource("5_a414v")
+
+[node name="Off" type="Control" parent="MockCellEntry/StatDisplay/StatDisplay/Community" unique_id=2037646379]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MockCellEntry/StatDisplay/StatDisplay/Community/Off" unique_id=1197789908]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15487596, 0.154876, 0.1548759, 1)
+
+[node name="Label" type="Label" parent="MockCellEntry/StatDisplay/StatDisplay/Community/Off" unique_id=1509577670]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_liccq")
+theme_override_font_sizes/font_size = 6
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hide" type="TextureRect" parent="MockCellEntry/StatDisplay/StatDisplay/Community" unique_id=2058015075]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_us7o3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_kaxbg")
+expand_mode = 1
+
+[node name="SelectedBorder" type="TextureRect" parent="." unique_id=1673401102]
+visible = false
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 93.0
+offset_bottom = 94.0
+mouse_filter = 2
+texture = ExtResource("12_7lnud")
+
+[node name="RemoveBorder" type="TextureRect" parent="." unique_id=843353119]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 94.0
+offset_bottom = 94.0
+mouse_filter = 2
+texture = ExtResource("12_7lnud")
+
+[node name="InsideBorderEffects" type="Control" parent="." unique_id=926664498]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="On" type="TextureRect" parent="InsideBorderEffects" unique_id=1081952546]
+visible = false
+modulate = Color(1, 0, 0, 1)
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("13_nrgx6")
+
+[node name="Wanted" type="TextureRect" parent="InsideBorderEffects" unique_id=522610496]
+visible = false
+modulate = Color(1, 0, 0, 0.38431373)
+texture_filter = 1
+material = SubResource("ShaderMaterial_tnek1")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("13_nrgx6")
+
+[node name="AlreadyOccupiedHint" type="Control" parent="." unique_id=1279516751]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AlreadyOccupiedHint" unique_id=372752279]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -78.0
+offset_right = 261.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="AlreadyOccupiedHint" unique_id=1013081450]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = 64.0
+offset_top = -70.0
+offset_right = 278.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_4as0s")
+theme_override_font_sizes/font_size = 20
+text = "Box is already occupied.
+Empty by clicking first."
+autowrap_mode = 2
+
+[node name="AddACellHint" type="Control" parent="." unique_id=1247382407]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = -112.0
+offset_top = 4.0
+offset_right = -72.0
+offset_bottom = 44.0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AddACellHint" unique_id=1865120858]
+layout_mode = 0
+offset_left = 58.0
+offset_top = -78.0
+offset_right = 261.0
+offset_bottom = -6.0
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="AddACellHint" unique_id=505846874]
+texture_filter = 1
+custom_minimum_size = Vector2(214, 53)
+custom_maximum_size = Vector2(214, 53)
+layout_mode = 0
+offset_left = 64.0
+offset_top = -70.0
+offset_right = 278.0
+offset_bottom = -17.0
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_4as0s")
+theme_override_font_sizes/font_size = 20
+text = "Add A Cell by dragging it onto the box. "
+autowrap_mode = 2
+
+[node name="UnavaibleLock" type="Control" parent="." unique_id=703206445]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="ColorRect" parent="UnavaibleLock" unique_id=696682190]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.6156863)
+
+[node name="Hint" type="Control" parent="UnavaibleLock" unique_id=310393885]
+visible = false
+z_index = 2
+layout_mode = 1
+anchor_left = -0.38500002
+anchor_top = -0.846
+anchor_right = 1.3850001
+anchor_bottom = -0.082
+offset_left = 0.040000916
+offset_top = -0.5039978
+offset_right = -0.040008545
+grow_horizontal = 2
+
+[node name="BG" type="ColorRect" parent="UnavaibleLock/Hint" unique_id=2061011365]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintText" type="Label" parent="UnavaibleLock/Hint" unique_id=360298615]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("9_4as0s")
+theme_override_font_sizes/font_size = 20
+text = "Cell cannot breed
+ anymore this turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LockRect" type="TextureRect" parent="UnavaibleLock" unique_id=449623271]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("11_dsrpd")

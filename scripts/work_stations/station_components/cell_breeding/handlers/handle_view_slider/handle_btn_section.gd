@@ -1,9 +1,9 @@
 extends Node
 
 # components
-@onready var view_btn_section : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection"
-@onready var unloaded_hint : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BtnUnloadedHint"
-@onready var btn_parent : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent"
+@onready var view_btn_section : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection"
+@onready var unloaded_hint : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BtnUnloadedHint"
+@onready var btn_parent : Control = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent"
 
 # handle components
 @onready var handle_information_section : Node = $"../HandleInformationSection"

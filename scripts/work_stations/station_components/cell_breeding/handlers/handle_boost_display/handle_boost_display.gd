@@ -1,18 +1,18 @@
 extends Node
 
 # visual components
-@onready var left_boost_display : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay"
-@onready var left_add_main_cell_hint : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/AddMainCellHint"
-@onready var right_boost_display : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay"
-@onready var right_add_main_cell_hint : Control = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/AddMainCellHint"
+@onready var left_boost_display : Control = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay"
+@onready var left_add_main_cell_hint : Control = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/AddMainCellHint"
+@onready var right_boost_display : Control = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay"
+@onready var right_add_main_cell_hint : Control = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/AddMainCellHint"
 
 # visual components : for controller focus
-@onready var left_boost_btn_rect : TextureRect = $"../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox/BoostBtn/BoostBtn"
-@onready var right_boost_btn_rect : TextureRect = $"../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn"
-@onready var left_boost_exit_btn_rect : ColorRect = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Header/ExitBtn/BtnBG"
-@onready var right_boost_exit_btn_rect : ColorRect = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Header/ExitBtn/BtnBG"
-@onready var left_strength_detect_hover_rect : ColorRect = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DetectHover"
-@onready var right_strength_detect_hover_rect : ColorRect = $"../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DetectHover"
+@onready var left_boost_btn_rect : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox/BoostBtn/BoostBtn"
+@onready var right_boost_btn_rect : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn/BoostBtn"
+@onready var left_boost_exit_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Header/ExitBtn/BtnBG"
+@onready var right_boost_exit_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Header/ExitBtn/BtnBG"
+@onready var left_strength_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DetectHover"
+@onready var right_strength_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DetectHover"
 
 # display component
 @onready var display_boost_stats : Node = $DisplayBoostStats

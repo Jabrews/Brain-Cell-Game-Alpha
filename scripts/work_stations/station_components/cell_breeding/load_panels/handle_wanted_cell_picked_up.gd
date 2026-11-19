@@ -9,6 +9,10 @@ var corrisponding_side : String
 
 
 func _ready() -> void:
+	
+	if not parent_panel : 
+		return
+	
 	corrisponding_type = parent_panel.type
 	corrisponding_side = parent_panel.side
 	

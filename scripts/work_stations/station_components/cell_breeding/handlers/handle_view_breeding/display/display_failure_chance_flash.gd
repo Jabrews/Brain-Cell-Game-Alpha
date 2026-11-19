@@ -1,9 +1,9 @@
 extends Node
 
 # Components
-@onready var failure_chance_symbol: TextureRect = $"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/FailureChanceSymbol"
-@onready var left_failure_chance_label: Label = $"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay/TotalFailureChance/FailureChancePercant"
-@onready var right_failure_chance_label: Label = $"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay/TotalFailureChance/FailureChancePercant"
+@onready var failure_chance_symbol: TextureRect = $"../../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/FailureChanceSymbol"
+@onready var left_failure_chance_label: Label = $"../../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay/TotalFailureChance/FailureChancePercant"
+@onready var right_failure_chance_label: Label = $"../../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay/TotalFailureChance/FailureChancePercant"
 
 # Timer
 @onready var flash_delay_timer: Timer = $FlashDelayTimer

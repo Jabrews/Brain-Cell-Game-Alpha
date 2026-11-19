@@ -1,8 +1,8 @@
 extends Node
 
 @onready var drop_axe_parent : Control = $DropAxeBackAtMount
-@onready var pickup_axe_parent : Control = $PickupAxeFromMount
-@onready var return_axe_parent : Control = $PressToReturn
+@onready var pickup_axe_parent : Control =$PickupAxeFromMount
+@onready var return_axe_parent : Control =$PressToReturn
 
 var player_has_axe : bool = false
 var player_looking_at_axe_mount : bool = false

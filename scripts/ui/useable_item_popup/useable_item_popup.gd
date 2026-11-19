@@ -7,32 +7,33 @@ var active_cell : BrainCell
 var active_useable_item_obj : UseableItemObject
 
 # componnets 
-@onready var strength_stat_option : Control = $Strength
-@onready var intelligence_stat_option : Control = $Intelligence
-@onready var community_stat_option : Control = $Community
-@onready var cell_name : Label = $CellName
+@onready var strength_stat_option : Control = $VBoxContainer/StatsVBox/Strength
+@onready var intelligence_stat_option : Control = $VBoxContainer/StatsVBox/Intelligence
+@onready var community_stat_option : Control = $VBoxContainer/StatsVBox/Community
+@onready var cell_name : Label = $VBoxContainer/CellName
 # for grab_focus
-@onready var strength_bar_rect : TextureRect = $Strength/Bar
+@onready var strength_bar_rect : TextureRect = $VBoxContainer/StatsVBox/Strength/StatVBox/Bar
 
 
 # type specific
-@onready var defect_shot_node : Control = $DefectShot
-@onready var hidden_shot_node : Control = $HiddenShot
-@onready var popup_mutation_manager : Control = $PopupMutationManager
+#@onready var defect_shot_node : Control = $DefectShot
+#@onready var hidden_shot_node : Control = $HiddenShot
+#@onready var popup_mutation_manager : Control = $PopupMutationManager
 
-@onready var defect_shot_charges_left_label : Label = $DefectShot/ChargestLeft
-@onready var hidden_shot_charges_left_label : Label = $HiddenShot/ChargestLeft
+#@onready var defect_shot_charges_left_label : Label = $DefectShot/ChargestLeft
+#@onready var hidden_shot_charges_left_label : Label = $HiddenShot/ChargestLeft
 
 
 func _ready() -> void:
 	GLUsableItemBus.connect('show_useable_item_pop_up', _handle_show_useable_item_pop_up)
 	
-	if popup_type != 'defect_shot' :
-		defect_shot_node.queue_free()
-	if popup_type != 'hidden_shot' :
-		hidden_shot_node.queue_free()
-	if popup_type != 'scissors' and popup_type != 'hidden_shot':
-		popup_mutation_manager.queue_free()
+	# TODO
+	#if popup_type != 'defect_shot' :
+		#defect_shot_node.queue_free()
+	#if popup_type != 'hidden_shot' :
+		#hidden_shot_node.queue_free()
+	#if popup_type != 'scissors' and popup_type != 'hidden_shot':
+		#popup_mutation_manager.queue_free()
 		
 		
 	
@@ -58,13 +59,14 @@ func _handle_show_useable_item_pop_up(selected_cell: BrainCell, useable_item_obj
 	community_stat_option.handle_display_stat_info(active_cell.community)
 	cell_name.text = active_cell.name
 	
-	if popup_type == 'defect_shot' :	
-		defect_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
-	elif popup_type == 'hidden_shot' : 
-		hidden_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
-		popup_mutation_manager._init_mutations(selected_cell.mutations)
-	elif popup_type == 'scissors' :
-		popup_mutation_manager._init_mutations(selected_cell.mutations)
+	# TODO
+	#if popup_type == 'defect_shot' :	
+		#defect_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
+	#elif popup_type == 'hidden_shot' : 
+		#hidden_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
+		#popup_mutation_manager._init_mutations(selected_cell.mutations)
+	#elif popup_type == 'scissors' :
+		#popup_mutation_manager._init_mutations(selected_cell.mutations)
 		
 func _handle_pop_up_stat_selected(stat_type : String) :
 	GLUsableItemBus.emit_signal('pop_up_chose_stat', stat_type, active_cell, active_useable_item_obj)
@@ -106,9 +108,10 @@ func hide_popup() :
 	community_stat_option.handle_display_stat_info(null)
 	cell_name.text = 'none'
 	
-	if popup_type == 'defect_shot' :	
-		defect_shot_charges_left_label.text = 'none'
-	
-	elif popup_type == 'hidden_shot' : 
-		hidden_shot_charges_left_label.text = 'none'
+	# TODO
+	#if popup_type == 'defect_shot' :	
+		#defect_shot_charges_left_label.text = 'none'
+	#
+	#elif popup_type == 'hidden_shot' : 
+		#hidden_shot_charges_left_label.text = 'none'
 	

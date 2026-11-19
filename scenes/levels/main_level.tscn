@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://vgie5w5m3275" path="res://scenes/stations/station_components/hidden_stat_interpreter/emergency_light.tscn" id="13_3ujpq"]
 [ext_resource type="Script" uid="uid://c1rgmnomu07eu" path="res://scripts/game_manager/useable_item_use_manager/useable_item_use_manager.gd" id="14_5ru7i"]
 [ext_resource type="PackedScene" uid="uid://c023cc2aha7id" path="res://scenes/ui/ui.tscn" id="14_c0gn3"]
-[ext_resource type="PackedScene" uid="uid://coetu5aaafg85" path="res://scenes/work_stations/station_components/cell_breeding/component/station_cell_breeding.tscn" id="15_0ycs4"]
 [ext_resource type="Script" uid="uid://di2ssc3ya2nmp" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_cells.gd" id="15_dn28p"]
 [ext_resource type="PackedScene" uid="uid://fxsl4oi3vhoo" path="res://scenes/stations/station_components/hidden_stat_interpreter/station_hidden_interpreter.tscn" id="15_ms0m2"]
 [ext_resource type="PackedScene" uid="uid://dua5i68l5weho" path="res://scenes/useable_item_spawner/useable_item_spawner.tscn" id="17_dixnm"]
@@ -34,6 +33,7 @@
 [ext_resource type="PackedScene" uid="uid://bs175gbdg5t8m" path="res://scenes/work_stations/station_components/jar/jar.tscn" id="22_k7qrp"]
 [ext_resource type="PackedScene" uid="uid://csiw6008eqnv2" path="res://scenes/work_stations/station_components/attacher/station_attacher.tscn" id="23_klp60"]
 [ext_resource type="PackedScene" uid="uid://n8bje52ey4ot" path="res://scenes/work_stations/station_components/defect_decreaser/station_defect_decreaser.tscn" id="24_52803"]
+[ext_resource type="PackedScene" uid="uid://dwwql1ukmu600" path="res://scenes/work_stations/cell_breeder/component/station_cell_breeder.tscn" id="24_o2eno"]
 [ext_resource type="Script" uid="uid://kkmsfnlm72s5" path="res://scripts/game_manager/incremental_value_controller/incremental_value_controller.gd" id="31_alpj0"]
 [ext_resource type="Script" uid="uid://dermtk4opisil" path="res://scripts/game_manager/mutations_seen_manager/mutations_seen_manager.gd" id="32_62614"]
 [ext_resource type="Script" uid="uid://n6hhx16rb1l" path="res://scripts/game_manager/cell_creator/assemble_cells/assemble_helpers/mutation/helper_mutations.gd" id="33_l5rsp"]
@@ -1117,10 +1117,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -34.
 [node name="EmergencyLight4" parent="Stations/ContainerStations/HiddenStatInterpreters/EmergencyLights" unique_id=1870740026 instance=ExtResource("13_3ujpq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.379911, 5.8582935, 1.9495511)
 
-[node name="CellBreeding" parent="Stations/ContainerStations" unique_id=1160068214 node_paths=PackedStringArray("cell_container_parent_node") instance=ExtResource("15_0ycs4")]
-transform = Transform3D(-1, 0, 8.742277e-08, 0, 1, 0, -8.742277e-08, 0, -1, -0.9920287, 0.0082941055, 3.518486)
-cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
-
 [node name="GoalThresholdInterface" parent="Stations/ContainerStations" unique_id=605944660 instance=ExtResource("19_0ycs4")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -12.120954, 3.030553, -14.897207)
 
@@ -1195,6 +1191,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3640393, 2.0116425, -2.5805
 
 [node name="StationDefectDecreaser" parent="Stations/WorkStations" unique_id=1755230454 instance=ExtResource("24_52803")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.420721, 2.9897845, -9.312751)
+
+[node name="StationCellBreeder" parent="Stations/WorkStations" unique_id=2016268607 instance=ExtResource("24_o2eno")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.4, 0, 2.6000001)
 
 [node name="AxeMount" parent="Stations" unique_id=624783328 instance=ExtResource("11_v2xyd")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -21.445799, 3.0319495, 24.183794)

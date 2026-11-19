@@ -44,277 +44,353 @@ load_path = "res://.godot/imported/3_blood_display.png-f8ace423e03d060f39c052270
 
 [node name="UI" type="Control" unique_id=885223017]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Labels" type="Control" parent="." unique_id=720797722]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ViewBreeder" type="Control" parent="Labels" unique_id=581744205]
-visible = false
+[node name="FPSCounter" type="Label" parent="." unique_id=2019697512]
 texture_filter = 1
-anchors_preset = 0
-offset_left = 29.0
-offset_top = 664.0
-offset_right = 1293.0
-offset_bottom = 714.0
-script = ExtResource("28_khplb")
-
-[node name="BG" type="ColorRect" parent="Labels/ViewBreeder" unique_id=1784461203]
-layout_mode = 0
-offset_left = 344.0
-offset_top = -16.0
-offset_right = 904.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="Labels/ViewBreeder" unique_id=1290496854]
-texture_filter = 1
-layout_mode = 0
-offset_left = 360.0
-offset_top = -8.0
-offset_right = 894.0
-offset_bottom = 49.0
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To View Breeder"
-horizontal_alignment = 1
-
-[node name="InputBtn" parent="Labels/ViewBreeder" unique_id=1581594755 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-offset_left = 483.0
-offset_top = -8.0
-offset_right = 483.0
-offset_bottom = -8.0
-
-[node name="AxeLabelManager" type="Control" parent="Labels" unique_id=513794480]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("6_khplb")
-
-[node name="PressToReturn" type="Control" parent="Labels/AxeLabelManager" unique_id=907098243]
-visible = false
-texture_filter = 1
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 664.0
-offset_right = 1272.0
-offset_bottom = 714.0
-
-[node name="BG" type="ColorRect" parent="Labels/AxeLabelManager/PressToReturn" unique_id=1070526303]
-layout_mode = 0
-offset_left = 440.0
-offset_top = -8.0
-offset_right = 816.0
-offset_bottom = 40.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="DropAxeLabel" type="Label" parent="Labels/AxeLabelManager/PressToReturn" unique_id=145584581]
-texture_filter = 1
-layout_mode = 0
-offset_top = -8.0
-offset_right = 1264.0
-offset_bottom = 49.0
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 42
-text = "Return Axe to mount"
-horizontal_alignment = 1
-
-[node name="PickupAxeFromMount" type="Control" parent="Labels/AxeLabelManager" unique_id=1531832326]
-visible = false
-texture_filter = 1
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 664.0
-offset_right = 1272.0
-offset_bottom = 714.0
-
-[node name="BG" type="ColorRect" parent="Labels/AxeLabelManager/PickupAxeFromMount" unique_id=1003121376]
-layout_mode = 0
-offset_left = 352.0
-offset_top = -16.0
-offset_right = 920.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="DropAxeLabel" type="Label" parent="Labels/AxeLabelManager/PickupAxeFromMount" unique_id=556941095]
-texture_filter = 1
-layout_mode = 0
-offset_top = -16.0
-offset_right = 1264.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press     To Pickup Axe "
-horizontal_alignment = 1
-
-[node name="InputBtn" parent="Labels/AxeLabelManager/PickupAxeFromMount" unique_id=269063420 instance=ExtResource("8_vnqvi")]
 layout_mode = 1
-offset_left = 512.0
-offset_top = -8.0
-offset_right = 512.0
-offset_bottom = -8.0
-
-[node name="DropAxeBackAtMount" type="Control" parent="Labels/AxeLabelManager" unique_id=2136335024]
-visible = false
-anchors_preset = 0
-offset_top = 664.0
-offset_right = 40.0
-offset_bottom = 704.0
-
-[node name="BG" type="ColorRect" parent="Labels/AxeLabelManager/DropAxeBackAtMount" unique_id=1914677654]
-layout_mode = 0
-offset_left = 352.0
-offset_top = -16.0
-offset_right = 920.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="DropAxeLabel" type="Label" parent="Labels/AxeLabelManager/DropAxeBackAtMount" unique_id=1584846424]
-texture_filter = 1
-layout_mode = 0
-offset_top = -16.0
-offset_right = 1264.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To Return Axe "
-horizontal_alignment = 1
-
-[node name="InputBtn" parent="Labels/AxeLabelManager/DropAxeBackAtMount" unique_id=896629186 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-offset_left = 512.0
-offset_top = -8.0
-offset_right = 512.0
-offset_bottom = -8.0
-
-[node name="ViewFileCabinet" type="Control" parent="Labels" unique_id=838087403]
-visible = false
-texture_filter = 1
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 664.0
-offset_right = 858.0
-offset_bottom = 714.0
-script = ExtResource("17_mgwkc")
-
-[node name="BG" type="ColorRect" parent="Labels/ViewFileCabinet" unique_id=329168637]
-layout_mode = 0
-offset_left = 320.0
-offset_top = -16.0
-offset_right = 944.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="Labels/ViewFileCabinet" unique_id=1812605725]
-texture_filter = 1
-layout_mode = 0
-offset_top = -16.0
-offset_right = 1264.0
-offset_bottom = 41.0
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To View File Cabinet"
-horizontal_alignment = 1
-
-[node name="InputBtn" parent="Labels/ViewFileCabinet" unique_id=162483799 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-offset_left = 456.0
-offset_top = -8.0
-offset_right = 456.0
-offset_bottom = -8.0
-
-[node name="FPSCounter" type="Label" parent="Labels" unique_id=2019697512]
-texture_filter = 1
-layout_mode = 0
-offset_right = 90.0
-offset_bottom = 23.0
+anchors_preset = -1
+offset_left = 10.0
+offset_top = 10.0
 theme_override_font_sizes/font_size = 12
 text = "FPS COUNTER : "
 script = ExtResource("4_0dwhk")
 
-[node name="ViewOfferTablet" type="Control" parent="Labels" unique_id=851558058]
+[node name="BottomLabels" type="Control" parent="." unique_id=720797722]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -37.115)
+mouse_filter = 2
+
+[node name="ViewBreeder" type="Control" parent="BottomLabels" unique_id=581744205]
 visible = false
 texture_filter = 1
-anchors_preset = 0
-offset_left = 8.0
-offset_top = 664.0
-offset_right = 1272.0
-offset_bottom = 714.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("28_khplb")
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/ViewBreeder" unique_id=1315593491]
+texture_filter = 1
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomLabels/ViewBreeder/PanelContainer" unique_id=807616824]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Part1Label" type="Label" parent="BottomLabels/ViewBreeder/PanelContainer/HBoxContainer" unique_id=1217939708]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Press"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="BottomLabels/ViewBreeder/PanelContainer/HBoxContainer" unique_id=1359138110 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
+
+[node name="Part1Label2" type="Label" parent="BottomLabels/ViewBreeder/PanelContainer/HBoxContainer" unique_id=1864841656]
+texture_filter = 1
+layout_mode = 2
+size_flags_stretch_ratio = 3.86
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " To View Breeder "
+
+[node name="AxeLabelManager" type="Control" parent="BottomLabels" unique_id=513794480]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("6_khplb")
+
+[node name="PressToReturn" type="Control" parent="BottomLabels/AxeLabelManager" unique_id=907098243]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/AxeLabelManager/PressToReturn" unique_id=102359137]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DropAxeLabel" type="Label" parent="BottomLabels/AxeLabelManager/PressToReturn/PanelContainer" unique_id=145584581]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Return Axe to mount "
+horizontal_alignment = 1
+
+[node name="PickupAxeFromMount" type="Control" parent="BottomLabels/AxeLabelManager" unique_id=1531832326]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/AxeLabelManager/PickupAxeFromMount" unique_id=1328119578]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomLabels/AxeLabelManager/PickupAxeFromMount/PanelContainer" unique_id=260714595]
+layout_mode = 2
+alignment = 1
+
+[node name="PT1Label" type="Label" parent="BottomLabels/AxeLabelManager/PickupAxeFromMount/PanelContainer/HBoxContainer" unique_id=675126437]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Press "
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="BottomLabels/AxeLabelManager/PickupAxeFromMount/PanelContainer/HBoxContainer" unique_id=269063420 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
+
+[node name="PT1Label2" type="Label" parent="BottomLabels/AxeLabelManager/PickupAxeFromMount/PanelContainer/HBoxContainer" unique_id=1801390026]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " To Pickup Axe "
+horizontal_alignment = 1
+
+[node name="DropAxeBackAtMount" type="Control" parent="BottomLabels/AxeLabelManager" unique_id=2136335024]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/AxeLabelManager/DropAxeBackAtMount" unique_id=1809976759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomLabels/AxeLabelManager/DropAxeBackAtMount/PanelContainer" unique_id=593159422]
+layout_mode = 2
+alignment = 1
+
+[node name="Pt1Label" type="Label" parent="BottomLabels/AxeLabelManager/DropAxeBackAtMount/PanelContainer/HBoxContainer" unique_id=1974801600]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Press"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="BottomLabels/AxeLabelManager/DropAxeBackAtMount/PanelContainer/HBoxContainer" unique_id=896629186 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
+
+[node name="Pt2Label" type="Label" parent="BottomLabels/AxeLabelManager/DropAxeBackAtMount/PanelContainer/HBoxContainer" unique_id=1848059010]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " To Return Axe "
+horizontal_alignment = 1
+
+[node name="ViewFileCabinet" type="Control" parent="BottomLabels" unique_id=838087403]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("17_mgwkc")
+
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/ViewFileCabinet" unique_id=195561484]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomLabels/ViewFileCabinet/PanelContainer" unique_id=18381828]
+layout_mode = 2
+alignment = 1
+
+[node name="Pt1Label" type="Label" parent="BottomLabels/ViewFileCabinet/PanelContainer/HBoxContainer" unique_id=685817697]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Press "
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="BottomLabels/ViewFileCabinet/PanelContainer/HBoxContainer" unique_id=162483799 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
+
+[node name="Pt2Label" type="Label" parent="BottomLabels/ViewFileCabinet/PanelContainer/HBoxContainer" unique_id=798711954]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " To View File Cabinet "
+horizontal_alignment = 1
+
+[node name="ViewOfferTablet" type="Control" parent="BottomLabels" unique_id=851558058]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("10_qhbcy")
 
-[node name="BG" type="ColorRect" parent="Labels/ViewOfferTablet" unique_id=1952805413]
-layout_mode = 0
-offset_left = 344.0
-offset_top = -16.0
-offset_right = 971.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="Labels/ViewOfferTablet" unique_id=1765699468]
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/ViewOfferTablet" unique_id=1494509691]
 texture_filter = 1
-layout_mode = 0
-offset_left = 360.0
-offset_top = -8.0
-offset_right = 894.0
-offset_bottom = 49.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomLabels/ViewOfferTablet/PanelContainer" unique_id=965316392]
+layout_mode = 2
+alignment = 1
+
+[node name="Pt1Label" type="Label" parent="BottomLabels/ViewOfferTablet/PanelContainer/HBoxContainer" unique_id=835498947]
+texture_filter = 1
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To View Offer Tablet"
+theme_override_font_sizes/font_size = 40
+text = " Press "
 horizontal_alignment = 1
 
-[node name="InputBtn" parent="Labels/ViewOfferTablet" unique_id=1359138110 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-offset_left = 483.0
-offset_top = -8.0
-offset_right = 483.0
-offset_bottom = -8.0
+[node name="InputBtn" parent="BottomLabels/ViewOfferTablet/PanelContainer/HBoxContainer" unique_id=1645278956 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
 
-[node name="ViewAttacher" type="Control" parent="Labels" unique_id=205956453]
+[node name="Pt2Label" type="Label" parent="BottomLabels/ViewOfferTablet/PanelContainer/HBoxContainer" unique_id=1765699468]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " To View Offer Tablet "
+horizontal_alignment = 1
+
+[node name="ViewAttacher" type="Control" parent="BottomLabels" unique_id=205956453]
 visible = false
 texture_filter = 1
-anchors_preset = 0
-offset_left = 29.0
-offset_top = 664.0
-offset_right = 1293.0
-offset_bottom = 714.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_272wc")
 
-[node name="BG" type="ColorRect" parent="Labels/ViewAttacher" unique_id=1338524894]
-layout_mode = 0
-offset_left = 344.0
-offset_top = -16.0
-offset_right = 917.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="Labels/ViewAttacher" unique_id=82531607]
+[node name="PanelContainer" type="PanelContainer" parent="BottomLabels/ViewAttacher" unique_id=165468417]
 texture_filter = 1
-layout_mode = 0
-offset_left = 360.0
-offset_top = -8.0
-offset_right = 894.0
-offset_bottom = 49.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomLabels/ViewAttacher/PanelContainer" unique_id=755165115]
+layout_mode = 2
+alignment = 1
+
+[node name="Pt1Label" type="Label" parent="BottomLabels/ViewAttacher/PanelContainer/HBoxContainer" unique_id=696102738]
+texture_filter = 1
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To View Attacher"
+theme_override_font_sizes/font_size = 40
+text = " Press "
 horizontal_alignment = 1
 
-[node name="InputBtn" parent="Labels/ViewAttacher" unique_id=942182045 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-offset_left = 483.0
-offset_top = -8.0
-offset_right = 483.0
-offset_bottom = -8.0
+[node name="InputBtn" parent="BottomLabels/ViewAttacher/PanelContainer/HBoxContainer" unique_id=942182045 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
+
+[node name="Pt2Label" type="Label" parent="BottomLabels/ViewAttacher/PanelContainer/HBoxContainer" unique_id=1845252181]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " To View Attacher "
+horizontal_alignment = 1
 
 [node name="UseableItemManager" type="Control" parent="." unique_id=1031581067]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("1_aac20")
 
 [node name="ItemEnergyLevel" type="Control" parent="UseableItemManager" unique_id=761150454]
@@ -372,6 +448,9 @@ horizontal_alignment = 1
 
 [node name="InputBtn" parent="UseableItemManager/DropItem" unique_id=1862197552 instance=ExtResource("8_vnqvi")]
 layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 496.0
 offset_top = -8.0
 offset_right = 496.0
@@ -408,18 +487,24 @@ horizontal_alignment = 1
 
 [node name="InputBtn" parent="UseableItemManager/PickupItem" unique_id=2135190316 instance=ExtResource("8_vnqvi")]
 layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_left = 472.0
 offset_top = -8.0
 offset_right = 472.0
 offset_bottom = -8.0
 
 [node name="UseableItemPopUps" type="Control" parent="." unique_id=1589912695]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="DefectPopUp" parent="UseableItemPopUps" unique_id=1383059158 instance=ExtResource("9_uegxj")]
-visible = false
 layout_mode = 1
 offset_left = 104.0
 offset_top = 56.0
@@ -515,6 +600,7 @@ offset_left = 320.0
 offset_top = 216.0
 offset_right = 320.0
 offset_bottom = 216.0
+mouse_filter = 2
 script = ExtResource("18_ygedu")
 
 [node name="Spot1" type="Control" parent="EventNoticeManager" unique_id=1927085247]
@@ -523,6 +609,7 @@ offset_left = 696.0
 offset_top = 400.0
 offset_right = 696.0
 offset_bottom = 400.0
+mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 1
 
@@ -532,6 +619,7 @@ offset_left = 696.0
 offset_top = 296.0
 offset_right = 696.0
 offset_bottom = 296.0
+mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 2
 
@@ -541,6 +629,7 @@ offset_left = 696.0
 offset_top = 192.0
 offset_right = 696.0
 offset_bottom = 192.0
+mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 3
 
@@ -550,6 +639,7 @@ offset_left = 696.0
 offset_top = 88.0
 offset_right = 696.0
 offset_bottom = 88.0
+mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 4
 
@@ -567,6 +657,7 @@ script = ExtResource("21_oopc8")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="GameEnd" type="Control" parent="EndStateScreens" unique_id=1799871232]
 process_mode = 3

@@ -1,29 +1,29 @@
 extends Node
 
 # visual components
-@onready var left_main_box_display_background : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox/DisplayBackground"
-@onready var right_main_box_display_background : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox/DisplayBackground"
+@onready var left_main_box_display_background : TextureRect = $"../../../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewMainBox/DisplayBackground"
+@onready var right_main_box_display_background : TextureRect = $"../../../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewMainBox/DisplayBackground"
 
-@onready var left_boost_box_display_background : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox/DisplayBackground"
-@onready var right_boost_box_display_background : TextureRect = $"../../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/DisplayBackground"
+@onready var left_boost_box_display_background : TextureRect = $"../../../BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox/DisplayBackground"
+@onready var right_boost_box_display_background : TextureRect = $"../../../BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/DisplayBackground"
 
-@onready var slide_handle_bg_rect : ColorRect = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideHandle/SlideBg"
+@onready var slide_handle_bg_rect : ColorRect = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideHandle/SlideBg"
 
-@onready var selected_cell_box_display_background : TextureRect = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox/DisplayBackground"
+@onready var selected_cell_box_display_background : TextureRect = $"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox/DisplayBackground"
 
-@onready var confirm_btn_bg : ColorRect = $"../../BreedingUI/InteractFooter/ConfirmBtn/BtnBg"
-@onready var back_btn_bg : ColorRect = $"../../BreedingUI/InteractFooter/BackBtn/BtnBg"
+@onready var confirm_btn_bg : ColorRect = $"../../../BreedingUI/InteractFooter/ConfirmBtn/BtnBg"
+@onready var back_btn_bg : ColorRect = $"../../../BreedingUI/InteractFooter/BackBtn/BtnBg"
 
 
 # basic toggle mode components
 @onready var toggle_mode_components : Array[Control] = [
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/StatsViewBtn/BG2",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/FailureChanceViewBtn",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/BloodTypeViewBtn/BG2",
-	$"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/MutationsViewBtn/BG2"
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BG2",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/FailureChanceViewBtn",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/BloodTypeViewBtn/BG2",
+	$"../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/ViewBtnSection/BtnParent/MutationsViewBtn/BG2"
 ]
 
-@onready var selected_cell_box : Control = $"../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
+@onready var selected_cell_box : Control = $"../../../../BreedingUI/CellLoader/SelectedViewSlider/SlideContent/BoxSection/SelectedViewBox"
 
 
 func _ready() -> void:

@@ -3,86 +3,86 @@ extends Node
 ## stat components
 
 # left
-@onready var l_no_cell_loaded_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/NoCellLoadedLabel"
-@onready var l_cell_unavaible_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible"
-@onready var l_stat_display_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay"
-@onready var l_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/CellName"
+@onready var l_no_cell_loaded_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/NoCellLoadedLabel"
+@onready var l_cell_unavaible_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible"
+@onready var l_stat_display_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay"
+@onready var l_cell_name_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/CellName"
 
 @onready var l_clean_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/CleanBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/CleanBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/CleanBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/CleanBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/CleanBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/CleanBar",
 ]
 
 @onready var l_defect_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DefectBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DefectBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DefectBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DefectBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DefectBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DefectBar"
 ]
 
 @onready var l_hidden_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/HiddenSprite"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/HiddenSprite"
 ]
 
 @onready var l_off_parents : Array[Control] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DisabledParent",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DisabledParent",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DisabledParent"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/DisabledParent",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Intelligence/DisabledParent",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Community/DisabledParent"
 ]
 
 
 # right
-@onready var r_no_cell_loaded_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/NoCellLoadedLabel"
-@onready var r_stat_display_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay"
-@onready var r_cell_unavaible_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible"
-@onready var r_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/CellName"
+@onready var r_no_cell_loaded_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/NoCellLoadedLabel"
+@onready var r_stat_display_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay"
+@onready var r_cell_unavaible_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible"
+@onready var r_cell_name_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/CellName"
 
 @onready var r_clean_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/CleanBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/CleanBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/CleanBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/CleanBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/CleanBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/CleanBar"
 ]
 
 @onready var r_defect_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DefectBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DefectBar",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DefectBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DefectBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DefectBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DefectBar"
 ]
 
 @onready var r_hidden_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/HiddenSprite"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/HiddenSprite"
 ]
 
 @onready var r_off_parents : Array[Control] = [
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DisabledParent",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DisabledParent",
-	$"../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DisabledParent"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Strength/DisabledParent",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Intelligence/DisabledParent",
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/StatDisplay/Community/DisabledParent"
 ]
 
 ## failure chance
 
 # left 
-@onready var l_failure_chance_parent : Control =$"../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay"
-@onready var l_failure_chance_percant_label : Label = $"../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay/TotalFailureChance/FailureChancePercant"
-@onready var l_failure_chance_frame : TextureRect =$"../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay/TotalFailureChance/Frame"
+@onready var l_failure_chance_parent : Control =$"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay"
+@onready var l_failure_chance_percant_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay/TotalFailureChance/FailureChancePercant"
+@onready var l_failure_chance_frame : TextureRect =$"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/LeftFailureChanceDisplay/TotalFailureChance/Frame"
 
 # right
-@onready var r_failure_chance_parent: Control = $"../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay"
-@onready var r_failure_chance_percant_label: Label = $"../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay/TotalFailureChance/FailureChancePercant"
-@onready var r_failure_chance_frame: TextureRect =$"../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay/TotalFailureChance/Frame"
+@onready var r_failure_chance_parent: Control = $"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay"
+@onready var r_failure_chance_percant_label: Label = $"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay/TotalFailureChance/FailureChancePercant"
+@onready var r_failure_chance_frame: TextureRect =$"../../../BreedingUI/CellLoader/BreedingView/FailureChanceDisplay/RightFailureDisplay/TotalFailureChance/Frame"
 ## blood type
 
 # left
-@onready var l_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay"
-@onready var l_no_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay/NoBloodType"
+@onready var l_blood_type_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay"
+@onready var l_no_blood_type_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/BloodType/LeftBloodTypeDisplay/NoBloodType"
 
 # right 
-@onready var r_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay"
-@onready var r_no_blood_type_parent : Control = $"../../BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay/NoBloodType"
+@onready var r_blood_type_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay"
+@onready var r_no_blood_type_parent : Control = $"../../../BreedingUI/CellLoader/BreedingView/BloodType/RightBloodTypeDisplay/NoBloodType"
 
 
 func _ready() -> void:

@@ -50,59 +50,59 @@ extends Node
 
 # left
 @onready var l_clean_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/CleanBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/CleanBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/CleanBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/StatDisplay/Strength/CleanBar",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/CleanBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/CleanBar"
 ]
 @onready var l_defect_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DefectBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DefectBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DefectBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DefectBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DefectBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DefectBar"
 ]
 @onready var l_hidden_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/HiddenSprite"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/HiddenSprite"
 ]
 @onready var l_off_parents : Array[Control] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/Off",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/Off",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/Off"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/Off",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/Off",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/Off"
 ]
-@onready var l_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/CellNameLabel"
+@onready var l_cell_name_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/CellNameLabel"
 @onready var l_death_alert_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DeathAlert", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DeathAlert", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DeathAlert"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DeathAlert", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DeathAlert", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DeathAlert"
 ]
 
 
 # right
 @onready var r_clean_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/CleanBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/CleanBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/CleanBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/CleanBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/CleanBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/CleanBar"
 ]
 @onready var r_defect_bars : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DefectBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/DefectBar", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/DefectBar"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DefectBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/DefectBar", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/DefectBar"
 ]
 @onready var r_hidden_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/HiddenSprite",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/HiddenSprite"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/HiddenSprite",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/HiddenSprite"
 ]
 @onready var r_off_parents : Array[Control] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/Off",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/Off",
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/Off"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/Off",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/Off",
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/Off"
 ]
-@onready var r_cell_name_label : Label = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/CellNameLabel"
+@onready var r_cell_name_label : Label = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/CellNameLabel"
 @onready var r_death_alert_sprites : Array[Sprite2D] = [
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DeathAlert", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/DeathAlert", 
-	$"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/DeathAlert"
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DeathAlert", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/DeathAlert", 
+	$"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/DeathAlert"
 ]
 
 

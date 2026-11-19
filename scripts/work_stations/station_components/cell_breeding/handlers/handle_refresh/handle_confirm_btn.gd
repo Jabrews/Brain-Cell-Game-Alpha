@@ -1,6 +1,6 @@
 extends Node
 
-@onready var confirm_btn: Control = $"../../BreedingUI/InteractFooter/ConfirmBtn"
+@onready var confirm_btn: Control = $"../../../BreedingUI/InteractFooter/ConfirmBtn"
 
 var main_cells_missing_text: String = "Missing main breeding cells on station panels"
 var main_cells_unavaible_text: String = "One or Both main breeding cells are unavaible to breed this turn"

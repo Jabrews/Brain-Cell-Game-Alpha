@@ -1,7 +1,7 @@
 extends Node
 
 # components
-@onready var reset_btn : Control = $"../BreedingUI/ExitHeader/ResetBtn"
+@onready var reset_btn : Control = $"../../BreedingUI/ExitHeader/ResetBtn"
 
 # handle componentd
 @onready var handle_wanted_borders : Node = $HandleWantedBorders

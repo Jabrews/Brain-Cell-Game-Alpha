@@ -107,7 +107,7 @@
 albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
 metallic_specular = 0.0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_0vw5u"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_ab2p7"]
 _surfaces = [{
 "aabb": AABB(-0.033, -0.016392212, 0, 0.066, 0.032784425, 0.020298865),
 "format": 34359742465,
@@ -137,7 +137,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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RIvsvK3/ajwAAAAARIvsvJqQYjwAAAAAQ4vsPMBuczwAAAAAQ4vsPK3/ajwAAAAAQ4vsPJqQYjwAAAAAVlj4PK7/arwAAAAAQ4vsPK7/arwAAAAAQ4vsPMBuc7wAAAAAL77gvK3/ajwAAAAAL77gvK3/ajymm0Q8tDsAvbLVdTzOSaY8YhIBvYGVeDzOSaY8tTsAPbLVdTzOSaY8YxIBPYGVeDzOSaY8YxIBPYCVeLzOSaY8YhIBvYCVeLzOSaY8tDsAvbPVdbzOSaY8tTsAPbPVdbzOSaY8AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f////78AAP9/////vwAA/3//f/+/AAD/f////78AAP9/////v/9///9/hf+//3////9//7//f///rzr/v/9///////+//3///////7//f///BZr/v/9///////+//3///////7////9//3//v////3//f/+/////f/9//7////9/////v////3////+/////f/9//7////9/////v////3////+//38AAH96/7//fwAA/3//v/9/AABPxf+//38AAP///7//fwAA////v/9/AAD/f/+//38AAPll/7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//f/9/AAD/v/9//38AAP+//3//fwAA/7//f/9/AAD/v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+/AAD/v////78AAP+/////vwAA/7////+/AAD/v////7//////////v//////+//+//////////7///////v//v/////////+///////7//78AAP7//v//v/////////+///////7//7////7//v//vwAA/v/+//+/AAD+//7//7//////////v//////+//+//////////7//////////v/9///////+//3///////7//f///////v/9///////+/////v////7////+/////v////7////+/////v////7////+/////v////7////+/////v////7////+/////v/9///////+//3///////7//f///////v/9///////+/AAD/v////78AAP+/////vwAA/7////+/AAD/v////7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v/////////+//////////7//////////vwAA/v/+//+//////////7//////////v//////+//+////+//7//7///////v//v//////+//+//////////7///////v//v//////+//+//////////7//////////vwAA/v/+//+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+//3///////7//f///////v/9///////+//3///////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9/AAD///+//38AAP///7//fwAA////v/9/AAD///+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v////3////+/////f////7////9/////v////3////+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+/////f////7////9/////v////3////+/////f////7//fwAA////v/9/AAD///+//38AAP///7//fwAA////v5pW/38AALHUmlb/fwAAsdSaVv9/AABMq5pW/38AAEyr/38mrwAA/7//fyavAAD/v/9/Jq8AAP+//38mrwAA/79kqf9/ZSn/v2Sp/39lKf+/ZKn/f2Up/79kqf9/ZSn/v/9/2FAAAP+//3/YUAAA/7//f9hQAAD/v/9/2FAAAP+/////f////7////9/////v////3////+/////f////78AAP9/////vwAA/3////+/AAD/f////78AAP9/////v/9///////+//3///////7//f///////v/9///////+//38AAP///7//fwAA////v/9/AAD///+//38AAP///7/+f/9/AAD/v/5//38AAP+//n//fwAA/7//f/9/AAD/v/5//38AAP+//3//fwAA/78AgP9/AQD+vwCA/38BAP6/////f////7////9/////v////3////+/////f////7//f///////v/9///////+//3///////7//f///////vwAA/3////+/AAD/f////78AAP9/////vwAA/3////+//38AAP///7//fwAA////v/9/AAD///+//38AAP///78AAP9//3//vwAA/3//f/+//3///w56/7//f///sbz/v/9/////f/+//3////9//7//f////3//v/9///9dhP+//3////9//7////9//3//v////3//f/+/////f/9//7////9//3//v////3//f/+/////f/9//7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v//////+//+//////////7//////////v////v/+//+//////////7//////////v/////////+///////7//7//////////v////3////+/////f////7//fwAA////v/9/AAD///+/////f////7////9/////v/9///////+//38AAP///78AAP9/////vwAA/3////+//3///////7//f///////vwAA/3////+/AAD/f////7//f///////v/9///////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////vwAA/3//f/+/AAD/f/9//78AAP9//3//vwAA/3//f/+/AAD/f/9//7////9//3//v/9/AADwhf+//38AAE1D/7//fwAA/3//v/9/AAD/f/+//38AAKF7/7//fwAA/3//v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v//////+//+///////7//7///////v//v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v//////+//+///////7//7///////v//v//////+//+///////7//7//////////v/////////+//////////7//////////v/////////+//////////7///////v//v//////+//+//////////7//////////v//////+//+///////7//7///////v//v/////////+///////7//7///////v//v/////////+///////7//7///////v//v//////+//+///////7//7//////////v/////////+//////////7//////////v/////////+///////7//7//////////v//////+//+///////7//7///////v//v//////+//+///////7//7///////v//v//////+//+//////////7//////////v/////////+//////////7//////////v/9///////+//3///////7//f///////v/9///////+//////////7//////////v/////////+//////////7//////////v/////////+/AAD+//7//78AAP7//v//vwAA/v/+//+/AAD+//7//78AAP7//v//v////v/+//+////+//7//7////7//v//v////v/+//+////+//7//7////7//v//v//////+//+///////7//7///////v//v/////////+//////////7//////////v/////////+/AAD+//7//78AAP7//v//vwAA/v/+//+/AAD+//7//78AAP7//v//vwAA/v/+//+/AAD+//7//78AAP7//v//vwAA/v/+//+/AAD+//7//78AAP7//v//vwAA/v/+//+/AAD+//7//78AAP7//v//vwAA/v/+//+/AAD+//7//78AAP7//v//vwAA/v/+//+////+//7//7////7//v//v////v/+//+////+//7//7////7//v//v//////+//+///////7//7///////v//v//////+//+///////7//7///////v//v/9/AAD///+//38AAP///7//////////v/////////+//////////7//////////v/////////+//////////7//////////vwAA/3////+/AAD/f////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/9///////+//38AAP///7///////v//v//////+//+///////7//7///////v//v/////////+//////////7//////////v/////////+//////////7//////////vwAA/3////+/AAD/f////7//f///////v/9///////+//////////7//////////v/////////+///////7//7///////v//v//////+//+//////////7//////////v/////////+//38AAP///7//fwAA////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7////9/////v////3////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v/////////+//////////7//////////v////3////+/////f////7//f/9/AAD/v/9//38AAP+/AID/fwEA/r8AgP9/AQD+v/9//38AAP+//3//fwAA/7//f/9/AAD/v/9//38AAP+/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_0vw5u")
+shadow_mesh = SubResource("ArrayMesh_ab2p7")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qa1qv"]
 size = Vector3(7.7959595, 2.034546, 3.963272)
@@ -157,11 +157,11 @@ size = Vector3(1.4290893, 0.14814454, 1.4282539)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dmors"]
 size = Vector3(1.2269897, 0.10992432, 1.204834)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vp6qb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t04t8"]
 albedo_color = Color(0.87, 0.12179999, 0.12179999, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_41g38"]
-material = SubResource("StandardMaterial3D_vp6qb")
+material = SubResource("StandardMaterial3D_t04t8")
 top_radius = 0.7
 bottom_radius = 0.7
 height = 0.05
@@ -170,22 +170,22 @@ height = 0.05
 height = 0.05
 radius = 0.7
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vwfuw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmgwy"]
 metallic_specular = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_47xdj"]
-material = SubResource("StandardMaterial3D_vwfuw")
+material = SubResource("StandardMaterial3D_qmgwy")
 radius = 0.05
 height = 0.1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qa1qv"]
 radius = 0.1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svls5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1dmcq"]
 metallic_specular = 0.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_vsr2l"]
-material = SubResource("StandardMaterial3D_svls5")
+material = SubResource("StandardMaterial3D_1dmcq")
 radius = 0.05
 height = 0.1
 
@@ -327,7 +327,7 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_enf6v"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="Shader" id="Shader_872qu"]
+[sub_resource type="Shader" id="Shader_ab2p7"]
 code = "shader_type canvas_item;
 
 uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
@@ -378,13 +378,13 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bmm5s"]
-shader = SubResource("Shader_872qu")
+shader = SubResource("Shader_ab2p7")
 shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/progress = 0.0
 
-[sub_resource type="Shader" id="Shader_vke6y"]
+[sub_resource type="Shader" id="Shader_t04t8"]
 code = "shader_type canvas_item;
 
 // values 0.0 → 1.0
@@ -444,7 +444,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a40n5"]
-shader = SubResource("Shader_vke6y")
+shader = SubResource("Shader_t04t8")
 shader_parameter/old_prisoner_value = 0.0
 shader_parameter/new_prisoner_value = 0.0
 shader_parameter/target_value = 0.0
@@ -454,7 +454,7 @@ shader_parameter/target_color = Color(0.5, 0, 0, 1)
 shader_parameter/overlap_opacity = 0.35
 shader_parameter/edge_padding = 5.0
 
-[sub_resource type="Shader" id="Shader_rscxs"]
+[sub_resource type="Shader" id="Shader_qmgwy"]
 code = "shader_type canvas_item;
 
 // values (0 → 1)
@@ -510,7 +510,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7oiwu"]
-shader = SubResource("Shader_rscxs")
+shader = SubResource("Shader_qmgwy")
 shader_parameter/prior_defect_value = 0.0
 shader_parameter/new_defect_value = 0.0
 shader_parameter/prior_defect_color = Color(0.5, 0, 0, 1)
@@ -518,7 +518,7 @@ shader_parameter/new_defect_color = Color(1, 0, 0, 1)
 shader_parameter/overlap_opacity = 0.3
 shader_parameter/edge_padding = 5.0
 
-[sub_resource type="Shader" id="Shader_xkuvg"]
+[sub_resource type="Shader" id="Shader_1dmcq"]
 code = "shader_type canvas_item;
 
 uniform bool hologram_enabled = false;
@@ -571,7 +571,7 @@ void fragment() {
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l131e"]
-shader = SubResource("Shader_xkuvg")
+shader = SubResource("Shader_1dmcq")
 shader_parameter/hologram_enabled = false
 shader_parameter/shimmer_speed = 1.5870000753825
 shader_parameter/shimmer_strength = 0.15
@@ -603,7 +603,7 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2j5xm"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="Shader" id="Shader_2fsyu"]
+[sub_resource type="Shader" id="Shader_stbie"]
 code = "shader_type canvas_item;
 
 // values (0.0 → 1.0)
@@ -678,7 +678,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2j5xm"]
-shader = SubResource("Shader_2fsyu")
+shader = SubResource("Shader_stbie")
 shader_parameter/prisoner_value = 0.0
 shader_parameter/charge_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
@@ -689,7 +689,7 @@ shader_parameter/stripe_amount = 28.0
 shader_parameter/stripe_slant = 0.8
 shader_parameter/edge_padding = 5.0
 
-[sub_resource type="Shader" id="Shader_vp6qb"]
+[sub_resource type="Shader" id="Shader_5otcq"]
 code = "shader_type canvas_item;
 
 uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
@@ -740,13 +740,13 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yqqxt"]
-shader = SubResource("Shader_vp6qb")
+shader = SubResource("Shader_5otcq")
 shader_parameter/target_color = Color(0.5176471, 0.49411765, 0.5294118, 1)
 shader_parameter/fill_color = Color(1, 1, 1, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/progress = 0.0
 
-[sub_resource type="Shader" id="Shader_vwfuw"]
+[sub_resource type="Shader" id="Shader_jyltf"]
 code = "shader_type canvas_item;
 
 uniform vec4 target_color : source_color = vec4(0.5, 0.5, 0.5, 1.0);
@@ -812,7 +812,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k7gp0"]
-shader = SubResource("Shader_vwfuw")
+shader = SubResource("Shader_jyltf")
 shader_parameter/target_color = Color(0.36862746, 0.36862746, 0.36862746, 1)
 shader_parameter/tolerance = 0.05
 shader_parameter/current_value = 0.0
@@ -833,7 +833,7 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fsyu"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="Shader" id="Shader_3movu"]
+[sub_resource type="Shader" id="Shader_7pphx"]
 code = "shader_type canvas_item;
 
 uniform float stat_defect_value : hint_range(0.0, 1.0);
@@ -926,7 +926,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h2s3s"]
-shader = SubResource("Shader_3movu")
+shader = SubResource("Shader_7pphx")
 shader_parameter/stat_defect_value = 0.0
 shader_parameter/start_value = 0.0
 shader_parameter/defect_color = Color(0.5, 0, 0, 1)
@@ -940,7 +940,7 @@ shader_parameter/edge_padding = 2.6370001252575
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4118e"]
 load_path = "res://.godot/imported/progress_bar_under.png-e57f123632c318b1d08ae788f52e6ada.ctex"
 
-[sub_resource type="Shader" id="Shader_3tyvt"]
+[sub_resource type="Shader" id="Shader_3cxew"]
 code = "shader_type canvas_item;
 
 uniform float prisoner_value : hint_range(0.0, 1.0);
@@ -1035,7 +1035,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_872qu"]
-shader = SubResource("Shader_3tyvt")
+shader = SubResource("Shader_3cxew")
 shader_parameter/prisoner_value = 0.0
 shader_parameter/start_value = 0.0
 shader_parameter/yellow_color = Color(1, 1, 0, 1)
@@ -1150,7 +1150,7 @@ animations = [{
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vloa8"]
 load_path = "res://.godot/imported/random_blood.png-71253817ce11fe69d57c081f7df908ae.ctex"
 
-[sub_resource type="Shader" id="Shader_k4bql"]
+[sub_resource type="Shader" id="Shader_it318"]
 code = "shader_type canvas_item;
 
 uniform float line_opacity : hint_range(0.0, 1.0) = 0.12;
@@ -1172,7 +1172,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4cwmd"]
-shader = SubResource("Shader_k4bql")
+shader = SubResource("Shader_it318")
 shader_parameter/line_opacity = 0.030000001425
 shader_parameter/line_thickness = 0.42300001683262
 shader_parameter/line_spacing = 4.0
@@ -1212,127 +1212,131 @@ size = Vector2(0.2, 0.2)
 [node name="StationCellBreeding" type="Node3D" unique_id=1160068214]
 script = ExtResource("1_dmors")
 
-[node name="DisplayNewCellPreview" type="Node" parent="." unique_id=521299501]
+[node name="Logic" type="Node" parent="." unique_id=1017671947]
+
+[node name="BtnHandlers" type="Node" parent="Logic" unique_id=1971988606]
+
+[node name="HandleResetBtn" type="Node" parent="Logic/BtnHandlers" unique_id=932431619]
+script = ExtResource("5_ac4jf")
+
+[node name="HandleConfirmBtn" type="Node" parent="Logic/BtnHandlers" unique_id=1735938697]
+script = ExtResource("10_275he")
+
+[node name="HandleBackBtn" type="Node" parent="Logic/BtnHandlers" unique_id=1078166937]
+script = ExtResource("13_872qu")
+
+[node name="DisplayNewCellPreview" type="Node" parent="Logic" unique_id=521299501]
 script = ExtResource("2_h2s3s")
 
-[node name="DisplayCellCatalog" type="Node" parent="." unique_id=1438846030]
+[node name="DisplayCellCatalog" type="Node" parent="Logic" unique_id=1438846030]
 script = ExtResource("3_a0emy")
 
-[node name="HandleDisplayUi" type="Node" parent="." unique_id=1530602053]
+[node name="HandleDisplayUi" type="Node" parent="Logic" unique_id=1530602053]
 process_mode = 3
 script = ExtResource("2_awyxg")
 
-[node name="HandleBreedingBoxStartup" type="Node" parent="." unique_id=2127259538]
+[node name="HandleBreedingBoxStartup" type="Node" parent="Logic" unique_id=2127259538]
 script = ExtResource("3_jleg6")
 
-[node name="HandleRefreshBreederView" type="Node" parent="." unique_id=297528434]
+[node name="HandleRefreshBreederView" type="Node" parent="Logic" unique_id=297528434]
 script = ExtResource("4_0xvgh")
 
-[node name="HandleWantedHighlight" type="Node" parent="HandleRefreshBreederView" unique_id=81302980]
+[node name="HandleWantedHighlight" type="Node" parent="Logic/HandleRefreshBreederView" unique_id=81302980]
 script = ExtResource("5_k4bql")
 
-[node name="HandleWantedBorders" type="Node" parent="HandleRefreshBreederView" unique_id=282418460]
+[node name="HandleWantedBorders" type="Node" parent="Logic/HandleRefreshBreederView" unique_id=282418460]
 script = ExtResource("7_2e72x")
 
-[node name="HandleConfirmBtn" type="Node" parent="HandleRefreshBreederView" unique_id=1568510378]
+[node name="HandleConfirmBtn" type="Node" parent="Logic/HandleRefreshBreederView" unique_id=1568510378]
 script = ExtResource("8_iv7m4")
 
-[node name="HandleBoostDisplay" type="Node" parent="HandleRefreshBreederView" unique_id=1474253305]
+[node name="HandleBoostDisplay" type="Node" parent="Logic/HandleRefreshBreederView" unique_id=1474253305]
 script = ExtResource("9_e38bu")
 
-[node name="HelperVerifyUiState" type="Node" parent="HandleRefreshBreederView" unique_id=1401584633]
+[node name="HelperVerifyUiState" type="Node" parent="Logic/HandleRefreshBreederView" unique_id=1401584633]
 script = ExtResource("6_ugge0")
 
-[node name="HandleResetBtn" type="Node" parent="." unique_id=932431619]
-script = ExtResource("5_ac4jf")
-
-[node name="HandleConfirmBtn" type="Node" parent="." unique_id=1735938697]
-script = ExtResource("10_275he")
-
-[node name="HandleBackBtn" type="Node" parent="." unique_id=1078166937]
-script = ExtResource("13_872qu")
-
-[node name="HandleBoostDisplay" type="Node" parent="." unique_id=1525550362]
+[node name="HandleBoostDisplay" type="Node" parent="Logic" unique_id=1525550362]
 script = ExtResource("11_tvpn4")
 
-[node name="ToggleFocus" type="Node" parent="HandleBoostDisplay" unique_id=1980774439]
+[node name="ToggleFocus" type="Node" parent="Logic/HandleBoostDisplay" unique_id=1980774439]
 script = ExtResource("16_y2fos")
 
-[node name="GetSideBoostComponents" type="Node" parent="HandleBoostDisplay" unique_id=758388995]
+[node name="GetSideBoostComponents" type="Node" parent="Logic/HandleBoostDisplay" unique_id=758388995]
 script = ExtResource("13_00uyy")
 
-[node name="ResetBoostDisplay" type="Node" parent="HandleBoostDisplay" unique_id=810907967]
+[node name="ResetBoostDisplay" type="Node" parent="Logic/HandleBoostDisplay" unique_id=810907967]
 script = ExtResource("14_enf6v")
 
-[node name="HandleStatSelected" type="Node" parent="HandleBoostDisplay" unique_id=731107552]
+[node name="HandleStatSelected" type="Node" parent="Logic/HandleBoostDisplay" unique_id=731107552]
 script = ExtResource("13_idfuw")
 
-[node name="DisplayBoostDebuff" type="Node" parent="HandleBoostDisplay/HandleStatSelected" unique_id=1662758763]
+[node name="DisplayBoostDebuff" type="Node" parent="Logic/HandleBoostDisplay/HandleStatSelected" unique_id=1662758763]
 script = ExtResource("16_a40n5")
 
-[node name="HandleChargeDirection" type="Node" parent="HandleBoostDisplay" unique_id=1946312839]
+[node name="HandleChargeDirection" type="Node" parent="Logic/HandleBoostDisplay" unique_id=1946312839]
 script = ExtResource("16_bmm5s")
 
-[node name="DisplayValidityLabel" type="Node" parent="HandleBoostDisplay" unique_id=510775118]
+[node name="DisplayValidityLabel" type="Node" parent="Logic/HandleBoostDisplay" unique_id=510775118]
 script = ExtResource("17_miyxf")
 
-[node name="DisplayBoostStats" type="Node" parent="HandleBoostDisplay" unique_id=1721893375]
+[node name="DisplayBoostStats" type="Node" parent="Logic/HandleBoostDisplay" unique_id=1721893375]
 script = ExtResource("18_7oiwu")
 
-[node name="HandleSelectedViewSlider" type="Node" parent="." unique_id=2031448372]
+[node name="HandleSelectedViewSlider" type="Node" parent="Logic" unique_id=2031448372]
 script = ExtResource("10_jh1bc")
 
-[node name="ToggleSliderFocus" type="Node" parent="HandleSelectedViewSlider" unique_id=1603043115]
+[node name="ToggleSliderFocus" type="Node" parent="Logic/HandleSelectedViewSlider" unique_id=1603043115]
 script = ExtResource("23_ivyfi")
 
-[node name="HandleBtnSection" type="Node" parent="HandleSelectedViewSlider" unique_id=567767176]
+[node name="HandleBtnSection" type="Node" parent="Logic/HandleSelectedViewSlider" unique_id=567767176]
 script = ExtResource("11_yqqxt")
 
-[node name="HandleInformationSection" type="Node" parent="HandleSelectedViewSlider" unique_id=799527138]
+[node name="HandleInformationSection" type="Node" parent="Logic/HandleSelectedViewSlider" unique_id=799527138]
 script = ExtResource("12_l8wio")
 
-[node name="DisplayStats" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=2089383280]
+[node name="DisplayStats" type="Node" parent="Logic/HandleSelectedViewSlider/HandleInformationSection" unique_id=2089383280]
 script = ExtResource("13_2fsyu")
 
-[node name="DisplayFailureChance" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=167743775]
+[node name="DisplayFailureChance" type="Node" parent="Logic/HandleSelectedViewSlider/HandleInformationSection" unique_id=167743775]
 script = ExtResource("14_275he")
 
-[node name="DisplayMutations" type="Node" parent="HandleSelectedViewSlider/HandleInformationSection" unique_id=650868651]
+[node name="DisplayMutations" type="Node" parent="Logic/HandleSelectedViewSlider/HandleInformationSection" unique_id=650868651]
 script = ExtResource("15_2j5xm")
 
-[node name="HandleBreedingView" type="Node" parent="." unique_id=1867401397]
+[node name="HandleBreedingView" type="Node" parent="Logic" unique_id=1867401397]
 script = ExtResource("17_2tp68")
 
-[node name="GetSideComponents" type="Node" parent="HandleBreedingView" unique_id=2102076043]
+[node name="GetSideComponents" type="Node" parent="Logic/HandleBreedingView" unique_id=2102076043]
 script = ExtResource("18_pjaa2")
 
-[node name="Display" type="Node" parent="HandleBreedingView" unique_id=1732178056]
+[node name="Display" type="Node" parent="Logic/HandleBreedingView" unique_id=1732178056]
 
-[node name="DisplayStats" type="Node" parent="HandleBreedingView/Display" unique_id=786577542]
+[node name="DisplayStats" type="Node" parent="Logic/HandleBreedingView/Display" unique_id=786577542]
 script = ExtResource("19_y63pt")
 
-[node name="DisplayBoost" type="Node" parent="HandleBreedingView/Display" unique_id=115660814]
+[node name="DisplayBoost" type="Node" parent="Logic/HandleBreedingView/Display" unique_id=115660814]
 script = ExtResource("35_ro1k1")
 
-[node name="DisplayStatSymbols" type="Node" parent="HandleBreedingView/Display" unique_id=91349413]
+[node name="DisplayStatSymbols" type="Node" parent="Logic/HandleBreedingView/Display" unique_id=91349413]
 script = ExtResource("20_nm6wx")
 
-[node name="HandleHidden" type="Node" parent="HandleBreedingView/Display/DisplayStatSymbols" unique_id=151116096]
+[node name="HandleHidden" type="Node" parent="Logic/HandleBreedingView/Display/DisplayStatSymbols" unique_id=151116096]
 script = ExtResource("40_odqr3")
 
-[node name="HandleArrow" type="Node" parent="HandleBreedingView/Display/DisplayStatSymbols" unique_id=859031864]
+[node name="HandleArrow" type="Node" parent="Logic/HandleBreedingView/Display/DisplayStatSymbols" unique_id=859031864]
 script = ExtResource("41_e38bu")
 
-[node name="DisplayFailureChance" type="Node" parent="HandleBreedingView/Display" unique_id=223924811]
+[node name="DisplayFailureChance" type="Node" parent="Logic/HandleBreedingView/Display" unique_id=223924811]
 script = ExtResource("27_oipmh")
 
-[node name="DisplayBloodType" type="Node" parent="HandleBreedingView/Display" unique_id=1785791741]
+[node name="DisplayBloodType" type="Node" parent="Logic/HandleBreedingView/Display" unique_id=1785791741]
 script = ExtResource("24_nm6wx")
 
-[node name="DisplayFailureChanceFlash" type="Node" parent="HandleBreedingView/Display" unique_id=1348996482]
+[node name="DisplayFailureChanceFlash" type="Node" parent="Logic/HandleBreedingView/Display" unique_id=1348996482]
 script = ExtResource("25_oipmh")
 
-[node name="FlashDelayTimer" type="Timer" parent="HandleBreedingView/Display/DisplayFailureChanceFlash" unique_id=1849140018]
+[node name="FlashDelayTimer" type="Timer" parent="Logic/HandleBreedingView/Display/DisplayFailureChanceFlash" unique_id=1849140018]
 process_mode = 3
 wait_time = 0.5
 
@@ -1809,7 +1813,7 @@ offset_left = 368.0
 offset_top = 192.0
 offset_right = 368.0
 offset_bottom = 192.0
-handle_boost_display = NodePath("../../../../../HandleBoostDisplay")
+handle_boost_display = NodePath("../../../../../Logic/HandleBoostDisplay")
 drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
 
 [node name="BoostBtn" parent="BreedingUI/CellLoader/BreedingView/Boxes/LeftBreedingViewBoostBox/BoostBtn" parent_id_path=PackedInt32Array(641033110, 157253912) index="0" unique_id=927815431]
@@ -1828,7 +1832,7 @@ offset_right = 1157.0
 offset_bottom = 192.0
 focus_mode = 2
 side = "right"
-handle_boost_display = NodePath("../../../../../HandleBoostDisplay")
+handle_boost_display = NodePath("../../../../../Logic/HandleBoostDisplay")
 drag_cell_entry_parent_node = NodePath("../../../../DragCellEntryParentNode")
 
 [node name="BoostBtn" parent="BreedingUI/CellLoader/BreedingView/Boxes/RightBreedingViewBoostBox/BoostBtn" parent_id_path=PackedInt32Array(1252660582, 157253912) index="0" unique_id=927815431]
@@ -2164,6 +2168,7 @@ vertical_alignment = 1
 
 [node name="CellUnavaible" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay" unique_id=465778294]
 visible = false
+z_index = 1
 anchors_preset = 0
 offset_left = 32.0
 offset_top = 472.0
@@ -2175,16 +2180,16 @@ layout_mode = 0
 offset_left = -16.0
 offset_top = -470.0
 offset_right = 304.0
-offset_bottom = -192.0
+offset_bottom = -8.0
 color = Color(0, 0, 0, 0.8666667)
 
 [node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay/CellUnavaible" unique_id=640251323]
 texture_filter = 1
 layout_mode = 0
 offset_left = 104.0
-offset_top = -440.0
-offset_right = 168.0
-offset_bottom = -384.0
+offset_top = -376.0
+offset_right = 184.0
+offset_bottom = -304.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("57_3xmbv")
 
@@ -2192,12 +2197,12 @@ texture = ExtResource("57_3xmbv")
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.0
-offset_top = -376.0
+offset_top = -296.0
 offset_right = 304.0
-offset_bottom = -316.0
+offset_bottom = -223.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 36
 text = "Cell is Locked 
 After Breeding"
 horizontal_alignment = 1
@@ -2207,18 +2212,20 @@ vertical_alignment = 1
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.0
-offset_top = -296.0
+offset_top = -216.0
 offset_right = 304.0
-offset_bottom = -237.0
+offset_bottom = -149.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 28
 text = "Won’t become available 
 again until the next turn."
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NoCellLoadedLabel" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/LeftStatDisplay" unique_id=913135661]
+visible = false
 texture_filter = 1
 layout_mode = 0
 offset_left = 16.0
@@ -2468,57 +2475,59 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CellUnavaible" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay" unique_id=1660783278]
+[node name="CellUnavaible" type="Control" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay" unique_id=263596024]
 visible = false
+z_index = 1
 anchors_preset = 0
 offset_left = 32.0
 offset_top = 472.0
 offset_right = 72.0
 offset_bottom = 512.0
 
-[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=2122203057]
+[node name="ColorRect" type="ColorRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=1090496743]
 layout_mode = 0
 offset_left = -16.0
 offset_top = -470.0
 offset_right = 304.0
-offset_bottom = -192.0
+offset_bottom = -8.0
 color = Color(0, 0, 0, 0.8666667)
 
-[node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=1093499463]
+[node name="LockRect" type="TextureRect" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=1149526656]
 texture_filter = 1
 layout_mode = 0
 offset_left = 104.0
-offset_top = -440.0
-offset_right = 168.0
-offset_bottom = -384.0
+offset_top = -376.0
+offset_right = 184.0
+offset_bottom = -304.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("57_3xmbv")
 
-[node name="Text" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=550114330]
-texture_filter = 1
-layout_mode = 0
-offset_left = -16.0
-offset_top = -376.0
-offset_right = 304.0
-offset_bottom = -316.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 30
-text = "Cell is Locked 
-After Breeding"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Text2" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=85040093]
+[node name="Text" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=1319078158]
 texture_filter = 1
 layout_mode = 0
 offset_left = -16.0
 offset_top = -296.0
 offset_right = 304.0
-offset_bottom = -237.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+offset_bottom = -223.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("15_n3nrt")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
+text = "Cell is Locked 
+After Breeding"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text2" type="Label" parent="BreedingUI/CellLoader/BreedingView/StatDisplay/RightStatDisplay/CellUnavaible" unique_id=333167638]
+texture_filter = 1
+layout_mode = 0
+offset_left = -16.0
+offset_top = -216.0
+offset_right = 304.0
+offset_bottom = -149.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("15_n3nrt")
+theme_override_font_sizes/font_size = 28
 text = "Won’t become available 
 again until the next turn."
 horizontal_alignment = 1

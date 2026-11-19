@@ -1,12 +1,12 @@
 extends Node
 
 # components
-@onready var parent_station : Node3D = $".."
-@onready var handle_display_ui : Node = $"../HandleDisplayUi"
-@onready var display_new_cell_preview : Node = $"../DisplayNewCellPreview"
-@onready var left_finsihed_particle : GPUParticles3D = $"../BreedingParticle/LeftFinishedParticle"
-@onready var right_finsihed_particle : GPUParticles3D = $"../BreedingParticle/RightFinishedParticle"
-@onready var simulate_stat : Control = $"../BreedingUI/SimulateStatDefectIncrease"
+@onready var parent_station : Node3D = $"../../.."
+@onready var handle_display_ui : Node = $"../../../HandleDisplayUi"
+@onready var display_new_cell_preview : Node = $"../../../DisplayNewCellPreview"
+@onready var left_finsihed_particle : GPUParticles3D = $"../../../BreedingParticle/LeftFinishedParticle"
+@onready var right_finsihed_particle : GPUParticles3D = $"../../../BreedingParticle/RightFinishedParticle"
+@onready var simulate_stat : Control = $"../../../BreedingUI/SimulateStatDefectIncrease"
 
 var current_screen : String = 'cell_loader'
 

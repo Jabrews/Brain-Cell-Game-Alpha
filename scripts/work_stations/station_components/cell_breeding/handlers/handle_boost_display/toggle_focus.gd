@@ -1,26 +1,26 @@
 extends Node
 
-@onready var breeding_ui : Control = $"../../BreedingUI"
+@onready var breeding_ui : Control = $"../../../BreedingUI"
 
 # boost header
-@onready var left_boost_exit_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Header/ExitBtn/BtnBG"
-@onready var right_boost_exit_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Header/ExitBtn/BtnBG"
-@onready var left_exsplain_hint_bg : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/ExsplainHint/BG"
-@onready var right_exsplain_hint_bg : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/ExsplainHint/BG"
+@onready var left_boost_exit_btn_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Header/ExitBtn/BtnBG"
+@onready var right_boost_exit_btn_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Header/ExitBtn/BtnBG"
+@onready var left_exsplain_hint_bg : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/ExsplainHint/BG"
+@onready var right_exsplain_hint_bg : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/ExsplainHint/BG"
 
 # boost stats
-@onready var left_strength_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DetectHover"
-@onready var right_strength_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DetectHover"
-@onready var left_intelligence_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DetectHover"
-@onready var right_intelligence_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/DetectHover"
-@onready var left_community_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DetectHover"
-@onready var right_community_detect_hover_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/DetectHover"
+@onready var left_strength_detect_hover_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Strength/DetectHover"
+@onready var right_strength_detect_hover_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Strength/DetectHover"
+@onready var left_intelligence_detect_hover_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Intelligence/DetectHover"
+@onready var right_intelligence_detect_hover_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Intelligence/DetectHover"
+@onready var left_community_detect_hover_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/Stats/Community/DetectHover"
+@onready var right_community_detect_hover_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/Stats/Community/DetectHover"
 
 # change dir btns 
-@onready var left_up_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/ChargeDirectionBtns/UpBtn/BtnBG"
-@onready var left_down_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/ChargeDirectionBtns/DownBtn/BtnBG"
-@onready var right_up_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/ChargeDirectionBtns/UpBtn/BtnBG"
-@onready var right_down_btn_rect : ColorRect = $"../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/ChargeDirectionBtns/DownBtn/BtnBG"
+@onready var left_up_btn_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/ChargeDirectionBtns/UpBtn/BtnBG"
+@onready var left_down_btn_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/LeftBoostDisplay/ChargeDirectionBtns/DownBtn/BtnBG"
+@onready var right_up_btn_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/ChargeDirectionBtns/UpBtn/BtnBG"
+@onready var right_down_btn_rect : ColorRect = $"../../../BreedingUI/CellLoader/BreedingView/BoostDisplays/RightBoostDisplay/ChargeDirectionBtns/DownBtn/BtnBG"
 
 
 
