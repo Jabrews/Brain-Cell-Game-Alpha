@@ -7,18 +7,18 @@ var stat_disabled : bool = false
 var loaded_stat : BrainCellStat 
 
 # components
-@onready var highlight : Sprite2D = $Highlight
-@onready var bar : TextureRect = $Bar
-@onready var defect_bar : TextureProgressBar = $DefectBar
-@onready var hide_stat : Sprite2D = $Hide
-@onready var off_parent : Control = $Off
-@onready var parent_usable_item_popup : Control = $".."
+@onready var highlight : TextureRect = $Highlight
+@onready var bar : TextureRect = $StatVBox/Bar
+@onready var defect_bar : TextureProgressBar = $StatVBox/DefectBar
+@onready var hidden_rect : TextureRect = $StatVBox/HiddenRect
+@onready var off_parent : Control = $StatVBox/Off
+@onready var parent_usable_item_popup : Control =$"../../../../.."
 
 func _ready() -> void:
-	bar.mouse_entered.connect(_handle_mouse_entered)
-	bar.mouse_exited.connect(_handle_mouse_exited)
-	bar.focus_entered.connect(_handle_mouse_entered)
-	bar.focus_exited.connect(_handle_mouse_exited)
+	mouse_entered.connect(_handle_mouse_entered)
+	mouse_exited.connect(_handle_mouse_exited)
+	focus_entered.connect(_handle_mouse_entered)
+	focus_exited.connect(_handle_mouse_exited)
 	
 	bar.material = bar.material.duplicate()	
 
@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 				if not loaded_stat.hidden :
 					return
 			
-			get_parent()._handle_pop_up_stat_selected(stat_type)
+			parent_usable_item_popup._handle_pop_up_stat_selected(stat_type)
 
 
 func _handle_mouse_entered() -> void:
@@ -52,9 +52,12 @@ func _handle_mouse_exited() -> void:
 
 func handle_display_stat_info(stat : BrainCellStat) -> void:
 	if stat == null:
-		reset_stat()
 		loaded_stat = null
 		return
+	
+	visible = true
+	
+	reset_stat()
 	
 	loaded_stat = stat
 	
@@ -63,19 +66,18 @@ func handle_display_stat_info(stat : BrainCellStat) -> void:
 	# disabled stat
 	if stat.enabled == false:
 		stat_disabled = true
-		stat_hovered_over = false
-		highlight.visible = false
 		off_parent.visible = true
-		defect_bar.visible = false
 		return
 	
 	stat_disabled = false
-	visible = true
-	off_parent.visible = false
-	defect_bar.visible = true
 	
-	# hidden icon
-	hide_stat.visible = stat.hidden
+	if stat.hidden : 
+		hidden_rect.visible = true
+		return
+	
+	# make bars visual
+	bar.visible = true
+	defect_bar.visible = true
 	
 	# defect bar
 	defect_bar.max_value = max_val
@@ -83,20 +85,20 @@ func handle_display_stat_info(stat : BrainCellStat) -> void:
 	
 	# prisoner stat value
 	var prisoner_value : float = stat.value / max_val
-	
-	
 	bar.material.set_shader_parameter("prisoner_value", prisoner_value)
 
 
 func reset_stat() -> void:
-	hide_stat.visible = false
+	bar.visible = false
+	defect_bar.visible = false
+	hidden_rect.visible = false
+	stat_disabled = false
+	off_parent.visible = false
+	stat_hovered_over = false
+	highlight.visible = false
 	
 	defect_bar.value = 0
-	
 	bar.material.set_shader_parameter("prisoner_value", 0.0)
 	
-	stat_disabled = false
-	stat_hovered_over = false
+
 	
-	highlight.visible = false
-	visible = true

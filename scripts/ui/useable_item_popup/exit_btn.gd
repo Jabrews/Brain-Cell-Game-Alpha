@@ -1,5 +1,9 @@
 extends TextureRect 
 
+# components
+@onready var parent_popup : Control =$"../../../../.."
+
+
 var original_scale : Vector2
 var scale_tween : Tween
 var mouse_hovered_over : bool = false
@@ -15,7 +19,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void: 
 	if mouse_hovered_over :
 		if Input.is_action_just_pressed('attack') or Input.is_action_just_pressed('interact'):
-			get_parent().hide_popup()
+			parent_popup.hide_popup()
 
 func _handle_mouse_entered() -> void:
 	_tween_scale(original_scale * 1.1)

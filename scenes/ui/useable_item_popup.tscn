@@ -20,6 +20,12 @@
 [ext_resource type="Shader" uid="uid://dibqoim0ybjn4" path="res://scripts/shaders/shareholder_offer_bg.gdshader" id="17_fr6x8"]
 [ext_resource type="Texture2D" uid="uid://cjnkhlkl7scb" path="res://models/scissors_popup/mutations_highlight.png" id="19_lmn1t"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lmn1t"]
+shader = ExtResource("17_fr6x8")
+shader_parameter/blur_amount = 3.0000001425
+shader_parameter/tint_strength = 0.638000030305
+shader_parameter/tint_color = Color(0, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vfvet"]
 shader = ExtResource("1_eww3u")
 shader_parameter/line_opacity = 0.12
@@ -48,15 +54,6 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_y6twq"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fr6x8"]
-load_path = "res://.godot/imported/progress_bar_under.png-a4ddba47758af10b1c8dd6544faba67e.ctex"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6o3yp"]
-shader = ExtResource("17_fr6x8")
-shader_parameter/blur_amount = 3.0000001425
-shader_parameter/tint_strength = 0.638000030305
-shader_parameter/tint_color = Color(0, 0, 0, 1)
-
 [node name="UseableItemPopup" type="Control" unique_id=1755211546]
 process_mode = 3
 layout_mode = 3
@@ -68,701 +65,634 @@ grow_vertical = 2
 script = ExtResource("1_oag2g")
 metadata/_edit_use_anchors_ = true
 
-[node name="BG2" type="ColorRect" parent="." unique_id=757811902]
+[node name="BlurBg" type="ColorRect" parent="." unique_id=2002740785]
+material = SubResource("ShaderMaterial_lmn1t")
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.075
-anchor_top = 0.022222223
-anchor_right = 0.7625
-anchor_bottom = 0.9
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="BG1" type="ColorRect" parent="." unique_id=1961708497]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.08125
-anchor_top = 0.033333335
-anchor_right = 0.75625
-anchor_bottom = 0.8888889
-color = Color(0.38464698, 5.8358535e-07, 1.6845763e-07, 1)
-metadata/_edit_use_anchors_ = true
+color = Color(1, 1, 1, 0)
 
 [node name="ScanLines" type="ColorRect" parent="." unique_id=714848123]
 material = SubResource("ShaderMaterial_vfvet")
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.08
-anchor_top = 0.030000001
-anchor_right = 0.758
-anchor_bottom = 0.8888889
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1645477377]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1358975431]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0875
+anchor_left = 0.05
 anchor_top = 0.044444446
-anchor_right = 0.75
-anchor_bottom = 0.8
+anchor_right = 0.94975007
+anchor_bottom = 0.9559999
+offset_right = 0.3199997
+offset_bottom = -0.3199997
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="HeaderHBox" type="HBoxContainer" parent="VBoxContainer" unique_id=180730467]
+[node name="CellDisplay" type="Control" parent="HBoxContainer" unique_id=1996471703]
 layout_mode = 2
-alignment = 1
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
 
-[node name="ChargesLeft" type="HBoxContainer" parent="VBoxContainer/HeaderHBox" unique_id=1205935113]
+[node name="Backgrounds" type="Control" parent="HBoxContainer/CellDisplay" unique_id=1870032428]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG2" type="ColorRect" parent="HBoxContainer/CellDisplay/Backgrounds" unique_id=757811902]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BG1" type="ColorRect" parent="HBoxContainer/CellDisplay/Backgrounds" unique_id=1961708497]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.006968641
+anchor_top = 0.013513514
+anchor_right = 0.9947735
+anchor_bottom = 0.9864865
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.38464698, 5.8358535e-07, 1.6845763e-07, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="PropertyContainer" type="VBoxContainer" parent="HBoxContainer/CellDisplay" unique_id=1645477377]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeaderHBox" type="HBoxContainer" parent="HBoxContainer/CellDisplay/PropertyContainer" unique_id=180730467]
+layout_mode = 2
+alignment = 2
+
+[node name="ChargesLeft" type="HBoxContainer" parent="HBoxContainer/CellDisplay/PropertyContainer/HeaderHBox" unique_id=1205935113]
 propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 7.81)
 
-[node name="ChargesLeftText" type="Label" parent="VBoxContainer/HeaderHBox/ChargesLeft" unique_id=38418678]
+[node name="ChargesLeftText" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/HeaderHBox/ChargesLeft" unique_id=38418678]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = " Charges Left -"
 
-[node name="ChargestLeft" type="Label" parent="VBoxContainer/HeaderHBox/ChargesLeft" unique_id=1476966604]
+[node name="ChargestLeft" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/HeaderHBox/ChargesLeft" unique_id=1476966604]
 texture_filter = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "3"
 
-[node name="ExitBtn" type="TextureRect" parent="VBoxContainer/HeaderHBox" unique_id=311109360]
+[node name="ExitBtn" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/HeaderHBox" unique_id=311109360]
 texture_filter = 1
-custom_minimum_size = Vector2(35, 40)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(-10, 10)
+offset_transform_position = Vector2(-20, 20)
+focus_neighbor_bottom = NodePath("../../StatsVBox/Strength")
 focus_mode = 2
 texture = ExtResource("12_s0cho")
 expand_mode = 2
 stretch_mode = 5
 script = ExtResource("13_26dn3")
 
-[node name="CellName" type="Label" parent="VBoxContainer" unique_id=1483955051]
+[node name="CellName" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer" unique_id=1483955051]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 40
 text = "None"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StatsVBox" type="VBoxContainer" parent="VBoxContainer" unique_id=1969479830]
+[node name="StatsVBox" type="VBoxContainer" parent="HBoxContainer/CellDisplay/PropertyContainer" unique_id=1969479830]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-theme_override_constants/separation = 27
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -8.365)
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Strength" type="Control" parent="VBoxContainer/StatsVBox" unique_id=694292925]
+[node name="Strength" type="Control" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox" unique_id=694292925]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../../HeaderHBox/ExitBtn")
+focus_neighbor_bottom = NodePath("../Intelligence")
+focus_mode = 2
 script = ExtResource("4_eww3u")
 stat_type = "strength"
 
-[node name="StatVBox" type="VBoxContainer" parent="VBoxContainer/StatsVBox/Strength" unique_id=226988513]
+[node name="StatVBox" type="VBoxContainer" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength" unique_id=226988513]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
-anchor_top = 0.10666667
+anchor_top = 0.13885602
 anchor_right = 0.8999999
-anchor_bottom = 0.8666667
+anchor_bottom = 0.86666673
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer/StatsVBox/Strength/StatVBox" unique_id=303943207]
+[node name="Label" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox" unique_id=303943207]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 26
-text = "Strength"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 35
+text = "Str."
 vertical_alignment = 1
 
-[node name="Bar" type="TextureRect" parent="VBoxContainer/StatsVBox/Strength/StatVBox" unique_id=326125361]
+[node name="Bar" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox" unique_id=326125361]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_03g4r")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+size_flags_vertical = 3
 focus_mode = 2
+mouse_filter = 2
 texture = ExtResource("5_jw7ry")
 metadata/_edit_use_anchors_ = true
 
-[node name="DefectBar" type="TextureProgressBar" parent="VBoxContainer/StatsVBox/Strength/StatVBox" unique_id=274611321]
+[node name="DefectBar" type="TextureProgressBar" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox" unique_id=274611321]
+visible = false
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("7_lmn1t")
 texture_progress = ExtResource("8_fr6x8")
 
-[node name="Highlight" type="TextureRect" parent="VBoxContainer/StatsVBox/Strength" unique_id=1787727653]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.058
-anchor_top = 0.033
-anchor_right = 0.942
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_l3a33")
-
-[node name="Hide" type="TextureRect" parent="VBoxContainer/StatsVBox/Strength" unique_id=822402388]
+[node name="HiddenRect" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox" unique_id=822402388]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_5skub")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -157.5
-offset_top = -25.0
-offset_right = 157.5
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
 texture = SubResource("CompressedTexture2D_y6twq")
 
-[node name="Off" type="Control" parent="VBoxContainer/StatsVBox/Strength" unique_id=264910886]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -5.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bar" type="TextureRect" parent="VBoxContainer/StatsVBox/Strength/Off" unique_id=47850611]
-modulate = Color(0.72, 0.72, 0.72, 0.9647059)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -20.0
-offset_right = 155.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-texture = SubResource("CompressedTexture2D_fr6x8")
-
-[node name="StrengthOffLabel" type="Label" parent="VBoxContainer/StatsVBox/Strength/Off" unique_id=2045285459]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -5.0
-offset_right = 30.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 20
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intelligence" type="Control" parent="VBoxContainer/StatsVBox" unique_id=1210323436]
-custom_minimum_size = Vector2(0, 150)
+[node name="Off" type="Control" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox" unique_id=264910886]
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
-script = ExtResource("4_eww3u")
-stat_type = "intelligence"
-
-[node name="StatVBox" type="VBoxContainer" parent="VBoxContainer/StatsVBox/Intelligence" unique_id=107854226]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.10666667
-anchor_right = 0.8999999
-anchor_bottom = 0.8666667
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
+size_flags_vertical = 3
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer/StatsVBox/Intelligence/StatVBox" unique_id=1418355681]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 26
-text = "Intelligence"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Bar" type="TextureRect" parent="VBoxContainer/StatsVBox/Intelligence/StatVBox" unique_id=1611059643]
-texture_filter = 1
-material = SubResource("ShaderMaterial_03g4r")
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-texture = ExtResource("5_jw7ry")
-metadata/_edit_use_anchors_ = true
-
-[node name="DefectBar" type="TextureProgressBar" parent="VBoxContainer/StatsVBox/Intelligence/StatVBox" unique_id=1095567246]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("7_lmn1t")
-texture_progress = ExtResource("8_fr6x8")
-
-[node name="Highlight" type="TextureRect" parent="VBoxContainer/StatsVBox/Intelligence" unique_id=1122121067]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.058
-anchor_top = 0.033
-anchor_right = 0.942
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_l3a33")
-
-[node name="Hide" type="TextureRect" parent="VBoxContainer/StatsVBox/Intelligence" unique_id=17239621]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_5skub")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -157.5
-offset_top = -25.0
-offset_right = 157.5
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_y6twq")
-
-[node name="Off" type="Control" parent="VBoxContainer/StatsVBox/Intelligence" unique_id=1586160706]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -5.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bar" type="TextureRect" parent="VBoxContainer/StatsVBox/Intelligence/Off" unique_id=752129860]
-modulate = Color(0.72, 0.72, 0.72, 0.9647059)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -20.0
-offset_right = 155.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-texture = SubResource("CompressedTexture2D_fr6x8")
-
-[node name="StrengthOffLabel" type="Label" parent="VBoxContainer/StatsVBox/Intelligence/Off" unique_id=283569089]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -5.0
-offset_right = 30.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 20
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Community" type="Control" parent="VBoxContainer/StatsVBox" unique_id=1127824721]
-custom_minimum_size = Vector2(0, 150)
-layout_mode = 2
-script = ExtResource("4_eww3u")
-stat_type = "Community"
-
-[node name="StatVBox" type="VBoxContainer" parent="VBoxContainer/StatsVBox/Community" unique_id=1592221317]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.10666667
-anchor_right = 0.8999999
-anchor_bottom = 0.8666667
-grow_horizontal = 2
-grow_vertical = 2
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="VBoxContainer/StatsVBox/Community/StatVBox" unique_id=1087076177]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 26
-text = "Community"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Bar" type="TextureRect" parent="VBoxContainer/StatsVBox/Community/StatVBox" unique_id=1983984529]
-texture_filter = 1
-material = SubResource("ShaderMaterial_03g4r")
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-focus_mode = 2
-texture = ExtResource("5_jw7ry")
-metadata/_edit_use_anchors_ = true
-
-[node name="DefectBar" type="TextureProgressBar" parent="VBoxContainer/StatsVBox/Community/StatVBox" unique_id=1359257682]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("7_lmn1t")
-texture_progress = ExtResource("8_fr6x8")
-
-[node name="Highlight" type="TextureRect" parent="VBoxContainer/StatsVBox/Community" unique_id=1135320465]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.058
-anchor_top = 0.033
-anchor_right = 0.942
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_l3a33")
-
-[node name="Hide" type="TextureRect" parent="VBoxContainer/StatsVBox/Community" unique_id=109107436]
-visible = false
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 2
-material = SubResource("ShaderMaterial_5skub")
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -157.5
-offset_top = -25.0
-offset_right = 157.5
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_y6twq")
-
-[node name="Off" type="Control" parent="VBoxContainer/StatsVBox/Community" unique_id=274136183]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = -5.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Bar" type="TextureRect" parent="VBoxContainer/StatsVBox/Community/Off" unique_id=378187437]
-modulate = Color(0.72, 0.72, 0.72, 0.9647059)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -155.0
-offset_top = -20.0
-offset_right = 155.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-texture = SubResource("CompressedTexture2D_fr6x8")
-
-[node name="StrengthOffLabel" type="Label" parent="VBoxContainer/StatsVBox/Community/Off" unique_id=733805179]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -30.0
-offset_top = -5.0
-offset_right = 30.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
-theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 20
-text = "Off"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PopupMutationManager" type="Control" parent="." unique_id=1389337297]
-propagate_maximum_size = true
-layout_mode = 1
-anchor_left = 0.769
-anchor_top = 0.025
-anchor_right = 0.95
-anchor_bottom = 0.893
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("14_oiwfp")
-
-[node name="GetMutationSymbol" type="Node" parent="PopupMutationManager" unique_id=608160000]
-script = ExtResource("16_l3a33")
-
-[node name="MutationVBox" type="VBoxContainer" parent="PopupMutationManager" unique_id=1932892871]
+[node name="OffBg" type="ColorRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox/Off" unique_id=949620657]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 30
-alignment = 1
+color = Color(0.64336616, 0.64336616, 0.64336616, 1)
 
-[node name="MutationCard1" type="Control" parent="PopupMutationManager/MutationVBox" unique_id=819186679]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("16_jw7ry")
-
-[node name="BlackBG" type="ColorRect" parent="PopupMutationManager/MutationVBox/MutationCard1" unique_id=1854715703]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 0
-offset_left = 40.0
-offset_top = 19.0
-offset_right = 190.0
-offset_bottom = 169.0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.1, 1.1)
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="PopupMutationManager/MutationVBox/MutationCard1" unique_id=190542742]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 0
-offset_left = 40.0
-offset_top = 19.0
-offset_right = 190.0
-offset_bottom = 169.0
-focus_mode = 2
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard1" unique_id=625861734]
+[node name="OffLabel" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength/StatVBox/Off" unique_id=2045285459]
 texture_filter = 1
-layout_mode = 0
-offset_left = 115.0
-offset_top = 94.0
-offset_right = 115.0
-offset_bottom = 94.0
-mouse_filter = 2
-
-[node name="QuestionMarkSprite" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard1" unique_id=801965895]
-texture_filter = 1
-layout_mode = 0
-offset_left = 39.0
-offset_top = 26.0
-offset_right = 191.0
-offset_bottom = 162.0
-texture = ExtResource("14_oag2g")
-
-[node name="Highlight" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard1" unique_id=157954020]
-layout_mode = 0
-offset_left = 47.0
-offset_top = 26.0
-offset_right = 183.0
-offset_bottom = 162.0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.15, 1.15)
-mouse_filter = 2
-texture = ExtResource("19_lmn1t")
-
-[node name="MutationCard2" type="Control" parent="PopupMutationManager/MutationVBox" unique_id=480216951]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("16_jw7ry")
-
-[node name="BlackBG" type="ColorRect" parent="PopupMutationManager/MutationVBox/MutationCard2" unique_id=1427808067]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 0
-offset_left = 40.0
-offset_top = 19.0
-offset_right = 190.0
-offset_bottom = 169.0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.1, 1.1)
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="PopupMutationManager/MutationVBox/MutationCard2" unique_id=330503283]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 0
-offset_left = 40.0
-offset_top = 19.0
-offset_right = 190.0
-offset_bottom = 169.0
-focus_mode = 2
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard2" unique_id=1915660673]
-texture_filter = 1
-layout_mode = 0
-offset_left = 115.0
-offset_top = 94.0
-offset_right = 115.0
-offset_bottom = 94.0
-mouse_filter = 2
-
-[node name="QuestionMarkSprite" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard2" unique_id=269327979]
-texture_filter = 1
-layout_mode = 0
-offset_left = 39.0
-offset_top = 26.0
-offset_right = 191.0
-offset_bottom = 162.0
-texture = ExtResource("14_oag2g")
-
-[node name="Highlight" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard2" unique_id=1585350230]
-layout_mode = 0
-offset_left = 47.0
-offset_top = 26.0
-offset_right = 183.0
-offset_bottom = 162.0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.15, 1.15)
-mouse_filter = 2
-texture = ExtResource("19_lmn1t")
-
-[node name="MutationCard3" type="Control" parent="PopupMutationManager/MutationVBox" unique_id=2026239691]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 7
-script = ExtResource("16_jw7ry")
-
-[node name="BlackBG" type="ColorRect" parent="PopupMutationManager/MutationVBox/MutationCard3" unique_id=1092192353]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 0
-offset_left = 40.0
-offset_top = 19.0
-offset_right = 190.0
-offset_bottom = 169.0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.1, 1.1)
-color = Color(0, 0, 0, 1)
-
-[node name="RedBG" type="ColorRect" parent="PopupMutationManager/MutationVBox/MutationCard3" unique_id=1648111905]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 0
-offset_left = 40.0
-offset_top = 19.0
-offset_right = 190.0
-offset_bottom = 169.0
-focus_mode = 2
-color = Color(0.38431373, 0, 0, 1)
-
-[node name="MutationIcon" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard3" unique_id=271847498]
-texture_filter = 1
-layout_mode = 0
-offset_left = 115.0
-offset_top = 94.0
-offset_right = 115.0
-offset_bottom = 94.0
-mouse_filter = 2
-
-[node name="QuestionMarkSprite" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard3" unique_id=268141514]
-texture_filter = 1
-layout_mode = 0
-offset_left = 39.0
-offset_top = 26.0
-offset_right = 191.0
-offset_bottom = 162.0
-texture = ExtResource("14_oag2g")
-
-[node name="Highlight" type="TextureRect" parent="PopupMutationManager/MutationVBox/MutationCard3" unique_id=2081838219]
-layout_mode = 0
-offset_left = 47.0
-offset_top = 26.0
-offset_right = 183.0
-offset_bottom = 162.0
-offset_transform_enabled = true
-offset_transform_scale = Vector2(1.15, 1.15)
-mouse_filter = 2
-texture = ExtResource("19_lmn1t")
-
-[node name="NoMutationsFound" type="Control" parent="PopupMutationManager" unique_id=351156237]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BlurBg" type="ColorRect" parent="PopupMutationManager/NoMutationsFound" unique_id=1584709852]
-material = SubResource("ShaderMaterial_6o3yp")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 712.0
-offset_top = 32.0
-offset_right = 856.0
-offset_bottom = 536.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 40
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength" unique_id=2093080015]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.033
+anchor_right = 0.942
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 1, 1, 0)
+texture = ExtResource("6_l3a33")
 
-[node name="ChargestLeft" type="Label" parent="PopupMutationManager/NoMutationsFound" unique_id=2139732089]
-texture_filter = 1
-layout_mode = 0
-offset_left = 718.0
-offset_top = 244.0
-offset_right = 908.0
-offset_bottom = 356.0
+[node name="Intelligence" type="Control" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox" unique_id=1296323188]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Strength")
+focus_neighbor_bottom = NodePath("../Community")
+focus_mode = 2
+script = ExtResource("4_eww3u")
+stat_type = "intelligence"
+
+[node name="StatVBox" type="VBoxContainer" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence" unique_id=1287127255]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.13885602
+anchor_right = 0.8999999
+anchor_bottom = 0.86666673
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox" unique_id=2023351630]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oag2g")
-theme_override_font_sizes/font_size = 19
-text = "No 
+theme_override_font_sizes/font_size = 35
+text = "Int."
+vertical_alignment = 1
 
-Mutations 
+[node name="Bar" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox" unique_id=76192500]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_03g4r")
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_jw7ry")
+metadata/_edit_use_anchors_ = true
 
+[node name="DefectBar" type="TextureProgressBar" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox" unique_id=1033353284]
+visible = false
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_lmn1t")
+texture_progress = ExtResource("8_fr6x8")
+
+[node name="HiddenRect" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox" unique_id=280905116]
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_5skub")
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_y6twq")
+
+[node name="Off" type="Control" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox" unique_id=1341992385]
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="OffBg" type="ColorRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox/Off" unique_id=940179578]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.64336616, 0.64336616, 0.64336616, 1)
+
+[node name="OffLabel" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence/StatVBox/Off" unique_id=1037872276]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 40
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence" unique_id=1492613552]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.033
+anchor_right = 0.942
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_l3a33")
+
+[node name="Community" type="Control" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox" unique_id=1263620183]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Intelligence")
+focus_mode = 2
+script = ExtResource("4_eww3u")
+stat_type = "community"
+
+[node name="StatVBox" type="VBoxContainer" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community" unique_id=1860466824]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.13885602
+anchor_right = 0.8999999
+anchor_bottom = 0.86666673
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox" unique_id=1239326016]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 35
+text = "Com."
+vertical_alignment = 1
+
+[node name="Bar" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox" unique_id=83714029]
+texture_filter = 1
+material = SubResource("ShaderMaterial_03g4r")
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+focus_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_jw7ry")
+metadata/_edit_use_anchors_ = true
+
+[node name="DefectBar" type="TextureProgressBar" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox" unique_id=1310539222]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_lmn1t")
+texture_progress = ExtResource("8_fr6x8")
+
+[node name="HiddenRect" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox" unique_id=2124067703]
+visible = false
+modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
+texture_filter = 2
+material = SubResource("ShaderMaterial_5skub")
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = SubResource("CompressedTexture2D_y6twq")
+
+[node name="Off" type="Control" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox" unique_id=528934371]
+visible = false
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="OffBg" type="ColorRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox/Off" unique_id=701111266]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.64336616, 0.64336616, 0.64336616, 1)
+
+[node name="OffLabel" type="Label" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community/StatVBox/Off" unique_id=157822683]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.92, 0, 0.19933337, 1)
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 40
+text = "Off"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" type="TextureRect" parent="HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community" unique_id=1068968333]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.033
+anchor_right = 0.942
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_l3a33")
+
+[node name="PopupMutationManager" type="Control" parent="HBoxContainer" unique_id=1389337297]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("14_oiwfp")
+
+[node name="GetMutationSymbol" type="Node" parent="HBoxContainer/PopupMutationManager" unique_id=608160000]
+script = ExtResource("16_l3a33")
+
+[node name="MutationVBox" type="VBoxContainer" parent="HBoxContainer/PopupMutationManager" unique_id=1932892871]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="MutationCard1" type="AspectRatioContainer" parent="HBoxContainer/PopupMutationManager/MutationVBox" unique_id=1626532932]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+focus_neighbor_left = NodePath("../../../CellDisplay/PropertyContainer/StatsVBox/Strength")
+focus_neighbor_top = NodePath("../../../CellDisplay/PropertyContainer/HeaderHBox/ExitBtn")
+focus_neighbor_bottom = NodePath("../MutationCard2")
+focus_mode = 2
+script = ExtResource("16_jw7ry")
+
+[node name="BlackBG" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard1" unique_id=1854715703]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard1" unique_id=190542742]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard1" unique_id=625861734]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="QuestionMarkSprite" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard1" unique_id=801965895]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("14_oag2g")
+
+[node name="Highlight" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard1" unique_id=157954020]
+visible = false
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.15, 1.15)
+mouse_filter = 2
+texture = ExtResource("19_lmn1t")
+
+[node name="MutationCard2" type="AspectRatioContainer" parent="HBoxContainer/PopupMutationManager/MutationVBox" unique_id=929382233]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+focus_neighbor_left = NodePath("../../../CellDisplay/PropertyContainer/StatsVBox/Intelligence")
+focus_neighbor_top = NodePath("../MutationCard1")
+focus_neighbor_bottom = NodePath("../MutationCard3")
+focus_mode = 2
+script = ExtResource("16_jw7ry")
+
+[node name="BlackBG" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard2" unique_id=1217516101]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard2" unique_id=1053711030]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard2" unique_id=717863614]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="QuestionMarkSprite" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard2" unique_id=1384555763]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("14_oag2g")
+
+[node name="Highlight" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard2" unique_id=585472566]
+visible = false
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.15, 1.15)
+mouse_filter = 2
+texture = ExtResource("19_lmn1t")
+
+[node name="MutationCard3" type="AspectRatioContainer" parent="HBoxContainer/PopupMutationManager/MutationVBox" unique_id=574392030]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+focus_neighbor_left = NodePath("../../../CellDisplay/PropertyContainer/StatsVBox/Community")
+focus_neighbor_top = NodePath("../MutationCard2")
+focus_mode = 2
+script = ExtResource("16_jw7ry")
+
+[node name="BlackBG" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard3" unique_id=1560910496]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RedBG" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard3" unique_id=1420730942]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.38431373, 0, 0, 1)
+
+[node name="MutationIcon" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard3" unique_id=1028024899]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="QuestionMarkSprite" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard3" unique_id=1801789696]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("14_oag2g")
+
+[node name="Highlight" type="TextureRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/MutationCard3" unique_id=1927422443]
+visible = false
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.15, 1.15)
+mouse_filter = 2
+texture = ExtResource("19_lmn1t")
+
+[node name="NoMutationsFound" type="Control" parent="HBoxContainer/PopupMutationManager/MutationVBox" unique_id=351156237]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BlurBg" type="ColorRect" parent="HBoxContainer/PopupMutationManager/MutationVBox/NoMutationsFound" unique_id=1584709852]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.34901962)
+
+[node name="ChargestLeft" type="Label" parent="HBoxContainer/PopupMutationManager/MutationVBox/NoMutationsFound" unique_id=2139732089]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 19
+theme_override_fonts/font = ExtResource("2_oag2g")
+theme_override_font_sizes/font_size = 20
+text = "No
+Mutations
 Found"
 horizontal_alignment = 1
 vertical_alignment = 1

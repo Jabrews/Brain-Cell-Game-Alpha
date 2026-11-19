@@ -1,9 +1,9 @@
 extends Node
 
-@onready var mutation_card_1 : Control = $MutationCard1
-@onready var mutation_card_2 : Control =$MutationCard2
-@onready var mutation_card_3 : Control = $MutationCard3
-@onready var no_mutations_found : Control = $NoMutationsFound
+@onready var mutation_card_1 : Control = $MutationVBox/MutationCard1
+@onready var mutation_card_2 : Control =$MutationVBox/MutationCard2
+@onready var mutation_card_3 : Control = $MutationVBox/MutationCard3
+@onready var no_mutations_found : Control = $MutationVBox/NoMutationsFound
 
 func _init_mutations(mutations: Array[BrainCellMutation]) -> void:
 	if mutations.size() > 0:

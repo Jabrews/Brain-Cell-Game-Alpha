@@ -3,22 +3,22 @@ extends Control
 # components
 @onready var mutation_icon : TextureRect =$MutationIcon
 @onready var question_mark_sprite : = $QuestionMarkSprite
-@onready var get_mutation_symbol : Node = $"../GetMutationSymbol"
+@onready var get_mutation_symbol : Node =$"../../GetMutationSymbol"
 @onready var highlight : TextureRect = $Highlight
 @onready var red_bg : ColorRect = $RedBG
 
 # parent component
-@onready var parent_useable_item_popup : Control = $"../.."
+@onready var parent_useable_item_popup : Control =$"../../../.."
 
 
 var loaded_mutation : BrainCellMutation 
 var hover_active : bool = false
 
 func _ready() -> void:
-	red_bg.connect('mouse_entered', _handle_mouse_entered)
-	red_bg.connect('mouse_exited', _handle_mouse_exited)
-	red_bg.connect('focus_entered', _handle_mouse_entered)
-	red_bg.connect('focus_exited', _handle_mouse_exited)
+	connect('mouse_entered', _handle_mouse_entered)
+	connect('mouse_exited', _handle_mouse_exited)
+	connect('focus_entered', _handle_mouse_entered)
+	connect('focus_exited', _handle_mouse_exited)
 
 func _process(_delta: float) -> void: 
 	if hover_active : 

@@ -7,41 +7,33 @@ var active_cell : BrainCell
 var active_useable_item_obj : UseableItemObject
 
 # componnets 
-@onready var strength_stat_option : Control = $VBoxContainer/StatsVBox/Strength
-@onready var intelligence_stat_option : Control = $VBoxContainer/StatsVBox/Intelligence
-@onready var community_stat_option : Control = $VBoxContainer/StatsVBox/Community
-@onready var cell_name : Label = $VBoxContainer/CellName
+@onready var strength_stat_option : Control = $HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength
+@onready var intelligence_stat_option : Control = $HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Intelligence
+@onready var community_stat_option : Control = $HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Community
+@onready var cell_name : Label = $HBoxContainer/CellDisplay/PropertyContainer/CellName
 # for grab_focus
-@onready var strength_bar_rect : TextureRect = $VBoxContainer/StatsVBox/Strength/StatVBox/Bar
+@onready var strength_parent : Control = $HBoxContainer/CellDisplay/PropertyContainer/StatsVBox/Strength
 
-
-# type specific
-#@onready var defect_shot_node : Control = $DefectShot
-#@onready var hidden_shot_node : Control = $HiddenShot
-#@onready var popup_mutation_manager : Control = $PopupMutationManager
-
-#@onready var defect_shot_charges_left_label : Label = $DefectShot/ChargestLeft
-#@onready var hidden_shot_charges_left_label : Label = $HiddenShot/ChargestLeft
-
+@onready var popup_mutation_manager : Control = $HBoxContainer/PopupMutationManager
+@onready var charges_left_container : HBoxContainer = $HBoxContainer/CellDisplay/PropertyContainer/HeaderHBox/ChargesLeft
+@onready var charges_left_label : Label = $HBoxContainer/CellDisplay/PropertyContainer/HeaderHBox/ChargesLeft/ChargestLeft
 
 func _ready() -> void:
 	GLUsableItemBus.connect('show_useable_item_pop_up', _handle_show_useable_item_pop_up)
-	
-	# TODO
-	#if popup_type != 'defect_shot' :
-		#defect_shot_node.queue_free()
-	#if popup_type != 'hidden_shot' :
-		#hidden_shot_node.queue_free()
-	#if popup_type != 'scissors' and popup_type != 'hidden_shot':
-		#popup_mutation_manager.queue_free()
-		
-		
+
+func _process(_delta: float) -> void:
+	if active_cell : 
+		if Input.is_action_just_pressed('back') : 
+			hide_popup()
+			
 	
 func _handle_show_useable_item_pop_up(selected_cell: BrainCell, useable_item_obj : UseableItemObject ) :
 	
 	# only toggle popup if correct handler type
 	if useable_item_obj.item_type != popup_type :
 		return
+		
+	GLHideUiBus.emit_signal('toggle_hide_ui', true)
 	
 	active_cell = selected_cell
 	active_useable_item_obj = useable_item_obj
@@ -52,21 +44,26 @@ func _handle_show_useable_item_pop_up(selected_cell: BrainCell, useable_item_obj
 	
 	if GAMEInputTypeDetector.input_type == 'controller' :
 		await get_tree().process_frame
-		strength_bar_rect.grab_focus()
+		strength_parent.grab_focus()
 				
 	strength_stat_option.handle_display_stat_info(active_cell.strength)
 	intelligence_stat_option.handle_display_stat_info(active_cell.intelligence)
 	community_stat_option.handle_display_stat_info(active_cell.community)
 	cell_name.text = active_cell.name
 	
-	# TODO
-	#if popup_type == 'defect_shot' :	
-		#defect_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
-	#elif popup_type == 'hidden_shot' : 
-		#hidden_shot_charges_left_label.text = str(active_useable_item_obj.item_energy)
-		#popup_mutation_manager._init_mutations(selected_cell.mutations)
-	#elif popup_type == 'scissors' :
-		#popup_mutation_manager._init_mutations(selected_cell.mutations)
+	
+	## per popup type components	
+	charges_left_container.visible = false
+	popup_mutation_manager.visible = false
+	
+	# charges label
+	if popup_type == 'defect_shot' or popup_type == 'hidden_shot':	
+		charges_left_container.visible = true
+		charges_left_label.text = str(active_useable_item_obj.item_energy)
+	# mutaiton manager
+	if popup_type == 'hidden_shot' or popup_type == 'scissors' : 
+		popup_mutation_manager.visible = true
+		popup_mutation_manager._init_mutations(selected_cell.mutations)
 		
 func _handle_pop_up_stat_selected(stat_type : String) :
 	GLUsableItemBus.emit_signal('pop_up_chose_stat', stat_type, active_cell, active_useable_item_obj)
@@ -79,12 +76,11 @@ func _handle_pop_up_mutation_selected(mutation_type : String) :
 	
 	elif popup_type == 'scissors' : 
 		GLUsableItemBus.emit_signal('scissors_pop_up_chose_mutation', mutation_type, active_cell, active_useable_item_obj)
-
+		
 	hide_popup()
 	
 	
 func _handle_hide_useable_item_pop_up(useable_item_obj : UseableItemObject) :
-	
 	# only toggle popup if correct handler type
 	if useable_item_obj.item_type != popup_type	 :
 		return
@@ -99,6 +95,7 @@ func hide_popup() :
 	visible = false 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	get_tree().paused = false 
+	GLHideUiBus.emit_signal('toggle_hide_ui', false)
 	
 	active_cell = null
 	active_useable_item_obj = null
