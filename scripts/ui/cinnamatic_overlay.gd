@@ -1,4 +1,4 @@
-extends Sprite2D
+extends TextureRect
 
 var offer_picked_tween: Tween
 

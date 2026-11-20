@@ -1,4 +1,4 @@
-extends Sprite2D
+extends TextureRect
 
 func _ready() -> void:
 	GLPlayerState.connect('player_health_changed', _handle_player_health_changed)

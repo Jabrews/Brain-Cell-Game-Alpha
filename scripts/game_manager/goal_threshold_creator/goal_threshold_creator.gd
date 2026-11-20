@@ -4,7 +4,8 @@ var possible_1 : GoalThreshold = GoalThreshold.new(
 	1,#  starting active piece
 	{
 		1: ThresholdPiece.new(
-			4,   # total turns
+			#4,   # total turns
+			0,   # total turns
 			25,  # early completion energy reward
 			2,   # early completion turn limit
 			false,

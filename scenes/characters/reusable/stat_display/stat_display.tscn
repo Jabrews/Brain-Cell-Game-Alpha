@@ -22,6 +22,7 @@ size = Vector2(1.8, 1.4)
 size = Vector3(0.8, 0.8, 0.8)
 
 [node name="StatDisplay" type="Node3D" unique_id=1313515711]
+visible = false
 script = ExtResource("1_2uw1u")
 yaw_offset = -89.5
 

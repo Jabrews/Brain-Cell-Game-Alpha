@@ -1053,7 +1053,7 @@ cell_container_parent_node = NodePath("../../../Charcters/ContainerParentNode")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30.398603, 0, 30.766571)
 
 [node name="TurnCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/TurnCinnamatic" parent_id_path=PackedInt32Array(267444250, 2009290877) index="0" unique_id=528579703]
-transform = Transform3D(0.86521614, 0, 0.50139916, 0, 1, 0, -0.50139916, 0, 0.86521614, -22.552004, -0.09244251, -22.057476)
+transform = Transform3D(0.86521614, 0, 0.50139916, 0, 1, 0, -0.50139916, 0, 0.86521614, -25.842346, -0.09244251, -22.427414)
 
 [node name="PrisonerCamera" parent="Stations/PrisonerStations/PrisonerProfiler/Logic/OfferPickedCinnamatic/PrisonerCinnamatic" parent_id_path=PackedInt32Array(267444250, 89762710) index="0" unique_id=1201928819]
 transform = Transform3D(-1, -4.2342023e-09, 3.0703415e-08, 3.856705e-09, 0.9659258, 0.2588191, -3.0753114e-08, 0.2588191, -0.9659258, 8, -0.3000002, 33.978767)

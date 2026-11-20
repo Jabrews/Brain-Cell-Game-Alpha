@@ -1,9 +1,9 @@
 extends Control
 
 # components
-@onready var scraps_label: Label = $ScrapsLabel
+@onready var scraps_label: Label =$HBoxContainer/ScrapsLabel
 @onready var next_value_increment_timer: Timer = $NextValueIncrementTimer
-@onready var scrap_symbol : TextureRect = $ScrapSymbol
+@onready var scrap_symbol : TextureRect = $HBoxContainer/ScrapSymbol
 
 # helper components
 @onready var helper_flash_label : Node = $HelperFlashLabel

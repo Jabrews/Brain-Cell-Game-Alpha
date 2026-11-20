@@ -1,6 +1,6 @@
 extends Node
 
-@onready var scraps_label: Label = $"../ScrapsLabel"
+@onready var scraps_label: Label = $"../HBoxContainer/ScrapsLabel"
 
 @export var increase_color: Color = Color.GREEN
 @export var decrease_color: Color = Color.RED

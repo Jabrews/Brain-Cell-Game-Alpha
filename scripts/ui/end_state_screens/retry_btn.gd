@@ -1,6 +1,6 @@
 extends Control
 
-@onready var button_bg : ColorRect = $ColorRect2
+@onready var button_bg : ColorRect = $ColorRect
 @onready var retry_label : Label = $RetryLabel
 
 @export var scale_up_vector : Vector2 = Vector2(0.1, 0.1)
@@ -11,10 +11,10 @@ var is_hovered : bool = false
 
 
 func _ready() -> void:
-	button_bg.connect("mouse_entered", _handle_mouse_entered)
-	button_bg.connect("mouse_exited", _handle_mouse_exited)
-	button_bg.connect("focus_entered", _handle_mouse_entered)
-	button_bg.connect("focus_exited", _handle_mouse_exited)
+	connect("mouse_entered", _handle_mouse_entered)
+	connect("mouse_exited", _handle_mouse_exited)
+	connect("focus_entered", _handle_mouse_entered)
+	connect("focus_exited", _handle_mouse_exited)
 
 
 func _process(_delta : float) -> void:

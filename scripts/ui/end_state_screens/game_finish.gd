@@ -1,6 +1,6 @@
 extends Control
 
-@onready var retry_btn_bg : ColorRect = $RetryBtn/ColorRect2
+@onready var retry_btn : Control = $Container/BtnContainer/RetryBtn
 
 func _ready() -> void:
 	GLEndStateScreenBus.connect('game_finished', _handle_game_ended)
@@ -12,5 +12,5 @@ func _handle_game_ended() :
 	
 	if GAMEInputTypeDetector.input_type == 'controller': 
 		await get_tree().process_frame
-		retry_btn_bg.grab_focus()
+		retry_btn.grab_focus()
 	

@@ -1,7 +1,7 @@
 extends Node
 
 # components
-@onready var parent_hold_display : Sprite2D = $".."
+@onready var parent_hold_display : TextureRect = $".."
 
 var progress_tween : Tween
 
