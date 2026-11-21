@@ -6,9 +6,9 @@ extends Node
 # componnets
 @onready var file_cam : Camera3D = $cam
 @onready var file_manager : Node = $FileManager
-@onready var click_to_view_label : Control = $ClickToView
-@onready var press_to_leave_label : Control = $ToLeave
-@onready var file_view : Control = $FileView
+@onready var click_to_view_label : Control = $UI/BottomLabelParent/ClickToView
+@onready var press_to_leave_label : Control =$UI/ToLeave
+@onready var file_view : Control = $UI/FileView
 @onready var audio_manager : Node3D = $AudioManager
 @onready var file_cabinet_interact_area : Area3D = $FileCabinetInteractArea
 

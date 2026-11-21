@@ -4,11 +4,10 @@ extends Control
 @onready var mutation_type_label : Label = $MutationType
 @onready var mutation_info_label : Label = $MutationInfo
 
-@onready var audio_manager : Node3D = $"../AudioManager"
-
+@onready var audio_manager : Node3D = $"../../AudioManager"
 # focus grab
 @onready var file_view_exit_btn_rect : TextureRect = $ExitBtn
-@onready var parent_mutation_file_cabinet : Node3D = $".."
+@onready var parent_mutation_file_cabinet : Node3D = $"../.."
 
 func _load_file_view(file_info : FileInfo) :
 	toggle_mouse_filter(true)
@@ -26,7 +25,7 @@ func _close_file_view() :
 	toggle_mouse_filter(false)
 	audio_manager.play_page_close()
 	visible = false
-	get_parent().file_being_viewed = false
+	parent_mutation_file_cabinet.file_being_viewed = false
 	get_tree().paused = false 
 	
 	# hacky but works for controlelr focus

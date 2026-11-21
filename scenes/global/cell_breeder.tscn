@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://d0wtnetxi6per"]
 
-[ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/global/game_manager/cell_breeder/cell_breeder.gd" id="1_78xhs"]
-[ext_resource type="Script" uid="uid://b2iwd4y5u4jfk" path="res://scripts/global/game_manager/cell_breeder/helpers/mutation_helper.gd" id="2_8o7bf"]
-[ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/global/game_manager/cell_breeder/helpers/clean_stat_helper/clean_stat_helper.gd" id="2_y3545"]
-[ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/global/game_manager/cell_breeder/helpers/defect_stat_helper/defect_stat_helper.gd" id="3_ujhtg"]
-[ext_resource type="Script" uid="uid://wfw8joe2deqf" path="res://scripts/global/game_manager/cell_breeder/helpers/reduced_cell_charge_stat_helper.gd" id="4_y3545"]
-[ext_resource type="Script" uid="uid://dmoj2134jdcus" path="res://scripts/global/game_manager/cell_breeder/helpers/increase_cell_charge_helper.gd" id="5_ujhtg"]
-[ext_resource type="Script" uid="uid://bwx4vapm0mvo" path="res://scripts/global/game_manager/cell_breeder/helpers/reduced_cell_charge_helper.gd" id="6_6pqdc"]
-[ext_resource type="Script" uid="uid://c30frgp0m2v26" path="res://scripts/global/game_manager/cell_breeder/helpers/decrease_old_cell.gd" id="9_hjnoq"]
-[ext_resource type="Script" uid="uid://bxbtkvdukd01h" path="res://scripts/global/game_manager/cell_breeder/helpers/decrease_failed_cell.gd" id="9_rmw21"]
+[ext_resource type="Script" uid="uid://bq0ciwf5iwqn8" path="res://scripts/global/global_scenes/cell_breeder/cell_breeder.gd" id="1_78xhs"]
+[ext_resource type="Script" uid="uid://b2iwd4y5u4jfk" path="res://scripts/global/global_scenes/cell_breeder/helpers/mutation_helper.gd" id="2_8o7bf"]
+[ext_resource type="Script" uid="uid://dwoglnhxat218" path="res://scripts/global/global_scenes/cell_breeder/helpers/clean_stat_helper/clean_stat_helper.gd" id="2_y3545"]
+[ext_resource type="Script" uid="uid://c43va367qf4cs" path="res://scripts/global/global_scenes/cell_breeder/helpers/defect_stat_helper/defect_stat_helper.gd" id="3_ujhtg"]
+[ext_resource type="Script" uid="uid://wfw8joe2deqf" path="res://scripts/global/global_scenes/cell_breeder/helpers/reduced_cell_charge_stat_helper.gd" id="4_y3545"]
+[ext_resource type="Script" uid="uid://dmoj2134jdcus" path="res://scripts/global/global_scenes/cell_breeder/helpers/increase_cell_charge_helper.gd" id="5_ujhtg"]
+[ext_resource type="Script" uid="uid://bwx4vapm0mvo" path="res://scripts/global/global_scenes/cell_breeder/helpers/reduced_cell_charge_helper.gd" id="6_6pqdc"]
+[ext_resource type="Script" uid="uid://c30frgp0m2v26" path="res://scripts/global/global_scenes/cell_breeder/helpers/decrease_old_cell.gd" id="9_hjnoq"]
+[ext_resource type="Script" uid="uid://bxbtkvdukd01h" path="res://scripts/global/global_scenes/cell_breeder/helpers/decrease_failed_cell.gd" id="9_rmw21"]
 
 [node name="CellBreeder" type="Node" unique_id=1798622159]
 script = ExtResource("1_78xhs")

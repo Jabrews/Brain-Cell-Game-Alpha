@@ -23,7 +23,7 @@ var locked: bool = true
 @onready var locked_icon_sprite: Sprite3D = $LockedIconSprite
 
 # click to view label
-@onready var click_to_view_parent  : Control = $"../../ClickToView"
+@onready var click_to_view_parent  : Control = $"../../UI/BottomLabelParent/ClickToView"
 
 
 # hover stuff

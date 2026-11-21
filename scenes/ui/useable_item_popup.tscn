@@ -56,6 +56,7 @@ load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948
 
 [node name="UseableItemPopup" type="Control" unique_id=1755211546]
 process_mode = 3
+custom_maximum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -24,6 +24,7 @@
 [ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
 [ext_resource type="Script" uid="uid://dulxe11r8rej1" path="res://scripts/ui/end_state_screens/game_end.gd" id="22_qmss2"]
 [ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/end_state_screens/retry_btn.gd" id="23_26a3v"]
+[ext_resource type="PackedScene" uid="uid://c65gt76psrhvr" path="res://scenes/ui/event_notice.tscn" id="23_o2sfg"]
 [ext_resource type="Script" uid="uid://2rb1h70gsjfr" path="res://scripts/ui/end_state_screens/game_finish.gd" id="26_fqqne"]
 [ext_resource type="Script" uid="uid://dphm7h213ar60" path="res://scripts/ui/defect_scraps_ui/defect_scraps_ui.gd" id="26_khplb"]
 [ext_resource type="Script" uid="uid://daxmvhbbwtum7" path="res://scripts/ui/end_state_screens/menu_btn.gd" id="26_knhlc"]
@@ -34,16 +35,17 @@
 [ext_resource type="Script" uid="uid://ydot0phojew" path="res://scripts/ui/view_breeder_label.gd" id="28_khplb"]
 [ext_resource type="Script" uid="uid://d2rtf18ctsjcv" path="res://scripts/ui/defect_scraps_ui/scrap_symbol.gd" id="30_vnqvi"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ygedu"]
+load_path = "res://.godot/imported/3_blood_display.png-f8ace423e03d060f39c0522706cf1d23.ctex"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n3vwu"]
 shader = ExtResource("10_swkix")
 shader_parameter/progress = 0.0
 shader_parameter/selected_color = Color(0.168607, 0.60320264, 0.621988, 1)
 shader_parameter/white_threshold = 0.85
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ygedu"]
-load_path = "res://.godot/imported/3_blood_display.png-f8ace423e03d060f39c0522706cf1d23.ctex"
-
 [node name="UI" type="Control" unique_id=885223017]
+custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,6 +54,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=700687854]
+visible = false
+layout_mode = 0
+offset_right = 3440.0
+offset_bottom = 1440.0
 
 [node name="FPSCounter" type="Label" parent="." unique_id=2019697512]
 texture_filter = 1
@@ -386,114 +394,161 @@ theme_override_font_sizes/font_size = 40
 text = " To View Attacher "
 horizontal_alignment = 1
 
-[node name="UseableItemManager" type="Control" parent="." unique_id=1031581067]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UsableItemManager" type="Control" parent="." unique_id=1745493658]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_aac20")
 
-[node name="ItemEnergyLevel" type="Control" parent="UseableItemManager" unique_id=761150454]
-visible = false
+[node name="EnergyLevelParent" type="Control" parent="UsableItemManager" unique_id=870920924]
+custom_maximum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ItemEnergyLevel" type="Control" parent="UsableItemManager/EnergyLevelParent" unique_id=923904692]
 anchors_preset = 0
-offset_left = 8.0
-offset_top = -16.0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(10, 20)
+mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="UseableItemManager/ItemEnergyLevel" unique_id=952540336]
-layout_mode = 0
-offset_top = 40.0
-offset_right = 216.0
-offset_bottom = 80.0
-color = Color(0, 0, 0, 0.39215687)
+[node name="PanelContainer" type="PanelContainer" parent="UsableItemManager/EnergyLevelParent/ItemEnergyLevel" unique_id=2000900385]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 250.0
+offset_bottom = 46.0
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="ItemEnergyLabel" type="Label" parent="UseableItemManager/ItemEnergyLevel" unique_id=1174816212]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 40.0
-offset_right = 160.0
-offset_bottom = 70.0
+[node name="ItemEnergyLabel" type="Label" parent="UsableItemManager/EnergyLevelParent/ItemEnergyLevel/PanelContainer" unique_id=547781380]
+texture_filter = 1
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_g5kmx")
 theme_override_font_sizes/font_size = 35
-text = "Charge Left : 0"
-
-[node name="DropItem" type="Control" parent="UseableItemManager" unique_id=400599182]
-visible = false
-anchors_preset = 0
-offset_left = 48.0
-offset_top = 656.0
-offset_right = 88.0
-offset_bottom = 696.0
-
-[node name="BG" type="ColorRect" parent="UseableItemManager/DropItem" unique_id=1792415266]
-layout_mode = 0
-offset_left = 344.0
-offset_top = -16.0
-offset_right = 848.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="UseableItemManager/DropItem" unique_id=1171148867]
-texture_filter = 1
-layout_mode = 0
-offset_left = 368.0
-offset_top = -8.0
-offset_right = 823.0
-offset_bottom = 49.0
-theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To Drop Item"
+text = "Charges Left : 0"
 horizontal_alignment = 1
 
-[node name="InputBtn" parent="UseableItemManager/DropItem" unique_id=1862197552 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 496.0
-offset_top = -8.0
-offset_right = 496.0
-offset_bottom = -8.0
+[node name="BottomLabelsParent" type="Control" parent="UsableItemManager" unique_id=600613048]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="DropItem" type="Control" parent="UsableItemManager/BottomLabelsParent" unique_id=2094345133]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UsableItemManager/BottomLabelsParent/DropItem" unique_id=359186054]
+texture_filter = 1
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UsableItemManager/BottomLabelsParent/DropItem/PanelContainer" unique_id=752904231]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Part1Label" type="Label" parent="UsableItemManager/BottomLabelsParent/DropItem/PanelContainer/HBoxContainer" unique_id=148479373]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Press"
+horizontal_alignment = 1
+
+[node name="InputBtn" parent="UsableItemManager/BottomLabelsParent/DropItem/PanelContainer/HBoxContainer" unique_id=1276330587 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
 button_input_action = "drop_item"
 
-[node name="PickupItem" type="Control" parent="UseableItemManager" unique_id=1122762036]
-visible = false
-anchors_preset = 0
-offset_left = 48.0
-offset_top = 656.0
-offset_right = 88.0
-offset_bottom = 696.0
-
-[node name="BG" type="ColorRect" parent="UseableItemManager/PickupItem" unique_id=311403879]
-layout_mode = 0
-offset_left = 328.0
-offset_top = -16.0
-offset_right = 864.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="UseableItemManager/PickupItem" unique_id=1791713043]
+[node name="Part1Label2" type="Label" parent="UsableItemManager/BottomLabelsParent/DropItem/PanelContainer/HBoxContainer" unique_id=283699106]
 texture_filter = 1
-layout_mode = 0
-offset_left = 343.0
-offset_top = -13.0
-offset_right = 848.0
-offset_bottom = 44.0
+layout_mode = 2
+size_flags_stretch_ratio = 3.86
 theme_override_fonts/font = ExtResource("4_g5kmx")
-theme_override_font_sizes/font_size = 50
-text = "Press      To Pick up Item"
+theme_override_font_sizes/font_size = 40
+text = " To Drop Item "
+
+[node name="PickupItem" type="Control" parent="UsableItemManager/BottomLabelsParent" unique_id=370198524]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UsableItemManager/BottomLabelsParent/PickupItem" unique_id=495048706]
+texture_filter = 1
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UsableItemManager/BottomLabelsParent/PickupItem/PanelContainer" unique_id=1134452732]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Part1Label" type="Label" parent="UsableItemManager/BottomLabelsParent/PickupItem/PanelContainer/HBoxContainer" unique_id=1389222301]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = " Press"
 horizontal_alignment = 1
 
-[node name="InputBtn" parent="UseableItemManager/PickupItem" unique_id=2135190316 instance=ExtResource("8_vnqvi")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 472.0
-offset_top = -8.0
-offset_right = 472.0
-offset_bottom = -8.0
+[node name="InputBtn" parent="UsableItemManager/BottomLabelsParent/PickupItem/PanelContainer/HBoxContainer" unique_id=12634098 instance=ExtResource("8_vnqvi")]
+layout_mode = 2
+
+[node name="Part1Label2" type="Label" parent="UsableItemManager/BottomLabelsParent/PickupItem/PanelContainer/HBoxContainer" unique_id=1486209205]
+texture_filter = 1
+layout_mode = 2
+size_flags_stretch_ratio = 3.86
+theme_override_fonts/font = ExtResource("4_g5kmx")
+theme_override_font_sizes/font_size = 40
+text = "To Pick up Item "
 
 [node name="UseableItemPopUps" type="Control" parent="." unique_id=1589912695]
 layout_mode = 1
@@ -531,6 +586,20 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("5_0dwhk")
 script = ExtResource("6_pfayw")
+
+[node name="CinnamaticOverlay" type="TextureRect" parent="." unique_id=12252666]
+process_mode = 3
+visible = false
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_ygedu")
+script = ExtResource("21_oopc8")
 
 [node name="PlayerCursor" type="TextureRect" parent="." unique_id=386699015]
 modulate = Color(1, 0, 0, 1)
@@ -582,6 +651,78 @@ script = ExtResource("13_n3vwu")
 [node name="HoldIncrement" type="Timer" parent="HoldDisplay" unique_id=1681038714]
 one_shot = true
 
+[node name="EventNoticeParent" type="Control" parent="." unique_id=317088943]
+custom_maximum_size = Vector2(1920, -1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EventNoticeManager" type="Control" parent="EventNoticeParent" unique_id=803210852]
+custom_minimum_size = Vector2(260, 500)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -260.0
+offset_top = -500.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+script = ExtResource("18_ygedu")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EventNoticeParent/EventNoticeManager" unique_id=634768936]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16923077
+anchor_top = -0.23200001
+anchor_right = 0.96900004
+anchor_bottom = 1.0
+offset_right = 0.0599823
+offset_bottom = -20.13501
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Spot1" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=1927085247]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("19_svq4k")
+spot_num = 1
+
+[node name="EventNotice" parent="EventNoticeParent/EventNoticeManager/VBoxContainer/Spot1" unique_id=896096087 instance=ExtResource("23_o2sfg")]
+layout_mode = 1
+
+[node name="Spot2" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=123130193]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("19_svq4k")
+spot_num = 2
+
+[node name="Spot3" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=2026601181]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("19_svq4k")
+spot_num = 3
+
+[node name="Spot4" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=1413037423]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("19_svq4k")
+spot_num = 4
+
 [node name="FadeToBlack" type="Control" parent="." unique_id=488336529]
 visible = false
 layout_mode = 1
@@ -618,70 +759,6 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_u7n8c")
 theme_override_font_sizes/font_size = 50
 text = "Round 1"
-
-[node name="EventNoticeManager" type="Control" parent="." unique_id=803210852]
-layout_mode = 1
-anchors_preset = 0
-offset_left = 320.0
-offset_top = 216.0
-offset_right = 320.0
-offset_bottom = 216.0
-mouse_filter = 2
-script = ExtResource("18_ygedu")
-
-[node name="Spot1" type="Control" parent="EventNoticeManager" unique_id=1927085247]
-anchors_preset = 0
-offset_left = 696.0
-offset_top = 400.0
-offset_right = 696.0
-offset_bottom = 400.0
-mouse_filter = 2
-script = ExtResource("19_svq4k")
-spot_num = 1
-
-[node name="Spot2" type="Control" parent="EventNoticeManager" unique_id=123130193]
-anchors_preset = 0
-offset_left = 696.0
-offset_top = 296.0
-offset_right = 696.0
-offset_bottom = 296.0
-mouse_filter = 2
-script = ExtResource("19_svq4k")
-spot_num = 2
-
-[node name="Spot3" type="Control" parent="EventNoticeManager" unique_id=2026601181]
-anchors_preset = 0
-offset_left = 696.0
-offset_top = 192.0
-offset_right = 696.0
-offset_bottom = 192.0
-mouse_filter = 2
-script = ExtResource("19_svq4k")
-spot_num = 3
-
-[node name="Spot4" type="Control" parent="EventNoticeManager" unique_id=1413037423]
-anchors_preset = 0
-offset_left = 696.0
-offset_top = 88.0
-offset_right = 696.0
-offset_bottom = 88.0
-mouse_filter = 2
-script = ExtResource("19_svq4k")
-spot_num = 4
-
-[node name="CinnamaticOverlay" type="TextureRect" parent="." unique_id=12252666]
-process_mode = 3
-visible = false
-modulate = Color(0, 0, 0, 1)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_ygedu")
-script = ExtResource("21_oopc8")
 
 [node name="EndStateScreens" type="Control" parent="." unique_id=465217718]
 layout_mode = 1
@@ -940,27 +1017,37 @@ horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="DefectScrapsUI" type="Control" parent="." unique_id=1849032049]
+[node name="DefectScrapsContainer" type="Control" parent="." unique_id=575962253]
+custom_maximum_size = Vector2(1920, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+
+[node name="DefectScrapsUI" type="Control" parent="DefectScrapsContainer" unique_id=1849032049]
+custom_minimum_size = Vector2(150, 75)
 custom_maximum_size = Vector2(265, 110)
 layout_mode = 1
-anchor_left = 0.86275005
-anchor_top = 0.011111111
-anchor_right = 0.9903409
-anchor_bottom = 0.111555554
-offset_left = -0.32006836
-offset_bottom = -0.3199997
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -150.0
+offset_bottom = 75.0
 grow_horizontal = 0
 mouse_filter = 2
 script = ExtResource("26_khplb")
-metadata/_edit_use_anchors_ = true
 
-[node name="HelperFlashLabel" type="Node" parent="DefectScrapsUI" unique_id=1258393326]
+[node name="HelperFlashLabel" type="Node" parent="DefectScrapsContainer/DefectScrapsUI" unique_id=1258393326]
 script = ExtResource("27_en2kd")
 
-[node name="HelperOpacity" type="Node" parent="DefectScrapsUI" unique_id=396683174]
+[node name="HelperOpacity" type="Node" parent="DefectScrapsContainer/DefectScrapsUI" unique_id=396683174]
 script = ExtResource("28_7ygsn")
 
-[node name="BG" type="TextureRect" parent="DefectScrapsUI" unique_id=1513930099]
+[node name="BG" type="TextureRect" parent="DefectScrapsContainer/DefectScrapsUI" unique_id=1513930099]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -972,19 +1059,21 @@ mouse_filter = 2
 texture = ExtResource("26_qhbcy")
 expand_mode = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DefectScrapsUI" unique_id=1914699650]
+[node name="HBoxContainer" type="HBoxContainer" parent="DefectScrapsContainer/DefectScrapsUI" unique_id=1914699650]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.08
 anchor_top = 0.09090909
 anchor_right = 0.9
 anchor_bottom = 0.9
+offset_top = -4.3727303
+offset_bottom = 4.3727264
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ScrapSymbol" type="TextureRect" parent="DefectScrapsUI/HBoxContainer" unique_id=1286490185]
+[node name="ScrapSymbol" type="TextureRect" parent="DefectScrapsContainer/DefectScrapsUI/HBoxContainer" unique_id=1286490185]
 texture_filter = 1
 layout_mode = 2
 mouse_filter = 2
@@ -993,12 +1082,12 @@ expand_mode = 3
 stretch_mode = 5
 script = ExtResource("30_vnqvi")
 
-[node name="Spacer" type="Control" parent="DefectScrapsUI/HBoxContainer" unique_id=1662794358]
+[node name="Spacer" type="Control" parent="DefectScrapsContainer/DefectScrapsUI/HBoxContainer" unique_id=1662794358]
 custom_maximum_size = Vector2(10, -1)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ScrapsLabel" type="Label" parent="DefectScrapsUI/HBoxContainer" unique_id=1580440659]
+[node name="ScrapsLabel" type="Label" parent="DefectScrapsContainer/DefectScrapsUI/HBoxContainer" unique_id=1580440659]
 texture_filter = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -1008,6 +1097,6 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="NextValueIncrementTimer" type="Timer" parent="DefectScrapsUI" unique_id=347548503]
+[node name="NextValueIncrementTimer" type="Timer" parent="DefectScrapsContainer/DefectScrapsUI" unique_id=347548503]
 wait_time = 0.2
 one_shot = true

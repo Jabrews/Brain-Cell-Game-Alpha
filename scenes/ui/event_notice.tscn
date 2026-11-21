@@ -19,12 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://dmgtlgx4x3y3c" path="res://models/flesh_bug_motif/bug_symbol_1.png" id="16_7no1v"]
 [ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="16_117ef"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dii35"]
-shader = ExtResource("4_4x8tm")
-shader_parameter/progress = 0.0
-shader_parameter/base_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
-shader_parameter/progress_color = Color(1, 1, 1, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c7w4r"]
 shader = ExtResource("5_dii35")
 shader_parameter/hologram_enabled = false
@@ -34,6 +28,12 @@ shader_parameter/scanline_strength = 0.08
 shader_parameter/scanline_density = 90.0
 shader_parameter/hologram_tint = Color(1, 0.7, 0.7, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dii35"]
+shader = ExtResource("4_4x8tm")
+shader_parameter/progress = 0.0
+shader_parameter/base_color = Color(0.14901961, 0.14901961, 0.14901961, 1)
+shader_parameter/progress_color = Color(1, 1, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7no1v"]
 shader = ExtResource("16_117ef")
 shader_parameter/low_opacity = 0.2
@@ -41,8 +41,20 @@ shader_parameter/high_opacity = 1.0
 shader_parameter/blink_speed = 1.0
 
 [node name="EventNotice" type="Control" unique_id=896096087]
+custom_minimum_size = Vector2(290, 135)
 layout_mode = 3
-anchors_preset = 0
+anchor_left = 0.395
+anchor_top = 0.42000002
+anchor_right = 0.605
+anchor_bottom = 0.58000004
+offset_left = 10.399994
+offset_top = 9.599976
+offset_right = -10.400024
+offset_bottom = -9.600037
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
 script = ExtResource("1_mjokq")
 
 [node name="DeleteNoticeHelpers" type="Node" parent="." unique_id=1445703988]
@@ -73,137 +85,110 @@ volume_db = 5.0
 [node name="LoadStyle" type="Node" parent="." unique_id=480655066]
 script = ExtResource("2_c7w4r")
 
-[node name="bg" type="TextureRect" parent="." unique_id=1547401648]
+[node name="BG" type="TextureRect" parent="." unique_id=1547401648]
 modulate = Color(1, 1, 1, 0.76862746)
 texture_filter = 1
-layout_mode = 0
-offset_right = 248.0
-offset_bottom = 96.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_ac3he")
+expand_mode = 2
 
-[node name="ProgressDial" type="TextureRect" parent="." unique_id=1986379027]
+[node name="NoticeBody" type="VBoxContainer" parent="." unique_id=1339694478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="HBoxContainer" parent="NoticeBody" unique_id=1359337806]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 5.47)
+
+[node name="Header" type="Label" parent="NoticeBody/Header" unique_id=712527664]
+material = SubResource("ShaderMaterial_c7w4r")
+custom_minimum_size = Vector2(216, 33)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.91685265, 0, 0.24557137, 1)
+theme_override_fonts/font = ExtResource("4_7vpr4")
+theme_override_font_sizes/font_size = 18
+text = "ALERT CELL DEATH"
+horizontal_alignment = 1
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="ProgressDial" type="TextureRect" parent="NoticeBody/Header" unique_id=1986379027]
 texture_filter = 1
 material = SubResource("ShaderMaterial_dii35")
-layout_mode = 0
-offset_left = 224.0
-offset_right = 248.0
-offset_bottom = 25.0
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.1, 1.1)
 texture = ExtResource("2_mjokq")
+expand_mode = 3
+stretch_mode = 5
 flip_h = true
 flip_v = true
 
-[node name="Header" type="Label" parent="." unique_id=712527664]
-material = SubResource("ShaderMaterial_c7w4r")
-custom_minimum_size = Vector2(216, 33)
-custom_maximum_size = Vector2(216, 33)
-layout_mode = 0
-offset_left = 16.0
-offset_right = 232.0
-offset_bottom = 33.0
-theme_override_colors/font_color = Color(0.91685265, 0, 0.24557137, 1)
-theme_override_fonts/font = ExtResource("4_7vpr4")
-theme_override_font_sizes/font_size = 12
-text = "ALERT CELL DEATH"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
+[node name="Body" type="Control" parent="NoticeBody" unique_id=97137657]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
 
-[node name="Body" type="Label" parent="." unique_id=2080535667]
+[node name="Default" type="Control" parent="NoticeBody/Body" unique_id=1929060087]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Body" type="Label" parent="NoticeBody/Body/Default" unique_id=2080535667]
 texture_filter = 1
 custom_minimum_size = Vector2(232, 56)
-custom_maximum_size = Vector2(232, 56)
-layout_mode = 0
-offset_left = 8.0
-offset_top = 32.0
-offset_right = 240.0
-offset_bottom = 88.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_c7w4r")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 24
 text = "cell is experiencing jolt of defect"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="SpecialBodyStyles" type="Control" parent="." unique_id=1821057514]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="CellDeathEvent" type="Control" parent="SpecialBodyStyles" unique_id=1841641348]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SpawnedFleshBug" type="Control" parent="SpecialBodyStyles/CellDeathEvent" unique_id=606095314]
+[node name="DefCellDeath" type="Control" parent="NoticeBody/Body" unique_id=1821057514]
 visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug" unique_id=1613390442]
-material = SubResource("ShaderMaterial_7no1v")
-layout_mode = 0
-offset_left = 105.0
-offset_top = 31.0
-offset_right = 239.0
-offset_bottom = 91.0
-color = Color(0, 0, 0, 0.10980392)
+[node name="HBoxContainesr" type="HBoxContainer" parent="NoticeBody/Body/DefCellDeath" unique_id=995535039]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Body" type="Label" parent="SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug" unique_id=1908321137]
+[node name="DefaultDeathEventLabel" type="Label" parent="NoticeBody/Body/DefCellDeath/HBoxContainesr" unique_id=315562112]
 texture_filter = 1
-material = SubResource("ShaderMaterial_7no1v")
-custom_minimum_size = Vector2(232, 56)
-custom_maximum_size = Vector2(232, 56)
-layout_mode = 0
-offset_left = 36.0
-offset_top = 33.0
-offset_right = 268.0
-offset_bottom = 89.0
-theme_override_colors/font_color = Color(0.8197299, 0.06251621, 0.023437858, 1)
-theme_override_fonts/font = ExtResource("5_c7w4r")
-theme_override_font_sizes/font_size = 20
-text = "Flesh Bug
-Created"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug" unique_id=1718872492]
-texture_filter = 1
-material = SubResource("ShaderMaterial_7no1v")
-position = Vector2(211, 59)
-scale = Vector2(1.75, 1.8125)
-texture = ExtResource("16_7no1v")
-
-[node name="BugDeathEventLabel" type="Label" parent="SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug" unique_id=458270040]
-texture_filter = 1
-layout_mode = 0
-offset_left = 6.0
-offset_top = 32.0
-offset_right = 106.0
-offset_bottom = 91.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_constants/line_spacing = -2
-theme_override_fonts/font = ExtResource("5_c7w4r")
-theme_override_font_sizes/font_size = 18
-text = "Nickolas,
-has died"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DefaultDeath" type="Control" parent="SpecialBodyStyles/CellDeathEvent" unique_id=1876602737]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DefaultDeathEventLabel" type="Label" parent="SpecialBodyStyles/CellDeathEvent/DefaultDeath" unique_id=315562112]
-texture_filter = 1
-layout_mode = 0
-offset_left = 6.0
-offset_top = 32.0
-offset_right = 245.0
-offset_bottom = 91.0
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_constants/line_spacing = -2
 theme_override_fonts/font = ExtResource("5_c7w4r")
@@ -212,6 +197,81 @@ text = "Cell Container, Nikolas
 Has Died"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BugCellDeath" type="Control" parent="NoticeBody/Body" unique_id=1572320967]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="NoticeBody/Body/BugCellDeath" unique_id=1591759062]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainesr" type="HBoxContainer" parent="NoticeBody/Body/BugCellDeath/MarginContainer" unique_id=841393372]
+layout_mode = 2
+theme_override_constants/separation = 19
+
+[node name="DefaultDeathEventLabel" type="Label" parent="NoticeBody/Body/BugCellDeath/MarginContainer/HBoxContainesr" unique_id=236726807]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(3, 0)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = -2
+theme_override_fonts/font = ExtResource("5_c7w4r")
+theme_override_font_sizes/font_size = 18
+text = "Cell Container, Nikolas
+Has Died"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpawnedFleshBug" type="Control" parent="NoticeBody/Body/BugCellDeath/MarginContainer/HBoxContainesr" unique_id=606095314]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NoticeBody/Body/BugCellDeath/MarginContainer/HBoxContainesr/SpawnedFleshBug" unique_id=387532771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Body" type="Label" parent="NoticeBody/Body/BugCellDeath/MarginContainer/HBoxContainesr/SpawnedFleshBug/HBoxContainer" unique_id=1908321137]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7no1v")
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.8197299, 0.06251621, 0.023437858, 1)
+theme_override_fonts/font = ExtResource("5_c7w4r")
+theme_override_font_sizes/font_size = 20
+text = "Flesh Bug
+Created"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="TextureRect" parent="NoticeBody/Body/BugCellDeath/MarginContainer/HBoxContainesr/SpawnedFleshBug/HBoxContainer" unique_id=275830654]
+texture_filter = 1
+material = SubResource("ShaderMaterial_7no1v")
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("16_7no1v")
 
 [node name="IncrementProgress" type="Timer" parent="." unique_id=1495815092]
 wait_time = 0.5

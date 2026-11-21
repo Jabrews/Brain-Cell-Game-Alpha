@@ -1,14 +1,14 @@
 extends Node
 
 
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
 		pass
 
 	if Input.is_action_just_pressed('debug2') :	
 		pass
-		
+
+
 ## SAVED NEXT GOAL PEICE INCR VALUE##
 # NOTICE wont exactly update goal panel correctly, just loads new incr values
 	#var goal_threshold: GoalThreshold = GLGoalThresholdManagerBus.active_goal_threshold

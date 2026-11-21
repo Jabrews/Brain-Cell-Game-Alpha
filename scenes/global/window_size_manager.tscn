@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bvtjwuntf1n5m"]
+
+[ext_resource type="Script" uid="uid://bw3ib580u0avi" path="res://scripts/global/global_scenes/window_size_manager/window_size_manager.gd" id="1_8naf4"]
+
+[node name="WindowSizeManager" type="Node" unique_id=1251853376]
+script = ExtResource("1_8naf4")

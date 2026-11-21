@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://du1ghameplqoi" path="res://scripts/mutation_file_cabinet/get_mutation_symbol.gd" id="3_lsj1o"]
 [ext_resource type="Texture2D" uid="uid://6qsg1rfjvnvx" path="res://models/file_cabinet/sample_file_mutation_logo.png" id="5_r6817"]
 [ext_resource type="Texture2D" uid="uid://dk6q43pr021g6" path="res://models/file_cabinet/sample_file_mutation_lock.png" id="6_0tp8k"]
-[ext_resource type="Script" uid="uid://bd2peu55fydah" path="res://reusable/modular_scripts/floating_label/floating_label_2d.gd" id="7_0tp8k"]
 [ext_resource type="Script" uid="uid://dlkwt78hm0yuv" path="res://scripts/mutation_file_cabinet/press_to_leave.gd" id="7_8gn6o"]
 [ext_resource type="Script" uid="uid://dvy0f8mt8i2yy" path="res://scripts/mutation_file_cabinet/audio_manager.gd" id="7_doic2"]
 [ext_resource type="Script" uid="uid://hufo7btruhuo" path="res://scripts/mutation_file_cabinet/blank_file.gd" id="8_62fj7"]
@@ -1500,106 +1499,219 @@ stream = ExtResource("12_61d2c")
 [node name="PageClose" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1779680188]
 stream = ExtResource("13_pnxu0")
 
-[node name="ToLeave" type="Control" parent="." unique_id=866753052]
-visible = false
+[node name="UI" type="Control" parent="." unique_id=1685870696]
 layout_mode = 3
-anchors_preset = 0
-offset_left = 1080.0
-offset_top = 64.0
-offset_right = 1410.0
-offset_bottom = 160.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ToLeave" type="Control" parent="UI" unique_id=972933874]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
 mouse_filter = 2
 script = ExtResource("7_8gn6o")
 
-[node name="ViewCabinetLabel" type="Label" parent="ToLeave" unique_id=1664978757]
-texture_filter = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ToLeave" unique_id=429888866]
 layout_mode = 0
-offset_left = -240.0
-offset_top = 4.0
-offset_right = 294.0
-offset_bottom = 61.0
-theme_override_colors/font_color = Color(0.13682577, 0.13682574, 0.13682571, 1)
+offset_left = -416.0
+offset_top = 16.0
+offset_right = -14.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Part1Label" type="Label" parent="UI/ToLeave/HBoxContainer" unique_id=723907690]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
 theme_override_fonts/font = ExtResource("23_vyu14")
-theme_override_font_sizes/font_size = 30
-text = "Press      To Leave Cabinet"
+theme_override_font_sizes/font_size = 40
+text = " Press"
 horizontal_alignment = 1
 
-[node name="LeaveInputBtn" type="Control" parent="ToLeave" unique_id=1989642189]
-anchors_preset = 0
-offset_left = -70.0
-offset_right = -30.0
-offset_bottom = 40.0
+[node name="ClickToLeaveInputBtn" type="Control" parent="UI/ToLeave/HBoxContainer" unique_id=2105640861]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+mouse_filter = 2
 script = ExtResource("20_dfmjg")
 
-[node name="BtnTextureRect" type="TextureRect" parent="ToLeave/LeaveInputBtn" unique_id=601941664]
+[node name="BtnTextureRect" type="TextureRect" parent="UI/ToLeave/HBoxContainer/ClickToLeaveInputBtn" unique_id=1159237909]
 texture_filter = 1
-layout_mode = 0
-offset_left = 7.9999995
-offset_top = 3.9999998
-offset_right = 56.0
-offset_bottom = 52.0
-scale = Vector2(0.8, 0.8)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 53.0
+offset_bottom = 43.0
+mouse_filter = 2
 texture = ExtResource("20_88k5s")
+expand_mode = 2
+stretch_mode = 5
 
-[node name="FileView" type="Control" parent="." unique_id=1072467109]
+[node name="Part1Label2" type="Label" parent="UI/ToLeave/HBoxContainer" unique_id=798717525]
+texture_filter = 1
+layout_mode = 2
+size_flags_stretch_ratio = 3.86
+theme_override_fonts/font = ExtResource("23_vyu14")
+theme_override_font_sizes/font_size = 40
+text = " To Leave "
+
+[node name="BottomLabelParent" type="Control" parent="UI" unique_id=595860292]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="ClickToView" type="Control" parent="UI/BottomLabelParent" unique_id=2058190846]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/BottomLabelParent/ClickToView" unique_id=1340281149]
+texture_filter = 1
+propagate_maximum_size = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BottomLabelParent/ClickToView/PanelContainer" unique_id=721821866]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Part1Label" type="Label" parent="UI/BottomLabelParent/ClickToView/PanelContainer/HBoxContainer" unique_id=1062067294]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("23_vyu14")
+theme_override_font_sizes/font_size = 40
+text = " Press"
+horizontal_alignment = 1
+
+[node name="ClickToViewInputBtn" type="Control" parent="UI/BottomLabelParent/ClickToView/PanelContainer/HBoxContainer" unique_id=1897337561]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("27_88k5s")
+
+[node name="BtnTextureRect" type="TextureRect" parent="UI/BottomLabelParent/ClickToView/PanelContainer/HBoxContainer/ClickToViewInputBtn" unique_id=884298597]
+texture_filter = 1
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 53.0
+offset_bottom = 43.0
+mouse_filter = 2
+texture = ExtResource("20_88k5s")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Part1Label2" type="Label" parent="UI/BottomLabelParent/ClickToView/PanelContainer/HBoxContainer" unique_id=1072424728]
+texture_filter = 1
+layout_mode = 2
+size_flags_stretch_ratio = 3.86
+theme_override_fonts/font = ExtResource("23_vyu14")
+theme_override_font_sizes/font_size = 40
+text = " To View File "
+
+[node name="FileView" type="Control" parent="UI" unique_id=1072467109]
 process_mode = 3
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("8_hioyw")
 
-[node name="BlurBg" type="ColorRect" parent="FileView" unique_id=504728592]
+[node name="BlurBg" type="ColorRect" parent="UI/FileView" unique_id=504728592]
 material = SubResource("ShaderMaterial_rppej")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -3.0
-offset_right = 1240.0
-offset_bottom = 680.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 mouse_behavior_recursive = 1
 color = Color(1, 1, 1, 0)
 
-[node name="PaperBG" type="TextureRect" parent="FileView" unique_id=1566835126]
+[node name="PaperBG" type="TextureRect" parent="UI/FileView" unique_id=1566835126]
 texture_filter = 1
-layout_mode = 0
-offset_left = 392.0
-offset_top = 24.0
-offset_right = 944.0
-offset_bottom = 688.0
-mouse_filter = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.033333335
+anchor_right = 0.75
+anchor_bottom = 0.96666664
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 mouse_behavior_recursive = 1
 texture = ExtResource("8_kdclm")
 
-[node name="MutationType" type="Label" parent="FileView" unique_id=113685689]
+[node name="MutationType" type="Label" parent="UI/FileView" unique_id=113685689]
 texture_filter = 1
-layout_mode = 0
-offset_left = 432.0
-offset_top = 104.0
-offset_right = 904.0
-offset_bottom = 130.0
-mouse_filter = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.30625
+anchor_top = 0.044444446
+anchor_right = 0.74375
+anchor_bottom = 0.08055556
+grow_horizontal = 2
+grow_vertical = 2
 mouse_behavior_recursive = 1
 theme_override_colors/font_color = Color(0.6745098, 0.19607843, 0.19607843, 1)
 theme_override_fonts/font = ExtResource("1_t562i")
 theme_override_font_sizes/font_size = 26
 text = "Mutation Type"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MutationInfo" type="Label" parent="FileView" unique_id=1120710463]
+[node name="MutationInfo" type="Label" parent="UI/FileView" unique_id=1120710463]
 texture_filter = 1
 custom_minimum_size = Vector2(424, 152)
-custom_maximum_size = Vector2(424, 152)
-layout_mode = 0
-offset_left = 456.0
-offset_top = 504.0
-offset_right = 880.0
-offset_bottom = 656.0
-mouse_filter = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.71
+anchor_right = 0.7
+anchor_bottom = 0.91
+grow_horizontal = 2
+grow_vertical = 2
 mouse_behavior_recursive = 1
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_t562i")
@@ -1612,13 +1724,20 @@ Brain has never presented any hazardous anomalies to the Foundation's knowledge.
 autowrap_mode = 3
 autowrap_trim_flags = 128
 
-[node name="ExitBtn" type="TextureRect" parent="FileView" unique_id=970978348]
+[node name="ExitBtn" type="TextureRect" parent="UI/FileView" unique_id=970978348]
 texture_filter = 1
-layout_mode = 0
-offset_left = 912.0
-offset_top = 31.999998
-offset_right = 934.6667
-offset_bottom = 61.052628
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7276042
+anchor_top = 0.064619824
+anchor_right = 0.7276042
+anchor_bottom = 0.064619824
+offset_left = -11.333374
+offset_top = -14.526306
+offset_right = 11.333374
+offset_bottom = 14.526306
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.0588228, 0.826087)
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
@@ -1627,55 +1746,6 @@ focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
 focus_mode = 2
+mouse_filter = 0
 texture = ExtResource("10_rppej")
 script = ExtResource("11_7hlws")
-
-[node name="ClickToView" type="Control" parent="." unique_id=154705962]
-visible = false
-texture_filter = 1
-layout_mode = 3
-anchors_preset = 0
-offset_left = 16.0
-offset_top = 656.0
-offset_right = 471.0
-offset_bottom = 691.0
-size_flags_horizontal = 4
-mouse_filter = 2
-script = ExtResource("7_0tp8k")
-
-[node name="BG" type="ColorRect" parent="ClickToView" unique_id=1967633451]
-layout_mode = 0
-offset_left = 392.0
-offset_top = -8.0
-offset_right = 856.0
-offset_bottom = 48.0
-color = Color(0, 0, 0, 0.39215687)
-
-[node name="ViewCabinetLabel" type="Label" parent="ClickToView" unique_id=833823134]
-texture_filter = 1
-layout_mode = 0
-offset_left = 360.0
-offset_top = -8.0
-offset_right = 894.0
-offset_bottom = 49.0
-theme_override_fonts/font = ExtResource("23_vyu14")
-theme_override_font_sizes/font_size = 50
-text = "Press      To View File"
-horizontal_alignment = 1
-
-[node name="ClickToViewInputBtn" type="Control" parent="ClickToView" unique_id=699333925]
-anchors_preset = 0
-offset_left = 527.0
-offset_top = -7.0
-offset_right = 567.0
-offset_bottom = 33.0
-script = ExtResource("27_88k5s")
-
-[node name="BtnTextureRect" type="TextureRect" parent="ClickToView/ClickToViewInputBtn" unique_id=856819083]
-texture_filter = 1
-layout_mode = 0
-offset_left = 7.9999995
-offset_top = 3.9999998
-offset_right = 56.0
-offset_bottom = 52.0
-texture = ExtResource("20_88k5s")
