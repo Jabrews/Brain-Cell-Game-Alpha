@@ -17,12 +17,12 @@ extends Node
 
 @onready var controller_focus_controls : Array[Control] = [
 	$Files/File/ControllerFocus,
-	$Files/File2/ControllerFocus, 
-	$Files/File3/ControllerFocus, 
-	$Files/File4/ControllerFocus, 
-	$Files/File5/ControllerFocus, 
-	$Files/File6/ControllerFocus, 
-	$Files/File7/ControllerFocus, 
+	$Files/File2/ControllerFocus,
+	$Files/File3/ControllerFocus,
+	$Files/File4/ControllerFocus,
+	$Files/File5/ControllerFocus,
+	$Files/File6/ControllerFocus,
+	$Files/File7/ControllerFocus,
 ]
 
 
@@ -74,6 +74,7 @@ func _handle_cabinet_interacted() -> void:
 	ignore_interact = true
 	
 	set_player_viewing_file_cabinet(true)
+
 	
 	audio_manager.play_cabinet_open()
 	
@@ -104,7 +105,8 @@ func set_player_viewing_file_cabinet(toggle_value : bool) :
 	
 	if toggle_value :
 		
-		file_cabinet_interact_area.visible = false 
+		
+		file_cabinet_interact_area.visible = false
 		
 		
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -117,14 +119,14 @@ func set_player_viewing_file_cabinet(toggle_value : bool) :
 		
 		if GAMEInputTypeDetector.input_type == 'controller' :
 			
-			for controller_focus : Control in controller_focus_controls : 				
+			for controller_focus : Control in controller_focus_controls :
 				controller_focus.focus_mode = Control.FOCUS_NONE
 			
 			
 			await get_tree().process_frame
 			
 			
-			for controller_focus : Control in controller_focus_controls : 				
+			for controller_focus : Control in controller_focus_controls :
 				controller_focus.focus_mode = Control.FOCUS_ALL
 			
 			
@@ -132,6 +134,7 @@ func set_player_viewing_file_cabinet(toggle_value : bool) :
 	
 	
 	else :
+		
 		
 		file_cabinet_interact_area.visible = true
 		
@@ -141,7 +144,7 @@ func set_player_viewing_file_cabinet(toggle_value : bool) :
 		
 		click_to_view_label.visible = false
 		
-		for controller_focus : Control in controller_focus_controls : 				
+		for controller_focus : Control in controller_focus_controls :
 			controller_focus.focus_mode = Control.FOCUS_NONE
 		
 		GLHideUiBus.emit_signal(

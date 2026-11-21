@@ -1,12 +1,15 @@
+
 extends TextureRect
+
+@onready var parent_file_view: Control = $"../.."
 
 @export var float_amount: float = 1.2
 @export var float_duration: float = 0.5
 @export var hover_scale_multiplier: float = 1.1
 @export var hover_duration: float = 0.15
 
-var org_pos: Vector2
 var org_scale: Vector2
+var float_offset: float = 0.0
 
 var being_hovered_over: bool = false
 
@@ -20,20 +23,27 @@ func _ready() -> void:
 	focus_entered.connect(_on_mouse_entered)
 	focus_exited.connect(_on_mouse_exited)
 
-	org_pos = position
 	org_scale = scale
 
-	# Makes scaling happen from the center instead of the top-left.
-	pivot_offset = size / 2.0
+	resized.connect(_update_pivot)
+	_update_pivot()
 
 	start_floating()
 
 
 func _process(_delta: float) -> void:
 	if being_hovered_over:
-		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed('interact') or Input.is_action_just_pressed('drop_item'):
-			get_parent()._close_file_view()
-			
+		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("interact") or Input.is_action_just_pressed("drop_item"):
+			parent_file_view._close_file_view()
+
+
+func _update_pivot() -> void:
+	pivot_offset = size / 2.0
+
+
+func _set_float_offset(value: float) -> void:
+	position.y += value - float_offset
+	float_offset = value
 
 
 func start_floating() -> void:
@@ -43,10 +53,18 @@ func start_floating() -> void:
 	float_tween = create_tween()
 	float_tween.set_loops()
 
-	float_tween.tween_property(self, "position:y", org_pos.y + float_amount, float_duration)
-	float_tween.tween_property(self, "position:y", org_pos.y, float_duration)
-	float_tween.tween_property(self, "position:y", org_pos.y - float_amount, float_duration)
-	float_tween.tween_property(self, "position:y", org_pos.y, float_duration)
+	float_tween.tween_method(
+		_set_float_offset, float_offset, float_amount, float_duration
+	)
+	float_tween.tween_method(
+		_set_float_offset, float_amount, 0.0, float_duration
+	)
+	float_tween.tween_method(
+		_set_float_offset, 0.0, -float_amount, float_duration
+	)
+	float_tween.tween_method(
+		_set_float_offset, -float_amount, 0.0, float_duration
+	)
 
 
 func stop_floating() -> void:
@@ -73,10 +91,10 @@ func _on_mouse_entered() -> void:
 		hover_duration
 	)
 
-	hover_tween.tween_property(
-		self,
-		"position",
-		org_pos,
+	hover_tween.tween_method(
+		_set_float_offset,
+		float_offset,
+		0.0,
 		hover_duration
 	)
 
@@ -88,6 +106,7 @@ func _on_mouse_exited() -> void:
 		hover_tween.kill()
 
 	hover_tween = create_tween()
+
 	hover_tween.tween_property(
 		self,
 		"scale",
@@ -95,6 +114,4 @@ func _on_mouse_exited() -> void:
 		hover_duration
 	)
 
-	await hover_tween.finished
-
-	start_floating()
+	hover_tween.tween_callback(start_floating)

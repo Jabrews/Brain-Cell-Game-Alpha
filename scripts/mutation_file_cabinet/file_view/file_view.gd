@@ -1,12 +1,13 @@
 extends Control 
 
 
-@onready var mutation_type_label : Label = $MutationType
-@onready var mutation_info_label : Label = $MutationInfo
+@onready var mutation_type_label : Label = $PaperContent/MutationType
+@onready var mutation_info_label : Label = $PaperContent/MutationInfo
+@onready var blur_bg : ColorRect = $"../BlurBg"
 
 @onready var audio_manager : Node3D = $"../../AudioManager"
 # focus grab
-@onready var file_view_exit_btn_rect : TextureRect = $ExitBtn
+@onready var file_view_exit_btn_rect : TextureRect = $PaperContent/ExitBtn
 @onready var parent_mutation_file_cabinet : Node3D = $"../.."
 
 func _load_file_view(file_info : FileInfo) :
@@ -14,6 +15,8 @@ func _load_file_view(file_info : FileInfo) :
 	mutation_type_label.text = file_info.type
 	mutation_info_label.text = file_info.text
 	get_tree().paused = true
+	
+	blur_bg.visible = true
 	
 	if GAMEInputTypeDetector.input_type == 'controller' : 
 		
@@ -27,6 +30,8 @@ func _close_file_view() :
 	visible = false
 	parent_mutation_file_cabinet.file_being_viewed = false
 	get_tree().paused = false 
+	
+	blur_bg.visible = false
 	
 	# hacky but works for controlelr focus
 	parent_mutation_file_cabinet.set_player_viewing_file_cabinet(true)
