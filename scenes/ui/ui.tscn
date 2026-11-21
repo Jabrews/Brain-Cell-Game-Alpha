@@ -24,7 +24,6 @@
 [ext_resource type="Script" uid="uid://dukyyyevtdabb" path="res://scripts/ui/cinnamatic_overlay.gd" id="21_oopc8"]
 [ext_resource type="Script" uid="uid://dulxe11r8rej1" path="res://scripts/ui/end_state_screens/game_end.gd" id="22_qmss2"]
 [ext_resource type="Script" uid="uid://q0sa0nwlirjf" path="res://scripts/ui/end_state_screens/retry_btn.gd" id="23_26a3v"]
-[ext_resource type="PackedScene" uid="uid://c65gt76psrhvr" path="res://scenes/ui/event_notice.tscn" id="23_o2sfg"]
 [ext_resource type="Script" uid="uid://2rb1h70gsjfr" path="res://scripts/ui/end_state_screens/game_finish.gd" id="26_fqqne"]
 [ext_resource type="Script" uid="uid://dphm7h213ar60" path="res://scripts/ui/defect_scraps_ui/defect_scraps_ui.gd" id="26_khplb"]
 [ext_resource type="Script" uid="uid://daxmvhbbwtum7" path="res://scripts/ui/end_state_screens/menu_btn.gd" id="26_knhlc"]
@@ -659,6 +658,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="EventNoticeManager" type="Control" parent="EventNoticeParent" unique_id=803210852]
 custom_minimum_size = Vector2(260, 500)
@@ -687,19 +687,17 @@ offset_right = 0.0599823
 offset_bottom = -20.13501
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+mouse_filter = 2
+alignment = 2
 
-[node name="Spot1" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=1927085247]
+[node name="Spot4" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=1927085247]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 1
 
-[node name="EventNotice" parent="EventNoticeParent/EventNoticeManager/VBoxContainer/Spot1" unique_id=896096087 instance=ExtResource("23_o2sfg")]
-layout_mode = 1
-
-[node name="Spot2" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=123130193]
+[node name="Spot3" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=123130193]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
@@ -707,7 +705,7 @@ mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 2
 
-[node name="Spot3" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=2026601181]
+[node name="Spot2" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=2026601181]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
@@ -715,7 +713,7 @@ mouse_filter = 2
 script = ExtResource("19_svq4k")
 spot_num = 3
 
-[node name="Spot4" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=1413037423]
+[node name="Spot1" type="Control" parent="EventNoticeParent/EventNoticeManager/VBoxContainer" unique_id=1413037423]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3

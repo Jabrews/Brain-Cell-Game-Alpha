@@ -43,19 +43,20 @@ shader_parameter/blink_speed = 1.0
 [node name="EventNotice" type="Control" unique_id=896096087]
 custom_minimum_size = Vector2(290, 135)
 layout_mode = 3
-anchor_left = 0.395
-anchor_top = 0.42000002
-anchor_right = 0.605
-anchor_bottom = 0.58000004
-offset_left = 10.399994
-offset_top = 9.599976
-offset_right = -10.400024
-offset_bottom = -9.600037
+anchor_left = 0.38700002
+anchor_top = 0.40600002
+anchor_right = 0.61300004
+anchor_bottom = 0.59400004
+offset_left = -0.3600769
+offset_top = 0.17999268
+offset_right = 0.35998535
+offset_bottom = -0.1800232
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 script = ExtResource("1_mjokq")
+metadata/_edit_use_anchors_ = true
 
 [node name="DeleteNoticeHelpers" type="Node" parent="." unique_id=1445703988]
 
@@ -110,6 +111,7 @@ layout_mode = 2
 size_flags_vertical = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 5.47)
+alignment = 1
 
 [node name="Header" type="Label" parent="NoticeBody/Header" unique_id=712527664]
 material = SubResource("ShaderMaterial_c7w4r")
@@ -122,7 +124,7 @@ theme_override_fonts/font = ExtResource("4_7vpr4")
 theme_override_font_sizes/font_size = 18
 text = "ALERT CELL DEATH"
 horizontal_alignment = 1
-vertical_alignment = 2
+vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="ProgressDial" type="TextureRect" parent="NoticeBody/Header" unique_id=1986379027]
@@ -130,7 +132,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_dii35")
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_scale = Vector2(1.1, 1.1)
+offset_transform_position = Vector2(0, -4.065)
 texture = ExtResource("2_mjokq")
 expand_mode = 3
 stretch_mode = 5
@@ -140,7 +142,7 @@ flip_v = true
 [node name="Body" type="Control" parent="NoticeBody" unique_id=97137657]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 4.0
+size_flags_stretch_ratio = 2.0
 
 [node name="Default" type="Control" parent="NoticeBody/Body" unique_id=1929060087]
 visible = false

@@ -3,11 +3,15 @@ extends Node
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed('debug1') :	
-		pass
-
+		var cell_name : String = 'yestzermstein'
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('cell_death_event', '', {'spawn_flesh_bug' : false, 'cell_name' : cell_name}, 0.5))		
+		
 	if Input.is_action_just_pressed('debug2') :	
-		pass
-
+		var cell_name : String = 'yestzermstein'
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('cell_death_event', '', {'spawn_flesh_bug' : true, 'cell_name' : cell_name}, 0.5))		
+	
+	if Input.is_action_just_pressed('debug3') :	
+		GLEventNoticeManagerBus.emit_signal('create_event_notice', EventNotice.new('turn_warning', 'Finale Turn. Last chance to reach Stat Goal', {}))
 
 ## SAVED NEXT GOAL PEICE INCR VALUE##
 # NOTICE wont exactly update goal panel correctly, just loads new incr values

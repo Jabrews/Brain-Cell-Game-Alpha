@@ -5,10 +5,7 @@ const EVENT_NOTICE_SCENE: PackedScene = preload(
 )
 
 @onready var spots: Array[Control] = [
-	$Spot1,
-	$Spot2,
-	$Spot3,
-	$Spot4
+	$VBoxContainer/Spot1, $VBoxContainer/Spot2, $VBoxContainer/Spot3, $VBoxContainer/Spot4
 ]
 
 var event_notice_queue: Array[EventNotice] = []

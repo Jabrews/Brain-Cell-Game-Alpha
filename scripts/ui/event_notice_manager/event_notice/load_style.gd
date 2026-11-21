@@ -1,10 +1,10 @@
 extends Node
 
 
-@onready var bg : TextureRect = $"../bg"
+@onready var bg : TextureRect = $"../BG"
 @onready var parent_event_notice : Control = $".."
-@onready var header_label : Label = $"../Header"
-@onready var body_label : Label =  $"../Body"
+@onready var header_label : Label = $"../NoticeBody/Header/Header"
+@onready var body_label : Label =  $"../NoticeBody/Body/Default/Body"
 
 func _load(event_notice_type : String) : 
 	

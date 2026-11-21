@@ -5,16 +5,20 @@ extends Node
 @onready var parent_spot: Control = $".."
 @onready var load_style: Node = $LoadStyle
 @onready var popup_sound_manager : Node2D = $PopupSoundManager
-@onready var header_label: Label = $Header
-@onready var body_label: Label = $Body
-@onready var progress_dial: TextureRect = $ProgressDial
+@onready var header_label: Label =$NoticeBody/Header/Header
+@onready var body_label: Label = $NoticeBody/Body/Default/Body
+@onready var progress_dial: TextureRect = $NoticeBody/Header/ProgressDial
 @onready var increment_progress_timer: Timer = $IncrementProgress
 @onready var whoosh_sound : AudioStreamPlayer2D = $WhooshSound
+
+## notice body components
+# default
+@onready var parent_default : Control = $NoticeBody/Body/Default
 # cell death event
-@onready var parent_spawned_flesh_bug : Control = $SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug
-@onready var parent_default_death : Control = $SpecialBodyStyles/CellDeathEvent/DefaultDeath
-@onready var bug_death_event_label : Label = $SpecialBodyStyles/CellDeathEvent/SpawnedFleshBug/BugDeathEventLabel
-@onready var default_death_event_label : Label = $SpecialBodyStyles/CellDeathEvent/DefaultDeath/DefaultDeathEventLabel
+@onready var parent_bug_death : Control = $NoticeBody/Body/BugCellDeath
+@onready var parent_default_death : Control = $NoticeBody/Body/DefCellDeath
+@onready var bug_death_event_label : Label = $NoticeBody/Body/BugCellDeath/MarginContainer/HBoxContainesr/DefaultDeathEventLabel
+@onready var default_death_event_label : Label =$NoticeBody/Body/DefCellDeath/HBoxContainesr/DefaultDeathEventLabel
 
 var designated_event_notice: EventNotice
 
@@ -41,13 +45,14 @@ func _start(data : Dictionary) -> void :
 		body_label.visible = false
 		
 		if data['spawn_flesh_bug'] == true: 
-			parent_spawned_flesh_bug.visible = true
+			parent_bug_death.visible = true
 			bug_death_event_label.text = data['cell_name'] + ",\nhas died"
 		else : 
 			parent_default_death.visible = true
 			default_death_event_label.text = 'Cell Container, ' + data['cell_name'] + "\nHas Died"
 	## default body text
 	else : 
+		parent_default.visible = true
 		body_label.text = designated_event_notice.event_body_text
 
 	increment_progress_timer.timeout.connect(
