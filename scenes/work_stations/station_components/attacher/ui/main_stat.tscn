@@ -361,6 +361,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="PenalityHint" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent" unique_id=1880452801]
 visible = false
@@ -614,6 +615,7 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+mouse_filter = 2
 
 [node name="AlreadyOccupiedHint" type="Control" parent="HoverHints" unique_id=2134895470]
 visible = false

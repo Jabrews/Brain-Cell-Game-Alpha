@@ -27,7 +27,6 @@
 [ext_resource type="Script" uid="uid://c61v8hjryt7yr" path="res://scripts/work_stations/station_components/attacher/load_cell_panel/load_cell_panel.gd" id="11_14fq8"]
 [ext_resource type="Texture2D" uid="uid://dq5dimn6bnjlo" path="res://models/breeding_screen/random_blood.png" id="11_b0ynj"]
 [ext_resource type="Script" uid="uid://dnyoyquctax0g" path="res://scripts/work_stations/station_components/attacher/ui/blood_type_view.gd" id="11_g3225"]
-[ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_g3225"]
 [ext_resource type="Script" uid="uid://dfj6lkavugomp" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance/refresh_total_failure_chance.gd" id="12_huima"]
 [ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
 [ext_resource type="Script" uid="uid://b0ik3ub2lrkp0" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_confirm_btn.gd" id="13_dv0vc"]
@@ -154,12 +153,6 @@ shader = ExtResource("4_o7oe2")
 shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b0ynj"]
-shader = ExtResource("12_g3225")
-shader_parameter/low_opacity = 0.2
-shader_parameter/high_opacity = 1.0
-shader_parameter/blink_speed = 1.0
 
 [sub_resource type="Shader" id="Shader_8x2mq"]
 code = "shader_type canvas_item;
@@ -546,6 +539,8 @@ grow_vertical = 2
 focus_mode = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="ParentStatItemDragNode" type="Node" parent="AttacherUI" unique_id=1154640678]
+
 [node name="BlurBg" type="ColorRect" parent="AttacherUI" unique_id=1202290427]
 material = SubResource("ShaderMaterial_6rfj8")
 layout_mode = 1
@@ -564,6 +559,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="BG" type="ColorRect" parent="AttacherUI/Content" unique_id=1323164688]
@@ -730,7 +726,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../../StatMainView/AttacherBox/DisplayBackground")
+focus_neighbor_top = NodePath("../../../../StatMainView/BottomSectionHBox/AttacherBox/DisplayBackground")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
@@ -870,205 +866,276 @@ stat_type = "intelligence"
 layout_mode = 2
 stat_type = "community"
 
-[node name="BtnBG" parent="AttacherUI/Content/StatMainView/Stats/StatsVBox/Community/StatReplacement/ReplacementInfoContainer/Header/RemoveBtn" parent_id_path=PackedInt32Array(614629783, 1053657968) index="0" unique_id=1914596848]
-focus_neighbor_bottom = NodePath("../../../../../../AttacherBox/DisplayBackground")
-
-[node name="DefaultDetectRect" parent="AttacherUI/Content/StatMainView/Stats/StatsVBox/Community" index="9" unique_id=1856000600]
-focus_neighbor_bottom = NodePath("../../../../AttacherBox/DisplayBackground")
-
-[node name="AttacherBox" parent="AttacherUI/Content/StatMainView" unique_id=55611311 instance=ExtResource("10_51xr3")]
-layout_mode = 0
-offset_left = 408.0
-offset_top = 520.0
-offset_right = 408.0
-offset_bottom = 520.0
+[node name="BottomSectionHBox" type="HBoxContainer" parent="AttacherUI/Content/StatMainView" unique_id=1806633123]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05357143
+anchor_top = 0.84090906
+anchor_right = 0.91071427
+anchor_bottom = 0.9951299
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/separation = 63
+alignment = 1
 
-[node name="DisplayBackground" parent="AttacherUI/Content/StatMainView/AttacherBox" index="2" unique_id=1701365652]
-focus_neighbor_left = NodePath("../../BloodTypeView/BG")
-focus_neighbor_right = NodePath("../../FailureChanceView/DetectRect")
-focus_neighbor_bottom = NodePath("../../../InteractFooter/ButtonsHBox/ConfirmBtn/BtnBg")
-
-[node name="BG" parent="AttacherUI/Content/StatMainView/AttacherBox/AddACellHint" parent_id_path=PackedInt32Array(55611311, 1170831626) index="0" unique_id=137983988]
-mouse_filter = 2
-
-[node name="HintRect" parent="AttacherUI/Content/StatMainView/AttacherBox/AddACellHint" parent_id_path=PackedInt32Array(55611311, 1170831626) index="2" unique_id=1426054006]
-mouse_filter = 2
-
-[node name="BloodTypeView" type="Control" parent="AttacherUI/Content/StatMainView" unique_id=2004171066]
-visible = false
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="BloodTypeView" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=2004171066]
+custom_minimum_size = Vector2(175, 80)
+layout_mode = 2
+size_flags_horizontal = 3
 script = ExtResource("11_g3225")
 
-[node name="HoverBG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=17225684]
+[node name="HoverBG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView" unique_id=17225684]
 visible = false
-layout_mode = 0
-offset_left = 527.0
-offset_top = 559.0
-offset_right = 704.0
-offset_bottom = 657.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0057142857
+anchor_top = -0.015625
+anchor_right = 1.0057143
+anchor_bottom = 1.0052084
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="DropInvalidBG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=896582186]
-visible = false
-material = SubResource("ShaderMaterial_b0ynj")
-layout_mode = 0
-offset_left = 527.0
-offset_top = 559.0
-offset_right = 704.0
-offset_bottom = 657.0
-mouse_filter = 2
-
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=2038202650]
-layout_mode = 0
-offset_left = 528.0
-offset_top = 560.0
-offset_right = 703.0
-offset_bottom = 656.0
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView" unique_id=2038202650]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_neighbor_right = NodePath("../../AttacherBox/DisplayBackground")
 focus_mode = 2
 color = Color(0.14117648, 0.007843138, 0, 1)
 
-[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=2085373813]
+[node name="ContentVBox" type="VBoxContainer" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView" unique_id=1279666821]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/ContentVBox" unique_id=1482852929]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/ContentVBox/Header" unique_id=926713935]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113328755, 0.0039063096, 0, 1)
+
+[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/ContentVBox/Header" unique_id=2085373813]
 texture_filter = 1
-layout_mode = 0
-offset_left = 528.0
-offset_top = 560.0
-offset_right = 704.0
-offset_bottom = 581.0
-scale = Vector2(1, 1.2800024)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 24
 text = "Bloodtype :"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BloodtypeSymbol" type="TextureRect" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=296656778]
+[node name="Content" type="HBoxContainer" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/ContentVBox" unique_id=1445968075]
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -8.115)
+mouse_filter = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="BloodtypeSymbol" type="TextureRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/ContentVBox/Content" unique_id=296656778]
 texture_filter = 1
-layout_mode = 0
-offset_left = 561.0
-offset_top = 600.0
-offset_right = 605.0
-offset_bottom = 641.0
+custom_minimum_size = Vector2(44, 41)
+layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("11_b0ynj")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="BloodTypeLabel" type="Label" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=102297100]
+[node name="BloodTypeLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/ContentVBox/Content" unique_id=102297100]
 modulate = Color(0.808011, 0.105516136, 0.17244221, 1)
 texture_filter = 1
-layout_mode = 0
-offset_left = 601.0
-offset_top = 601.0
-offset_right = 660.0
-offset_bottom = 636.0
-scale = Vector2(1, 1.2800024)
+layout_mode = 2
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 30
 text = "None"
 vertical_alignment = 1
 
-[node name="BloodTypeHint" type="Control" parent="AttacherUI/Content/StatMainView/BloodTypeView" unique_id=363668421]
+[node name="HintParent" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView" unique_id=363668421]
 visible = false
-anchors_preset = 0
-offset_left = 536.0
-offset_top = 400.0
-offset_right = 576.0
-offset_bottom = 440.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BloodTypeView/BloodTypeHint" unique_id=1594690639]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 112.0
-offset_right = 162.0
-offset_bottom = 157.0
+[node name="Hint" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/HintParent" unique_id=1963584001]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -45.0
+offset_right = 76.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/HintParent/Hint" unique_id=1594690639]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.6862745)
 
-[node name="HintLabel" type="Label" parent="AttacherUI/Content/StatMainView/BloodTypeView/BloodTypeHint" unique_id=1083160196]
+[node name="HintLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView/HintParent/Hint" unique_id=1083160196]
 texture_filter = 1
-layout_mode = 0
-offset_left = 15.0
-offset_top = 122.0
-offset_right = 158.0
-offset_bottom = 143.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 18
 text = "Not implented yet..."
 
-[node name="FailureChanceView" type="Control" parent="AttacherUI/Content/StatMainView" unique_id=1884564620]
+[node name="AttacherBox" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=55611311 instance=ExtResource("10_51xr3")]
 visible = false
-anchors_preset = 0
-offset_left = 376.0
-offset_right = 416.0
-offset_bottom = 40.0
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DisplayBackground" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox" index="2" unique_id=1701365652]
+focus_neighbor_left = NodePath("../../BloodTypeView/BG")
+focus_neighbor_right = NodePath("../../FailureChanceView/DetectRect")
+focus_neighbor_bottom = NodePath("../../../../InteractFooter/ButtonsHBox/ConfirmBtn/BtnBg")
+
+[node name="BG" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox/AddACellHintParent/AddACellHint" parent_id_path=PackedInt32Array(55611311, 1170831626) index="0" unique_id=137983988]
+mouse_filter = 2
+
+[node name="HintRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox/AddACellHintParent/AddACellHint/VBoxContainer" parent_id_path=PackedInt32Array(55611311, 172103541) index="1" unique_id=1426054006]
+mouse_filter = 2
+
+[node name="AttacherBox2" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=440962626 instance=ExtResource("10_51xr3")]
+layout_mode = 2
+
+[node name="FailureChanceView" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=1884564620]
+custom_minimum_size = Vector2(210, 49)
+layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("14_h8037")
 
-[node name="HoverBG" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=2004887354]
+[node name="HoverBG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView" unique_id=2004887354]
 visible = false
-layout_mode = 0
-offset_left = 532.0
-offset_top = 556.0
-offset_right = 744.0
-offset_bottom = 658.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.004761905
+anchor_top = -0.010526316
+anchor_right = 1.0047619
+anchor_bottom = 1.0105263
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=1257134997]
-layout_mode = 0
-offset_left = 533.0
-offset_top = 557.0
-offset_right = 743.0
-offset_bottom = 606.0
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView" unique_id=1257134997]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0.12173364, 0.006105286, 9.024516e-09, 1)
 
-[node name="BG2" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=985257613]
-layout_mode = 0
-offset_left = 533.0
-offset_top = 606.0
-offset_right = 743.0
-offset_bottom = 657.0
+[node name="VBoxContainer" type="VBoxContainer" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView" unique_id=1382060981]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-color = Color(0.16989866, 0.014017411, 0, 1)
+theme_override_constants/separation = 0
 
-[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=2020926456]
-texture_filter = 1
-layout_mode = 0
-offset_left = 570.0
-offset_top = 563.0
-offset_right = 746.0
-offset_bottom = 595.0
-scale = Vector2(1, 1.2800024)
-theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 28
-text = "Failure Chance"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Header" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer" unique_id=491374783]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+mouse_filter = 2
 
-[node name="FailureChanceSymbol" type="TextureRect" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=1735715090]
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer/Header" unique_id=1171056393]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.11422754, 0.0052461103, 1.504086e-08, 1)
+
+[node name="Content" type="HBoxContainer" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer/Header" unique_id=787265972]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="FailureChanceSymbol" type="TextureRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer/Header/Content" unique_id=1112397807]
 texture_filter = 1
-layout_mode = 0
-offset_left = 539.0
-offset_top = 566.0
-offset_right = 572.0
-offset_bottom = 598.0
+custom_minimum_size = Vector2(33, 32)
+layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("14_jqydl")
 expand_mode = 1
+stretch_mode = 5
 
-[node name="TotalChanceLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=1038957198]
+[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer/Header/Content" unique_id=302938362]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 24
+text = "Failure Chance :"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Content" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer" unique_id=566431595]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="TotalChanceLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer/Content" unique_id=1038957198]
 modulate = Color(0.808011, 0.105516136, 0.17244221, 1)
 texture_filter = 1
-layout_mode = 0
-offset_left = 547.0
-offset_top = 601.0
-offset_right = 741.0
-offset_bottom = 663.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 55
@@ -1076,16 +1143,33 @@ text = "25%"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FailureChanceHint" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=349484912]
+[node name="HintParent" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView" unique_id=2104711600]
 visible = false
-anchors_preset = 0
-offset_left = 648.0
-offset_top = 400.0
-offset_right = 688.0
-offset_bottom = 440.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=866887105]
+[node name="FailureChanceHint" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent" unique_id=349484912]
+custom_minimum_size = Vector2(304, 171)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = -171.0
+offset_right = 152.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(160, 12)
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=866887105]
 layout_mode = 0
 offset_left = -160.0
 offset_top = -16.0
@@ -1094,7 +1178,7 @@ offset_bottom = 155.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.6862745)
 
-[node name="StatDanger" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=882801652]
+[node name="StatDanger" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=882801652]
 anchors_preset = 0
 offset_left = -167.0
 offset_top = -340.0
@@ -1102,13 +1186,13 @@ offset_right = -127.0
 offset_bottom = -300.0
 mouse_filter = 2
 
-[node name="Strength" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger" unique_id=1134935178]
+[node name="Strength" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger" unique_id=1134935178]
 anchors_preset = 0
 offset_left = -68.0
 offset_right = -28.0
 offset_bottom = 40.0
 
-[node name="Pot" type="TextureRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength" unique_id=1553145916]
+[node name="Pot" type="TextureRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Strength" unique_id=1553145916]
 texture_filter = 1
 material = SubResource("ShaderMaterial_0is3u")
 layout_mode = 0
@@ -1118,7 +1202,7 @@ offset_right = 108.0
 offset_bottom = 357.0
 texture = ExtResource("15_etud5")
 
-[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength" unique_id=1105196766]
+[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Strength" unique_id=1105196766]
 texture_filter = 1
 layout_mode = 0
 offset_left = 112.0
@@ -1129,7 +1213,7 @@ theme_override_fonts/font = ExtResource("3_3now3")
 theme_override_font_sizes/font_size = 15
 text = "Str."
 
-[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength" unique_id=931226213]
+[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Strength" unique_id=931226213]
 texture_filter = 1
 layout_mode = 0
 offset_left = 171.0
@@ -1141,14 +1225,14 @@ theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 20
 text = "(+ 15% )"
 
-[node name="Intelligence" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger" unique_id=993493626]
+[node name="Intelligence" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger" unique_id=993493626]
 anchors_preset = 0
 offset_left = -68.0
 offset_top = 26.0
 offset_right = -28.0
 offset_bottom = 66.0
 
-[node name="Pot" type="TextureRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence" unique_id=915760714]
+[node name="Pot" type="TextureRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Intelligence" unique_id=915760714]
 texture_filter = 1
 material = SubResource("ShaderMaterial_0is3u")
 layout_mode = 0
@@ -1158,7 +1242,7 @@ offset_right = 108.0
 offset_bottom = 357.0
 texture = ExtResource("15_etud5")
 
-[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence" unique_id=1796835647]
+[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Intelligence" unique_id=1796835647]
 texture_filter = 1
 layout_mode = 0
 offset_left = 112.0
@@ -1169,7 +1253,7 @@ theme_override_fonts/font = ExtResource("3_3now3")
 theme_override_font_sizes/font_size = 15
 text = "Int."
 
-[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence" unique_id=911084372]
+[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Intelligence" unique_id=911084372]
 texture_filter = 1
 layout_mode = 0
 offset_left = 171.0
@@ -1181,14 +1265,14 @@ theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 20
 text = "(+ 15% )"
 
-[node name="Community" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger" unique_id=1255933458]
+[node name="Community" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger" unique_id=1255933458]
 anchors_preset = 0
 offset_left = -68.0
 offset_top = 52.0
 offset_right = -28.0
 offset_bottom = 92.0
 
-[node name="Pot" type="TextureRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community" unique_id=1108281596]
+[node name="Pot" type="TextureRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Community" unique_id=1108281596]
 texture_filter = 1
 material = SubResource("ShaderMaterial_0is3u")
 layout_mode = 0
@@ -1198,7 +1282,7 @@ offset_right = 108.0
 offset_bottom = 357.0
 texture = ExtResource("15_etud5")
 
-[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community" unique_id=762631097]
+[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Community" unique_id=762631097]
 texture_filter = 1
 layout_mode = 0
 offset_left = 112.0
@@ -1209,7 +1293,7 @@ theme_override_fonts/font = ExtResource("3_3now3")
 theme_override_font_sizes/font_size = 15
 text = "Com."
 
-[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community" unique_id=213819522]
+[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/StatDanger/Community" unique_id=213819522]
 texture_filter = 1
 layout_mode = 0
 offset_left = 171.0
@@ -1221,7 +1305,7 @@ theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 20
 text = "(+ 15% )"
 
-[node name="LifeSpanDanger" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1541434946]
+[node name="LifeSpanDanger" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=1541434946]
 anchors_preset = 0
 offset_left = -167.0
 offset_top = -340.0
@@ -1229,7 +1313,7 @@ offset_right = -127.0
 offset_bottom = -300.0
 mouse_filter = 2
 
-[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger" unique_id=1130007958]
+[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/LifeSpanDanger" unique_id=1130007958]
 layout_mode = 0
 offset_left = 186.0
 offset_top = 340.0
@@ -1240,7 +1324,7 @@ theme_override_font_sizes/font_size = 14
 text = "Lifespan"
 horizontal_alignment = 1
 
-[node name="LifeNum" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger" unique_id=1380099983]
+[node name="LifeNum" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/LifeSpanDanger" unique_id=1380099983]
 layout_mode = 0
 offset_left = 192.0
 offset_top = 352.0
@@ -1252,7 +1336,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger" unique_id=5972185]
+[node name="FailureChance" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/LifeSpanDanger" unique_id=5972185]
 texture_filter = 1
 layout_mode = 0
 offset_left = 183.0
@@ -1266,7 +1350,7 @@ text = "(+ 15% )"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HiddenStats" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1007500389]
+[node name="HiddenStats" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=1007500389]
 anchors_preset = 0
 offset_left = -159.0
 offset_top = -364.0
@@ -1274,7 +1358,7 @@ offset_right = -119.0
 offset_bottom = -324.0
 mouse_filter = 2
 
-[node name="StrengthHide" type="Sprite2D" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats" unique_id=945727716]
+[node name="StrengthHide" type="Sprite2D" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/HiddenStats" unique_id=945727716]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1283,7 +1367,7 @@ position = Vector2(83.000046, 370.18747)
 scale = Vector2(0.47619042, 0.5406245)
 texture = SubResource("CompressedTexture2D_kgviq")
 
-[node name="IntelligenceHide" type="Sprite2D" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats" unique_id=1568979108]
+[node name="IntelligenceHide" type="Sprite2D" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/HiddenStats" unique_id=1568979108]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1292,7 +1376,7 @@ position = Vector2(83.00001, 396.09375)
 scale = Vector2(0.47619033, 0.5453126)
 texture = SubResource("CompressedTexture2D_kgviq")
 
-[node name="CommunityHide" type="Sprite2D" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats" unique_id=1231117692]
+[node name="CommunityHide" type="Sprite2D" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/HiddenStats" unique_id=1231117692]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
@@ -1301,7 +1385,7 @@ position = Vector2(82.99998, 422.09375)
 scale = Vector2(0.4761902, 0.5453126)
 texture = SubResource("CompressedTexture2D_kgviq")
 
-[node name="OffDisableLabels" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1710868746]
+[node name="OffDisableLabels" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=1710868746]
 anchors_preset = 0
 offset_left = -159.0
 offset_top = -364.0
@@ -1309,7 +1393,7 @@ offset_right = -119.0
 offset_bottom = -324.0
 mouse_filter = 2
 
-[node name="Strength" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels" unique_id=1704475707]
+[node name="Strength" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels" unique_id=1704475707]
 visible = false
 anchors_preset = 0
 offset_left = -30.0
@@ -1317,7 +1401,7 @@ offset_top = 24.0
 offset_right = 10.0
 offset_bottom = 64.0
 
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Strength" unique_id=1708206998]
+[node name="ColorRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels/Strength" unique_id=1708206998]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 334.0
@@ -1325,7 +1409,7 @@ offset_right = 188.0
 offset_bottom = 359.0
 color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
 
-[node name="StrengthOffLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Strength" unique_id=74363216]
+[node name="StrengthOffLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels/Strength" unique_id=74363216]
 texture_filter = 1
 layout_mode = 0
 offset_left = 35.0
@@ -1340,7 +1424,7 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Intelligence" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels" unique_id=1047292098]
+[node name="Intelligence" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels" unique_id=1047292098]
 visible = false
 anchors_preset = 0
 offset_left = -30.0
@@ -1348,7 +1432,7 @@ offset_top = 51.0
 offset_right = 10.0
 offset_bottom = 91.0
 
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Intelligence" unique_id=536995741]
+[node name="ColorRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels/Intelligence" unique_id=536995741]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 334.0
@@ -1356,7 +1440,7 @@ offset_right = 189.0
 offset_bottom = 359.0
 color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
 
-[node name="StrengthOffLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Intelligence" unique_id=1855670259]
+[node name="StrengthOffLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels/Intelligence" unique_id=1855670259]
 texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
@@ -1371,7 +1455,7 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Community" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels" unique_id=1117132829]
+[node name="Community" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels" unique_id=1117132829]
 visible = false
 anchors_preset = 0
 offset_left = -30.0
@@ -1379,7 +1463,7 @@ offset_top = 78.0
 offset_right = 10.0
 offset_bottom = 118.0
 
-[node name="ColorRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Community" unique_id=869273299]
+[node name="ColorRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels/Community" unique_id=869273299]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 334.0
@@ -1387,7 +1471,7 @@ offset_right = 189.0
 offset_bottom = 359.0
 color = Color(0.2489304, 7.670838e-08, 4.2114408e-08, 1)
 
-[node name="StrengthOffLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Community" unique_id=400606700]
+[node name="StrengthOffLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/OffDisableLabels/Community" unique_id=400606700]
 texture_filter = 1
 layout_mode = 0
 offset_left = 39.0
@@ -1402,7 +1486,7 @@ text = "Off"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Divider" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=143594331]
+[node name="Divider" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=143594331]
 layout_mode = 0
 offset_left = 9.0
 offset_top = -4.0
@@ -1411,13 +1495,13 @@ offset_bottom = 69.0
 mouse_filter = 2
 color = Color(1, 0.1254902, 0, 1)
 
-[node name="Penality" type="Control" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint" unique_id=1241969895]
+[node name="Penality" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint" unique_id=1241969895]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/Penality" unique_id=288398049]
+[node name="Label" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Penality" unique_id=288398049]
 texture_filter = 1
 layout_mode = 0
 offset_left = -158.0
@@ -1429,7 +1513,7 @@ theme_override_font_sizes/font_size = 25
 text = "Overide Stat Penality"
 horizontal_alignment = 1
 
-[node name="PenalityLabel" type="Label" parent="AttacherUI/Content/StatMainView/FailureChanceView/FailureChanceHint/Penality" unique_id=1442845033]
+[node name="PenalityLabel" type="Label" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Penality" unique_id=1442845033]
 texture_filter = 1
 layout_mode = 0
 offset_left = -77.0
@@ -1443,12 +1527,13 @@ text = "(+ 15% )"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DetectRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/FailureChanceView" unique_id=312763380]
-layout_mode = 0
-offset_left = 533.0
-offset_top = 557.0
-offset_right = 743.0
-offset_bottom = 658.0
+[node name="DetectRect" type="ColorRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView" unique_id=312763380]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_neighbor_left = NodePath("../../AttacherBox/DisplayBackground")
 focus_neighbor_right = NodePath("../../AttacherBox/DisplayBackground")
 focus_mode = 2
@@ -1705,7 +1790,4 @@ offset_top = 5.0
 offset_right = 1.0
 offset_bottom = 5.0
 
-[node name="ParentStatItemDragNode" type="Node" parent="AttacherUI" unique_id=1154640678]
-
-[editable path="AttacherUI/Content/StatMainView/Stats/StatsVBox/Community"]
-[editable path="AttacherUI/Content/StatMainView/AttacherBox"]
+[editable path="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox"]
