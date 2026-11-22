@@ -58,9 +58,15 @@ shader_parameter/blink_speed = 2.08500009577762
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_27yhk"]
 
 [node name="MainStat" type="Control" unique_id=1022081741]
+custom_minimum_size = Vector2(400, 100)
 layout_mode = 3
-anchors_preset = 0
+anchor_right = 0.55600005
+anchor_bottom = 0.21100001
+offset_right = 0.3199463
+offset_bottom = -7.9200134
+size_flags_vertical = 3
 script = ExtResource("1_ldi56")
+metadata/_edit_use_anchors_ = true
 
 [node name="HandleMouseHover" type="Node" parent="." unique_id=1059412139]
 script = ExtResource("2_p4dk6")
@@ -74,70 +80,102 @@ script = ExtResource("4_whjcn")
 [node name="HandleDragHover" type="Node" parent="." unique_id=1444675245]
 script = ExtResource("4_gs8ik")
 
-[node name="CleanBar" type="TextureProgressBar" parent="." unique_id=1642687427]
-texture_filter = 1
+[node name="DefaultInfoContainer" type="VBoxContainer" parent="." unique_id=1125505127]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 18.0
-offset_top = 79.0
-offset_right = 690.0
-offset_bottom = 235.24881
-scale = Vector2(1, 0.32000244)
+anchor_left = 0.02247191
+anchor_right = 0.9775281
+anchor_bottom = 1.0526316
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="StatTypeLabel" type="Label" parent="DefaultInfoContainer" unique_id=782768649]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 4)
+theme_override_fonts/font = ExtResource("6_v5sw5")
+theme_override_font_sizes/font_size = 24
+text = "Strength"
+horizontal_alignment = 1
+
+[node name="CleanBar" type="TextureProgressBar" parent="DefaultInfoContainer" unique_id=1642687427]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
 mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("3_akjod")
 texture_progress = ExtResource("3_fe102")
 
-[node name="DefectBar" type="TextureProgressBar" parent="." unique_id=1185012653]
+[node name="DefectBar" type="TextureProgressBar" parent="DefaultInfoContainer" unique_id=1185012653]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 17.0
-offset_top = 136.0
-offset_right = 689.0
-offset_bottom = 235.99924
-scale = Vector2(1, 0.32000244)
+custom_minimum_size = Vector2(650, 20)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1, 0.6)
+offset_transform_pivot = Vector2(0, -49)
 mouse_filter = 2
 value = 50.0
 nine_patch_stretch = true
 texture_under = ExtResource("5_0v3mp")
 texture_progress = ExtResource("5_fe102")
 
-[node name="HiddenSprite" type="Sprite2D" parent="." unique_id=2143687653]
+[node name="HiddenRect" type="TextureRect" parent="." unique_id=694226338]
 visible = false
 modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
 texture_filter = 2
 material = SubResource("ShaderMaterial_q4pjm")
-position = Vector2(353.49997, 122.68749)
-scale = Vector2(2.142857, 2.2156248)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.021067416
+anchor_top = 0.1875
+anchor_right = 0.9775281
+anchor_bottom = 0.8125
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("CompressedTexture2D_kkbmc")
+metadata/_edit_use_anchors_ = true
 
 [node name="DisabledParent" type="Control" parent="." unique_id=823633059]
 visible = false
-anchors_preset = 0
-offset_left = 16.0
-offset_top = 78.0
-offset_right = 56.0
-offset_bottom = 118.0
+layout_mode = 1
+anchor_left = 0.02247191
+anchor_top = 0.19444445
+anchor_right = 0.97893256
+anchor_bottom = 0.7916667
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="DisabledParent" unique_id=1574999420]
-layout_mode = 0
-offset_right = 676.0
-offset_bottom = 88.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0.19793725, 0.19793722, 0.19793728, 1)
 
 [node name="StatTypeLabel" type="Label" parent="DisabledParent" unique_id=1412857769]
 texture_filter = 1
-layout_mode = 0
-offset_right = 672.0
-offset_bottom = 96.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_v5sw5")
 theme_override_font_sizes/font_size = 40
@@ -146,19 +184,25 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DragBorders" type="Control" parent="." unique_id=1858617193]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+layout_mode = 1
+anchor_top = -0.020833334
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="DragValidBorder" type="TextureRect" parent="DragBorders" unique_id=825567562]
 visible = false
 texture_filter = 1
-layout_mode = 0
-offset_left = 9.0
-offset_top = 37.0
-offset_right = 697.0
-offset_bottom = 173.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("9_akjod")
 
@@ -166,220 +210,144 @@ texture = ExtResource("9_akjod")
 visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_etud5")
-layout_mode = 0
-offset_left = 9.0
-offset_top = 37.0
-offset_right = 697.0
-offset_bottom = 173.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("9_akjod")
 
 [node name="MouseHoverBorder" type="TextureRect" parent="DragBorders" unique_id=1529592920]
 visible = false
 texture_filter = 1
-layout_mode = 0
-offset_left = 9.0
-offset_top = 37.0
-offset_right = 697.0
-offset_bottom = 173.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("9_akjod")
 
 [node name="StatReplacement" type="Control" parent="." unique_id=1991748357]
-visible = false
-anchors_preset = 0
-offset_top = 32.0
-offset_right = 40.0
-offset_bottom = 72.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BG" type="TextureRect" parent="StatReplacement" unique_id=1097167581]
 texture_filter = 1
-layout_mode = 0
-offset_right = 710.0
-offset_bottom = 152.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("10_wuljk")
+expand_mode = 1
 
-[node name="LightBorder" type="TextureRect" parent="StatReplacement" unique_id=83616511]
-modulate = Color(0.34, 0.34, 0.34, 0.60784316)
-texture_filter = 1
-layout_mode = 0
-offset_left = -3.0
-offset_top = -3.0
-offset_right = 713.0
-offset_bottom = 154.0
-texture = ExtResource("11_0v3mp")
-
-[node name="CleanBar" type="TextureProgressBar" parent="StatReplacement" unique_id=1355659975]
-texture_filter = 1
+[node name="ReplacementInfoContainer" type="VBoxContainer" parent="StatReplacement" unique_id=482570349]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 18.0
-offset_top = 38.0
-offset_right = 690.0
-offset_bottom = 194.24881
-scale = Vector2(1, 0.32000244)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("3_akjod")
-texture_progress = ExtResource("3_fe102")
+anchor_left = 0.008426966
+anchor_top = 0.020833334
+anchor_right = 0.9929775
+anchor_bottom = 0.9583333
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="DefectBar" type="TextureProgressBar" parent="StatReplacement" unique_id=2125464581]
+[node name="Header" type="Control" parent="StatReplacement/ReplacementInfoContainer" unique_id=2084873881]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="StatTypeLabel" type="Label" parent="StatReplacement/ReplacementInfoContainer/Header" unique_id=188088797]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.225
-anchor_bottom = 0.225
-offset_left = 18.0
-offset_top = 94.0
-offset_right = 690.0
-offset_bottom = 193.99924
-scale = Vector2(1, 0.32000244)
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_0v3mp")
-texture_progress = ExtResource("5_fe102")
-
-[node name="Borders" type="Control" parent="StatReplacement" unique_id=1433640305]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="DragInvalidBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1097614048]
-visible = false
-texture_filter = 1
-material = SubResource("ShaderMaterial_etud5")
-layout_mode = 0
-offset_right = 712.0
-offset_bottom = 154.0
-texture = ExtResource("11_0v3mp")
-
-[node name="HoverBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1591141681]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_right = 712.0
-offset_bottom = 154.0
-texture = ExtResource("11_0v3mp")
-
-[node name="RemoveBtn" type="Control" parent="StatReplacement" unique_id=1053657968]
-anchors_preset = 0
-offset_left = 667.0
-offset_top = 6.0
-offset_right = 707.0
-offset_bottom = 46.0
-mouse_filter = 2
-script = ExtResource("12_x6w4d")
-
-[node name="HoverBorder" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1777106761]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_right = 24.285706
-offset_bottom = 25.0
-scale = Vector2(1.4, 1.4)
-mouse_filter = 2
-texture = ExtResource("12_me3ov")
-
-[node name="BtnBG" type="TextureRect" parent="StatReplacement/RemoveBtn" unique_id=1914596848]
-texture_filter = 1
-layout_mode = 0
-offset_left = 1.9999999
-offset_top = 1.9999999
-offset_right = 23.714233
-offset_bottom = 24.0
-scale = Vector2(1.4, 1.4)
-focus_mode = 2
-mouse_filter = 0
-texture = ExtResource("12_nvyjg")
-
-[node name="XLabel" type="Label" parent="StatReplacement/RemoveBtn" unique_id=1684702184]
-texture_filter = 1
-layout_mode = 0
-offset_left = 7.0
-offset_top = -16.0
-offset_right = 33.0
-offset_bottom = 41.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("12_v5sw5")
-theme_override_font_sizes/font_size = 50
-text = "-"
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("6_v5sw5")
+theme_override_font_sizes/font_size = 22
+text = "Strength"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RemoveHint" type="Control" parent="StatReplacement/RemoveBtn" unique_id=720332898]
-visible = false
-anchors_preset = 0
-offset_left = -53.0
-offset_top = -39.0
-offset_right = -13.0
-offset_bottom = 1.0
-mouse_filter = 2
-
-[node name="BG" type="ColorRect" parent="StatReplacement/RemoveBtn/RemoveHint" unique_id=1103695185]
-layout_mode = 0
-offset_right = 136.0
-offset_bottom = 40.0
-mouse_filter = 2
-color = Color(0, 0, 0, 0.80784315)
-
-[node name="HintLabel" type="Label" parent="StatReplacement/RemoveBtn/RemoveHint" unique_id=1923619002]
-texture_filter = 1
-layout_mode = 0
-offset_right = 141.0
-offset_bottom = 56.0
-theme_override_constants/line_spacing = 4
-theme_override_fonts/font = ExtResource("12_v5sw5")
-theme_override_font_sizes/font_size = 20
-text = "Remove Stat"
-horizontal_alignment = 1
-
-[node name="PenalityFailureRate" type="Control" parent="StatReplacement" unique_id=956468451]
-visible = false
-anchors_preset = 0
-offset_left = 533.0
-offset_top = 8.0
-offset_right = 573.0
-offset_bottom = 48.0
+[node name="PenalityFailureRate" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header" unique_id=1976836715]
+custom_minimum_size = Vector2(125, 45)
+layout_mode = 1
+anchor_left = 0.74322397
+anchor_top = 0.06666667
+anchor_right = 0.921224
+anchor_bottom = 1.0666667
+offset_right = 0.22200012
 mouse_filter = 2
 script = ExtResource("16_q4pjm")
+metadata/_edit_use_anchors_ = true
 
-[node name="HoverBorder" type="ColorRect" parent="StatReplacement/PenalityFailureRate" unique_id=1496486291]
-visible = false
-layout_mode = 0
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 124.0
-offset_bottom = 44.0
+[node name="HoverBorder" type="ColorRect" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=251537713]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.008
+anchor_top = -0.022222223
+anchor_right = 1.008
+anchor_bottom = 1.0222223
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="BG" type="ColorRect" parent="StatReplacement/PenalityFailureRate" unique_id=1804117146]
-layout_mode = 0
-offset_right = 123.0
-offset_bottom = 43.0
+[node name="BG" type="ColorRect" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=2146045078]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 2
 color = Color(0.08235294, 0.08235294, 0.08235294, 1)
 
-[node name="TextureRect" type="TextureRect" parent="StatReplacement/PenalityFailureRate" unique_id=1571754041]
+[node name="TextureRect" type="TextureRect" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=1280208319]
 texture_filter = 1
 material = SubResource("ShaderMaterial_27yhk")
-layout_mode = 0
-offset_left = 3.0
-offset_top = 4.0
-offset_right = 42.0
-offset_bottom = 39.0
+custom_minimum_size = Vector2(39, 35)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.024
+anchor_top = 0.089
+anchor_right = 0.33600003
+anchor_bottom = 0.86700004
+offset_top = -0.0050001144
+offset_bottom = -0.015003204
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("14_27yhk")
 expand_mode = 1
 
-[node name="PercantLabel" type="Label" parent="StatReplacement/PenalityFailureRate" unique_id=304929911]
+[node name="PercantLabel" type="Label" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=153406787]
 texture_filter = 1
-layout_mode = 0
-offset_left = 43.0
-offset_top = 3.0
-offset_right = 122.0
-offset_bottom = 38.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.344
+anchor_top = 0.067
+anchor_right = 0.9760001
+anchor_bottom = 0.84400004
+offset_top = -0.015000105
+offset_bottom = 0.019996643
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 30
@@ -387,24 +355,41 @@ text = "(+15%)"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PenalityHint" type="Control" parent="StatReplacement/PenalityFailureRate" unique_id=1959037692]
+[node name="PenalityHintParent" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=1144730017]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+
+[node name="PenalityHint" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent" unique_id=1880452801]
 visible = false
-anchors_preset = 0
-offset_left = -209.0
-offset_top = -77.0
-offset_right = -169.0
-offset_bottom = -37.0
+custom_minimum_size = Vector2(206, 200)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -103.0
+offset_top = -200.0
+offset_right = 103.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=2012542818]
+[node name="BG" type="ColorRect" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent/PenalityHint" unique_id=1585243249]
 z_index = 1
-layout_mode = 0
-offset_right = 206.0
-offset_bottom = 200.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.88235295)
 
-[node name="HintLabel" type="Label" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=1577709381]
+[node name="HintLabel" type="Label" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent/PenalityHint" unique_id=1916758785]
 z_index = 1
 texture_filter = 1
 layout_mode = 0
@@ -421,7 +406,7 @@ text = "overiding existing stat,
 prevent this by overiding 
 an disabled stat instead."
 
-[node name="FailureChanceLabel" type="Label" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=77157016]
+[node name="FailureChanceLabel" type="Label" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent/PenalityHint" unique_id=343663280]
 z_index = 1
 texture_filter = 1
 layout_mode = 0
@@ -437,7 +422,7 @@ text = "+15% failure chance.
 
 "
 
-[node name="ColorRect" type="TextureRect" parent="StatReplacement/PenalityFailureRate/PenalityHint" unique_id=1638661560]
+[node name="ColorRect" type="TextureRect" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent/PenalityHint" unique_id=1934536220]
 z_index = 1
 texture_filter = 1
 layout_mode = 0
@@ -448,110 +433,305 @@ offset_bottom = 199.0
 mouse_filter = 2
 texture = ExtResource("18_kkbmc")
 
-[node name="StatTypeLabel" type="Label" parent="." unique_id=782768649]
+[node name="RemoveBtn" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header" unique_id=1053657968]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+mouse_filter = 2
+script = ExtResource("12_x6w4d")
+
+[node name="BtnBG" type="TextureRect" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn" unique_id=1914596848]
 texture_filter = 1
-layout_mode = 0
-offset_left = 19.999998
-offset_top = 48.000004
-offset_right = 692.0
-offset_bottom = 73.00001
-theme_override_fonts/font = ExtResource("6_v5sw5")
-theme_override_font_sizes/font_size = 24
-text = "Strength"
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+mouse_filter = 0
+texture = ExtResource("12_nvyjg")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="HoverBorder" type="TextureRect" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn" unique_id=1777106761]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_me3ov")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="XLabel" type="ColorRect" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn" unique_id=1798374893]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.45
+anchor_right = 0.8
+anchor_bottom = 0.55
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.74138474, 0.7413847, 0.74138457, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="RemoveHint" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn" unique_id=720332898]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_top = -44.0
+offset_right = 65.0
+offset_bottom = -3.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="BG" type="ColorRect" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn/RemoveHint" unique_id=1103695185]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="HintLabel" type="Label" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn/RemoveHint" unique_id=1923619002]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/line_spacing = 4
+theme_override_fonts/font = ExtResource("12_v5sw5")
+theme_override_font_sizes/font_size = 20
+text = "Remove Stat"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DefaultInfoContainer" type="VBoxContainer" parent="StatReplacement/ReplacementInfoContainer" unique_id=336448004]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -3.84)
+offset_transform_scale = Vector2(0.95, 1)
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="StatReplacement/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1239646135]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_akjod")
+texture_progress = ExtResource("3_fe102")
+
+[node name="DefectBar" type="TextureProgressBar" parent="StatReplacement/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1514476050]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 20)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_scale = Vector2(1, 0.6)
+offset_transform_pivot = Vector2(0, -49)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_0v3mp")
+texture_progress = ExtResource("5_fe102")
+
+[node name="Borders" type="Control" parent="StatReplacement" unique_id=1433640305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DragInvalidBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1097614048]
+visible = false
+texture_filter = 1
+material = SubResource("ShaderMaterial_etud5")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.027777778
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_0v3mp")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HoverBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1591141681]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.027777778
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_0v3mp")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="DefaultDetectRect" type="ColorRect" parent="." unique_id=1856000600]
-layout_mode = 0
-offset_left = 18.0
-offset_top = 46.0
-offset_right = 690.0
-offset_bottom = 169.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.011235955
+anchor_top = -0.055555556
+anchor_right = 1.011236
+anchor_bottom = 1.0555556
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 2
 color = Color(1, 1, 1, 0)
+metadata/_edit_use_anchors_ = true
 
 [node name="HoverHints" type="Control" parent="." unique_id=266524606]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 
 [node name="AlreadyOccupiedHint" type="Control" parent="HoverHints" unique_id=2134895470]
 visible = false
 z_index = 1
-anchors_preset = 0
-offset_left = 134.0
-offset_top = -10.0
-offset_right = 174.0
-offset_bottom = 30.0
+custom_minimum_size = Vector2(464, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -224.0
+offset_top = -40.0
+offset_right = 224.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="HoverHints/AlreadyOccupiedHint" unique_id=1106539064]
-layout_mode = 0
-offset_right = 448.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.80784315)
 
 [node name="HintLabel" type="Label" parent="HoverHints/AlreadyOccupiedHint" unique_id=409199994]
 texture_filter = 1
-layout_mode = 0
-offset_right = 504.0
-offset_bottom = 56.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = "Already occupied. Remove existing stat first."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_trim_flags = 128
 
 [node name="DragAJarItemHint" type="Control" parent="HoverHints" unique_id=392703066]
 visible = false
 z_index = 1
-anchors_preset = 0
-offset_left = 134.0
-offset_top = -10.0
-offset_right = 174.0
-offset_bottom = 30.0
+custom_minimum_size = Vector2(344, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -172.0
+offset_top = -40.0
+offset_right = 172.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="HoverHints/DragAJarItemHint" unique_id=616404336]
-layout_mode = 0
-offset_left = 50.0
-offset_right = 394.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.80784315)
 
 [node name="HintLabel" type="Label" parent="HoverHints/DragAJarItemHint" unique_id=1619506493]
 texture_filter = 1
-layout_mode = 0
-offset_right = 450.0
-offset_bottom = 56.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = "Drag a, Stat Jar item, to replace."
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StatUnableToDragHint" type="Control" parent="HoverHints" unique_id=1264756983]
 visible = false
 z_index = 1
-anchors_preset = 0
-offset_left = 118.0
-offset_top = -52.0
-offset_right = 158.0
-offset_bottom = -12.0
+custom_minimum_size = Vector2(512, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -40.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
 
 [node name="BG" type="ColorRect" parent="HoverHints/StatUnableToDragHint" unique_id=1301981674]
 layout_mode = 0
-offset_left = -14.0
-offset_top = 42.0
-offset_right = 498.0
-offset_bottom = 82.0
+offset_right = 512.0
+offset_bottom = 40.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.80784315)
 
 [node name="HintLabel" type="Label" parent="HoverHints/StatUnableToDragHint" unique_id=534375015]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033203125
+anchor_top = -0.95
+anchor_right = 0.033203125
+anchor_bottom = -0.95
 offset_top = 42.0
 offset_right = 504.0
 offset_bottom = 98.0
@@ -559,10 +739,16 @@ theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = " Unable to accept replacement. hidden stat found"
+metadata/_edit_use_anchors_ = true
 
 [node name="UnableLabel" type="Label" parent="HoverHints/StatUnableToDragHint" unique_id=750437004]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033203125
+anchor_top = -0.95
+anchor_right = 0.033203125
+anchor_bottom = -0.95
 offset_top = 42.0
 offset_right = 504.0
 offset_bottom = 98.0
@@ -571,10 +757,16 @@ theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = " Unable"
+metadata/_edit_use_anchors_ = true
 
 [node name="UnableLabel2" type="Label" parent="HoverHints/StatUnableToDragHint" unique_id=408380303]
 texture_filter = 1
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.033203125
+anchor_top = -0.95
+anchor_right = 0.033203125
+anchor_bottom = -0.95
 offset_left = 309.0
 offset_top = 42.0
 offset_right = 813.0
@@ -584,3 +776,4 @@ theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("12_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = "hidden stat found"
+metadata/_edit_use_anchors_ = true
