@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var parent_station_attacher : Node3D = $"../.."
-@onready var failure_chance_parent : Control = $"../../AttacherUI/StatMainView/FailureChanceView"
+@onready var failure_chance_parent : Control = $"../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView"
 
 func _ready() -> void:
 	GLGameManagerBus.connect('process_new_ivs', _handle_process_new_ivs)

@@ -58,12 +58,12 @@ shader_parameter/blink_speed = 2.08500009577762
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_27yhk"]
 
 [node name="MainStat" type="Control" unique_id=1022081741]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(736, 123)
 layout_mode = 3
-anchor_right = 0.55600005
-anchor_bottom = 0.21100001
-offset_right = 0.3199463
-offset_bottom = -7.9200134
+anchor_right = 0.57500005
+anchor_bottom = 0.216
+offset_right = -24.000061
+offset_bottom = -11.520004
 size_flags_vertical = 3
 script = ExtResource("1_ldi56")
 metadata/_edit_use_anchors_ = true

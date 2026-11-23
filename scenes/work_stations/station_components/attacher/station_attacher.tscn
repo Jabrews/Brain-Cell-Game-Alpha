@@ -52,6 +52,7 @@
 [ext_resource type="AudioStream" uid="uid://dufc0aftlme3b" path="res://sounds/attacher/confirm_failed.mp3" id="32_2cjdw"]
 [ext_resource type="AudioStream" uid="uid://bma10unqism7n" path="res://sounds/attacher/burst_warning_bug.mp3" id="34_xrlol"]
 [ext_resource type="AudioStream" uid="uid://el2xydfx2q4t" path="res://sounds/attacher/burst_warning_hidden_stat.mp3" id="35_bc6uw"]
+[ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="51_3rwfr"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -530,6 +531,7 @@ max_distance = 20.0
 
 [node name="AttacherUI" type="Control" parent="." unique_id=1371673270]
 process_mode = 3
+custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -726,7 +728,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../../StatMainView/BottomSectionHBox/AttacherBox/DisplayBackground")
 focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 focus_mode = 2
@@ -792,6 +793,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StatMainView" type="Control" parent="AttacherUI/Content" unique_id=413693852]
+custom_minimum_size = Vector2(896, 616)
 layout_mode = 1
 anchor_left = 0.275
 anchor_top = 0.06666667
@@ -854,6 +856,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 47
 alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Strength" parent="AttacherUI/Content/StatMainView/Stats/StatsVBox" unique_id=803002430 instance=ExtResource("9_etud5")]
 layout_mode = 2
@@ -905,7 +908,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_right = NodePath("../../AttacherBox/DisplayBackground")
 focus_mode = 2
 color = Color(0.14117648, 0.007843138, 0, 1)
 
@@ -1021,23 +1023,7 @@ theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 18
 text = "Not implented yet..."
 
-[node name="AttacherBox" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=55611311 instance=ExtResource("10_51xr3")]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-
-[node name="DisplayBackground" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox" index="2" unique_id=1701365652]
-focus_neighbor_left = NodePath("../../BloodTypeView/BG")
-focus_neighbor_right = NodePath("../../FailureChanceView/DetectRect")
-focus_neighbor_bottom = NodePath("../../../../InteractFooter/ButtonsHBox/ConfirmBtn/BtnBg")
-
-[node name="BG" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox/AddACellHintParent/AddACellHint" parent_id_path=PackedInt32Array(55611311, 1170831626) index="0" unique_id=137983988]
-mouse_filter = 2
-
-[node name="HintRect" parent="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox/AddACellHintParent/AddACellHint/VBoxContainer" parent_id_path=PackedInt32Array(55611311, 172103541) index="1" unique_id=1426054006]
-mouse_filter = 2
-
-[node name="AttacherBox2" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=440962626 instance=ExtResource("10_51xr3")]
+[node name="AttacherBox" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=440962626 instance=ExtResource("10_51xr3")]
 layout_mode = 2
 
 [node name="FailureChanceView" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=1884564620]
@@ -1534,86 +1520,112 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_left = NodePath("../../AttacherBox/DisplayBackground")
-focus_neighbor_right = NodePath("../../AttacherBox/DisplayBackground")
 focus_mode = 2
 color = Color(1, 1, 1, 0)
 
 [node name="JarItemCatalog" type="Control" parent="AttacherUI/Content" unique_id=1388359665]
-anchors_preset = 0
-offset_top = -2.0
-offset_right = 40.0
-offset_bottom = 38.0
-
-[node name="CatalogHeader" type="Control" parent="AttacherUI/Content/JarItemCatalog" unique_id=1156320961]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/JarItemCatalog/CatalogHeader" unique_id=1703123236]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 352.0
-offset_bottom = 80.0
-mouse_filter = 1
-color = Color(0.15074924, 5.3395052e-08, 0.007029066, 1)
-
-[node name="CellCatalogLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog/CatalogHeader" unique_id=1563492019]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 48.0
-offset_right = 344.0
-offset_bottom = 80.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 20
-text = "	Jar Item Catalog"
-vertical_alignment = 1
+layout_mode = 1
+anchor_left = 0.025
+anchor_top = 0.06666667
+anchor_right = 0.27525002
+anchor_bottom = 0.92176384
+offset_right = -0.32000732
+offset_bottom = 0.3300171
+metadata/_edit_use_anchors_ = true
 
 [node name="BG" type="ColorRect" parent="AttacherUI/Content/JarItemCatalog" unique_id=1520206310]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 80.0
-offset_right = 352.0
-offset_bottom = 666.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0.2, 0, 0.010000038, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="AttacherUI/Content/JarItemCatalog" unique_id=193858534]
+[node name="CatalogHeader" type="Control" parent="AttacherUI/Content/JarItemCatalog" unique_id=1156320961]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 0.052
+offset_bottom = -0.03200531
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/JarItemCatalog/CatalogHeader" unique_id=1703123236]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0.15074924, 5.3395052e-08, 0.007029066, 1)
+
+[node name="TextLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog/CatalogHeader" unique_id=1563492019]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_hnska")
+theme_override_font_sizes/font_size = 20
+text = "Jar Item Catalog"
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="Control" parent="AttacherUI/Content/JarItemCatalog" unique_id=2010460700]
 clip_contents = true
-layout_mode = 0
-offset_left = 32.0
-offset_top = 80.0
-offset_right = 352.0
-offset_bottom = 666.0
+layout_mode = 1
+anchor_top = 0.052077938
+anchor_right = 1.0
+anchor_bottom = 1.003078
+offset_top = -0.08000946
+offset_bottom = 0.10394287
+grow_horizontal = 2
+grow_vertical = 2
 layout_direction = 2
 mouse_filter = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer" unique_id=1858382718]
 process_mode = 3
 custom_minimum_size = Vector2(320, 586)
-custom_maximum_size = Vector2(320, 586)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 offset_transform_position = Vector2(11.235, 4.29)
 localize_numeral_system = false
 layout_direction = 3
 mouse_filter = 2
 follow_focus = true
 horizontal_scroll_mode = 0
+metadata/_edit_use_anchors_ = true
 
-[node name="GridContainerLeft" type="GridContainer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer" unique_id=1795349295]
-custom_maximum_size = Vector2(320, 586)
-propagate_maximum_size = false
+[node name="CatalogParent" type="VBoxContainer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer" unique_id=1955986788]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 offset_transform_enabled = true
-offset_transform_position = Vector2(36.475, 30)
-offset_transform_pivot_ratio = Vector2(0, 0)
+offset_transform_position = Vector2(0, 15.365)
+offset_transform_position_ratio = Vector2(0, 0.015)
+offset_transform_scale = Vector2(0.8, 1)
 offset_transform_visual_only = false
 layout_direction = 2
-theme_override_constants/h_separation = 0
-theme_override_constants/v_separation = 140
+theme_override_constants/separation = 29
+
+[node name="StatJarItem" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent" unique_id=418211110 instance=ExtResource("51_3rwfr")]
+layout_mode = 2
+
+[node name="StatJarItem2" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent" unique_id=85706654 instance=ExtResource("51_3rwfr")]
+layout_mode = 2
+
+[node name="StatJarItem3" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent" unique_id=748083694 instance=ExtResource("51_3rwfr")]
+layout_mode = 2
 
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog" unique_id=879242795]
 visible = false
@@ -1633,41 +1645,63 @@ vertical_alignment = 1
 [node name="DeleteModal" type="Control" parent="AttacherUI/Content" unique_id=291084153]
 process_mode = 3
 visible = false
-anchors_preset = 0
-offset_right = 1280.0
-offset_bottom = 716.0
-focus_neighbor_left = NodePath("DenyBtn/BG")
-focus_neighbor_top = NodePath("DenyBtn/BG")
-focus_neighbor_right = NodePath("DenyBtn/BG")
-focus_neighbor_bottom = NodePath("DenyBtn/BG")
-focus_next = NodePath("DenyBtn/BG")
-focus_previous = NodePath("DenyBtn/BG")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG")
+focus_neighbor_top = NodePath("ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG")
+focus_neighbor_right = NodePath("ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG")
+focus_neighbor_bottom = NodePath("ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG")
+focus_next = NodePath("ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG")
+focus_previous = NodePath("ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG")
 
 [node name="BlurBg" type="ColorRect" parent="AttacherUI/Content/DeleteModal" unique_id=1758180851]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.39215687)
 
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal" unique_id=616640349]
-layout_mode = 0
-offset_left = 384.0
-offset_top = 192.0
-offset_right = 896.0
-offset_bottom = 472.0
+[node name="ModalParent" type="Control" parent="AttacherUI/Content/DeleteModal" unique_id=1025026302]
+custom_minimum_size = Vector2(512, 280)
+layout_mode = 1
+anchor_left = 0.3
+anchor_top = 0.26666668
+anchor_right = 0.7
+anchor_bottom = 0.65555555
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ModalParent" unique_id=616640349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.28815985, 0, 0, 1)
 
-[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/DeleteModal" unique_id=750791310]
+[node name="ContentVBox" type="VBoxContainer" parent="AttacherUI/Content/DeleteModal/ModalParent" unique_id=1013801507]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelVBox" type="VBoxContainer" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox" unique_id=1294934411]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="HeaderLabel" type="Label" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/LabelVBox" unique_id=750791310]
 texture_filter = 1
-layout_mode = 0
-offset_left = 256.0
-offset_top = 208.0
-offset_right = 1024.0
-offset_bottom = 265.0
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 50
@@ -1675,13 +1709,9 @@ text = "Delete Jar Item ? "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WarningLabel" type="Label" parent="AttacherUI/Content/DeleteModal" unique_id=860327927]
+[node name="WarningLabel" type="Label" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/LabelVBox" unique_id=860327927]
 texture_filter = 1
-layout_mode = 0
-offset_left = 256.0
-offset_top = 256.0
-offset_right = 1024.0
-offset_bottom = 313.0
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 30
@@ -1689,46 +1719,39 @@ text = "Warning : This cannot be undone"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DenyBtn" type="Control" parent="AttacherUI/Content/DeleteModal" unique_id=398914387]
-anchors_preset = 0
-offset_left = -112.0
-offset_top = 336.0
-offset_right = -72.0
-offset_bottom = 376.0
+[node name="ButtonHBox" type="HBoxContainer" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox" unique_id=1767920156]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 48
+alignment = 1
+
+[node name="DenyBtn" type="AspectRatioContainer" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox" unique_id=1376249087]
+custom_minimum_size = Vector2(125, 45)
+layout_mode = 2
 mouse_filter = 2
+ratio = 2.0
 script = ExtResource("20_i7vey")
 btn_type = "deny"
 
-[node name="HoverBorder" type="ColorRect" parent="AttacherUI/Content/DeleteModal/DenyBtn" unique_id=1028561421]
-visible = false
-layout_mode = 0
-offset_left = 607.0
-offset_top = 39.0
-offset_right = 732.0
-offset_bottom = 84.0
+[node name="HoverBorder" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/DenyBtn" unique_id=1028561421]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.05, 1.05)
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal/DenyBtn" unique_id=1473761548]
-layout_mode = 0
-offset_left = 608.0
-offset_top = 40.0
-offset_right = 731.0
-offset_bottom = 83.0
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/DenyBtn" unique_id=1473761548]
+layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath("../../ConfirmBtn/BG")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
 color = Color(1, 0.07999998, 0.07999998, 1)
 
-[node name="BtnLabel" type="Label" parent="AttacherUI/Content/DeleteModal/DenyBtn" unique_id=1144376525]
+[node name="BtnLabel" type="Label" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/DenyBtn" unique_id=1144376525]
 texture_filter = 1
-layout_mode = 0
-offset_left = 608.0
-offset_top = 43.0
-offset_right = 728.0
-offset_bottom = 78.0
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 30
@@ -1736,58 +1759,39 @@ text = "Deny"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConfirmBtn" type="Control" parent="AttacherUI/Content/DeleteModal" unique_id=552246131]
-anchors_preset = 0
-offset_left = 64.0
-offset_top = 336.0
-offset_right = 104.0
-offset_bottom = 376.0
+[node name="ConfirmBtn" type="AspectRatioContainer" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox" unique_id=473214770]
+custom_minimum_size = Vector2(125, 45)
+layout_mode = 2
 mouse_filter = 2
+ratio = 2.0
 script = ExtResource("20_i7vey")
 
-[node name="HoverBorder" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ConfirmBtn" unique_id=1471822375]
-visible = false
-layout_mode = 0
-offset_left = 607.0
-offset_top = 39.0
-offset_right = 732.0
-offset_bottom = 84.0
+[node name="HoverBorder" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/ConfirmBtn" unique_id=1932928843]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(1.05, 1.05)
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ConfirmBtn" unique_id=1428271062]
-layout_mode = 0
-offset_left = 608.0
-offset_top = 40.0
-offset_right = 731.0
-offset_bottom = 83.0
-focus_neighbor_left = NodePath("../../DenyBtn/BG")
+[node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/ConfirmBtn" unique_id=1842753118]
+layout_mode = 2
+focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath("../../DenyBtn/BG")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
-color = Color(0.08235294, 1, 0.08235294, 1)
+color = Color(0.22973076, 0.61537415, 1.92523e-06, 1)
 
-[node name="BtnLabel" type="Label" parent="AttacherUI/Content/DeleteModal/ConfirmBtn" unique_id=277747331]
+[node name="BtnLabel" type="Label" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/ConfirmBtn" unique_id=874730133]
 texture_filter = 1
-layout_mode = 0
-offset_left = 608.0
-offset_top = 43.0
-offset_right = 728.0
-offset_bottom = 78.0
+layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("4_hnska")
 theme_override_font_sizes/font_size = 30
-text = "Confirm"
+text = "confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SimulateStatDefectIncrease" parent="AttacherUI/Content" unique_id=850044189 instance=ExtResource("29_blnlb")]
 visible = false
-layout_mode = 0
-offset_left = 1.0
-offset_top = 5.0
-offset_right = 1.0
-offset_bottom = 5.0
-
-[editable path="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox"]
+layout_mode = 1

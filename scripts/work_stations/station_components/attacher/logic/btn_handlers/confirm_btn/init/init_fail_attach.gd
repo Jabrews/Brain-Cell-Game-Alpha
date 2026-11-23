@@ -2,7 +2,7 @@
 extends Node
 
 # components
-@onready var simulate_stat_defect_increase: Control = $"../../../../AttacherUI/SimulateStatDefectIncrease"
+@onready var simulate_stat_defect_increase: Control = $"../../../../AttacherUI/Content/SimulateStatDefectIncrease"
 @onready var refresh_ui : Node = $"../../../RefreshUi"
 @onready var handle_display_ui : Node = $"../../../HandleDisplayUi"
 @onready var fail_particles : GPUParticles3D = $"../../../../Particles/FailedParticles"

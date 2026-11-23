@@ -283,7 +283,7 @@ transform = Transform3D(1.0000012, 0, 0, 0, 1.0000012, 0, 0, 0, 1, 0, 0, -0.0511
 shape = SubResource("BoxShape3D_pkmm3")
 
 [node name="BreederUi" type="Control" parent="." unique_id=240928638]
-visible = false
+custom_maximum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -392,6 +392,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -4.0400047
 grow_horizontal = 2
+grow_vertical = 2
 offset_transform_position = Vector2(3, 0)
 localize_numeral_system = false
 layout_direction = 3
@@ -403,7 +404,7 @@ custom_minimum_size = Vector2(320, 580)
 propagate_maximum_size = false
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
 layout_direction = 2
 columns = 2
 

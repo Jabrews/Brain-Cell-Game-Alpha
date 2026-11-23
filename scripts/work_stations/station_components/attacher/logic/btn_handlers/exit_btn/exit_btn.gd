@@ -1,4 +1,4 @@
-extends ColorRect
+extends AspectRatioContainer
 
 # components
 @onready var handle_exit_btn : Node =$"../../../Logic/BtnHandlers/HandleExitBtn"
@@ -23,11 +23,11 @@ func _process(_delta: float) -> void:
 func _handle_mouse_entered() -> void:
 	hovered = true
 	scale = Vector2(1.05, 1.05)
-	color = Color.LIGHT_GRAY
+	modulate = Color.LIGHT_GRAY
 	hint_parent.visible = true
 
 func _handle_mouse_exited() -> void:
 	hovered = false
 	scale = Vector2(1.0, 1.0)
-	color = Color.WHITE
+	modulate = Color.WHITE
 	hint_parent.visible = false

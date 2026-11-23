@@ -4,7 +4,7 @@ extends Node
 @onready var attacher_ui : Control = $"../../AttacherUI"
 @onready var delete_modal_manager : Node = $"../DeleteModalManager"
 @onready var refresh_ui : Node = $"../RefreshUi"
-@onready var parent_grid_container : GridContainer = $"../../AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
+@onready var catalog_parent : VBoxContainer = $"../../AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent"
 var showing_attacher_ui : bool = false
 
 func _ready() -> void:
@@ -40,7 +40,7 @@ func _toggle_display(toggle_value : bool) :
 		GLAttacherComponentBus.emit_signal('toggle_show_view_attacher_label', true)
 		delete_modal_manager._toggle_modal(false)
 		# clear catalog
-		for jar_item: Control in parent_grid_container.get_children():
+		for jar_item: Control in catalog_parent.get_children():
 			jar_item.queue_free()
 		return
 		

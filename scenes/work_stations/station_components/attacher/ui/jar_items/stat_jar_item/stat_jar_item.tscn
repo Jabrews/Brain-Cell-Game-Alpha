@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cjtun5xvxe1gs" path="res://models/workstations/attacher/ui/stat_jar_item/defect_bar_bg.png" id="5_joqgs"]
 [ext_resource type="Texture2D" uid="uid://dh0l7jiycnqcw" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/defect_bar_progress.png" id="6_qv3fk"]
 [ext_resource type="Texture2D" uid="uid://d0lwp14ga5b03" path="res://models/workstations/attacher/ui/stat_jar_item/borders/hover_border.png" id="7_joqgs"]
+[ext_resource type="Texture2D" uid="uid://c87dyek62j74i" path="res://models/file_cabinet/exit_btn.png" id="8_y2c36"]
 [ext_resource type="Texture2D" uid="uid://dq10lsmkmtvv0" path="res://models/workstations/attacher/ui/stat_jar_item/borders/dragging_border.png" id="8_y5awx"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="9_mepgx"]
 [ext_resource type="Texture2D" uid="uid://cxm8h1h7q3uw" path="res://models/workstations/attacher/ui/stat_jar_item/borders/on_main_stat_bodert.png" id="9_wako6"]
@@ -26,16 +27,17 @@ shader_parameter/scanline_density = 90.0
 shader_parameter/hologram_tint = Color(1, 0.89444786, 0.8743369, 1)
 
 [node name="StatJarItem" type="Control" unique_id=85706654]
+custom_minimum_size = Vector2(257, 104.00001)
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_right = 0.20078126
+anchor_bottom = 0.14444445
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_right = NodePath("DeleteBtn")
+focus_neighbor_right = NodePath("ContentVBox/DeleteBtnParent/DeleteBtn")
 focus_mode = 2
 mouse_filter = 1
 script = ExtResource("1_vjayo")
+metadata/_edit_use_anchors_ = true
 
 [node name="HandleInput" type="Node" parent="." unique_id=2087878489]
 script = ExtResource("2_hocb0")
@@ -51,142 +53,65 @@ script = ExtResource("4_6vqf8")
 
 [node name="BG" type="TextureRect" parent="." unique_id=934185104]
 texture_filter = 1
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 104.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_neighbor_left = NodePath(".")
-focus_neighbor_right = NodePath("../DeleteBtn")
+focus_neighbor_right = NodePath("../ContentVBox/DeleteBtnParent/DeleteBtn")
 focus_mode = 2
 mouse_filter = 0
 texture = ExtResource("2_wako6")
 
-[node name="Stat" type="Control" parent="." unique_id=892789481]
-anchors_preset = 0
-offset_left = -8.0
-offset_top = -13.0
-offset_right = 32.0
-offset_bottom = 27.0
+[node name="ContentVBox" type="VBoxContainer" parent="." unique_id=1932579123]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.034817122
+anchor_top = 0.07692307
+anchor_right = 0.96518296
+anchor_bottom = 0.91346145
+offset_left = 0.052000046
+offset_right = -0.052017212
 mouse_filter = 2
 
-[node name="CleanBar" type="TextureProgressBar" parent="Stat" unique_id=234379772]
-texture_filter = 1
-layout_mode = 0
-offset_left = 24.0
-offset_top = 35.0
-offset_right = 248.0
-offset_bottom = 75.0
-mouse_filter = 2
-value = 75.0
-texture_under = ExtResource("3_qv3fk")
-texture_progress = ExtResource("4_vqo6a")
-
-[node name="DefectBar" type="TextureProgressBar" parent="Stat" unique_id=1844571556]
-texture_filter = 1
-layout_mode = 0
-offset_left = 24.0
-offset_top = 75.0
-offset_right = 248.0
-offset_bottom = 99.0
-mouse_filter = 2
-value = 50.0
-texture_under = ExtResource("5_joqgs")
-texture_progress = ExtResource("6_qv3fk")
-
-[node name="OutsideBorders" type="Control" parent="." unique_id=1599376766]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="DeleteBtnParent" type="Control" parent="ContentVBox" unique_id=1099320865]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
 mouse_filter = 2
 
-[node name="HoverBorder" type="TextureRect" parent="OutsideBorders" unique_id=319170544]
-visible = false
-modulate = Color(1, 1, 1, 0.39215687)
-texture_filter = 1
-layout_mode = 0
-offset_left = -3.0
-offset_top = -2.0
-offset_right = 259.0
-offset_bottom = 107.0
-mouse_filter = 2
-texture = ExtResource("7_joqgs")
-
-[node name="DraggingBorder" type="TextureRect" parent="OutsideBorders" unique_id=1259131959]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_left = -3.0
-offset_top = -2.0
-offset_right = 259.0
-offset_bottom = 107.0
-mouse_filter = 2
-texture = ExtResource("8_y5awx")
-
-[node name="InsideBorders" type="Control" parent="." unique_id=470455449]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="OnMainStatBorder" type="TextureRect" parent="InsideBorders" unique_id=206893234]
-visible = false
-texture_filter = 1
-layout_mode = 0
-offset_right = 256.0
-offset_bottom = 104.0
-texture = ExtResource("9_wako6")
-
-[node name="DeleteBtn" type="Control" parent="." unique_id=134672474]
-anchors_preset = 0
-offset_left = 230.0
-offset_top = 5.0
-offset_right = 251.0
-offset_bottom = 26.0
-focus_neighbor_left = NodePath("../BG")
+[node name="DeleteBtn" type="AspectRatioContainer" parent="ContentVBox/DeleteBtnParent" unique_id=901003791]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../../../BG")
 focus_mode = 2
+alignment_horizontal = 2
 script = ExtResource("12_hocb0")
+metadata/_edit_use_anchors_ = true
 
-[node name="HoverBorder" type="ColorRect" parent="DeleteBtn" unique_id=155582108]
-visible = false
-layout_mode = 0
-offset_left = 2.0
-offset_top = -1.0
-offset_right = 21.0
-offset_bottom = 18.0
+[node name="HoverBorder" type="ColorRect" parent="ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=155582108]
+layout_mode = 2
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="BG" type="ColorRect" parent="DeleteBtn" unique_id=1492626540]
-layout_mode = 0
-offset_left = 3.0
-offset_right = 20.0
-offset_bottom = 17.0
+[node name="BG" type="ColorRect" parent="ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=1492626540]
+layout_mode = 2
 mouse_filter = 2
 color = Color(0.36, 0, 0, 1)
 
-[node name="X" type="Label" parent="DeleteBtn" unique_id=1908048594]
-oversampling_with_scale = 1
-texture_filter = 1
-layout_mode = 0
-offset_left = -13.0
-offset_top = -11.0
-offset_right = 38.0
-offset_bottom = 24.0
-theme_override_colors/font_color = Color(0.70380783, 0.70380783, 0.70380783, 1)
-theme_override_fonts/font = ExtResource("9_mepgx")
-theme_override_font_sizes/font_size = 26
-text = "x"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="DeleteHint" type="Control" parent="DeleteBtn" unique_id=1356310452]
+[node name="DeleteHint" type="Control" parent="ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=1356310452]
 visible = false
-anchors_preset = 0
-offset_left = -137.0
-offset_top = -6.0
-offset_right = -97.0
-offset_bottom = 34.0
+layout_mode = 2
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="DeleteBtn/DeleteHint" unique_id=1396280678]
+[node name="BG" type="ColorRect" parent="ContentVBox/DeleteBtnParent/DeleteBtn/DeleteHint" unique_id=1396280678]
 layout_mode = 0
 offset_left = -14.0
 offset_top = -6.0
@@ -195,7 +120,7 @@ offset_bottom = 40.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.80784315)
 
-[node name="HintLabel" type="Label" parent="DeleteBtn/DeleteHint" unique_id=1874601504]
+[node name="HintLabel" type="Label" parent="ContentVBox/DeleteBtnParent/DeleteBtn/DeleteHint" unique_id=1874601504]
 texture_filter = 1
 layout_mode = 0
 offset_left = -14.0
@@ -209,19 +134,130 @@ text = "Delete Jar Item"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrentPlacedStatLabel" type="Label" parent="." unique_id=213312251]
+[node name="TextureRect" type="TextureRect" parent="ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=1765773031]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_y2c36")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="StatVBox" type="VBoxContainer" parent="ContentVBox" unique_id=241626266]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+mouse_filter = 2
+alignment = 1
+
+[node name="CleanBar" type="TextureProgressBar" parent="ContentVBox/StatVBox" unique_id=234379772]
+texture_filter = 1
+custom_minimum_size = Vector2(224, 32)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 75.0
+nine_patch_stretch = true
+texture_under = ExtResource("3_qv3fk")
+texture_progress = ExtResource("4_vqo6a")
+
+[node name="DefectBar" type="TextureProgressBar" parent="ContentVBox/StatVBox" unique_id=1844571556]
+texture_filter = 1
+custom_minimum_size = Vector2(224, 24)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_joqgs")
+texture_progress = ExtResource("6_qv3fk")
+
+[node name="OutsideBorders" type="Control" parent="." unique_id=1599376766]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HoverBorder" type="TextureRect" parent="OutsideBorders" unique_id=319170544]
+visible = false
+modulate = Color(1, 1, 1, 0.39215687)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.010000001
+anchor_top = -0.024
+anchor_right = 1.01
+anchor_bottom = 1.024
+offset_left = -0.42999983
+offset_top = -0.0039958954
+offset_right = 0.42999268
+offset_bottom = 0.0039901733
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_joqgs")
+
+[node name="DraggingBorder" type="TextureRect" parent="OutsideBorders" unique_id=1259131959]
 visible = false
 texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.010000001
+anchor_top = -0.024
+anchor_right = 1.01
+anchor_bottom = 1.024
+offset_left = 2.5700002
+offset_top = 2.4960003
+offset_right = -2.5700073
+offset_bottom = -2.4960022
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_y5awx")
+
+[node name="InsideBorders" type="Control" parent="." unique_id=470455449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OnMainStatBorder" type="TextureRect" parent="InsideBorders" unique_id=206893234]
+visible = false
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_wako6")
+
+[node name="PlacedLabelParent" type="Control" parent="." unique_id=1155730196]
+visible = false
+layout_mode = 1
+anchor_left = 0.027237354
+anchor_top = 0.028846152
+anchor_right = 0.027237354
+anchor_bottom = 0.028846152
+metadata/_edit_use_anchors_ = true
+
+[node name="CurrentPlacedStatLabel" type="Label" parent="PlacedLabelParent" unique_id=213312251]
+texture_filter = 1
 material = SubResource("ShaderMaterial_huima")
-layout_mode = 0
-offset_left = 6.0
-offset_top = -20.0
-offset_right = 159.0
-offset_bottom = 5.000004
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 153.0
+grow_vertical = 0
 mouse_filter = 0
 theme_override_fonts/font = ExtResource("9_mepgx")
 theme_override_font_sizes/font_size = 20
 text = "Placed on Strength"
-
-[connection signal="mouse_entered" from="DeleteBtn" to="DeleteBtn" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="DeleteBtn" to="DeleteBtn" method="_on_mouse_exited"]

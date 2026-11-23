@@ -3,7 +3,7 @@ extends Node
 # components
 @onready var light_manager : Node = $Logic/LightManager
 @onready var refresh_ui : Node = $Logic/RefreshUi
-@onready var attacher_box : Control =$AttacherUI/StatMainView/AttacherBox
+@onready var attacher_box : Control = $AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox
 @onready var compute_failure_penality : Node = $Logic/ComputeFailurePenality
 
 var enabled : bool = false 

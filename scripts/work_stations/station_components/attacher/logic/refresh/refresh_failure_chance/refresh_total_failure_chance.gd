@@ -2,7 +2,7 @@
 extends Node
 
 # Components
-@onready var total_chance_label: Label = $"../../../../AttacherUI/StatMainView/FailureChanceView/TotalChanceLabel"
+@onready var total_chance_label: Label = $"../../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/VBoxContainer/Content/TotalChanceLabel"
 
 
 # Phase thresholds

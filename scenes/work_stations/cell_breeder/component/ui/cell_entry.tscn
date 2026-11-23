@@ -70,36 +70,28 @@ shader_parameter/high_color = Color(0.98333335, 1, 0, 0.3529412)
 shader_parameter/flash_speed = 3.0000001392401203
 shader_parameter/opacity = 1.0
 
-[node name="CellEntry" type="Control" unique_id=1827020411]
+[node name="CellEntry" type="AspectRatioContainer" unique_id=18310304]
 custom_minimum_size = Vector2(128, 128)
-layout_mode = 3
-anchor_right = 0.067
-anchor_bottom = 0.119
-offset_right = -0.6399994
-offset_bottom = -0.5200043
+custom_maximum_size = Vector2(448, 448)
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 0.178
+offset_bottom = -0.16000366
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="EntryTexture" type="TextureRect" parent="." unique_id=1378329379]
 texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 focus_mode = 2
 texture = ExtResource("1_gayrg")
 expand_mode = 1
 
 [node name="MockCellEntry" type="VBoxContainer" parent="." unique_id=2136994162]
 propagate_maximum_size = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
@@ -400,12 +392,7 @@ expand_mode = 1
 
 [node name="InsideBorderEffects" type="Control" parent="." unique_id=1835870016]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 mouse_filter = 2
 
 [node name="OnSelected" type="TextureRect" parent="InsideBorderEffects" unique_id=428493735]
@@ -470,9 +457,7 @@ grow_vertical = 2
 texture = ExtResource("10_fl1ek")
 
 [node name="OutsideBorderEffects" type="Control" parent="." unique_id=632530798]
-anchors_preset = 0
-offset_right = 128.0
-offset_bottom = 128.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="SelectedBorder" type="TextureRect" parent="OutsideBorderEffects" unique_id=591002530]
@@ -500,9 +485,7 @@ texture = ExtResource("13_2n3a3")
 
 [node name="StatusSymbols" type="Control" parent="." unique_id=375245596]
 visible = false
-anchors_preset = 0
-offset_top = 45.0
-offset_bottom = 45.0
+layout_mode = 2
 
 [node name="StatusBG" type="TextureRect" parent="StatusSymbols" unique_id=1228472673]
 texture_filter = 1
