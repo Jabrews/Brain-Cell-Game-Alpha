@@ -231,7 +231,6 @@ mouse_filter = 2
 texture = ExtResource("9_akjod")
 
 [node name="StatReplacement" type="Control" parent="." unique_id=1991748357]
-visible = false
 layout_mode = 1
 anchor_top = -0.034722224
 anchor_right = 1.0
@@ -300,6 +299,7 @@ script = ExtResource("16_q4pjm")
 metadata/_edit_use_anchors_ = true
 
 [node name="HoverBorder" type="ColorRect" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=251537713]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.008
@@ -338,6 +338,7 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("14_27yhk")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PercantLabel" type="Label" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=153406787]
 texture_filter = 1
@@ -355,17 +356,21 @@ theme_override_font_sizes/font_size = 30
 text = "(+15%)"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PenalityHintParent" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate" unique_id=1144730017]
+visible = false
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
+anchor_left = -0.8311498
+anchor_top = 2.7754626
+anchor_right = -0.8311498
+anchor_bottom = 2.7754626
 grow_horizontal = 2
+grow_vertical = 0
 mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="PenalityHint" type="Control" parent="StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/PenalityHintParent" unique_id=1880452801]
-visible = false
 custom_minimum_size = Vector2(206, 200)
 layout_mode = 1
 anchors_preset = 7
@@ -463,6 +468,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="HoverBorder" type="TextureRect" parent="StatReplacement/ReplacementInfoContainer/Header/RemoveBtn" unique_id=1777106761]
+visible = false
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -485,6 +491,7 @@ anchor_right = 0.8
 anchor_bottom = 0.55
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.74138474, 0.7413847, 0.74138457, 1)
 metadata/_edit_use_anchors_ = true
 
@@ -567,6 +574,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="DragInvalidBorder" type="TextureRect" parent="StatReplacement/Borders" unique_id=1097614048]
 visible = false
@@ -579,6 +587,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("11_0v3mp")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true
@@ -593,6 +602,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("11_0v3mp")
 expand_mode = 1
 metadata/_edit_use_anchors_ = true

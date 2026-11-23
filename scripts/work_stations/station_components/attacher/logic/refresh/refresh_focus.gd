@@ -22,7 +22,6 @@ func _refresh() -> void:
 	_refresh_up_down()
 	_refresh_left_right()
 
-
 func _refresh_up_down() -> void:
 	var available_items: Array[Node] = []
 

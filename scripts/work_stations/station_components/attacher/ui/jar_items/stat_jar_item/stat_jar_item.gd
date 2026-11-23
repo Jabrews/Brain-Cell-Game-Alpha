@@ -6,6 +6,9 @@ extends Control
 @onready var dragging_border: TextureRect = $OutsideBorders/DraggingBorder
 @onready var delete_btn: Control = $ContentVBox/DeleteBtnParent/DeleteBtn
 @onready var display_stat_jar_item: Node = $DisplayStatJarItem
+
+# placed label stuff
+@onready var placed_label_parent : Control = $PlacedLabelParent
 @onready var current_placed_stat_label : Label = $PlacedLabelParent/CurrentPlacedStatLabel
 
 # used components
@@ -41,7 +44,7 @@ func _start(stat_jar_item: StatJarItem) -> void:
 	display_stat_jar_item._display(stat_jar_item)
 
 
-# when jar item dropped on main statgg
+# when jar item dropped on main stat
 func _item_used() -> void:
 	is_used = true
 	on_main_stat_border.visible = true
@@ -49,11 +52,12 @@ func _item_used() -> void:
 	
 	
 	# hacky stuff for used label
-	current_placed_stat_label.visible = true 
+	placed_label_parent.visible = true
 	
 	var used_stat_type: Variant = GLAttacherComponentBus.main_stat_replacement_state.find_key(corrisponding_stat_jar_item)
 	if used_stat_type != null:
 		current_placed_stat_label.text = 'Placed on ' + str(used_stat_type).to_upper()
+		# TODO
 	else:
 		push_error("Stat jar item used, but unable to find which main stat it's placed on")
 		return

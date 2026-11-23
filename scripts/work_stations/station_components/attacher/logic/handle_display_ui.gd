@@ -2,6 +2,9 @@ extends Node
 
 # components
 @onready var attacher_ui : Control = $"../../AttacherUI"
+# TODO
+@onready var attacher_ui_content : Control = $"../../AttacherUI/Content"
+
 @onready var delete_modal_manager : Node = $"../DeleteModalManager"
 @onready var refresh_ui : Node = $"../RefreshUi"
 @onready var catalog_parent : VBoxContainer = $"../../AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent"
@@ -52,7 +55,7 @@ func toggle_display_lock(toggle_value: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
 		GLPlayerState.emit_signal('lock_player_position', true)
-		attacher_ui.grab_focus()
+		attacher_ui_content.grab_focus()
 
 	else:
 		GLHideUiBus.emit_signal('toggle_hide_ui', false)

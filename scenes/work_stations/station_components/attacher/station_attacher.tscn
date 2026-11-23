@@ -30,10 +30,9 @@
 [ext_resource type="Script" uid="uid://dfj6lkavugomp" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance/refresh_total_failure_chance.gd" id="12_huima"]
 [ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
 [ext_resource type="Script" uid="uid://b0ik3ub2lrkp0" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_confirm_btn.gd" id="13_dv0vc"]
-[ext_resource type="Script" uid="uid://mayn23yousve" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/refresh_focus.gd" id="14_bc6uw"]
+[ext_resource type="Script" uid="uid://mayn23yousve" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus.gd" id="14_bc6uw"]
 [ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/ui/failure_chance_view.gd" id="14_h8037"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_jqydl"]
-[ext_resource type="Script" uid="uid://bjwftbuutyras" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/refresh_jar_items.gd" id="15_3rwfr"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="15_etud5"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
@@ -51,21 +50,6 @@
 [ext_resource type="AudioStream" uid="uid://dufc0aftlme3b" path="res://sounds/attacher/confirm_failed.mp3" id="32_2cjdw"]
 [ext_resource type="AudioStream" uid="uid://bma10unqism7n" path="res://sounds/attacher/burst_warning_bug.mp3" id="34_xrlol"]
 [ext_resource type="AudioStream" uid="uid://el2xydfx2q4t" path="res://sounds/attacher/burst_warning_hidden_stat.mp3" id="35_bc6uw"]
-[ext_resource type="Texture2D" uid="uid://d7wdkldrsdt2" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_bg.png" id="41_ukx0t"]
-[ext_resource type="Texture2D" uid="uid://cf5xw8y52bmfh" path="res://models/workstations/attacher/ui/stat_jar_item/clean_bar_progress.png" id="42_xp2h8"]
-[ext_resource type="Texture2D" uid="uid://cjtun5xvxe1gs" path="res://models/workstations/attacher/ui/stat_jar_item/defect_bar_bg.png" id="43_7n052"]
-[ext_resource type="Texture2D" uid="uid://dh0l7jiycnqcw" path="res://models/workstations/breeder/cell_breeder/ui/cell_reciever_box/defect_bar_progress.png" id="44_41skx"]
-[ext_resource type="Script" uid="uid://p57dux1n2tpu" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.gd" id="51_gb5hq"]
-[ext_resource type="Script" uid="uid://b0trj5ixrcw15" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/handle_input/handle_input.gd" id="52_ifu3f"]
-[ext_resource type="Script" uid="uid://c3f5qbjw5oehf" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/handle_input/create_drag_jar_item.gd" id="53_x28bl"]
-[ext_resource type="Script" uid="uid://bbdsy30r6bpc" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/display_stat_jar_item.gd" id="54_emcv5"]
-[ext_resource type="Texture2D" uid="uid://bhrpdp3mtysqi" path="res://models/workstations/attacher/ui/stat_jar_item/stat_jar_item_bg_2.png" id="55_j31ah"]
-[ext_resource type="Script" uid="uid://d0je2wvivueti" path="res://scripts/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/delete_btn.gd" id="56_8jvnj"]
-[ext_resource type="Texture2D" uid="uid://c87dyek62j74i" path="res://models/file_cabinet/exit_btn.png" id="57_pg4gx"]
-[ext_resource type="Texture2D" uid="uid://d0lwp14ga5b03" path="res://models/workstations/attacher/ui/stat_jar_item/borders/hover_border.png" id="62_nd4f0"]
-[ext_resource type="Texture2D" uid="uid://dq10lsmkmtvv0" path="res://models/workstations/attacher/ui/stat_jar_item/borders/dragging_border.png" id="63_ifvi3"]
-[ext_resource type="Texture2D" uid="uid://cxm8h1h7q3uw" path="res://models/workstations/attacher/ui/stat_jar_item/borders/on_main_stat_bodert.png" id="64_pxiqe"]
-[ext_resource type="Shader" uid="uid://bepg3ch4y42dl" path="res://scripts/ui/event_notice_manager/shader/header_label_shimmer.gdshader" id="65_yrlcd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -255,15 +239,6 @@ shader_parameter/noise_scale = 1.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kgviq"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_huima"]
-shader = ExtResource("65_yrlcd")
-shader_parameter/hologram_enabled = true
-shader_parameter/shimmer_speed = 1.0000000475
-shader_parameter/shimmer_strength = 0.150000007125
-shader_parameter/scanline_strength = 0.0
-shader_parameter/scanline_density = 90.0
-shader_parameter/hologram_tint = Color(1, 0.89444786, 0.8743369, 1)
-
 [node name="StationAttacher" type="Node3D" unique_id=348530824]
 script = ExtResource("1_skoqb")
 
@@ -310,9 +285,6 @@ script = ExtResource("13_dv0vc")
 
 [node name="RefreshFocus" type="Node" parent="Logic/RefreshUi" unique_id=1417051456]
 script = ExtResource("14_bc6uw")
-
-[node name="RefreshJarItems" type="Node" parent="Logic/RefreshUi/RefreshFocus" unique_id=1860530474]
-script = ExtResource("15_3rwfr")
 
 [node name="LightManager" type="Node" parent="Logic" unique_id=12700507]
 script = ExtResource("5_gk0sq")
@@ -560,7 +532,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_mode = 2
+mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="ParentStatItemDragNode" type="Node" parent="AttacherUI" unique_id=1154640678]
@@ -583,6 +555,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("ExitHeader/HBoxContainer/ExitBtn/BG")
+focus_neighbor_top = NodePath("ExitHeader/HBoxContainer/ExitBtn/BG")
+focus_neighbor_right = NodePath("ExitHeader/HBoxContainer/ExitBtn/BG")
+focus_neighbor_bottom = NodePath("ExitHeader/HBoxContainer/ExitBtn/BG")
+focus_mode = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
@@ -649,6 +626,10 @@ script = ExtResource("13_ape52")
 layout_mode = 2
 offset_transform_enabled = true
 offset_transform_scale = Vector2(1, 0.8)
+focus_neighbor_left = NodePath(".")
+focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
+focus_neighbor_bottom = NodePath("../../../../StatMainView/BottomSectionHBox/AttacherBox/DisplayBackground")
 focus_mode = 2
 metadata/_edit_use_anchors_ = true
 
@@ -1051,6 +1032,9 @@ text = "Not implented yet..."
 
 [node name="AttacherBox" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=440962626 instance=ExtResource("10_51xr3")]
 layout_mode = 2
+focus_neighbor_left = NodePath("../../../ExitHeader/HBoxContainer/ExitBtn/BG")
+focus_neighbor_top = NodePath("../../../ExitHeader/HBoxContainer/ExitBtn/BG")
+focus_neighbor_bottom = NodePath("DisplayBackground")
 
 [node name="FailureChanceView" type="Control" parent="AttacherUI/Content/StatMainView/BottomSectionHBox" unique_id=1884564620]
 custom_minimum_size = Vector2(210, 49)
@@ -1615,257 +1599,6 @@ offset_transform_visual_only = false
 layout_direction = 2
 theme_override_constants/separation = 29
 
-[node name="StatJarItem" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent" unique_id=85706654]
-custom_minimum_size = Vector2(257, 104.00001)
-layout_mode = 2
-focus_neighbor_right = NodePath("ContentVBox/DeleteBtnParent/DeleteBtn")
-focus_mode = 2
-mouse_filter = 1
-script = ExtResource("51_gb5hq")
-metadata/_edit_use_anchors_ = true
-
-[node name="HandleInput" type="Node" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=2087878489]
-script = ExtResource("52_ifu3f")
-
-[node name="CreateDragJarItem" type="Node" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/HandleInput" unique_id=760932310]
-script = ExtResource("53_x28bl")
-
-[node name="HoldingDetectTimer" type="Timer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/HandleInput" unique_id=834314318]
-wait_time = 0.2
-
-[node name="DisplayStatJarItem" type="Node" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=1319352061]
-script = ExtResource("54_emcv5")
-
-[node name="BG" type="TextureRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=934185104]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_neighbor_left = NodePath(".")
-focus_neighbor_right = NodePath("../ContentVBox/DeleteBtnParent/DeleteBtn")
-focus_mode = 2
-mouse_filter = 0
-texture = ExtResource("55_j31ah")
-
-[node name="ContentVBox" type="VBoxContainer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=1932579123]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.034817122
-anchor_top = 0.07692307
-anchor_right = 0.96518296
-anchor_bottom = 0.91346145
-offset_left = 0.052000046
-offset_right = -0.052017212
-mouse_filter = 2
-
-[node name="DeleteBtnParent" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox" unique_id=1099320865]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
-mouse_filter = 2
-
-[node name="DeleteBtn" type="AspectRatioContainer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent" unique_id=901003791]
-custom_minimum_size = Vector2(16, 16)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment_horizontal = 2
-script = ExtResource("56_8jvnj")
-metadata/_edit_use_anchors_ = true
-
-[node name="DeleteHintParent" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=118290546]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-mouse_filter = 2
-
-[node name="DeleteHint" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn/DeleteHintParent" unique_id=1356310452]
-custom_minimum_size = Vector2(150, 46)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -75.0
-offset_top = -46.0
-offset_right = 75.0
-grow_horizontal = 2
-grow_vertical = 0
-mouse_filter = 2
-
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn/DeleteHintParent/DeleteHint" unique_id=1396280678]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.80784315)
-
-[node name="HintLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn/DeleteHintParent/DeleteHint" unique_id=1874601504]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/line_spacing = 1
-theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 20
-text = "Delete Jar Item"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HoverBorder" type="ColorRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=155582108]
-layout_mode = 2
-mouse_filter = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="BG" type="ColorRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=1492626540]
-layout_mode = 2
-focus_neighbor_left = NodePath("../../../BG")
-focus_mode = 2
-color = Color(0.36, 0, 0, 1)
-
-[node name="TextureRect" type="TextureRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=1765773031]
-texture_filter = 1
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-mouse_filter = 2
-texture = ExtResource("57_pg4gx")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="StatVBox" type="VBoxContainer" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox" unique_id=241626266]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-mouse_filter = 2
-alignment = 1
-
-[node name="CleanBar" type="TextureProgressBar" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/StatVBox" unique_id=234379772]
-texture_filter = 1
-custom_minimum_size = Vector2(224, 32)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-value = 75.0
-nine_patch_stretch = true
-texture_under = ExtResource("41_ukx0t")
-texture_progress = ExtResource("42_xp2h8")
-
-[node name="DefectBar" type="TextureProgressBar" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/ContentVBox/StatVBox" unique_id=1844571556]
-texture_filter = 1
-custom_minimum_size = Vector2(224, 24)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("43_7n052")
-texture_progress = ExtResource("44_41skx")
-
-[node name="OutsideBorders" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=1599376766]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="HoverBorder" type="TextureRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/OutsideBorders" unique_id=319170544]
-visible = false
-modulate = Color(1, 1, 1, 0.39215687)
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.010000001
-anchor_top = -0.024
-anchor_right = 1.01
-anchor_bottom = 1.024
-offset_left = -0.42999983
-offset_top = -0.0039958954
-offset_right = 0.42999268
-offset_bottom = 0.0039901733
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("62_nd4f0")
-
-[node name="DraggingBorder" type="TextureRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/OutsideBorders" unique_id=1259131959]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.010000001
-anchor_top = -0.024
-anchor_right = 1.01
-anchor_bottom = 1.024
-offset_left = 2.5700002
-offset_top = 2.4960003
-offset_right = -2.5700073
-offset_bottom = -2.4960022
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("63_ifvi3")
-
-[node name="InsideBorders" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=470455449]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="OnMainStatBorder" type="TextureRect" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/InsideBorders" unique_id=206893234]
-visible = false
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("64_pxiqe")
-
-[node name="PlacedLabelParent" type="Control" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem" unique_id=1155730196]
-visible = false
-layout_mode = 1
-anchor_left = 0.027237354
-anchor_top = 0.028846152
-anchor_right = 0.027237354
-anchor_bottom = 0.028846152
-metadata/_edit_use_anchors_ = true
-
-[node name="CurrentPlacedStatLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent/StatJarItem/PlacedLabelParent" unique_id=213312251]
-texture_filter = 1
-material = SubResource("ShaderMaterial_huima")
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -24.0
-offset_right = 153.0
-grow_vertical = 0
-mouse_filter = 0
-theme_override_fonts/font = ExtResource("4_hnska")
-theme_override_font_sizes/font_size = 20
-text = "Placed on Strength"
-
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog" unique_id=879242795]
 visible = false
 layout_mode = 0
@@ -2032,3 +1765,5 @@ theme_override_font_sizes/font_size = 30
 text = "confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[editable path="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox"]

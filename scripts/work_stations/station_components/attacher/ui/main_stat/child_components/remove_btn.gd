@@ -13,6 +13,7 @@ func _ready() -> void:
 	btn_bg.connect('mouse_exited', _handle_mouse_exited)
 	btn_bg.connect('focus_entered', _handle_mouse_entered)
 	btn_bg.connect('focus_exited', _handle_mouse_exited)
+	
 
 func _process(_delta: float) -> void:
 	if hovered : 
@@ -40,6 +41,9 @@ func handle_button_pressed()  :
 
 
 func _handle_mouse_entered() :
+	
+	print('yo')
+	
 	hover_border.visible = true
 	remove_hint.visible = true
 	
