@@ -1,14 +1,18 @@
 extends Node
 
 # componets
-@onready var stat_type_label : Label = $StatTypeLabel
+@onready var default_stat_type_label : Label =$DefaultInfoContainer/StatTypeLabel
+@onready var replacement_stat_type_label : Label =$StatReplacement/ReplacementInfoContainer/Header/StatTypeLabel
+
 @onready var display_default_stats : Node = $DisplayDefaultStats
 @onready var display_replacement : Node = $DisplayReplacement
 
+@onready var parent_default_info_container : VBoxContainer = $DefaultInfoContainer
+
 # drag components HACK
 # for detect rect when handling stat_jar_item on drop
-@onready var default_detect_rect : ColorRect = $DefaultDetectRect # also used here, must get rid of if replacement active
-@onready var parent_stat_item_drag_node : Node =$"../../../ParentStatItemDragNode"
+@onready var default_detect_rect : ColorRect =$DefaultDetectRect
+@onready var parent_stat_item_drag_node : Node =$"../../../../../ParentStatItemDragNode"
 
 @export var stat_type : String = 'strength'
 
@@ -19,7 +23,8 @@ var replacement_stat_jar_item : StatJarItem
 
 
 func _ready() -> void:
-	stat_type_label.text = str(stat_type)
+	default_stat_type_label.text = str(stat_type)
+	replacement_stat_type_label.text = str(stat_type)
 
 func _display(loaded_cell : BrainCell) : 
 	
@@ -29,8 +34,10 @@ func _display(loaded_cell : BrainCell) :
 	if replacement_stat_jar_item : 
 		# will get complicated with focus
 		default_detect_rect.visible = false
+		parent_default_info_container.visible = false
 	else :
 		default_detect_rect.visible = true
+		parent_default_info_container.visible = true 
 	
 	
 	var cell_stat : BrainCellStat = loaded_cell.get_stat(stat_type)	

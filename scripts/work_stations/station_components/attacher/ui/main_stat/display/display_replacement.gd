@@ -2,9 +2,9 @@ extends Node
 
 # components
 @onready var stat_replacement_parent : Control = $"../StatReplacement"
-@onready var clean_bar : TextureProgressBar = $"../StatReplacement/CleanBar"
-@onready var defect_bar : TextureProgressBar = $"../StatReplacement/DefectBar"
-@onready var penality_failure_rate : Control = $"../StatReplacement/PenalityFailureRate"
+@onready var clean_bar : TextureProgressBar = $"../StatReplacement/ReplacementInfoContainer/DefaultInfoContainer/CleanBar"
+@onready var defect_bar : TextureProgressBar =$"../StatReplacement/ReplacementInfoContainer/DefaultInfoContainer/DefectBar"
+@onready var penality_failure_rate : Control = $"../StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate"
 @onready var parent_main_stat : Control = $".."
 
 

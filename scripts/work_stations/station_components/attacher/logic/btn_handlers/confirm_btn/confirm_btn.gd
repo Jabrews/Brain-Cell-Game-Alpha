@@ -3,7 +3,7 @@ extends Control
 # components
 @onready var bg : ColorRect = $BtnBg
 @onready var hint_parent : Control = $Hint
-@onready var handle_confirm_btn : Node = $"../../../Logic/BtnHandlers/HandleConfirmBtn"
+@onready var handle_confirm_btn : Node = $"../../../../../Logic/BtnHandlers/HandleConfirmBtn"
 
 var hovered : bool = false
 

@@ -1,10 +1,10 @@
 extends Node
 
 # components
-@onready var delete_modal : Control = $"../../AttacherUI/DeleteModal"
-@onready var confirm_btn_bg : ColorRect = $"../../AttacherUI/DeleteModal/ConfirmBtn/BG"
-@onready var deny_btn_bg : ColorRect = $"../../AttacherUI/DeleteModal/DenyBtn/BG"
-@onready var attacher_ui_parent : Control = $"../../AttacherUI"
+@onready var delete_modal : Control = $"../../AttacherUI/Content/DeleteModal"
+@onready var confirm_btn_bg : ColorRect =$"../../AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/ConfirmBtn/BG"
+@onready var deny_btn_bg : ColorRect = $"../../AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/DenyBtn/BG"
+@onready var attacher_ui_parent : Control =$"../../AttacherUI"
 # helper components
 @onready var handle_jar_delete_btn : Node = $"../BtnHandlers/HandleJarDeleteBtn"
 

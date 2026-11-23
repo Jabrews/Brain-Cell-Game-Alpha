@@ -1,8 +1,8 @@
 extends Node
 
 # components
-@onready var clean_bar : TextureProgressBar = $"../Stat/CleanBar"
-@onready var defect_bar : TextureProgressBar = $"../Stat/DefectBar"
+@onready var clean_bar : TextureProgressBar = $"../StatVBox/CleanBar"
+@onready var defect_bar : TextureProgressBar =$"../StatVBox/DefectBar"
 
 
 func _display(stat_jar_item : StatJarItem) :

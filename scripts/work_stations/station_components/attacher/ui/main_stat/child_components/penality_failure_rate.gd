@@ -2,7 +2,7 @@ extends Node
 
 # components
 @onready var hover_border : ColorRect = $HoverBorder
-@onready var penality_hint : Control = $PenalityHint
+@onready var penality_hint_parent : Control = $PenalityHintParent
 @onready var bg : ColorRect = $BG
 
 func _ready() -> void:
@@ -13,8 +13,8 @@ func _ready() -> void:
 
 func _handle_mouse_entered() :
 	hover_border.visible= true
-	penality_hint.visible = true
+	penality_hint_parent.visible = true
 	
 func _handle_mouse_exited() :
 	hover_border.visible = false 
-	penality_hint.visible = false 
+	penality_hint_parent.visible = false 

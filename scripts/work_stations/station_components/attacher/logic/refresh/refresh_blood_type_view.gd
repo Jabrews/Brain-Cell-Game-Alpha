@@ -2,7 +2,7 @@ extends Node
 
 # componets
 @onready var parent_station_attacher : Node = $"../../.."
-@onready var blood_type_view : Control = $"../../../AttacherUI/StatMainView/BloodTypeView"
+@onready var blood_type_view : Control = $"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/BloodTypeView"
 
 func _refresh() : 
 	

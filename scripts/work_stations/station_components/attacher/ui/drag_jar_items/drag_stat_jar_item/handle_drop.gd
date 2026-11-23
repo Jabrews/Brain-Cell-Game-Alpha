@@ -1,13 +1,13 @@
 extends Node
 
 # components
-@onready var parent_drag_stat_jar_item: Control = $".."
-@onready var display_background: TextureRect = $"../DisplayBG"
+@onready var parent_drag_stat_jar_item: Control =$".."
+@onready var display_background: TextureRect =$"../DisplayBG"
 
 # main stat components
-@onready var strength_main_stat: Control = $"../../../StatMainView/Stats/Strength"
-@onready var intelligence_main_stat: Control = $"../../../StatMainView/Stats/Intelligence"
-@onready var community_main_stat: Control = $"../../../StatMainView/Stats/Community"
+@onready var strength_main_stat: Control = $"../../../Content/StatMainView/Stats/StatsVBox/Strength"
+@onready var intelligence_main_stat: Control = $"../../../Content/StatMainView/Stats/StatsVBox/Intelligence"
+@onready var community_main_stat: Control = $"../../../Content/StatMainView/Stats/StatsVBox/Community"
 
 # detection radius
 @export var stat_drop_radius: float = 20.0

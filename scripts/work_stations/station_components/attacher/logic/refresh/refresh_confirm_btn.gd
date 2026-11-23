@@ -1,9 +1,9 @@
 extends Node
 
 # Components
-@onready var hint_label: Label = $"../../../AttacherUI/InteractFooter/ConfirmBtn/Hint/HintText"
-@onready var confirm_label : Label = $"../../../AttacherUI/InteractFooter/ConfirmBtn/ConfirmLabel"
-@onready var btn_bg: ColorRect = $"../../../AttacherUI/InteractFooter/ConfirmBtn/BtnBg"
+@onready var hint_label: Label = $"../../../AttacherUI/Content/InteractFooter/ButtonsHBox/ConfirmBtn/Hint/HintText"
+@onready var confirm_label : Label = $"../../../AttacherUI/Content/InteractFooter/ButtonsHBox/ConfirmBtn/ConfirmLabel"
+@onready var btn_bg: ColorRect = $"../../../AttacherUI/Content/InteractFooter/ButtonsHBox/ConfirmBtn/BtnBg"
 
 
 func _refresh() -> void:

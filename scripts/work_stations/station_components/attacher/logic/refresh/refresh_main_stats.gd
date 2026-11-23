@@ -4,11 +4,11 @@ extends Node
 @onready var parent_station_attacher : Node3D=  $"../../.."
 # parent components
 @onready var main_stat_parents : Array[Control] = [
-	$"../../../AttacherUI/StatMainView/Stats/Strength",
-	$"../../../AttacherUI/StatMainView/Stats/Intelligence",
-	$"../../../AttacherUI/StatMainView/Stats/Community"
+	$"../../../AttacherUI/Content/StatMainView/Stats/StatsVBox/Strength",
+	$"../../../AttacherUI/Content/StatMainView/Stats/StatsVBox/Intelligence",
+	$"../../../AttacherUI/Content/StatMainView/Stats/StatsVBox/Community"
 ]
-@onready var no_cell_loaded_label : Label = $"../../../AttacherUI/StatMainView/Stats/NoCellLoadedLabel"
+@onready var no_cell_loaded_label : Label = $"../../../AttacherUI/Content/StatMainView/Stats/NoCellLoadedLabel"
 # stat components
 
 

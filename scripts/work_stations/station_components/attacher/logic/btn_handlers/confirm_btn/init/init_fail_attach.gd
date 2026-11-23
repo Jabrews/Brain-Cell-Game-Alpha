@@ -2,7 +2,7 @@
 extends Node
 
 # components
-@onready var simulate_stat_defect_increase: Control = $"../../../../AttacherUI/Content/SimulateStatDefectIncrease"
+#@onready var simulate_stat_defect_increase: Control = $"../../../../AttacherUI/Content/SimulateStatDefectIncrease"
 @onready var refresh_ui : Node = $"../../../RefreshUi"
 @onready var handle_display_ui : Node = $"../../../HandleDisplayUi"
 @onready var fail_particles : GPUParticles3D = $"../../../../Particles/FailedParticles"
@@ -94,7 +94,8 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	refresh_ui._refresh()
 
 	# Simulate defect increase visually
-	simulate_stat_defect_increase._start(old_cell, new_cell)
+	# TODO add back
+	#simulate_stat_defect_increase._start(old_cell, new_cell)
 	
 	GLAttacherComponentBus.emit_signal('play_sound', 'confirm_failed')
 	

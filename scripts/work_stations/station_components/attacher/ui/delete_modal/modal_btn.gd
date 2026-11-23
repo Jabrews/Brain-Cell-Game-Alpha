@@ -3,7 +3,7 @@ extends Node
 # components
 @onready var bg : ColorRect = $BG
 @onready var hover_border : ColorRect = $HoverBorder
-@onready var delete_modal_manager : Node = $"../../../Logic/DeleteModalManager"
+@onready var delete_modal_manager : Node = $"../../../../../../../Logic/DeleteModalManager"
 
 @export var btn_type : String = 'confirm'
 var hovered : bool = false

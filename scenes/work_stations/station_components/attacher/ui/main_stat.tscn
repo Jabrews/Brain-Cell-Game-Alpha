@@ -97,7 +97,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 4)
+offset_transform_position = Vector2(0, -4)
 theme_override_fonts/font = ExtResource("6_v5sw5")
 theme_override_font_sizes/font_size = 24
 text = "Strength"
@@ -184,7 +184,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="DragBorders" type="Control" parent="." unique_id=1858617193]
-visible = false
 layout_mode = 1
 anchor_top = -0.020833334
 anchor_right = 1.0
@@ -232,12 +231,14 @@ mouse_filter = 2
 texture = ExtResource("9_akjod")
 
 [node name="StatReplacement" type="Control" parent="." unique_id=1991748357]
+visible = false
 layout_mode = 1
-anchors_preset = 15
+anchor_top = -0.034722224
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="BG" type="TextureRect" parent="StatReplacement" unique_id=1097167581]
 texture_filter = 1
@@ -610,11 +611,14 @@ color = Color(1, 1, 1, 0)
 metadata/_edit_use_anchors_ = true
 
 [node name="HoverHints" type="Control" parent="." unique_id=266524606]
+z_index = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 grow_horizontal = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -10)
 mouse_filter = 2
 
 [node name="AlreadyOccupiedHint" type="Control" parent="HoverHints" unique_id=2134895470]

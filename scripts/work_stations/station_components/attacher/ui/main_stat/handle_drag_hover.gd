@@ -9,7 +9,7 @@ extends Node
 @onready var drag_invalid_border: TextureRect = $"../DragBorders/DragInvalidBorder"
 
 # replacement
-@onready var replacement_drag_invalid_border: TextureRect = $"../StatReplacement/Borders/DragInvalidBorder"
+@onready var replacement_drag_invalid_border: TextureRect =$"../StatReplacement/Borders/DragInvalidBorder"
 
 # hints
 @onready var stat_unable_to_drag_hint: Control = $"../HoverHints/StatUnableToDragHint"

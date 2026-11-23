@@ -15,13 +15,17 @@ load_path = "res://.godot/imported/stat_jar_item_bg_2.png-c68eec744904f09ac72eb1
 load_path = "res://.godot/imported/dragging_border.png-62a8b6211261df1cd08f5cb467818fd4.ctex"
 
 [node name="DragStatJarItem" type="Control" unique_id=1829644630]
+custom_minimum_size = Vector2(237, 81)
 layout_mode = 3
-anchors_preset = 0
+anchor_top = -0.0018333335
+anchor_right = 0.18400002
+anchor_bottom = 0.11116668
 offset_left = -1.0
-offset_top = -4.0
-offset_right = -1.0
-offset_bottom = -4.0
+offset_top = 0.32000017
+offset_right = 0.47998047
+offset_bottom = -0.040008545
 script = ExtResource("1_imlap")
+metadata/_edit_use_anchors_ = true
 
 [node name="DisplayStatJarItem" type="Node" parent="." unique_id=141420734]
 script = ExtResource("1_qy1jh")
@@ -31,55 +35,73 @@ script = ExtResource("3_3imvs")
 
 [node name="DisplayBG" type="TextureRect" parent="." unique_id=291266478]
 texture_filter = 1
-layout_mode = 0
-offset_top = 3.0
-offset_right = 237.0
-offset_bottom = 84.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_neighbor_right = NodePath("../DeleteBtn")
 focus_mode = 2
 mouse_filter = 0
 texture = SubResource("CompressedTexture2D_p50fw")
 expand_mode = 1
 
-[node name="Stat" type="Control" parent="." unique_id=1447885755]
-anchors_preset = 0
-offset_left = -18.0
-offset_top = -13.0
-offset_right = 22.0
-offset_bottom = 27.0
+[node name="StatVBox" type="VBoxContainer" parent="." unique_id=1345927196]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025316456
+anchor_top = 0.074
+anchor_right = 0.9743165
+anchor_bottom = 0.901
+offset_left = 1.0
+offset_top = 0.006000042
+offset_right = 0.08699036
+offset_bottom = 0.018997192
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 mouse_filter = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="CleanBar" type="TextureProgressBar" parent="Stat" unique_id=1062411916]
+[node name="CleanBar" type="TextureProgressBar" parent="StatVBox" unique_id=1733380798]
 texture_filter = 1
-layout_mode = 0
-offset_left = 24.0
-offset_top = 24.0
-offset_right = 248.0
-offset_bottom = 64.0
+custom_minimum_size = Vector2(224, 32)
+layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 2
 value = 75.0
+nine_patch_stretch = true
 texture_under = ExtResource("2_qy1jh")
 texture_progress = ExtResource("3_imlap")
 
-[node name="DefectBar" type="TextureProgressBar" parent="Stat" unique_id=2081908252]
+[node name="DefectBar" type="TextureProgressBar" parent="StatVBox" unique_id=1341225024]
 texture_filter = 1
-layout_mode = 0
-offset_left = 24.0
-offset_top = 64.0
-offset_right = 248.0
-offset_bottom = 88.0
+custom_minimum_size = Vector2(224, 24)
+layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 2
 value = 50.0
+nine_patch_stretch = true
 texture_under = ExtResource("4_3imvs")
 texture_progress = ExtResource("5_1duaq")
 
 [node name="DraggingBorder" type="TextureRect" parent="." unique_id=926039288]
 texture_filter = 1
-layout_mode = 0
-offset_left = -3.0
-offset_top = 1.0
-offset_right = 240.0
-offset_bottom = 86.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.013
+anchor_top = -0.012
+anchor_right = 1.0126582
+anchor_bottom = 1.0250001
+offset_left = 0.08100009
+offset_top = -0.027999997
+offset_bottom = -0.025009155
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("CompressedTexture2D_1f1mj")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true

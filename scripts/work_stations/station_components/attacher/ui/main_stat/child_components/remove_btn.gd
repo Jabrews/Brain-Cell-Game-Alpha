@@ -4,7 +4,7 @@ extends Control
 @onready var btn_bg : TextureRect = $BtnBG
 @onready var hover_border : TextureRect = $HoverBorder
 @onready var remove_hint : Control = $RemoveHint
-@onready var parent_main_stat : Control = $"../.."
+@onready var parent_main_stat : Control =$"../../../.."
 
 var hovered : bool = false
 

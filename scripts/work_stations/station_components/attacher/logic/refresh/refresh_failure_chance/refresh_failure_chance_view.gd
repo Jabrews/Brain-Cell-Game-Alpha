@@ -2,34 +2,34 @@ extends Node
 
 # componets
 @onready var parent_station_attacher : Node = $"../../.."
-@onready var failure_chance_view : Control = $"../../../AttacherUI/StatMainView/FailureChanceView"
+@onready var failure_chance_view : Control = $"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView"
 @onready var refresh_total_failure_chance : Node = $RefreshTotalFailureChance
 
 ## hint components
 # penality
-@onready var penality_chance_increase_labels: Label = $"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/Penality/PenalityLabel"
+@onready var penality_chance_increase_label : Label = $"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/Penality/PenalityLabel"
 # life span
-@onready var lifespan_chance_increase_label : Label = $"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/LifeSpanDanger/FailureChance"
+@onready var lifespan_chance_increase_label : Label = $"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/LifeSpanDanger/FailureChance"
 # stats
 @onready var stat_chance_increase_labels : Array[Label] = [
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength/FailureChance",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence/FailureChance",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community/FailureChance"
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Strength/Content/FailureChance",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Intelligence/Content/FailureChance",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Community/Content/FailureChance",
 ]
 @onready var stat_pots : Array[TextureRect] = [
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Strength/Pot",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Intelligence/Pot",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/StatDanger/Community/Pot"
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Strength/Content/Pot",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Intelligence/Content/Pot",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Community/Content/Pot",
 ]
-@onready var stat_hidden : Array[Sprite2D] = [
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats/StrengthHide",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats/IntelligenceHide",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/HiddenStats/CommunityHide"
+@onready var stat_hidden : Array[TextureRect] = [
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Strength/HiddenRect",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Intelligence/HiddenRect",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Community/HiddenRect",
 ]
-@onready var stat_disabled : Array[Control] = [
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Strength",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Intelligence",
-	$"../../../AttacherUI/StatMainView/FailureChanceView/FailureChanceHint/OffDisableLabels/Community"
+@onready var off_parents : Array[Control] = [
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Strength/OffParent",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Intelligence/OffParent",
+	$"../../../AttacherUI/Content/StatMainView/BottomSectionHBox/FailureChanceView/HintParent/FailureChanceHint/Content/TopDangerParent/StatDanger/Community/OffParent",
 ]
 
 const STAT_TYPES: Array[String] = [
@@ -63,7 +63,7 @@ func _refresh() -> void:
 	var penalties: Dictionary[String, bool] = GLAttacherComponentBus.main_stat_replacement_failure_penality
 	var penalty_increase: int = GAMEFailureChance.attacher_helper._get_total_failure_penality(penalties)
 
-	penality_chance_increase_labels.text = "(+" + str(penalty_increase) + "%)"
+	penality_chance_increase_label.text = "(+" + str(penalty_increase) + "%)"
 
 	# Lifespan
 	var lifespan_increase: int = GAMEFailureChance.attacher_helper._evaluate_lifespan(loaded_cell.life_span)
@@ -115,9 +115,9 @@ func display_failure_stats(cell: BrainCell) -> void:
 		pot.material.set_shader_parameter("secondary_value", secondary_defect_value)
 
 		# Hidden stat
-		var hidden_sprite: Sprite2D = stat_hidden[i]
+		var hidden_sprite: TextureRect = stat_hidden[i]
 		hidden_sprite.visible = cell_stat.hidden
 
 		# Disabled stat
-		var disabled_control: Control = stat_disabled[i]
-		disabled_control.visible = not cell_stat.enabled
+		var off_parent : Control = off_parents[i]
+		off_parent.visible = not cell_stat.enabled

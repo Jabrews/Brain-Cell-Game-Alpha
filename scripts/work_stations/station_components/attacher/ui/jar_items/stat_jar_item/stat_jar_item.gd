@@ -4,9 +4,9 @@ extends Control
 @onready var bg: TextureRect = $BG
 @onready var hover_border: TextureRect = $OutsideBorders/HoverBorder
 @onready var dragging_border: TextureRect = $OutsideBorders/DraggingBorder
-@onready var delete_btn: Control = $DeleteBtn
+@onready var delete_btn: Control = $ContentVBox/DeleteBtnParent/DeleteBtn
 @onready var display_stat_jar_item: Node = $DisplayStatJarItem
-@onready var current_placed_stat_label : Label = $CurrentPlacedStatLabel
+@onready var current_placed_stat_label : Label = $PlacedLabelParent/CurrentPlacedStatLabel
 
 # used components
 @onready var on_main_stat_border: TextureRect = $InsideBorders/OnMainStatBorder

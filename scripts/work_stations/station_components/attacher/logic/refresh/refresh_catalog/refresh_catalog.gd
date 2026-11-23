@@ -5,8 +5,8 @@ extends Node
 @onready var stat_jar_item_p_s: PackedScene = preload("res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn")
 
 # components
-@onready var parent_grid_container: GridContainer = $"../../../AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
-@onready var no_jar_items_found_label : Label = $"../../../AttacherUI/JarItemCatalog/NoJarItemsFoundLabel"
+@onready var catalog_parent : VBoxContainer= $"../../../AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent"
+@onready var no_jar_items_found_label : Label = $"../../../AttacherUI/Content/JarItemCatalog/NoJarItemsFoundLabel"
 
 # helper components
 @onready var sort_used_jar_items: Node = $SortUsedJarItems
@@ -15,7 +15,7 @@ extends Node
 func _refresh() -> void:
 
 	# clear catalog
-	for jar_item: Control in parent_grid_container.get_children():
+	for jar_item: Control in catalog_parent.get_children():
 		jar_item.queue_free()
 
 	# sort jar items
@@ -55,7 +55,7 @@ func _refresh() -> void:
 				push_error("Unable to create catalog jar item of type: ", jar_item.item_type)
 				continue
 
-		parent_grid_container.add_child(jar_item_instance)
+		catalog_parent.add_child(jar_item_instance)
 		jar_item_instance._start(jar_item)
 
 		# mark used items

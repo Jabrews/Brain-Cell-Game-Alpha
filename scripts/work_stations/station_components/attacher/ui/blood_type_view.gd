@@ -3,7 +3,7 @@ extends Node
 # components
 @onready var bg : ColorRect = $BG
 @onready var hover_bg : ColorRect = $HoverBG
-@onready var hint_parent : Control = $BloodTypeHint
+@onready var hint_parent : Control = $HintParent
 
 func _ready() -> void:
 	bg.connect('mouse_entered', _handle_mouse_entered)

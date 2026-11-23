@@ -1,27 +1,27 @@
 extends Node
 
 # components
-@onready var mock_cell_entry_parent : Control = $"../MockCellEntry"
-@onready var cell_name_label : Label = $"../MockCellEntry/CellName"
+@onready var mock_cell_entry_parent : Control =$"../MockCellEntryParent"
+@onready var cell_name_label : Label = $"../MockCellEntryParent/MarginContainer/ContentVBox/CellName"
 @onready var clean_bars : Array[TextureProgressBar] = [
-	$"../MockCellEntry/StatDisplay/Strength/CleanBar",
-	$"../MockCellEntry/StatDisplay/Intelligence/CleanBar",
-	$"../MockCellEntry/StatDisplay/Community/CleanBar"
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Strength/StatVBox/CleanBar",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Intelligence/StatVBox/CleanBar",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Community/StatVBox/CleanBar",
 ]
 @onready var defect_bars : Array[TextureProgressBar] = [
-	$"../MockCellEntry/StatDisplay/Strength/DefectBar",
-	$"../MockCellEntry/StatDisplay/Intelligence/DefectBar",
-	$"../MockCellEntry/StatDisplay/Community/DefectBar"
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Strength/StatVBox/DefectBar",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Intelligence/StatVBox/DefectBar",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Community/StatVBox/DefectBar",
 ]
 @onready var off_parents : Array[Control] = [
-	$"../MockCellEntry/StatDisplay/Strength/Off",
-	$"../MockCellEntry/StatDisplay/Intelligence/Off",
-	$"../MockCellEntry/StatDisplay/Community/Off"
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Strength/Off",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Intelligence/Off",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Community/Off",
 ]
-@onready var hidden_sprites :  Array[Sprite2D] = [
-	$"../MockCellEntry/StatDisplay/Strength/Hide",
-	$"../MockCellEntry/StatDisplay/Intelligence/Hide",
-	$"../MockCellEntry/StatDisplay/Community/Hide"
+@onready var hidden_rects :  Array[TextureRect] = [
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Strength/Hide",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Intelligence/Hide",
+	$"../MockCellEntryParent/MarginContainer/ContentVBox/StatDisplayVBox/Community/Hide",	
 ]
 
 
@@ -51,7 +51,7 @@ func load_stat_bars(cell : BrainCell) :
 		var clean_bar : TextureProgressBar = clean_bars[index]
 		var defect_bar : TextureProgressBar = defect_bars[index]
 		var off_parent : Control =  off_parents[index]
-		var hidden_sprite : Sprite2D = hidden_sprites[index]
+		var hidden_rect : TextureRect = hidden_rects[index]
 		
 		var cell_stat : BrainCellStat = cell.get_stat(stat)
 		
@@ -61,9 +61,9 @@ func load_stat_bars(cell : BrainCell) :
 			off_parent.visible = false
 		
 		if cell_stat.hidden :
-			hidden_sprite.visible = true
+			hidden_rect.visible = true
 		else :
-			hidden_sprite.visible = false
+			hidden_rect.visible = false
 		
 		var max_stat : float = IVCellCreator.max_stat_value
 		

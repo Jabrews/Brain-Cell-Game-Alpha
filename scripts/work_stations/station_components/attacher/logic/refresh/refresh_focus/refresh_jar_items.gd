@@ -2,18 +2,18 @@
 extends Node
 
 # components
-@onready var grid_container_parent: GridContainer = $"../../../../AttacherUI/JarItemCatalog/CenterContainer/ScrollContainer/GridContainerLeft"
+@onready var catalog_parent : VBoxContainer = $"../../../../AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent"
 @onready var parent_attacher: Node3D = $"../../../.."
 
 # refresh up, down
-@onready var exit_btn: ColorRect = $"../../../../AttacherUI/ExitHeader/ExitBtn"
-@onready var confirm_btn: ColorRect = $"../../../../AttacherUI/InteractFooter/ConfirmBtn/BtnBg"
+@onready var exit_btn: AspectRatioContainer = $"../../../../AttacherUI/Content/ExitHeader/HBoxContainer/ExitBtn"
+@onready var confirm_btn: Control = $"../../../../AttacherUI/Content/InteractFooter/ButtonsHBox/ConfirmBtn"
 
 # refresh right
-@onready var attacher_box_display_bg : TextureRect = $"../../../../AttacherUI/StatMainView/AttacherBox/DisplayBackground"
-@onready var strength_default_detect_rect: ColorRect = $"../../../../AttacherUI/StatMainView/Stats/Strength/DefaultDetectRect"
-@onready var strength_replacement_failure_rate_bg: ColorRect = $"../../../../AttacherUI/StatMainView/Stats/Strength/StatReplacement/PenalityFailureRate/BG"
-@onready var strength_replacement_remove_btn_bg: TextureRect = $"../../../../AttacherUI/StatMainView/Stats/Strength/StatReplacement/RemoveBtn/BtnBG"
+@onready var attacher_box_display_bg : TextureRect =  $"../../../../AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox/DisplayBackground"
+@onready var strength_default_detect_rect: ColorRect = $"../../../../AttacherUI/Content/StatMainView/Stats/StatsVBox/Strength/DefaultDetectRect"
+@onready var strength_replacement_failure_rate_bg: ColorRect = $"../../../../AttacherUI/Content/StatMainView/Stats/StatsVBox/Strength/StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate/BG"
+@onready var strength_replacement_remove_btn_bg: TextureRect = $"../../../../AttacherUI/Content/StatMainView/Stats/StatsVBox/Strength/StatReplacement/ReplacementInfoContainer/Header/RemoveBtn/BtnBG"
 
 
 func _refresh() -> void:
@@ -27,7 +27,7 @@ func _refresh_up_down() -> void:
 	var available_items: Array[Node] = []
 
 	# Collect only unused jar items
-	for jar_item_parent in grid_container_parent.get_children():
+	for jar_item_parent in catalog_parent.get_children():
 		var jar_item_bg: TextureRect = jar_item_parent.bg
 		var delete_btn_bg: Control = jar_item_parent.delete_btn
 
@@ -114,7 +114,7 @@ func _refresh_left_right() -> void:
 		right_neighbor = strength_default_detect_rect
 
 	# Apply right navigation only to unused delete buttons
-	for jar_item_parent in grid_container_parent.get_children():
+	for jar_item_parent in catalog_parent.get_children():
 		var delete_btn_bg: Control = jar_item_parent.delete_btn
 
 		if jar_item_parent.is_used:

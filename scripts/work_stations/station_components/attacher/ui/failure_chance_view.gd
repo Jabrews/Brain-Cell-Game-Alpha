@@ -3,7 +3,7 @@ extends Node
 # components
 @onready var detect_rect : ColorRect = $DetectRect
 @onready var hover_bg : ColorRect = $HoverBG
-@onready var hint_parent : Control = $FailureChanceHint
+@onready var hint_parent : Control = $HintParent
 
 func _ready() -> void:
 	detect_rect.connect('mouse_entered', _handle_mouse_entered)

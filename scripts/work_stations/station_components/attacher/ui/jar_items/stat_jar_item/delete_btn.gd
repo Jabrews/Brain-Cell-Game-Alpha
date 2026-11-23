@@ -3,23 +3,23 @@ extends Control
 # components
 @onready var delete_btn_bg: ColorRect = $BG
 @onready var hover_border: ColorRect = $HoverBorder
-@onready var delete_hint: Control = $DeleteHint
+@onready var hint_parent : Control = $DeleteHintParent
 # stop focus components
-@onready var parent_bg : TextureRect =$"../BG"
+@onready var parent_bg : TextureRect = $"../../../BG"
 
 
 # parent
-@onready var parent_stat_jar_item: Control = $".."
+@onready var parent_stat_jar_item: Control =$"../../.."
 
 # handlers
-@onready var handle_delete_jar_btn: Node = $"../../../../../../../Logic/BtnHandlers/HandleJarDeleteBtn"
+@onready var handle_delete_jar_btn: Node = $"../../../../../../../../../../Logic/BtnHandlers/HandleJarDeleteBtn"
 
 
 func _ready() -> void:
-	mouse_entered.connect(_update_visuals)
-	mouse_exited.connect(_update_visuals)
-	focus_entered.connect(_update_visuals)
-	focus_exited.connect(_update_visuals)
+	delete_btn_bg.mouse_entered.connect(_update_visuals)
+	delete_btn_bg.mouse_exited.connect(_update_visuals)
+	delete_btn_bg.focus_entered.connect(_update_visuals)
+	delete_btn_bg.focus_exited.connect(_update_visuals)
 
 	_update_visuals()
 
@@ -46,7 +46,7 @@ func _update_visuals() -> void:
 		active = false
 
 	hover_border.visible = active
-	delete_hint.visible = active
+	hint_parent.visible= active
 
 func _handle_btn_pressed() -> void : 
 	

@@ -1,16 +1,17 @@
 extends AspectRatioContainer
 
 # components
-@onready var handle_exit_btn : Node =$"../../../Logic/BtnHandlers/HandleExitBtn"
-@onready var hint_parent : Control = $Hint
+@onready var handle_exit_btn : Node = $"../../../../../Logic/BtnHandlers/HandleExitBtn"
+@onready var hint_parent : Control = $HintParent
+@onready var btn_bg : ColorRect = $BG
 
 var hovered : bool = false
 
 func _ready() -> void:
-	mouse_entered.connect(_handle_mouse_entered)
-	mouse_exited.connect(_handle_mouse_exited)
-	focus_entered.connect(_handle_mouse_entered)
-	focus_exited.connect(_handle_mouse_exited)
+	btn_bg.mouse_entered.connect(_handle_mouse_entered)
+	btn_bg.mouse_exited.connect(_handle_mouse_exited)
+	btn_bg.focus_entered.connect(_handle_mouse_entered)
+	btn_bg.focus_exited.connect(_handle_mouse_exited)
 
 func _process(_delta: float) -> void:
 	if hovered:
@@ -22,12 +23,12 @@ func _process(_delta: float) -> void:
 
 func _handle_mouse_entered() -> void:
 	hovered = true
-	scale = Vector2(1.05, 1.05)
+	btn_bg.scale = Vector2(1.10, 1.10)
 	modulate = Color.LIGHT_GRAY
 	hint_parent.visible = true
 
 func _handle_mouse_exited() -> void:
 	hovered = false
-	scale = Vector2(1.0, 1.0)
+	btn_bg.scale = Vector2(1.0, 1.0)
 	modulate = Color.WHITE
 	hint_parent.visible = false
