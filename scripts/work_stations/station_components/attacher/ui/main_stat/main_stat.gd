@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 # componets
 @onready var default_stat_type_label : Label =$DefaultInfoContainer/StatTypeLabel
@@ -13,6 +13,10 @@ extends Node
 # for detect rect when handling stat_jar_item on drop
 @onready var default_detect_rect : ColorRect =$DefaultDetectRect
 @onready var parent_stat_item_drag_node : Node =$"../../../../../ParentStatItemDragNode"
+
+# penality HACK
+# to lazy to set up var for focus
+@onready var penality_failure_rate_parent : Control = $StatReplacement/ReplacementInfoContainer/Header/PenalityFailureRate
 
 @export var stat_type : String = 'strength'
 
@@ -61,6 +65,10 @@ func _display(loaded_cell : BrainCell) :
 
 	
 func _handle_stat_jar_item_dropped(stat_jar_item : StatJarItem) :
+	
+	# HACK
+	if not visible: 
+		return
 	
 	# cannot load cases, invalid main stat (hidden) or already has replacement
 	if not main_stat_enabled or replacement_stat_jar_item: 

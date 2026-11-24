@@ -5,6 +5,8 @@ extends Control
 @onready var hover_border: TextureRect = $OutsideBorders/HoverBorder
 @onready var dragging_border: TextureRect = $OutsideBorders/DraggingBorder
 @onready var delete_btn: Control = $ContentVBox/DeleteBtnParent/DeleteBtn
+@onready var delete_btn_hint_parent : Control = $ContentVBox/DeleteBtnParent/DeleteBtn/DeleteHintParent
+@onready var delete_btn_bg : ColorRect = $ContentVBox/DeleteBtnParent/DeleteBtn/BG
 @onready var display_stat_jar_item: Node = $DisplayStatJarItem
 
 # placed label stuff
@@ -21,7 +23,7 @@ var dragging: bool = false
 
 
 func _ready() -> void:
-	for control in [bg, delete_btn]:
+	for control in [bg, delete_btn_bg]:
 		control.mouse_entered.connect(_handle_enter)
 		control.mouse_exited.connect(_handle_exit)
 		control.focus_entered.connect(_handle_enter)
@@ -68,7 +70,7 @@ func _item_used() -> void:
 
 
 func _handle_enter() -> void:
-	if is_used or dragging:
+	if dragging : 
 		return
 
 	hover_border.visible = true
@@ -82,10 +84,12 @@ func _check_exit() -> void:
 	if _is_mouse_over(bg) or _is_mouse_over(delete_btn):
 		return
 
-	if bg.has_focus() or delete_btn.has_focus():
+	if bg.has_focus() or delete_btn_bg.has_focus():
 		return
 
 	hover_border.visible = false
+	delete_btn_hint_parent.visible = false
+	
 
 
 func _is_mouse_over(control: Control) -> bool:
@@ -107,7 +111,7 @@ func _can_drag() -> bool:
 	if is_used or dragging:
 		return false
 
-	if _is_mouse_over(delete_btn) or delete_btn.has_focus():
+	if _is_mouse_over(delete_btn_bg) or delete_btn_bg.has_focus():
 		return false
 	
 	if GLAttacherComponentBus.showing_delete_modal : 

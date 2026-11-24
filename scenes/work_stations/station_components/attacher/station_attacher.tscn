@@ -17,6 +17,7 @@
 [ext_resource type="Script" uid="uid://besvdmnr2sx7n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/handle_confirm_btn.gd" id="5_o7iqc"]
 [ext_resource type="Script" uid="uid://dfyytapuktsd4" path="res://scripts/work_stations/station_components/attacher/logic/compute_failure_penality.gd" id="5_pw8sq"]
 [ext_resource type="Script" uid="uid://dwcdimr0gg268" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_main_stats.gd" id="5_rebul"]
+[ext_resource type="Script" uid="uid://djg2tt3r7haky" path="res://scripts/work_stations/station_components/attacher/logic/helper_set_inital_focus.gd" id="5_xrlol"]
 [ext_resource type="Script" uid="uid://2g7fkvldtgrg" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/handle_exit_btn.gd" id="6_eqm75"]
 [ext_resource type="Script" uid="uid://cpoc0i6wwf01c" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_blood_type_view.gd" id="9_13c2h"]
 [ext_resource type="PackedScene" uid="uid://5tj1b8dtcyqo" path="res://scenes/work_stations/station_components/attacher/ui/main_stat.tscn" id="9_etud5"]
@@ -30,11 +31,13 @@
 [ext_resource type="Script" uid="uid://dfj6lkavugomp" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_failure_chance/refresh_total_failure_chance.gd" id="12_huima"]
 [ext_resource type="Script" uid="uid://dh16pbpyp34vb" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/exit_btn/exit_btn.gd" id="13_ape52"]
 [ext_resource type="Script" uid="uid://b0ik3ub2lrkp0" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_confirm_btn.gd" id="13_dv0vc"]
-[ext_resource type="Script" uid="uid://mayn23yousve" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus.gd" id="14_bc6uw"]
+[ext_resource type="Script" uid="uid://mayn23yousve" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/refresh_focus.gd" id="14_bc6uw"]
 [ext_resource type="Script" uid="uid://dtyh2bmfgqkyg" path="res://scripts/work_stations/station_components/attacher/ui/failure_chance_view.gd" id="14_h8037"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="14_jqydl"]
 [ext_resource type="Texture2D" uid="uid://coyv70bbxduvm" path="res://models/breeding_screen/defect_pot.png" id="15_etud5"]
 [ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="16_h8037"]
+[ext_resource type="Script" uid="uid://fj25r11s5iej" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/util/get_orderd_jar_item.gd" id="17_3rwfr"]
+[ext_resource type="Script" uid="uid://cqj7jc1infd0g" path="res://scripts/work_stations/station_components/attacher/logic/refresh/refresh_focus/util/get_main_stat_focus_target.gd" id="17_523x5"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="17_i7vey"]
 [ext_resource type="Script" uid="uid://bkgbvjcffiv2i" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/init/init_fail_attach.gd" id="17_wt6cs"]
 [ext_resource type="Script" uid="uid://bcyf4rqpgwy0n" path="res://scripts/work_stations/station_components/attacher/logic/btn_handlers/confirm_btn/init/init_success_attach.gd" id="18_blnlb"]
@@ -254,6 +257,9 @@ script = ExtResource("3_13c2h")
 process_mode = 3
 script = ExtResource("2_hnska")
 
+[node name="HelperSetInitalFocus" type="Node" parent="Logic" unique_id=1770328031]
+script = ExtResource("5_xrlol")
+
 [node name="ComputeFailurePenality" type="Node" parent="Logic" unique_id=569670349]
 script = ExtResource("5_pw8sq")
 
@@ -285,6 +291,12 @@ script = ExtResource("13_dv0vc")
 
 [node name="RefreshFocus" type="Node" parent="Logic/RefreshUi" unique_id=1417051456]
 script = ExtResource("14_bc6uw")
+
+[node name="GetOrderedJarItem" type="Node" parent="Logic/RefreshUi/RefreshFocus" unique_id=632289134]
+script = ExtResource("17_3rwfr")
+
+[node name="GetMainStatFocusTarget" type="Node" parent="Logic/RefreshUi/RefreshFocus" unique_id=1402933782]
+script = ExtResource("17_523x5")
 
 [node name="LightManager" type="Node" parent="Logic" unique_id=12700507]
 script = ExtResource("5_gk0sq")
@@ -532,6 +544,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 mouse_filter = 2
 metadata/_edit_use_anchors_ = true
 
@@ -1717,6 +1730,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 focus_neighbor_left = NodePath(".")
 focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath("../../ConfirmBtn/BG")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
@@ -1749,8 +1763,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="BG" type="ColorRect" parent="AttacherUI/Content/DeleteModal/ModalParent/ContentVBox/ButtonHBox/ConfirmBtn" unique_id=1842753118]
 layout_mode = 2
-focus_neighbor_left = NodePath(".")
+focus_neighbor_left = NodePath("../../DenyBtn/BG")
 focus_neighbor_top = NodePath(".")
+focus_neighbor_right = NodePath(".")
 focus_neighbor_bottom = NodePath(".")
 focus_next = NodePath(".")
 focus_previous = NodePath(".")
@@ -1766,4 +1781,5 @@ text = "confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[editable path="AttacherUI/Content/StatMainView/Stats/StatsVBox/Strength"]
 [editable path="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox"]

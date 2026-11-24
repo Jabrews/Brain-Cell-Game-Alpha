@@ -7,6 +7,7 @@ extends Node
 @onready var attacher_ui_parent : Control =$"../../AttacherUI"
 # helper components
 @onready var handle_jar_delete_btn : Node = $"../BtnHandlers/HandleJarDeleteBtn"
+@onready var helper_set_inital_focus : Node = $"../HelperSetInitalFocus"
 
 var showing_delete_modal : bool = false
 
@@ -28,7 +29,10 @@ func _toggle_modal(toggle_value: bool) -> void:
 		confirm_btn_bg.focus_mode = Control.FOCUS_NONE
 		deny_btn_bg.focus_mode = Control.FOCUS_NONE
 		delete_modal.focus_mode = Control.FOCUS_NONE
-		attacher_ui_parent.grab_focus()
+		
+		# set focus to default		
+		if GAMEInputTypeDetector.input_type == 'controller' :
+			helper_set_inital_focus._set_inital()
 		
 	# MOUSE HACK
 	var window_size = get_viewport().get_visible_rect().size

@@ -1,5 +1,7 @@
 extends Node
 
+# helper component
+@onready var helper_set_inital_focus : Node = $"../HelperSetInitalFocus"
 # refresh components
 @onready var refresh_catalog : Node = $RefreshCatalog
 @onready var refresh_main_stats : Node = $RefreshMainStats
@@ -17,6 +19,7 @@ func _ready() -> void:
 
 func _refresh() :
 	
+	
 	# hacky but works
 	if parent_station_attacher.failure_rate_enabled :
 		compute_failure_penality._compute()
@@ -28,3 +31,6 @@ func _refresh() :
 	refresh_confirm_btn._refresh()
 	
 	refresh_focus._refresh()
+	
+	helper_set_inital_focus._set_inital()
+	

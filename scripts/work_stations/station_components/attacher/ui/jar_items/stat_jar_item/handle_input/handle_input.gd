@@ -14,15 +14,19 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	
 	if parent_jar_item.is_used:
 		return
 
 	if parent_jar_item._can_drag():
+		
 		if Input.is_action_just_pressed("attack") or Input.is_action_just_pressed("interact"):
 			holding = true
 			holding_detect_timer.start()
 
 	if holding:
+		
+		
 		if Input.is_action_just_released("attack") or Input.is_action_just_released("interact"):
 			_reset_hold()
 

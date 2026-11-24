@@ -29,4 +29,5 @@ signal hologram_show_result(success : bool)
 
 signal play_sound(sound_type : String)
 
+# for grabbing inital focus, after fail drop for instance
 signal reset_ui_focus()

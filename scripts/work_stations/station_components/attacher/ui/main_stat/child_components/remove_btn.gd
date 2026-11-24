@@ -42,8 +42,6 @@ func handle_button_pressed()  :
 
 func _handle_mouse_entered() :
 	
-	print('yo')
-	
 	hover_border.visible = true
 	remove_hint.visible = true
 	

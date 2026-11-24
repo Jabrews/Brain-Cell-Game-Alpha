@@ -34,13 +34,14 @@ func _process(_delta: float) -> void:
 
 
 func _is_active() -> bool:
-	return get_global_rect().has_point(get_global_mouse_position()) or has_focus()
-
+	return (
+		get_global_rect().has_point(get_global_mouse_position())
+		or delete_btn_bg.has_focus()
+	)
 
 func _update_visuals() -> void:
 	
 	var active: bool = _is_active()
-	
 
 	if parent_stat_jar_item.is_used or parent_stat_jar_item.dragging:
 		active = false
@@ -59,7 +60,7 @@ func _handle_btn_pressed() -> void :
 	
 	await get_tree().process_frame
 	
-	self.release_focus()
+	delete_btn_bg.release_focus()
 	parent_bg.release_focus()
 	
 	_update_visuals()

@@ -2,18 +2,17 @@ extends Node
 
 # components
 @onready var attacher_ui : Control = $"../../AttacherUI"
-# TODO
-@onready var attacher_ui_content : Control = $"../../AttacherUI/Content"
-
+@onready var helper_set_inital_focus : Node = $"../HelperSetInitalFocus"
 @onready var delete_modal_manager : Node = $"../DeleteModalManager"
 @onready var refresh_ui : Node = $"../RefreshUi"
 @onready var catalog_parent : VBoxContainer = $"../../AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent"
+
+
+
 var showing_attacher_ui : bool = false
 
 func _ready() -> void:
 	attacher_ui.visible = false
-	
-	GLAttacherComponentBus.connect('reset_ui_focus', _handle_reset_ui_focus)
 
 func _process(_delta: float) -> void:
 	if attacher_ui: 
@@ -55,16 +54,11 @@ func toggle_display_lock(toggle_value: bool) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().paused = true
 		GLPlayerState.emit_signal('lock_player_position', true)
-		attacher_ui_content.grab_focus()
+		
+		await get_tree().process_frame
 
 	else:
 		GLHideUiBus.emit_signal('toggle_hide_ui', false)
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		get_tree().paused = false
 		GLPlayerState.emit_signal('lock_player_position', false)
-
-func _handle_reset_ui_focus() :
-	await get_tree().process_frame
-	
-	if attacher_ui.visible : 
-		attacher_ui.grab_focus()
