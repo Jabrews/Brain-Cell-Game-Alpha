@@ -34,13 +34,7 @@ func _ready() -> void:
 		defect_bar.material = defect_bar.material.duplicate()
 
 
-func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, int]:
-
-	var defect_amount_to_increase: Dictionary[String, int] = {
-		'strength': 0,
-		'intelligence': 0,
-		'community': 0,
-	}
+func _display(old_cell: BrainCell, new_cell: BrainCell) :
 
 	for curr_index in range(stats.size()):
 
@@ -55,14 +49,15 @@ func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, i
 		var defect_bar: TextureRect = defect_bars[curr_index]
 		var hidden_rect: TextureRect = hidden_rects[curr_index]
 
-		# calculate defect difference
-		var defect_increase: int = int(new_stat.defect - old_stat.defect)
+
 
 		# preserve container layout
 		stat_parent.visible = true
 		clean_bar.visible = true
 		defect_bar.visible = true
 		hidden_rect.visible = true
+		
+		var defect_increase: int = int(new_stat.defect - old_stat.defect)
 
 		# set parent opacity based on defect increase
 		if defect_increase <= 0:
@@ -91,8 +86,3 @@ func _evaluate(new_cell: BrainCell, old_cell: BrainCell) -> Dictionary[String, i
 			"new_defect_value",
 			new_stat.defect / max_value
 		)
-
-		# store amount to animate
-		defect_amount_to_increase[stat_type] = maxi(defect_increase, 0)
-
-	return defect_amount_to_increase

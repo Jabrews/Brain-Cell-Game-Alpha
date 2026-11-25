@@ -33,7 +33,7 @@ extends Node
 
 
 # components
-@onready var parent_simulate: Control = $".."
+@onready var parent_simulation : Control = $".."
 @onready var increment_stat_timer: Timer = $IncrementStatTimer
 
 # settings
@@ -237,7 +237,7 @@ func _finish_after_reveals(session: int) -> void:
 	if session != display_session:
 		return
 
-	parent_simulate._end()
+	parent_simulation._handle_increment_cinnamatic_ended()
 
 
 func _reset_rects() -> void:

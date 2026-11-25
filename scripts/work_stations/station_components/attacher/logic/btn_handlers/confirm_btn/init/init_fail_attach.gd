@@ -88,13 +88,6 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	# Update collected cell
 	GLCellManagerBus.emit_signal('collected_cell_changed', new_cell)
 
-	# reset main stats and penality stat
-	for key in GLAttacherComponentBus.main_stat_replacement_state:
-		GLAttacherComponentBus.main_stat_replacement_state[key] = null
-		
-	for key in GLAttacherComponentBus.main_stat_replacement_failure_penality:
-		GLAttacherComponentBus.main_stat_replacement_failure_penality[key] = false
-	
 	# refresh. I dont want to show anything
 	refresh_ui._refresh()
 
@@ -107,6 +100,14 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	
 
 func _handle_simulation_ended() -> void:
+	
+	# reset main stats and penality stat
+	for key in GLAttacherComponentBus.main_stat_replacement_state:
+		GLAttacherComponentBus.main_stat_replacement_state[key] = null
+		
+	for key in GLAttacherComponentBus.main_stat_replacement_failure_penality:
+		GLAttacherComponentBus.main_stat_replacement_failure_penality[key] = false
+	
 	handle_display_ui._toggle_display(false)
 	fail_particles.restart()
 

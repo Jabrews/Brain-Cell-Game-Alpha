@@ -42,7 +42,10 @@ func _start(stat_jar_item: StatJarItem) -> void:
 	
 	is_used = false
 
-	on_main_stat_border.visible = false
+	# hack
+	if on_main_stat_border :
+		on_main_stat_border.visible = false
+		
 	display_stat_jar_item._display(stat_jar_item)
 
 

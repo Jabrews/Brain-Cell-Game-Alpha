@@ -1,21 +1,23 @@
 [gd_scene format=3 uid="uid://dliuf44b813ax"]
 
 [ext_resource type="Script" uid="uid://cmeksauwgcgkp" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/simulate_stat_defect_increase.gd" id="1_d1lmi"]
-[ext_resource type="Script" uid="uid://p6xldeccrvsk" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/evaluate_inital.gd" id="3_d1lmi"]
+[ext_resource type="Script" uid="uid://p6xldeccrvsk" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/display_initial_main_stats.gd" id="3_d1lmi"]
+[ext_resource type="Script" uid="uid://cwpuok2mqokvp" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/display_replacement_invalid.gd" id="3_t1ueb"]
 [ext_resource type="Script" uid="uid://bo7na5qry3pno" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/failure_parents/default_failed_parent.gd" id="4_4mx81"]
 [ext_resource type="Script" uid="uid://b7wtuarpupnuo" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/display_increment_defect.gd" id="4_wbdv3"]
 [ext_resource type="Texture2D" uid="uid://b54pc0t3pgbl4" path="res://models/screens/progress_bar/progress_bar_under.png" id="5_42q2l"]
+[ext_resource type="Script" uid="uid://dnss3c1l1pwoo" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/get_amount_to_increase.gd" id="5_ipbvd"]
 [ext_resource type="Texture2D" uid="uid://crgcramouxxsm" path="res://models/screens/progress_bar/progress_bar_over.png" id="6_k2tfl"]
 [ext_resource type="Texture2D" uid="uid://bim38pikr7k8y" path="res://models/screens/infection_bar/progress_bar_under.png" id="7_f4i3p"]
 [ext_resource type="Script" uid="uid://cmyoi1eky7jv2" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/failure_parents/extreme_failed_parent.gd" id="8_qlcrg"]
 [ext_resource type="Shader" uid="uid://boogud2qfndqo" path="res://scripts/work_stations/station_components/attacher/ui/simulate_stat_defect_increase/shaders/appear_and_shimmer.gdshader" id="9_42q2l"]
 [ext_resource type="Texture2D" uid="uid://d2we6qopwf1ow" path="res://models/flesh_bug_motif/flesh_bug_motif.png" id="10_qlcrg"]
-[ext_resource type="Shader" uid="uid://dvkc5ho677q6t" path="res://scripts/shaders/hidden_stat_distort.gdshader" id="10_wbdv3"]
 [ext_resource type="Texture2D" uid="uid://cj7enqgj3gmqe" path="res://models/screens/hidden_bar/hidden_stat_noise_texture.png" id="11_3e1tp"]
 [ext_resource type="Texture2D" uid="uid://bvfex8h6dqc3h" path="res://models/flesh_bug_motif/flesh_bug_noise.png" id="11_t1ueb"]
 [ext_resource type="Texture2D" uid="uid://dmgtlgx4x3y3c" path="res://models/flesh_bug_motif/bug_symbol_1.png" id="12_ipbvd"]
 [ext_resource type="Shader" uid="uid://bsunidi6h5671" path="res://scripts/work_stations/station_components/attacher/ui/shaders/blink_shader.gdshader" id="12_xm1dx"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="13_42q2l"]
+[ext_resource type="Texture2D" uid="uid://dgpsdn572nveo" path="res://models/screens/infection_bar/progress_bar_over.png" id="13_t1ueb"]
 [ext_resource type="FontFile" uid="uid://calypvjx7iqcc" path="res://models/fonts/font_1.ttf" id="14_42q2l"]
 [ext_resource type="Texture2D" uid="uid://cuwaohg6yblt5" path="res://models/failure_chance/breeder_failure_chance.png" id="15_k2tfl"]
 [ext_resource type="Shader" uid="uid://065in37icekp" path="res://scripts/work_stations/station_components/cell_breeding/ui/cell_loader/breeder_view/breeding_defect_bar.gdshader" id="20_4mx81"]
@@ -33,8 +35,8 @@ shader_parameter/overlap_opacity = 0.3
 shader_parameter/flash_speed = 3.0
 shader_parameter/edge_padding = 5.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5il4"]
-shader = ExtResource("10_wbdv3")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd53j"]
+shader = ExtResource("20_qlcrg")
 shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
 shader_parameter/duration = 2.0
 shader_parameter/distortion_strength = 0.02
@@ -42,7 +44,7 @@ shader_parameter/distortion_speed = 2.0
 shader_parameter/noise_texture = ExtResource("11_3e1tp")
 shader_parameter/noise_scale = 1.0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tqrwa"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4mx81"]
 load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_f4i3p"]
@@ -68,18 +70,6 @@ shader_parameter/low_opacity = 0.2
 shader_parameter/high_opacity = 1.0
 shader_parameter/blink_speed = 2.00000009174012
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xd53j"]
-shader = ExtResource("20_qlcrg")
-shader_parameter/final_color = Color(1, 0.5259075, 0.46041763, 1)
-shader_parameter/duration = 2.0
-shader_parameter/distortion_strength = 0.02
-shader_parameter/distortion_speed = 2.0
-shader_parameter/noise_texture = ExtResource("11_3e1tp")
-shader_parameter/noise_scale = 1.0
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4mx81"]
-load_path = "res://.godot/imported/stat_hider_1.png-f385328beed8c33849d5cc569948c9f9.ctex"
-
 [node name="SimulateStatDefectIncrease" type="Control" unique_id=850044189]
 process_mode = 3
 custom_minimum_size = Vector2(1280, 720)
@@ -93,14 +83,22 @@ grow_vertical = 2
 script = ExtResource("1_d1lmi")
 metadata/_edit_use_anchors_ = true
 
-[node name="EvaluateInital" type="Node" parent="." unique_id=199764143]
+[node name="DisplayInitalMainStats" type="Node" parent="." unique_id=199764143]
 script = ExtResource("3_d1lmi")
+
+[node name="DisplayReplacementsInvalid" type="Node" parent="." unique_id=1205369486]
+script = ExtResource("3_t1ueb")
 
 [node name="DisplayIncrementDefect" type="Node" parent="." unique_id=1075210140]
 script = ExtResource("4_wbdv3")
 increment_interval = 0.05
 
 [node name="IncrementStatTimer" type="Timer" parent="DisplayIncrementDefect" unique_id=1951111409]
+
+[node name="Util" type="Node" parent="." unique_id=1535260053]
+
+[node name="GetAmountToIncrease" type="Node" parent="Util" unique_id=505307906]
+script = ExtResource("5_ipbvd")
 
 [node name="Content" type="Control" parent="." unique_id=1432708026]
 custom_minimum_size = Vector2(896, 616)
@@ -178,7 +176,6 @@ offset_bottom = -0.15999985
 color = Color(0.07058824, 0, 0, 1)
 
 [node name="DefaultFailedParent" type="Control" parent="Content" unique_id=428762034]
-visible = false
 layout_mode = 1
 anchor_left = 0.01875
 anchor_top = 0.08888889
@@ -243,7 +240,6 @@ stats"
 horizontal_alignment = 1
 
 [node name="ExtremeFailedParent" type="Control" parent="Content" unique_id=1524469176]
-visible = false
 layout_mode = 1
 anchor_left = 0.01875
 anchor_top = 0.08888889
@@ -307,497 +303,6 @@ theme_override_font_sizes/font_size = 35
 text = "Increasing Defect 
 On all Stats"
 horizontal_alignment = 1
-
-[node name="StatReplacements" type="VBoxContainer" parent="Content" unique_id=133578604]
-visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.325
-anchor_top = 0.10144927
-anchor_right = 0.9
-anchor_bottom = 0.75555557
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 47
-alignment = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="Strength" type="Control" parent="Content/StatReplacements" unique_id=1806963036]
-custom_minimum_size = Vector2(736, 123)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BG" type="TextureRect" parent="Content/StatReplacements/Strength" unique_id=1606987169]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_p05sl")
-expand_mode = 1
-
-[node name="ReplacementInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Strength" unique_id=167117859]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.008426966
-anchor_top = 0.020833334
-anchor_right = 0.9929775
-anchor_bottom = 0.9583333
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Header" type="Control" parent="Content/StatReplacements/Strength/ReplacementInfoContainer" unique_id=757412401]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="DefaultInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Strength/ReplacementInfoContainer" unique_id=1103410081]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -3.84)
-offset_transform_scale = Vector2(0.95, 1)
-mouse_filter = 2
-
-[node name="CleanBar" type="TextureProgressBar" parent="Content/StatReplacements/Strength/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1874398879]
-texture_filter = 1
-custom_minimum_size = Vector2(650, 40)
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_42q2l")
-texture_progress = ExtResource("6_k2tfl")
-
-[node name="DefectBar" type="TextureRect" parent="Content/StatReplacements/Strength/ReplacementInfoContainer/DefaultInfoContainer" unique_id=214896622]
-material = SubResource("ShaderMaterial_0lu2n")
-custom_minimum_size = Vector2(650, 20)
-layout_mode = 2
-size_flags_vertical = 3
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, 10.795)
-offset_transform_scale = Vector2(1, 0.6)
-offset_transform_pivot = Vector2(0, -49)
-texture = ExtResource("7_f4i3p")
-
-[node name="HiddenRect" type="TextureRect" parent="Content/StatReplacements/Strength" unique_id=411800921]
-visible = false
-texture_filter = 1
-material = SubResource("ShaderMaterial_t5il4")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_tqrwa")
-
-[node name="BurstWarningParent" type="Control" parent="Content/StatReplacements/Strength" unique_id=2079393226]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="WarningBGRect" type="TextureRect" parent="Content/StatReplacements/Strength/BurstWarningParent" unique_id=395416306]
-material = SubResource("ShaderMaterial_p8g4u")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-texture = ExtResource("10_qlcrg")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/StatReplacements/Strength/BurstWarningParent" unique_id=288555036]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FleshBug" type="TextureRect" parent="Content/StatReplacements/Strength/BurstWarningParent/HBoxContainer" unique_id=705944600]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 1
-material = SubResource("ShaderMaterial_f4i3p")
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_ipbvd")
-
-[node name="BurstImminentLabel" type="Label" parent="Content/StatReplacements/Strength/BurstWarningParent/HBoxContainer" unique_id=2031478165]
-visible = false
-material = SubResource("ShaderMaterial_08onx")
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 30
-text = "Transform imminent"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FleshBug2" type="TextureRect" parent="Content/StatReplacements/Strength/BurstWarningParent/HBoxContainer" unique_id=1470986609]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 1
-material = SubResource("ShaderMaterial_f4i3p")
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_ipbvd")
-
-[node name="StatTypeLabel" type="Label" parent="Content/StatReplacements/Strength" unique_id=1802041414]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.011000001
-anchor_top = 0.056
-anchor_right = 0.989
-anchor_bottom = 0.312
-offset_left = -0.09600067
-offset_top = 0.9565201
-offset_right = 0.0960083
-offset_bottom = 0.9565201
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-offset_transform_enabled = true
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 22
-text = "Strength"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Intelligence" type="Control" parent="Content/StatReplacements" unique_id=385585797]
-custom_minimum_size = Vector2(736, 123)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BG" type="TextureRect" parent="Content/StatReplacements/Intelligence" unique_id=494411032]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_p05sl")
-expand_mode = 1
-
-[node name="ReplacementInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Intelligence" unique_id=1928092080]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.008426966
-anchor_top = 0.020833334
-anchor_right = 0.9929775
-anchor_bottom = 0.9583333
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Header" type="Control" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer" unique_id=1153653754]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="DefaultInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer" unique_id=1339436150]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -3.84)
-offset_transform_scale = Vector2(0.95, 1)
-mouse_filter = 2
-
-[node name="CleanBar" type="TextureProgressBar" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1467805978]
-texture_filter = 1
-custom_minimum_size = Vector2(650, 40)
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_42q2l")
-texture_progress = ExtResource("6_k2tfl")
-
-[node name="DefectBar" type="TextureRect" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer/DefaultInfoContainer" unique_id=298123029]
-material = SubResource("ShaderMaterial_0lu2n")
-custom_minimum_size = Vector2(650, 20)
-layout_mode = 2
-size_flags_vertical = 3
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, 10.795)
-offset_transform_scale = Vector2(1, 0.6)
-offset_transform_pivot = Vector2(0, -49)
-texture = ExtResource("7_f4i3p")
-
-[node name="HiddenRect" type="TextureRect" parent="Content/StatReplacements/Intelligence" unique_id=1749076667]
-visible = false
-texture_filter = 1
-material = SubResource("ShaderMaterial_t5il4")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_tqrwa")
-
-[node name="BurstWarningParent" type="Control" parent="Content/StatReplacements/Intelligence" unique_id=1383837991]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="WarningBGRect" type="TextureRect" parent="Content/StatReplacements/Intelligence/BurstWarningParent" unique_id=841541214]
-material = SubResource("ShaderMaterial_p8g4u")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-texture = ExtResource("10_qlcrg")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/StatReplacements/Intelligence/BurstWarningParent" unique_id=1823952871]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FleshBug" type="TextureRect" parent="Content/StatReplacements/Intelligence/BurstWarningParent/HBoxContainer" unique_id=1746058913]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 1
-material = SubResource("ShaderMaterial_f4i3p")
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_ipbvd")
-
-[node name="BurstImminentLabel" type="Label" parent="Content/StatReplacements/Intelligence/BurstWarningParent/HBoxContainer" unique_id=317079486]
-visible = false
-material = SubResource("ShaderMaterial_08onx")
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 30
-text = "Transform imminent"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FleshBug2" type="TextureRect" parent="Content/StatReplacements/Intelligence/BurstWarningParent/HBoxContainer" unique_id=457243087]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 1
-material = SubResource("ShaderMaterial_f4i3p")
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_ipbvd")
-
-[node name="StatTypeLabel" type="Label" parent="Content/StatReplacements/Intelligence" unique_id=2146522179]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.011000001
-anchor_top = 0.056
-anchor_right = 0.989
-anchor_bottom = 0.312
-offset_left = -0.09600067
-offset_top = 0.9565201
-offset_right = 0.0960083
-offset_bottom = 0.9565201
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-offset_transform_enabled = true
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 22
-text = "Intelligence"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Community" type="Control" parent="Content/StatReplacements" unique_id=868669043]
-custom_minimum_size = Vector2(736, 123)
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="BG" type="TextureRect" parent="Content/StatReplacements/Community" unique_id=636416534]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("20_p05sl")
-expand_mode = 1
-
-[node name="ReplacementInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Community" unique_id=1175100298]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.008426966
-anchor_top = 0.020833334
-anchor_right = 0.9929775
-anchor_bottom = 0.9583333
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Header" type="Control" parent="Content/StatReplacements/Community/ReplacementInfoContainer" unique_id=1570365743]
-custom_minimum_size = Vector2(0, 45)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="DefaultInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Community/ReplacementInfoContainer" unique_id=583249415]
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, -3.84)
-offset_transform_scale = Vector2(0.95, 1)
-mouse_filter = 2
-
-[node name="CleanBar" type="TextureProgressBar" parent="Content/StatReplacements/Community/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1509806780]
-texture_filter = 1
-custom_minimum_size = Vector2(650, 40)
-layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
-mouse_filter = 2
-value = 50.0
-nine_patch_stretch = true
-texture_under = ExtResource("5_42q2l")
-texture_progress = ExtResource("6_k2tfl")
-
-[node name="DefectBar" type="TextureRect" parent="Content/StatReplacements/Community/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1795846736]
-material = SubResource("ShaderMaterial_0lu2n")
-custom_minimum_size = Vector2(650, 40.56)
-layout_mode = 2
-size_flags_vertical = 3
-offset_transform_enabled = true
-offset_transform_position = Vector2(0, 10.795)
-offset_transform_scale = Vector2(1, 0.6)
-offset_transform_pivot = Vector2(0, -49)
-texture = ExtResource("7_f4i3p")
-
-[node name="HiddenRect" type="TextureRect" parent="Content/StatReplacements/Community" unique_id=2080113431]
-visible = false
-texture_filter = 1
-material = SubResource("ShaderMaterial_t5il4")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("CompressedTexture2D_tqrwa")
-
-[node name="BurstWarningParent" type="Control" parent="Content/StatReplacements/Community" unique_id=1911676882]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="WarningBGRect" type="TextureRect" parent="Content/StatReplacements/Community/BurstWarningParent" unique_id=30311774]
-material = SubResource("ShaderMaterial_p8g4u")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-texture = ExtResource("10_qlcrg")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Content/StatReplacements/Community/BurstWarningParent" unique_id=640898958]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="FleshBug" type="TextureRect" parent="Content/StatReplacements/Community/BurstWarningParent/HBoxContainer" unique_id=185860905]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 1
-material = SubResource("ShaderMaterial_f4i3p")
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_ipbvd")
-
-[node name="BurstImminentLabel" type="Label" parent="Content/StatReplacements/Community/BurstWarningParent/HBoxContainer" unique_id=266486949]
-visible = false
-material = SubResource("ShaderMaterial_08onx")
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 30
-text = "Transform imminent"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="FleshBug2" type="TextureRect" parent="Content/StatReplacements/Community/BurstWarningParent/HBoxContainer" unique_id=1381057037]
-modulate = Color(0.9999998, 0.090942316, 0.05946427, 1)
-texture_filter = 1
-material = SubResource("ShaderMaterial_f4i3p")
-layout_mode = 2
-size_flags_horizontal = 3
-offset_transform_enabled = true
-offset_transform_scale = Vector2(0.8, 0.8)
-texture = ExtResource("12_ipbvd")
-
-[node name="StatTypeLabel" type="Label" parent="Content/StatReplacements/Community" unique_id=892825876]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.011000001
-anchor_top = 0.056
-anchor_right = 0.989
-anchor_bottom = 0.312
-offset_left = -0.09600067
-offset_top = -0.04347992
-offset_right = 0.0960083
-offset_bottom = -0.04347992
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-offset_transform_enabled = true
-theme_override_fonts/font = ExtResource("14_42q2l")
-theme_override_font_sizes/font_size = 22
-text = "Community"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="MainStats" type="VBoxContainer" parent="Content" unique_id=1541115108]
 layout_mode = 1
@@ -1184,6 +689,298 @@ size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_scale = Vector2(0.8, 0.8)
 texture = ExtResource("12_ipbvd")
+
+[node name="StatReplacements" type="VBoxContainer" parent="Content" unique_id=133578604]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.325
+anchor_top = 0.10144927
+anchor_right = 0.9
+anchor_bottom = 0.75555557
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 47
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Strength" type="Control" parent="Content/StatReplacements" unique_id=1806963036]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(736, 123)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BG" type="TextureRect" parent="Content/StatReplacements/Strength" unique_id=1606987169]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_p05sl")
+expand_mode = 1
+
+[node name="ReplacementInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Strength" unique_id=167117859]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008426966
+anchor_top = 0.020833334
+anchor_right = 0.9929775
+anchor_bottom = 0.9583333
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="Control" parent="Content/StatReplacements/Strength/ReplacementInfoContainer" unique_id=757412401]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="DefaultInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Strength/ReplacementInfoContainer" unique_id=1103410081]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -3.84)
+offset_transform_scale = Vector2(0.95, 1)
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="Content/StatReplacements/Strength/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1874398879]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_42q2l")
+texture_progress = ExtResource("6_k2tfl")
+
+[node name="DefectBar" type="TextureProgressBar" parent="Content/StatReplacements/Strength/ReplacementInfoContainer/DefaultInfoContainer" unique_id=801260314]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 20)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 6.845)
+offset_transform_scale = Vector2(1, 0.7)
+offset_transform_pivot = Vector2(0, -49)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_f4i3p")
+texture_progress = ExtResource("13_t1ueb")
+
+[node name="StatTypeLabel" type="Label" parent="Content/StatReplacements/Strength" unique_id=1802041414]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.056
+anchor_right = 0.989
+anchor_bottom = 0.312
+offset_left = -0.09600067
+offset_top = 0.9565201
+offset_right = 0.0960083
+offset_bottom = 0.9565201
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("14_42q2l")
+theme_override_font_sizes/font_size = 22
+text = "Strength"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Intelligence" type="Control" parent="Content/StatReplacements" unique_id=385585797]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(736, 123)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BG" type="TextureRect" parent="Content/StatReplacements/Intelligence" unique_id=494411032]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_p05sl")
+expand_mode = 1
+
+[node name="ReplacementInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Intelligence" unique_id=1928092080]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008426966
+anchor_top = 0.020833334
+anchor_right = 0.9929775
+anchor_bottom = 0.9583333
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="Control" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer" unique_id=1153653754]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="DefaultInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer" unique_id=1339436150]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -3.84)
+offset_transform_scale = Vector2(0.95, 1)
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1467805978]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_42q2l")
+texture_progress = ExtResource("6_k2tfl")
+
+[node name="DefectBar" type="TextureProgressBar" parent="Content/StatReplacements/Intelligence/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1913113617]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 20)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 6.845)
+offset_transform_scale = Vector2(1, 0.7)
+offset_transform_pivot = Vector2(0, -49)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_f4i3p")
+texture_progress = ExtResource("13_t1ueb")
+
+[node name="StatTypeLabel" type="Label" parent="Content/StatReplacements/Intelligence" unique_id=2146522179]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.056
+anchor_right = 0.989
+anchor_bottom = 0.312
+offset_left = -0.09600067
+offset_top = 0.9565201
+offset_right = 0.0960083
+offset_bottom = 0.9565201
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("14_42q2l")
+theme_override_font_sizes/font_size = 22
+text = "Intelligence"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Community" type="Control" parent="Content/StatReplacements" unique_id=868669043]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(736, 123)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BG" type="TextureRect" parent="Content/StatReplacements/Community" unique_id=636416534]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("20_p05sl")
+expand_mode = 1
+
+[node name="ReplacementInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Community" unique_id=1175100298]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.008426966
+anchor_top = 0.020833334
+anchor_right = 0.9929775
+anchor_bottom = 0.9583333
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Header" type="Control" parent="Content/StatReplacements/Community/ReplacementInfoContainer" unique_id=1570365743]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="DefaultInfoContainer" type="VBoxContainer" parent="Content/StatReplacements/Community/ReplacementInfoContainer" unique_id=583249415]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -3.84)
+offset_transform_scale = Vector2(0.95, 1)
+mouse_filter = 2
+
+[node name="CleanBar" type="TextureProgressBar" parent="Content/StatReplacements/Community/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1509806780]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 40)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("5_42q2l")
+texture_progress = ExtResource("6_k2tfl")
+
+[node name="DefectBar" type="TextureProgressBar" parent="Content/StatReplacements/Community/ReplacementInfoContainer/DefaultInfoContainer" unique_id=1961044448]
+texture_filter = 1
+custom_minimum_size = Vector2(650, 20)
+layout_mode = 2
+size_flags_vertical = 3
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 6.845)
+offset_transform_scale = Vector2(1, 0.7)
+offset_transform_pivot = Vector2(0, -49)
+mouse_filter = 2
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("7_f4i3p")
+texture_progress = ExtResource("13_t1ueb")
+
+[node name="StatTypeLabel" type="Label" parent="Content/StatReplacements/Community" unique_id=892825876]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.011000001
+anchor_top = 0.056
+anchor_right = 0.989
+anchor_bottom = 0.312
+offset_left = -0.09600067
+offset_top = -0.04347992
+offset_right = 0.0960083
+offset_bottom = -0.04347992
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_enabled = true
+theme_override_fonts/font = ExtResource("14_42q2l")
+theme_override_font_sizes/font_size = 22
+text = "Community"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InputBlocker" type="ColorRect" parent="Content" unique_id=904639761]
 layout_mode = 1
