@@ -1,42 +1,48 @@
-
 extends Node
 
 # visual components
-@onready var defect_bars: Array[Sprite2D] = [
-	$"../AttacherBars/Strength/DefectBar", 
-	$"../AttacherBars/Intelligence/DefectBar", 
-	$"../AttacherBars/Community/DefectBar"
+@onready var defect_bars: Array[TextureRect] = [
+	$"../Content/MainStats/Strength/DefaultInfoContainer/DefectBar",
+	$"../Content/MainStats/Intelligence/DefaultInfoContainer/DefectBar",
+	$"../Content/MainStats/Community/DefaultInfoContainer/DefectBar",
 ]
 
-@onready var burst_hidden_sprites: Array[Sprite2D] = [
-	$"../AttacherBars/Strength/BurstWarningParent/HiddenSprite",
-	$"../AttacherBars/Intelligence/BurstWarningParent/HiddenSprite",
-	$"../AttacherBars/Community/BurstWarningParent/HiddenSprite"
+@onready var burst_warning_bgs: Array[TextureRect] = [
+	$"../Content/MainStats/Strength/BurstWarningParent/WarningBGRect",
+	$"../Content/MainStats/Intelligence/BurstWarningParent/WarningBGRect",
+	$"../Content/MainStats/Community/BurstWarningParent/WarningBGRect",
 ]
 
-@onready var flesh_bug_sprites: Array[Sprite2D] = [
-	$"../AttacherBars/Strength/BurstWarningParent/FleshBug",
-	$"../AttacherBars/Intelligence/BurstWarningParent/FleshBug",
-	$"../AttacherBars/Community/BurstWarningParent/FleshBug"
+@onready var flesh_bug_rects_1: Array[TextureRect] = [
+	$"../Content/MainStats/Strength/BurstWarningParent/HBoxContainer/FleshBug",
+	$"../Content/MainStats/Intelligence/BurstWarningParent/HBoxContainer/FleshBug",
+	$"../Content/MainStats/Community/BurstWarningParent/HBoxContainer/FleshBug",
+]
+
+@onready var flesh_bug_rects_2: Array[TextureRect] = [
+	$"../Content/MainStats/Strength/BurstWarningParent/HBoxContainer/FleshBug2",
+	$"../Content/MainStats/Intelligence/BurstWarningParent/HBoxContainer/FleshBug2",
+	$"../Content/MainStats/Community/BurstWarningParent/HBoxContainer/FleshBug2",
 ]
 
 @onready var burst_imminent_labels: Array[Label] = [
-	$"../AttacherBars/Strength/BurstWarningParent/BurstImminentLabel",
-	$"../AttacherBars/Intelligence/BurstWarningParent/BurstImminentLabel",
-	$"../AttacherBars/Community/BurstWarningParent/BurstImminentLabel"
+	$"../Content/MainStats/Strength/BurstWarningParent/HBoxContainer/BurstImminentLabel",
+	$"../Content/MainStats/Intelligence/BurstWarningParent/HBoxContainer/BurstImminentLabel",
+	$"../Content/MainStats/Community/BurstWarningParent/HBoxContainer/BurstImminentLabel",
 ]
+
 
 # components
 @onready var parent_simulate: Control = $".."
 @onready var increment_stat_timer: Timer = $IncrementStatTimer
 
 # settings
-@export var increment_interval: float = 0.03
+@export var increment_interval: float = 0.01
 @export var burst_reveal_duration: float = 1.0
 @export var flesh_bug_reveal_duration: float = 0.3
 @export var flesh_bug_delay: float = 0.2
 @export var flesh_bug_hold_duration: float = 0.3
-@export var simulation_end_delay: float = 0.7
+@export var simulation_end_delay: float = 1.2
 
 var stats: Array[String] = [
 	'strength',
@@ -54,13 +60,16 @@ var display_session: int = 0
 func _ready() -> void:
 	increment_stat_timer.timeout.connect(_handle_increment_stat_timeout)
 
-	for sprite in burst_hidden_sprites:
-		sprite.material = sprite.material.duplicate()
+	for rect in burst_warning_bgs:
+		rect.material = rect.material.duplicate()
 
-	for sprite in flesh_bug_sprites:
-		sprite.material = sprite.material.duplicate()
+	for rect in flesh_bug_rects_1:
+		rect.material = rect.material.duplicate()
 
-	_reset_sprites()
+	for rect in flesh_bug_rects_2:
+		rect.material = rect.material.duplicate()
+
+	_reset_rects()
 
 
 func _display(defect_amount_to_increase: Dictionary[String, int]) -> void:
@@ -68,26 +77,24 @@ func _display(defect_amount_to_increase: Dictionary[String, int]) -> void:
 
 	increment_stat_timer.stop()
 
-	# Stop previous animations
+	# stop previous animations
 	for tween in reveal_tweens:
-		if tween and tween.is_running():
+		if tween and tween.is_valid():
 			tween.kill()
 
 	reveal_tweens.clear()
 	burst_triggered = [false, false, false]
 
-	_reset_sprites()
+	_reset_rects()
 
 	remaining_increases = defect_amount_to_increase.duplicate()
 
 	increment_stat_timer.wait_time = increment_interval
-	
-	GLAttacherComponentBus.emit_signal('play_sound', 'loop_beep_start')	
-	
-	
+
 	if _all_increases_finished():
 		_finish_after_reveals(display_session)
 	else:
+		GLAttacherComponentBus.emit_signal('play_sound', 'loop_beep_start')
 		increment_stat_timer.start()
 
 
@@ -99,17 +106,16 @@ func _handle_increment_stat_timeout() -> void:
 		if remaining <= 0:
 			continue
 
-
-		var defect_bar: Sprite2D = defect_bars[index]
+		var defect_bar: TextureRect = defect_bars[index]
 		var material: ShaderMaterial = defect_bar.material as ShaderMaterial
 		var max_value: float = float(IVCellCreator.max_stat_value)
 
-		# Read current prior defect
+		# read current prior defect
 		var prior_value: float = float(
 			material.get_shader_parameter("prior_defect_value")
 		) * max_value
 
-		# Increase prior defect by 1
+		# increase prior defect by 1
 		var next_value: float = minf(
 			prior_value + 1.0,
 			max_value
@@ -122,15 +128,18 @@ func _handle_increment_stat_timeout() -> void:
 
 		remaining_increases[stat_type] = remaining - 1
 
-		# Trigger burst when reaching maximum defect
-		if next_value >= IVCellCreator.max_stat_value:
+		# trigger burst when reaching maximum defect
+		if is_equal_approx(next_value, max_value):
 			if not burst_triggered[index]:
 				burst_triggered[index] = true
 				_display_burst(index)
 
-	# All defect increments completed
+	# all defect increments completed
 	if _all_increases_finished():
 		increment_stat_timer.stop()
+
+		GLAttacherComponentBus.emit_signal('play_sound', 'loop_beep_stop')
+
 		_finish_after_reveals(display_session)
 
 
@@ -138,77 +147,90 @@ func _all_increases_finished() -> bool:
 	for stat_type in stats:
 		if remaining_increases.get(stat_type, 0) > 0:
 			return false
-			
-			
-	GLAttacherComponentBus.emit_signal('play_sound', 'loop_beep_stop')			
-			
 
 	return true
 
 
 func _display_burst(index: int) -> void:
-	var burst_sprite: Sprite2D = burst_hidden_sprites[index]
-	var flesh_sprite: Sprite2D = flesh_bug_sprites[index]
+	var burst_warning_bg: TextureRect = burst_warning_bgs[index]
+	var flesh_bug_rect_1: TextureRect = flesh_bug_rects_1[index]
+	var flesh_bug_rect_2: TextureRect = flesh_bug_rects_2[index]
 	var burst_imminent_label: Label = burst_imminent_labels[index]
 
-	burst_imminent_label.visible = false
+	burst_imminent_label.modulate.a = 0.0
 
-	# Play hidden stat sound before revealing
-	GLAttacherComponentBus.emit_signal('play_sound', 'burst_warning_hidden_stat')
+	# play hidden stat sound before revealing
+	GLAttacherComponentBus.emit_signal(
+		'play_sound',
+		'burst_warning_hidden_stat'
+	)
 
-	# Reveal burst warning
-	var burst_tween: Tween = create_tween()
-	reveal_tweens.append(burst_tween)
+	var reveal_tween: Tween = create_tween()
+	reveal_tweens.append(reveal_tween)
 
-	burst_tween.tween_property(
-		burst_sprite.material,
+	# 1. reveal burst warning background
+	reveal_tween.tween_property(
+		burst_warning_bg.material,
 		"shader_parameter/reveal_progress",
 		1.0,
 		burst_reveal_duration
 	)
 
-	# Reveal flesh bug after burst warning
-	var flesh_tween: Tween = create_tween()
-	reveal_tweens.append(flesh_tween)
-
-	flesh_tween.tween_interval(
-		burst_reveal_duration + flesh_bug_delay
+	# 2. show burst imminent label
+	reveal_tween.tween_callback(
+		func(): burst_imminent_label.modulate.a = 1.0
 	)
 
-	# Play bug sound when bug starts appearing
-	flesh_tween.tween_callback(
-		func(): GLAttacherComponentBus.emit_signal('play_sound', 'burst_warning_bug')
+	# delay before revealing bugs
+	reveal_tween.tween_interval(flesh_bug_delay)
+
+	# play bug sound
+	reveal_tween.tween_callback(
+		func(): GLAttacherComponentBus.emit_signal(
+			'play_sound',
+			'burst_warning_bug'
+		)
 	)
 
-	flesh_tween.tween_property(
-		flesh_sprite.material,
+	# 3. reveal first flesh bug
+	reveal_tween.tween_property(
+		flesh_bug_rect_1.material,
 		"shader_parameter/reveal_progress",
 		1.0,
 		flesh_bug_reveal_duration
 	)
 
-	# Show label after flesh bug fully materializes
-	flesh_tween.tween_callback(
-		func(): burst_imminent_label.visible = true
+	# reveal second flesh bug simultaneously
+	reveal_tween.parallel().tween_property(
+		flesh_bug_rect_2.material,
+		"shader_parameter/reveal_progress",
+		1.0,
+		flesh_bug_reveal_duration
 	)
 
-	# Keep flesh bug fully visible before ending
-	flesh_tween.tween_interval(flesh_bug_hold_duration)
+	# hold completed reveal
+	reveal_tween.tween_interval(flesh_bug_hold_duration)
 
 
 func _finish_after_reveals(session: int) -> void:
-	# Wait for all reveal animations
-	for tween in reveal_tweens:
-		if session != display_session:
-			return
+	# wait for all reveal animations
+	while session == display_session:
+		var revealing: bool = false
 
-		if tween and tween.is_running():
-			await tween.finished
+		for tween in reveal_tweens:
+			if tween and tween.is_running():
+				revealing = true
+				break
+
+		if not revealing:
+			break
+
+		await get_tree().process_frame
 
 	if session != display_session:
 		return
 
-	# Additional pause after everything finishes
+	# additional pause after everything finishes
 	if simulation_end_delay > 0.0:
 		await get_tree().create_timer(simulation_end_delay).timeout
 
@@ -218,16 +240,38 @@ func _finish_after_reveals(session: int) -> void:
 	parent_simulate._end()
 
 
-func _reset_sprites() -> void:
-	for sprite in burst_hidden_sprites:
-		(sprite.material as ShaderMaterial).set_shader_parameter(
-			"reveal_progress", 0.0
+func _reset_rects() -> void:
+	# reset burst warning backgrounds
+	for rect in burst_warning_bgs:
+		rect.visible = true
+		rect.modulate.a = 1.0
+
+		(rect.material as ShaderMaterial).set_shader_parameter(
+			"reveal_progress",
+			0.0
 		)
 
-	for sprite in flesh_bug_sprites:
-		(sprite.material as ShaderMaterial).set_shader_parameter(
-			"reveal_progress", 0.0
+	# reset first flesh bug rects
+	for rect in flesh_bug_rects_1:
+		rect.visible = true
+		rect.modulate.a = 1.0
+
+		(rect.material as ShaderMaterial).set_shader_parameter(
+			"reveal_progress",
+			0.0
 		)
 
+	# reset second flesh bug rects
+	for rect in flesh_bug_rects_2:
+		rect.visible = true
+		rect.modulate.a = 1.0
+
+		(rect.material as ShaderMaterial).set_shader_parameter(
+			"reveal_progress",
+			0.0
+		)
+
+	# reset labels without changing container layout
 	for label in burst_imminent_labels:
-		label.visible = false
+		label.visible = true
+		label.modulate.a = 0.0

@@ -6,6 +6,7 @@ extends Node
 @onready var delete_modal_manager : Node = $"../DeleteModalManager"
 @onready var refresh_ui : Node = $"../RefreshUi"
 @onready var catalog_parent : VBoxContainer = $"../../AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent"
+@onready var simulate_stat_defect_increase : Control = $"../../AttacherUI/SimulateStatDefectIncrease"
 
 
 
@@ -21,6 +22,10 @@ func _process(_delta: float) -> void:
 				_toggle_display(false)
 
 func _toggle_display(toggle_value : bool) :
+	
+	if simulate_stat_defect_increase.displaying_simulation :
+		return
+	
 	
 	attacher_ui.visible = toggle_value
 	toggle_display_lock(toggle_value)	

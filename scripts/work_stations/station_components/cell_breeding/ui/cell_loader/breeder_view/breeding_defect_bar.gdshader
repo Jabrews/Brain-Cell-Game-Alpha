@@ -1,15 +1,15 @@
 shader_type canvas_item;
 
 // values (0 → 1)
-uniform float prior_defect_value : hint_range(0.0, 1.0); // old defect
-uniform float new_defect_value : hint_range(0.0, 1.0);   // new defect
+uniform float prior_defect_value : hint_range(0.0, 1.0);
+uniform float new_defect_value : hint_range(0.0, 1.0);
 
 // colors
 uniform vec4 prior_defect_color : source_color = vec4(0.5, 0.0, 0.0, 1.0);
 uniform vec4 new_defect_color : source_color = vec4(1.0, 0.0, 0.0, 1.0);
 uniform vec4 flash_defect_color : source_color = vec4(1.0, 0.7, 0.7, 1.0);
 
-// overlap opacity: new defect over prior defect
+// overlap opacity
 uniform float overlap_opacity : hint_range(0.0, 1.0) = 0.3;
 
 // flash
@@ -17,6 +17,14 @@ uniform float flash_speed : hint_range(0.1, 10.0) = 3.0;
 
 // edge padding
 uniform float edge_padding : hint_range(0.0, 20.0) = 5.0;
+
+varying vec4 inherited_modulate;
+
+
+void vertex() {
+	inherited_modulate = COLOR;
+}
+
 
 void fragment() {
 	vec4 tex = texture(TEXTURE, UV);
@@ -51,7 +59,7 @@ void fragment() {
 		// 2. draw new defect
 		if (in_new_defect > 0.5) {
 
-			// overlap with prior stays semi-transparent
+			// overlap with prior
 			if (in_prior_defect > 0.5) {
 				result = mix(result, vec4(new_defect_color.rgb, tex.a), overlap_opacity);
 			}
@@ -68,9 +76,11 @@ void fragment() {
 				flash_defect_color.rgb,
 				flash
 			);
+
 			result = vec4(flashed_color, tex.a);
 		}
 	}
 
-	COLOR = result;
+	// apply inherited modulation
+	COLOR = result * inherited_modulate;
 }

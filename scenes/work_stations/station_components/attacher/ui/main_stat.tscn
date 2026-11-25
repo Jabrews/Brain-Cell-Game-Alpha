@@ -231,6 +231,7 @@ mouse_filter = 2
 texture = ExtResource("9_akjod")
 
 [node name="StatReplacement" type="Control" parent="." unique_id=1991748357]
+visible = false
 layout_mode = 1
 anchor_top = -0.034722224
 anchor_right = 1.0
@@ -559,7 +560,9 @@ texture_filter = 1
 custom_minimum_size = Vector2(650, 20)
 layout_mode = 2
 size_flags_vertical = 3
-offset_transform_scale = Vector2(1, 0.6)
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 6.845)
+offset_transform_scale = Vector2(1, 0.7)
 offset_transform_pivot = Vector2(0, -49)
 mouse_filter = 2
 value = 50.0

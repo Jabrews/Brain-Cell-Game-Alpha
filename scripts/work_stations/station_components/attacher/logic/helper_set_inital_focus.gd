@@ -17,7 +17,6 @@ func _set_inital() :
 		return
 	
 	
-	print('setting inital focus')
 	
 	
 	await get_tree().process_frame 
@@ -30,8 +29,6 @@ func _set_inital() :
 		var first_jar_item : Control = jar_items[0]
 		
 		first_jar_item.bg.grab_focus()
-		
-		print('focus : first jar item')
 		
 		return
 	

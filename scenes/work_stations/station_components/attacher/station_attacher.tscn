@@ -53,6 +53,7 @@
 [ext_resource type="AudioStream" uid="uid://dufc0aftlme3b" path="res://sounds/attacher/confirm_failed.mp3" id="32_2cjdw"]
 [ext_resource type="AudioStream" uid="uid://bma10unqism7n" path="res://sounds/attacher/burst_warning_bug.mp3" id="34_xrlol"]
 [ext_resource type="AudioStream" uid="uid://el2xydfx2q4t" path="res://sounds/attacher/burst_warning_hidden_stat.mp3" id="35_bc6uw"]
+[ext_resource type="PackedScene" uid="uid://dliuf44b813ax" path="res://scenes/work_stations/station_components/attacher/ui/simulate_stat_defect_increase.tscn" id="54_523x5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
 size = Vector3(1.1032165, 0.089746095, 1.100838)
@@ -876,7 +877,7 @@ theme_override_constants/separation = 47
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Strength" parent="AttacherUI/Content/StatMainView/Stats/StatsVBox" unique_id=803002430 instance=ExtResource("9_etud5")]
+[node name="Strength" parent="AttacherUI/Content/StatMainView/Stats/StatsVBox" unique_id=1022081741 instance=ExtResource("9_etud5")]
 layout_mode = 2
 
 [node name="Intelligence" parent="AttacherUI/Content/StatMainView/Stats/StatsVBox" unique_id=1685997172 instance=ExtResource("9_etud5")]
@@ -1781,5 +1782,8 @@ text = "confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[editable path="AttacherUI/Content/StatMainView/Stats/StatsVBox/Strength"]
+[node name="SimulateStatDefectIncrease" parent="AttacherUI" unique_id=850044189 instance=ExtResource("54_523x5")]
+visible = false
+layout_mode = 1
+
 [editable path="AttacherUI/Content/StatMainView/BottomSectionHBox/AttacherBox"]

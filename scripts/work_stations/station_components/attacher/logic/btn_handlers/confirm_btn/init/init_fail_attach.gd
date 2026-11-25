@@ -2,7 +2,7 @@
 extends Node
 
 # components
-#@onready var simulate_stat_defect_increase: Control = $"../../../../AttacherUI/Content/SimulateStatDefectIncrease"
+@onready var simulate_stat_defect_increase: Control = $"../../../../AttacherUI/SimulateStatDefectIncrease"
 @onready var refresh_ui : Node = $"../../../RefreshUi"
 @onready var handle_display_ui : Node = $"../../../HandleDisplayUi"
 @onready var fail_particles : GPUParticles3D = $"../../../../Particles/FailedParticles"
@@ -20,6 +20,8 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	# keep reference to original cell without defect increases
 	var old_cell: BrainCell = loaded_cell.copy()
 	var new_cell: BrainCell = loaded_cell.copy()
+	
+	var is_extreme_failure : bool = false
 
 	var increase_amount: float 
 
@@ -70,6 +72,8 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	# > 50% : increase defects on all enabled stats
 	else:
 		increase_amount = round(IVCellCreator.max_stat_value * 0.20 * 10.0) / 10.0
+		
+		is_extreme_failure = true
 
 		for stat_type in stats:
 			var cell_stat: BrainCellStat = new_cell.get_stat(stat_type)
@@ -79,6 +83,7 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 					cell_stat.defect + increase_amount,
 					IVCellCreator.max_stat_value
 				)
+		
 
 	# Update collected cell
 	GLCellManagerBus.emit_signal('collected_cell_changed', new_cell)
@@ -93,16 +98,12 @@ func _failed(loaded_cell: BrainCell, main_stat_replacement_state: Dictionary[Str
 	# refresh. I dont want to show anything
 	refresh_ui._refresh()
 
-	# Simulate defect increase visually
-	# TODO add back
-	#simulate_stat_defect_increase._start(old_cell, new_cell)
+	simulate_stat_defect_increase._start(old_cell, new_cell, is_extreme_failure)
 	
 	GLAttacherComponentBus.emit_signal('play_sound', 'confirm_failed')
 	
 	# hacky but lazy
 	GLCellManagerBus.emit_signal('scale_cell', old_cell.name)
-	
-	# await for this to finish before rest of logic
 	
 
 func _handle_simulation_ended() -> void:

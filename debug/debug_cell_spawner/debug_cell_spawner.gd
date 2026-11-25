@@ -11,10 +11,7 @@ func _ready() -> void:
 	# Cell 1
 	var cell_1: BrainCell = BrainCell.new(
 		"cell_1",
-		[	
-			#BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-			#BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-		],
+		[	],
 		BrainCellStat.new("strength", true, 100, 0, true),
 		BrainCellStat.new("intelligence", true, 100, 0, false),
 		BrainCellStat.new("community", true, 100, 0, false),
@@ -27,13 +24,10 @@ func _ready() -> void:
 		 ##Cell 1
 	var cell_2: BrainCell = BrainCell.new(
 		"cell_2",
-		[
-			BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-			BrainCellMutation.new('sentient', false, [MutationEvent.new('sentient_talk', 'constant', 'sentient', 0)]),
-		],
-		BrainCellStat.new("strength", true, 60, 100, false),
-		BrainCellStat.new("intelligence", true, 75, 100, false),
-		BrainCellStat.new("community", true, 150, 100, false),
+		[],
+		BrainCellStat.new("strength", true, 60, 225, false),
+		BrainCellStat.new("intelligence", true, 75, 200, false),
+		BrainCellStat.new("community", true, 150, 250, false),
 		2,
 		false,
 		false,
