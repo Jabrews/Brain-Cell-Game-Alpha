@@ -48,7 +48,6 @@ func _start(stat_jar_item: StatJarItem) -> void:
 		
 	display_stat_jar_item._display(stat_jar_item)
 
-
 # when jar item dropped on main stat
 func _item_used() -> void:
 	is_used = true

@@ -53,6 +53,8 @@
 [ext_resource type="AudioStream" uid="uid://dufc0aftlme3b" path="res://sounds/attacher/confirm_failed.mp3" id="32_2cjdw"]
 [ext_resource type="AudioStream" uid="uid://bma10unqism7n" path="res://sounds/attacher/burst_warning_bug.mp3" id="34_xrlol"]
 [ext_resource type="AudioStream" uid="uid://el2xydfx2q4t" path="res://sounds/attacher/burst_warning_hidden_stat.mp3" id="35_bc6uw"]
+[ext_resource type="AudioStream" uid="uid://dth8wyj7vybdr" path="res://sounds/attacher/replacement_whoosh_sound.mp3" id="40_vuhbm"]
+[ext_resource type="PackedScene" uid="uid://bti6itix1cyjs" path="res://scenes/work_stations/station_components/attacher/ui/jar_items/stat_jar_item/stat_jar_item.tscn" id="54_7q7xm"]
 [ext_resource type="PackedScene" uid="uid://dliuf44b813ax" path="res://scenes/work_stations/station_components/attacher/ui/simulate_stat_defect_increase.tscn" id="54_523x5"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_aeklq"]
@@ -534,6 +536,12 @@ process_mode = 3
 stream = ExtResource("35_bc6uw")
 volume_db = 5.0
 unit_size = 5.0
+max_distance = 20.0
+
+[node name="ReplacementWhoosh" type="AudioStreamPlayer3D" parent="AudioManager" unique_id=1262245984]
+process_mode = 3
+stream = ExtResource("40_vuhbm")
+volume_db = 10.0
 max_distance = 20.0
 
 [node name="AttacherUI" type="Control" parent="." unique_id=1371673270]
@@ -1612,6 +1620,12 @@ offset_transform_scale = Vector2(0.8, 1)
 offset_transform_visual_only = false
 layout_direction = 2
 theme_override_constants/separation = 29
+
+[node name="StatJarItem" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent" unique_id=85706654 instance=ExtResource("54_7q7xm")]
+layout_mode = 2
+
+[node name="StatJarItem2" parent="AttacherUI/Content/JarItemCatalog/CenterContainer/ScrollContainer/CatalogParent" unique_id=1731553841 instance=ExtResource("54_7q7xm")]
+layout_mode = 2
 
 [node name="NoJarItemsFoundLabel" type="Label" parent="AttacherUI/Content/JarItemCatalog" unique_id=879242795]
 visible = false

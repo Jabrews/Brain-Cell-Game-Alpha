@@ -11,6 +11,7 @@ extends Node
 @onready var s_loop_beat : AudioStreamPlayer3D = $LoopBeep
 @onready var s_burst_warning_bug : AudioStreamPlayer3D = $BurstWarningBug
 @onready var s_burst_warning_hidden_stat : AudioStreamPlayer3D = $BurstWarningHiddenStat
+@onready var s_replacement_whoosh : AudioStreamPlayer3D = $ReplacementWhoosh
 
 
 func _ready() -> void:
@@ -46,6 +47,7 @@ func _handle_play_sound(sound_type: String) -> void:
 			s_loop_beat.play()
 			
 		'loop_beep_stop' :
+			await get_tree().create_timer(0.3).timeout # hack but sounds better
 			s_loop_beat.stop()
 		
 		'burst_warning_bug' : 
@@ -53,6 +55,10 @@ func _handle_play_sound(sound_type: String) -> void:
 			
 		'burst_warning_hidden_stat' : 
 			sound = s_burst_warning_hidden_stat
+			
+		'replacement_whoosh' :
+			s_replacement_whoosh.stop()
+			s_replacement_whoosh.play()
 
 		_:
 			push_warning("Unknown sound type: " + sound_type)

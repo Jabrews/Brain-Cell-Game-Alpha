@@ -25,14 +25,10 @@ extends Node
 ]
 
 # settings
-@export var flash_color: Color = Color(1.0, 0.2, 0.2, 1.0)
-@export var flash_duration: float = 0.15
-@export var flash_count: int = 3
-@export var scale_multiplier: float = 1.1
-
 @export var travel_distance: float = 500.0
-@export var travel_duration: float = 1.0
-@export var travel_delay: float = 3
+@export var travel_duration: float = 0.3
+@export var travel_delay: float = 0.5
+@export var inital_delay : float = 0.5
 
 var stats: Array[String] = [
 	'strength',
@@ -40,31 +36,24 @@ var stats: Array[String] = [
 	'community',
 ]
 
-var parent_initial_position: Vector2
-var original_scales: Array[Vector2] = []
-
 var cinematic_tween: Tween
 
 
 func _ready() -> void:
-	parent_initial_position = stat_replacements_parent_container.position
-
-	for stat_parent in stat_replacement_parents:
-		original_scales.append(stat_parent.scale)
-		stat_parent.pivot_offset = stat_parent.size / 2.0
-
 	_reset()
 
 
 func _display() -> void:
 
 	_reset()
+	
 
 	var main_stat_replacement_state: Dictionary[String, StatJarItem] = GLAttacherComponentBus.main_stat_replacement_state
 
 	var active_indexes: Array[int] = []
-
-	# display assigned replacement stats
+	
+	
+	
 	for index in range(stats.size()):
 
 		var stat_type: String = stats[index]
@@ -81,7 +70,6 @@ func _display() -> void:
 
 		# display replacement
 		stat_parent.modulate.a = 1.0
-		stat_parent.pivot_offset = stat_parent.size / 2.0
 
 		clean_bar.max_value = IVCellCreator.max_stat_value
 		clean_bar.value = replacement_stat.value
@@ -93,7 +81,8 @@ func _display() -> void:
 
 	# no replacements found
 	if active_indexes.is_empty():
-		push_error('no replacements found, however failed, ')
+		push_error('No replacements found, however failed')
+		_end()
 		return
 
 	_start_cinematic(active_indexes)
@@ -103,74 +92,44 @@ func _start_cinematic(active_indexes: Array[int]) -> void:
 
 	cinematic_tween = create_tween()
 
-	cinematic_tween.set_trans(Tween.TRANS_SINE)
-	cinematic_tween.set_ease(Tween.EASE_IN_OUT)
+	# initial delay
+	cinematic_tween.tween_interval(inital_delay)
 
-	# flash and scale all active replacements
-	for i in range(flash_count):
+	for i in range(active_indexes.size()):
 
-		# increase scale and flash red
-		for index in active_indexes:
-			var stat_parent: Control = stat_replacement_parents[index]
+		var index: int = active_indexes[i]
+		var stat_parent: Control = stat_replacement_parents[index]
 
-			cinematic_tween.parallel().tween_property(
-				stat_parent,
-				"modulate",
-				flash_color,
-				flash_duration
+		# play whoosh before each replacement moves
+		cinematic_tween.tween_callback(
+			func(): GLAttacherComponentBus.emit_signal(
+				'play_sound', 'replacement_whoosh'
 			)
+		)
 
-			cinematic_tween.parallel().tween_property(
-				stat_parent,
-				"scale",
-				original_scales[index] * scale_multiplier,
-				flash_duration
-			)
+		# move replacement left
+		cinematic_tween.tween_property(
+			stat_parent,
+			"position:x",
+			-travel_distance,
+			travel_duration
+		).as_relative().set_trans(
+			Tween.TRANS_QUAD
+		).set_ease(
+			Tween.EASE_IN
+		)
 
-		# return to original color and scale
-		cinematic_tween.chain()
+		# fade out while traveling
+		cinematic_tween.parallel().tween_property(
+			stat_parent,
+			"modulate:a",
+			0.0,
+			travel_duration
+		)
 
-		for index in active_indexes:
-			var stat_parent: Control = stat_replacement_parents[index]
-
-			cinematic_tween.parallel().tween_property(
-				stat_parent,
-				"modulate",
-				Color.WHITE,
-				flash_duration
-			)
-
-			cinematic_tween.parallel().tween_property(
-				stat_parent,
-				"scale",
-				original_scales[index],
-				flash_duration
-			)
-
-		cinematic_tween.chain()
-
-	# brief pause before removing replacements
-	cinematic_tween.tween_interval(travel_delay)
-
-	# move entire replacement container left
-	var final_position: Vector2 = (
-		parent_initial_position - Vector2(travel_distance, 0.0)
-	)
-
-	cinematic_tween.tween_property(
-		stat_replacements_parent_container,
-		"position",
-		final_position,
-		travel_duration
-	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-
-	# fade out while traveling
-	cinematic_tween.parallel().tween_property(
-		stat_replacements_parent_container,
-		"modulate:a",
-		0.0,
-		travel_duration
-	)
+		# delay only if another replacement remains
+		if i < active_indexes.size() - 1:
+			cinematic_tween.tween_interval(travel_delay)
 
 	# finish cinematic
 	cinematic_tween.tween_callback(_end)
@@ -185,13 +144,12 @@ func _reset() -> void:
 	if cinematic_tween and cinematic_tween.is_valid():
 		cinematic_tween.kill()
 
-	# reset container
-	stat_replacements_parent_container.position = parent_initial_position
 	stat_replacements_parent_container.modulate.a = 1.0
 
 	# reset individual replacements
-	for index in range(stats.size()):
-		var stat_parent: Control = stat_replacement_parents[index]
+	for stat_parent in stat_replacement_parents:
+		stat_parent.visible = true
+		stat_parent.modulate.a = 0.0
 
-		stat_parent.modulate = Color(1.0, 1.0, 1.0, 0.0)
-		stat_parent.scale = original_scales[index]
+	# restore original positions through VBox layout
+	stat_replacements_parent_container.queue_sort()

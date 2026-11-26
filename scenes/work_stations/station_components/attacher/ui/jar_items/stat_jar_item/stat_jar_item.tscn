@@ -93,7 +93,6 @@ grow_vertical = 2
 mouse_filter = 2
 alignment_horizontal = 2
 script = ExtResource("12_hocb0")
-metadata/_edit_use_anchors_ = true
 
 [node name="DeleteHintParent" type="Control" parent="ContentVBox/DeleteBtnParent/DeleteBtn" unique_id=118290546]
 visible = false

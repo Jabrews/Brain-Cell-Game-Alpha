@@ -238,6 +238,8 @@ func _finish_after_reveals(session: int) -> void:
 		return
 
 	parent_simulation._handle_increment_cinnamatic_ended()
+	
+	_reset_rects()
 
 
 func _reset_rects() -> void:

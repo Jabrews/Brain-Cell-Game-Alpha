@@ -1368,7 +1368,7 @@ script = ExtResource("66_y36b7")
 cell_container_parent_node = NodePath("../Charcters/ContainerParentNode")
 
 [node name="SpawnPos" type="Node3D" parent="DebugCellSpawner" unique_id=2061867118]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2522478, 5.960798)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32171333, 4.5242586, -2.53328)
 
 [editable path="Stations/PrisonerStations/PrisonerProfiler"]
 [editable path="Stations/PrisonerStations/PrisonerProfiler/OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1"]
