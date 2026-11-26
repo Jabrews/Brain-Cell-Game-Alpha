@@ -6,6 +6,7 @@ extends Node
 
 var enabled : bool = false 
 var failure_rate_enabled : bool  = false
+var jar_full : bool = false
 
 var loaded_cell_container : CharacterBody3D = null
 var cell_just_added : bool = false # for failure chance screen
@@ -48,11 +49,18 @@ func _removed_cell_container(_cell_container : CharacterBody3D) :
 	
 	
 func reset_state() : 
+	
 	stat_selected_index = -1
 	selected_stat = 'none'
 	stat_valid = false
 	loaded_cell_container = null
 	failure_rate = 0
+	
+	# deal with jar item disabled	
+	if len(GLJarComponentBus.jar_items) >= 4 : 
+		jar_full = true
+	else  :
+		jar_full = false
 
 
 func _get_loaded_cell() -> BrainCell : 

@@ -57,4 +57,11 @@ func _success(
 	success_particles.restart()
 	GLAttacherComponentBus.emit_signal('hologram_show_result', true)
 	
+	# reset main stats and penality stat
+	for key in GLAttacherComponentBus.main_stat_replacement_state:
+		GLAttacherComponentBus.main_stat_replacement_state[key] = null
+		
+	for key in GLAttacherComponentBus.main_stat_replacement_failure_penality:
+		GLAttacherComponentBus.main_stat_replacement_failure_penality[key] = false
+	
 	

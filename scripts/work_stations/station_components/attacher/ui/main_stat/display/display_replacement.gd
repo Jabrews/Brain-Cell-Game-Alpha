@@ -34,15 +34,11 @@ func _display(replacement_stat_jar_item : StatJarItem) :
 	defect_bar.value = cell_stat.defect
 	
 	# failure penality
-	var loaded_cell_stat : BrainCellStat = parent_main_stat.loaded_cell_stat 
+	var loaded_cell_stat: BrainCellStat = parent_main_stat.loaded_cell_stat
 	
-	if loaded_cell_stat.enabled : 
-		
-		if not GLWorkstationBus.attacher_failure_enabled : 		
-			return
-			
-		penality_failure_rate.visible = true
-	else :
-		penality_failure_rate.visible = false 
-	
-	
+
+	penality_failure_rate.visible = (
+		loaded_cell_stat != null
+		and loaded_cell_stat.enabled
+		and GLWorkstationBus.attacher_failure_enabled
+	)

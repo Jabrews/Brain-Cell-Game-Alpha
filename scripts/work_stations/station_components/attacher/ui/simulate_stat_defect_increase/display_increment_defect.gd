@@ -42,7 +42,7 @@ extends Node
 @export var flesh_bug_reveal_duration: float = 0.3
 @export var flesh_bug_delay: float = 0.2
 @export var flesh_bug_hold_duration: float = 0.3
-@export var simulation_end_delay: float = 1.2
+@export var simulation_end_delay: float = 0.5
 
 var stats: Array[String] = [
 	'strength',

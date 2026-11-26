@@ -9,6 +9,6 @@ func _refresh() :
 	var loaded_cell : BrainCell = parent_station_attacher._get_loaded_cell()
 	
 	if loaded_cell : 
-		blood_type_view.visible = true
+		blood_type_view.modulate.a = 1.0
 	else : 
-		blood_type_view.visible = false 
+		blood_type_view.modulate.a = 0.0

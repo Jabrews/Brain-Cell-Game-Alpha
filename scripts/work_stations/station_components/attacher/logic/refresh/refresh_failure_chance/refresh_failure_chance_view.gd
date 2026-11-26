@@ -47,8 +47,10 @@ func _ready() -> void:
 func _refresh() -> void:
 	
 	if not parent_station_attacher.failure_rate_enabled	 :
-		failure_chance_view.visible = false  
+		failure_chance_view.modulate.a = 0.0
 		return
+	else : 
+		failure_chance_view.modulate.a = 1.0
 	
 	var loaded_cell: BrainCell = parent_station_attacher._get_loaded_cell()
 

@@ -57,6 +57,7 @@ func _success(loaded_cell : BrainCell, selected_stat_type : String) :
 	GLDetacherComponentBus.emit_signal('show_success_screen')	
 	
 	# reset display. just do via refresing cell panel
+	# also causes refresh that checks jar items
 	load_cell_panel.monitoring = false
 	await get_tree().process_frame
 	load_cell_panel.monitoring = true 
@@ -70,4 +71,6 @@ func _success(loaded_cell : BrainCell, selected_stat_type : String) :
 	add_child(defect_scrap_floating_label_instance)
 	defect_scrap_floating_label_instance.global_position = floating_label_spawn_pos.global_position
 	defect_scrap_floating_label_instance.start(10)
+	
+	
 	

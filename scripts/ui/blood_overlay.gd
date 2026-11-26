@@ -2,6 +2,8 @@ extends TextureRect
 
 func _ready() -> void:
 	GLPlayerState.connect('player_health_changed', _handle_player_health_changed)
+	
+	GLHideUiBus.connect('toggle_hide_ui', _handle_toggle_hide_ui)
 		
 	
 	
@@ -34,3 +36,12 @@ func change_blood_overlay_opacity(opacity : float) :
 		opacity,
 		0.4
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+func _handle_toggle_hide_ui(toggle_value : bool) :
+	
+	visible = !toggle_value
+	
+	
+	
+	
+	

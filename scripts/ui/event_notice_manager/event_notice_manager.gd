@@ -25,6 +25,8 @@ func _ready() -> void:
 		"toggle_cinnamatic_active",
 		_handle_toggle_cinnamatic_active
 	)
+	
+	GLHideUiBus.connect('toggle_hide_ui', _handle_toggle_hide_ui)
 
 
 func _create_event_notice(event_notice: EventNotice) -> void:
@@ -106,3 +108,6 @@ func _handle_toggle_cinnamatic_active(toggle_value: bool) -> void:
 
 	for event_notice: EventNotice in queued_notices:
 		_create_event_notice(event_notice)
+
+func _handle_toggle_hide_ui(toggle_value : bool) : 
+	visible = !toggle_value

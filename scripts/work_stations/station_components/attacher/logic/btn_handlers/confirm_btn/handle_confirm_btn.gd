@@ -56,23 +56,13 @@ func _handle() :
 			failure_rate
 		)
 		
-		#init_success_attach._success(
-			#loaded_cell,
-			#main_stat_replacement_state,
-		#)
-	
 	# success
 	else : 	
-		init_fail_attach._failed(
+		
+		init_success_attach._success(
 			loaded_cell,
 			main_stat_replacement_state,
-			failure_rate
 		)
-		
-		#init_success_attach._success(
-			#loaded_cell,
-			#main_stat_replacement_state,
-		#)
 	
 	GLDetacherComponentBus.emit_signal('play_sound', 'finished')
 	
