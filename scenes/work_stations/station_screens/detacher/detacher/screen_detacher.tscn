@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b2cfjr8vrxvj8" path="res://models/workstations/detacher/tutorial_img-export.png" id="10_36yyv"]
 [ext_resource type="FontFile" uid="uid://jeb46sdt1kqq" path="res://models/fonts/munro.ttf" id="12_tt2wt"]
 [ext_resource type="Script" uid="uid://bhqkk32c5ql51" path="res://scripts/work_stations/station_screens/detacher/failure_chance/not_added_to_jar_parent.gd" id="13_wxcw4"]
+[ext_resource type="Texture2D" uid="uid://d1r47wjffufy6" path="res://models/workstations/detacher/jar_full_img.png" id="14_belum"]
+[ext_resource type="Script" uid="uid://dyhpsy1cjpvsj" path="res://scripts/work_stations/station_screens/detacher/detacher/full_label.gd" id="15_aexqg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_slyes"]
 shader = ExtResource("1_qll7q")
@@ -457,6 +459,82 @@ theme_override_font_sizes/font_size = 40
 text = "Disabled"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="JarFull" type="Control" parent="." unique_id=899447295]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 384.0
+offset_bottom = 384.0
+
+[node name="Bg" type="ColorRect" parent="JarFull" unique_id=1203709078]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 576.0
+color = Color(0.32044965, 1.6544945e-07, 9.62615e-08, 1)
+
+[node name="HeaderLabel" type="Label" parent="JarFull" unique_id=961598206]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 128.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("2_slyes")
+theme_override_font_sizes/font_size = 50
+text = "Jar Full"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoLabel" type="Label" parent="JarFull" unique_id=1818562664]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 96.0
+offset_right = 413.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("12_tt2wt")
+theme_override_font_sizes/font_size = 30
+text = "Cannot deatach till room found."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="JarFullRect" type="TextureRect" parent="JarFull" unique_id=1017123891]
+texture_filter = 1
+layout_mode = 0
+offset_left = 72.0
+offset_top = 176.0
+offset_right = 352.0
+offset_bottom = 528.0
+texture = ExtResource("14_belum")
+
+[node name="Bg2" type="ColorRect" parent="JarFull" unique_id=587028707]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 469.0
+offset_right = 271.0
+offset_bottom = 520.0
+color = Color(0.34879074, 0.3214313, 0.36443123, 1)
+
+[node name="FullLabel" type="Label" parent="JarFull" unique_id=1658746253]
+texture_filter = 1
+layout_mode = 0
+offset_left = 162.0
+offset_top = 464.0
+offset_right = 270.0
+offset_bottom = 526.0
+pivot_offset = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("12_tt2wt")
+theme_override_font_sizes/font_size = 45
+text = "4 / 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("15_aexqg")
+duration = 0.2
 
 [node name="DetachSuccess" type="Control" parent="." unique_id=189761853]
 visible = false

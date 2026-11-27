@@ -7,6 +7,8 @@ var jar_items : Array[JarItem] = [
 	StatJarItem.new(BrainCellStat.new('strength', true, 100, 0, false)),
 ]
 
+var jar_full : bool = false
+
 signal add_jar_item(jar_item : JarItem)
 signal remove_jar_item(jar_item : JarItem)
 

@@ -554,7 +554,7 @@ shader_parameter/blur_amount = 3.0000001425
 shader_parameter/tint_strength = 0.638000030305
 shader_parameter/tint_color = Color(0, 0, 0, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dla4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u1cg"]
 shader = ExtResource("42_8hdni")
 shader_parameter/base_value = 0.0
 shader_parameter/base_color = Color(0, 1, 1, 1)
@@ -568,7 +568,7 @@ shader_parameter/low_opacity = 0.25
 shader_parameter/high_opacity = 1.0
 shader_parameter/fade_speed = 2.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2u1cg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1dla4"]
 shader = ExtResource("42_8hdni")
 shader_parameter/base_value = 0.0
 shader_parameter/base_color = Color(0, 1, 1, 1)
@@ -1569,10 +1569,13 @@ mesh = SubResource("ArrayMesh_jkgvf")
 
 [node name="OfferUi" type="Control" parent="." unique_id=240568422]
 process_mode = 3
+custom_minimum_size = Vector2(1280, 720)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 focus_mode = 2
 metadata/_edit_use_anchors_ = true
 
@@ -1582,46 +1585,193 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1240.0
-offset_bottom = 680.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0)
 
-[node name="ExitHeader" type="Control" parent="OfferUi" unique_id=1041650409]
-anchors_preset = 0
-offset_top = -64.0
-offset_right = 40.0
-offset_bottom = -24.0
+[node name="Content" type="Control" parent="OfferUi" unique_id=733907694]
+custom_maximum_size = Vector2(1920, 1080)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="BG" type="ColorRect" parent="OfferUi/ExitHeader" unique_id=1807441409]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 72.0
-offset_right = 1248.0
-offset_bottom = 112.0
+[node name="ExitHeader" type="Control" parent="OfferUi/Content" unique_id=1041650409]
+custom_minimum_size = Vector2(1216, 40)
+layout_mode = 1
+anchor_left = 0.025
+anchor_top = 0.022222223
+anchor_right = 0.975
+anchor_bottom = 0.078
+offset_bottom = -0.15999985
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BG" type="ColorRect" parent="OfferUi/Content/ExitHeader" unique_id=1807441409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.12156863, 0.007843138, 0, 1)
 
-[node name="ExitBtn" type="ColorRect" parent="OfferUi/ExitHeader" unique_id=1309207832]
-layout_mode = 0
-offset_left = 1148.0
-offset_top = 76.0
-offset_right = 1220.0
-offset_bottom = 108.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_mode = 2
+[node name="ContentHBox" type="HBoxContainer" parent="OfferUi/Content/ExitHeader" unique_id=70538443]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.98700005
+anchor_bottom = 1.0
+offset_right = -0.1920166
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Header" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox" unique_id=736163179]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 30
+text = "  Shareholder Offers"
+
+[node name="TurnsLeftDisplay" type="Control" parent="OfferUi/Content/ExitHeader/ContentHBox" unique_id=459073980]
+custom_minimum_size = Vector2(224, 27)
+layout_mode = 2
+
+[node name="DefaultTurn" type="Control" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay" unique_id=1231255838]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect2" type="ColorRect" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/DefaultTurn" unique_id=1257103525]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.075
+anchor_right = 1.0
+anchor_bottom = 0.925
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36078432, 0.019607844, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="DefaultHBox" type="HBoxContainer" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/DefaultTurn" unique_id=1727288689]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="TurnHeader" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/DefaultTurn/DefaultHBox" unique_id=625745453]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_1kfjt")
+theme_override_font_sizes/font_size = 27
+text = "Turns Left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CurrTurn" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/DefaultTurn/DefaultHBox" unique_id=1332890688]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 20
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Arrow" type="TextureRect" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/DefaultTurn/DefaultHBox" unique_id=1644325457]
+texture_filter = 1
+material = SubResource("ShaderMaterial_2u1cg")
+custom_minimum_size = Vector2(8, 12)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_scale = Vector2(2, 2)
+texture = ExtResource("42_1dla4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NextTurn" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/DefaultTurn/DefaultHBox" unique_id=473133034]
+texture_filter = 1
+material = SubResource("ShaderMaterial_1dla4")
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 20
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 162
+
+[node name="LastTurn" type="Control" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay" unique_id=429490020]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("58_cc40q")
+
+[node name="ColorRect2" type="ColorRect" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/LastTurn" unique_id=208247613]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 0.9250001
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.07999998, 0.0953331, 1)
+
+[node name="LastTurnLabel" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox/TurnsLeftDisplay/LastTurn" unique_id=1157722136]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("9_cnw5g")
+theme_override_font_sizes/font_size = 20
+text = "LAST TURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ExitBtnContainer" type="Control" parent="OfferUi/Content/ExitHeader/ContentHBox" unique_id=293494781]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ExitBtn" type="AspectRatioContainer" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer" unique_id=2105677476]
+custom_minimum_size = Vector2(72, 32)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 3
+ratio = 2.14
 script = ExtResource("42_2u1cg")
 
-[node name="ExitLabel" type="Label" parent="OfferUi/ExitHeader/ExitBtn" unique_id=963600555]
+[node name="BG" type="ColorRect" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer/ExitBtn" unique_id=91470871]
+layout_mode = 2
+
+[node name="ExitLabel" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer/ExitBtn" unique_id=963600555]
 texture_filter = 1
-layout_mode = 0
-offset_right = 72.0
-offset_bottom = 32.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
+layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_cnw5g")
 theme_override_font_sizes/font_size = 24
@@ -1629,32 +1779,42 @@ text = "x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Hint" type="Control" parent="OfferUi/ExitHeader/ExitBtn" unique_id=1088415817]
-visible = false
+[node name="HintParent" type="Control" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer/ExitBtn" unique_id=760351972]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="Hint" type="Control" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer/ExitBtn/HintParent" unique_id=1088415817]
 z_index = 1
-anchors_preset = 0
-offset_left = -1148.0
-offset_top = -76.0
-offset_right = -1108.0
-offset_bottom = -36.0
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 80.0
+grow_horizontal = 2
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="OfferUi/ExitHeader/ExitBtn/Hint" unique_id=448659837]
-layout_mode = 0
-offset_left = 1128.0
-offset_top = 112.0
-offset_right = 1248.0
-offset_bottom = 192.0
+[node name="BG" type="ColorRect" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer/ExitBtn/HintParent/Hint" unique_id=448659837]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.61960787)
 
-[node name="ExitLabel" type="Label" parent="OfferUi/ExitHeader/ExitBtn/Hint" unique_id=1707626405]
+[node name="ExitLabel" type="Label" parent="OfferUi/Content/ExitHeader/ContentHBox/ExitBtnContainer/ExitBtn/HintParent/Hint" unique_id=1707626405]
 texture_filter = 1
-layout_mode = 0
-offset_left = 1129.0
-offset_top = 135.0
-offset_right = 1249.0
-offset_bottom = 167.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("9_cnw5g")
@@ -1663,49 +1823,45 @@ text = "Exit?"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Header" type="Label" parent="OfferUi/ExitHeader" unique_id=736163179]
-layout_mode = 0
-offset_left = 40.0
-offset_top = 72.0
-offset_right = 280.0
-offset_bottom = 107.0
-theme_override_fonts/font = ExtResource("2_1kfjt")
-theme_override_font_sizes/font_size = 30
-text = "Shareholder Offers"
+[node name="OfferBody" type="VBoxContainer" parent="OfferUi/Content" unique_id=1797129419]
+custom_minimum_size = Vector2(1216, 392)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.07822222
+anchor_right = 0.975
+anchor_bottom = 0.9110001
+offset_top = -0.3199997
+offset_bottom = 0.079956055
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+metadata/_edit_use_anchors_ = true
 
-[node name="OfferBody" type="Control" parent="OfferUi" unique_id=1914773321]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CardShowcase" type="Control" parent="OfferUi/Content/OfferBody" unique_id=405900538]
+custom_minimum_size = Vector2(1216, 392)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+metadata/_edit_use_anchors_ = true
 
-[node name="BG" type="ColorRect" parent="OfferUi/OfferBody" unique_id=1693094140]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 1248.0
-offset_bottom = 688.0
-color = Color(0.18, 0.009000002, 0, 1)
-
-[node name="CardShowcase" type="Control" parent="OfferUi/OfferBody" unique_id=405900538]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="BG" type="ColorRect" parent="OfferUi/OfferBody/CardShowcase" unique_id=1660439481]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 1248.0
-offset_bottom = 440.0
+[node name="BG" type="ColorRect" parent="OfferUi/Content/OfferBody/CardShowcase" unique_id=1660439481]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.14, 0.0070000016, 0, 1)
 
-[node name="HintSelectCardLabel" type="Label" parent="OfferUi/OfferBody/CardShowcase" unique_id=1025858822]
+[node name="HintSelectCardLabel" type="Label" parent="OfferUi/Content/OfferBody/CardShowcase" unique_id=1025858822]
 texture_filter = 1
-layout_mode = 0
-offset_left = 32.0
-offset_top = 48.0
-offset_right = 1248.0
-offset_bottom = 440.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_fonts/font = ExtResource("2_1kfjt")
 theme_override_font_sizes/font_size = 35
@@ -1713,222 +1869,138 @@ text = "Select Card To Preview"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CardShowcaseParent" type="Control" parent="OfferUi/OfferBody/CardShowcase" unique_id=1633082963]
+[node name="CardShowcaseParent" type="Control" parent="OfferUi/Content/OfferBody/CardShowcase" unique_id=1633082963]
 anchors_preset = 0
 offset_left = 32.0
 offset_top = 48.0
 offset_right = 72.0
 offset_bottom = 88.0
 
-[node name="TurnsLeftDisplay" type="Control" parent="OfferUi/OfferBody" unique_id=337031699]
-anchors_preset = 0
-offset_left = 992.0
-offset_top = -48.0
-offset_right = 1032.0
-offset_bottom = -8.0
+[node name="CardsParent" type="Control" parent="OfferUi/Content/OfferBody" unique_id=1054080473]
+custom_minimum_size = Vector2(0, 208)
+layout_mode = 2
+size_flags_vertical = 3
 
-[node name="DefaultTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1076116794]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="BG" type="ColorRect" parent="OfferUi/Content/OfferBody/CardsParent" unique_id=110745599]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.009000002, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1603714781]
-layout_mode = 0
-offset_left = -464.0
-offset_top = 64.0
-offset_right = -240.0
-offset_bottom = 91.0
-color = Color(0.36078432, 0.019607844, 0, 1)
+[node name="PreviewCardsHover" type="Control" parent="OfferUi/Content/OfferBody/CardsParent" unique_id=438485868]
+layout_mode = 1
+anchor_right = 0.9868421
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=589363437]
-texture_filter = 1
-layout_mode = 0
-offset_left = -484.0
-offset_top = 57.0
-offset_right = -292.0
-offset_bottom = 97.0
-theme_override_fonts/font = ExtResource("2_1kfjt")
-theme_override_font_sizes/font_size = 27
-text = "Turns Left:"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="CardHBox" type="HBoxContainer" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover" unique_id=108316952]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013157895
+anchor_top = 0.03846154
+anchor_right = 1.0000001
+anchor_bottom = 0.96153843
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="CurrTurn" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1929312186]
-texture_filter = 1
-layout_mode = 0
-offset_left = -339.0
-offset_top = 54.0
-offset_right = -289.0
-offset_bottom = 104.0
-theme_override_fonts/font = ExtResource("9_cnw5g")
-theme_override_font_sizes/font_size = 20
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="PreviewCardHover1" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox" unique_id=1739627600 instance=ExtResource("49_k1kr7")]
+layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="NextTurn" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=332908700]
-texture_filter = 1
-material = SubResource("ShaderMaterial_1dla4")
-layout_mode = 0
-offset_left = -290.0
-offset_top = 54.0
-offset_right = -240.0
-offset_bottom = 104.0
-theme_override_fonts/font = ExtResource("9_cnw5g")
-theme_override_font_sizes/font_size = 20
-text = "2"
-horizontal_alignment = 1
-vertical_alignment = 1
-justification_flags = 162
-
-[node name="Arrow" type="Sprite2D" parent="OfferUi/OfferBody/TurnsLeftDisplay/DefaultTurn" unique_id=1145803670]
-texture_filter = 1
-material = SubResource("ShaderMaterial_2u1cg")
-position = Vector2(-292, 77.5)
-scale = Vector2(1.8749992, 1.4166667)
-texture = ExtResource("42_1dla4")
-
-[node name="LastTurn" type="Control" parent="OfferUi/OfferBody/TurnsLeftDisplay" unique_id=1386474911]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("58_cc40q")
-hover_height = 0.5
-
-[node name="ColorRect2" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=1849445935]
-layout_mode = 0
-offset_left = -472.0
-offset_top = 64.0
-offset_right = -240.0
-offset_bottom = 93.0
-
-[node name="TurnHeader" type="Label" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=1887123390]
-texture_filter = 1
-layout_mode = 0
-offset_left = -449.0
-offset_top = 41.0
-offset_right = -257.0
-offset_bottom = 117.0
-theme_override_colors/font_color = Color(1, 0.060000002, 0.060000002, 1)
-theme_override_constants/line_spacing = -7
-theme_override_fonts/font = ExtResource("2_1kfjt")
-theme_override_font_sizes/font_size = 35
-text = "LAST TURN"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="OfferUi/OfferBody/TurnsLeftDisplay/LastTurn" unique_id=400354233]
-layout_mode = 0
-offset_left = -472.0
-offset_top = 64.0
-offset_right = -240.0
-offset_bottom = 93.0
-color = Color(1, 0, 0, 0.37254903)
-
-[node name="PreviewCardsHover" type="Control" parent="OfferUi/OfferBody" unique_id=438485868]
-anchors_preset = 0
-offset_top = -1.0
-offset_right = 40.0
-offset_bottom = 39.0
-
-[node name="PreviewCardHover1" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1739627600 instance=ExtResource("49_k1kr7")]
-layout_mode = 0
-offset_left = 134.0
-offset_top = 447.0
-offset_right = 134.0
-offset_bottom = 447.0
-
-[node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1" index="2" unique_id=1574372299]
+[node name="DetectArea" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox/PreviewCardHover1" index="2" unique_id=1574372299]
 focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../../../ExitHeader/ExitBtn")
 focus_neighbor_right = NodePath("../../PreviewCardHover2/DetectArea")
-focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
 focus_mode = 2
 
-[node name="PreviewCardHover2" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1057547468 instance=ExtResource("49_k1kr7")]
-layout_mode = 0
-offset_left = 515.0
-offset_top = 447.0
-offset_right = 515.0
-offset_bottom = 447.0
+[node name="PreviewCardHover2" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox" unique_id=1057547468 instance=ExtResource("49_k1kr7")]
+layout_mode = 2
+size_flags_horizontal = 3
 corrisponding_card_index = 1
 
-[node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2" index="2" unique_id=1574372299]
+[node name="DetectArea" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox/PreviewCardHover2" index="2" unique_id=1574372299]
 focus_neighbor_left = NodePath("../../PreviewCardHover1/DetectArea")
-focus_neighbor_top = NodePath("../../../../ExitHeader/ExitBtn")
 focus_neighbor_right = NodePath("../../PreviewCardHover3/DetectArea")
-focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
 focus_mode = 2
 
-[node name="PreviewCardHover3" parent="OfferUi/OfferBody/PreviewCardsHover" unique_id=1224023589 instance=ExtResource("49_k1kr7")]
-layout_mode = 0
-offset_left = 894.0
-offset_top = 449.0
-offset_right = 894.0
-offset_bottom = 449.0
+[node name="PreviewCardHover3" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox" unique_id=1224023589 instance=ExtResource("49_k1kr7")]
+layout_mode = 2
+size_flags_horizontal = 3
 corrisponding_card_index = 2
 
-[node name="DetectArea" parent="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3" index="2" unique_id=1574372299]
+[node name="DetectArea" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox/PreviewCardHover3" index="2" unique_id=1574372299]
 focus_neighbor_left = NodePath("../../PreviewCardHover2/DetectArea")
-focus_neighbor_top = NodePath("../../../../ExitHeader/ExitBtn")
 focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath("../../../../ConfirmFooter/ConfirmBtn")
 focus_mode = 2
 
-[node name="PreviewCards" type="Control" parent="OfferUi/OfferBody" unique_id=1288358713]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PreviewCards" type="Control" parent="OfferUi/Content/OfferBody/CardsParent" unique_id=1288358713]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PreviewCardParent" type="Control" parent="OfferUi/OfferBody/PreviewCards" unique_id=121556806]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="SpawnPos1" type="Node2D" parent="OfferUi/OfferBody/PreviewCards" unique_id=1742506537]
-position = Vector2(134, 451)
-
-[node name="SpawnPos2" type="Node2D" parent="OfferUi/OfferBody/PreviewCards" unique_id=1412949269]
-position = Vector2(515, 451)
-
-[node name="SpawnPos3" type="Node2D" parent="OfferUi/OfferBody/PreviewCards" unique_id=246645297]
-position = Vector2(894, 453)
-
-[node name="ConfirmFooter" type="Control" parent="OfferUi" unique_id=1184043526]
-anchors_preset = 0
-offset_top = 592.0
-offset_right = 40.0
-offset_bottom = 632.0
-
-[node name="BG" type="ColorRect" parent="OfferUi/ConfirmFooter" unique_id=654125954]
+[node name="CardHBox" type="HBoxContainer" parent="OfferUi/Content/OfferBody/CardsParent/PreviewCards" unique_id=508099831]
 layout_mode = 0
-offset_left = 32.0
-offset_top = 64.0
-offset_right = 1248.0
-offset_bottom = 112.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ConfirmFooter" type="Control" parent="OfferUi/Content" unique_id=1184043526]
+custom_minimum_size = Vector2(1216, 48)
+layout_mode = 1
+anchor_left = 0.025
+anchor_top = 0.9110001
+anchor_right = 0.975
+anchor_bottom = 0.97800004
+offset_top = 0.079956055
+offset_bottom = -0.16003418
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BG" type="ColorRect" parent="OfferUi/Content/ConfirmFooter" unique_id=654125954]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.12156863, 0.007843138, 0, 1)
 
-[node name="ConfirmBtn" type="ColorRect" parent="OfferUi/ConfirmFooter" unique_id=1982443362]
-layout_mode = 0
-offset_left = 520.0
-offset_top = 72.0
-offset_right = 760.0
-offset_bottom = 104.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath("../../OfferBody/PreviewCardsHover/PreviewCardHover2/DetectArea")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-focus_mode = 2
+[node name="ConfirmBtn" type="AspectRatioContainer" parent="OfferUi/Content/ConfirmFooter" unique_id=187096054]
+custom_minimum_size = Vector2(240, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -16.0
+offset_right = 120.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 7.52
 script = ExtResource("52_lixm1")
 
-[node name="ExitLabel" type="Label" parent="OfferUi/ConfirmFooter/ConfirmBtn" unique_id=1907965999]
+[node name="ColorRect" type="ColorRect" parent="OfferUi/Content/ConfirmFooter/ConfirmBtn" unique_id=1032114481]
+layout_mode = 2
+
+[node name="ExitLabel" type="Label" parent="OfferUi/Content/ConfirmFooter/ConfirmBtn" unique_id=322460886]
 texture_filter = 1
-layout_mode = 0
-offset_top = 4.0
-offset_right = 240.0
-offset_bottom = 28.0
-pivot_offset_ratio = Vector2(0.5, 0.5)
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 3.57)
 theme_override_colors/font_color = Color(0.9, 0, 0, 1)
 theme_override_fonts/font = ExtResource("9_cnw5g")
 theme_override_font_sizes/font_size = 22
@@ -1936,31 +2008,47 @@ text = "confirm"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ConfirmHint" type="Control" parent="OfferUi/ConfirmFooter" unique_id=746276511]
-visible = false
+[node name="HintParent" type="Control" parent="OfferUi/Content/ConfirmFooter/ConfirmBtn" unique_id=1547841033]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ConfirmHint" type="Control" parent="OfferUi/Content/ConfirmFooter/ConfirmBtn/HintParent" unique_id=746276511]
 z_index = 2
-anchors_preset = 0
-offset_left = 488.0
-offset_top = 72.0
-offset_right = 528.0
-offset_bottom = 112.0
+custom_minimum_size = Vector2(203, 58)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -58.0
+offset_right = 120.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -7.87)
 mouse_filter = 2
 
-[node name="BG" type="ColorRect" parent="OfferUi/ConfirmFooter/ConfirmHint" unique_id=712134686]
-layout_mode = 0
-offset_left = 58.0
-offset_top = -64.0
-offset_right = 261.0
-offset_bottom = -6.0
+[node name="BG" type="ColorRect" parent="OfferUi/Content/ConfirmFooter/ConfirmBtn/HintParent/ConfirmHint" unique_id=712134686]
+custom_minimum_size = Vector2(203, 58)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.80784315)
 
-[node name="HintText" type="Label" parent="OfferUi/ConfirmFooter/ConfirmHint" unique_id=1565055496]
+[node name="HintText" type="Label" parent="OfferUi/Content/ConfirmFooter/ConfirmBtn/HintParent/ConfirmHint" unique_id=1565055496]
 texture_filter = 1
-layout_mode = 0
-offset_left = 56.0
-offset_top = -64.0
-offset_right = 261.0
-offset_bottom = -4.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/line_spacing = 4
 theme_override_fonts/font = ExtResource("2_1kfjt")
 theme_override_font_sizes/font_size = 20
@@ -2124,6 +2212,6 @@ max_distance = 25.0
 [node name="DeleteMe" type="Node3D" parent="." unique_id=1604480785]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4901946, 0, 5.0339823)
 
-[editable path="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover1"]
-[editable path="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover2"]
-[editable path="OfferUi/OfferBody/PreviewCardsHover/PreviewCardHover3"]
+[editable path="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox/PreviewCardHover1"]
+[editable path="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox/PreviewCardHover2"]
+[editable path="OfferUi/Content/OfferBody/CardsParent/PreviewCardsHover/CardHBox/PreviewCardHover3"]

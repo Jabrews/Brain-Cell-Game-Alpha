@@ -50,6 +50,7 @@ func _ready() -> void:
 
 func _refresh(
 	enabled: bool,
+	jar_full : bool,
 	cell_just_added : bool,
 	loaded_cell: BrainCell,
 	stat_valid: bool,
@@ -64,6 +65,10 @@ func _refresh(
 	hint_cycle_btns_parent.visible = false 	# reset hint also
 	toggle_hint_cycle_btn_anim._toggle(true)
 	
+	if jar_full : 
+		disabled_parent.visible = true	
+		return
+	
 	if cell_just_added : 
 		hint_cycle_btns_parent.visible = true
 		toggle_hint_cycle_btn_anim._toggle(true)
@@ -77,7 +82,10 @@ func _refresh(
 	if not enabled or not loaded_cell:
 		disabled_parent.visible = true
 		return
+	
 
+		
+		
 	if not stat_valid:
 		stat_invalid_parent.visible = true
 		return

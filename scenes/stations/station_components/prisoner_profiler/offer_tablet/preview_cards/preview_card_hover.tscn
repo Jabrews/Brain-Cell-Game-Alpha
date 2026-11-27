@@ -2,33 +2,26 @@
 
 [ext_resource type="Script" uid="uid://bfekof2r2syhw" path="res://scripts/stations/station_components/prisoner_profiler/offer_tablet/ui/preview_cards/hover/preview_card_hover.gd" id="1_4jpy5"]
 
-[node name="PreviewCardHover" type="Control" unique_id=1739627600]
-layout_mode = 3
-anchors_preset = 0
+[node name="PreviewCardHover" type="AspectRatioContainer" unique_id=386430530]
+custom_minimum_size = Vector2(270, 190)
+anchors_preset = -1
+anchor_right = 0.21100001
+anchor_bottom = 0.264
+offset_right = -0.08001709
+offset_bottom = -0.08000183
+ratio = 1.42
 script = ExtResource("1_4jpy5")
 
 [node name="HoverBorder" type="ColorRect" parent="." unique_id=265123361]
-visible = false
-layout_mode = 0
-offset_left = -3.0
-offset_top = 1.0
-offset_right = 267.0
-offset_bottom = 191.0
+layout_mode = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.39215687)
 
 [node name="SelectBorder" type="ColorRect" parent="." unique_id=1641219384]
 visible = false
-layout_mode = 0
-offset_left = -3.0
-offset_top = 1.0
-offset_right = 267.0
-offset_bottom = 191.0
+layout_mode = 2
 mouse_filter = 2
 
 [node name="DetectArea" type="ColorRect" parent="." unique_id=1574372299]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 264.0
-offset_bottom = 188.0
+layout_mode = 2
 color = Color(1, 1, 1, 0)

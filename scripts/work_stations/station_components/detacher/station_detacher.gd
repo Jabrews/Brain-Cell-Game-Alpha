@@ -6,7 +6,6 @@ extends Node
 
 var enabled : bool = false 
 var failure_rate_enabled : bool  = false
-var jar_full : bool = false
 
 var loaded_cell_container : CharacterBody3D = null
 var cell_just_added : bool = false # for failure chance screen
@@ -22,6 +21,9 @@ func _ready() -> void:
 	refresh_displays._refresh()
 	
 	light_manager._set_light_mode('off')
+	
+	GLJarComponentBus.connect('remove_jar_item', _handle_remove_jar_item )
+	
 
 
 func _recieve_cell_container(cell_container : CharacterBody3D) : 
@@ -56,11 +58,10 @@ func reset_state() :
 	loaded_cell_container = null
 	failure_rate = 0
 	
-	# deal with jar item disabled	
-	if len(GLJarComponentBus.jar_items) >= 4 : 
-		jar_full = true
-	else  :
-		jar_full = false
+func _handle_remove_jar_item(_item) :
+	await get_tree().process_frame
+	# just refresh incase we were on jar_full display logic
+	refresh_displays._refresh()
 
 
 func _get_loaded_cell() -> BrainCell : 

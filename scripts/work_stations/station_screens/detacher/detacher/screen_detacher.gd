@@ -2,6 +2,7 @@ extends Node
 
 ## Parent components
 @onready var disabled_stat_parent: Control = $Disabled
+@onready var jar_full_parent : Control = $JarFull
 @onready var add_a_cell_parent: Control = $AddACell
 @onready var stats_parent: Control = $Stats
 @onready var detach_success_parent : Control = $DetachSuccess
@@ -51,6 +52,7 @@ func _ready() -> void:
 
 func _refresh(
 	enabled: bool,
+	jar_full : bool,
 	loaded_cell: BrainCell,
 	stat_selected_index: int,
 	stat_valid: bool
@@ -58,13 +60,18 @@ func _refresh(
 	disabled_stat_parent.visible = false
 	add_a_cell_parent.visible = false
 	stats_parent.visible = false
+	jar_full_parent.visible = false
 
 	if not enabled:
 		disabled_stat_parent.visible = true
 		return
-
+	
 	if not loaded_cell:
 		add_a_cell_parent.visible = true
+		return
+		
+	if jar_full : 	
+		jar_full_parent.visible = true
 		return
 
 	stats_parent.visible = true

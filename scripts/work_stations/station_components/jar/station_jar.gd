@@ -35,6 +35,13 @@ func _ready() -> void:
 	_set_light_state(false)
 	_update_jar_amount_label()
 
+func check_jar_full() :
+	if len(GLJarComponentBus.jar_items) >= 4 : 
+		GLJarComponentBus.jar_full = true
+	else : 
+		GLJarComponentBus.jar_full = false
+
+
 
 func _handle_add_jar_item(jar_item: JarItem) -> void:
 	GLJarComponentBus.jar_items.append(jar_item)
@@ -42,6 +49,8 @@ func _handle_add_jar_item(jar_item: JarItem) -> void:
 	_flash_added_cell_light()
 	
 	refresh_jar_items._refresh()
+	
+	check_jar_full()
 
 
 func _handle_remove_jar_item(jar_item: JarItem) -> void:
@@ -50,6 +59,8 @@ func _handle_remove_jar_item(jar_item: JarItem) -> void:
 	_update_jar_amount_label()
 	
 	refresh_jar_items._refresh()
+	
+	check_jar_full()
 
 
 func _update_jar_amount_label() -> void:

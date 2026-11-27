@@ -14,6 +14,10 @@ func _handle(direction : int) :
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed') 
 		return
 	
+	if GLJarComponentBus.jar_full : 
+		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed') 
+		return
+	
 	if not parent_station_detacher.loaded_cell_container : 
 		GLPlayerLocalSoundsBus.emit_signal('sound_btn_press_failed') 
 		return

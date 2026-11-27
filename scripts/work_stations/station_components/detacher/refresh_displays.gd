@@ -9,21 +9,27 @@ extends Node
 func _refresh() : 
 	
 	var enabled	: bool = parent_station_detacher.enabled
+	var jar_full : bool = GLJarComponentBus.jar_full
+	var failure_rate_enabled : bool = parent_station_detacher.failure_rate_enabled 
+	
 	var stat_selected_index : int = parent_station_detacher.stat_selected_index 
 	var selected_stat : String = parent_station_detacher.selected_stat
 	var stat_valid : bool = parent_station_detacher.stat_valid
+	
+
 #	
 	var loaded_cell : BrainCell = parent_station_detacher._get_loaded_cell()
 	
 	screen_detacher._refresh(
 		enabled,	
+		jar_full,
 		loaded_cell,
 		stat_selected_index,
 		stat_valid,
 	) 
 	
 	# DEBUG failure rate turned off
-	if not parent_station_detacher.failure_rate_enabled  :
+	if not failure_rate_enabled :
 		return
 	
 	var failure_rate : int = parent_station_detacher.failure_rate
@@ -31,6 +37,7 @@ func _refresh() :
 	
 	screen_failure_chance._refresh(
 		enabled,
+		jar_full,
 		cell_just_added,
 		loaded_cell,
 		stat_valid,
